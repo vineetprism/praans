@@ -530,7 +530,7 @@ export default function NationalFestivalHolidaysPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+      {/* <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
@@ -560,7 +560,7 @@ export default function NationalFestivalHolidaysPage() {
             </div>
           </div>
         </div>
-      </header>
+      </header> */}
 
       {/* Page Header */}
       <div className="bg-white border-b border-gray-200">
@@ -859,7 +859,7 @@ export default function NationalFestivalHolidaysPage() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      {/* <footer className="bg-gray-900 text-white py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
@@ -914,7 +914,7 @@ export default function NationalFestivalHolidaysPage() {
             <p>&copy; 2025 E-Library. All rights reserved.</p>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   )
 }
