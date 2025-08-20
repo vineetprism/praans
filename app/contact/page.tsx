@@ -72,7 +72,7 @@ export default function ContactPage() {
                     className="flex items-center gap-3 text-lg text-gray-700 hover:text-orange-500"
                   >
                     <Phone className="w-6 h-6 text-orange-500" />
-                    <span>+91-123-456-7890</span>
+                    <span>+91-9050576838</span>
                   </a>
                   <a
                     href="mailto:info@praansconsultech.com"
@@ -95,20 +95,20 @@ export default function ContactPage() {
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                         Full Name
                       </label>
-                      <Input id="name" placeholder="John Doe" />
+                      <Input id="name" placeholder="Enter Your Name" />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                         Email Address
                       </label>
-                      <Input id="email" type="email" placeholder="you@example.com" />
+                      <Input id="email" type="email" placeholder="Enter Your Email..." />
                     </div>
                   </div>
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
                       Phone Number
                     </label>
-                    <Input id="phone" placeholder="+91-987-654-3210" />
+                    <Input id="phone" placeholder="Enter your Phone Num..." />
                   </div>
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
@@ -135,19 +135,13 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-slate-800">Our Physical Presence</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              With on-ground teams across the nation, we provide localized expertise and support in every state.
-            </p>
-          </div>
+      {/* <section className="py-20 bg-gray-100"> */}
+        <div className="container mx-auto px-4">       
           <div className="max-w-5xl mx-auto">
             <IndiaMap />
           </div>
         </div>
-      </section>
+      {/* </section> */}
     </div>
   )
 }

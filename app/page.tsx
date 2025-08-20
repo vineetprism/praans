@@ -16,7 +16,7 @@ import {
   Wallet,
   DollarSign,
   CreditCard,
-  // Zap,
+  Zap,
   // Cpu,
   Gavel,
   ClipboardCheck,
@@ -283,7 +283,7 @@ export default function HomePage() {
       </section>
 
       {/* Enhanced Latest Updates Marquee */}
-      {/* <section className="py-6 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 text-white overflow-hidden relative">
+      <section className="py-6 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 text-white overflow-hidden relative">
         <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-blue-500/10" />
         <div className="marquee-container relative flex">
           <div className="marquee flex-shrink-0 flex items-center gap-8">
@@ -299,7 +299,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Enhanced Key Offerings Section */}
       <section className="relative bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
