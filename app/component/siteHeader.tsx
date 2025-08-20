@@ -864,7 +864,7 @@ export default function SiteHeader() {
                           className="ml-4 mt-1 space-y-1"
                         >
                           {/* Optional: link to About overview */}
-                          <SheetClose asChild>
+                          {/* <SheetClose asChild>
                             <Link
                               href={item.href}
                               className={`block rounded-md px-3 py-2 text-sm transition-colors ${
@@ -875,7 +875,7 @@ export default function SiteHeader() {
                             >
                               Overview
                             </Link>
-                          </SheetClose>
+                          </SheetClose> */}
 
                           {item.dropdown!.map((dropdownItem) => {
                             const dropdownActive = pathname === dropdownItem.href

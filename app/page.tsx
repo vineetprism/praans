@@ -382,69 +382,69 @@
 //       </section> */}
 
 //       {/* Enhanced Key Offerings Section */}
-//       <section className="relative bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
-//         {/* Background Elements */}
-//          <div className="container mx-auto relative z-10">
-//           {/* Enhanced Offerings Grid */}
-//           <section className="py-20 bg-gradient-to-br min-h-screen">
-//             <div className="container mx-auto px-4">
-//               {/* Section Heading */}
-//               <div className="text-center mb-8">
-//                 <h2 className="text-3xl font-bold mb-1 text-slate-900">
-//                   Single Platform for All Labour Law Compliances
-//                 </h2>
-//                 <p className="text-base text-gray-700 max-w-2xl mx-auto">
-//                   From automated software to expert legal support, we've got you
-//                   covered.
-//                 </p>
-//               </div>
+      // <section className="relative bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
+      //   {/* Background Elements */}
+      //    <div className="container mx-auto relative z-10">
+      //     {/* Enhanced Offerings Grid */}
+      //     <section className="py-20 bg-gradient-to-br min-h-screen">
+      //       <div className="container mx-auto px-4">
+      //         {/* Section Heading */}
+      //         <div className="text-center mb-8">
+      //           <h2 className="text-3xl font-bold mb-1 text-slate-900">
+      //             Single Platform for All Labour Law Compliances
+      //           </h2>
+      //           <p className="text-base text-gray-700 max-w-2xl mx-auto">
+      //             From automated software to expert legal support, we've got you
+      //             covered.
+      //           </p>
+      //         </div>
 
-//               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-8xl mx-auto">
-//                 {keyOfferings.map((offering, idx) => (
-//                   <div
-//                     key={idx}
-//                     className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-xl p-7 shadow-sm cursor-pointer"
-//                     style={{
-//                       background:
-//                         "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
-//                       backdropFilter: "blur(14px)",
-//                     }}
-//                   >
-//                     {/* Icon Container: smaller */}
-//                     <div className="mb-4">
-//                       <div
-//                         className={`w-12 h-12 bg-gradient-to-br ${offering.color} rounded-xl flex items-center justify-center shadow`}
-//                       >
-//                         <offering.icon className="w-6 h-6 text-white" />
-//                       </div>
-//                     </div>
+      //         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-8xl mx-auto">
+      //           {keyOfferings.map((offering, idx) => (
+      //             <div
+      //               key={idx}
+      //               className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-xl p-7 shadow-sm cursor-pointer"
+      //               style={{
+      //                 background:
+      //                   "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
+      //                 backdropFilter: "blur(14px)",
+      //               }}
+      //             >
+      //               {/* Icon Container: smaller */}
+      //               <div className="mb-4">
+      //                 <div
+      //                   className={`w-12 h-12 bg-gradient-to-br ${offering.color} rounded-xl flex items-center justify-center shadow`}
+      //                 >
+      //                   <offering.icon className="w-6 h-6 text-white" />
+      //                 </div>
+      //               </div>
 
-//                     {/* Title & Description with smaller text */}
-//                     <h3 className="text-lg font-semibold mb-1 text-slate-800">
-//                       {offering.title}
-//                     </h3>
-//                     <p className="text-gray-600 text-xs mb-3 leading-tight">
-//                       {offering.description}
-//                     </p>
+      //               {/* Title & Description with smaller text */}
+      //               <h3 className="text-lg font-semibold mb-1 text-slate-800">
+      //                 {offering.title}
+      //               </h3>
+      //               <p className="text-gray-600 text-xs mb-3 leading-tight">
+      //                 {offering.description}
+      //               </p>
 
-//                     {/* Features Tags: smaller text & padding */}
-//                     <div className="flex flex-wrap gap-1">
-//                       {offering.features.map((feature, fidx) => (
-//                         <span
-//                           key={fidx}
-//                           className="bg-white/80 text-gray-700 px-2 py-0.5 rounded-full text-xs font-medium border border-gray-200"
-//                         >
-//                           {feature}
-//                         </span>
-//                       ))}
-//                     </div>
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//           </section>
-//         </div>
-//       </section>
+      //               {/* Features Tags: smaller text & padding */}
+      //               <div className="flex flex-wrap gap-1">
+      //                 {offering.features.map((feature, fidx) => (
+      //                   <span
+      //                     key={fidx}
+      //                     className="bg-white/80 text-gray-700 px-2 py-0.5 rounded-full text-xs font-medium border border-gray-200"
+      //                   >
+      //                     {feature}
+      //                   </span>
+      //                 ))}
+      //               </div>
+      //             </div>
+      //           ))}
+      //         </div>
+      //       </div>
+      //     </section>
+      //   </div>
+      // </section>
 //       {/* Enhanced Category Grid */}
 //       <section className=" pb-15  bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
 //         <div className="absolute inset-0 bg-gradient-to-br from-orange-100/10 via-transparent to-blue-100/10" />
@@ -890,14 +890,24 @@ export default function HomePage() {
         
         {/* Content Container */}
         <div className="max-w-7xl mx-auto text-center space-y-4 md:space-y-6 relative z-10">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-slate-900 tracking-tight leading-[0.9] animate-fade-up">
-            Simplifying{" "}
-            <span className="relative">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
-                Labour Law
-              </span>
-              <div className="absolute -bottom-2 md:-bottom-3 left-0 right-0 h-2 md:h-4 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-slate-900 tracking-tight leading-tight sm:leading-[1.1] md:leading-[1.0] lg:leading-[0.95] xl:leading-[0.9] animate-fade-up">
+          Simplifying{" "}
+          <span className="relative inline-block">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
+              Labour 
             </span>
+            <div className="absolute -bottom-1 sm:-bottom-2 md:-bottom-3 left-0 right-0 h-1 md:h-4 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
+          </span>
+          {" "}
+          <br className="block sm:hidden" />
+          {/* <br className="block sm:hidden" /> */}
+
+          <span className="relative inline-block sm:mt-11">
+            <span className=" sm:mt-11 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
+              Law
+            </span>
+            <div className="absolute -bottom-1 sm:-bottom-2 md:-bottom-3 left-0 right-0 h-1 md:h-4 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
+          </span>
             <br />        
             <div className="text-slate-800 mt-4 md:mt-6 lg:mt-9">Compliance</div>
             <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-600 font-bold">
@@ -910,7 +920,7 @@ export default function HomePage() {
           </p>
 
           {/* AI ChatBot Badge */}
-          <div className="pt-6 md:pt-8">
+          <div className="pt-6  md:pt-8 mb-20 ">
             <div className="relative inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 rounded-full
                     border-2 border-orange-300
                     bg-gradient-to-r from-orange-100 via-orange-50 to-red-100
@@ -930,56 +940,67 @@ export default function HomePage() {
       </section>
 
       {/* Enhanced Key Offerings Section */}
-      <section className="relative bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden py-12 md:py-16 lg:py-20">
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          {/* Section Heading */}
-          <div className="text-center mb-10 md:mb-12 lg:mb-16">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-slate-900">
-              Single Platform for All Labour Law Compliances
-            </h2>
-            <p className="text-base md:text-lg text-gray-700 max-w-2xl mx-auto px-4">
-              From automated software to expert legal support, we've got you covered.
-            </p>
-          </div>
-
-          {/* Offerings Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto">
-            {keyOfferings.map((offering, idx) => (
-              <div
-                key={idx}
-                className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-xl p-5 md:p-6 lg:p-7 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer group"
-              >
-                {/* Icon Container */}
-                <div className="mb-4 md:mb-5">
-                  <div
-                    className={`w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br ${offering.color} rounded-xl flex items-center justify-center shadow group-hover:scale-105 transition-transform duration-300`}
-                  >
-                    <offering.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
-                  </div>
-                </div>
-
-                {/* Title & Description */}
-                <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-slate-800 group-hover:text-orange-600 transition-colors duration-300">
-                  {offering.title}
-                </h3>
-                <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4 leading-relaxed">
-                  {offering.description}
+    <section className="relative bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
+        {/* Background Elements */}
+         <div className="container mx-auto relative z-10">
+          {/* Enhanced Offerings Grid */}
+          <section className="py-20 bg-gradient-to-br min-h-screen">
+            <div className="container mx-auto px-4">
+              {/* Section Heading */}
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-bold mb-1 text-slate-900">
+                  Single Platform for All Labour Law Compliances
+                </h2>
+                <p className="text-base text-gray-700 max-w-2xl mx-auto">
+                  From automated software to expert legal support, we've got you
+                  covered.
                 </p>
-
-                {/* Features Tags */}
-                <div className="flex flex-wrap gap-1 md:gap-2">
-                  {offering.features.map((feature, fidx) => (
-                    <span
-                      key={fidx}
-                      className="bg-white/80 text-gray-700 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium border border-gray-200"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
               </div>
-            ))}
-          </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-8xl mx-auto">
+                {keyOfferings.map((offering, idx) => (
+                  <div
+                    key={idx}
+                    className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-xl p-7 shadow-sm cursor-pointer"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
+                      backdropFilter: "blur(14px)",
+                    }}
+                  >
+                    {/* Icon Container: smaller */}
+                    <div className="mb-4">
+                      <div
+                        className={`w-12 h-12 bg-gradient-to-br ${offering.color} rounded-xl flex items-center justify-center shadow`}
+                      >
+                        <offering.icon className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
+
+                    {/* Title & Description with smaller text */}
+                    <h3 className="text-lg font-semibold mb-1 text-slate-800">
+                      {offering.title}
+                    </h3>
+                    <p className="text-gray-600 text-xs mb-3 leading-tight">
+                      {offering.description}
+                    </p>
+
+                    {/* Features Tags: smaller text & padding */}
+                    <div className="flex flex-wrap gap-1">
+                      {offering.features.map((feature, fidx) => (
+                        <span
+                          key={fidx}
+                          className="bg-white/80 text-gray-700 px-2 py-0.5 rounded-full text-xs font-medium border border-gray-200"
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
