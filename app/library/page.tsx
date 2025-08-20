@@ -261,52 +261,52 @@ export default function HomePage() {
       </section>
 
       {/* News & Updates */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between mb-12">
-            <div>
-              <h2 className="text-4xl font-bold mb-4">Latest Updates</h2>
-              <p className="text-xl text-gray-600">Stay informed with the most recent compliance news</p>
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="flex items-center justify-between mb-12">
+                <div>
+                  <h2 className="text-4xl font-bold mb-4">Latest Updates</h2>
+                  <p className="text-xl text-gray-600">Stay informed with the most recent compliance news</p>
+                </div>
+                <Button variant="outline" className="hidden md:flex">
+                  View All Updates
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                {newsUpdates.map((news, index) => (
+                  <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <Badge variant="secondary" className="text-xs">
+                          {news.category}
+                        </Badge>
+                        {news.isNew && (
+                          <Badge className="bg-green-500 text-white text-xs">
+                            <Star className="w-3 h-3 mr-1" />
+                            New
+                          </Badge>
+                        )}
+                      </div>
+                      <CardTitle className="text-lg group-hover:text-orange-500 transition-colors leading-tight">
+                        {news.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-gray-500">{news.date}</span>
+                        <Button size="sm" variant="ghost" className="group-hover:bg-orange-50">
+                          <Download className="w-4 h-4 mr-1" />
+                          Download
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
-            <Button variant="outline" className="hidden md:flex">
-              View All Updates
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {newsUpdates.map((news, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge variant="secondary" className="text-xs">
-                      {news.category}
-                    </Badge>
-                    {news.isNew && (
-                      <Badge className="bg-green-500 text-white text-xs">
-                        <Star className="w-3 h-3 mr-1" />
-                        New
-                      </Badge>
-                    )}
-                  </div>
-                  <CardTitle className="text-lg group-hover:text-orange-500 transition-colors leading-tight">
-                    {news.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">{news.date}</span>
-                    <Button size="sm" variant="ghost" className="group-hover:bg-orange-50">
-                      <Download className="w-4 h-4 mr-1" />
-                      Download
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+          </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-slate-800 text-white">

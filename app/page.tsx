@@ -1,3 +1,16 @@
+"use client"
+
+import {useRef}  from "react";
+import Autoplay from "embla-carousel-autoplay";
+import type { EmblaPluginType } from "embla-carousel";
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -32,23 +45,33 @@ import {
 Bot, Sparkles,Crown,
   Clock,
   Monitor,
+  ChevronRight,
+  Badge,
+  Download,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-export const metadata = {
-  title: "Praans Consultech - Simplifying Labour Law Compliance",
-  description:
-    "All-in-One Platform for Compliance Software, Legal Advisory, PAN India Registrations, Litigation Support, Outsourcing, and Audits.",
-  keywords:
-    "labour law compliance, legal advisory, pan india registrations, litigation support, compliance outsourcing, compliance software",
-  openGraph: {
-    title: "Praans Consultech - Simplifying Labour Law Compliance",
-    description:
-      "All-in-One Platform for Compliance Software, Legal Advisory, PAN India Registrations, & More.",
-    type: "website",
-  },
-};
+
+
+
+
+
+// export const metadata = {
+//   title: "Praans Consultech - Simplifying Labour Law Compliance",
+//   description:
+//     "All-in-One Platform for Compliance Software, Legal Advisory, PAN India Registrations, Litigation Support, Outsourcing, and Audits.",
+//   keywords:
+//     "labour law compliance, legal advisory, pan india registrations, litigation support, compliance outsourcing, compliance software",
+//   openGraph: {
+//     title: "Praans Consultech - Simplifying Labour Law Compliance",
+//     description:
+//       "All-in-One Platform for Compliance Software, Legal Advisory, PAN India Registrations, & More.",
+//     type: "website",
+//   },
+// };
+
+
 
 const keyOfferings = [
   {
@@ -146,7 +169,7 @@ const categories = [
   },
   {
     title: "Holidays List",
-    description: "Official holiday calendars by state",
+    description: "Official holiday calendars by state and central government",
     icon: Calendar,
     color: "bg-pink-500",
     href: "/national-festival-holidays",
@@ -160,7 +183,7 @@ const categories = [
   },
   {
     title: "Minimum Wages",
-    description: "State-wise minimum wage rates",
+    description: "State-wise minimum wage rates given by the government",
     icon: DollarSign,
     color: "bg-yellow-500",
     href: "/minimum-wages",
@@ -191,28 +214,85 @@ const stats = [
   { icon: Shield, number: "100%", label: "Secure", color: "text-purple-500" },
 ];
 const CategoryCard = React.memo(({ category, index }) => (
-  <Link key={index} href={category.href}>
-    <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white/90 backdrop-blur-sm hover:bg-white">
-      <CardHeader className="pb-3">
-        <div
-          className={`w-14 h-14 ${category.color} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
-        >
-          <category.icon className="w-7 h-7 text-white" loading="lazy" />
+  // <Link key={index} href={category.href}>
+  //   <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-0 shadow-lg bg-white/90 backdrop-blur-sm hover:bg-white">
+  //     <CardHeader className="pb-3">
+  //       <div
+  //         className={`w-14 h-14 ${category.color} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+  //       >
+  //         <category.icon className="w-7 h-7 text-white" loading="lazy" />
+  //       </div>
+  //       <CardTitle className="text-xl group-hover:text-orange-500 transition-colors duration-300 font-bold">
+  //         {category.title}
+  //       </CardTitle>
+  //     </CardHeader>
+  //     <CardContent>
+  //       <CardDescription className="text-gray-600 leading-relaxed text-base">
+  //         {category.description}
+  //       </CardDescription>
+  //     </CardContent>
+  //   </Card>
+  // </Link>
+
+
+
+
+<Link key={index} href={category.href} className="group block">
+  <div className="relative overflow-hidden rounded-3xl">
+    {/* subtle bg tint on hover (no transition) */}
+    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-orange-100/0 to-blue-100/0 group-hover:from-orange-100/15 group-hover:to-blue-100/15" />
+
+    <Card className="relative border-0 shadow-lg bg-white/90 backdrop-blur-md rounded-3xl overflow-hidden">
+      {/* Accent bar */}
+      <div className={`h-1 ${category.color}`} />
+
+      <CardHeader className="pb-4 relative">
+        {/* static icon block (no scale/rotate) */}
+        <div className="mb-4">
+          <div className={`w-16 h-16 ${category.color} rounded-3xl flex items-center justify-center shadow-xl`}>
+            <category.icon className="w-8 h-8 text-white" />
+          </div>
         </div>
-        <CardTitle className="text-xl group-hover:text-orange-500 transition-colors duration-300 font-bold">
+
+        {/* only color shift on hover */}
+        <CardTitle className="text-xl font-bold mb-2 text-slate-900 group-hover:text-orange-600">
           {category.title}
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <CardDescription className="text-gray-600 leading-relaxed text-base">
+
+      <CardContent className="pt-0">
+        <CardDescription className="text-gray-600 leading-relaxed text-sm group-hover:text-gray-700">
           {category.description}
         </CardDescription>
+
+        {/* arrow chip: only color change on hover */}
+        <div className="flex justify-end mt-4">
+          <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-50">
+            <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-orange-600" />
+          </div>
+        </div>
       </CardContent>
     </Card>
-  </Link>
+  </div>
+</Link>
+  
 ));
 
+
+
 export default function HomePage() {
+
+
+
+      const autoplay = useRef(
+    Autoplay({
+      delay: 4000,           // 3s per slide
+      stopOnMouseEnter: true,
+      stopOnInteraction: false,
+    })
+  );
+
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Enhanced Hero Section */}
@@ -234,7 +314,7 @@ export default function HomePage() {
               <div className="absolute -bottom-3 left-0 right-0 h-4 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
             </span>
             <br />        
-            <div className="text-slate-800 mt-2">Compliance</div>
+            <div className="text-slate-800 mt-9">Compliance</div>
             <span className="text-3xl md:text-4xl lg:text-5xl text-slate-600 font-bold">
               for Your Business
             </span>
@@ -244,7 +324,7 @@ export default function HomePage() {
             – PAN India
           </p>
 
-         <div className="">
+         <div className="pt-22">
                 <div className="relative inline-flex items-center gap-3 px-6 py-2 rounded-full
                         border-2 border-orange-300
                         bg-gradient-to-r from-orange-100 via-orange-50 to-red-100
@@ -263,7 +343,7 @@ export default function HomePage() {
       </div>
 
           {/* Enhanced CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-fade-up delay-200">
+          {/* <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-fade-up delay-200">
             <Button
               size="lg"
               className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-xl px-8 py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold"
@@ -278,12 +358,12 @@ export default function HomePage() {
             >
               Talk to Our Compliance Experts
             </Button>
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* Enhanced Latest Updates Marquee */}
-      <section className="py-6 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 text-white overflow-hidden relative">
+      {/* <section className="py-6 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 text-white overflow-hidden relative">
         <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-blue-500/10" />
         <div className="marquee-container relative flex">
           <div className="marquee flex-shrink-0 flex items-center gap-8">
@@ -299,14 +379,14 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Enhanced Key Offerings Section */}
       <section className="relative bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
         {/* Background Elements */}
          <div className="container mx-auto relative z-10">
           {/* Enhanced Offerings Grid */}
-          <section className="py-30 bg-gradient-to-br from-orange-50 via-white to-blue-50 min-h-screen">
+          <section className="py-20 bg-gradient-to-br min-h-screen">
             <div className="container mx-auto px-4">
               {/* Section Heading */}
               <div className="text-center mb-8">
@@ -319,11 +399,11 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-8xl mx-auto">
                 {keyOfferings.map((offering, idx) => (
                   <div
                     key={idx}
-                    className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-xl p-4 shadow-sm cursor-pointer"
+                    className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-xl p-7 shadow-sm cursor-pointer"
                     style={{
                       background:
                         "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
@@ -366,7 +446,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* Enhanced Category Grid */}
-      <section className=" pb-24  pt-19 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+      <section className=" pb-15  bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-100/10 via-transparent to-blue-100/10" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
@@ -427,6 +507,106 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      
+      {/* News & Updates */}
+   
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-12">
+          <div>
+            <h2 className="text-4xl font-bold mb-4">Latest Updates</h2>
+            <p className="text-xl text-gray-600">
+              Stay informed with the most recent compliance news
+            </p>
+          </div>
+          <Button asChild variant="outline" className="hidden md:flex">
+            <Link href="/updates">
+              View All Updates
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Link>
+          </Button>
+        </div>
+
+        {/* Carousel */}
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          plugins={[autoplay.current]}
+          className="relative"
+        >
+          <CarouselContent className="-ml-3">
+            {newsUpdates.map((news, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-3 basis-full md:basis-1/2 lg:basis-1/2"
+              >
+                <Card className="border-l-4 border-l-orange-500 hover:shadow-lg">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <Badge variant="secondary" className="text-xs">
+                        {news.category}
+                      </Badge>
+                      {news.isNew && (
+                        <Badge className="bg-green-500 text-white text-xs">
+                          <Star className="w-3 h-3 mr-1" />
+                          New
+                        </Badge>
+                      )}
+                    </div>
+
+                    <CardTitle className="text-lg leading-tight">
+                      {news.href ? (
+                        <Link
+                          href={news.href}
+                          className="hover:text-orange-500"
+                        >
+                          {news.title}
+                        </Link>
+                      ) : (
+                        news.title
+                      )}
+                    </CardTitle>
+                  </CardHeader>
+
+                  <CardContent>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-500">
+                        {news.date}
+                      </span>
+
+                      <div className="flex gap-2">
+                        {news.href && (
+                          <Button size="sm" variant="ghost" asChild>
+                            <Link href={news.href}>
+                              Read
+                              <ArrowRight className="ml-1 w-4 h-4" />
+                            </Link>
+                          </Button>
+                        )}
+                        {news.downloadUrl && (
+                          <Button size="sm" variant="ghost" asChild>
+                            <Link href={news.downloadUrl}>
+                              <Download className="w-4 h-4 mr-1" />
+                              Download
+                            </Link>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          {/* Controls (optional) */}
+          <div className="mt-6 flex items-center justify-end gap-2">
+            <CarouselPrevious className="static translate-x-0" />
+            <CarouselNext className="static translate-x-0" />
+          </div>
+        </Carousel>
+      </div>
+    </section>
     </div>
   );
 }
