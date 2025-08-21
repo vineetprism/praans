@@ -770,26 +770,26 @@ const newsUpdates = [
 
 const categories = [
   {
-    title: "Acts",
+    title: "Acts,Rules,Forms",
     description: "Comprehensive collection of labor acts and regulations",
     icon: Scale,
     color: "bg-blue-500",
     href: "/acts",
   },
   {
-    title: "Rules",
+    title: "Calculators",
     description: "Detailed rules and implementation guidelines",
     icon: FileText,
     color: "bg-green-500",
-    href: "/rules",
+    href: "/calculators/bonus",
   },
-  {
-    title: "Forms",
-    description: "Downloadable forms for compliance requirements",
-    icon: FormInput,
-    color: "bg-purple-500",
-    href: "/forms",
-  },
+  // {
+  //   title: "Forms",
+  //   description: "Downloadable forms for compliance requirements",
+  //   icon: FormInput,
+  //   color: "bg-purple-500",
+  //   href: "/forms",
+  // },
   {
     title: "Gazette Notifications",
     description: "Latest government notifications and circulars",
