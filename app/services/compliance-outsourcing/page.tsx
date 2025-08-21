@@ -14,59 +14,72 @@ import {
 import Link from "next/link"
 import Image from "next/image"
 
+// 1) Replace existing whyReadinessMatters with this
 const whyReadinessMatters = [
   {
-    icon: Shield,
-    title: "Avoid Legal Penalties",
-    description:
-      "Non-compliance can lead to fines, licence suspension or prosecution. Regular internal audits identify gaps early so you can remediate before an inspection.",
-  },
-  {
     icon: Users,
-    title: "Build Trust with Authorities",
+    title: "Pan-India Compliance Management",
     description:
-      "Maintain accurate documentation and follow labour statutes to reduce friction with regulators — smoother inspections, fewer disruptions.",
+      "Consistent, centralized compliance across all states & UTs — we handle both state and central labour law requirements for multi-location businesses.",
   },
   {
     icon: FileText,
-    title: "Ensure Operational Continuity",
+    title: "Timely Statutory Filings & Legal Updates",
     description:
-      "Audit readiness reduces the risk of sudden compliance issues that could halt operations or trigger legal action, keeping the business running.",
+      "From periodic returns to digital registers, we manage filings and push proactive legal updates so you never miss a deadline.",
+  },
+  {
+    icon: Shield,
+    title: "Minimized Legal Risk",
+    description:
+      "Continuous monitoring plus expert legal advisory reduce exposure to fines, notices and reputational harm.",
   },
   {
     icon: CheckCircle,
-    title: "Protect Your Reputation",
+    title: "Audit & Inspection Preparedness",
     description:
-      "Timely compliance and transparent processes protect your employer brand and stakeholder confidence — good compliance = good reputation.",
+      "Records, documents and inspection packs are kept audit-ready with dedicated on-ground support during visits.",
+  },
+  {
+    icon: Cpu,
+    title: "Time & Cost Efficiency",
+    description:
+      "Outsource admin-heavy compliance tasks to free HR/legal bandwidth, cut operating costs and improve productivity.",
+  },
+  {
+    icon: Search,
+    title: "Industry-Specific Expertise",
+    description:
+      "Consultants with sector knowledge deliver regulation-aware, practical solutions tailored to your operations.",
   },
 ];
 
 
 const ourServices = [
   {
-    title: "Pre-Audit Review",
+    title: "Real-Time Legal Updates",
     description:
-      "We perform a complete internal review to surface compliance gaps and quantify risk across processes, payroll and documentation — with a prioritized remediation plan.",
+      "Instantly reflect changes in labour laws, notifications, and deadlines across jurisdictions.",
   },
   {
-    title: "Statutory Documentation Management",
+    title: "Centralized Dashboards",
     description:
-      "End-to-end management of mandatory registers, forms, returns and filings — kept current with the latest central and state rules and accessible for inspections.",
+      "Monitor compliance health of multiple units from a single view.",
   },
   {
-    title: "On-Site Inspection Support",
+    title: "Automated Alerts & Reminders",
     description:
-      "On-ground support during government inspections: our experts liaise with officials, present required documents and help your team respond professionally and confidently.",
+      "Never miss renewals, submissions, or inspections.",
   },
   {
-    title: "Post-Inspection Compliance",
+    title: "Secure Digital Record-Keeping: ",
     description:
-      "If an inspection flags issues, we handle corrective actions, draft response letters, assist with back-dated filings and implement system changes to prevent recurrence.",
+      "Digitally maintain all registers and statutory files with proper version control.",
   },
   {
-    title: "Ongoing Advisory",
+    title: "HR/Admin Friendly Access",
     description:
-      "Subscription-style advisory that keeps you aligned with legal updates — process tweaks, compliance alerts, and proactive readiness so you’re always inspection-ready.",
+      "Streamlined and user-friendly for internal teams to track compliance performance.",
   },
 ];
 
@@ -74,12 +87,13 @@ const ourServices = [
 const icons = [Shield, Users, Cpu, FileText, CheckCircle];
 
 const whyChooseUs = [
-  "15+ Years of Labour Law Expertise",
-  "Skilled Legal & Field Team for On-Site Support",
-  "Real-Time Tracking Through Smart Software",
-  "Tailored Solutions Based on Your Operations",
-  "End-to-End Service—From Pre-Audit to Closure Reports",
-]
+  "15+ Years of Legal Experience",
+  "Strong Industry Expertise",
+  "Centralized, AI-Powered Compliance Software",
+  "PAN India Operations & On-Ground Support",
+  "Customized, Transparent & Ethical Approach",
+  "End-to-End Compliance Outsourcing Services",
+];
 
 const serviceIcons = [Shield, FileText, Users, CheckCircle, Cpu]
 
@@ -101,8 +115,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
                 Ensure 100% Compliance, Reduce Risk, Improve Efficiency.
               </h1>
-
-              {/* <p className="mt-3 text-orange-600 font-semibold">Ensure 100% Compliance. Reduce Risk. Improve Efficiency.</p> */}
 
               {/* updated copy */}
               <div className="mt-4 text-lg text-slate-700 max-w-xl">
@@ -348,10 +360,9 @@ export default function LegalAdvisoryHrPoliciesPage() {
       <section className="py-14 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold">Why Audit & Inspection Readiness Matters</h2>
+            <h2 className="text-3xl font-bold">Why Outsource Labour Law Compliance?</h2>
             <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
-              Protect your operations with a proactive compliance posture — faster remediation, fewer fines, and better
-              regulator relations.
+              Outsourcing your labour law compliance is no longer an optional convenience, it's a competitive advantage. Here’s why businesses across India are turning to Praans Consultech.
             </p>
           </div>
 
@@ -443,9 +454,10 @@ export default function LegalAdvisoryHrPoliciesPage() {
       <section className="py-14 bg-white">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-10">
-            <h2 className="text-3xl font-bold">Our Audit & Inspection Services</h2>
+            <h2 className="text-3xl font-bold">Empowering Compliance Through Smart Technology</h2>
             <p className="mt-3 text-gray-600">
-              At Praans Consultech, we offer comprehensive audit and inspection support to help you stay prepared, minimize risks, and ensure full compliance with labour laws.
+              We combine traditional legal consulting with smart automation. Our in-house, AI-enabled compliance management software ensures full control, clarity, and convenience over all your compliance activities.
+              With our software + service model, your organization stays legally secure, operationally efficient, and always ahead of compliance challenges.
             </p>
           </div>
 
