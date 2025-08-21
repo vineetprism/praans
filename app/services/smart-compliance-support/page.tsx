@@ -88,7 +88,7 @@ const whyChooseUs = [
 
 const serviceIcons = [Shield, FileText, Users, CheckCircle, Cpu]
 
-export default function LitigationSupport() {
+export default function SmartComplianceSupport() {
   return (
     <div className="bg-white text-slate-900">
       {/* Hero */}

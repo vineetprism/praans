@@ -616,13 +616,6 @@
 
 
 
-
-
-
-
-
-
-
 "use client"
 
 import Link from "next/link"
@@ -650,7 +643,7 @@ const NAV = [
       { label: "Legal Advisory & Hr Policies", href: "/services/legal-advisory-hr-policies" },
       { label: "Pan India Registration", href: "/services/pan-india-registrations" },
       { label: "Litigation Support", href: "/services/litigation-support" },
-      { label: "Smart Compliance Software", href: "/services/smart-compliance-software" },
+      { label: "Smart Compliance Software", href: "/services/smart-compliance-support" },
     ],
   },
   { label: "Resources", href: "/acts" },
