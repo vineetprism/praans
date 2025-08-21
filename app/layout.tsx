@@ -47,9 +47,9 @@ import SiteHeader from "@/app/component/siteHeader"
 import SiteFooter from "@/app/component/siteFooter"
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.dev",
+  title: "Praans Consultech",
+  description: "Praans Consultech",
+  generator: "Praans Consultech",
 }
 
 export default function RootLayout({

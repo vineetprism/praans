@@ -616,13 +616,6 @@
 
 
 
-
-
-
-
-
-
-
 "use client"
 
 import Link from "next/link"
@@ -641,7 +634,18 @@ import {
 import { Menu, ChevronDown } from "lucide-react"
 
 const NAV = [
-  { label: "Services", href: "/services" },
+  {
+    label: "Services",
+    href: "/services",
+    dropdown: [
+      { label: "Compliance Outsourcing", href: "/services/compliance-outsourcing" },
+      { label: "Audit & Inspection", href: "/services/audit-and-inspection" },
+      { label: "Legal Advisory & Hr Policies", href: "/services/legal-advisory-hr-policies" },
+      { label: "Pan India Registration", href: "/services/pan-india-registrations" },
+      { label: "Litigation Support", href: "/services/litigation-support" },
+      { label: "Smart Compliance Software", href: "/services/smart-compliance-support" },
+    ],
+  },
   { label: "Resources", href: "/acts" },
   {
     label: "About Us",
