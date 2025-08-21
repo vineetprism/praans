@@ -126,24 +126,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      {/* <footer className="bg-gray-900 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex justify-center gap-6 mb-4">
-            <Link href="/privacy-policy" className="hover:text-orange-400 transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms-and-conditions" className="hover:text-orange-400 transition-colors">
-              Terms and Conditions
-            </Link>
-            <Link href="/disclaimer" className="hover:text-orange-400 transition-colors">
-              Disclaimer
-            </Link>
-          </div>
-          <p>&copy; 2025 Praans Consultech. All rights reserved.</p>
-        </div>
-      </footer> */}
     </div>
   )
 }

@@ -78,48 +78,6 @@ const whyChooseUs = [
 export default function AuditInspectionPage() {
   return (
     <div className="bg-white">
-      {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Link href="/">
-                <Image
-                  src="/logo.png"
-                  alt="Praans Consultech"
-                  width={180}
-                  height={40}
-                  className="h-10 w-auto"
-                  priority
-                />
-              </Link>
-            </div>
-            <nav className="hidden md:flex items-center space-x-6">
-              <Link href="/services" className="text-orange-500 font-semibold transition-colors">
-                Services
-              </Link>
-              <Link href="/acts" className="text-gray-600 hover:text-orange-500 transition-colors">
-                Resources
-              </Link>
-              <Link href="/about" className="text-gray-600 hover:text-orange-500 transition-colors">
-                About Us
-              </Link>
-              <Link href="/contact" className="text-gray-600 hover:text-orange-500 transition-colors">
-                Contact
-              </Link>
-            </nav>
-            <div className="flex items-center space-x-3">
-              <Button variant="ghost" size="sm">
-                Sign In
-              </Button>
-              <Button size="sm" className="bg-orange-500 hover:bg-orange-600">
-                Get Started
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
