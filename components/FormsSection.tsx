@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+// import { Alert, AlertDescription } from "@/components/ui/alert"
 import {
   Download,
   FileText,
@@ -39,6 +39,7 @@ interface FormsSectionProps {
   actTitle: string
   actSlug: string
 }
+
 
 const formsData: { [key: string]: Form[] } = {
   "factories-act-1948": [
@@ -381,96 +382,10 @@ export default function FormsSection({ actTitle, actSlug }: FormsSectionProps) {
                 </CardContent>
               </Card>
             ))}
+
           </div>
         </div>
       )}
-
-      {/* Optional Forms Section */}
-      {optionalForms.length > 0 && (
-        <div>
-          <div className="flex items-center gap-2 mb-6">
-            <h2 className="text-2xl font-bold text-slate-800">Optional Forms</h2>
-            <Badge variant="secondary">As Required</Badge>
-          </div>
-
-          <div className="grid gap-6">
-            {optionalForms.map((form) => (
-              <Card
-                key={form.id}
-                className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-gray-400"
-              >
-                <CardHeader className="pb-4">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
-                        <Badge variant="secondary">Optional</Badge>
-                        <Badge className={`text-xs ${getDifficultyColor(form.difficulty)}`}>{form.difficulty}</Badge>
-                        {form.isPopular && (
-                          <Badge className="bg-orange-100 text-orange-700 text-xs">
-                            <Star className="w-3 h-3 mr-1" />
-                            Popular
-                          </Badge>
-                        )}
-                      </div>
-                      <CardTitle className="text-xl group-hover:text-orange-600 transition-colors leading-tight mb-2">
-                        {form.title}
-                      </CardTitle>
-                      <CardDescription className="text-gray-600 leading-relaxed mb-4">
-                        {form.description}
-                      </CardDescription>
-                    </div>
-                  </div>
-
-                  {/* Form Details */}
-                  <div className="flex items-center gap-6 text-sm text-gray-500 mb-4">
-                    <div className="flex items-center gap-1">
-                      {getFormatIcon(form.format)}
-                      <span>{form.format}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Paperclip className="w-4 h-4" />
-                      <span>{form.fileSize}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{form.estimatedTime}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>Updated: {new Date(form.lastUpdated).toLocaleDateString()}</span>
-                    </div>
-                  </div>
-                </CardHeader>
-
-                <CardContent className="pt-0">
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-3">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 bg-transparent"
-                      >
-                        <Eye className="w-4 h-4 mr-2" />
-                        Preview
-                      </Button>
-                      <Button
-                        size="sm"
-                        className="bg-orange-500 hover:bg-orange-600"
-                        onClick={() => handleDownload(form)}
-                      >
-                        <Download className="w-4 h-4 mr-2" />
-                        Download
-                      </Button>
-                    </div>
-                    <div className="text-xs text-gray-500">{form.formNumber}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* Help Section */}
       <Card className="bg-gradient-to-r from-blue-50 to-orange-50 border-0">
         <CardContent className="p-6">

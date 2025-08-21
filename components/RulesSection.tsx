@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Download, BookOpen, MapPin } from "lucide-react"
 import { downloadFile, type DownloadItem } from "@/lib/download-utils"
+import Link from "next/link"
 
 interface Rule {
   id: number
@@ -140,18 +141,12 @@ export default function RulesSection({ actTitle, actSlug }: RulesSectionProps) {
                     <p className="text-sm text-gray-500">Related Act: {rule.relatedAct}</p>
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0">
-                    <Button variant="outline" size="sm">
-                      <BookOpen className="w-4 h-4 mr-2" />
-                      Read More
-                    </Button>
-                    {/* <Button
-                      size="sm"
-                      className="bg-orange-500 hover:bg-orange-600"
-                      onClick={() => handleDownload(rule)}
-                    >
-                      <Download className="w-4 h-4 mr-2" />
-                      Download
-                    </Button> */}
+                    <Link href={`/rules/${rule.slug}`}>
+                      <Button variant="outline" size="sm">
+                        <BookOpen className="w-4 h-4 mr-2" />
+                        Read More
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CardContent>

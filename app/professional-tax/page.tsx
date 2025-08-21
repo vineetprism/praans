@@ -136,30 +136,30 @@ export default function ProfessionalTaxPage() {
               <Button variant="outline" size="sm">Calculate Now</Button>
             </CardContent>
           </Card>
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+          {/* <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardContent className="p-6 text-center">
               <FileText className="w-12 h-12 text-green-600 mx-auto mb-4" />
               <h3 className="font-semibold text-gray-900 mb-2">PT Forms</h3>
               <p className="text-sm text-gray-600 mb-4">Download registration and return forms for all states</p>
               <Button variant="outline" size="sm">Download Forms</Button>
             </CardContent>
-          </Card>
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+          </Card> */}
+          {/* <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardContent className="p-6 text-center">
               <Globe className="w-12 h-12 text-purple-600 mx-auto mb-4" />
               <h3 className="font-semibold text-gray-900 mb-2">State Portals</h3>
               <p className="text-sm text-gray-600 mb-4">Access official state professional tax portals</p>
               <Button variant="outline" size="sm">Visit Portals</Button>
             </CardContent>
-          </Card>
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+          </Card> */}
+          {/* <Card className="hover:shadow-lg transition-shadow cursor-pointer">
             <CardContent className="p-6 text-center">
               <Calendar className="w-12 h-12 text-orange-600 mx-auto mb-4" />
               <h3 className="font-semibold text-gray-900 mb-2">Due Dates</h3>
               <p className="text-sm text-gray-600 mb-4">Track important PT compliance dates and deadlines</p>
               <Button variant="outline" size="sm">View Calendar</Button>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
 
         {/* What is Professional Tax */}
