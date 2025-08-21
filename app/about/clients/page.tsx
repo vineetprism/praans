@@ -22,12 +22,12 @@ import {
   TrendingUp,
   Shield
 } from "lucide-react"
-
+ 
 export const metadata = {
   title: "Our Clients | Praans Consultech",
   description: "Trusted by businesses across all major sectors in India for labour law compliance solutions.",
 }
-
+ 
 const clientSectors = [
   { icon: Truck, name: "Logistics & Warehousing", count: "500+" },
   { icon: Factory, name: "Manufacturing & Industrial Units", count: "800+" },
@@ -43,14 +43,14 @@ const clientSectors = [
   { icon: Coffee, name: "Restaurants, Cafes & Food Service", count: "300+" },
   { icon: Briefcase, name: "Business Consulting & Professional Services", count: "150+" },
 ]
-
+ 
 const stats = [
   { icon: UserCheck, value: "5000+", label: "Happy Clients", color: "text-blue-500" },
   { icon: UsersRound, value: "50,000+", label: "Employees Covered", color: "text-green-500" },
   { icon: Map, value: "28+", label: "States & UTs Covered", color: "text-orange-500" },
   { icon: TrendingUp, value: "99.9%", label: "Success Rate", color: "text-purple-500" },
 ]
-
+ 
 const testimonials = [
   {
     quote: "Praans Consultech has been instrumental in streamlining our compliance processes across 200+ locations. Their AI-powered platform saves us hours of manual work.",
@@ -60,18 +60,18 @@ const testimonials = [
   },
   {
     quote: "The expertise and proactive support from Praans team helped us navigate complex labour law requirements seamlessly during our expansion.",
-    company: "Major Manufacturing Group", 
+    company: "Major Manufacturing Group",
     industry: "Manufacturing",
     size: "5,000+ employees"
   },
   {
     quote: "Their compliance outsourcing service allows us to focus on our core business while ensuring 100% regulatory compliance across all our outlets.",
     company: "Retail Chain",
-    industry: "Retail & E-Commerce", 
+    industry: "Retail & E-Commerce",
     size: "15,000+ employees"
   }
 ]
-
+ 
 const whyClientsChooseUs = [
   {
     icon: Shield,
@@ -85,7 +85,7 @@ const whyClientsChooseUs = [
   },
   {
     icon: TrendingUp,
-    title: "Proven Track Record", 
+    title: "Proven Track Record",
     description: "Successfully serving 5000+ clients with 99.9% success rate"
   },
   {
@@ -94,7 +94,7 @@ const whyClientsChooseUs = [
     description: "Assigned compliance managers and 24/7 expert support"
   }
 ]
-
+ 
 export default function OurClientsPage() {
   return (
     <div className="bg-gray-50">
@@ -107,7 +107,7 @@ export default function OurClientsPage() {
           </p>
         </div>
       </section>
-
+ 
       {/* Stats Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -122,7 +122,7 @@ export default function OurClientsPage() {
           </div>
         </div>
       </section>
-
+ 
       {/* Client Sectors */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4">
@@ -134,7 +134,7 @@ export default function OurClientsPage() {
               We proudly serve a diverse portfolio of clients across India, delivering tailored compliance solutions for every industry's unique needs
             </p>
           </div>
-
+ 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {clientSectors.map((sector, index) => (
               <Card key={index} className="shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">
@@ -154,7 +154,7 @@ export default function OurClientsPage() {
           </div>
         </div>
       </section>
-
+ 
       {/* Client Testimonials */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
@@ -162,7 +162,7 @@ export default function OurClientsPage() {
             <h2 className="text-4xl font-bold mb-4 text-slate-800">What Our Clients Say</h2>
             <p className="text-xl text-gray-600">Real feedback from businesses we've helped succeed</p>
           </div>
-
+ 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="shadow-xl hover:shadow-2xl transition-shadow duration-300 bg-gradient-to-br from-white to-gray-50">
@@ -188,14 +188,14 @@ export default function OurClientsPage() {
           </div>
         </div>
       </section>
-
+ 
       {/* Why Clients Choose Us */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-slate-800">Why Clients Choose Us</h2>
           </div>
-
+ 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {whyClientsChooseUs.map((item, index) => (
               <div key={index} className="text-center">
@@ -209,7 +209,7 @@ export default function OurClientsPage() {
           </div>
         </div>
       </section>
-
+ 
       {/* Confidentiality Statement */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
@@ -230,7 +230,7 @@ export default function OurClientsPage() {
           </Card>
         </div>
       </section>
-
+ 
       {/* CTA Section */}
       <section className="py-20 bg-slate-800 text-white">
         <div className="container mx-auto px-4 text-center">

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 // "use client";
 
@@ -332,17 +333,19 @@
 
 
 
+=======
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
 "use client";
-
+ 
 import { useState } from "react";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
-
+ 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
-
+ 
 const officeLocations = [
   {
     name: "Corporate Office",
-    city: "Manesar, Gurugram", 
+    city: "Manesar, Gurugram",
     address: "CP-9, Sector-8, IMT Manesar, Gurugram, Haryana- 122052",
     coordinates: [76.9306, 28.3670],
     type: "corporate",
@@ -354,7 +357,7 @@ const officeLocations = [
   {
     name: "Regional Office",
     city: "Bangalore",
-    address: "No 1/3, 3rd Main, 4th Cross, Mathikere, Bangalore – 560054", 
+    address: "No 1/3, 3rd Main, 4th Cross, Mathikere, Bangalore – 560054",
     coordinates: [77.5946, 12.9716],
     type: "regional",
     employees: "80+",
@@ -374,7 +377,11 @@ const officeLocations = [
     email: "guwahati@paraansconsultech.com"
   }
 ];
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
 export default function Locations() {
   const [selectedOffice, setSelectedOffice] = useState(null);
   const [tooltip, setTooltip] = useState({
@@ -383,11 +390,11 @@ export default function Locations() {
     y: 0,
     visible: false,
   });
-
+ 
   const handleMarkerClick = (office) => {
     setSelectedOffice(selectedOffice?.name === office.name ? null : office);
   };
-
+ 
   const handleMarkerEnter = (evt, office) => {
     setTooltip({
       content: (
@@ -408,7 +415,7 @@ export default function Locations() {
       visible: true,
     });
   };
-
+ 
   const handleMove = (evt) => {
     if (tooltip.visible) {
       setTooltip(prev => ({
@@ -418,11 +425,11 @@ export default function Locations() {
       }));
     }
   };
-
+ 
   const handleLeave = () => {
     setTooltip({ content: "", x: 0, y: 0, visible: false });
   };
-
+ 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-orange-50">
       {/* Hero Section */}
@@ -432,22 +439,37 @@ export default function Locations() {
           <div className="absolute top-20 left-20 w-64 h-64 bg-orange-500/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-20 w-80 h-80 bg-orange-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
+<<<<<<< HEAD
         
+=======
+       
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
         <div className="relative z-10 py-20">
           <div className="container mx-auto px-6 text-center text-white">
             <div className="inline-flex items-center gap-2 bg-orange-600/20 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg mb-8 border border-orange-500/30">
               <span className="text-2xl">🇮🇳</span>
               <span className="text-sm font-semibold text-orange-200">Pan-India Presence</span>
             </div>
+<<<<<<< HEAD
             
+=======
+           
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
             <h1 className="text-5xl md:text-7xl font-black mb-6 text-white">
               Our <span className="text-transparent bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text">Locations</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+<<<<<<< HEAD
               Strategically positioned across India to serve you better with local expertise and nationwide coverage. 
               Connect with our nearest office for personalized labour law compliance assistance.
             </p>
             
+=======
+              Strategically positioned across India to serve you better with local expertise and nationwide coverage.
+              Connect with our nearest office for personalized labour law compliance assistance.
+            </p>
+           
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
             <div className="flex items-center justify-center gap-8 mt-12">
               <div className="text-center">
                 <div className="text-3xl font-bold text-orange-400">3</div>
@@ -467,11 +489,15 @@ export default function Locations() {
           </div>
         </div>
       </div>
-
+ 
       {/* Interactive Map Section */}
       <div className="container mx-auto px-6 py-16">
         <div className="grid lg:grid-cols-3 gap-8 items-start">
+<<<<<<< HEAD
           
+=======
+         
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
           {/* Map Container */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
@@ -479,7 +505,11 @@ export default function Locations() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Interactive Office Map</h2>
                 <p className="text-gray-600 text-sm">Click on any marker to view detailed office information</p>
               </div>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
               {/* Tooltip */}
               {tooltip.visible && (
                 <div
@@ -489,7 +519,7 @@ export default function Locations() {
                   {tooltip.content}
                 </div>
               )}
-
+ 
               <ComposableMap
                 projection="geoMercator"
                 projectionConfig={{
@@ -506,17 +536,17 @@ export default function Locations() {
                     <stop offset="50%" stopColor="#f3f4f6" />
                     <stop offset="100%" stopColor="#e5e7eb" />
                   </linearGradient>
-                  
+                 
                   <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
                     <feMorphology operator="dilate" radius="2"/>
                     <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge> 
+                    <feMerge>
                       <feMergeNode in="coloredBlur"/>
                       <feMergeNode in="SourceGraphic"/>
                     </feMerge>
                   </filter>
                 </defs>
-
+ 
                 <Geographies geography={geoUrl}>
                   {({ geographies }) =>
                     geographies
@@ -530,7 +560,7 @@ export default function Locations() {
                           strokeWidth={1.5}
                           style={{
                             default: { outline: "none" },
-                            hover: { 
+                            hover: {
                               outline: "none",
                               fill: "#f3f4f6",
                               transition: "all 0.3s ease"
@@ -541,7 +571,7 @@ export default function Locations() {
                       ))
                   }
                 </Geographies>
-
+ 
                 {/* Office Markers */}
                 {officeLocations.map((office, index) => (
                   <Marker
@@ -566,7 +596,7 @@ export default function Locations() {
                       opacity="0.4"
                       className="animate-pulse"
                     />
-                    
+                   
                     {/* Main marker */}
                     <circle
                       r={selectedOffice?.name === office.name ? 12 : 10}
@@ -576,14 +606,14 @@ export default function Locations() {
                       filter="url(#glow)"
                       className="transition-all duration-300 hover:scale-110"
                     />
-                    
+                   
                     {/* Inner dot */}
                     <circle
                       r={3}
                       fill="#ffffff"
                       opacity={0.9}
                     />
-
+ 
                     {/* City label */}
                     <text
                       textAnchor="middle"
@@ -596,7 +626,11 @@ export default function Locations() {
                   </Marker>
                 ))}
               </ComposableMap>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
               {/* Legend */}
               <div className="flex justify-center mt-6">
                 <div className="bg-orange-50 rounded-xl p-4 border border-orange-200">
@@ -614,7 +648,7 @@ export default function Locations() {
               </div>
             </div>
           </div>
-
+ 
           {/* Office Details Sidebar */}
           <div className="space-y-6">
             <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
@@ -624,13 +658,18 @@ export default function Locations() {
               </h3>
               <div className="space-y-4">
                 {officeLocations.map((office, index) => (
-                  <div 
+                  <div
                     key={index}
                     onClick={() => handleMarkerClick(office)}
                     className={`p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:shadow-md ${
                       selectedOffice?.name === office.name
+<<<<<<< HEAD
                         ? office.type === 'corporate' 
                           ? 'border-red-300 bg-red-50 shadow-md' 
+=======
+                        ? office.type === 'corporate'
+                          ? 'border-red-300 bg-red-50 shadow-md'
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
                           : 'border-orange-300 bg-orange-50 shadow-md'
                         : 'border-gray-200 bg-gray-50 hover:border-orange-200 hover:bg-orange-50/30'
                     }`}
@@ -641,8 +680,13 @@ export default function Locations() {
                         <div className="flex items-center gap-2 mb-2">
                           <h4 className="font-bold text-gray-900">{office.city}</h4>
                           <div className={`px-2 py-1 rounded-full text-xs font-semibold ${
+<<<<<<< HEAD
                             office.type === 'corporate' 
                               ? 'bg-red-100 text-red-700' 
+=======
+                            office.type === 'corporate'
+                              ? 'bg-red-100 text-red-700'
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
                               : 'bg-orange-100 text-orange-700'
                           }`}>
                             {office.type === 'corporate' ? 'HQ' : 'Regional'}
@@ -661,7 +705,11 @@ export default function Locations() {
                 ))}
               </div>
             </div>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
             {/* Contact Details for Selected Office */}
             {selectedOffice && (
               <div className="bg-gradient-to-br from-gray-900 to-black rounded-xl shadow-lg p-6 text-white border border-orange-200">
@@ -690,12 +738,17 @@ export default function Locations() {
             )}
           </div>
         </div>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
    
       </div>
     </div>
   );
 }
+<<<<<<< HEAD
 
 
 
@@ -1379,3 +1432,6 @@ export default function Locations() {
 //     </div>
 //   )
 // }
+=======
+ 
+>>>>>>> caee13cf4d7525e8817874ef69688c309bbf8815
