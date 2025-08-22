@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import {
   ScrollText, Gavel, FileText, Megaphone,
-  CalendarDays, HandCoins, Banknote, Receipt
+  CalendarDays, HandCoins, Banknote, Receipt,
+  Calculator
 } from "lucide-react"
 
 // --- Single Source of Truth (config yahin rakha hai) ---
@@ -18,6 +19,8 @@ const POPULAR_SEARCHES = [
   { label: "Labour welfare funds",  href: "/welfare-fund",         Icon: HandCoins },
   { label: "Minimum wages",         href: "/minimum-wages",         Icon: Banknote },
   { label: "Professional tax",      href: "/professional-tax",      Icon: Receipt },
+  { label: "Bonus Calculators",      href: "/calculators/bonus",      Icon: Calculator },
+  { label: "Gratuity Calculators",      href: "/calculators/gratuity",      Icon: FileText },
 ] as const
 
 type PopularSearchProps = {

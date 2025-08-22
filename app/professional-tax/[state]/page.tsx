@@ -212,44 +212,6 @@ export default function StateProfessionalTaxPage({ params }: { params: { state: 
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-orange-500 rounded flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">C</span>
-                </div>
-                <span className="font-bold text-xl">E-Library</span>
-              </Link>
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              <Link href="/acts" className="text-gray-700 hover:text-orange-600">Acts</Link>
-              <Link href="/rules" className="text-gray-700 hover:text-orange-600">Rules</Link>
-              <Link href="/forms" className="text-gray-700 hover:text-orange-600">Forms</Link>
-              <Link href="/calculators" className="text-gray-700 hover:text-orange-600">Calculators</Link>
-              <Link href="/gazette" className="text-gray-700 hover:text-orange-600">Gazette</Link>
-              <Link href="/holidays" className="text-gray-700 hover:text-orange-600">Holidays</Link>
-              <Link href="/welfare-fund" className="text-gray-700 hover:text-orange-600">Welfare Fund</Link>
-              <Link href="/professional-tax" className="text-orange-600 font-medium">Professional Tax</Link>
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      {/* Breadcrumb */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <Link href="/" className="hover:text-orange-600">Home</Link>
-            <span>/</span>
-            <Link href="/professional-tax" className="hover:text-orange-600">Professional Tax</Link>
-            <span>/</span>
-            <span className="text-gray-900">{stateData.name}</span>
-          </div>
-        </div>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -476,59 +438,6 @@ export default function StateProfessionalTaxPage({ params }: { params: { state: 
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-orange-500 rounded flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">C</span>
-                </div>
-                <span className="font-bold text-xl">E-Library</span>
-              </div>
-              <p className="text-gray-400">
-                Your comprehensive resource for labour law compliance and statutory requirements.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Quick Links</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/acts" className="hover:text-white">Acts</Link></li>
-                <li><Link href="/rules" className="hover:text-white">Rules</Link></li>
-                <li><Link href="/forms" className="hover:text-white">Forms</Link></li>
-                <li><Link href="/calculators" className="hover:text-white">Calculators</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/gazette" className="hover:text-white">Gazette Notifications</Link></li>
-                <li><Link href="/holidays" className="hover:text-white">Holiday List</Link></li>
-                <li><Link href="/welfare-fund" className="hover:text-white">Welfare Fund</Link></li>
-                <li><Link href="/professional-tax" className="hover:text-white">Professional Tax</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Newsletter</h3>
-              <p className="text-gray-400 mb-4">Stay updated with latest labour law changes</p>
-              <div className="flex">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="rounded-r-none"
-                />
-                <Button className="rounded-l-none bg-orange-600 hover:bg-orange-700">
-                  Subscribe
-                </Button>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 E-Library. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
