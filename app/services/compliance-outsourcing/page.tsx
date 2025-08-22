@@ -179,7 +179,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {whyReadinessMatters.map((item, idx) => (
               <div
                 key={idx}
@@ -258,15 +258,14 @@ export default function LegalAdvisoryHrPoliciesPage() {
       </section>
 
       {/* Meet the Founder — creative, responsive, no animations */}
-      <section className="py-14 bg-gray-50">
+      {/* <section className="py-14 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid gap-10 items-center md:grid-cols-2">
-            {/* Left: Image card (on small screens this stacks above text) */}
             <div className="order-1 md:order-2 flex justify-center md:justify-end">
               <div className="w-full max-w-sm rounded-2xl overflow-hidden border border-slate-100 bg-white">
                 <div className="relative">
                   <Image
-                    src="/services/MG.png" // <- replace with real path
+                    src="/services/MG.png"
                     alt="Sandeep Kumar — Founder, Praans Consultech"
                     width={1200}
                     height={1600}
@@ -306,7 +305,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
               </div>
             </div>
 
-            {/* Right: Bio + credentials */}
             <div className="order-2 md:order-1 flex flex-col justify-center gap-5">
               <div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Meet Our Founder — Vision Backed by Legal Expertise</h2>
@@ -347,14 +345,13 @@ export default function LegalAdvisoryHrPoliciesPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Team-only section (image & name removed) */}
-      <section className="py-14 bg-white">
+      {/* <section className="py-14 bg-white">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm border border-slate-100 p-6">
             <div className="flex flex-col gap-4">
-              {/* Header */}
               <div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Our Expert Team – The Foundation of Our Service Delivery</h3>
                 <p className="text-sm text-gray-600 mt-2">
@@ -362,7 +359,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 </p>
               </div>
 
-              {/* quick stats / badges */}
               <div className="flex flex-wrap gap-3 mt-3">
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#eb8535] text-sm font-semibold border border-orange-100">
                   <Users className="w-4 h-4" /> 2,500+ locations
@@ -377,7 +373,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 </span>
               </div>
 
-              {/* Expertise grid */}
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700">
                 <div className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-8 h-8 rounded-md bg-orange-50 flex items-center justify-center text-slate-800 border">
@@ -408,7 +403,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 </div>
               </div>
 
-              {/* CTAs */}
               <div className="mt-4 flex flex-wrap gap-3">
                 <Link href="/about#team" className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-[#eb8535] bg-transparent text-[#eb8535] text-lg hover:bg-[#eb8535] hover:text-white hover:border-white font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer">
                   Meet the Team
@@ -419,14 +413,13 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 </Link>
               </div>
 
-              {/* Footer note */}
               <p className="mt-4 text-sm text-gray-500">
                 They work closely with HR departments, government authorities, and client management to ensure timely submissions, legal clarity, and smooth on-ground execution—making us a trusted compliance partner across industries.
               </p>
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Our Services */}
       <section className="py-14 bg-gray-50">
@@ -583,17 +576,15 @@ export default function LegalAdvisoryHrPoliciesPage() {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <div className="bg-[#2a3154] text-white rounded-lg p-10 shadow-lg text-center">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4">Stay Ahead of Every Inspection</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">Let’s Simplify Your Compliance Journey</h2>
 
               <p className="max-w-3xl mx-auto text-gray-300 mb-4">
-                Labour law inspections are increasingly structured, tech-driven and penalty-focused — being audit-ready is
-                not optional. With Praans Consultech you get the assurance of compliance, the confidence to face inspections,
-                and a team that handles the legal complexity for you.
+                Labour law compliance doesn’t have to be overwhelming. With Praans Consultech, you receive strategic support, smart software, and a dedicated team that ensures every requirement is met ,accurately and on time.
               </p>
 
               <p className="max-w-3xl mx-auto text-gray-300 mb-8">
-                Book a free consultation to learn how our labour law audit & inspection services protect your business and
-                streamline operations.
+                Let us help you transform your compliance process into a strength, not a stress.
+                Book your free consultation to explore our labour law compliance outsourcing solutions.
               </p>
 
               <div className="flex justify-center gap-6 flex-wrap">
