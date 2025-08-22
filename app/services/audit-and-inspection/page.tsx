@@ -572,39 +572,45 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
       {/* CTA — updated copy */}
       <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl">
-            <div className="bg-[#2a3154] text-white rounded-lg p-10 shadow-lg text-center">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4">Stay Ahead of Every Inspection</h2>
+        <div className="mx-auto w-full max-w-[1700px] px-6 lg:px-8">
+          <div className="bg-[#2a3154] text-white rounded-lg p-8 sm:p-12 shadow-lg text-center">
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight">
+              Let’s Simplify Your Compliance Journey
+            </h2>
 
-              <p className="max-w-3xl mx-auto text-gray-300 mb-4">
-                Labour law inspections are increasingly structured, tech-driven and penalty-focused — being audit-ready is
-                not optional. With Praans Consultech you get the assurance of compliance, the confidence to face inspections,
-                and a team that handles the legal complexity for you.
-              </p>
+            <p className="mx-auto max-w-7xl text-gray-200 text-base sm:text-lg leading-relaxed mb-4">
+              Labour law compliance doesn’t have to be overwhelming. With Praans Consultech,
+              you receive strategic support, smart software, and a dedicated team that ensures
+              every requirement is met accurately and on time.
+            </p>
 
-              <p className="max-w-3xl mx-auto text-gray-300 mb-8">
-                Book a free consultation to learn how our labour law audit & inspection services protect your business and
-                streamline operations.
-              </p>
+            <p className="mx-auto max-w-6xl text-gray-200 text-base sm:text-lg leading-relaxed mb-10">
+              Let us help you transform your compliance process into a strength, not a stress.
+              Book your free consultation to explore our labour law compliance outsourcing solutions.
+            </p>
 
-              <div className="flex justify-center gap-6 flex-wrap">
-                <Link
-                  href="tel:+91-9876543210"
-                  aria-label="Call Praans Consultech"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-tertiary bg-[#eb8535] text-white text-lg hover:bg-transparent hover:text-[#eb8535] font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer"
-                >
-                  <span>Book Consultation</span>
-                </Link>
+            <div className="flex justify-center gap-5 sm:gap-6 flex-wrap">
+              <Link
+                href="tel:+91-9050576838"
+                aria-label="Call Praans Consultech"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-tertiary bg-[#eb8535] text-white text-lg font-bold
+                         hover:bg-transparent hover:text-[#eb8535]
+                         hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
+                         transition duration-200 cursor-pointer"
+              >
+                <span>Book Consultation</span>
+              </Link>
 
-                <Link
-                  href="mailto:sales@abc.com"
-                  aria-label="Email Praans Consultech"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white bg-transparent text-[#eb8535] text-lg hover:bg-[#eb8535] hover:text-white hover:border-white font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer"
-                >
-                  <span>Request a Demo</span>
-                </Link>
-              </div>
+              <Link
+                href="mailto:info@praansconsultech.com"
+                aria-label="Email Praans Consultech"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white bg-transparent text-[#eb8535] text-lg font-bold
+                         hover:bg-[#eb8535] hover:text-white hover:border-white
+                         hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
+                         transition duration-200 cursor-pointer"
+              >
+                <span>Request a Demo</span>
+              </Link>
             </div>
           </div>
         </div>
