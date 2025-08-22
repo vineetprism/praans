@@ -217,48 +217,48 @@ const categories = [
     href: "/calculators/gratuity",
   },
 ];
- 
+
+
 const CategoryCard = React.memo(({ category, index }) => (
-  <Link key={index} href={category.href} className="group block">
-    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl">
+  <Link key={index} href={category.href} className="group block h-full">
+    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl h-full">
       {/* Hover background effect */}
-      <div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-gradient-to-br from-orange-100/0 to-blue-100/0 group-hover:from-orange-100/15 group-hover:to-blue-100/15 transition-all duration-300" />
+      <div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-gradient-to-br from-orange-100/0 to-blue-100/0 group-hover:from-orange-100/15 group-hover:to-blue-100/15 transi" />
  
-      <Card className="relative border-0 shadow-lg bg-white/90 backdrop-blur-md rounded-2xl md:rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
+      <Card className="relative border-0 shadow-lg bg-white/90 backdrop-blur-md rounded-2xl md:rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
         {/* Accent bar */}
-        <div className={`h-1 ${category.color}`} />
+        <div className={`h-1 ${category.color} flex-shrink-0`} />
  
-        <CardHeader className="pb-3 md:pb-4 p-4 md:p-6 relative">
+        {/* Card content with flex-1 to fill space */}
+        <div className="flex-1 flex flex-col p-4 md:p-6">
           {/* Icon container */}
-          <div className="mb-3 md:mb-4">
-            <div className={`w-12 h-12 md:w-16 md:h-16 ${category.color} rounded-2xl md:rounded-3xl flex items-center justify-center shadow-lg md:shadow-xl`}>
-              <category.icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
+          <div className="mb-4 md:mb-5">
+            <div className={`w-12 h-12 md:w-14 md:h-14 ${category.color} rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg`}>
+              <category.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
             </div>
           </div>
  
-          {/* Title with responsive text */}
-          <CardTitle className="text-lg md:text-xl font-bold mb-2 text-slate-900 group-hover:text-orange-600 transition-colors duration-300">
+          {/* Title */}
+          <h3 className="text-lg md:text-xl font-bold mb-3 text-slate-900 group-hover:text-orange-600 transition-colors duration-300 leading-tight">
             {category.title}
-          </CardTitle>
-        </CardHeader>
- 
-        <CardContent className="pt-0 p-4 md:p-6">
-          <CardDescription className="text-gray-600 leading-relaxed text-sm md:text-base group-hover:text-gray-700 transition-colors duration-300">
+          </h3>
+          
+          {/* Description - flex-1 to push arrow to bottom */}
+          <p className="text-gray-600 leading-relaxed text-sm md:text-base group-hover:text-gray-700 transition-colors duration-300 flex-1 mb-4">
             {category.description}
-          </CardDescription>
+          </p>
  
-          {/* Arrow indicator */}
-          <div className="flex justify-end mt-3 md:mt-4">
-            <div className="w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-50 transition-colors duration-300">
-              <ChevronRight className="w-3 h-3 md:w-4 md:h-4 text-gray-400 group-hover:text-orange-600 transition-colors duration-300" />
+          {/* Arrow indicator - always at bottom */}
+          <div className="flex justify-end">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-50 transition-colors duration-300">
+              <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-orange-600 transition-colors duration-300" />
             </div>
           </div>
-        </CardContent>
+        </div>
       </Card>
     </div>
   </Link>
 ));
- 
 export default function HomePage() {
   const autoplay = useRef(
     Autoplay({
@@ -331,72 +331,73 @@ export default function HomePage() {
       </section>
  
       {/* Enhanced Key Offerings Section */}
-    <section className="relative bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
-        {/* Background Elements */}
-         <div className="container mx-auto relative z-10">
-          {/* Enhanced Offerings Grid */}
-          <section className="py-20 bg-gradient-to-br min-h-screen">
-            <div className="container mx-auto px-4">
-              {/* Section Heading */}
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold mb-1 text-slate-900">
-                  Single Platform for All Labour Law Compliances
-                </h2>
-                <p className="text-base text-gray-700 max-w-2xl mx-auto">
-                  From automated software to expert legal support, we've got you
-                  covered.
-                </p>
-              </div>
  
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-8xl mx-auto my-20">
-                {keyOfferings.map((offering, idx) => (
+ 
+
+<section className="relative bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden min-h-screen">
+      {/* Background Elements */}
+      <div className="container mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
+        {/* Enhanced Offerings Grid */}
+        <section className="py-16 sm:py-20 lg:py-24">
+          {/* Section Heading */}
+          <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-slate-900 leading-tight">
+              Single Platform for All Labour Law Compliances
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed px-4">
+              From automated software to expert legal support, we've got you covered.
+            </p>
+          </div>
+
+          {/* Cards Grid with increased spacing - Always 3 per row */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-7xl mx-auto">
+            {keyOfferings.map((offering, idx) => (
+              <div
+                key={idx}
+                className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-xl p-6 sm:p-8 lg:p-10 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
+                  backdropFilter: "blur(14px)",
+                }}
+              >
+                {/* Icon Container */}
+                <div className="mb-5 sm:mb-6">
                   <div
-                    key={idx}
-                    className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-xl p-8 shadow-sm cursor-pointer"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
-                      backdropFilter: "blur(14px)",
-                    }}
+                    className={`w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${offering.color} rounded-xl flex items-center justify-center shadow-lg`}
                   >
-                    {/* Icon Container: smaller */}
-                    <div className="mb-4">
-                      <div
-                        className={`w-12 h-12 bg-gradient-to-br ${offering.color} rounded-xl flex items-center justify-center shadow`}
-                      >
-                        <offering.icon className="w-6 h-6 text-white" />
-                      </div>
-                    </div>
- 
-                    {/* Title & Description with smaller text */}
-                    <h3 className="text-lg font-semibold mb-1 text-slate-800">
-                      {offering.title}
-                    </h3>
-                    <p className="text-gray-600 text-xs mb-3 leading-tight">
-                      {offering.description}
-                    </p>
- 
-                    {/* Features Tags: smaller text & padding */}
-                    <div className="flex flex-wrap gap-1">
-                      {offering.features.map((feature, fidx) => (
-                        <span
-                          key={fidx}
-                          className="bg-white/80 text-gray-700 px-2 py-0.5 rounded-full text-xs font-medium border border-gray-200"
-                        >
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
+                    <offering.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                   </div>
-                ))}
+                </div>
+
+                {/* Title & Description */}
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-slate-800 leading-tight">
+                  {offering.title}
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base mb-4 sm:mb-5 leading-relaxed">
+                  {offering.description}
+                </p>
+
+                {/* Features Tags - 3 per row */}
+                <div className="grid grid-cols-3 gap-2">
+                  {offering.features.map((feature, fidx) => (
+                    <span
+                      key={fidx}
+                      className="bg-white/80 text-gray-700 px-2 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-gray-200 hover:bg-gray-50 transition-colors duration-200 text-center"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          </section>
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      </div>
+    </section>
+
  
       {/* Enhanced Category Grid */}
-      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+      <section className="py-8 md:py-16  bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-100/10 via-transparent to-blue-100/10" />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="text-center mb-12 md:mb-16 lg:mb-20">

@@ -6,22 +6,22 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Separator } from "@/components/ui/separator"
+// import { Separator } from "@/components/ui/separator"
 import {
   Search,
   Filter,
-  Download,
+  // Download,
   Eye,
-  Calendar,
-  MapPin,
-  FileText,
+  // Calendar,
+  // MapPin,
+  // FileText,
   ChevronRight,
   Home,
   Building2,
   Scale,
 } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
+// import Image from "next/image"
 import { downloadFile, type DownloadItem } from "@/lib/download-utils"
 // import PopularSearchBoxes from "../PopularSearchBoxes/PopularSearchBoxes"
 import PopularSearch from "../PopularSearch/PopularSearch"
@@ -180,56 +180,55 @@ export default function ActsPage() {
             </div>
 
             {/* Horizontal Filters */}
-            <Card className="mb-4">
-  <div className="flex flex-wrap md:flex-nowrap items-center gap-3 p-3">
-    {/* Inline title + icon */}
-    <div className="flex items-center gap-2 shrink-0 text-base leading-none">
-      <Filter className="w-4 h-4" />
-      <span className="font-semibold">Filters</span>
-    </div>
-
-    {/* thin vertical divider on md+ */}
-    <Separator orientation="vertical" className="hidden md:block h-8" />
-
-    {/* Search */}
-    <div className="relative w-full md:max-w-sm">
-      <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-      <Input
-        placeholder="Search by name..."
-        className="h-9 pl-9 text-sm"
-      />
-    </div>
-
-    {/* State */}
-    <Select>
-      <SelectTrigger className="h-9 w-full md:w-48 text-sm">
-        <SelectValue placeholder="Select state" />
-      </SelectTrigger>
-      <SelectContent>
-        {states.map((s) => (
-          <SelectItem key={s} value={s.toLowerCase()} className="text-sm">
-            {s}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-
-    {/* Category */}
-    <Select>
-      <SelectTrigger className="h-9 w-full md:w-56 text-sm">
-        <SelectValue placeholder="Select category" />
-      </SelectTrigger>
-      <SelectContent>
-        {categories.map((c) => (
-          <SelectItem key={c} value={c.toLowerCase()} className="text-sm">
-            {c}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  </div>
-</Card>
-
+           <Card className="mb-8">
+              <CardContent className="py-2">
+                <div className="flex flex-col lg:flex-row gap-4 items-center">
+                  {/* Filters Button */}
+                  <Button variant="outline" className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200">
+                    <Filter className="w-4 h-4" />
+                    Filters
+                  </Button>
+                  {/* Search Input */}
+                  <div className="relative flex-1">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <Input placeholder="Search by title..." className="pl-12 py-3 h-12 rounded-lg" />
+                  </div>
+                  
+                  {/* State Dropdown */}
+                  <Select>
+                    <SelectTrigger className="w-full lg:w-48 bg-gray-100 hover:bg-gray-200">
+                      <SelectValue placeholder="Select state" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {states.map((state) => (
+                        <SelectItem key={state} value={state.toLowerCase().replace(/ /g, '-')}>
+                          {state}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  
+                  {/* Category Dropdown */}
+                  <Select>
+                    <SelectTrigger className="w-full lg:w-48 bg-gray-100 hover:bg-gray-200">
+                      <SelectValue placeholder="Select category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.map((category) => (
+                        <SelectItem key={category} value={category.toLowerCase().replace(/ /g, '-')}>
+                          {category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  
+                  {/* Apply Button */}
+                  <Button className="bg-orange-500 hover:bg-orange-600 px-6">
+                    Apply
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
             {/* Acts Grid */}
             <div className="grid gap-6">
               {acts.map((act) => (
@@ -313,28 +312,14 @@ export default function ActsPage() {
           {/* Right Sidebar - Popular Search */}
           <div className="lg:col-span-1">
             <div className="sticky top-24">
-              <PopularSearch className="mb-6" />
+              {/* <PopularSearch className="mb-6" /> */}
               
-              {/* <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Popular Searches</CardTitle>
-                </CardHeader>
+              <Card>
+                
                 <CardContent>
-                  <div className="space-y-2">
-                    {popularSearches.map((search, index) => (
-                      <Button
-                        key={index}
-                        variant="ghost"
-                        size="sm"
-                        className="w-full justify-start text-left h-auto p-3 text-sm hover:bg-orange-50 hover:text-orange-600 border border-transparent hover:border-orange-200"
-                      >
-                        <Search className="w-3 h-3 mr-2 opacity-60" />
-                        {search}
-                      </Button>
-                    ))}
-                  </div>
+                   <PopularSearch className="mb-6" />
                 </CardContent>
-              </Card> */}
+              </Card>
             </div>
           </div>
         </div>
