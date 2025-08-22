@@ -14,7 +14,6 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -170,6 +169,7 @@ const categories = [
     icon: Calendar,
     color: "bg-pink-500",
     href: "/national-festival-holidays",
+    // href: "/holidays",
   },
   {
     title: "Labour Welfare Fund",

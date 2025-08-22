@@ -369,38 +369,7 @@ export default function HolidaysPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Link href="/">
-                <Image 
-                  src="/logo.png" 
-                  alt="Pragans Consultech" 
-                  width={180} 
-                  height={40}
-                  className="h-10 w-auto"
-                  priority
-                />
-              </Link>
-            </div>
-            <nav className="hidden md:flex items-center space-x-6">
-              <Link href="/acts" className="text-gray-600 hover:text-orange-500 transition-colors">Acts</Link>
-              <Link href="/minimum-wages" className="text-gray-600 hover:text-orange-500 transition-colors">Wages</Link>
-              <Link href="/forms" className="text-gray-600 hover:text-orange-500 transition-colors">Forms</Link>
-              <Link href="/gazette" className="text-gray-600 hover:text-orange-500 transition-colors">Notifications</Link>
-              <Link href="/holidays" className="text-orange-500 font-medium">Holidays</Link>
-            </nav>
-            <div className="flex items-center space-x-3">
-              <Button variant="ghost" size="sm">Sign In</Button>
-              <Button size="sm" className="bg-orange-500 hover:bg-orange-600">
-                Get Started
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header> */}
-
+     
       {/* Page Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
