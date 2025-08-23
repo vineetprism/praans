@@ -457,7 +457,7 @@ export default function AboutPage() {
 
       {/* Recognition */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+        <div className="container mx-auto px-4 md:px-6 max-w-8xl">
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
@@ -469,60 +469,60 @@ export default function AboutPage() {
             </p>
           </div>
 
-{/* Cards – show top part only, rest scrolls inside iframe */}
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
-  {media.map((item, idx) => (
-    <Card
-      key={idx}
-      className="relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white shadow-sm ring-1 ring-black/5"
-    >
-      {/* top accent bar */}
-      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
+          {/* Cards – show top part only, rest scrolls inside iframe */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
+            {media.map((item, idx) => (
+              <Card
+                key={idx}
+                className="relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white shadow-sm ring-1 ring-black/5"
+              >
+                {/* top accent bar */}
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
 
-      <CardContent className="p-0 flex flex-col h-full">
-        {/* Header row */}
-        <div className="px-6 pt-4 pb-2 flex items-start justify-between">
-          <span className="text-xs font-bold bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
-            {item.type}
-          </span>
-          <Link
-            href={item.link!}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-orange-600 hover:text-orange-700 text-sm font-medium inline-flex items-center gap-2"
-          >
-            Open article
-            <ExternalLink className="h-4 w-4" />
-          </Link>
-        </div>
+                <CardContent className="p-0 flex flex-col h-full">
+                  {/* Header row */}
+                  <div className="px-6 pt-4 pb-2 flex items-start justify-between">
+                    <span className="text-xs font-bold bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
+                      {item.type}
+                    </span>
+                    <Link
+                      href={item.link!}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-orange-600 hover:text-orange-700 text-sm font-medium inline-flex items-center gap-2"
+                    >
+                      Open article
+                      <ExternalLink className="h-4 w-4" />
+                    </Link>
+                  </div>
 
-        {/* Scrollable live preview (fixed height) */}
-        <div className="w-full bg-white border-t">
-          <iframe
-            src={item.link!}
-            className="w-full h-[520px] md:h-[560px] lg:h-[600px] border-0"
-            loading="lazy"
-            // keep interaction enabled so users can scroll inside the iframe
-            sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-            referrerPolicy="no-referrer-when-downgrade"
-            scrolling="yes"
-          />
-        </div>
+                  {/* Scrollable live preview (fixed height) */}
+                  <div className="w-full bg-white border-t">
+                    <iframe
+                      src={item.link!}
+                      className="w-full h-[520px] md:h-[560px] lg:h-[600px] border-0"
+                      loading="lazy"
+                      // keep interaction enabled so users can scroll inside the iframe
+                      sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      scrolling="yes"
+                    />
+                  </div>
 
-        {/* Footer meta */}
-        <div className="p-6">
-          <div className="mb-2 flex items-start justify-between">
-            <span className="text-xs text-gray-500 font-medium">{item.year}</span>
+                  {/* Footer meta */}
+                  <div className="p-6">
+                    <div className="mb-2 flex items-start justify-between">
+                      <span className="text-xs text-gray-500 font-medium">{item.year}</span>
+                    </div>
+                    <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-1 leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-gray-600">{item.source}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-          <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-1 leading-tight">
-            {item.title}
-          </h3>
-          <p className="text-sm md:text-base text-gray-600">{item.source}</p>
-        </div>
-      </CardContent>
-    </Card>
-  ))}
-</div>
 
         </div>
       </section>
