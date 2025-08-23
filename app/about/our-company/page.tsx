@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import {
   Target,
   Eye,
@@ -12,7 +12,17 @@ import {
   Newspaper,
   CheckCircle,
   ArrowRight,
+  Building2,
+  Calendar,
+  Users,
+  MapPin,
+  ExternalLink,
+  Heart,
+  Leaf,
+  GraduationCap,
+  Shield,
 } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 export const metadata = {
@@ -21,130 +31,225 @@ export const metadata = {
   keywords: "about praans consultech, labour law experts, compliance software company, sandeep kumar, nitesh kumar, allisha sharma",
 }
 
+type MediaItem = {
+  title: string;
+  source: string;
+  year: string;
+  type: string;
+  link?: string;
+  image?: string;
+};
+
 const whyChooseUs = [
   {
     icon: Cpu,
     title: "AI-Driven Compliance",
     description: "Smart software for error-free filings & real-time alerts",
+    highlight: "99.9% Accuracy"
   },
   {
     icon: Globe,
-    title: "Pan-India Coverage", 
+    title: "Pan-India Coverage",
     description: "Local experts in every state for seamless compliance",
+    highlight: "All States & UTs"
   },
   {
     icon: ShieldCheck,
     title: "End-to-End Solutions",
     description: "From registrations to litigation, we handle it all",
+    highlight: "Complete Service"
   },
   {
     icon: UsersRound,
     title: "Expert Team",
     description: "Labour law specialists & HR professionals on your side",
+    highlight: "Expert Support"
   },
   {
     icon: Headset,
     title: "Proactive Support",
     description: "Timely updates & guidance to prevent penalties",
+    highlight: "24/7 Available"
   },
   {
     icon: Scaling,
     title: "Customized for You",
     description: "Scalable solutions for startups to enterprises",
+    highlight: "All Business Sizes"
   },
 ]
 
-const services = [
-  "Labour Law Registrations",
-  "AI-Based Compliance Management Software", 
-  "Compliance Outsourcing Solutions",
-  "Litigation Support & Legal Representation",
-  "Labour Law Advisory Services",
-  "Audit and Inspection Support",
-]
 
-const founders = [
-  "Mr. Sandeep Kumar",
-  "Mr. Nitesh Kumar", 
-  "Ms. Allisha Sharma"
+
+const stats = [
+  {
+    icon: Users,
+    number: "5000+",
+    label: "Happy Clients",
+    color: "text-blue-600"
+  },
+  {
+    icon: MapPin,
+    number: "36",
+    label: "States & UTs Covered",
+    color: "text-green-600"
+  },
+  {
+    icon: Calendar,
+    number: "2021",
+    label: "Established",
+    color: "text-purple-600"
+  },
+  {
+    icon: Building2,
+    number: "100%",
+    label: "Success Rate",
+    color: "text-orange-600"
+  }
 ]
 
 const certifications = [
-  "ISO",
-  "Startup India",
-  "MSME", 
-  "Ministry of Corporate Affairs"
+  {
+    name: "ISO Certified",
+    description: "Quality Management System"
+  },
+  {
+    name: "Startup India",
+    description: "Government Recognition Program"
+  },
+  {
+    name: "MSME Registered",
+    description: "Micro, Small & Medium Enterprise"
+  },
+  {
+    name: "Ministry of Corporate Affairs",
+    description: "Government Approved Entity"
+  }
 ]
 
-const media = [
+const media: MediaItem[] = [
   {
-    title: "Best Labour Law Consultant",
-    source: "Excellence in Business Compliance"
-  },
-  {
-    title: "Shaping the Future of Labour Law and Business Registration",
+    title:
+      "Shaping the Future of Labour Law and Business Registration",
     source: "CEO India Magazine",
-    link: "https://ceoindiamagazine.com/praans-consultech-shaping-the-future-of-labour-law-and-business-registration/"
+    year: "2024",
+    type: "Feature",
+    link: "https://ceoindiamagazine.com/praans-consultech-shaping-the-future-of-labour-law-and-business-registration/",
   },
   {
-    title: "Empowering India's Businesses Through Compliance",
-    source: "Success India Magazine", 
-    link: "https://successmagazine.in/empowering-indias-businesses-through-compliance-the-success-story-of-praans-consultech/"
+    title:
+      "Empowering India's Businesses Through Compliance: The Success Story of Praans Consultech",
+    source: "Success India Magazine",
+    year: "2023",
+    type: "Success Story",
+    link: "https://successmagazine.in/empowering-indias-businesses-through-compliance-the-success-story-of-praans-consultech/",
   },
-]
+];
 
 export default function AboutPage() {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-orange-50 to-blue-50">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-slate-800">About Praans Consultech</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+      <section className="relative py-16 md:py-20 lg:py-24 bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/20 to-blue-100/20" />
+        <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 bg-orange-200/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48 bg-blue-200/30 rounded-full blur-3xl" />
+
+        <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
+            About Praans Consultech
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Simplifying Labour Law Compliance for businesses across India since 2021
           </p>
         </div>
       </section>
 
       {/* Our Story Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-4xl font-bold mb-8 text-slate-800 text-center">Our Story</h2>
-          
-          <div className="space-y-6 text-gray-600 leading-relaxed">
-            <p>
-              Praans Consultech was founded in 2021 with a clear vision to simplify and streamline labour law compliance for businesses across India. Understanding the increasing complexities HR and legal teams face in keeping pace with evolving labour laws, our founders <strong>Mr. Sandeep Kumar, Mr. Nitesh Kumar, and Ms. Allisha Sharma</strong> joined hands to establish a platform that delivers accurate, efficient, and tech-driven compliance solutions.
-            </p>
-            
-            <p>
-              Driven by their collective industry experience and deep understanding of clients' operational challenges, the founders identified a crucial gap most businesses struggled to manage multi-location compliance with traditional, manual systems. Driven by this understanding, we developed our premier compliance platform.
-            </p>
-            
-            <p>
-              In 2022, we proudly launched our <strong>AI-based Intelligent Compliance Management Software</strong>, designed to automate, monitor, and simplify complex compliance workflows.
-            </p>
-            
-            <p>
-              Since then, Praans Consultech has grown rapidly, expanding its service network to cover all states and union territories in India. With a dedicated team of legal experts, technology professionals, and on-ground compliance officers in every region, we ensure timely execution, localized support, and full legal accuracy.
-            </p>
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">
+              Our Story
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full"></div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-6 text-gray-600 leading-relaxed">
+              <p className="text-base md:text-lg">
+                Founded in 2021, <strong>Praans Consultech</strong> was born with a
+                vision to simplify labour law compliance for businesses across India.
+              </p>
+
+              <p className="text-base md:text-lg">
+                Our founders combined their expertise to create a
+                <strong> tech-driven compliance platform</strong> that replaces
+                outdated manual systems with intelligent automation.
+              </p>
+
+              <div className="bg-gradient-to-r from-orange-50 to-blue-50 p-6 rounded-2xl border-l-4 border-orange-500">
+                <p className="text-base md:text-lg font-semibold text-slate-800 mb-1">
+                  Milestone Achievement
+                </p>
+                <p className="text-base md:text-lg text-gray-700">
+                  In 2022, we launched our{" "}
+                  <strong>AI-powered Compliance Management Software</strong>, setting
+                  a new benchmark in efficiency and accuracy.
+                </p>
+              </div>
+
+              <p className="text-base md:text-lg">
+                Today, we serve clients nationwide, helping them stay compliant,
+                minimize risks, and focus on growth while we handle the complexity.
+              </p>
+            </div>
+
+            {/* Right Side Image */}
+            <div className="flex justify-center lg:justify-end">
+              <Image
+                src="/about/about.jpg"
+                alt="Praans Consultech Story"
+                width={500}
+                height={500}
+                className="rounded-2xl w-full max-w-md object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Our Services */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 text-slate-800">Our Services</h2>
-            <p className="text-xl text-gray-600">Today, we are trusted by businesses across sectors for our end-to-end labour law services</p>
+      {/* Stats Cards */}
+      <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">
+              Our Impact in Numbers
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+              Trusted nationwide for delivering reliable compliance solutions and unmatched expertise.
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4"></div>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {services.map((service, index) => (
-              <Card key={index} className="shadow-lg bg-white">
-                <CardContent className="p-6 flex items-center gap-4">
-                  <CheckCircle className="w-6 h-6 text-orange-500 flex-shrink-0" />
-                  <span className="font-semibold text-gray-800">{service}</span>
+
+          {/* Stats Cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 md:mt-16 max-w-6xl mx-auto">
+            {stats.map((stat, index) => (
+              <Card
+                key={index}
+                className="bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition duration-300"
+              >
+                <CardContent className="p-4 md:p-6 text-center">
+                  <stat.icon
+                    className={`w-6 h-6 md:w-8 md:h-8 mx-auto mb-2 md:mb-3 ${stat.color}`}
+                  />
+                  <div className="text-2xl md:text-3xl font-bold text-slate-800 mb-1">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm md:text-base text-gray-600 font-medium">
+                    {stat.label}
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -153,108 +258,287 @@ export default function AboutPage() {
       </section>
 
       {/* Vision & Mission */}
-      <section className="py-20 bg-slate-800 text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 text-center">
-            <div>
-              <Eye className="w-16 h-16 mx-auto mb-4 text-orange-400" />
-              <h3 className="text-3xl font-bold mb-4">🚀 Our Vision</h3>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                To become India's most trusted and technology-driven partner in labour law compliance making complex regulations simple, accessible, and manageable for every business.
-              </p>
-            </div>
-            <div>
-              <Target className="w-16 h-16 mx-auto mb-4 text-orange-400" />
-              <h3 className="text-3xl font-bold mb-4">🎯 Our Mission</h3>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                To empower businesses with intelligent tools and expert support for labour law compliance.
-              </p>
-            </div>
+      <section className="relative overflow-hidden py-16 md:py-20 bg-gray-50">
+        {/* Soft background glows */}
+        <div className="pointer-events-none absolute -left-32 top-24 h-64 w-64 rounded-full bg-cyan-200/20 blur-3xl" />
+        <div className="pointer-events-none absolute -right-32 bottom-24 h-72 w-72 rounded-full bg-amber-200/20 blur-3xl" />
+
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+          {/* Heading */}
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">
+              Our Mission and Vision
+            </h2>
+            <p className="mt-3 text-gray-600 max-w-3xl mx-auto">
+              Guiding principles that drive our commitment to compliance excellence and
+              business wellbeing
+            </p>
+          </div>
+
+          {/* Cards */}
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+            {/* Mission */}
+            <Card className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200 pt-10">
+              {/* top colored strip */}
+              <div className="absolute top-0 left-0 w-full h-2 bg-[#2c3454] rounded-t-2xl" />
+              <CardContent className="p-8">
+                {/* Icon badge */}
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#bec8dd]">
+                  <Shield className="h-8 w-8 text-[#2c3454]" />
+                </div>
+
+                <h3 className="text-center text-2xl font-extrabold tracking-wide text-[#2c3454]">
+                  OUR MISSION
+                </h3>
+
+                <p className="mt-5 text-center text-gray-600 max-w-xl mx-auto">
+                  To empower businesses with intelligent tools and expert support for labour law compliance.
+                  Certifications ISO , Startup India, MSME, Ministry of corporate affairs.
+
+                </p>
+
+                {/* <ul className="mt-6 space-y-3.5 text-gray-700">
+                  <li className="flex items-start gap-3">
+                    <Heart className="mt-0.5 h-5 w-5 text-[#2c3454]" />
+                    <span>Improving quality of operations</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Leaf className="mt-0.5 h-5 w-5 text-[#2c3454]" />
+                    <span>Sustainable, scalable compliance solutions</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <GraduationCap className="mt-0.5 h-5 w-5 text-[#2c3454]" />
+                    <span>Evidence-based, audit-ready approaches</span>
+                  </li>
+                </ul> */}
+              </CardContent>
+            </Card>
+
+            {/* Vision */}
+            <Card className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200 pt-10">
+              {/* top colored strip */}
+              <div className="absolute top-0 left-0 w-full h-2 bg-[#eb8535] rounded-t-2xl" />
+              <CardContent className="p-8">
+                {/* Icon badge */}
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-orange-50">
+                  <Eye className="h-8 w-8 text-[#eb8535]" />
+                </div>
+
+                <h3 className="text-center text-2xl font-extrabold tracking-wide text-[#eb8535]">
+                  OUR VISION
+                </h3>
+
+                <p className="mt-5 text-center text-gray-600 max-w-xl mx-auto">
+                  To become India’s most trusted and technology-driven partner in labour law compliance making complex regulations simple, accessible, and manageable for every business.
+                </p>
+
+                {/* <ul className="mt-6 space-y-3.5 text-gray-700">
+                  <li className="flex items-start gap-3">
+                    <Heart className="mt-0.5 h-5 w-5 text-orange-400" />
+                    <span>National leadership in compliance</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Leaf className="mt-0.5 h-5 w-5 text-orange-400" />
+                    <span>Accessible to every business size</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <GraduationCap className="mt-0.5 h-5 w-5 text-orange-400" />
+                    <span>Pioneering research & best practices</span>
+                  </li>
+                </ul> */}
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Why Praans Consultech?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">Why Praans Consultech?</h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
               We take pride in being a single-window solution for all statutory and regulatory compliance needs
             </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4"></div>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
             {whyChooseUs.map((item, index) => (
-              <div key={index} className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">✅ {item.title}</h3>
-                  <p className="text-gray-600">{item.description}</p>
-                </div>
-              </div>
+              <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-orange-100 to-orange-200 text-orange-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <item.icon className="w-6 h-6 md:w-7 md:h-7" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-lg md:text-xl font-semibold text-slate-800 group-hover:text-orange-600 transition-colors duration-300">
+                          {item.title}
+                        </h3>
+                        {/* <span className="text-xs font-bold bg-orange-100 text-orange-700 px-2 py-1 rounded-full">
+                          {item.highlight}
+                        </span> */}
+                      </div>
+                      <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
-          
-          <div className="text-center mt-12">
-            <div className="bg-gradient-to-r from-orange-100 to-blue-100 p-8 rounded-lg max-w-4xl mx-auto">
-              <p className="text-lg font-semibold text-slate-800">
-                Whether you're a startup, SME, or a large enterprise with operations in multiple states, Praans Consultech is your reliable partner in compliance. Let us manage your compliance so you can manage your business with peace of mind.
-              </p>
+
+          {/* <div className="text-center mt-12 md:mt-16">
+            <Card className="bg-gradient-to-r from-orange-50 via-white to-blue-50 border-0 shadow-xl max-w-4xl mx-auto">
+              <CardContent className="p-8 md:p-12">
+                <p className="text-lg md:text-xl font-semibold text-slate-800 leading-relaxed mb-6">
+                  Whether you're a startup, SME, or a large enterprise with operations in multiple states, Praans Consultech is your reliable partner in compliance. Let us manage your compliance so you can manage your business with peace of mind.
+                </p>
+                <div className="mt-6">
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-3 rounded-xl font-semibold"
+                  >
+                    Get Started Today
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div> */}
+        </div>
+      </section>
+
+      {/* Certifications */}
+      <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-4 md:px-6">
+          {/* Heading */}
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Certifications</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Recognitions that validate our compliance-first operating model.
+            </p>
+          </div>
+
+          {/* Cards Grid */}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {certifications.map((cert, i) => (
+                <Card
+                  key={i}
+                  className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200"
+                >
+                  {/* Top accent bar */}
+                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
+
+                  <CardContent className="p-6 md:p-7 pt-8 text-center">
+                    {/* Icon badge */}
+                    <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-orange-50 to-orange-200/70 group-hover:scale-105 transition-transform">
+                      <Award className="h-8 w-8 text-orange-600" />
+                    </div>
+
+                    <h3 className="text-lg md:text-xl font-semibold text-slate-800">
+                      {cert.name}
+                    </h3>
+
+                    <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                      {cert.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Certifications & Recognition */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Certifications & Recognition</h2>
+      {/* Recognition */}
+      <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+          {/* Heading */}
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+              Media & Recognition
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Third-party coverage and accolades that validate our execution.
+            </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            {/* Certifications */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-6 text-center">Certifications</h3>
-              <div className="grid grid-cols-2 gap-4">
-                {certifications.map((cert, index) => (
-                  <Card key={index} className="text-center p-4">
-                    <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Award className="w-6 h-6 text-orange-600" />
-                    </div>
-                    <p className="font-semibold">{cert}</p>
-                  </Card>
-                ))}
-              </div>
-            </div>
-            
-            {/* Media Recognition */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-6 text-center">Media & Recognition</h3>
-              <div className="space-y-4">
-                {media.map((item, index) => (
-                  <Card key={index} className="shadow-md">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <Newspaper className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
-                        <div>
-                          <h4 className="font-semibold text-lg mb-1">{item.title}</h4>
-                          <p className="text-sm text-gray-600 mb-2">{item.source}</p>
-                          {item.link && (
-                            <Link href={item.link} target="_blank" className="text-orange-600 hover:underline text-sm">
-                              Read Article →
-                            </Link>
-                          )}
+
+          {/* Cards */}
+          <div className="space-y-4 md:space-y-6">
+            {media.map((item, idx) => {
+              const hasLink = Boolean(item.link);
+              const href = hasLink ? (item.link as string) : "#";
+              return (
+                <Link
+                  key={idx}
+                  href={href}
+                  target={hasLink ? "_blank" : undefined}
+                  rel={hasLink ? "noopener noreferrer" : undefined}
+                  className="block"
+                >
+                  <Card className="relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white shadow-sm ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+                    {/* top accent bar */}
+                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
+
+                    <CardContent className="p-0">
+                      {/* Live preview / image */}
+                      <div className="w-full aspect-[16/9] bg-gray-50">
+                        {hasLink ? (
+                          // LIVE WEBSITE PREVIEW
+                          <iframe
+                            src={href}
+                            className="w-full h-full pointer-events-none"
+                            loading="lazy"
+                            sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                          />
+                        ) : (
+                          // FALLBACK IMAGE (no link available)
+                          <div className="relative w-full h-full">
+                            <Image
+                              src={item.image || "/media/placeholder.png"}
+                              alt={item.title}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 800px"
+                            />
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Text content */}
+                      <div className="p-6 md:p-8">
+                        <div className="mb-3 flex items-start justify-between">
+                          <span className="text-xs font-bold bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
+                            {item.type}
+                          </span>
+                          <span className="text-xs text-gray-500 font-medium">
+                            {item.year}
+                          </span>
                         </div>
+
+                        <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-1 leading-tight">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm md:text-base text-gray-600">
+                          {item.source}
+                        </p>
+                        {hasLink && (
+                          <p className="mt-3 text-xs text-gray-500">
+                            Opens in a new tab • Live preview shown above
+                          </p>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
-                ))}
-              </div>
-            </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -22,7 +22,6 @@ import {
   Zap,
 } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
  
 export const metadata = {
   title: "Meet Our Founder | Praans Consultech",

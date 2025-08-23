@@ -20,7 +20,7 @@ const NAV = [
     label: "About Us",
     href: "/about",
     dropdown: [
-      { label: "Our Company", href: "/about" },
+      { label: "Our Company", href: "/about/our-company" },
       { label: "Our Clients", href: "/about/clients" },
       { label: "Our Founders", href: "/about/founders" },
       { label: "Our Locations", href: "/about/locations" },
@@ -36,7 +36,7 @@ const NAV = [
       { label: "Legal Advisory & Hr Policies", href: "/services/legal-advisory-hr-policies" },
       { label: "Pan India Registration", href: "/services/pan-india-registrations" },
       { label: "Litigation Support", href: "/services/litigation-support" },
-      { label: "Smart Compliance Software", href: "/services/smart-compliance-support" },
+      { label: "Smart Compliance Software", href: "/services/smart-compliance-software" },
     ],
   },
   { label: "Contact", href: "/contact" },
