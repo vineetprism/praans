@@ -234,11 +234,11 @@ export default function ActDetailPage({ params }: ActDetailPageProps) {
             </Card>
 
             {/* Tabs for Act Details, Rules, and Forms */}
-            <Tabs defaultValue="overview" className="space-y-6">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="overview">Act Details</TabsTrigger>
-                <TabsTrigger value="rules">Rules</TabsTrigger>
-                <TabsTrigger value="forms">Forms</TabsTrigger>
+            <Tabs defaultValue="overview" className="space-y-6 ">
+              <TabsList className="grid w-full grid-cols-3 ">
+                <TabsTrigger value="overview" className="hover:cursor-pointer">Act Details</TabsTrigger>
+                <TabsTrigger value="rules" className="hover:cursor-pointer">Rules</TabsTrigger>
+                <TabsTrigger value="forms" className="hover:cursor-pointer">Forms</TabsTrigger>
               </TabsList>
 
               <TabsContent value="overview" className="space-y-6">

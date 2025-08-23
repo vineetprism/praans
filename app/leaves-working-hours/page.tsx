@@ -73,29 +73,6 @@ const quickActions = [
 export default function LeavesWorkingHoursPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-2">
-                <img src="/logo.png" alt="E-Library" className="h-8 w-auto" />
-                <span className="text-xl font-bold text-gray-900">E-Library</span>
-              </Link>
-            </div>
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link href="/acts" className="text-gray-600 hover:text-gray-900">Acts</Link>
-              <Link href="/rules" className="text-gray-600 hover:text-gray-900">Rules</Link>
-              <Link href="/forms" className="text-gray-600 hover:text-gray-900">Forms</Link>
-              <Link href="/calculators" className="text-gray-600 hover:text-gray-900">Calculators</Link>
-              <Link href="/gazette" className="text-gray-600 hover:text-gray-900">Gazette</Link>
-              <Link href="/holidays" className="text-gray-600 hover:text-gray-900">Holidays</Link>
-              <Link href="/welfare-fund" className="text-gray-600 hover:text-gray-900">Welfare Fund</Link>
-              <Link href="/leaves-working-hours" className="text-blue-600 font-medium">Leaves & Working Hours</Link>
-            </nav>
-          </div>
-        </div>
-      </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
@@ -323,51 +300,6 @@ export default function LeavesWorkingHoursPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <img src="/logo.png" alt="E-Library" className="h-8 w-auto" />
-                <span className="text-xl font-bold">E-Library</span>
-              </div>
-              <p className="text-gray-400">
-                Your comprehensive resource for labour laws, regulations, and compliance requirements.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li><Link href="/acts" className="text-gray-400 hover:text-white">Acts</Link></li>
-                <li><Link href="/rules" className="text-gray-400 hover:text-white">Rules</Link></li>
-                <li><Link href="/forms" className="text-gray-400 hover:text-white">Forms</Link></li>
-                <li><Link href="/calculators" className="text-gray-400 hover:text-white">Calculators</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2">
-                <li><Link href="/gazette" className="text-gray-400 hover:text-white">Gazette Notifications</Link></li>
-                <li><Link href="/holidays" className="text-gray-400 hover:text-white">Holidays</Link></li>
-                <li><Link href="/welfare-fund" className="text-gray-400 hover:text-white">Welfare Fund</Link></li>
-                <li><Link href="/leaves-working-hours" className="text-gray-400 hover:text-white">Leaves & Working Hours</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Stay Updated</h3>
-              <p className="text-gray-400 mb-4">Subscribe to get the latest updates on labour laws and regulations.</p>
-              <div className="flex space-x-2">
-                <Input placeholder="Enter your email" className="bg-gray-800 border-gray-700" />
-                <Button>Subscribe</Button>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-gray-400">&copy; 2024 E-Library. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

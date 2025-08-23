@@ -26,7 +26,7 @@ const NAV = [
       { label: "Our Locations", href: "/about/locations" },
     ],
   },
-  { label: "Resources", href: "/acts" },
+  // { label: "Resources", href: "/acts" },
   {
     label: "Services",
     href: "/services",
@@ -40,7 +40,7 @@ const NAV = [
     ],
   },
   { label: "Contact", href: "/contact" },
-  { label: "Library", href: "/library" },
+  { label: "Resource Library", href: "/library" },
 ]
 
 export default function SiteHeader() {
