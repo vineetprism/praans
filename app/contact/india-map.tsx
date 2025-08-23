@@ -127,7 +127,7 @@ export default function Locations() {
                 <Marker key={office.city} coordinates={office.coordinates} className="cursor-pointer">
                   <circle r={20} fill={HIGHLIGHT_HEX} opacity="0.15" className="animate-ping" />
                   <circle r={12} fill={HIGHLIGHT_HEX} opacity="0.25" className="animate-pulse" />
-                  <circle r={8} fill={HIGHLIGHT_HEX} stroke="#fff" strokeWidth={3} />
+                  <circle r={4} fill={HIGHLIGHT_HEX} stroke="#fff" strokeWidth={3} />
                   <text
                     y={30}
                     textAnchor="middle"

@@ -912,6 +912,7 @@
 
 "use client";
 
+import Image from "next/image";
 import React, { useState } from "react";
 import {
   ComposableMap,
@@ -995,16 +996,17 @@ export default function Locations() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-orange-50">
       {/* Header */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-gray-900 via-black to-gray-900">
+      <div className="relative overflow-hidden py-20 bg-gradient-to-br from-orange-50 to-blue-50">
         <div className="relative z-10 py-14">
           <div className="container mx-auto px-6 text-center text-white">
-            <h1 className="text-5xl md:text-6xl font-black mb-4">
+            <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-4">
               Pan-India{" "}
               <span className="text-transparent bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text">
                 Presence
               </span>
+              {/* <Image src="/services/parliament.svg" alt="logo" width={50} height={50} className="inline-block mr-4"/> */}
             </h1>
-            <p className="text-gray-300 max-w-3xl mx-auto">
+            <p className="text-gray-500 max-w-3xl mx-auto">
               Strategic locations across India with offices in Haryana, Karnataka,
               and Assam.
             </p>
@@ -1080,7 +1082,7 @@ export default function Locations() {
                   >
                     <circle r={20} fill={HIGHLIGHT_HEX} opacity="0.15" className="animate-ping" />
                     <circle r={12} fill={HIGHLIGHT_HEX} opacity="0.25" className="animate-pulse" />
-                    <circle r={8} fill={HIGHLIGHT_HEX} stroke="#fff" strokeWidth={3} />
+                    <circle r={4} fill={HIGHLIGHT_HEX} stroke="#fff" strokeWidth={3} />
                     <text
                       y={30}
                       textAnchor="middle"

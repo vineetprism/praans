@@ -95,32 +95,32 @@ export default function ContactPage() {
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                         Full Name
                       </label>
-                      <Input id="name" placeholder="Enter Your Name" />
+                      <Input id="name" placeholder="Enter Your Name" className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400" />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                         Email Address
                       </label>
-                      <Input id="email" type="email" placeholder="Enter Your Email..." />
+                      <Input id="email" type="email" placeholder="Enter Your Email..." className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400" />
                     </div>
                   </div>
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
                       Phone Number
                     </label>
-                    <Input id="phone" placeholder="Enter your Phone Num..." />
+                    <Input id="phone" placeholder="Enter Your Phone Number" className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400"/>
                   </div>
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
                       Subject
                     </label>
-                    <Input id="subject" placeholder="Regarding Compliance Outsourcing" />
+                    <Input id="subject" placeholder="Regarding Compliance Outsourcing" className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400"/>
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
                       Your Message
                     </label>
-                    <Textarea id="message" placeholder="Please describe your requirements..." rows={5} />
+                    <Textarea id="message" placeholder="Please describe your requirements..." rows={10} className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400"/>
                   </div>
                   <div>
                     <Button type="submit" className="w-full bg-[#eb8535] hover:bg-orange-400 text-lg py-3 cursor-pointer">
