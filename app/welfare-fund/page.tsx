@@ -247,7 +247,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Search, Download, ExternalLink, ChevronDown } from 'lucide-react'
+import { Search, Download, ExternalLink, ChevronDown, FileClock, IndianRupee, ScrollText } from 'lucide-react'
 import PopularSearch from '../PopularSearch/PopularSearch'
 
 export const metadata: Metadata = {
@@ -422,40 +422,52 @@ export default function WelfareFundPage() {
               </Card>
 
               {/* Quick Actions */}
-              <div className="grid md:grid-cols-3 gap-6">
-                <Card className="text-center">
-                  <CardContent className="pt-6">
-                    <Download className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                    <h3 className="font-semibold mb-2">Download Forms</h3>
-                    <p className="text-sm text-gray-600 mb-4">Access state-wise LWF forms and documents</p>
-                    <Button variant="outline" size="sm">
-                      View Forms
-                    </Button>
-                  </CardContent>
-                </Card>
+             
 
-                <Card className="text-center">
-                  <CardContent className="pt-6">
-                    <Search className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                    <h3 className="font-semibold mb-2">State-wise Rates</h3>
-                    <p className="text-sm text-gray-600 mb-4">Check contribution rates for your state</p>
-                    <Button variant="outline" size="sm">
-                      View Rates
-                    </Button>
-                  </CardContent>
-                </Card>
+<div className="grid md:grid-cols-3 gap-6">
+  {/* Latest Amendment */}
+  <Card className="text-center">
+    <CardContent className="pt-6">
+      <div className="mx-auto mb-4 grid place-items-center size-12 rounded-xl bg-blue-50 ring-1 ring-blue-200">
+        <FileClock className="h-6 w-6 text-blue-600" aria-hidden />
+      </div>
+      <h3 className="font-semibold mb-2">Latest Amendment</h3>
+      <p className="text-sm text-gray-600 mb-4">
+        View recent changes, effective dates, and Gazette references.
+      </p>
+      <Button variant="outline" size="sm">View Amendments</Button>
+    </CardContent>
+  </Card>
 
-                <Card className="text-center">
-                  <CardContent className="pt-6">
-                    <ExternalLink className="h-12 w-12 text-purple-600 mx-auto mb-4" />
-                    <h3 className="font-semibold mb-2">Official Websites</h3>
-                    <p className="text-sm text-gray-600 mb-4">Visit state labour department websites</p>
-                    <Button variant="outline" size="sm">
-                      Visit Sites
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
+  {/* State-wise Rates */}
+  <Card className="text-center">
+    <CardContent className="pt-6">
+      <div className="mx-auto mb-4 grid place-items-center size-12 rounded-xl bg-emerald-50 ring-1 ring-emerald-200">
+        <IndianRupee className="h-6 w-6 text-emerald-600" aria-hidden />
+      </div>
+      <h3 className="font-semibold mb-2">State-wise Rates</h3>
+      <p className="text-sm text-gray-600 mb-4">
+        Check contribution slabs, thresholds, and due cycles for your state.
+      </p>
+      <Button variant="outline" size="sm">View Rates</Button>
+    </CardContent>
+  </Card>
+
+  {/* Highlights of Acts */}
+  <Card className="text-center">
+    <CardContent className="pt-6">
+      <div className="mx-auto mb-4 grid place-items-center size-12 rounded-xl bg-violet-50 ring-1 ring-violet-200">
+        <ScrollText className="h-6 w-6 text-violet-600" aria-hidden />
+      </div>
+      <h3 className="font-semibold mb-2">Highlights of Acts</h3>
+      <p className="text-sm text-gray-600 mb-4">
+        One-page summaries: coverage, applicability, key compliance, penalties.
+      </p>
+      <Button variant="outline" size="sm">Read Highlights</Button>
+    </CardContent>
+  </Card>
+</div>
+
             </div>
           </div>
 

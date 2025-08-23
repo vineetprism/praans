@@ -74,31 +74,7 @@ const quickActions = [
 export default function ProvidentFundPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">E</span>
-                </div>
-                <span className="font-bold text-xl">E-Library</span>
-              </Link>
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              <Link href="/acts" className="text-gray-700 hover:text-blue-600">Acts</Link>
-              <Link href="/rules" className="text-gray-700 hover:text-blue-600">Rules</Link>
-              <Link href="/forms" className="text-gray-700 hover:text-blue-600">Forms</Link>
-              <Link href="/calculators" className="text-gray-700 hover:text-blue-600">Calculators</Link>
-              <Link href="/gazette" className="text-gray-700 hover:text-blue-600">Gazette</Link>
-              <Link href="/holidays" className="text-gray-700 hover:text-blue-600">Holidays</Link>
-              <Link href="/welfare-fund" className="text-gray-700 hover:text-blue-600">Welfare Fund</Link>
-              <Link href="/provident-fund" className="text-blue-600 font-medium">Provident Fund</Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+
 
       {/* Breadcrumb */}
       <div className="bg-white border-b">
@@ -489,3 +465,7 @@ export default function ProvidentFundPage() {
     </div>
   )
 }
+
+
+
+

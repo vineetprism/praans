@@ -555,8 +555,6 @@ export default function NotificationDetailPage() {
                   ))}
                 </CardContent>
               </Card> */}
-
-             
             </div>
           </div>
         </div>
