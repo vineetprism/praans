@@ -22,12 +22,12 @@ import {
   TrendingUp,
   Shield
 } from "lucide-react"
- 
+
 export const metadata = {
   title: "Our Clients | Praans Consultech",
   description: "Trusted by businesses across all major sectors in India for labour law compliance solutions.",
 }
- 
+
 const clientSectors = [
   { icon: Truck, name: "Logistics & Warehousing", count: "500+" },
   { icon: Factory, name: "Manufacturing & Industrial Units", count: "800+" },
@@ -43,14 +43,14 @@ const clientSectors = [
   { icon: Coffee, name: "Restaurants, Cafes & Food Service", count: "300+" },
   { icon: Briefcase, name: "Business Consulting & Professional Services", count: "150+" },
 ]
- 
+
 const stats = [
   { icon: UserCheck, value: "5000+", label: "Happy Clients", color: "text-blue-500" },
   { icon: UsersRound, value: "50,000+", label: "Employees Covered", color: "text-green-500" },
   { icon: Map, value: "28+", label: "States & UTs Covered", color: "text-orange-500" },
   { icon: TrendingUp, value: "99.9%", label: "Success Rate", color: "text-purple-500" },
 ]
- 
+
 const testimonials = [
   {
     quote: "Praans Consultech has been instrumental in streamlining our compliance processes across 200+ locations. Their AI-powered platform saves us hours of manual work.",
@@ -71,7 +71,7 @@ const testimonials = [
     size: "15,000+ employees"
   }
 ]
- 
+
 const whyClientsChooseUs = [
   {
     icon: Shield,
@@ -94,7 +94,7 @@ const whyClientsChooseUs = [
     description: "Assigned compliance managers and 24/7 expert support"
   }
 ]
- 
+
 export default function OurClientsPage() {
   return (
     <div className="bg-gray-50">
@@ -107,24 +107,9 @@ export default function OurClientsPage() {
           </p>
         </div>
       </section>
- 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <stat.icon className={`w-12 h-12 mx-auto mb-4 ${stat.color}`} />
-                <p className="text-4xl font-bold text-slate-800 mb-2">{stat.value}</p>
-                <p className="text-gray-600 font-medium">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
- 
+
       {/* Client Sectors */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-slate-800">
@@ -133,11 +118,12 @@ export default function OurClientsPage() {
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
               We proudly serve a diverse portfolio of clients across India, delivering tailored compliance solutions for every industry's unique needs
             </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
           </div>
- 
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {clientSectors.map((sector, index) => (
-              <Card key={index} className="shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white">
+              <Card key={index} className="shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gray-50">
                 <CardContent className="p-6">
                   <div className="flex items-center gap-4 mb-3">
                     <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
@@ -154,15 +140,48 @@ export default function OurClientsPage() {
           </div>
         </div>
       </section>
- 
+
+      {/* Stats Section */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-4">
+          {/* Heading */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+              Our Impact on Clients
+            </h2>
+            
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Snapshot of our scale, consistency, and nationwide delivery—real metrics that move the needle.
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
+          </div>
+
+          {/* Stats */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="text-center p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <stat.icon className={`w-12 h-12 mx-auto mb-4 ${stat.color}`} />
+                <p className="text-4xl font-bold text-slate-800 mb-2">{stat.value}</p>
+                <p className="text-gray-600 font-medium">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
       {/* Client Testimonials */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-slate-800">What Our Clients Say</h2>
             <p className="text-xl text-gray-600">Real feedback from businesses we've helped succeed</p>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
           </div>
- 
+
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="shadow-xl hover:shadow-2xl transition-shadow duration-300 bg-gradient-to-br from-white to-gray-50">
@@ -188,14 +207,15 @@ export default function OurClientsPage() {
           </div>
         </div>
       </section>
- 
+
       {/* Why Clients Choose Us */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-slate-800">Why Clients Choose Us</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
           </div>
- 
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {whyClientsChooseUs.map((item, index) => (
               <div key={index} className="text-center">
@@ -209,9 +229,9 @@ export default function OurClientsPage() {
           </div>
         </div>
       </section>
- 
+
       {/* Confidentiality Statement */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4">
           <Card className="bg-gradient-to-r from-orange-100 to-blue-100 p-8 max-w-4xl mx-auto shadow-xl">
             <div className="flex flex-col md:flex-row items-center gap-8">
@@ -229,8 +249,8 @@ export default function OurClientsPage() {
             </div>
           </Card>
         </div>
-      </section>
- 
+      </section> */}
+
       {/* CTA Section */}
       <section className="py-20 bg-slate-800 text-white">
         <div className="container mx-auto px-4 text-center">
@@ -239,10 +259,10 @@ export default function OurClientsPage() {
             Let's discuss how we can simplify your labour law compliance and help your business grow
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg px-8 py-6">
+            <Button size="lg" className="bg-[#eb8535] hover:bg-orange-400 text-white text-lg px-8 py-6 cursor-pointer">
               Get Free Consultation
             </Button>
-            <Button size="lg" variant="outline" className="border-2 border-white text-slate-800 text-lg px-8 py-6">
+            <Button size="lg" variant="outline" className="border-2 border-white text-slate-800 hover:text-[#eb8535] text-lg px-8 py-6 cursor-pointer">
               View Case Studies
             </Button>
           </div>
