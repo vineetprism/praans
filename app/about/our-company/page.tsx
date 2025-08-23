@@ -1,6 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card"
 import {
-  Target,
   Eye,
   Cpu,
   Globe,
@@ -9,17 +8,11 @@ import {
   Headset,
   Scaling,
   Award,
-  Newspaper,
-  CheckCircle,
-  ArrowRight,
   Building2,
   Calendar,
   Users,
   MapPin,
   ExternalLink,
-  Heart,
-  Leaf,
-  GraduationCap,
   Shield,
 } from "lucide-react"
 import Image from "next/image"
@@ -132,7 +125,7 @@ const media: MediaItem[] = [
     title:
       "Shaping the Future of Labour Law and Business Registration",
     source: "CEO India Magazine",
-    year: "2024",
+    year: "2025",
     type: "Feature",
     link: "https://ceoindiamagazine.com/praans-consultech-shaping-the-future-of-labour-law-and-business-registration/",
   },
@@ -140,7 +133,7 @@ const media: MediaItem[] = [
     title:
       "Empowering India's Businesses Through Compliance: The Success Story of Praans Consultech",
     source: "Success India Magazine",
-    year: "2023",
+    year: "2025",
     type: "Success Story",
     link: "https://successmagazine.in/empowering-indias-businesses-through-compliance-the-success-story-of-praans-consultech/",
   },
@@ -208,13 +201,16 @@ export default function AboutPage() {
 
             {/* Right Side Image */}
             <div className="flex justify-center lg:justify-end">
-              <Image
-                src="/about/about.jpg"
-                alt="Praans Consultech Story"
-                width={500}
-                height={500}
-                className="rounded-2xl w-full max-w-md object-cover"
-              />
+              <div className="relative w-full max-w-xl md:max-w-2xl lg:max-w-3xl aspect-[4/3]">
+                <Image
+                  src="/about/about.jpg"
+                  alt="Praans Consultech Story"
+                  fill
+                  priority={false}
+                  className="rounded-2xl object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 60vw, 50vw"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -258,7 +254,7 @@ export default function AboutPage() {
       </section>
 
       {/* Vision & Mission */}
-      <section className="relative overflow-hidden py-16 md:py-20 bg-gray-50">
+      <section className="relative overflow-hidden py-16 md:py-20 bg-white">
         {/* Soft background glows */}
         <div className="pointer-events-none absolute -left-32 top-24 h-64 w-64 rounded-full bg-cyan-200/20 blur-3xl" />
         <div className="pointer-events-none absolute -right-32 bottom-24 h-72 w-72 rounded-full bg-amber-200/20 blur-3xl" />
@@ -273,6 +269,7 @@ export default function AboutPage() {
               Guiding principles that drive our commitment to compliance excellence and
               business wellbeing
             </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4"></div>
           </div>
 
           {/* Cards */}
@@ -353,7 +350,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">Why Praans Consultech?</h2>
@@ -412,7 +409,7 @@ export default function AboutPage() {
       </section>
 
       {/* Certifications */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
@@ -469,7 +466,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Cards – show top part only, rest scrolls inside iframe */}
+          {/* Cards – scrollable preview, footer clickable */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
             {media.map((item, idx) => (
               <Card
@@ -480,9 +477,9 @@ export default function AboutPage() {
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
 
                 <CardContent className="p-0 flex flex-col h-full">
-                  {/* Header row */}
+                  {/* Header row (CTA) */}
                   <div className="px-6 pt-4 pb-2 flex items-start justify-between">
-                    <span className="text-xs font-bold bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
+                    <span className="text-xs font-bold bg-orange-100 text-[#eb8535] px-2 py-1 rounded-full">
                       {item.type}
                     </span>
                     <Link
@@ -496,21 +493,26 @@ export default function AboutPage() {
                     </Link>
                   </div>
 
-                  {/* Scrollable live preview (fixed height) */}
+                  {/* Scrollable live preview (no Link wrapper, no pointer-events-none) */}
                   <div className="w-full bg-white border-t">
                     <iframe
                       src={item.link!}
                       className="w-full h-[520px] md:h-[560px] lg:h-[600px] border-0"
                       loading="lazy"
-                      // keep interaction enabled so users can scroll inside the iframe
                       sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
                       referrerPolicy="no-referrer-when-downgrade"
                       scrolling="yes"
                     />
                   </div>
 
-                  {/* Footer meta */}
-                  <div className="p-6">
+                  {/* Footer meta (clickable) */}
+                  <Link
+                    href={item.link!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-6 block hover:bg-gray-50 transition-colors"
+                    aria-label={`Open article: ${item.title}`}
+                  >
                     <div className="mb-2 flex items-start justify-between">
                       <span className="text-xs text-gray-500 font-medium">{item.year}</span>
                     </div>
@@ -518,12 +520,11 @@ export default function AboutPage() {
                       {item.title}
                     </h3>
                     <p className="text-sm md:text-base text-gray-600">{item.source}</p>
-                  </div>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
           </div>
-
         </div>
       </section>
     </div>
