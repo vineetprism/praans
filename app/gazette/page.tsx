@@ -881,6 +881,7 @@ export default function GazetteNotificationsPage() {
                         <CardTitle className="text-xl group-hover:text-orange-600 transition-colors leading-tight mb-2">
                           {notification.title}
                         </CardTitle>
+                        <p>{notification.description}</p>
                       </div>
                     </div>
                   </CardHeader>

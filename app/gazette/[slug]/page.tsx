@@ -1,13 +1,35 @@
+
+// // Generate metadata for SEO
+// export async function generateMetadata({ params }: NotificationDetailPageProps) {
+//   const notificationData = notificationsDatabase[params.slug as keyof typeof notificationsDatabase]
+  
+//   if (!notificationData) {
+//     return {
+//       title: 'Notification Not Found'
+//     }
+//   }
+
+//   return {
+//     title: `${notificationData.title} - Pragans Consultech E-Library`,
+//     description: notificationData.description,
+//     keywords: `${notificationData.category}, ${notificationData.state}, gazette notification, ${notificationData.department}`
+//   }
+// }
+
+
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Download, Eye, Calendar, MapPin, FileText, ChevronRight, Home, Building2, Bell, Newspaper, AlertCircle, Share2, Bookmark, Clock, Users, ExternalLink, TrendingUp, Target, CheckCircle } from 'lucide-react'
+import { Download, Eye, Calendar, MapPin, FileText, ChevronRight, Home, Building2, Bell, Newspaper, AlertCircle, Share2, Bookmark, Clock, Users, ExternalLink, TrendingUp, Target, CheckCircle, Search } from 'lucide-react'
 import Link from "next/link"
-import Image from "next/image"
-import { notFound } from 'next/navigation'
+import { Input } from "@/components/ui/input"
+import PopularSearch from "@/app/PopularSearch/PopularSearch"
+import { useParams } from "next/navigation"
 
 // Mock database of gazette notifications with SEO-friendly slugs
 const notificationsDatabase = {
@@ -172,18 +194,15 @@ const relatedNotifications = [
   }
 ]
 
-interface NotificationDetailPageProps {
-  params: {
-    slug: string
-  }
-}
-
-export default function NotificationDetailPage({ params }: NotificationDetailPageProps) {
-  const notificationData = notificationsDatabase[params.slug as keyof typeof notificationsDatabase]
+export default function NotificationDetailPage() {
+  // Use useParams hook instead of async params
+  const params = useParams()
+  const slug = params.slug as string
   
-  if (!notificationData) {
-    notFound()
-  }
+  const notificationData = notificationsDatabase[slug as keyof typeof notificationsDatabase]
+  
+  // Default to first notification if slug not found
+  const displayData = notificationData || notificationsDatabase["maharashtra-minimum-wages-revision-2025"]
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
@@ -207,58 +226,34 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="border-b bg-white sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Image 
-                src="/logo.png" 
-                alt="Pragans Consultech" 
-                width={180} 
-                height={40}
-                className="h-10 w-auto"
-                priority
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.nextElementSibling.style.display = 'block';
-                }}
-              />
-              <div className="hidden text-xl font-bold text-orange-500">
-                Pragans Consultech
-              </div>
-            </div>
-            <nav className="hidden md:flex items-center space-x-6">
-              <Link href="/" className="text-gray-600 hover:text-orange-500 transition-colors">Home</Link>
-              <Link href="/acts" className="text-gray-600 hover:text-orange-500 transition-colors">Acts</Link>
-              <Link href="/rules" className="text-gray-600 hover:text-orange-500 transition-colors">Rules</Link>
-              <Link href="/forms" className="text-gray-600 hover:text-orange-500 transition-colors">Forms</Link>
-              <Link href="/gazette" className="text-orange-500 font-medium">Notifications</Link>
-            </nav>
-            <div className="flex items-center space-x-3">
-              <Button variant="ghost" size="sm">Sign In</Button>
-              <Button size="sm" className="bg-orange-500 hover:bg-orange-600">
-                Get Started
-              </Button>
-            </div>
+      {/* Search Bar */}
+      <div className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <Input
+              type="text"
+              placeholder="Search gazette notifications..."
+              className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+            />
           </div>
         </div>
-      </header>
+      </div>
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-          <Home className="w-4 h-4" />
-          <Link href="/" className="hover:text-orange-500">Home</Link>
-          <ChevronRight className="w-4 h-4" />
-          <Link href="/gazette" className="hover:text-orange-500">Gazette Notifications</Link>
-          <ChevronRight className="w-4 h-4" />
-          <span className="text-orange-500 font-medium">{notificationData.title}</span>
-        </nav>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
+        {/* Grid Layout with Sidebar */}
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
+            {/* Page Title and Description */}
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold text-slate-800 mb-2">{displayData.title}</h1>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                {displayData.description}
+              </p>
+            </div>
+
             {/* Notification Header */}
             <Card className="mb-8 border-l-4 border-l-orange-500">
               <CardHeader>
@@ -267,26 +262,20 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
                     <div className="flex items-center gap-3 mb-4">
                       <Badge className="bg-slate-800">
                         <Building2 className="w-3 h-3 mr-1" />
-                        {notificationData.state}
+                        {displayData.state}
                       </Badge>
                       <Badge variant="outline">
-                        {notificationData.category}
+                        {displayData.category}
                       </Badge>
-                      <Badge className={`text-xs ${getPriorityColor(notificationData.priority)}`}>
-                        {notificationData.priority} Priority
+                      <Badge className={`text-xs ${getPriorityColor(displayData.priority)}`}>
+                        {displayData.priority} Priority
                       </Badge>
-                      {notificationData.isNew && (
+                      {displayData.isNew && (
                         <Badge className="bg-green-100 text-green-700 text-xs">
                           New
                         </Badge>
                       )}
                     </div>
-                    <CardTitle className="text-3xl font-bold text-slate-800 mb-3 leading-tight">
-                      {notificationData.title}
-                    </CardTitle>
-                    <CardDescription className="text-lg text-gray-600 leading-relaxed">
-                      {notificationData.description}
-                    </CardDescription>
                   </div>
                   <div className="flex gap-2 ml-4">
                     <Button variant="outline" size="sm">
@@ -301,36 +290,36 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
                 {/* Notification Metadata */}
                 <div className="grid md:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-lg">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-500">{new Date(notificationData.publishedDate).getDate()}</div>
+                    <div className="text-2xl font-bold text-orange-500">{new Date(displayData.publishedDate).getDate()}</div>
                     <div className="text-sm text-gray-600">
-                      {new Date(notificationData.publishedDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                      {new Date(displayData.publishedDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
                     </div>
                     <div className="text-xs text-gray-500">Published</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-500">{new Date(notificationData.effectiveDate).getDate()}</div>
+                    <div className="text-2xl font-bold text-orange-500">{new Date(displayData.effectiveDate).getDate()}</div>
                     <div className="text-sm text-gray-600">
-                      {new Date(notificationData.effectiveDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                      {new Date(displayData.effectiveDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
                     </div>
                     <div className="text-xs text-gray-500">Effective</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-500">{formatViews(notificationData.views)}</div>
+                    <div className="text-2xl font-bold text-orange-500">{formatViews(displayData.views)}</div>
                     <div className="text-sm text-gray-600">Views</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-500">{notificationData.fileSize}</div>
-                    <div className="text-sm text-gray-600">{notificationData.format}</div>
+                    <div className="text-2xl font-bold text-orange-500">{displayData.fileSize}</div>
+                    <div className="text-sm text-gray-600">{displayData.format}</div>
                   </div>
                 </div>
 
                 {/* Department Info */}
                 <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <div className="text-sm text-blue-800">
-                    <strong>Issuing Authority:</strong> {notificationData.department}
+                    <strong>Issuing Authority:</strong> {displayData.department}
                   </div>
                   <div className="text-sm text-blue-700 mt-1">
-                    <strong>Notification Number:</strong> {notificationData.notificationNumber}
+                    <strong>Notification Number:</strong> {displayData.notificationNumber}
                   </div>
                 </div>
               </CardHeader>
@@ -340,7 +329,7 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
             <Alert className="mb-8 border-orange-200 bg-orange-50">
               <AlertCircle className="h-4 w-4 text-orange-600" />
               <AlertDescription className="text-orange-800">
-                <strong>Important:</strong> This notification is effective from {new Date(notificationData.effectiveDate).toLocaleDateString()}. 
+                <strong>Important:</strong> This notification is effective from {new Date(displayData.effectiveDate).toLocaleDateString()}. 
                 Please ensure compliance with all requirements mentioned in this notification.
               </AlertDescription>
             </Alert>
@@ -365,7 +354,7 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
                   <CardContent className="space-y-6">
                     <div>
                       <h3 className="font-semibold mb-2">Full Content</h3>
-                      <p className="text-gray-700 leading-relaxed">{notificationData.fullContent}</p>
+                      <p className="text-gray-700 leading-relaxed">{displayData.fullContent}</p>
                     </div>
                     
                     <Separator />
@@ -373,7 +362,7 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
                     <div>
                       <h3 className="font-semibold mb-3">Affected Sectors</h3>
                       <ul className="space-y-2">
-                        {notificationData.affectedSectors.map((sector, index) => (
+                        {displayData.affectedSectors.map((sector, index) => (
                           <li key={index} className="flex items-start gap-2">
                             <Target className="w-4 h-4 text-orange-500 mt-1 flex-shrink-0" />
                             <span className="text-gray-700">{sector}</span>
@@ -387,7 +376,7 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
                     <div>
                       <h3 className="font-semibold mb-2">Penalties for Non-Compliance</h3>
                       <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-                        <p className="text-red-800 text-sm">{notificationData.penalties}</p>
+                        <p className="text-red-800 text-sm">{displayData.penalties}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -407,7 +396,7 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {notificationData.keyHighlights.map((highlight, index) => (
+                      {displayData.keyHighlights.map((highlight, index) => (
                         <div key={index} className="flex items-start gap-3 p-4 bg-green-50 rounded-lg border border-green-200">
                           <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
                           <span className="text-green-800 font-medium">{highlight}</span>
@@ -432,7 +421,7 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
                   <CardContent>
                     <div className="space-y-4">
                       <h4 className="font-semibold mb-3">Required Actions</h4>
-                      {notificationData.complianceRequirements.map((requirement, index) => (
+                      {displayData.complianceRequirements.map((requirement, index) => (
                         <div key={index} className="flex items-start gap-3 p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                           <div className="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
                             {index + 1}
@@ -459,20 +448,20 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
                   <CardContent>
                     <div className="space-y-4">
                       <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                        <h4 className="font-semibold text-blue-800 mb-3">{notificationData.contactInfo.office}</h4>
+                        <h4 className="font-semibold text-blue-800 mb-3">{displayData.contactInfo.office}</h4>
                         <div className="space-y-2 text-blue-700">
                           <div className="flex items-start gap-2">
                             <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
-                            <span className="text-sm">{notificationData.contactInfo.address}</span>
+                            <span className="text-sm">{displayData.contactInfo.address}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <Clock className="w-4 h-4 flex-shrink-0" />
-                            <span className="text-sm">{notificationData.contactInfo.phone}</span>
+                            <span className="text-sm">{displayData.contactInfo.phone}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <ExternalLink className="w-4 h-4 flex-shrink-0" />
-                            <a href={`mailto:${notificationData.contactInfo.email}`} className="text-sm hover:underline">
-                              {notificationData.contactInfo.email}
+                            <a href={`mailto:${displayData.contactInfo.email}`} className="text-sm hover:underline">
+                              {displayData.contactInfo.email}
                             </a>
                           </div>
                         </div>
@@ -482,13 +471,30 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
                 </Card>
               </TabsContent>
             </Tabs>
+
+            {/* Back Button */}
+            <div className="mt-8">
+              <Button
+                asChild
+                variant="outline"
+                className="border-orange-500 text-orange-600 hover:bg-orange-50 bg-transparent"
+              >
+                <Link href="/gazette">← Back to Gazette Notifications</Link>
+              </Button>
+            </div>
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="space-y-6 sticky top-24">
-              {/* Download Card */}
+               {/* PopularSearch Component */}
               <Card>
+                <CardContent className="space-y-6">
+                  <PopularSearch className="mt-4" />
+                </CardContent>
+              </Card>
+              {/* Download Card */}
+              {/* <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Download Options</CardTitle>
                 </CardHeader>
@@ -502,38 +508,38 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
                     View Online
                   </Button>
                   <div className="text-xs text-gray-500 pt-2">
-                    File size: {notificationData.fileSize} • Format: {notificationData.format}
+                    File size: {displayData.fileSize} • Format: {displayData.format}
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
 
               {/* Quick Info */}
-              <Card>
+              {/* <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Quick Information</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center gap-2 text-sm">
                     <Calendar className="w-4 h-4 text-gray-400" />
-                    <span>Published: {new Date(notificationData.publishedDate).toLocaleDateString()}</span>
+                    <span>Published: {new Date(displayData.publishedDate).toLocaleDateString()}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <Clock className="w-4 h-4 text-gray-400" />
-                    <span>Effective: {new Date(notificationData.effectiveDate).toLocaleDateString()}</span>
+                    <span>Effective: {new Date(displayData.effectiveDate).toLocaleDateString()}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <MapPin className="w-4 h-4 text-gray-400" />
-                    <span>Jurisdiction: {notificationData.state}</span>
+                    <span>Jurisdiction: {displayData.state}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <Eye className="w-4 h-4 text-gray-400" />
-                    <span>Views: {formatViews(notificationData.views)}</span>
+                    <span>Views: {formatViews(displayData.views)}</span>
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
 
               {/* Related Notifications */}
-              <Card>
+              {/* <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Related Notifications</CardTitle>
                 </CardHeader>
@@ -548,28 +554,13 @@ export default function NotificationDetailPage({ params }: NotificationDetailPag
                     </Link>
                   ))}
                 </CardContent>
-              </Card>
+              </Card> */}
+
+             
             </div>
           </div>
         </div>
       </div>
     </div>
   )
-}
-
-// Generate metadata for SEO
-export async function generateMetadata({ params }: NotificationDetailPageProps) {
-  const notificationData = notificationsDatabase[params.slug as keyof typeof notificationsDatabase]
-  
-  if (!notificationData) {
-    return {
-      title: 'Notification Not Found'
-    }
-  }
-
-  return {
-    title: `${notificationData.title} - Pragans Consultech E-Library`,
-    description: notificationData.description,
-    keywords: `${notificationData.category}, ${notificationData.state}, gazette notification, ${notificationData.department}`
-  }
 }

@@ -253,43 +253,9 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-2">
-                <img src="/logo.png" alt="E-Library" className="h-8 w-auto" />
-                <span className="text-xl font-bold text-gray-900">E-Library</span>
-              </Link>
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              <Link href="/acts" className="text-gray-700 hover:text-blue-600">Acts</Link>
-              <Link href="/rules" className="text-gray-700 hover:text-blue-600">Rules</Link>
-              <Link href="/forms" className="text-gray-700 hover:text-blue-600">Forms</Link>
-              <Link href="/calculators" className="text-gray-700 hover:text-blue-600">Calculators</Link>
-              <Link href="/gazette" className="text-gray-700 hover:text-blue-600">Gazette</Link>
-              <Link href="/holidays" className="text-gray-700 hover:text-blue-600">Holidays</Link>
-              <Link href="/welfare-fund" className="text-gray-700 hover:text-blue-600">Welfare Fund</Link>
-              <Link href="/minimum-wages" className="text-blue-600 font-medium">Minimum Wages</Link>
-            </nav>
-          </div>
-        </div>
-      </header>
 
-      {/* Breadcrumb */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <nav className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-gray-500 hover:text-gray-700">Home</Link>
-            <span className="text-gray-400">/</span>
-            <Link href="/minimum-wages" className="text-gray-500 hover:text-gray-700">Minimum Wages</Link>
-            <span className="text-gray-400">/</span>
-            <span className="text-gray-900 font-medium">{stateData.state}</span>
-          </nav>
-        </div>
-      </div>
 
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
@@ -486,54 +452,6 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <img src="/logo.png" alt="E-Library" className="h-8 w-auto" />
-                <span className="text-xl font-bold">E-Library</span>
-              </div>
-              <p className="text-gray-400 text-sm">
-                Your comprehensive resource for labour laws, compliance, and statutory requirements.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-              <ul className="space-y-2 text-sm">
-                <li><Link href="/acts" className="text-gray-400 hover:text-white">Acts</Link></li>
-                <li><Link href="/rules" className="text-gray-400 hover:text-white">Rules</Link></li>
-                <li><Link href="/forms" className="text-gray-400 hover:text-white">Forms</Link></li>
-                <li><Link href="/calculators" className="text-gray-400 hover:text-white">Calculators</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2 text-sm">
-                <li><Link href="/gazette" className="text-gray-400 hover:text-white">Gazette Notifications</Link></li>
-                <li><Link href="/holidays" className="text-gray-400 hover:text-white">Holiday List</Link></li>
-                <li><Link href="/welfare-fund" className="text-gray-400 hover:text-white">Welfare Fund</Link></li>
-                <li><Link href="/minimum-wages" className="text-gray-400 hover:text-white">Minimum Wages</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Contact</h3>
-              <p className="text-gray-400 text-sm mb-4">
-                Need help with compliance? Get in touch with our experts.
-              </p>
-              <Button variant="outline" size="sm">
-                Contact Us
-              </Button>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-gray-400 text-sm">
-              © 2024 E-Library. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
