@@ -123,7 +123,7 @@ export default function ContactPage() {
                     <Textarea id="message" placeholder="Please describe your requirements..." rows={5} />
                   </div>
                   <div>
-                    <Button type="submit" className="w-full bg-[#eb8535] hover:bg-orange-400 text-lg py-3">
+                    <Button type="submit" className="w-full bg-[#eb8535] hover:bg-orange-400 text-lg py-3 cursor-pointer">
                       Submit Inquiry
                     </Button>
                   </div>
