@@ -469,77 +469,61 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Cards */}
-          <div className="space-y-4 md:space-y-6">
-            {media.map((item, idx) => {
-              const hasLink = Boolean(item.link);
-              const href = hasLink ? (item.link as string) : "#";
-              return (
-                <Link
-                  key={idx}
-                  href={href}
-                  target={hasLink ? "_blank" : undefined}
-                  rel={hasLink ? "noopener noreferrer" : undefined}
-                  className="block"
-                >
-                  <Card className="relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white shadow-sm ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
-                    {/* top accent bar */}
-                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
+{/* Cards – show top part only, rest scrolls inside iframe */}
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
+  {media.map((item, idx) => (
+    <Card
+      key={idx}
+      className="relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white shadow-sm ring-1 ring-black/5"
+    >
+      {/* top accent bar */}
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
 
-                    <CardContent className="p-0">
-                      {/* Live preview / image */}
-                      <div className="w-full aspect-[16/9] bg-gray-50">
-                        {hasLink ? (
-                          // LIVE WEBSITE PREVIEW
-                          <iframe
-                            src={href}
-                            className="w-full h-full pointer-events-none"
-                            loading="lazy"
-                            sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-                          />
-                        ) : (
-                          // FALLBACK IMAGE (no link available)
-                          <div className="relative w-full h-full">
-                            <Image
-                              src={item.image || "/media/placeholder.png"}
-                              alt={item.title}
-                              fill
-                              className="object-cover"
-                              sizes="(max-width: 768px) 100vw, 800px"
-                            />
-                          </div>
-                        )}
-                      </div>
+      <CardContent className="p-0 flex flex-col h-full">
+        {/* Header row */}
+        <div className="px-6 pt-4 pb-2 flex items-start justify-between">
+          <span className="text-xs font-bold bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
+            {item.type}
+          </span>
+          <Link
+            href={item.link!}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-orange-600 hover:text-orange-700 text-sm font-medium inline-flex items-center gap-2"
+          >
+            Open article
+            <ExternalLink className="h-4 w-4" />
+          </Link>
+        </div>
 
-                      {/* Text content */}
-                      <div className="p-6 md:p-8">
-                        <div className="mb-3 flex items-start justify-between">
-                          <span className="text-xs font-bold bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
-                            {item.type}
-                          </span>
-                          <span className="text-xs text-gray-500 font-medium">
-                            {item.year}
-                          </span>
-                        </div>
+        {/* Scrollable live preview (fixed height) */}
+        <div className="w-full bg-white border-t">
+          <iframe
+            src={item.link!}
+            className="w-full h-[520px] md:h-[560px] lg:h-[600px] border-0"
+            loading="lazy"
+            // keep interaction enabled so users can scroll inside the iframe
+            sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+            referrerPolicy="no-referrer-when-downgrade"
+            scrolling="yes"
+          />
+        </div>
 
-                        <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-1 leading-tight">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm md:text-base text-gray-600">
-                          {item.source}
-                        </p>
-                        {hasLink && (
-                          <p className="mt-3 text-xs text-gray-500">
-                            Opens in a new tab • Live preview shown above
-                          </p>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
+        {/* Footer meta */}
+        <div className="p-6">
+          <div className="mb-2 flex items-start justify-between">
+            <span className="text-xs text-gray-500 font-medium">{item.year}</span>
           </div>
+          <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-1 leading-tight">
+            {item.title}
+          </h3>
+          <p className="text-sm md:text-base text-gray-600">{item.source}</p>
+        </div>
+      </CardContent>
+    </Card>
+  ))}
+</div>
+
         </div>
       </section>
     </div>
