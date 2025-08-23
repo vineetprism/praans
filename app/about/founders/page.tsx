@@ -235,7 +235,7 @@ export default function FounderPage() {
                   Our founder is not only a legal expert but a trusted partner to countless organizations seeking clarity and control over their statutory responsibilities. With a background in managing compliance for over <strong>2,500 locations and more than 50,000 employees PAN India</strong>, our founder has demonstrated exceptional capability in handling complex labour law operations across multiple states and sectors.
                 </p>
                
-                <div className="bg-gradient-to-r from-orange-50 to-blue-50 p-6 md:p-8 rounded-2xl border-l-4 border-orange-500">
+                <div className="bg-gradient-to-r from-orange-50 to-blue-50 p-6 md:p-8 rounded-2xl border-l-4 border-[#eb8535]">
                   <p className="text-base md:text-lg font-semibold text-slate-800 mb-2">
                     Previous Leadership Role
                   </p>
@@ -252,7 +252,7 @@ export default function FounderPage() {
               <Card className="shadow-xl border-0 bg-gradient-to-br from-white to-gray-50">
                 <CardContent className="p-8 md:p-10">
                   <div className="text-center mb-6">
-                    <Briefcase className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 text-orange-600" />
+                    <Briefcase className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 text-[#eb8535]" />
                     <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">Professional Expertise</h3>
                   </div>
                   <div className="space-y-4">
