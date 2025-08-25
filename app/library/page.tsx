@@ -476,48 +476,49 @@ const features = [
 
 // Enhanced CategoryCard component with modern styling
 const CategoryCard = React.memo(({ category, index }) => (
-  <Link key={index} href={category.href} className="group block h-full">
-    <div className="relative overflow-hidden rounded-2xl md:rounded-3xl h-full">
+  <Link 
+    key={index} 
+    href={category.href}
+    className="group block h-full cursor-pointer"
+  >
+    <div className="relative overflow-hidden rounded-2xl h-full">
       {/* Hover background effect */}
-      <div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-gradient-to-br from-orange-100/0 to-blue-100/0 group-hover:from-orange-100/15 group-hover:to-blue-100/15 transition-all duration-300" />
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-100/0 to-blue-100/0 group-hover:from-orange-100/20 group-hover:to-blue-100/20" />
 
-      <Card className="relative border-0 shadow-lg bg-white/90 backdrop-blur-md rounded-2xl md:rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+      <div className="relative border border-gray-100 shadow-lg bg-white/95 backdrop-blur-xl rounded-2xl overflow-hidden hover:shadow-xl hover:border-orange-200/50 h-full flex flex-col">
         {/* Accent bar */}
         <div className={`h-1 ${category.color} flex-shrink-0`} />
 
-        {/* Card content with flex-1 to fill space */}
-        <div className="flex-1 flex flex-col p-4 md:p-6">
+        {/* Card content with proper padding */}
+        <div className="flex-1 flex flex-col p-6">
           {/* Icon container */}
-          <div className="mb-4 md:mb-5">
-            <div
-              className={`w-12 h-12 md:w-14 md:h-14 ${category.color} rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg`}
-            >
-              <category.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+          <div className="mb-4">
+            <div className={`w-12 h-12 ${category.color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+              <category.icon className="w-6 h-6 text-white" />
             </div>
           </div>
 
           {/* Title */}
-          <h3 className="text-lg md:text-xl font-bold mb-3 text-slate-900 group-hover:text-orange-600 transition-colors duration-300 leading-tight">
+          <h3 className="text-lg font-bold mb-3 text-slate-900 group-hover:text-orange-600 transition-colors duration-300 leading-tight">
             {category.title}
           </h3>
 
-          {/* Description - flex-1 to push arrow to bottom */}
-          <p className="text-gray-600 leading-relaxed text-sm md:text-base group-hover:text-gray-700 transition-colors duration-300 flex-1 mb-4">
+          {/* Description */}
+          <p className="text-gray-600 leading-relaxed text-sm group-hover:text-gray-700 transition-colors duration-300 flex-1 mb-4">
             {category.description}
           </p>
 
-          {/* Arrow indicator - always at bottom */}
+          {/* Arrow indicator */}
           <div className="flex justify-end">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-50 transition-colors duration-300">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-100 transition-all duration-300 group-hover:scale-110">
               <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-orange-600 transition-colors duration-300" />
             </div>
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   </Link>
-))
-
+));
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -525,79 +526,6 @@ export default function HomePage() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </head> */}
-      
-      {/* Hero Section */}
-      {/* <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-orange-500/5" />
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-blue-50/30" />
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 bg-orange-100 text-orange-700 hover:bg-orange-200">
-              🚀 Simplifying Compliance for Modern Businesses
-            </Badge>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-800">
-              Your Complete
-              <span className="text-orange-500"> Compliance </span>
-              Library
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Access the most comprehensive collection of labor laws, minimum wages, forms, and compliance documents. 
-              Stay updated with real-time notifications and expert insights.
-            </p>
-            
-            
-            <div className="max-w-2xl mx-auto mb-8">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <Input 
-                  placeholder="Search acts, rules, forms, wages..." 
-                  className="pl-12 pr-4 py-4 text-lg border-2 border-gray-200 focus:border-orange-500 rounded-xl shadow-lg"
-                />
-                <Button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-orange-500 hover:bg-orange-600">
-                  Search
-                </Button>
-              </div>
-              
-            
-              <div className="mt-4 flex flex-wrap justify-center gap-2">
-                <span className="text-sm text-gray-500">Trending:</span>
-                {trendingSearches.map((keyword, index) => (
-                  <Badge key={index} variant="secondary" className="cursor-pointer hover:bg-orange-100 transition-colors">
-                    {keyword}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-lg px-8 py-4">
-                Explore Library
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-4 border-2">
-                Request Demo
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* Features */}
-      {/* <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {features.map((feature, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <feature.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* Enhanced Resource Library Section */}
       <section className="py-8 md:py-16 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">

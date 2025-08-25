@@ -701,6 +701,7 @@ import {
   Badge,
   Download,
   Calculator,
+  ReceiptText,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -876,94 +877,53 @@ const categories = [
   },
 ];
 
-// const CategoryCard = React.memo(({ category, index }) => (
-//   <Link key={index} href={category.href} className="group block h-full">
-//     <div className="relative overflow-hidden rounded-2xl md:rounded-3xl h-full">
-//       {/* Hover background effect */}
-//       <div className="absolute inset-0 rounded-2xl md:rounded-3xl bg-gradient-to-br from-orange-100/0 to-blue-100/0 group-hover:from-orange-100/15 group-hover:to-blue-100/15 transi" />
-
-//       <Card className="relative border-0 shadow-lg bg-white/90 backdrop-blur-md rounded-2xl md:rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
-//         {/* Accent bar */}
-//         <div className={`h-1 ${category.color} flex-shrink-0`} />
-
-//         {/* Card content with flex-1 to fill space */}
-//         <div className="flex-1 flex flex-col p-4 md:p-6">
-//           {/* Icon container */}
-//           <div className="mb-4 md:mb-5">
-//             <div
-//               className={`w-12 h-12 md:w-14 md:h-14 ${category.color} rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg`}
-//             >
-//               <category.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
-//             </div>
-//           </div>
-
-//           {/* Title */}
-//           <h3 className="text-lg md:text-xl font-bold mb-3 text-slate-900 group-hover:text-orange-600 transition-colors duration-300 leading-tight">
-//             {category.title}
-//           </h3>
-
-//           {/* Description - flex-1 to push arrow to bottom */}
-//           <p className="text-gray-600 leading-relaxed text-sm md:text-base group-hover:text-gray-700 transition-colors duration-300 flex-1 mb-4">
-//             {category.description}
-//           </p>
-
-//           {/* Arrow indicator - always at bottom */}
-//           <div className="flex justify-end">
-//             <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-50 transition-colors duration-300">
-//               <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-orange-600 transition-colors duration-300" />
-//             </div>
-//           </div>
-//         </div>
-//       </Card>
-//     </div>
-//   </Link>
-// ));
-
-// New component for Key Offerings Card with Link
-
 
 const CategoryCard = React.memo(({ category, index }) => (
-  <Link key={index} href={category.href} className="group block h-full">
-    <div className="relative overflow-hidden rounded-xl h-full">
+  <Link 
+    key={index} 
+    href={category.href}
+    className="group block h-full cursor-pointer"
+  >
+    <div className="relative overflow-hidden rounded-2xl h-full">
       {/* Hover background effect */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-orange-100/0 to-blue-100/0 group-hover:from-orange-100/15 group-hover:to-blue-100/15 transition-all duration-300" />
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-orange-100/0 to-blue-100/0 group-hover:from-orange-100/20 group-hover:to-blue-100/20" />
 
-      <Card className="relative border-0 shadow-md bg-white/90 backdrop-blur-md rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+      <div className="relative border border-gray-100 shadow-lg bg-white/95 backdrop-blur-xl rounded-2xl overflow-hidden hover:shadow-xl hover:border-orange-200/50 h-full flex flex-col">
         {/* Accent bar */}
-        <div className={`h-0.5 ${category.color} flex-shrink-0`} />
+        <div className={`h-1 ${category.color} flex-shrink-0`} />
 
-        {/* Card content with compact padding */}
-        <div className="flex-1 flex flex-col p-3">
-          {/* Icon container - smaller */}
-          <div className="mb-2">
-            <div
-              className={`w-8 h-8 ${category.color} rounded-lg flex items-center justify-center shadow-sm`}
-            >
-              <category.icon className="w-4 h-4 text-white" />
+        {/* Card content with proper padding */}
+        <div className="flex-1 flex flex-col p-6">
+          {/* Icon container */}
+          <div className="mb-4">
+            <div className={`w-12 h-12 ${category.color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+              <category.icon className="w-6 h-6 text-white" />
             </div>
           </div>
 
-          {/* Title - smaller font */}
-          <h3 className="text-sm font-bold mb-2 text-slate-900 group-hover:text-orange-600 transition-colors duration-300 leading-tight line-clamp-2">
+          {/* Title */}
+          <h3 className="text-lg font-bold mb-3 text-slate-900 group-hover:text-orange-600 transition-colors duration-300 leading-tight">
             {category.title}
           </h3>
 
-          {/* Description - compact and limited lines */}
-          <p className="text-gray-600 leading-snug text-xs group-hover:text-gray-700 transition-colors duration-300 flex-1 mb-2 line-clamp-2">
+          {/* Description */}
+          <p className="text-gray-600 leading-relaxed text-sm group-hover:text-gray-700 transition-colors duration-300 flex-1 mb-4">
             {category.description}
           </p>
 
-          {/* Arrow indicator - smaller */}
+          {/* Arrow indicator */}
           <div className="flex justify-end">
-            <div className="w-6 h-6 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-50 transition-colors duration-300">
-              <ChevronRight className="w-3 h-3 text-gray-400 group-hover:text-orange-600 transition-colors duration-300" />
+            <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-100 transition-all duration-300 group-hover:scale-110">
+              <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-orange-600 transition-colors duration-300" />
             </div>
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   </Link>
 ));
+
+
 
 const OfferingCard = React.memo(({ offering, index }) => (
   <Link key={index} href={offering.href} className="group block h-full">
@@ -1149,30 +1109,34 @@ export default function HomePage() {
           </div>
         </div>
       </section> */}
-
- <section className="py-8 md:py-16 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/10 via-transparent to-blue-100/10" />
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="text-center mb-12 md:mb-16 lg:mb-20">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-slate-800 to-slate-700 bg-clip-text text-transparent">
-              Explore Our{" "}
-              <span className="bg-clip-text bg-gradient-to-r from-orange-500 to-orange-400">
-                Resource Library
-              </span>
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
-              Navigate through our comprehensive collection of compliance resources organized by category.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 max-w-7xl mx-auto">
-            {categories.map((category, index) => (
-              <CategoryCard key={index} category={category} index={index} />
-            ))}
-          </div>
+   <section className="py-12 md:py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden min-h-screen">
+      {/* Background decorations */}
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-100/10 via-transparent to-blue-100/10" />
+      <div className="absolute top-20 left-10 w-32 h-32 bg-orange-200/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-200/20 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+            Explore Our{" "}
+            <span className="bg-clip-text bg-gradient-to-r from-orange-500 to-orange-400">
+              Resource Library
+            </span>
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Navigate through our comprehensive collection of compliance resources organized by category.
+          </p>
         </div>
-      </section>
 
+        {/* Cards Grid - Responsive: 1 column on mobile, 2 on tablet, 3 on desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {categories.map((category, index) => (
+            <CategoryCard key={index} category={category} index={index} />
+          ))}
+        </div>
+      </div>
+    </section>
 
       {/* News & Updates Section */}
       <section className="py-12 md:py-16 lg:py-20 bg-white">
@@ -1322,4 +1286,4 @@ export default function HomePage() {
       </section>
     </div>
   );
-}
+} 

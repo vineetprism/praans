@@ -134,16 +134,6 @@ export default function GratuityCalculatorPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-          <Home className="w-4 h-4" />
-          <Link href="/" className="hover:text-orange-500">Home</Link>
-          <ChevronRight className="w-4 h-4" />
-          <Link href="/calculators" className="hover:text-orange-500">Calculators</Link>
-          <ChevronRight className="w-4 h-4" />
-          <span className="text-orange-500 font-medium">Gratuity Calculator</span>
-        </nav>
-
         {/* Page Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -157,16 +147,7 @@ export default function GratuityCalculatorPage() {
               Calculate gratuity with precise dates, manual input, or AI-powered document analysis
             </p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm">
-              <Share2 className="w-4 h-4 mr-2" />
-              Share
-            </Button>
-            <Button variant="outline" size="sm">
-              <Download className="w-4 h-4 mr-2" />
-              Export
-            </Button>
-          </div>
+          
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
