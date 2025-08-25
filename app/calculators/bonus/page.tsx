@@ -400,16 +400,16 @@ export default function BonusCalculatorPage() {
 
           {/* Results Sidebar */}
           <div className="lg:col-span-1">
-            <div className="space-y-6 sticky top-24">
+           
                {/* Quick Info */}
               <Card >
                 <CardHeader>  
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="">
                   <PopularSearch/>
                 </CardContent>
               </Card>
-               </div>
+       
               {/* Result Card */}
               <Card className="border-l-4 border-l-orange-500 mt-3">
                 <CardHeader className="text-center">

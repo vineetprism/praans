@@ -352,6 +352,7 @@ import { Search, FileText, Scale, FormInput, Bell, Calendar, Wallet, Clock, Doll
 import Link from "next/link"
 import Image from "next/image"
 import React from "react"
+import ResourceLibrary from "../resource-library/page"
 
 // Enhanced categories with more items and better organization
 const categories = [
@@ -528,7 +529,7 @@ export default function HomePage() {
       </head> */}
 
       {/* Enhanced Resource Library Section */}
-      <section className="py-8 md:py-16 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+      {/* <section className="py-8 md:py-16 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-100/10 via-transparent to-blue-100/10" />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="text-center mb-12 md:mb-16 lg:mb-20">
@@ -549,7 +550,8 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+       <ResourceLibrary/>
 
       {/* News & Updates */}
       {/* <section className="py-20 bg-white">

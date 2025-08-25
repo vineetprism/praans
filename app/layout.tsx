@@ -42,7 +42,7 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 
-// ⬇️ Shared chrome
+
 import SiteHeader from "@/app/component/siteHeader"
 import SiteFooter from "@/app/component/siteFooter"
 
@@ -75,3 +75,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+
