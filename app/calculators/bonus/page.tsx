@@ -14,6 +14,7 @@ import { Switch } from "@/components/ui/switch"
 import { Calculator, IndianRupee, Clock, Users, FileText, ChevronRight, Home, Share2, Download, Info, CheckCircle, AlertCircle, TrendingUp, Building2, Calendar } from 'lucide-react'
 import Link from "next/link"
 import Image from "next/image"
+import PopularSearch from '@/app/PopularSearch/PopularSearch'
 
 type BonusType = 'statutory' | 'exgratia' | 'productivity'
 type CalculationBasis = 'minimum' | 'actual'
@@ -400,8 +401,17 @@ export default function BonusCalculatorPage() {
           {/* Results Sidebar */}
           <div className="lg:col-span-1">
             <div className="space-y-6 sticky top-24">
+               {/* Quick Info */}
+              <Card >
+                <CardHeader>  
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <PopularSearch/>
+                </CardContent>
+              </Card>
+               </div>
               {/* Result Card */}
-              <Card className="border-l-4 border-l-orange-500">
+              <Card className="border-l-4 border-l-orange-500 mt-3">
                 <CardHeader className="text-center">
                   <CardTitle className="text-lg text-gray-700">
                     Total Bonus Amount
@@ -430,45 +440,7 @@ export default function BonusCalculatorPage() {
                 </CardContent>
               </Card>
 
-              {/* Quick Info */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    <Info className="w-5 h-5 text-orange-500" />
-                    Quick Facts
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Clock className="w-5 h-5 text-gray-400 mt-0.5" />
-                    <div>
-                      <div className="font-medium text-sm">Minimum Working Days</div>
-                      <div className="text-xs text-gray-600">30 days in accounting year</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Users className="w-5 h-5 text-gray-400 mt-0.5" />
-                    <div>
-                      <div className="font-medium text-sm">Applicable to</div>
-                      <div className="text-xs text-gray-600">Establishments with 20+ employees</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <IndianRupee className="w-5 h-5 text-gray-400 mt-0.5" />
-                    <div>
-                      <div className="font-medium text-sm">Salary Ceiling</div>
-                      <div className="text-xs text-gray-600">₹{SALARY_CEILING.toLocaleString()} per month</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <TrendingUp className="w-5 h-5 text-gray-400 mt-0.5" />
-                    <div>
-                      <div className="font-medium text-sm">Bonus Range</div>
-                      <div className="text-xs text-gray-600">{MINIMUM_BONUS_RATE}% - {MAXIMUM_BONUS_RATE}% of salary</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+             
 
               {/* Related Tools */}
               <Card>
@@ -490,7 +462,7 @@ export default function BonusCalculatorPage() {
                   </Link>
                 </CardContent>
               </Card>
-            </div>
+            {/* </div> */}
           </div>
         </div>
 

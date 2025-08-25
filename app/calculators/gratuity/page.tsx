@@ -17,6 +17,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
+import PopularSearch from '@/app/PopularSearch/PopularSearch'
 
 type CalculationMethod = 'manual' | 'dates' | 'document'
 
@@ -473,8 +474,18 @@ export default function GratuityCalculatorPage() {
           {/* Results Sidebar */}
           <div className="lg:col-span-1">
             <div className="space-y-6 sticky top-24">
+                 {/* Quick Info */}
+                       <Card >
+                         <CardHeader>  
+                         </CardHeader>
+                         <CardContent className="space-y-4">
+                           <PopularSearch/>
+                         </CardContent>
+                       </Card>
+              </div>
+
               {/* Result Card */}
-              <Card className="border-l-4 border-l-orange-500">
+              <Card className="border-l-4 border-l-orange-500 mt-3">
                 <CardHeader className="text-center">
                   <CardTitle className="text-lg text-gray-700">
                     Total Gratuity Payable
@@ -498,46 +509,7 @@ export default function GratuityCalculatorPage() {
                 </CardContent>
               </Card>
 
-              {/* Quick Info */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    <Info className="w-5 h-5 text-orange-500" />
-                    Quick Facts
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Clock className="w-5 h-5 text-gray-400 mt-0.5" />
-                    <div>
-                      <div className="font-medium text-sm">Minimum Service</div>
-                      <div className="text-xs text-gray-600">5 years continuous service required</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Users className="w-5 h-5 text-gray-400 mt-0.5" />
-                    <div>
-                      <div className="font-medium text-sm">Applicable to</div>
-                      <div className="text-xs text-gray-600">Establishments with 10+ employees</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <IndianRupee className="w-5 h-5 text-gray-400 mt-0.5" />
-                    <div>
-                      <div className="font-medium text-sm">Maximum Limit</div>
-                      <div className="text-xs text-gray-600">₹20 lakhs as per current rules</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Sparkles className="w-5 h-5 text-gray-400 mt-0.5" />
-                    <div>
-                      <div className="font-medium text-sm">AI Powered</div>
-                      <div className="text-xs text-gray-600">Extract dates from documents automatically</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
+           
               {/* Related Tools */}
               <Card>
                 <CardHeader>
@@ -558,7 +530,7 @@ export default function GratuityCalculatorPage() {
                   </Link>
                 </CardContent>
               </Card>
-            </div>
+            {/* </div> */}
           </div>
         </div>
 

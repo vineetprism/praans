@@ -514,7 +514,7 @@ export default function LeavesWorkingHoursPage() {
                   The states in which leave & working hours are applicable are listed below:
                 </p>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
                   {/* Applicable States */}
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Applicable States</h3>
@@ -523,7 +523,7 @@ export default function LeavesWorkingHoursPage() {
                         <Link 
                           key={index} 
                           href={`/leaves-working-hours/${state.toLowerCase().replace(/\s+/g, '-')}`}
-                          className="block p-3 rounded-lg border"
+                          className="block p-3 rounded-lg border hover:bg-orange-100 transition-colors "
                         >
                           <span className="text-blue-600 hover:text-orange-600 transition-colors">
                             {index + 1}. {state}
@@ -539,7 +539,7 @@ export default function LeavesWorkingHoursPage() {
                     <div className="space-y-2">
                       {nonApplicableStates.map((state, index) => (
                         <div key={index} className="p-3 rounded-lg border bg-gray-50">
-                          <span className="text-gray-600">
+                          <span className="text-gray-600 ">
                             {index + 1}. {state}
                           </span>
                         </div>
@@ -564,7 +564,6 @@ export default function LeavesWorkingHoursPage() {
             <div className="sticky top-24">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Statutory Resources</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                  <PopularSearch/>

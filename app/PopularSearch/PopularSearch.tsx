@@ -81,7 +81,8 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import {
   ScrollText, Megaphone, CalendarDays, HandCoins,
-  Banknote, Receipt, Calculator, FileText
+  Banknote, Receipt, Calculator, FileText,
+  CalendarClock
 } from "lucide-react"
 
 const POPULAR_SEARCHES = [
@@ -93,6 +94,7 @@ const POPULAR_SEARCHES = [
   { label: "Professional tax", href: "/professional-tax", Icon: Receipt },
   { label: "Bonus Calculators", href: "/calculators/bonus", Icon: Calculator },
   { label: "Gratuity Calculators", href: "/calculators/gratuity", Icon: FileText },
+  { label: "Leaves Working Hours", href: "/leaves-working-hours", Icon:CalendarClock },
 ] as const
 
 export default function PopularSearch({

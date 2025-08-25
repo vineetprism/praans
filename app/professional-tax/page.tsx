@@ -908,14 +908,14 @@ const quickActionCards = [
     title: "PT Calculator",
     description: "Calculate professional tax for all states",
     icon: Calculator,
-    action: "Use Calculator",
+    action: "View Calculator",
     link: "/calculators/professional-tax"
   },
   {
     title: "AI PT Assistant",
     description: "AI Powered PT Interest & Penalties Calculator",
     icon: Bot,
-    action: "Try AI Tool",
+    action: "View AI Tool",
     link: "/ai-tools/pt-calculator"
   }
 ];
@@ -989,7 +989,7 @@ export default function ProfessionalTaxPage() {
                       ))}
                     </SelectContent>
                   </Select>
-                  
+          
                   {/* Category Dropdown */}
                   <Select>
                     <SelectTrigger className="w-full lg:w-48 bg-gray-100 hover:bg-gray-200">
@@ -1110,7 +1110,7 @@ export default function ProfessionalTaxPage() {
             {/* State-wise Applicability */}
             <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
               <CardHeader>
-                <CardTitle className="group-hover:text-orange-600 transition-colors">State-wise Applicability</CardTitle>
+                <CardTitle>State-wise Applicability</CardTitle>
                 <CardDescription>
                   Professional Tax is currently applicable in {professionalTaxStates.length} states across
                   India
