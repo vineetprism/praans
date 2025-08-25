@@ -1,26 +1,21 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
-  GraduationCap,
   Building2,
   Users,
   MapPin,
-  Award,
-  BookOpen,
-  Lightbulb,
   Target,
   CheckCircle,
   ArrowRight,
   ExternalLink,
-  Star,
   Briefcase,
   Clock,
   Shield,
   TrendingUp,
   Globe,
-  Eye,
   Zap,
 } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 export const metadata = {
@@ -30,6 +25,34 @@ export const metadata = {
   keywords:
     "founder praans consultech, labour law expert, compliance consultant, XLRI alumnus, legal expert india",
 }
+
+type MediaItem = {
+  title: string;
+  source: string;
+  year: string;
+  type: string;
+  link?: string;
+  image?: string;
+};
+
+const media: MediaItem[] = [
+  {
+    title:
+      "Praans Consultech: Empowering Businesses with Seamless Compliance Solutions",
+    source: "CEO AsiaConnect Magazine",
+    year: "2025",
+    type: "Latest news",
+    link: "https://asiaconnectmagazine.com/praans-consultech-empowering-businesses-with-seamless-compliance-solutions/",
+  },
+  {
+    title:
+      "The Visionary Who Left Corporate Success to Empower Everyday Entrepreneurs",
+    source: "Hindustan Metro Magazine",
+    year: "2025",
+    type: "Success Story",
+    link: "https://www.hindustanmetro.com/the-visionary-who-left-corporate-success-to-empower-everyday-entrepreneurs/",
+  },
+];
 
 const achievements = [
   { icon: Clock, number: "15+", label: "Years of Expertise", color: "text-blue-600" },
@@ -54,19 +77,6 @@ const keyStrengths = [
   { icon: TrendingUp, title: "Scalable Solutions", description: "Perfect for startups, MSMEs, and large enterprises" },
 ]
 
-const articles = [
-  {
-    title: "Empowering Businesses with Seamless Compliance Solutions",
-    source: "AsiaConnect Magazine",
-    type: "Feature Article",
-  },
-  {
-    title: "The Visionary Who Left Corporate Success to Empower Everyday Entrepreneurs",
-    source: "Hindustan Metro",
-    link: "https://www.hindustanmetro.com/the-visionary-who-left-corporate-success-to-empower-everyday-entrepreneurs/",
-    type: "Success Story",
-  },
-]
 
 export default function FounderPage() {
   return (
@@ -128,10 +138,15 @@ export default function FounderPage() {
               <div className="relative">
                 <div className="w-80 h-80 md:w-96 md:h-96 lg:w-[400px] lg:h-[400px] rounded-3xl bg-gradient-to-br from-orange-100 to-blue-100 shadow-2xl flex items-center justify-center">
                   <div className="w-full h-full rounded-3xl bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                    <div className="text-center">
-                      <Users className="w-16 h-16 md:w-20 md:h-20 text-gray-500 mx-auto mb-4" />
-                      <p className="text-gray-600 font-medium">Founder Photo</p>
-                      <p className="text-sm text-gray-500">Will be placed here</p>
+                    <div className="text-center w-full h-full">
+                      <Image
+                        src="/services/MG.png"
+                        alt="Sandeep Kumar — Founder, Praans Consultech"
+                        width={800}
+                        height={800}
+                        priority
+                        className="rounded-3xl object-cover w-full h-full"
+                      />
                     </div>
                   </div>
                 </div>
@@ -361,39 +376,74 @@ export default function FounderPage() {
       </section>
 
       {/* Media Recognition */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">Featured Articles</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full"></div>
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-6 max-w-8xl">
+          {/* Heading */}
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+              Featured Articles
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Third-party coverage and accolades that validate our execution.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
-            {articles.map((article, index) => (
-              <Card key={index} className="shadow-lg hover:shadow-xl transition-all duration-300 border-0">
-                <CardContent className="p-6 md:p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-blue-100 to-blue-200 rounded-2xl flex items-center justify-center">
-                      <ExternalLink className="w-6 h-6 md:w-7 md:h-7 text-blue-600" />
-                    </div>
-                    <div className="flex-1">
-                      <span className="text-xs font-bold bg-blue-100 text-blue-700 px-2 py-1 rounded-full mb-3 inline-block">
-                        {article.type}
-                      </span>
-                      <h4 className="text-lg md:text-xl font-semibold text-slate-800 mb-2 leading-tight">{article.title}</h4>
-                      <p className="text-sm md:text-base text-gray-600 mb-4">{article.source}</p>
-                      {article.link && (
-                        <Link
-                          href={article.link}
-                          target="_blank"
-                          className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium text-sm md:text-base group"
-                        >
-                          Read Full Article
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-                        </Link>
-                      )}
-                    </div>
+          {/* Cards – scrollable preview, footer clickable */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
+            {media.map((item, idx) => (
+              <Card
+                key={idx}
+                className="relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white shadow-sm ring-1 ring-black/5"
+              >
+                {/* top accent bar */}
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
+
+                <CardContent className="p-0 flex flex-col h-full">
+                  {/* Header row (CTA) */}
+                  <div className="px-6 pt-4 pb-2 flex items-start justify-between">
+                    <span className="text-xs font-bold bg-orange-100 text-[#eb8535] px-2 py-1 rounded-full">
+                      {item.type}
+                    </span>
+                    <Link
+                      href={item.link!}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-orange-600 hover:text-orange-700 text-sm font-medium inline-flex items-center gap-2"
+                    >
+                      Open article
+                      <ExternalLink className="h-4 w-4" />
+                    </Link>
                   </div>
+
+                  {/* Scrollable live preview (no Link wrapper, no pointer-events-none) */}
+                  <div className="w-full bg-white border-t">
+                    <iframe
+                      src={item.link!}
+                      className="w-full h-[520px] md:h-[560px] lg:h-[600px] border-0"
+                      loading="lazy"
+                      sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      scrolling="yes"
+                    />
+                  </div>
+
+                  {/* Footer meta (clickable) */}
+                  <Link
+                    href={item.link!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-6 block hover:bg-gray-50 transition-colors"
+                    aria-label={`Open article: ${item.title}`}
+                  >
+                    <div className="mb-2 flex items-start justify-between">
+                      <span className="text-xs text-gray-500 font-medium">{item.year}</span>
+                    </div>
+                    <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-1 leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-gray-600">{item.source}</p>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
@@ -416,7 +466,7 @@ export default function FounderPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center max-w-2xl mx-auto">
-            <Button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto">
+            <Button className="bg-[#eb8535] hover:bg-orange-400 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto">
               Get Expert Consultation
               <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
             </Button>
