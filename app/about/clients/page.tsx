@@ -17,7 +17,6 @@ import {
   UserCheck,
   UsersRound,
   Map,
-  Lock,
   Star,
   TrendingUp,
   Shield
@@ -26,7 +25,9 @@ import {
 export const metadata = {
   title: "Our Clients | Praans Consultech",
   description: "Trusted by businesses across all major sectors in India for labour law compliance solutions.",
+  keywords: "clients, Praans Consultech, labour law compliance, business sectors, India, corporate compliance, HR solutions, compliance outsourcing, industry leaders"
 }
+
 
 const clientSectors = [
   { icon: Truck, name: "Logistics & Warehousing", count: "500+" },
@@ -149,7 +150,7 @@ export default function OurClientsPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
               Our Impact on Clients
             </h2>
-            
+
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
               Snapshot of our scale, consistency, and nationwide delivery—real metrics that move the needle.
             </p>

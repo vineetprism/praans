@@ -21,8 +21,9 @@ import Link from "next/link"
 export const metadata = {
   title: "About Us | Praans Consultech",
   description: "Learn about Praans Consultech's mission to simplify labour law compliance across India with our AI-driven platform and expert legal team.",
-  keywords: "about praans consultech, labour law experts, compliance software company, sandeep kumar, nitesh kumar, allisha sharma",
+  keywords: "about praans consultech, labour law experts, compliance software company, sandeep kumar, nitesh kumar, allisha sharma, AI-driven compliance, labour law solutions, legal experts india"
 }
+
 
 type MediaItem = {
   title: string;
@@ -97,7 +98,7 @@ const stats = [
     icon: Building2,
     number: "100%",
     label: "Success Rate",
-    color: "text-orange-600"
+    color: "text-orange-400"
   }
 ]
 
@@ -293,21 +294,6 @@ export default function AboutPage() {
                   Certifications ISO , Startup India, MSME, Ministry of corporate affairs.
 
                 </p>
-
-                {/* <ul className="mt-6 space-y-3.5 text-gray-700">
-                  <li className="flex items-start gap-3">
-                    <Heart className="mt-0.5 h-5 w-5 text-[#2c3454]" />
-                    <span>Improving quality of operations</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Leaf className="mt-0.5 h-5 w-5 text-[#2c3454]" />
-                    <span>Sustainable, scalable compliance solutions</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <GraduationCap className="mt-0.5 h-5 w-5 text-[#2c3454]" />
-                    <span>Evidence-based, audit-ready approaches</span>
-                  </li>
-                </ul> */}
               </CardContent>
             </Card>
 
@@ -328,21 +314,6 @@ export default function AboutPage() {
                 <p className="mt-5 text-center text-gray-600 max-w-xl mx-auto">
                   To become India’s most trusted and technology-driven partner in labour law compliance making complex regulations simple, accessible, and manageable for every business.
                 </p>
-
-                {/* <ul className="mt-6 space-y-3.5 text-gray-700">
-                  <li className="flex items-start gap-3">
-                    <Heart className="mt-0.5 h-5 w-5 text-orange-400" />
-                    <span>National leadership in compliance</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Leaf className="mt-0.5 h-5 w-5 text-orange-400" />
-                    <span>Accessible to every business size</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <GraduationCap className="mt-0.5 h-5 w-5 text-orange-400" />
-                    <span>Pioneering research & best practices</span>
-                  </li>
-                </ul> */}
               </CardContent>
             </Card>
           </div>
@@ -514,7 +485,7 @@ export default function AboutPage() {
                     aria-label={`Open article: ${item.title}`}
                   >
                     <div className="mb-2 flex items-start justify-between">
-                      <span className="text-xs text-gray-500 font-medium">{item.year}</span>
+                      <span className="text-xs text-orange-400 font-medium">{item.year}</span>
                     </div>
                     <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-1 leading-tight">
                       {item.title}

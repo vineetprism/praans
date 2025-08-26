@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 import { Phone, Mail, MapPin, Building } from "lucide-react"
 import IndiaMapOnly from "./india-map"
+import Link from "next/link"
 
 export const metadata = {
   title: "Contact Us | Praans Consultech",
@@ -34,9 +35,9 @@ export default function ContactPage() {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-orange-50 to-blue-50">
+      <section className="relative py-20 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-slate-800">Get in Touch</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-slate-800">Get in <span className="text-[#eb8535]">Touch</span></h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We're here to help with all your labour law compliance needs. Reach out to us via phone, email, or our
             office locations.
@@ -67,13 +68,13 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-2xl font-bold mb-4">General Inquiries</h3>
                 <div className="space-y-4">
-                  <a
-                    href="tel:+911234567890"
+                  <Link
+                    href="tel:+919050576838"
                     className="flex items-center gap-3 text-lg text-gray-700 hover:text-[#eb8535]"
                   >
                     <Phone className="w-6 h-6 text-orange-500" />
                     <span>+91-9050576838</span>
-                  </a>
+                  </Link>
                   <a
                     href="mailto:info@praansconsultech.com"
                     className="flex items-center gap-3 text-lg text-gray-700 hover:text-[#eb8535]"

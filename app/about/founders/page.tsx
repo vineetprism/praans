@@ -23,8 +23,9 @@ export const metadata = {
   description:
     "Meet our visionary founder with over 15 years of expertise in labour law compliance, managing 2,500+ locations and 50,000+ employees across India.",
   keywords:
-    "founder praans consultech, labour law expert, compliance consultant, XLRI alumnus, legal expert india",
+    "founder praans consultech, labour law expert, compliance consultant, XLRI alumnus, legal expert india, labour law compliance, HR solutions, business leadership, founder profile"
 }
+
 
 type MediaItem = {
   title: string;
@@ -437,7 +438,7 @@ export default function FounderPage() {
                     aria-label={`Open article: ${item.title}`}
                   >
                     <div className="mb-2 flex items-start justify-between">
-                      <span className="text-xs text-gray-500 font-medium">{item.year}</span>
+                      <span className="text-xs text-orange-400 font-medium">{item.year}</span>
                     </div>
                     <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-1 leading-tight">
                       {item.title}

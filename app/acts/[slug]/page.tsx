@@ -18,6 +18,13 @@ import FormsSection from "@/components/FormsSection";
 import { downloadFile, type DownloadItem } from "@/lib/download-utils";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 
+// export const metadata = {
+//   title: "Labour Acts & Regulations | Praans Consultech",
+//   description: "Explore our comprehensive collection of central and state labour acts with the latest amendments and updates, ensuring compliance with workplace safety, wages, and worker rights.",
+//   keywords: "labour acts, labour regulations, employment laws, workplace safety, worker rights, wages, compliance, industrial disputes, central labour acts, state labour acts, legal framework, worker protection"
+// }
+
+
 // Mock database of acts with SEO-friendly slugs
 const actsDatabase = {
   "factories-act-1948": {

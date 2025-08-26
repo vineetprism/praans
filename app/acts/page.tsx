@@ -1,29 +1,17 @@
-
 "use client"
-
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-// import { Separator } from "@/components/ui/separator"
 import {
   Search,
   Filter,
-  // Download,
   Eye,
-  // Calendar,
-  // MapPin,
-  // FileText,
-  ChevronRight,
-  Home,
-  Building2,
   Scale,
 } from "lucide-react"
 import Link from "next/link"
-// import Image from "next/image"
 import { downloadFile, type DownloadItem } from "@/lib/download-utils"
-// import PopularSearchBoxes from "../PopularSearchBoxes/PopularSearchBoxes"
 import PopularSearch from "../PopularSearch/PopularSearch"
 
 const acts = [
@@ -239,19 +227,7 @@ export default function ActsPage() {
                   <CardHeader className="pb-4">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        {/* <div className="flex items-center gap-3 mb-3">
-                          <Badge
-                            variant={act.state === "Central" ? "default" : "secondary"}
-                            className={act.state === "Central" ? "bg-slate-800" : "bg-gray-100 text-gray-700"}
-                          >
-                            <Building2 className="w-3 h-3 mr-1" />
-                            {act.state}
-                          </Badge>
-                          <Badge variant="outline" className="text-xs">
-                            {act.category}
-                          </Badge>
-                          {act.isPopular && <Badge className="bg-orange-100 text-orange-700 text-xs">Popular</Badge>}
-                        </div> */}
+
                         <Link href={`/acts/${act.slug}`}>
                           <CardTitle className="text-xl group-hover:text-orange-600 transition-colors leading-tight mb-2 cursor-pointer">
                             {act.title}
@@ -262,22 +238,6 @@ export default function ActsPage() {
                         </CardDescription>
                       </div>
                     </div>
-
-                    {/* Act Details */}
-                    {/* <div className="flex items-center gap-6 text-sm text-gray-500 mb-4">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        <span>Year: {act.year}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <FileText className="w-4 h-4" />
-                        <span>{act.sections} Sections</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <MapPin className="w-4 h-4" />
-                        <span>Updated: {new Date(act.lastUpdated).toLocaleDateString()}</span>
-                      </div>
-                    </div> */}
                   </CardHeader>
 
                   <CardContent className="pt-0">
@@ -312,7 +272,6 @@ export default function ActsPage() {
           {/* Right Sidebar - Popular Search */}
           <div className="lg:col-span-1">
             <div className="sticky top-24">
-              {/* <PopularSearch className="mb-6" /> */}
               
               <Card>
                 
