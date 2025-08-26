@@ -289,6 +289,22 @@ export default function HomePage() {
               <Crown className="shrink-0 w-10 h-10 md:w-6 md:h-10 text-yellow-600" />
             </div>
           </div>
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center max-w-2xl mx-auto">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto"
+            >
+              Get a Free Demo Of Software
+              <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 border-white text-white hover:bg-blue-950 hover:text-slate-800 text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 bg-transparent rounded-2xl font-bold w-full sm:w-auto"
+            >
+              Talk to Our Compliance Experts
+            </Button>
+          </div>
         </div>
       </section>
 

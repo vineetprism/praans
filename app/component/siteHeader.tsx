@@ -409,9 +409,10 @@ export default function SiteHeader() {
             <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">
               🎉 New Feature: AI-Powered Compliance Assistant
             </span>
-            <Link href="/updates" className="hover:text-orange-600 transition-colors">
+            <Link href="/generate-ai-response" className="hover:text-orange-600 transition-colors">
               Clear Here →
             </Link>
+           
           </div>
         </div>
 
