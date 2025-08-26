@@ -271,10 +271,10 @@ export default function HomePage() {
       px-8 md:px-7                   
       rounded-full border-2 border-orange-300
       bg-gradient-to-r from-orange-100 via-orange-50 to-red-100
-      text-orange-800
+      text-orange-400
     "
             >
-              <Bot className="shrink-0 w-10 h-10 md:w-7 md:h-10 text-orange-600" />
+              <Bot className="shrink-0 w-10 h-10 md:w-7 md:h-10 text-orange-400" />
               <span
                 className="
         text-base md:text-2xl          
