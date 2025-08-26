@@ -99,9 +99,9 @@ export default function OurClientsPage() {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-orange-50 to-blue-50">
+      <section className="relative py-20 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-slate-800">Our Clients</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-slate-800">Our <span className="text-[#eb8535]">CLients</span></h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Trusted by businesses across all major sectors in India for seamless labour law compliance
           </p>

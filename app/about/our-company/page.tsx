@@ -143,14 +143,14 @@ export default function AboutPage() {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-16 md:py-20 lg:py-24 bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/20 to-blue-100/20" />
-        <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 bg-orange-200/30 rounded-full blur-3xl" />
+      <section className="relative py-16 md:py-20 lg:py-24 bg-gray-50 overflow-hidden">
+        <div className="absolute inset-0" />
+        <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48 bg-blue-200/30 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
-            About Praans Consultech
+            About Praans <span className="text-[#eb8535]">Consultech</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Simplifying Labour Law Compliance for businesses across India since 2021
@@ -182,8 +182,8 @@ export default function AboutPage() {
                 outdated manual systems with intelligent automation.
               </p>
 
-              <div className="bg-gradient-to-r from-orange-50 to-blue-50 p-6 rounded-2xl border-l-4 border-orange-500">
-                <p className="text-base md:text-lg font-semibold text-slate-800 mb-1">
+              <div className="bg-gray-100 p-6 rounded-2xl border-l-4 border-orange-400">
+                <p className="text-base md:text-lg font-semibold text-[#eb8535] mb-1">
                   Milestone Achievement
                 </p>
                 <p className="text-base md:text-lg text-gray-700">

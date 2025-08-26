@@ -58,7 +58,7 @@ const achievements = [
   { icon: Clock, number: "15+", label: "Years of Expertise", color: "text-blue-600" },
   { icon: MapPin, number: "2,500+", label: "Locations Managed", color: "text-green-600" },
   { icon: Users, number: "50,000+", label: "Employees Covered", color: "text-purple-600" },
-  { icon: Building2, number: "100%", label: "PAN India Coverage", color: "text-orange-600" },
+  { icon: Building2, number: "100%", label: "PAN India Coverage", color: "text-orange-400" },
 ]
 
 const services = [
@@ -82,14 +82,14 @@ export default function FounderPage() {
   return (
     <div className="bg-gray-50">
       {/* Top Banner */}
-      <section className="relative py-16 md:py-20 lg:py-24 bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/20 to-blue-100/20" />
-        <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 bg-orange-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48 bg-blue-200/30 rounded-full blur-3xl" />
+      <section className="relative py-16 md:py-20 lg:py-24 bg-gray-50 overflow-hidden">
+        <div className="absolute inset-0" />
+        <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
-            Meet Our Founders
+            Meet Our <span className="text-[#eb8535]">Founders</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             The leadership behind Praans Consultech—Sandeep Kumar, Nitesh Kumar, and Allisha Sharma—blending deep labour-law expertise with product-first execution to make compliance effortless across India.
@@ -98,10 +98,10 @@ export default function FounderPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="relative py-16 md:py-20 lg:py-24 bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/20 to-blue-100/20" />
-        <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 bg-orange-200/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48 bg-blue-200/30 rounded-full blur-3xl" />
+      <section className="relative py-16 md:py-20 lg:py-24 bg-white overflow-hidden">
+        <div className="absolute inset-0" />
+        <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 " />
+        <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center max-w-7xl mx-auto">
@@ -111,7 +111,7 @@ export default function FounderPage() {
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
                   Meet Our Founder
                 </h1>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-orange-600 mb-4 md:mb-6 leading-relaxed">
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[#eb8535] mb-4 md:mb-6 leading-relaxed">
                   Your Trusted Labour Law Consultant with Over 15 Years of Expertise
                 </h2>
                 <p className="text-base md:text-lg text-gray-600 leading-relaxed">
@@ -159,7 +159,7 @@ export default function FounderPage() {
       </section>
 
       {/* Professional Journey (Education in text, now FULL WIDTH) */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
@@ -178,8 +178,8 @@ export default function FounderPage() {
                   demonstrated exceptional capability in handling complex labour law operations across multiple states and sectors.
                 </p>
 
-                <div className="bg-gradient-to-r from-orange-50 to-blue-50 p-6 md:p-8 rounded-2xl border-l-4 border-[#eb8535]">
-                  <p className="text-base md:text-lg font-semibold text-slate-800 mb-2">Previous Leadership Role</p>
+                <div className="bg-gray-100 p-6 md:p-8 rounded-2xl border-l-4 border-[#eb8535]">
+                  <p className="text-base md:text-lg font-semibold text-[#eb8535] mb-2">Previous Leadership Role</p>
                   <p className="text-base md:text-lg text-gray-700">
                     Formerly the <strong>Director of Legal & Compliance</strong> at a top logistics and courier
                     company, their leadership in large-scale operations laid the foundation for what Praans Consultech
@@ -223,8 +223,8 @@ export default function FounderPage() {
             </div>
 
             {/* Row 2: FULL-WIDTH Education */}
-            <div className="mt-12 md:mt-16 rounded-2xl bg-gradient-to-r from-orange-50 to-blue-50 p-6 md:p-8 lg:p-10">
-              <h3 className="text-2xl md:text-3xl font-bold text-slate-800">Education & Credentials</h3>
+            <div className="mt-12 md:mt-16 rounded-2xl bg-gray-100 p-6 md:p-8 lg:p-10">
+              <h3 className="text-2xl md:text-3xl font-bold text-slate-800">Education <span className="text-[#eb8535]">& Credentials</span></h3>
               <p className="mt-2 text-gray-700 max-w-none">
                 Grounded in rigorous academics and ongoing research, building the toolkit that powers execution:
               </p>
@@ -364,9 +364,9 @@ export default function FounderPage() {
           </div>
 
           <div className="text-center mt-12 md:mt-16">
-            <Card className="bg-gradient-to-r from-orange-50 via-white to-blue-50 border-0 shadow-xl max-w-4xl mx-auto">
+            <Card className="bg-[#eb8535] border-0 shadow-xl max-w-4xl mx-auto">
               <CardContent className="p-8 md:p-12">
-                <p className="text-lg md:text-xl font-semibold text-slate-800 leading-relaxed mb-6">
+                <p className="text-lg md:text-xl font-semibold text-gray-200 leading-relaxed mb-6">
                   With a growing client base and PAN India presence, our founder continues to innovate and lead Praans Consultech as one of the most trusted labour law consultants in India.
                 </p>
               </CardContent>
