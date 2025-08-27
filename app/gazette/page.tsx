@@ -1,26 +1,12 @@
-
-// // export const metadata = {
-// //   title: 'Gazette Notifications - Latest Government Updates | E-Library',
-// //   description: 'Stay updated with the latest government gazette notifications, circulars, and amendments across various labour laws and regulations.',
-// //   keywords: 'gazette notifications, government circulars, labour law updates, compliance notifications, amendments'
-// // }
-
-
-
-
-
-
 "use client"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Separator } from "@/components/ui/separator"
-import { Search, Filter, Download, FileText, ChevronRight, Home, Building2, Calendar, MapPin, Eye, Star, Clock, Users, AlertCircle, Bell, Newspaper, ExternalLink, TrendingUp } from 'lucide-react'
+import { Search, Filter, Bell, Newspaper, TrendingUp } from 'lucide-react'
 import Link from "next/link"
-import Image from "next/image"
 import PopularSearch from "../PopularSearch/PopularSearch"
 
 const notifications = [
@@ -245,20 +231,20 @@ export default function GazetteNotificationsPage() {
           <CardContent className="p-6">
             <div className="flex flex-col lg:flex-row gap-4 items-center">
               {/* Filters Button */}
-              <Button variant="outline" className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200">
+              <Button variant="outline" className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200" aria-label="Filters">
                 <Filter className="w-4 h-4" />
                 Filters
               </Button>
               
               {/* Search Input */}
               <div className="relative flex-1">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" aria-label="Search" />
                 <Input placeholder="Search by title..." className="pl-12 py-3 h-12 rounded-lg" />
               </div>
               
               {/* Category Dropdown */}
               <Select>
-                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200">
+                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200" aria-label="Category">
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
                 <SelectContent>
@@ -272,7 +258,7 @@ export default function GazetteNotificationsPage() {
               
               {/* State Dropdown */}
               <Select>
-                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200">
+                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200" aria-label="State">
                   <SelectValue placeholder="Select state" />
                 </SelectTrigger>
                 <SelectContent>
@@ -286,7 +272,7 @@ export default function GazetteNotificationsPage() {
               
               {/* Priority Dropdown */}
               <Select>
-                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200">
+                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200" aria-label="Priority">
                   <SelectValue placeholder="Select priority" />
                 </SelectTrigger>
                 <SelectContent>
@@ -300,7 +286,7 @@ export default function GazetteNotificationsPage() {
               
               {/* Department Dropdown */}
               <Select>
-                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200">
+                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200" aria-label="Department">
                   <SelectValue placeholder="Select department" />
                 </SelectTrigger>
                 <SelectContent>
@@ -313,7 +299,7 @@ export default function GazetteNotificationsPage() {
               </Select>
               
               {/* Apply Button */}
-              <Button className="bg-orange-500 hover:bg-orange-600 px-6">
+              <Button className="bg-orange-500 hover:bg-orange-600 px-6" aria-label="apply filters">
                 Apply
               </Button>
             </div>
@@ -386,9 +372,10 @@ export default function GazetteNotificationsPage() {
                           variant="outline" 
                           size="sm"
                           className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
+                          aria-label="Read more"
                           asChild
                         >
-                          <Link href={`/gazette/${notification.slug}`}>
+                          <Link href={`/gazette/${notification.slug}`} aria-label="Read more">
                             <Newspaper className="w-4 h-4 mr-2" />
                             Read More
                           </Link>
@@ -403,7 +390,7 @@ export default function GazetteNotificationsPage() {
 
             {/* Load More */}
             <div className="text-center mt-12">
-              <Button variant="outline" size="lg" className="px-8">
+              <Button variant="outline" size="lg" className="px-8" aria-label="Load more notifications">
                 Load More Notifications
               </Button>
             </div>
@@ -422,11 +409,11 @@ export default function GazetteNotificationsPage() {
                   amendments, and important compliance updates relevant to your business.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-orange-500 hover:bg-orange-600">
+                  <Button className="bg-orange-500 hover:bg-orange-600" aria-label="Subscribe to alerts">
                     <Bell className="w-4 h-4 mr-2" />
                     Subscribe to Alerts
                   </Button>
-                  <Button variant="outline">
+                  <Button variant="outline" aria-label="View trending">
                     <TrendingUp className="w-4 h-4 mr-2" />
                     View Trending
                   </Button>
@@ -439,9 +426,3 @@ export default function GazetteNotificationsPage() {
     </div>
   )
 }
-
-// export const metadata = {
-//   title: 'Gazette Notifications - Latest Government Updates | E-Library',
-//   description: 'Stay updated with the latest government gazette notifications, circulars, and amendments across various labour laws and regulations.',
-//   keywords: 'gazette notifications, government circulars, labour law updates, compliance notifications, amendments'
-// }

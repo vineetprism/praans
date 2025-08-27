@@ -1,292 +1,11 @@
-
-
-
-// import { Metadata } from 'next'
-// import Link from 'next/link'
-// import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-// // import { Badge } from '@/components/ui/badge'
-// import { Button } from '@/components/ui/button'
-// import { Input } from '@/components/ui/input'
-// import { Search, Download, Calculator, FileText, Globe, TrendingUp, Users, Building, Clock, IndianRupee } from 'lucide-react'
-// import PopularSearch from '../PopularSearch/PopularSearch'
-
-// export const metadata: Metadata = {
-//   title: 'Minimum Wages in India - State-wise Rates & Notifications | E-Library',
-//   description: 'Complete guide to minimum wages across Indian states. Find current rates, notifications, and compliance requirements for different categories of workers.',
-//   keywords: 'minimum wages, state wise minimum wages, wage rates, labour compliance, wage notification, minimum wage act',
-// }
-
-// const stateWiseWages = [
-//   { state: 'Andhra Pradesh', skilled: 395, semiSkilled: 365, unskilled: 335, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Assam', skilled: 285, semiSkilled: 265, unskilled: 245, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Bihar', skilled: 325, semiSkilled: 305, unskilled: 285, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Chhattisgarh', skilled: 315, semiSkilled: 295, unskilled: 275, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Delhi', skilled: 692, semiSkilled: 623, unskilled: 554, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Goa', skilled: 385, semiSkilled: 355, unskilled: 325, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Gujarat', skilled: 375, semiSkilled: 345, unskilled: 315, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Haryana', skilled: 425, semiSkilled: 395, unskilled: 365, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Himachal Pradesh', skilled: 335, semiSkilled: 315, unskilled: 295, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Jharkhand', skilled: 315, semiSkilled: 295, unskilled: 275, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Karnataka', skilled: 425, semiSkilled: 395, unskilled: 365, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Kerala', skilled: 395, semiSkilled: 365, unskilled: 335, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Madhya Pradesh', skilled: 315, semiSkilled: 295, unskilled: 275, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Maharashtra', skilled: 425, semiSkilled: 395, unskilled: 365, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Odisha', skilled: 315, semiSkilled: 295, unskilled: 275, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Punjab', skilled: 425, semiSkilled: 395, unskilled: 365, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Rajasthan', skilled: 335, semiSkilled: 315, unskilled: 295, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Tamil Nadu', skilled: 425, semiSkilled: 395, unskilled: 365, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Telangana', skilled: 395, semiSkilled: 365, unskilled: 335, lastUpdated: '2024-01-01', available: true },
-//   { state: 'Uttar Pradesh', skilled: 335, semiSkilled: 315, unskilled: 295, lastUpdated: '2024-01-01', available: true },
-//   { state: 'West Bengal', skilled: 365, semiSkilled: 335, unskilled: 305, lastUpdated: '2024-01-01', available: true },
-// ]
-
-// const trendingSearches = [
-//   'Minimum wage rates 2024',
-//   'State wise minimum wages',
-//   'Skilled worker wages',
-//   'Unskilled labour rates',
-//   'Minimum wage notification',
-//   'Daily wage calculation',
-//   'Overtime wage rates',
-//   'Agricultural wages',
-//   'Construction worker wages',
-//   'Domestic worker wages'
-// ]
-
-// export default function MinimumWagesPage() {
-//   return (
-//     <div className="min-h-screen bg-gray-50">
-//       {/* Search Bar */}
-//       {/* <div className="bg-white border-b">
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-//           <div className="relative">
-//             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-//             <Input
-//               type="text"
-//               placeholder="Search minimum wages, notifications, etc..."
-//               className="pl-10 pr-4 py-2 w-full"
-//             />
-//           </div>
-//         </div>
-//       </div> */}
-
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-//         {/* Grid Layout with Sidebar */}
-//         <div className="grid lg:grid-cols-4 gap-8">
-//           {/* Main Content */}
-//           <div className="lg:col-span-3">
-//             {/* Page Header */}
-//             <div className="mb-8">
-//               <h1 className="text-3xl font-bold text-gray-900 mb-4">Minimum Wages</h1>
-//               <p className="text-lg text-gray-600 mb-6">
-//                 "Minimum Wages" refers to the lowest remuneration that an employer is legally required to pay to workers for their labor. 
-//                 The Minimum Wages Act, 1948 empowers both Central and State Governments to fix minimum wages for scheduled employments 
-//                 to ensure fair compensation and prevent exploitation of workers.
-//               </p>
-//             </div>
-
-//             {/* Statistics Cards */}
-//             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
-//               <Card>
-//                 <CardContent className="p-6">
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <p className="text-sm font-medium text-gray-600">Total States</p>
-//                       <p className="text-2xl font-bold text-gray-900">29</p>
-//                     </div>
-//                     <Building className="h-8 w-8 text-blue-600" />
-//                   </div>
-//                 </CardContent>
-//               </Card>
-//               <Card>
-//                 <CardContent className="p-6">
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <p className="text-sm font-medium text-gray-600">Scheduled Employments</p>
-//                       <p className="text-2xl font-bold text-gray-900">1,700+</p>
-//                     </div>
-//                     <Users className="h-8 w-8 text-green-600" />
-//                   </div>
-//                 </CardContent>
-//               </Card>
-//               <Card>
-//                 <CardContent className="p-6">
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <p className="text-sm font-medium text-gray-600">Highest Daily Rate</p>
-//                       <p className="text-2xl font-bold text-gray-900">₹692</p>
-//                     </div>
-//                     <IndianRupee className="h-8 w-8 text-yellow-600" />
-//                   </div>
-//                 </CardContent>
-//               </Card>
-//               <Card>
-//                 <CardContent className="p-6">
-//                   <div className="flex items-center justify-between">
-//                     <div>
-//                       <p className="text-sm font-medium text-gray-600">Last Updated</p>
-//                       <p className="text-2xl font-bold text-gray-900">2024</p>
-//                     </div>
-//                     <Clock className="h-8 w-8 text-purple-600" />
-//                   </div>
-//                 </CardContent>
-//               </Card>
-//             </div>
-
-           
-
-//             {/* Content Sections */}
-//             <div className="space-y-8">
-//               {/* What is Minimum Wages */}
-//               <section>
-//                 <h2 className="text-2xl font-bold text-gray-900 mb-4">What is Minimum Wages?</h2>
-//                 <p className="text-gray-700 mb-4">
-//                   Minimum wage is the lowest wage per hour that a worker may be paid, as mandated by federal law. 
-//                   It is a legally mandated price floor on hourly wages, below which non-exempt workers may not be offered 
-//                   or accept a job. The primary purpose of minimum wage laws is to protect workers against unduly low pay.
-//                 </p>
-//                 <p className="text-gray-700">
-//                   In India, the Minimum Wages Act, 1948 provides for fixing minimum rates of wages in certain employments. 
-//                   The Act empowers both the Central Government and State Governments to fix, review, and revise the minimum 
-//                   wages of the workers employed in the scheduled employments under their respective jurisdictions.
-//                 </p>
-//               </section>
-
-//               {/* Scope of Minimum Wages Act */}
-//               <section>
-//                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Scope of Minimum Wages Act</h2>
-//                 <p className="text-gray-700 mb-4">
-//                   The Act applies to employments specified in the Schedule to the Act. The appropriate government may add 
-//                   any employment to the Schedule if it employs 1,000 or more workers in the State. The Act covers various 
-//                   categories of workers including:
-//                 </p>
-//                 <ul className="list-disc list-inside text-gray-700 space-y-2">
-//                   <li>Agricultural workers</li>
-//                   <li>Construction workers</li>
-//                   <li>Manufacturing industry workers</li>
-//                   <li>Service sector employees</li>
-//                   <li>Domestic workers (in some states)</li>
-//                   <li>Contract and casual workers</li>
-//                 </ul>
-//               </section>
-
-//               {/* State-wise Minimum Wages */}
-//               <section>
-//                 <h2 className="text-2xl font-bold text-gray-900 mb-6">State-wise Minimum Wages (Daily Rates in ₹)</h2>
-//                 <div className="bg-white rounded-lg shadow overflow-hidden">
-//                   <div className="overflow-x-auto">
-//                     <table className="min-w-full divide-y divide-gray-200">
-//                       <thead className="bg-gray-50">
-//                         <tr>
-//                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-//                             State
-//                           </th>
-//                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-//                             Skilled
-//                           </th>
-//                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-//                             Semi-Skilled
-//                           </th>
-//                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-//                             Unskilled
-//                           </th>
-//                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-//                             Last Updated
-//                           </th>
-//                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-//                             Action
-//                           </th>
-//                         </tr>
-//                       </thead>
-//                       <tbody className="bg-white divide-y divide-gray-200">
-//                         {stateWiseWages.map((wage, index) => (
-//                           <tr key={index} className="hover:bg-gray-50">
-//                             <td className="px-6 py-4 whitespace-nowrap">
-//                               <div className="flex items-center">
-//                                 <div className="text-sm font-medium text-gray-900">
-//                                   {wage.state}
-//                                 </div>
-//                               </div>
-//                             </td>
-//                             <td className="px-6 py-4 whitespace-nowrap">
-//                               <div className="text-sm text-gray-900">₹{wage.skilled}</div>
-//                             </td>
-//                             <td className="px-6 py-4 whitespace-nowrap">
-//                               <div className="text-sm text-gray-900">₹{wage.semiSkilled}</div>
-//                             </td>
-//                             <td className="px-6 py-4 whitespace-nowrap">
-//                               <div className="text-sm text-gray-900">₹{wage.unskilled}</div>
-//                             </td>
-//                             <td className="px-6 py-4 whitespace-nowrap">
-//                               <div className="text-sm text-gray-500">{wage.lastUpdated}</div>
-//                             </td>
-//                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-//                               <Link 
-//                                 href={`/minimum-wages/${wage.state.toLowerCase().replace(/\s+/g, '-')}`}
-//                                 className="text-blue-600 hover:text-blue-900"
-//                               >
-//                                 View Details
-//                               </Link>
-//                             </td>
-//                           </tr>
-//                         ))}
-//                       </tbody>
-//                     </table>
-//                   </div>
-//                 </div>
-//               </section>
-
-//               {/* Important Notes */}
-//               <section>
-//                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Important Notes</h2>
-//                 <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-//                   <div className="flex">
-//                     <div className="ml-3">
-//                       <p className="text-sm text-yellow-700">
-//                         <strong>Note:</strong> The minimum wage rates mentioned above are indicative and may vary based on 
-//                         specific employment categories, geographical areas, and recent notifications. Employers should refer 
-//                         to the latest official notifications from respective state labour departments for accurate and 
-//                         up-to-date information.
-//                       </p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </section>
-//             </div>
-//           </div>
-
-//           {/* Sidebar with Quick Access */}
-//           <div className="lg:col-span-1">
-//             <Card className="sticky top-24">
-//               <CardContent className="space-y-6">
-//                 <PopularSearch className="mt-4" />
-//               </CardContent>
-//             </Card>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-
-
-
-
-
-
-
-
-
-
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Search, Download, Calculator, FileText, Globe, TrendingUp, Users, Building, Clock, IndianRupee, Filter, Scale } from 'lucide-react'
+import { Search, Users, Building, Clock, IndianRupee, Filter, Scale } from 'lucide-react'
 import PopularSearch from '../PopularSearch/PopularSearch'
 
 export const metadata: Metadata = {
@@ -332,7 +51,7 @@ const categories = [
 const states = [
   "All States",
   "Andhra Pradesh",
-  "Assam", 
+  "Assam",
   "Bihar",
   "Delhi",
   "Gujarat",
@@ -408,7 +127,7 @@ export default function MinimumWagesPage() {
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <Input placeholder="Search by state or category..." className="pl-12 py-3 h-12 rounded-lg" />
                   </div>
-                  
+
                   {/* State Dropdown */}
                   <Select>
                     <SelectTrigger className="w-full lg:w-48 bg-gray-100 hover:bg-gray-200">
@@ -422,7 +141,7 @@ export default function MinimumWagesPage() {
                       ))}
                     </SelectContent>
                   </Select>
-                  
+
                   {/* Category Dropdown */}
                   <Select>
                     <SelectTrigger className="w-full lg:w-48 bg-gray-100 hover:bg-gray-200">
@@ -436,9 +155,9 @@ export default function MinimumWagesPage() {
                       ))}
                     </SelectContent>
                   </Select>
-                  
+
                   {/* Apply Button */}
-                  <Button className="bg-orange-500 hover:bg-orange-600 px-6">
+                  <Button className="bg-orange-500 hover:bg-orange-600 px-6" variant="outline" aria-label='apply filters'>
                     Apply
                   </Button>
                 </div>
@@ -547,10 +266,11 @@ export default function MinimumWagesPage() {
                             <Button
                               variant="outline"
                               size="sm"
+                              aria-label='view details'
                               className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 bg-transparent"
                               asChild
                             >
-                              <Link href={`/minimum-wages/${wage.state.toLowerCase().replace(/\s+/g, '-')}`}>
+                              <Link href={`/minimum-wages/${wage.state.toLowerCase().replace(/\s+/g, '-')}`} aria-label='view details'>
                                 View Details
                               </Link>
                             </Button>
@@ -565,7 +285,7 @@ export default function MinimumWagesPage() {
 
             {/* Load More */}
             <div className="text-center mt-12">
-              <Button variant="outline" size="lg" className="px-8 bg-transparent">
+              <Button variant="outline" size="lg" className="px-8 bg-transparent" aria-label='load more states'>
                 Load More States
               </Button>
             </div>
@@ -576,7 +296,7 @@ export default function MinimumWagesPage() {
             <div className="sticky top-24">
               <Card>
                 <CardContent>
-                   <PopularSearch className="mb-6" />
+                  <PopularSearch className="mb-6" />
                 </CardContent>
               </Card>
             </div>

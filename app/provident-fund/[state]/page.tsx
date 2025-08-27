@@ -248,7 +248,7 @@ const availableStates = [
 
 export async function generateMetadata({ params }: { params: { state: string } }): Promise<Metadata> {
   const state = stateData[params.state]
-  
+
   if (!state) {
     return {
       title: 'State Not Found | Provident Fund',
@@ -265,19 +265,18 @@ export async function generateMetadata({ params }: { params: { state: string } }
 
 export default function StateProvidentFundPage({ params }: { params: { state: string } }) {
   const state = stateData[params.state]
-  
+
   if (!state) {
     notFound()
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-2">
+              <Link href="/" className="flex items-center space-x-2" aria-label="Home">
                 <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
                   <span className="text-white font-bold text-sm">E</span>
                 </div>
@@ -285,14 +284,14 @@ export default function StateProvidentFundPage({ params }: { params: { state: st
               </Link>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <Link href="/acts" className="text-gray-700 hover:text-blue-600">Acts</Link>
-              <Link href="/rules" className="text-gray-700 hover:text-blue-600">Rules</Link>
-              <Link href="/forms" className="text-gray-700 hover:text-blue-600">Forms</Link>
-              <Link href="/calculators" className="text-gray-700 hover:text-blue-600">Calculators</Link>
-              <Link href="/gazette" className="text-gray-700 hover:text-blue-600">Gazette</Link>
-              <Link href="/holidays" className="text-gray-700 hover:text-blue-600">Holidays</Link>
-              <Link href="/welfare-fund" className="text-gray-700 hover:text-blue-600">Welfare Fund</Link>
-              <Link href="/provident-fund" className="text-blue-600 font-medium">Provident Fund</Link>
+              <Link href="/acts" className="text-gray-700 hover:text-blue-600" aria-label="Acts">Acts</Link>
+              <Link href="/rules" className="text-gray-700 hover:text-blue-600" aria-label="Rules">Rules</Link>
+              <Link href="/forms" className="text-gray-700 hover:text-blue-600" aria-label="Forms">Forms</Link>
+              <Link href="/calculators" className="text-gray-700 hover:text-blue-600" aria-label="Calculators">Calculators</Link>
+              <Link href="/gazette" className="text-gray-700 hover:text-blue-600" aria-label="Gazette">Gazette</Link>
+              <Link href="/holidays" className="text-gray-700 hover:text-blue-600" aria-label="Holidays">Holidays</Link>
+              <Link href="/welfare-fund" className="text-gray-700 hover:text-blue-600" aria-label="Welfare Fund">Welfare Fund</Link>
+              <Link href="/provident-fund" className="text-blue-600 font-medium" aria-label="Provident Fund">Provident Fund</Link>
             </nav>
           </div>
         </div>
@@ -302,9 +301,9 @@ export default function StateProvidentFundPage({ params }: { params: { state: st
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-gray-500 hover:text-gray-700">Home</Link>
+            <Link href="/" className="text-gray-500 hover:text-gray-700" aria-label="Home">Home</Link>
             <span className="text-gray-400">/</span>
-            <Link href="/provident-fund" className="text-gray-500 hover:text-gray-700">Provident Fund</Link>
+            <Link href="/provident-fund" className="text-gray-500 hover:text-gray-700" aria-label="Provident Fund">Provident Fund</Link>
             <span className="text-gray-400">/</span>
             <span className="text-gray-900">{state.name}</span>
           </div>
@@ -329,9 +328,9 @@ export default function StateProvidentFundPage({ params }: { params: { state: st
                       {stateItem.available ? (
                         <Link
                           href={`/provident-fund/${stateItem.slug}`}
-                          className={`text-sm hover:text-blue-600 ${
-                            stateItem.slug === params.state ? 'text-blue-600 font-medium' : 'text-gray-700'
-                          }`}
+                          className={`text-sm hover:text-blue-600 ${stateItem.slug === params.state ? 'text-blue-600 font-medium' : 'text-gray-700'
+                            }`}
+                          aria-label={`Go to ${stateItem.name} Provident Fund`}
                         >
                           {stateItem.name}
                         </Link>
@@ -416,13 +415,13 @@ export default function StateProvidentFundPage({ params }: { params: { state: st
                         <td className="border border-gray-300 px-4 py-3">{state.actInfo.applicability}</td>
                         <td className="border border-gray-300 px-4 py-3">{state.actInfo.frequency}</td>
                         <td className="border border-gray-300 px-4 py-3">
-                          <Button variant="outline" size="sm" className="text-blue-600">
+                          <Button variant="outline" size="sm" className="text-blue-600" aria-label="Download Act">
                             <Download className="w-4 h-4 mr-1" />
                             {state.actInfo.form}
                           </Button>
                         </td>
                         <td className="border border-gray-300 px-4 py-3">
-                          <Button variant="outline" size="sm" className="text-blue-600">
+                          <Button variant="outline" size="sm" className="text-blue-600" aria-label="Visit Official Site">
                             <ExternalLink className="w-4 h-4 mr-1" />
                             Official Site
                           </Button>
@@ -520,21 +519,21 @@ export default function StateProvidentFundPage({ params }: { params: { state: st
                   <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                     <h4 className="font-medium text-blue-900 mb-2">Contribution Calculation</h4>
                     <p className="text-sm text-blue-800">
-                      PF contribution is calculated on Basic Salary + Dearness Allowance only. 
+                      PF contribution is calculated on Basic Salary + Dearness Allowance only.
                       The maximum ceiling for PF contribution is ₹15,000 per month.
                     </p>
                   </div>
                   <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
                     <h4 className="font-medium text-green-900 mb-2">Online Services</h4>
                     <p className="text-sm text-green-800">
-                      All PF services including ECR filing, claim settlement, and balance inquiry 
+                      All PF services including ECR filing, claim settlement, and balance inquiry
                       are available online through the EPFO unified portal.
                     </p>
                   </div>
                   <div className="p-4 bg-orange-50 border border-orange-200 rounded-lg">
                     <h4 className="font-medium text-orange-900 mb-2">Compliance Deadline</h4>
                     <p className="text-sm text-orange-800">
-                      Monthly PF contributions must be deposited by 15th of the following month. 
+                      Monthly PF contributions must be deposited by 15th of the following month.
                       Late payment attracts penalty and interest charges.
                     </p>
                   </div>
@@ -563,19 +562,19 @@ export default function StateProvidentFundPage({ params }: { params: { state: st
             <div>
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/acts" className="text-gray-400 hover:text-white">Acts</Link></li>
-                <li><Link href="/rules" className="text-gray-400 hover:text-white">Rules</Link></li>
-                <li><Link href="/forms" className="text-gray-400 hover:text-white">Forms</Link></li>
-                <li><Link href="/calculators" className="text-gray-400 hover:text-white">Calculators</Link></li>
+                <li><Link href="/acts" className="text-gray-400 hover:text-white" aria-label="Acts">Acts</Link></li>
+                <li><Link href="/rules" className="text-gray-400 hover:text-white" aria-label="Rules">Rules</Link></li>
+                <li><Link href="/forms" className="text-gray-400 hover:text-white" aria-label="Forms">Forms</Link></li>
+                <li><Link href="/calculators" className="text-gray-400 hover:text-white" aria-label="Calculators">Calculators</Link></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/gazette" className="text-gray-400 hover:text-white">Gazette</Link></li>
-                <li><Link href="/holidays" className="text-gray-400 hover:text-white">Holidays</Link></li>
-                <li><Link href="/welfare-fund" className="text-gray-400 hover:text-white">Welfare Fund</Link></li>
-                <li><Link href="/provident-fund" className="text-gray-400 hover:text-white">Provident Fund</Link></li>
+                <li><Link href="/gazette" className="text-gray-400 hover:text-white" aria-label="Gazette">Gazette</Link></li>
+                <li><Link href="/holidays" className="text-gray-400 hover:text-white" aria-label="Holidays">Holidays</Link></li>
+                <li><Link href="/welfare-fund" className="text-gray-400 hover:text-white" aria-label="Welfare Fund">Welfare Fund</Link></li>
+                <li><Link href="/provident-fund" className="text-gray-400 hover:text-white" aria-label="Provident Fund">Provident Fund</Link></li>
               </ul>
             </div>
             <div>
@@ -586,15 +585,16 @@ export default function StateProvidentFundPage({ params }: { params: { state: st
                   type="email"
                   placeholder="Enter your email"
                   className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  aria-label="Enter your email"
                 />
-                <Button className="bg-blue-600 hover:bg-blue-700 rounded-l-none">
+                <Button className="bg-blue-600 hover:bg-blue-700 rounded-l-none" aria-label="Subscribe">
                   Subscribe
                 </Button>
               </div>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2024 E-Library. All rights reserved.</p>
+            <p>&copy; 2025 E-Library. All rights reserved.</p>
           </div>
         </div>
       </footer>

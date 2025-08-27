@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Calculator, FileText, Globe, Bell, Users, TrendingUp, Building2, Calendar, Download, ExternalLink, Search, ChevronDown } from 'lucide-react'
+import { Calculator, FileText, Globe, Bell, Building2, ExternalLink, Search, ChevronDown } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Provident Fund (PF) - Complete Guide & State-wise Information | E-Library',
@@ -80,7 +80,7 @@ export default function ProvidentFundPage() {
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-gray-500 hover:text-gray-700">Home</Link>
+            <Link href="/" className="text-gray-500 hover:text-gray-700" aria-label="Home">Home</Link>
             <span className="text-gray-400">/</span>
             <span className="text-gray-900">Provident Fund</span>
           </div>
@@ -92,15 +92,16 @@ export default function ProvidentFundPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center space-x-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" aria-label="Search" />
               <input
                 type="text"
                 placeholder="Search PF acts, rules, forms..."
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                aria-label="Search PF acts, rules, forms..."
               />
             </div>
-            <Button className="bg-black text-white hover:bg-gray-800">
-              <Search className="w-4 h-4" />
+            <Button className="bg-black text-white hover:bg-gray-800" aria-label="Search">
+              <Search className="w-4 h-4" aria-label="Search" />
             </Button>
           </div>
         </div>
@@ -117,7 +118,6 @@ export default function ProvidentFundPage() {
       </div>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Provident Fund (PF)</h1>
           <p className="text-lg text-gray-600 leading-relaxed">
@@ -150,7 +150,7 @@ export default function ProvidentFundPage() {
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2">{action.title}</h3>
                 <p className="text-sm text-gray-600 mb-4">{action.description}</p>
-                <Link href={action.href} className="text-blue-600 hover:text-blue-800 text-sm font-medium inline-flex items-center">
+                <Link href={action.href} className="text-blue-600 hover:text-blue-800 text-sm font-medium inline-flex items-center" aria-label="Learn More">
                   Learn More
                   {action.external ? <ExternalLink className="w-3 h-3 ml-1" /> : <span className="ml-1">→</span>}
                 </Link>
@@ -250,6 +250,7 @@ export default function ProvidentFundPage() {
                           <Link 
                             href={`/provident-fund/${state.toLowerCase().replace(/\s+/g, '-')}`}
                             className="text-blue-600 hover:text-blue-800 text-sm"
+                            aria-label={`Link to ${state} Provident Fund`}
                           >
                             {index + 1}. {state}
                           </Link>
@@ -344,6 +345,7 @@ export default function ProvidentFundPage() {
                     <Link
                       key={index}
                       href={`/search?q=${encodeURIComponent(search)}`}
+                      aria-label={`Search for ${search}`}
                       className="block text-sm text-blue-600 hover:text-blue-800 hover:underline"
                     >
                       {search}
@@ -360,19 +362,19 @@ export default function ProvidentFundPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <Link href="https://www.epfindia.gov.in" className="flex items-center text-sm text-blue-600 hover:text-blue-800">
+                  <Link href="https://www.epfindia.gov.in" className="flex items-center text-sm text-blue-600 hover:text-blue-800" aria-label="EPFO Official Website">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     EPFO Official Website
                   </Link>
-                  <Link href="https://passbook.epfindia.gov.in" className="flex items-center text-sm text-blue-600 hover:text-blue-800">
+                  <Link href="https://passbook.epfindia.gov.in" className="flex items-center text-sm text-blue-600 hover:text-blue-800" aria-label="EPF Passbook">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     EPF Passbook
                   </Link>
-                  <Link href="https://unifiedportal-mem.epfindia.gov.in" className="flex items-center text-sm text-blue-600 hover:text-blue-800">
+                  <Link href="https://unifiedportal-mem.epfindia.gov.in" className="flex items-center text-sm text-blue-600 hover:text-blue-800" aria-label="Member Portal">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Member Portal
                   </Link>
-                  <Link href="https://unifiedportal-emp.epfindia.gov.in" className="flex items-center text-sm text-blue-600 hover:text-blue-800">
+                  <Link href="https://unifiedportal-emp.epfindia.gov.in" className="flex items-center text-sm text-blue-600 hover:text-blue-800" aria-label="Employer Portal">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Employer Portal
                   </Link>
@@ -427,19 +429,19 @@ export default function ProvidentFundPage() {
             <div>
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/acts" className="text-gray-400 hover:text-white">Acts</Link></li>
-                <li><Link href="/rules" className="text-gray-400 hover:text-white">Rules</Link></li>
-                <li><Link href="/forms" className="text-gray-400 hover:text-white">Forms</Link></li>
-                <li><Link href="/calculators" className="text-gray-400 hover:text-white">Calculators</Link></li>
+                <li><Link href="/acts" className="text-gray-400 hover:text-white" aria-label="Acts">Acts</Link></li>
+                <li><Link href="/rules" className="text-gray-400 hover:text-white" aria-label="Rules">Rules</Link></li>
+                <li><Link href="/forms" className="text-gray-400 hover:text-white" aria-label="Forms">Forms</Link></li>
+                <li><Link href="/calculators" className="text-gray-400 hover:text-white" aria-label="Calculators">Calculators</Link></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/gazette" className="text-gray-400 hover:text-white">Gazette</Link></li>
-                <li><Link href="/holidays" className="text-gray-400 hover:text-white">Holidays</Link></li>
-                <li><Link href="/welfare-fund" className="text-gray-400 hover:text-white">Welfare Fund</Link></li>
-                <li><Link href="/provident-fund" className="text-gray-400 hover:text-white">Provident Fund</Link></li>
+                <li><Link href="/gazette" className="text-gray-400 hover:text-white" aria-label="Gazette">Gazette</Link></li>
+                <li><Link href="/holidays" className="text-gray-400 hover:text-white" aria-label="Holidays">Holidays</Link></li>
+                <li><Link href="/welfare-fund" className="text-gray-400 hover:text-white" aria-label="Welfare Fund">Welfare Fund</Link></li>
+                <li><Link href="/provident-fund" className="text-gray-400 hover:text-white" aria-label="Provident Fund">Provident Fund</Link></li>
               </ul>
             </div>
             <div>
@@ -451,7 +453,7 @@ export default function ProvidentFundPage() {
                   placeholder="Enter your email"
                   className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <Button className="bg-blue-600 hover:bg-blue-700 rounded-l-none">
+                <Button className="bg-blue-600 hover:bg-blue-700 rounded-l-none" aria-label="Subscribe">
                   Subscribe
                 </Button>
               </div>

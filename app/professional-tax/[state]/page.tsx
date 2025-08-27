@@ -1,11 +1,10 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Search, Download, ExternalLink, FileText, Calculator, Globe, Bell } from 'lucide-react'
+import { Download, ExternalLink, FileText, Calculator, Globe, Bell } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Input } from '@/components/ui/input'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
 interface StateData {
@@ -188,7 +187,7 @@ const applicableStates = [
 
 export async function generateMetadata({ params }: { params: { state: string } }): Promise<Metadata> {
   const stateData = statesData[params.state]
-  
+
   if (!stateData) {
     return {
       title: 'State Not Found | Professional Tax',
@@ -205,7 +204,7 @@ export async function generateMetadata({ params }: { params: { state: string } }
 
 export default function StateProfessionalTaxPage({ params }: { params: { state: string } }) {
   const stateData = statesData[params.state]
-  
+
   if (!stateData) {
     notFound()
   }
@@ -228,13 +227,13 @@ export default function StateProfessionalTaxPage({ params }: { params: { state: 
                     <Link
                       key={state.slug}
                       href={state.available ? `/professional-tax/${state.slug}` : '#'}
-                      className={`block p-3 rounded-lg transition-colors ${
-                        state.slug === params.state
+                      aria-label={state.name}
+                      className={`block p-3 rounded-lg transition-colors ${state.slug === params.state
                           ? 'bg-orange-100 text-orange-900 border border-orange-200'
                           : state.available
-                          ? 'bg-gray-50 hover:bg-gray-100 text-gray-900'
-                          : 'bg-gray-50 text-gray-400 cursor-not-allowed'
-                      }`}
+                            ? 'bg-gray-50 hover:bg-gray-100 text-gray-900'
+                            : 'bg-gray-50 text-gray-400 cursor-not-allowed'
+                        }`}
                     >
                       <div className="flex items-center justify-between">
                         <span className="font-medium">{state.name}</span>
@@ -257,7 +256,6 @@ export default function StateProfessionalTaxPage({ params }: { params: { state: 
 
           {/* Main Content */}
           <div className="lg:col-span-3">
-            {/* Header */}
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Professional Tax</h1>
               <h2 className="text-xl text-gray-700">{stateData.name}</h2>
@@ -269,28 +267,28 @@ export default function StateProfessionalTaxPage({ params }: { params: { state: 
                 <CardContent className="p-4 text-center">
                   <Calculator className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                   <h3 className="font-medium text-sm text-gray-900 mb-1">PT Calculator</h3>
-                  <Button variant="outline" size="sm">Calculate</Button>
+                  <Button variant="outline" size="sm" aria-label="PT Calculator">Calculate</Button>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer">
                 <CardContent className="p-4 text-center">
                   <FileText className="w-8 h-8 text-green-600 mx-auto mb-2" />
                   <h3 className="font-medium text-sm text-gray-900 mb-1">Download Forms</h3>
-                  <Button variant="outline" size="sm">Download</Button>
+                  <Button variant="outline" size="sm" aria-label='Download Forms'>Download</Button>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer">
                 <CardContent className="p-4 text-center">
                   <Globe className="w-8 h-8 text-purple-600 mx-auto mb-2" />
                   <h3 className="font-medium text-sm text-gray-900 mb-1">Official Portal</h3>
-                  <Button variant="outline" size="sm">Visit</Button>
+                  <Button variant="outline" size="sm" aria-label='Visit Official Portal'>Visit</Button>
                 </CardContent>
               </Card>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer">
                 <CardContent className="p-4 text-center">
                   <Bell className="w-8 h-8 text-orange-600 mx-auto mb-2" />
                   <h3 className="font-medium text-sm text-gray-900 mb-1">Notifications</h3>
-                  <Button variant="outline" size="sm">View</Button>
+                  <Button variant="outline" size="sm" aria-label='View Notifications'>View</Button>
                 </CardContent>
               </Card>
             </div>
