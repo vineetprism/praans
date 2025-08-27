@@ -13,11 +13,37 @@ import {
   Crown,
   Monitor,
   ChevronRight,
+  LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import ResourceLibrary from "./resource-library/page";
 import NewsCarouselSection from "@/app/carousel-section/page";
+
+// Type definitions
+interface Offering {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  features: string[];
+  color: string;
+  bgColor: string;
+  href: string;
+}
+
+interface NewsUpdate {
+  title: string;
+  category: string;
+  date: string;
+  isNew?: boolean;
+  href?: string;
+  downloadUrl?: string;
+}
+
+interface OfferingCardProps {
+  offering: Offering;
+  index: number;
+}
 
 const keyOfferings = [
   {
@@ -123,48 +149,8 @@ const keyOfferings = [
   },
 ];
 
-const newsUpdates: NewsUpdate[] = [
-  {
-    title: "New Minimum Wage Rates Announced for Maharashtra",
-    category: "Wage Updates",
-    date: "20 Aug 2025",
-    isNew: true,
-    href: "/updates/minimum-wage-maharashtra",
-  },
-  {
-    title: "Updated PF Contribution Rates Effective February 2025",
-    category: "PF Updates",
-    date: "18 Aug 2025",
-    isNew: true,
-    downloadUrl: "/downloads/pf-rates-2025.pdf",
-  },
-  {
-    title: "Professional Tax Amendment for Karnataka",
-    category: "Tax Updates",
-    date: "15 Aug 2025",
-    href: "/updates/professional-tax-karnataka",
-  },
-  {
-    title: "Holiday List 2025 - Central Government Released",
-    category: "Holidays",
-    date: "10 Aug 2025",
-    downloadUrl: "/downloads/holiday-list-2025.pdf",
-  },
-  {
-    title: "ESI Filing Deadline Extended for Q4",
-    category: "ESI Updates",
-    date: "08 Aug 2025",
-    href: "/updates/esi-deadline-extension",
-  },
-  {
-    title: "Changes in Maternity Benefit Act - A Quick Guide",
-    category: "Act Updates",
-    date: "05 Aug 2025",
-    href: "/updates/maternity-benefit-changes",
-  },
-];
 
-const OfferingCard = React.memo(({ offering, index }) => (
+const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
   <Link key={index} href={offering.href} className="group block h-full">
     <div
       className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-4 sm:p-5 lg:p-6 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 h-full flex flex-col"
@@ -410,6 +396,4 @@ export default function HomePage() {
       </section>
     </div>
   );
-}
-
 }
