@@ -118,14 +118,14 @@ export default function SiteFooter() {
                   </div>
                 </div>
               </div>
-              {/* <div className="border-t border-gray-800 mt-16 pt-10 text-center">
+              <div className="border-t border-gray-800 mt-16 pt-10 text-center">
                 <p className="font-bold text-2xl text-white mb-4">
                   Single Platform for All Labour Law Compliances
                 </p>
                 <p className="text-gray-400 text-lg">
                   &copy; 2025 Praans Consultech. All rights reserved.
                 </p>
-              </div> */}
+              </div>
             </div>
    </footer>
   )

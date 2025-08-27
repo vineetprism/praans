@@ -99,6 +99,7 @@ export default function SiteHeader() {
             <Link href="/generate-ai-response" className="hover:text-orange-600 transition-colors">
               Clear Here →
             </Link>
+           
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import Autoplay from "embla-carousel-autoplay";
+// import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -36,29 +36,9 @@ import {
 import Link from "next/link";
 import React from "react";
 import ResourceLibrary from "./resource-library/page";
+import NewsCarouselSection from "@/app/carousel-section/page";
 
-// ---------------- TYPES ----------------
-type Offering = {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  features: string[];
-  color: string;
-  bgColor: string;
-  href: string;
-};
-
-type NewsUpdate = {
-  title: string;
-  category: string;
-  date: string;
-  isNew?: boolean;
-  href?: string;
-  downloadUrl?: string;
-};
-
-// ---------------- DATA ----------------
-const keyOfferings: Offering[] = [
+const keyOfferings = [
   {
     icon: Monitor,
     title: "Smart Compliance Software",
@@ -161,67 +141,116 @@ const newsUpdates: NewsUpdate[] = [
   },
 ];
 
-// -------------- COMPONENTS --------------
-const OfferingCard: React.FC<{ offering: Offering; index: number }> = React.memo(
-  ({ offering, index }) => (
-    <Link key={index} href={offering.href} className="group block h-full">
-      <div
-        className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-xl p-6 sm:p-8 lg:p-10 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 h-full flex flex-col"
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
-          backdropFilter: "blur(14px)",
-        }}
-      >
-        {/* Icon Container */}
-        <div className="mb-5 sm:mb-6">
-          <div
-            className={`w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${offering.color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-          >
-            <offering.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-          </div>
-        </div>
 
-        {/* Title & Description */}
-        <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-slate-800 leading-tight group-hover:text-orange-600 transition-colors duration-300">
-          {offering.title}
-        </h3>
-        <p className="text-gray-600 text-sm sm:text-base mb-4 sm:mb-5 leading-relaxed group-hover:text-gray-700 transition-colors duration-300 flex-1">
-          {offering.description}
-        </p>
 
-        {/* Features Tags - 3 per row */}
-        <div className="grid grid-cols-3 gap-2 mb-4">
-          {offering.features.map((feature: string, fidx: number) => (
-            <span
-              key={fidx}
-              className="bg-white/80 text-gray-700 px-2 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-gray-200 hover:bg-gray-50 transition-colors duration-200 text-center group-hover:border-orange-200 group-hover:bg-orange-50/50"
-            >
-              {feature}
-            </span>
-          ))}
-        </div>
+// const OfferingCard = React.memo(({ offering, index }) => (
+//   <Link key={index} href={offering.href} className="group block h-full">
+//     <div
+//       className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-xl p-6 sm:p-8 lg:p-10 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 h-full flex flex-col"
+//       style={{
+//         background:
+//           "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
+//         backdropFilter: "blur(14px)",
+//       }}
+//     >
+//       {/* Icon Container */}
+//       <div className="mb-5 sm:mb-6">
+//         <div
+//           className={`w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${offering.color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+//         >
+//           <offering.icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+//         </div>
+//       </div>
 
-        {/* Arrow indicator */}
-        <div className="flex justify-end mt-auto">
-          <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-50 transition-colors duration-300">
-            <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-orange-600 transition-colors duration-300" />
-          </div>
+//       {/* Title & Description */}
+//       <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-slate-800 leading-tight group-hover:text-orange-600 transition-colors duration-300">
+//         {offering.title}
+//       </h3>
+//       <p className="text-gray-600 text-sm sm:text-base mb-4 sm:mb-5 leading-relaxed group-hover:text-gray-700 transition-colors duration-300 flex-1">
+//         {offering.description}
+//       </p>
+
+//       {/* Features Tags - 3 per row */}
+//       <div className="grid grid-cols-3 gap-2 mb-4">
+//         {offering.features.map((feature, fidx) => (
+//           <span
+//             key={fidx}
+//             className="bg-white/80 text-gray-700 px-2 py-1.5 rounded-full text-xs sm:text-sm font-medium border border-gray-200 hover:bg-gray-50 transition-colors duration-200 text-center group-hover:border-orange-200 group-hover:bg-orange-50/50"
+//           >
+//             {feature}
+//           </span>
+//         ))}
+//       </div>
+
+//       {/* Arrow indicator */}
+//       <div className="flex justify-end mt-auto">
+//         <div className="w-8 h-8 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-50 transition-colors duration-300">
+//           <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-orange-600 transition-colors duration-300" />
+//         </div>
+//       </div>
+//     </div>
+//   </Link>
+// ));
+
+
+const OfferingCard = React.memo(({ offering, index }) => (
+  <Link key={index} href={offering.href} className="group block h-full">
+    <div
+      className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-4 sm:p-5 lg:p-6 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 h-full flex flex-col"
+      style={{
+        background:
+          "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
+        backdropFilter: "blur(14px)",
+      }}
+    >
+      {/* Icon Container */}
+      <div className="mb-3 sm:mb-4">
+        <div
+          className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br ${offering.color} rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+        >
+          <offering.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         </div>
       </div>
-    </Link>
-  )
-);
+
+      {/* Title & Description */}
+      <h3 className="text-base sm:text-lg font-semibold mb-2 text-slate-800 leading-tight group-hover:text-orange-600 transition-colors duration-300">
+        {offering.title}
+      </h3>
+      <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed group-hover:text-gray-700 transition-colors duration-300 flex-1">
+        {offering.description}
+      </p>
+
+      {/* Features Tags - 3 per row with smaller size */}
+      <div className="grid grid-cols-3 gap-1.5 mb-3">
+        {offering.features.map((feature, fidx) => (
+          <span
+            key={fidx}
+            className="bg-white/80 text-gray-700 px-1.5 py-1 rounded-md text-xs font-medium border border-gray-200 hover:bg-gray-50 transition-colors duration-200 text-center group-hover:border-orange-200 group-hover:bg-orange-50/50 truncate"
+          >
+            {feature}
+          </span>
+        ))}
+      </div>
+
+      {/* Arrow indicator */}
+      <div className="flex justify-end mt-auto">
+        <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-50 transition-colors duration-300">
+          <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 group-hover:text-orange-600 transition-colors duration-300" />
+        </div>
+      </div>
+    </div>
+  </Link>
+));
 
 // --------------- PAGE ----------------
 export default function HomePage() {
-  const autoplay = useRef(
-    Autoplay({
-      delay: 4000,
-      stopOnMouseEnter: true,
-      stopOnInteraction: false,
-    })
-  );
+  // const autoplay = useRef(
+  //   Autoplay({
+  //     delay: 4000,
+  //     stopOnMouseEnter: true,
+  //     stopOnInteraction: false,
+  //   })
+  // );
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -235,7 +264,7 @@ export default function HomePage() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 md:w-96 md:h-96 bg-gradient-to-r from-orange-100/20 to-blue-100/20 rounded-full blur-3xl" />
 
         {/* Content Container */}
-        <div className="max-w-7xl mx-auto text-center space-y-4 md:space-y-6 relative z-10">
+        <div className="max-w-7xl mx-auto text-center space-y-4 md:space-y-6 relative z-10 mb-30">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-slate-900 tracking-tight leading-tight sm:leading-[1.1] md:leading-[1.0] lg:leading-[0.95] xl:leading-[0.9] animate-fade-up">
             Simplifying{" "}
             <span className="relative inline-block">
@@ -292,8 +321,27 @@ export default function HomePage() {
               <Crown className="shrink-0 w-10 h-10 md:w-6 md:h-10 text-yellow-600" />
             </div>
           </div>
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center max-w-2xl mx-auto">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto"
+            >
+              Get a Free Demo Of Software
+              <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 border-white text-white bg-blue-950 text-lg md:text-xl px-6 md:px-10 py-4 md:py-6  rounded-2xl font-bold w-full sm:w-auto"
+            >
+              Talk to Our Compliance Experts
+            </Button>
+          </div>
         </div>
       </section>
+
+     {/* News & Updates Section */}
+      <NewsCarouselSection/>
 
       {/* Enhanced Key Offerings Section */}
       <section className="relative bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden min-h-screen">
@@ -323,109 +371,8 @@ export default function HomePage() {
       </section>
 
       {/* Enhanced Category Grid */}
-      <ResourceLibrary />
 
-      {/* News & Updates Section */}
-      <section className="py-12 md:py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 md:mb-12 gap-4">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4">
-                Latest Updates
-              </h2>
-              <p className="text-lg md:text-xl text-gray-600">
-                Stay informed with the most recent compliance news
-              </p>
-            </div>
-            <Button asChild variant="outline" className="w-full md:w-auto">
-              <Link href="/updates">
-                View All Updates
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
-            </Button>
-          </div>
-
-          {/* Enhanced Carousel */}
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-              breakpoints: {
-                "(min-width: 768px)": { slidesToScroll: 2 },
-                "(min-width: 1024px)": { slidesToScroll: 3 },
-              },
-            }}
-            plugins={[autoplay.current]}
-            className="relative"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {newsUpdates.map((news: NewsUpdate, index: number) => (
-                <CarouselItem
-                  key={index}
-                  className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3"
-                >
-                  <Card className="border-l-4 border-l-orange-500 hover:shadow-lg transition-shadow duration-300 h-full">
-                    <CardHeader className="pb-3 p-4 md:p-6">
-                      <div className="flex items-center justify-between mb-2 md:mb-3 flex-wrap gap-2">
-                        <Badge className="text-xs">{news.category}</Badge>
-                        {news.isNew && (
-                          <Badge className="bg-green-500 text-white text-xs">
-                            <Star className="w-3 h-3 mr-1" />
-                            New
-                          </Badge>
-                        )}
-                      </div>
-
-                      <CardTitle className="text-base md:text-lg leading-tight hover:text-orange-500 transition-colors duration-300">
-                        {news.href ? (
-                          <Link href={news.href}>{news.title}</Link>
-                        ) : (
-                          news.title
-                        )}
-                      </CardTitle>
-                    </CardHeader>
-
-                    <CardContent className="p-4 md:p-6 pt-0">
-                      <div className="flex items-center justify-between flex-wrap gap-2">
-                        <span className="text-sm text-gray-500">
-                          {news.date}
-                        </span>
-
-                        <div className="flex gap-1 md:gap-2">
-                          {news.href && (
-                            <Button size="sm" variant="ghost" asChild>
-                              <Link href={news.href}>
-                                Read
-                                <ArrowRight className="ml-1 w-3 h-3 md:w-4 md:h-4" />
-                              </Link>
-                            </Button>
-                          )}
-                          {news.downloadUrl && (
-                            <Button size="sm" variant="ghost" asChild>
-                              <Link href={news.downloadUrl}>
-                                <Download className="w-3 h-3 md:w-4 md:h-4 mr-1" />
-                                Download
-                              </Link>
-                            </Button>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            {/* Navigation Controls */}
-            <div className="flex items-center justify-center md:justify-end gap-2 mt-6 md:mt-8">
-              <CarouselPrevious className="static translate-x-0 translate-y-0" />
-              <CarouselNext className="static translate-x-0 translate-y-0" />
-            </div>
-          </Carousel>
-        </div>
-      </section>
-
+       <ResourceLibrary/>
       {/* Enhanced CTA Section */}
       <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-blue-500/10" />
