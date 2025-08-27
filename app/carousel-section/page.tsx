@@ -1,6 +1,3 @@
-
-
-
 'use client';
 
 import React, { useEffect, useRef } from 'react';
@@ -81,7 +78,7 @@ const newsUpdates = [
 ];
 
 // Carousel Hook
-const useCarousel = (itemsCount, itemsPerView = 4) => {
+const useCarousel = (itemsCount: number, itemsPerView = 4) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = React.useState(true);
   
@@ -95,7 +92,7 @@ const useCarousel = (itemsCount, itemsPerView = 4) => {
     setCurrentIndex(prev => prev <= 0 ? maxIndex : prev - 1);
   }, [maxIndex]);
   
-  const goTo = React.useCallback((index) => {
+  const goTo = React.useCallback((index: number) => {
     setCurrentIndex(Math.max(0, Math.min(index, maxIndex)));
   }, [maxIndex]);
   
@@ -124,7 +121,7 @@ const useCarousel = (itemsCount, itemsPerView = 4) => {
 // Main News Carousel Component
 const NewsCarouselSection = () => {
   const containerRef = useRef(null);
-  const { currentIndex, next, prev, canGoNext, canGoPrev, setIsAutoPlaying } = useCarousel(newsUpdates.length, 4);
+  const { currentIndex, next, prev, goTo, canGoNext, canGoPrev, setIsAutoPlaying } = useCarousel(newsUpdates.length, 4);
   
   const handleMouseEnter = () => setIsAutoPlaying(false);
   const handleMouseLeave = () => setIsAutoPlaying(true);
@@ -142,8 +139,8 @@ const NewsCarouselSection = () => {
               Stay informed with the most recent compliance news
             </p>
           </div>
-          <Button variant="outline" className="w-full md:w-auto" asChild>
-            <Link href="/updates">
+          <Button variant="outline" className="w-full md:w-auto" asChild aria-label='View All Updates'>
+            <Link href="/updates" aria-label='View All Updates'>
               View All Updates
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
@@ -201,16 +198,16 @@ const NewsCarouselSection = () => {
 
                       <div className="flex gap-1">
                         {news.href && (
-                          <Button size="sm" variant="ghost" className="text-xs px-2 py-1 h-auto" asChild>
-                            <Link href={news.href}>
+                          <Button size="sm" variant="ghost" className="text-xs px-2 py-1 h-auto" asChild aria-label='Read'>
+                            <Link href={news.href} aria-label='Read'>
                               Read
                               <ArrowRight className="ml-1 w-3 h-3" />
                             </Link>
                           </Button>
                         )}
                         {news.downloadUrl && (
-                          <Button size="sm" variant="ghost" className="text-xs px-2 py-1 h-auto" asChild>
-                            <Link href={news.downloadUrl}>
+                          <Button size="sm" variant="ghost" className="text-xs px-2 py-1 h-auto" asChild aria-label='Download'>
+                            <Link href={news.downloadUrl} aria-label='Download'>
                               <Download className="w-3 h-3 mr-1" />
                               Download
                             </Link>
@@ -233,6 +230,7 @@ const NewsCarouselSection = () => {
             onClick={prev}
             disabled={!canGoPrev}
             className="rounded-full"
+            aria-label='Previous'
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
@@ -242,6 +240,7 @@ const NewsCarouselSection = () => {
             onClick={next}
             disabled={!canGoNext}
             className="rounded-full"
+            aria-label='Next'
           >
             <ChevronRight className="h-4 w-4" />
           </Button>
@@ -252,7 +251,7 @@ const NewsCarouselSection = () => {
           {Array.from({ length: Math.ceil(newsUpdates.length / 4) }).map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => goTo(index)}
               className={`w-2 h-2 rounded-full transition-colors duration-200 ${
                 Math.floor(currentIndex / 4) === index 
                   ? 'bg-orange-500' 

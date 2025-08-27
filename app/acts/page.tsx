@@ -131,9 +131,7 @@ export default function ActsPage() {
     <div className="min-h-screen bg-gray-50">   
       <div className="container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-4 gap-8">
-          {/* Main Content */}
           <div className="lg:col-span-3">
-            {/* Page Header */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <div>
@@ -167,16 +165,13 @@ export default function ActsPage() {
               </Card>
             </div>
 
-            {/* Horizontal Filters */}
            <Card className="mb-8">
               <CardContent className="py-2">
                 <div className="flex flex-col lg:flex-row gap-4 items-center">
-                  {/* Filters Button */}
-                  <Button variant="outline" className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200">
+                  <Button variant="outline" className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200" aria-label="filter">
                     <Filter className="w-4 h-4" />
                     Filters
                   </Button>
-                  {/* Search Input */}
                   <div className="relative flex-1">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <Input placeholder="Search by title..." className="pl-12 py-3 h-12 rounded-lg" />
@@ -211,13 +206,12 @@ export default function ActsPage() {
                   </Select>
                   
                   {/* Apply Button */}
-                  <Button className="bg-orange-500 hover:bg-orange-600 px-6">
+                  <Button className="bg-orange-500 hover:bg-orange-600 px-6" aria-label="apply button">
                     Apply
                   </Button>
                 </div>
               </CardContent>
             </Card>
-            {/* Acts Grid */}
             <div className="grid gap-6">
               {acts.map((act) => (
                 <Card
@@ -228,7 +222,7 @@ export default function ActsPage() {
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
 
-                        <Link href={`/acts/${act.slug}`}>
+                        <Link href={`/acts/${act.slug}`} aria-label="title of act">
                           <CardTitle className="text-xl group-hover:text-orange-600 transition-colors leading-tight mb-2 cursor-pointer">
                             {act.title}
                           </CardTitle>
@@ -246,6 +240,7 @@ export default function ActsPage() {
                         <Button
                           variant="outline"
                           size="sm"
+                          aria-label="read more"
                           className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 bg-transparent"
                           asChild
                         >
@@ -263,7 +258,7 @@ export default function ActsPage() {
 
             {/* Load More */}
             <div className="text-center mt-12">
-              <Button variant="outline" size="lg" className="px-8 bg-transparent">
+              <Button variant="outline" size="lg" className="px-8 bg-transparent" aria-label="for more acts">
                 Load More Acts
               </Button>
             </div>

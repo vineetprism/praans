@@ -18,14 +18,6 @@ import FormsSection from "@/components/FormsSection";
 import { downloadFile, type DownloadItem } from "@/lib/download-utils";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 
-// export const metadata = {
-//   title: "Labour Acts & Regulations | Praans Consultech",
-//   description: "Explore our comprehensive collection of central and state labour acts with the latest amendments and updates, ensuring compliance with workplace safety, wages, and worker rights.",
-//   keywords: "labour acts, labour regulations, employment laws, workplace safety, worker rights, wages, compliance, industrial disputes, central labour acts, state labour acts, legal framework, worker protection"
-// }
-
-
-// Mock database of acts with SEO-friendly slugs
 const actsDatabase = {
   "factories-act-1948": {
     id: 1,
@@ -200,9 +192,7 @@ export default function ActDetailPage({ params }: ActDetailPageProps) {
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-4 gap-8">
-          {/* Main Content */}
           <div className="lg:col-span-3">
-            {/* Act Header */}
             <Card className="mb-8 border-l-4 border-l-orange-500">
               <CardHeader>
                 <div className="flex items-start justify-between mb-4">
@@ -249,7 +239,6 @@ export default function ActDetailPage({ params }: ActDetailPageProps) {
               </TabsList>
 
               <TabsContent value="overview" className="space-y-6">
-                {/* Overview */}
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
