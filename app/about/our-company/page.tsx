@@ -344,9 +344,6 @@ export default function AboutPage() {
                         <h3 className="text-lg md:text-xl font-semibold text-slate-800 group-hover:text-orange-600 transition-colors duration-300">
                           {item.title}
                         </h3>
-                        {/* <span className="text-xs font-bold bg-orange-100 text-orange-700 px-2 py-1 rounded-full">
-                          {item.highlight}
-                        </span> */}
                       </div>
                       <p className="text-gray-600 text-sm md:text-base leading-relaxed">
                         {item.description}
@@ -457,6 +454,7 @@ export default function AboutPage() {
                       href={item.link!}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="for reading articles"
                       className="text-orange-600 hover:text-orange-700 text-sm font-medium inline-flex items-center gap-2"
                     >
                       Open article

@@ -7,6 +7,13 @@ import {
   Geography,
   Marker,
 } from "react-simple-maps";
+import {
+  geoCentroid,
+  geoContains,
+  geoArea,
+  geoBounds,
+  type GeoPermissibleObjects,
+} from "d3-geo";
 
 type Office = {
   name: string;
@@ -25,12 +32,69 @@ const geoUrl =
 
 const HIGHLIGHT_HEX = "#eb8535";
 
-// Which states to fill (normalized to lowercase)
+// Office-focus states (kept for outline)
 const highlightStates = new Set(["haryana", "karnataka", "assam"]);
 
-// simple normalizer for state names from the GeoJSON
 const norm = (s: string) =>
   s.toLowerCase().replace(/&/g, "and").replace(/[.\s]+/g, " ").trim();
+
+// Robust checks for exclusions
+const isAndaman = (key: string) => key.startsWith("andaman and nicobar");
+const isLadakh = (key: string) => key === "ladakh";
+const isJammuKashmir = (key: string) => key === "jammu and kashmir";
+
+// --- Color palette & mapper (stable per state) ---
+const STATE_PALETTE = [
+  "#fde68a","#fdba74","#fecaca","#fbcfe8","#c7d2fe","#bfdbfe",
+  "#bae6fd","#a5f3fc","#99f6e4","#a7f3d0","#bbf7d0","#d9f99d",
+  "#fef08a","#fcd34d","#fda4af","#f9a8d4","#e9d5ff","#c4b5fd",
+  "#a5b4fc","#93c5fd","#7dd3fc","#67e8f9","#5eead4","#6ee7b7",
+  "#86efac","#bef264","#fde047","#fed7aa","#fecdd3","#f5d0fe",
+  "#e2e8f0","#cbd5e1","#d6d3d1","#e7e5e4","#ffe4e6","#ddd6fe",
+];
+
+const colorForState = (stateKey: string) => {
+  let h = 0;
+  for (let i = 0; i < stateKey.length; i++) {
+    h = (h << 5) - h + stateKey.charCodeAt(i);
+    h |= 0;
+  }
+  const idx = Math.abs(h) % STATE_PALETTE.length;
+  return STATE_PALETTE[idx];
+};
+
+// Safe centroid inside polygon
+function safeCentroid(feature: any): [number, number] {
+  const c1 = geoCentroid(feature) as [number, number];
+  if (geoContains(feature as GeoPermissibleObjects, c1)) return c1;
+
+  if (feature?.geometry?.type === "MultiPolygon") {
+    let bestPoly: any = null;
+    let bestArea = -1;
+    for (const coords of feature.geometry.coordinates) {
+      const poly = { type: "Polygon", coordinates: coords };
+      const a = geoArea(poly as any);
+      if (a > bestArea) {
+        bestArea = a;
+        bestPoly = poly;
+      }
+    }
+    if (bestPoly) {
+      const c2 = geoCentroid(bestPoly) as [number, number];
+      if (geoContains(feature as GeoPermissibleObjects, c2)) return c2;
+    }
+  }
+
+  const [[minLon, minLat], [maxLon, maxLat]] = geoBounds(
+    feature as GeoPermissibleObjects
+  );
+  return [(minLon + maxLon) / 2, (minLat + maxLat) / 2];
+}
+
+// Force J&K pin to Jammu (lon, lat)
+const PIN_OVERRIDES: Record<string, [number, number]> = {
+  "jammu and kashmir": [74.86, 32.73],
+};
 
 const officeLocations: Office[] = [
   {
@@ -87,7 +151,7 @@ export default function Locations() {
               preserveAspectRatio="xMidYMid meet"
               className="w-full h-auto border border-gray-200 rounded-lg"
             >
-              {/* States: only the 3 office states are filled; others are transparent (outline only). */}
+              {/* STATES: FULLY COLORED */}
               <Geographies geography={geoUrl}>
                 {({ geographies }) =>
                   geographies.map((geo) => {
@@ -98,22 +162,20 @@ export default function Locations() {
                       geo.properties?.st_nm ||
                       "";
                     const key = norm(String(rawName));
-                    const isOfficeState = highlightStates.has(key);
+
+                    const fillColor = colorForState(key);
+                    const isOffice = highlightStates.has(key);
 
                     return (
                       <Geography
                         key={geo.rsmKey}
                         geography={geo}
-                        fill={isOfficeState ? HIGHLIGHT_HEX : "transparent"}
-                        stroke="#9ca3af"
-                        strokeWidth={1}
+                        fill={fillColor}
+                        stroke={isOffice ? HIGHLIGHT_HEX : "#9ca3af"}
+                        strokeWidth={isOffice ? 1.5 : 1}
                         style={{
                           default: { outline: "none" },
-                          hover: {
-                            outline: "none",
-                            opacity: isOfficeState ? 0.9 : 1,
-                            transition: "all 0.2s ease",
-                          },
+                          hover: { outline: "none", opacity: 0.92, transition: "all 0.2s ease" },
                           pressed: { outline: "none" },
                         }}
                       />
@@ -122,7 +184,40 @@ export default function Locations() {
                 }
               </Geographies>
 
-              {/* Office markers (keep the same highlight color) */}
+              {/* SAME PIN on every state, excluding Andaman & Nicobar and Ladakh; J&K pin forced to Jammu */}
+              <Geographies geography={geoUrl}>
+                {({ geographies }) =>
+                  geographies.map((geo) => {
+                    const rawName =
+                      geo.properties?.ST_NM ||
+                      geo.properties?.NAME_1 ||
+                      geo.properties?.name ||
+                      geo.properties?.st_nm ||
+                      "";
+                    if (!rawName) return null;
+
+                    const key = norm(String(rawName));
+                    if (isAndaman(key) || isLadakh(key)) return null;
+
+                    const override = isJammuKashmir(key) ? PIN_OVERRIDES[key] : undefined;
+                    const pinAt = override ?? safeCentroid(geo);
+
+                    return (
+                      <Marker key={`${geo.rsmKey}-pin`} coordinates={pinAt} className="pointer-events-none">
+                        <g transform="translate(-8,-16) scale(0.55)">
+                          <path
+                            d="M12 2C7.03 2 3 6.03 3 11c0 5.25 7.5 11 9 11s9-5.75 9-11c0-4.97-4.03-9-9-9z"
+                            fill="#111111"
+                          />
+                          <circle cx="12" cy="10" r="3.2" fill="#ffffff" />
+                        </g>
+                      </Marker>
+                    );
+                  })
+                }
+              </Geographies>
+
+              {/* OFFICE MARKERS */}
               {officeLocations.map((office) => (
                 <Marker key={office.city} coordinates={office.coordinates} className="cursor-pointer">
                   <circle r={20} fill={HIGHLIGHT_HEX} opacity="0.15" className="animate-ping" />
@@ -149,24 +244,24 @@ export default function Locations() {
             </ComposableMap>
           </div>
 
-          {/* Optional tiny legend (kept minimal) */}
+          {/* Legend (optional) */}
           <div className="flex justify-center mt-4">
             <div className="bg-orange-50 rounded-xl p-3 border border-orange-200 text-sm">
               <div className="flex flex-wrap justify-center gap-6">
                 <div className="flex items-center gap-2">
                   <span className="inline-block w-4 h-4 rounded-full" style={{ background: HIGHLIGHT_HEX }} />
-                  <span className="font-medium text-gray-700">Office States</span>
+                  <span className="font-medium text-gray-700">Office States (outlined)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="inline-block w-4 h-4 rounded-full border border-gray-300 bg-white" />
-                  <span className="font-medium text-gray-700">Other States (outline)</span>
+                  <span className="font-medium text-gray-700">All States Colored</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Below-locations section remains removed as requested earlier */}
+        {/* Coverage blurb */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-orange-100/80 via-white/80 to-blue-100/80 rounded-3xl p-8 max-w-5xl mx-auto shadow-xl border border-gray-200/50 backdrop-blur-lg">
             <div className="flex items-center justify-center mb-6">
@@ -203,4 +298,3 @@ export default function Locations() {
     </div>
   );
 }
-

@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,8 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -25,14 +22,7 @@ import {
 import {
   Calculator,
   IndianRupee,
-  Clock,
-  Users,
   FileText,
-  ChevronRight,
-  Home,
-  Share2,
-  Download,
-  Info,
   CheckCircle,
   AlertCircle,
   CalendarIcon,
@@ -42,7 +32,6 @@ import {
   Loader2,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
@@ -109,7 +98,6 @@ export default function GratuityCalculatorPage() {
     // Calculate gratuity
     const serviceYears = serviceDays / 365;
     if (serviceYears >= 5) {
-      // Formula: (Last drawn salary × 15 × Number of years of service) / 26
       const calculatedGratuity = (salary * 15 * serviceYears) / 26;
       setGratuityAmount(Math.round(calculatedGratuity));
       setIsEligible(true);
@@ -160,9 +148,7 @@ export default function GratuityCalculatorPage() {
     setUploadedFile(file);
     setIsProcessing(true);
 
-    // Simulate AI processing (replace with actual AI service)
     setTimeout(() => {
-      // Mock extracted data - in real implementation, this would come from AI service
       const mockExtractedData = {
         joiningDate: new Date("2019-03-15"),
         employeeName: "John Doe",
@@ -197,7 +183,6 @@ export default function GratuityCalculatorPage() {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Calculator Form */}
           <div className="lg:col-span-2">
             <Card className="mb-8">
               <CardHeader>
@@ -210,7 +195,6 @@ export default function GratuityCalculatorPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-8">
-                {/* Salary Input */}
                 <div className="space-y-3">
                   <Label className="text-sm font-medium">
                     Monthly Salary (Basic Pay + Dearness Allowance)
@@ -642,6 +626,7 @@ export default function GratuityCalculatorPage() {
               <CardContent className="space-y-3">
                 <Link
                   href="/calculators/pf"
+                  aria-label="provident fund calculator"
                   className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   <div className="font-medium text-sm">PF Calculator</div>
@@ -651,6 +636,7 @@ export default function GratuityCalculatorPage() {
                 </Link>
                 <Link
                   href="/calculators/esi"
+                  aria-label="esi calculator"
                   className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   <div className="font-medium text-sm">ESI Calculator</div>
@@ -660,6 +646,7 @@ export default function GratuityCalculatorPage() {
                 </Link>
                 <Link
                   href="/calculators/bonus"
+                  aria-label="bonus calculator"
                   className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   <div className="font-medium text-sm">Bonus Calculator</div>
@@ -669,7 +656,6 @@ export default function GratuityCalculatorPage() {
                 </Link>
               </CardContent>
             </Card>
-            {/* </div> */}
           </div>
         </div>
 

@@ -404,7 +404,7 @@ const useCarousel = (itemsCount) => {
     setCurrentIndex(prev => prev <= 0 ? maxIndex : prev - 1);
   }, [maxIndex]);
   
-  const goTo = React.useCallback((index) => {
+  const goTo = React.useCallback((index: number) => {
     setCurrentIndex(Math.max(0, Math.min(index, maxIndex)));
   }, [maxIndex]);
   
@@ -466,8 +466,8 @@ const NewsCarouselSection = () => {
               Stay informed with the most recent compliance news
             </p>
           </div>
-          <Button variant="outline" className="w-full md:w-auto" asChild>
-            <Link href="/updates">
+          <Button variant="outline" className="w-full md:w-auto" asChild aria-label='View All Updates'>
+            <Link href="/updates" aria-label='View All Updates'>
               View All Updates
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

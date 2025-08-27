@@ -145,7 +145,6 @@ export default function OurClientsPage() {
       {/* Stats Section */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4">
-          {/* Heading */}
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
               Our Impact on Clients
@@ -172,7 +171,6 @@ export default function OurClientsPage() {
           </div>
         </div>
       </section>
-
 
       {/* Client Testimonials */}
       <section className="py-20 bg-white">
@@ -260,10 +258,10 @@ export default function OurClientsPage() {
             Let's discuss how we can simplify your labour law compliance and help your business grow
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-[#eb8535] hover:bg-orange-400 text-white text-lg px-8 py-6 cursor-pointer">
+            <Button size="lg" className="bg-[#eb8535] hover:bg-orange-400 text-white text-lg px-8 py-6 cursor-pointer" aria-label="Get Free Consultaion" >
               Get Free Consultation
             </Button>
-            <Button size="lg" variant="outline" className="border-2 border-white text-slate-800 hover:text-[#eb8535] text-lg px-8 py-6 cursor-pointer">
+            <Button size="lg" variant="outline" className="border-2 border-white text-slate-800 hover:text-[#eb8535] text-lg px-8 py-6 cursor-pointer" aria-label="View Case Studies" >
               View Case Studies
             </Button>
           </div>

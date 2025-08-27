@@ -82,7 +82,6 @@ const keyStrengths = [
 export default function FounderPage() {
   return (
     <div className="bg-gray-50">
-      {/* Top Banner */}
       <section className="relative py-16 md:py-20 lg:py-24 bg-gray-50 overflow-hidden">
         <div className="absolute inset-0" />
         <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 rounded-full blur-3xl" />
@@ -106,7 +105,6 @@ export default function FounderPage() {
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center max-w-7xl mx-auto">
-            {/* Content */}
             <div className="space-y-6 md:space-y-8">
               <div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
@@ -467,13 +465,14 @@ export default function FounderPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center max-w-2xl mx-auto">
-            <Button className="bg-[#eb8535] hover:bg-orange-400 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto cursor-pointer">
+            <Button className="bg-[#eb8535] hover:bg-orange-400 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto cursor-pointer" aria-label="get expert consultation">
               Get Expert Consultation
               <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
             </Button>
             <Button
               variant="outline"
               className="border-2 border-white text-white hover:bg-white hover:text-slate-800 text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 bg-transparent rounded-2xl font-bold w-full sm:w-auto cursor-pointer"
+              aria-label="schedule a demo"
             >
               Schedule a Demo
             </Button>

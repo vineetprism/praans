@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -10,10 +9,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Switch } from "@/components/ui/switch"
-import { Calculator, IndianRupee, Clock, Users, FileText, ChevronRight, Home, Share2, Download, Info, CheckCircle, AlertCircle, TrendingUp, Building2, Calendar } from 'lucide-react'
+import { Calculator, IndianRupee, FileText, CheckCircle, AlertCircle, TrendingUp, Calendar } from 'lucide-react'
 import Link from "next/link"
-import Image from "next/image"
 import PopularSearch from '@/app/PopularSearch/PopularSearch'
 
 type BonusType = 'statutory' | 'exgratia' | 'productivity'
@@ -448,21 +445,20 @@ export default function BonusCalculatorPage() {
                   <CardTitle className="text-lg">Related Calculators</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <Link href="/calculators/gratuity" className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                  <Link href="/calculators/gratuity" className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors" aria-label='gratuity and gratuity amount calculator'>
                     <div className="font-medium text-sm">Gratuity Calculator</div>
                     <div className="text-xs text-gray-600">Calculate gratuity amount</div>
                   </Link>
-                  <Link href="/calculators/pf" className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                  <Link href="/calculators/pf" className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors" aria-label='pf calculator'>
                     <div className="font-medium text-sm">PF Calculator</div>
                     <div className="text-xs text-gray-600">Calculate Provident Fund</div>
                   </Link>
-                  <Link href="/calculators/esi" className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                  <Link href="/calculators/esi" className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors" aria-label='esi and esi contributions calculator'>
                     <div className="font-medium text-sm">ESI Calculator</div>
                     <div className="text-xs text-gray-600">Calculate ESI contributions</div>
                   </Link>
                 </CardContent>
               </Card>
-            {/* </div> */}
           </div>
         </div>
 
