@@ -1,4 +1,7 @@
+import Link from "next/link";
+
 export default function TermsAndConditionsPage() {
+
   return (
     <div className="min-h-screen bg-gray-50">
       <main className="py-16">
@@ -107,20 +110,22 @@ export default function TermsAndConditionsPage() {
               <span className="font-bold text-xl text-[#eb8535]">Praans Consultech</span> <br />
               <span className="font-semibold">CP-9, Sector-8, IMT Manesar, Gurugram, Haryana - 122052</span> <br />
               <span className="font-semibold">Email:{" "}</span>
-              <a
+              <Link
                 href="mailto:info@praansconsultech.com"
                 className="text-orange-600 hover:underline"
+                aria-label="Email Praans Consultech"
               >
                 info@praansconsultech.com
-              </a>
+              </Link>
               <br />
               <span className="font-semibold">Phone:</span>{" "}
-              <a
+              <Link
                 href="tel:+919050576838"
                 className="text-orange-600 hover:underline"
+                aria-label="Call Praans Consultech"
               >
                 +91-9050576838
-              </a>
+              </Link>
 
             </p>
 
