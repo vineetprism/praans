@@ -129,7 +129,7 @@ export default function RuleDetailPage({ params }: { params: { slug: string } })
     <div className="container mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-6">
-        <PopularSearchBoxes/>
+        <PopularSearchBoxes />
 
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
           <div>
@@ -140,7 +140,7 @@ export default function RuleDetailPage({ params }: { params: { slug: string } })
             <h1 className="text-3xl font-bold text-slate-800 mb-2">{rule.title}</h1>
             <p className="text-gray-600">Related Act: {rule.relatedAct}</p>
           </div>
-          <Button onClick={handleDownload} className="bg-orange-500 hover:bg-orange-600 mt-4">
+          <Button onClick={handleDownload} className="bg-orange-500 hover:bg-orange-600 mt-4" aria-label="Download PDF">
             <Download className="w-4 h-4 mr-2" />
             Download PDF
           </Button>

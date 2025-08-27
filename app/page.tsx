@@ -323,11 +323,8 @@ export default function HomePage() {
 
       {/* Enhanced Key Offerings Section */}
       <section className="relative bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden min-h-screen">
-        {/* Background Elements */}
         <div className="container mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
-          {/* Enhanced Offerings Grid */}
           <section className="py-16 sm:py-20 lg:py-24">
-            {/* Section Heading */}
             <div className="text-center mb-12 sm:mb-16 lg:mb-20">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-slate-900 leading-tight">
                 Single Platform for All Labour Law Compliances
@@ -398,8 +395,4 @@ export default function HomePage() {
       </section>
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> fa4f1ba6792082137496fc208f4278ce72aa1608

@@ -1,10 +1,8 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Download, ExternalLink, FileText, Calendar } from 'lucide-react'
 import { StatePicker } from "./components/state-picker"
 
@@ -213,7 +211,6 @@ export default function StateWelfareFundPage({ params }: PageProps) {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid lg:grid-cols-4 gap-8">
-          {/* Sidebar with modern State Picker */}
           <div className="lg:col-span-1">
             <Card className="border-slate-200 shadow-md">
               <CardHeader className="pb-0">
@@ -267,13 +264,13 @@ export default function StateWelfareFundPage({ params }: PageProps) {
                           <Badge variant="outline">{data.frequency}</Badge>
                         </td>
                         <td className="px-6 py-4 text-sm">
-                          <Button variant="link" size="sm" className="text-blue-600 p-0">
+                          <Button variant="link" size="sm" className="text-blue-600 p-0" aria-label="Download form">
                             <FileText className="h-4 w-4 mr-1" />
                             {data.form}
                           </Button>
                         </td>
                         <td className="px-6 py-4 text-sm">
-                          <Button variant="link" size="sm" className="text-blue-600 p-0">
+                          <Button variant="link" size="sm" className="text-blue-600 p-0" aria-label="Visit official site">
                             <ExternalLink className="h-4 w-4 mr-1" />
                             Official Site
                           </Button>
@@ -328,7 +325,7 @@ export default function StateWelfareFundPage({ params }: PageProps) {
                 <CardContent className="pt-6">
                   <Download className="h-8 w-8 text-blue-600 mx-auto mb-3" />
                   <h3 className="font-medium mb-2">Download Form</h3>
-                  <Button size="sm" className="w-full">
+                  <Button size="sm" className="w-full" aria-label="Download form">
                     Download {data.form}
                   </Button>
                 </CardContent>
@@ -338,7 +335,7 @@ export default function StateWelfareFundPage({ params }: PageProps) {
                 <CardContent className="pt-6">
                   <ExternalLink className="h-8 w-8 text-green-600 mx-auto mb-3" />
                   <h3 className="font-medium mb-2">Official Website</h3>
-                  <Button size="sm" variant="outline" className="w-full">
+                  <Button size="sm" variant="outline" className="w-full" aria-label="Visit official website">
                     Visit Website
                   </Button>
                 </CardContent>
@@ -348,7 +345,7 @@ export default function StateWelfareFundPage({ params }: PageProps) {
                 <CardContent className="pt-6">
                   <Calendar className="h-8 w-8 text-purple-600 mx-auto mb-3" />
                   <h3 className="font-medium mb-2">Due Dates</h3>
-                  <Button size="sm" variant="outline" className="w-full">
+                  <Button size="sm" variant="outline" className="w-full" aria-label="View calendar">
                     View Calendar
                   </Button>
                 </CardContent>

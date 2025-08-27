@@ -106,7 +106,6 @@ const serviceIcons = [Shield, FileText, Users, CheckCircle, Cpu]
 export default function LegalAdvisoryHrPoliciesPage() {
   return (
     <div className="bg-white text-slate-900">
-      {/* Hero */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
           {/* stack on md (768px) and go 2-col on lg */}

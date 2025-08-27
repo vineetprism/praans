@@ -124,6 +124,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                   <Button
                     size="lg"
                     variant="ghost"
+                    aria-label="See services"
                     className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-[#eb8535] bg-transparent text-gray-600 text-lg hover:bg-[#eb8535] hover:text-white hover:border-white font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
                   >
                     View Services
@@ -235,7 +236,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
               {/* CTA stays pinned to bottom so cards align visually */}
               <div className="mt-6 pt-4">
-                <a
+                <Link
                   href="/services#audit"
                   className="inline-flex items-center gap-2 text-sm font-medium text-blue-700 hover:underline"
                   aria-label="Learn more about labour law audits"
@@ -244,7 +245,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                   <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </Link>
               </div>
             </article>
 
@@ -323,7 +324,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
               </div>
 
               <div className="mt-6 pt-4">
-                <a
+                <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 text-sm font-medium text-[#eb8535] hover:underline"
                   aria-label="Request on-site inspection support"
@@ -332,7 +333,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                   <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </Link>
               </div>
             </article>
 
@@ -359,9 +360,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 role="button"
                 aria-pressed="false"
               >
-                {/* Surface: we control the fill via ::before so the Card component internals don't cause gradients */}
                 <div className="surface relative border rounded-md border-orange-100 shadow-md">
-                  {/* content layer above the fill */}
                   <div className="relative z-10 p-5 flex flex-col items-center text-center min-h-[220px]">
                     <div
                       className="w-14 h-14 mb-3 rounded-full flex items-center justify-center bg-white border border-orange-100 transition-colors duration-200"
@@ -618,7 +617,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
       {/* Mobile micro-CTA (non-intrusive) */}
       <div className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
-        <Link href="tel:+91-9582200771" aria-label="Quick consult">
+        <Link href="tel:+91-9582200771" aria-label="Quick consult" >
           <button
             className="bg-[#eb8535] text-white px-4 py-2 rounded-full shadow-md flex items-center gap-2"
             aria-label="Quick consult"

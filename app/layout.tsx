@@ -2,8 +2,6 @@ import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import "./globals.css"
-
-
 import SiteHeader from "@/app/component/siteHeader"
 import SiteFooter from "@/app/component/siteFooter"
 
