@@ -258,18 +258,19 @@ export default function LegalAdvisoryHrPoliciesPage() {
       </section>
 
       {/* Meet the Founder — creative, responsive, no animations */}
-      {/* <section className="py-14 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-14 bg-gray-50">
+        <div className="container mx-auto px-6 lg:px-16">
           <div className="grid gap-10 items-center md:grid-cols-2">
-            <div className="order-1 md:order-2 flex justify-center md:justify-end">
+            {/* Founder Section */}
+            <div className="order-1 md:order-2 flex justify-center md:justify-end pr-40">
               <div className="w-full max-w-sm rounded-2xl overflow-hidden border border-slate-100 bg-white">
                 <div className="relative">
                   <Image
                     src="/services/MG.png"
                     alt="Sandeep Kumar — Founder, Praans Consultech"
-                    width={1200}
-                    height={1600}
-                    className="object-cover w-full h-72 sm:h-80 md:h-96"
+                    width={500}
+                    height={500}
+                    className="object-cover w-full h-72 sm:h-80 md:h-[500px]"
                     priority
                   />
 
@@ -278,39 +279,17 @@ export default function LegalAdvisoryHrPoliciesPage() {
                     Founder & Head — Compliance
                   </div>
                 </div>
-
-                <div className="p-5 sm:p-6">
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900">Sandeep Kumar</h3>
-                  <p className="mt-2 text-sm text-gray-600">
-                    15+ years steering enterprise-grade labour law compliance, audits and field operations.
-                  </p>
-
-                  <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-3">
-                    <div className="flex items-center justify-center gap-2 bg-orange-50 text-[#eb8535] px-2 py-1 rounded-md text-xs font-semibold border border-orange-100">
-                      <Users className="w-4 h-4" />
-                      <span>2,500+ sites</span>
-                    </div>
-
-                    <div className="flex items-center justify-center gap-2 bg-orange-50 text-[#eb8535] px-2 py-1 rounded-md text-xs font-semibold border border-orange-100">
-                      <FileText className="w-4 h-4" />
-                      <span>50k+ staff</span>
-                    </div>
-
-                    <div className="flex items-center justify-center gap-2 bg-orange-50 text-[#eb8535] px-2 py-1 rounded-md text-xs font-semibold border border-orange-100">
-                      <CheckCircle className="w-4 h-4" />
-                      <span>15+ yrs</span>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
-            <div className="order-2 md:order-1 flex flex-col justify-center gap-5">
+            {/* Founder Details */}
+            <div className="order-2 md:order-1 flex flex-col justify-center gap-5 pl-40">
               <div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">Meet Our Founder — Vision Backed by Legal Expertise</h2>
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+                  Meet Our Founder — Vision Backed by Legal Expertise
+                </h2>
                 <p className="mt-3 text-base text-slate-700 max-w-xl">
-                  Sandeep leads Praans Consultech with hands-on experience in large-scale compliance operations, audit handling and regulatory strategy.
-                  We translate that operational expertise into practical, audit-ready solutions that reduce risk and keep your business running.
+                  Sandeep leads Praans Consultech with hands-on experience in large-scale compliance operations, audit handling and regulatory strategy. We translate that operational expertise into practical, audit-ready solutions that reduce risk and keep your business running.
                 </p>
               </div>
 
@@ -322,7 +301,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
                     <li>Managed payroll & contractor compliance for 50,000+ personnel</li>
                     <li>Delivered audit & inspection programs for enterprise clients</li>
                   </ul>
-
                 </div>
 
                 <div className="space-y-2">
@@ -344,8 +322,37 @@ export default function LegalAdvisoryHrPoliciesPage() {
               </div>
             </div>
           </div>
+
+          {/* Expert Team Section */}
+          <div className="mt-16 bg-gray-50 rounded-2xl border border-slate-100 p-8">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+              Our Expert Team – The Foundation of Our Service Delivery
+            </h3>
+            <p className="mt-4 text-base text-slate-700">
+              Supporting the founder is a dedicated team of legal professionals, compliance officers, documentation specialists, and field executives. Each member brings domain-specific knowledge in Indian labour laws, regional rules, and sector-specific requirements. Our team holds expertise in:
+            </p>
+
+            {/* Expertise List */}
+            <div className="mt-4 text-sm text-slate-600 space-y-2 list-disc pl-5 marker:text-[#eb8535]">
+              <ul className="text-sm text-gray-600 space-y-2 list-disc pl-5 marker:text-[#eb8535]">
+                <li>Establishment Compliance</li>
+                <li>Factory Compliance</li>
+                <li>Payroll Compliance</li>
+                <li>Contractor Compliance</li>
+                <li>Registration & Licenses</li>
+                <li>Audit and Inspection</li>
+                <li>And many more</li>
+              </ul>
+            </div>
+
+            {/* Working closely with clients */}
+            <p className="mt-4 text-base text-slate-700">
+              They work closely with HR departments, government authorities, and client management to ensure timely submissions, legal clarity, and smooth on-ground execution—making us a trusted compliance partner across industries.
+            </p>
+          </div>
         </div>
-      </section> */}
+      </section>
+
 
       {/* Team-only section (image & name removed) */}
       {/* <section className="py-14 bg-white">
@@ -357,20 +364,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 <p className="text-sm text-gray-600 mt-2">
                   Supporting the founder is a dedicated team of legal professionals, compliance officers, documentation specialists, and field executives. Each member brings domain-specific knowledge in Indian labour laws, regional rules, and sector-specific requirements.
                 </p>
-              </div>
-
-              <div className="flex flex-wrap gap-3 mt-3">
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#eb8535] text-sm font-semibold border border-orange-100">
-                  <Users className="w-4 h-4" /> 2,500+ locations
-                </span>
-
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#eb8535] text-sm font-semibold border border-orange-100">
-                  <FileText className="w-4 h-4" /> 50,000+ employees
-                </span>
-
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#eb8535] text-sm font-semibold border border-orange-100">
-                  <CheckCircle className="w-4 h-4" /> 15+ years' leadership
-                </span>
               </div>
 
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700">
@@ -422,7 +415,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
       </section> */}
 
       {/* Our Services */}
-      <section className="py-14 bg-gray-50">
+      <section className="py-14 bg-white">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-10">
             <h2 className="text-3xl font-bold">Empowering Compliance Through Smart Technology</h2>
@@ -454,16 +447,16 @@ export default function LegalAdvisoryHrPoliciesPage() {
       </section>
 
       {/* Technology */}
-      <section className="py-14 bg-[#1c2752] text-white">
+      <section className="py-14 bg-gray-50 text-white">
         <div className="container mx-auto px-6 lg:px-8 grid gap-8 md:grid-cols-2 items-center">
-          <div>
-            <h2 className="text-3xl font-bold mb-4">Industries We Serve</h2>
+          <div className="pl-40">
+            <h2 className="text-3xl font-bold mb-4 text-black">Industries We Serve</h2>
 
-            <p className="text-gray-200 mb-6 max-w-xl">
+            <p className="text-gray-700 mb-6 max-w-xl">
               We proudly serve a wide range of industries with customized compliance solutions:
             </p>
 
-            <ul className="space-y-3 text-gray-200">
+            <ul className="space-y-3 text-gray-700">
               <li className="flex items-start gap-3">
                 <Coffee className="w-5 h-5 text-orange-400 mt-1" />
                 <span>Food & Beverages</span>
@@ -506,12 +499,12 @@ export default function LegalAdvisoryHrPoliciesPage() {
             </ul>
 
 
-            <p className="text-gray-300 mt-6 max-w-lg">
+            <p className="text-gray-700 mt-6 max-w-lg">
               Each industry has its own set of legal requirements, and we ensure full compliance with both central and state-specific labour laws for every sector.
             </p>
           </div>
 
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center pr-40">
             <div className="w-full max-w-md rounded-lg overflow-hidden bg-white">
               <Image
                 src="/services/industry.jpg"
