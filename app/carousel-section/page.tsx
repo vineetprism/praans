@@ -217,7 +217,7 @@ const NewsCarouselSection = () => {
                     </div>
                     <CardTitle className="text-sm leading-tight hover:text-orange-500 transition-colors duration-200 line-clamp-2 min-h-[2.5rem]">
                       {news.href ? (
-                        <Link href={news.href} className="hover:text-orange-500">
+                        <Link href={news.href} className="hover:text-orange-500" aria-label={news.title}>
                           {news.title}
                         </Link>
                       ) : (
@@ -238,14 +238,14 @@ const NewsCarouselSection = () => {
                       </span>
                       <div className="flex gap-1 flex-shrink-0">
                         {news.href && (
-                          <Button size="sm" variant="ghost" className="text-xs px-2 py-1 h-7" asChild>
+                          <Button size="sm" variant="ghost" className="text-xs px-2 py-1 h-7" asChild aria-label="Read">
                             <Link href={news.href}>
                               Read <ArrowRight className="ml-1 w-3 h-3" />
                             </Link>
                           </Button>
                         )}
                         {news.downloadUrl && (
-                          <Button size="sm" variant="ghost" className="text-xs px-2 py-1 h-7" asChild>
+                          <Button size="sm" variant="ghost" className="text-xs px-2 py-1 h-7" asChild aria-label="Download">
                             <Link href={news.downloadUrl}>
                               <Download className="w-3 h-3 mr-1" /> PDF
                             </Link>
@@ -270,6 +270,7 @@ const NewsCarouselSection = () => {
                 onClick={prev}
                 disabled={!canGoPrev}
                 className="rounded-full"
+                aria-label="Previous"
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
@@ -279,6 +280,7 @@ const NewsCarouselSection = () => {
                 onClick={next}
                 disabled={!canGoNext}
                 className="rounded-full"
+                aria-label="Next"
               >
                 <ChevronRight className="h-4 w-4" />
               </Button>

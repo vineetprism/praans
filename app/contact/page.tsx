@@ -71,6 +71,7 @@ export default function ContactPage() {
                   <Link
                     href="tel:+919050576838"
                     className="flex items-center gap-3 text-lg text-gray-700 hover:text-[#eb8535]"
+                    aria-label="Call us"
                   >
                     <Phone className="w-6 h-6 text-orange-500" />
                     <span>+91-9050576838</span>
@@ -78,6 +79,7 @@ export default function ContactPage() {
                   <a
                     href="mailto:info@praansconsultech.com"
                     className="flex items-center gap-3 text-lg text-gray-700 hover:text-[#eb8535]"
+                    aria-label="Send email"
                   >
                     <Mail className="w-6 h-6 text-orange-500" />
                     <span>info@praansconsultech.com</span>
@@ -109,19 +111,19 @@ export default function ContactPage() {
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
                       Phone Number
                     </label>
-                    <Input id="phone" placeholder="Enter Your Phone Number" className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400"/>
+                    <Input id="phone" placeholder="Enter Your Phone Number" className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400" />
                   </div>
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
                       Subject
                     </label>
-                    <Input id="subject" placeholder="Regarding Compliance Outsourcing" className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400"/>
+                    <Input id="subject" placeholder="Regarding Compliance Outsourcing" className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400" />
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
                       Your Message
                     </label>
-                    <Textarea id="message" placeholder="Please describe your requirements..." rows={10} className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400"/>
+                    <Textarea id="message" placeholder="Please describe your requirements..." rows={10} className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400" />
                   </div>
                   <div>
                     <Button type="submit" className="w-full bg-[#eb8535] hover:bg-orange-400 text-lg py-3 cursor-pointer">

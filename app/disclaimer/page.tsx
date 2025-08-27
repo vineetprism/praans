@@ -1,9 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+
+const metadata = {
+  title: "Disclaimer | Praans Consultech",
+  description:
+    "Read our disclaimer to understand the limitations of liability and the accuracy of the information provided on our website.",
+  keywords: "disclaimer praans consultech, labour law disclaimer, statutory registration disclaimer",
+}
 
 export default function DisclaimerPage() {
+
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Main Content */}
@@ -43,15 +50,15 @@ export default function DisclaimerPage() {
               </p>
               <p>
                 For any inquiries, clarifications, or feedback, please contact us at{" "}
-                <a href="mailto:info@praansconsultech.com" className="text-orange-600 hover:underline">
+                <Link href="mailto:info@praansconsultech.com" className="text-orange-600 hover:underline" aria-label="Send email">
                   info@praansconsultech.com
-                </a>
+                </Link>
                 .
               </p>
             </CardContent>
           </Card>
         </div>
-      </main> 
+      </main>
     </div>
   )
 }

@@ -151,7 +151,7 @@ const keyOfferings = [
 
 
 const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
-  <Link key={index} href={offering.href} className="group block h-full">
+  <Link key={index} href={offering.href} className="group block h-full" aria-label={offering.title}>
     <div
       className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-4 sm:p-5 lg:p-6 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 h-full flex flex-col"
       style={{
@@ -207,9 +207,7 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Enhanced Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 md:px-6 bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden">
-        {/* Background Elements */}
         <div className="absolute inset-0 bg-orange-100/10" />
         <div className="absolute inset-0 bg-gradient-to-bl from-orange-100/40 to-blue-100/20" />
         <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 bg-orange-200/30 rounded-full blur-3xl animate-pulse" />
@@ -295,6 +293,7 @@ export default function HomePage() {
             <Button
               size="lg"
               className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto hover:cursor-pointer"
+              aria-label="Get a Free Demo Of Software"
             >
               Get a Free Demo Of Software
               <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
@@ -311,6 +310,7 @@ export default function HomePage() {
             rounded-2xl 
             font-bold 
             w-full sm:w-auto"
+              aria-label="Talk to Our Compliance Experts"
             >
               Talk to Our Compliance Experts
             </Button>
@@ -380,6 +380,7 @@ export default function HomePage() {
             <Button
               size="lg"
               className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto"
+              aria-label="Get a Free Demo Of Software"
             >
               Get a Free Demo Of Software
               <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
@@ -388,6 +389,7 @@ export default function HomePage() {
               size="lg"
               variant="outline"
               className="border-2 border-white text-white hover:bg-white hover:text-slate-800 text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 bg-transparent rounded-2xl font-bold w-full sm:w-auto"
+              aria-label="Talk to Our Compliance Experts"
             >
               Talk to Our Compliance Experts
             </Button>
