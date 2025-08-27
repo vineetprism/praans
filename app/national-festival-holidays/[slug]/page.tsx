@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -11,7 +10,30 @@ import Link from "next/link"
 import PopularSearch from '@/app/PopularSearch/PopularSearch'
 
 // Sample data - in real app this would come from API/database
-const stateData = {
+const stateData: Record<string, {
+  name: string;
+  act: string;
+  applicability: {
+    factory: string;
+    shops: string;
+    plantation: string;
+  };
+  eligibleWages: string;
+  nationalHolidays: {
+    count: number;
+    list: string[];
+  };
+  festivalHolidays: {
+    count: number;
+    details: string;
+  };
+  totalHolidays: number;
+  provision: string;
+  timeLimit: string;
+  noticeRequired: string;
+  otherForms: string;
+  penalties: string;
+}> = {
   "andaman-nicobar": {
     name: "Andaman and Nicobar Islands",
     act: "The Andaman And Nicobar Islands Shops And Establishments Regulation, 2004",
@@ -56,11 +78,12 @@ export default function StateDetailPage() {
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" aria-label="Search" />
             <Input
               type="text"
               placeholder="Search holiday details, states..."
               className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              aria-label="Search holiday details, states..."
             />
           </div>
         </div>
@@ -70,9 +93,9 @@ export default function StateDetailPage() {
         {/* Breadcrumb */}
         <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
           <Home className="w-4 h-4" />
-          <Link href="/" className="hover:text-orange-500">Home</Link>
+          <Link href="/" className="hover:text-orange-500" aria-label="Home">Home</Link>
           <ChevronRight className="w-4 h-4" />
-          <Link href="/national-festival-holidays" className="hover:text-orange-500">National Festival Holidays</Link>
+          <Link href="/national-festival-holidays" className="hover:text-orange-500" aria-label="National Festival Holidays">National Festival Holidays</Link>
           <ChevronRight className="w-4 h-4" />
           <span className="text-orange-500 font-medium">{data.name}</span>
         </nav>
@@ -266,9 +289,10 @@ export default function StateDetailPage() {
               <Button
                 asChild
                 variant="outline"
+                aria-label="Back to Holidays Matrix"
                 className="border-orange-500 text-orange-600 hover:bg-orange-50 bg-transparent"
               >
-                <Link href="/national-festival-holidays">← Back to Holidays Matrix</Link>
+                <Link href="/national-festival-holidays" aria-label="Back to Holidays Matrix">← Back to Holidays Matrix</Link>
               </Button>
             </div>
           </div>

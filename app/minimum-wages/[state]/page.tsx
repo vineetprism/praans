@@ -2,9 +2,8 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Download, ExternalLink, FileText, Globe, Calendar, IndianRupee, Users, Building } from 'lucide-react'
+import { Download, ExternalLink, FileText, Globe, IndianRupee } from 'lucide-react'
 
 interface StateWageData {
   state: string
@@ -229,7 +228,7 @@ const stateWageData: Record<string, StateWageData> = {
 
 export async function generateMetadata({ params }: { params: { state: string } }): Promise<Metadata> {
   const stateData = stateWageData[params.state]
-  
+
   if (!stateData) {
     return {
       title: 'State Not Found | Minimum Wages',
@@ -254,8 +253,6 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
   return (
     <div className="min-h-screen bg-gray-50">
 
-
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
@@ -270,11 +267,11 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
                     <Link
                       key={state.slug}
                       href={`/minimum-wages/${state.slug}`}
-                      className={`block px-3 py-2 rounded-md text-sm transition-colors ${
-                        state.slug === params.state
+                      className={`block px-3 py-2 rounded-md text-sm transition-colors ${state.slug === params.state
                           ? 'bg-blue-100 text-blue-700 font-medium'
                           : 'text-gray-700 hover:bg-gray-100'
-                      }`}
+                        }`}
+                      aria-label={state.state}
                     >
                       {state.state}
                     </Link>
@@ -292,7 +289,6 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
 
           {/* Main Content */}
           <div className="lg:w-3/4">
-            {/* Page Header */}
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Minimum Wages</h1>
               <h2 className="text-xl text-gray-600">{stateData.state}</h2>
@@ -320,13 +316,13 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
                         <td className="px-6 py-4 text-sm text-gray-900">{stateData.applicability}</td>
                         <td className="px-6 py-4 text-sm text-gray-900">{stateData.frequency}</td>
                         <td className="px-6 py-4 text-sm">
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="sm" aria-label='Download Form'>
                             <FileText className="h-4 w-4 mr-1" />
                             {stateData.form}
                           </Button>
                         </td>
                         <td className="px-6 py-4 text-sm">
-                          <Button variant="outline" size="sm" asChild>
+                          <Button variant="outline" size="sm" asChild aria-label='Official Site'>
                             <a href={stateData.website} target="_blank" rel="noopener noreferrer">
                               <ExternalLink className="h-4 w-4 mr-1" />
                               Official Site

@@ -172,7 +172,6 @@ const statesData: Record<string, StateData> = {
   },
 }
 
-// ✅ Next 15: params is a Promise you must await
 export async function generateMetadata({
   params,
 }: {
@@ -309,6 +308,7 @@ export default async function StateLeavesWorkingHoursPage({
                           <Button
                             size="sm"
                             variant="outline"
+                            aria-label="Download form"
                             className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
                           >
                             <Download className="h-4 w-4 mr-1" />
@@ -319,6 +319,7 @@ export default async function StateLeavesWorkingHoursPage({
                           <Button
                             size="sm"
                             variant="outline"
+                            aria-label="Visit official site"
                             className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
                           >
                             <ExternalLink className="h-4 w-4 mr-1" />
@@ -527,7 +528,7 @@ export default async function StateLeavesWorkingHoursPage({
                   <p className="text-sm text-gray-600 mb-3">
                     Get registration and compliance forms
                   </p>
-                  <Button className="bg-orange-500 hover:bg-orange-600">
+                  <Button className="bg-orange-500 hover:bg-orange-600" aria-label="Download forms">
                     <Eye className="w-4 h-4 mr-2" />
                     Download
                   </Button>
@@ -546,6 +547,7 @@ export default async function StateLeavesWorkingHoursPage({
                   <Button
                     variant="outline"
                     className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
+                    aria-label="Calculate leave entitlements"
                   >
                     <Eye className="w-4 h-4 mr-2" />
                     Calculate
@@ -564,6 +566,7 @@ export default async function StateLeavesWorkingHoursPage({
                   </p>
                   <Button
                     variant="outline"
+                    aria-label="Visit official site"
                     className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
                   >
                     <Eye className="w-4 h-4 mr-2" />
@@ -638,19 +641,18 @@ export default async function StateLeavesWorkingHoursPage({
                       <Link
                         key={s.slug}
                         href={`/leaves-working-hours/${s.slug}`}
-                        className={`block p-3 rounded-lg border transition-colors group ${
-                          s.slug === state
+                        aria-label={`Go to ${s.name} leaves and working hours`}
+                        className={`block p-3 rounded-lg border transition-colors group ${s.slug === state
                             ? "bg-orange-50 border-orange-200 text-orange-700"
                             : "hover:bg-orange-50 hover:border-orange-200 border-gray-200"
-                        }`}
+                          }`}
                       >
                         <div className="flex items-center justify-between">
                           <span
-                            className={`font-medium transition-colors ${
-                              s.slug === state
+                            className={`font-medium transition-colors ${s.slug === state
                                 ? "text-orange-700"
                                 : "text-gray-700 group-hover:text-orange-600"
-                            }`}
+                              }`}
                           >
                             {s.name}
                           </span>

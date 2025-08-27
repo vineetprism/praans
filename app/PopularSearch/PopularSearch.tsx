@@ -1,5 +1,3 @@
-
-
 "use client"
 import { useEffect } from "react"
 import Link from "next/link"
@@ -46,6 +44,7 @@ export default function PopularSearch({
             <Link
               key={href}
               href={href}
+              aria-label={label}
               prefetch
               onMouseEnter={() => router.prefetch(href)}
               aria-current={isActive ? "page" : undefined}

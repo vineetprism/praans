@@ -39,7 +39,7 @@ export default function FounderPage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <Link href="/">
+              <Link href="/" aria-label="Praans Consultech">
                 <Image
                   src="/logo.png"
                   alt="Praans Consultech"
@@ -51,24 +51,24 @@ export default function FounderPage() {
               </Link>
             </div>
             <nav className="hidden md:flex items-center space-x-6">
-              <Link href="/services" className="text-gray-600 hover:text-orange-500 transition-colors">
+              <Link href="/services" className="text-gray-600 hover:text-orange-500 transition-colors" aria-label="Services">
                 Services
               </Link>
-              <Link href="/acts" className="text-gray-600 hover:text-orange-500 transition-colors">
+              <Link href="/acts" className="text-gray-600 hover:text-orange-500 transition-colors" aria-label="Resources">
                 Resources
               </Link>
-              <Link href="/about" className="text-gray-600 hover:text-orange-500 transition-colors">
+              <Link href="/about" className="text-gray-600 hover:text-orange-500 transition-colors" aria-label="About Us">
                 About Us
               </Link>
-              <Link href="/contact" className="text-gray-600 hover:text-orange-500 transition-colors">
+              <Link href="/contact" className="text-gray-600 hover:text-orange-500 transition-colors" aria-label="Contact">
                 Contact
               </Link>
             </nav>
             <div className="flex items-center space-x-3">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" aria-label="Sign In">
                 Sign In
               </Button>
-              <Button size="sm" className="bg-orange-500 hover:bg-orange-600">
+              <Button size="sm" className="bg-orange-500 hover:bg-orange-600" aria-label="Get Started">
                 Get Started
               </Button>
             </div>
@@ -144,15 +144,16 @@ export default function FounderPage() {
                     Praans Consultech: Empowering Businesses with Seamless Compliance Solutions
                   </p>
                   <p className="text-gray-500 mb-4">Read our feature in AsiaConnect Magazine.</p>
-                  <a
+                  <Link
                     href="https://www.hindustanmetro.com/the-visionary-who-left-corporate-success-to-empower-everyday-entrepreneurs/"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Read Now"
                   >
-                    <Button variant="outline" className="bg-transparent">
+                    <Button variant="outline" className="bg-transparent" aria-label="Read Now">
                       Read Now <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
-                  </a>
+                  </Link>
                 </CardContent>
               </Card>
             </div>
@@ -232,7 +233,7 @@ export default function FounderPage() {
             Get in touch with Praans Consultech — Led by India’s trusted labour law expert.
           </p>
           <Link href="/contact">
-            <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 text-lg px-8 py-4">
+            <Button size="lg" className="bg-orange-500 text-white hover:bg-orange-600 text-lg px-8 py-4" aria-label="Book a Free Consultation">
               Book a Free Consultation
             </Button>
           </Link>

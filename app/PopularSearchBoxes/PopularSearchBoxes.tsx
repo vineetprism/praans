@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
-  ScrollText, Gavel, FileText, Megaphone,
+  ScrollText, Megaphone,
   CalendarDays, HandCoins, Banknote, Receipt, ChevronRight
 } from "lucide-react"
 
@@ -65,7 +65,7 @@ export default function PopularSearchBoxes({
                 : "bg-white border-gray-200 hover:bg-orange-50"
 
           return (
-            <Link key={href} href={href} aria-current={isActive ? "page" : undefined}>
+            <Link key={href} href={href} aria-current={isActive ? "page" : undefined} aria-label={label}>
               <div className={`${baseTile} ${pad} ${style}`}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">

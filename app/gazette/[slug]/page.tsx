@@ -1,22 +1,3 @@
-
-// // Generate metadata for SEO
-// export async function generateMetadata({ params }: NotificationDetailPageProps) {
-//   const notificationData = notificationsDatabase[params.slug as keyof typeof notificationsDatabase]
-  
-//   if (!notificationData) {
-//     return {
-//       title: 'Notification Not Found'
-//     }
-//   }
-
-//   return {
-//     title: `${notificationData.title} - Pragans Consultech E-Library`,
-//     description: notificationData.description,
-//     keywords: `${notificationData.category}, ${notificationData.state}, gazette notification, ${notificationData.department}`
-//   }
-// }
-
-
 "use client"
 
 import { Button } from "@/components/ui/button"
@@ -25,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Download, Eye, Calendar, MapPin, FileText, ChevronRight, Home, Building2, Bell, Newspaper, AlertCircle, Share2, Bookmark, Clock, Users, ExternalLink, TrendingUp, Target, CheckCircle, Search } from 'lucide-react'
+import { MapPin, Building2, Newspaper, AlertCircle, Share2, Bookmark, Clock, Users, ExternalLink, TrendingUp, Target, CheckCircle, Search } from 'lucide-react'
 import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import PopularSearch from "@/app/PopularSearch/PopularSearch"
@@ -230,11 +211,12 @@ export default function NotificationDetailPage() {
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" aria-label="Search" />
             <Input
               type="text"
               placeholder="Search gazette notifications..."
               className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              aria-label="Search gazette notifications"
             />
           </div>
         </div>
@@ -278,10 +260,10 @@ export default function NotificationDetailPage() {
                     </div>
                   </div>
                   <div className="flex gap-2 ml-4">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" aria-label="Share notification">
                       <Share2 className="w-4 h-4" />
                     </Button>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" aria-label="Bookmark notification">
                       <Bookmark className="w-4 h-4" />
                     </Button>
                   </div>
@@ -460,9 +442,9 @@ export default function NotificationDetailPage() {
                           </div>
                           <div className="flex items-center gap-2">
                             <ExternalLink className="w-4 h-4 flex-shrink-0" />
-                            <a href={`mailto:${displayData.contactInfo.email}`} className="text-sm hover:underline">
+                            <Link href={`mailto:${displayData.contactInfo.email}`} className="text-sm hover:underline" aria-label="Email">
                               {displayData.contactInfo.email}
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -478,8 +460,9 @@ export default function NotificationDetailPage() {
                 asChild
                 variant="outline"
                 className="border-orange-500 text-orange-600 hover:bg-orange-50 bg-transparent"
+                aria-label="Back to Gazette Notifications"
               >
-                <Link href="/gazette">← Back to Gazette Notifications</Link>
+                <Link href="/gazette" aria-label="Back to Gazette Notifications">← Back to Gazette Notifications</Link>
               </Button>
             </div>
           </div>
@@ -487,74 +470,11 @@ export default function NotificationDetailPage() {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="space-y-6 sticky top-24">
-               {/* PopularSearch Component */}
               <Card>
                 <CardContent className="space-y-6">
                   <PopularSearch className="mt-4" />
                 </CardContent>
               </Card>
-              {/* Download Card */}
-              {/* <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Download Options</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <Button className="w-full bg-orange-500 hover:bg-orange-600">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download PDF
-                  </Button>
-                  <Button variant="outline" className="w-full">
-                    <FileText className="w-4 h-4 mr-2" />
-                    View Online
-                  </Button>
-                  <div className="text-xs text-gray-500 pt-2">
-                    File size: {displayData.fileSize} • Format: {displayData.format}
-                  </div>
-                </CardContent>
-              </Card> */}
-
-              {/* Quick Info */}
-              {/* <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Quick Information</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Calendar className="w-4 h-4 text-gray-400" />
-                    <span>Published: {new Date(displayData.publishedDate).toLocaleDateString()}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Clock className="w-4 h-4 text-gray-400" />
-                    <span>Effective: {new Date(displayData.effectiveDate).toLocaleDateString()}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <MapPin className="w-4 h-4 text-gray-400" />
-                    <span>Jurisdiction: {displayData.state}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Eye className="w-4 h-4 text-gray-400" />
-                    <span>Views: {formatViews(displayData.views)}</span>
-                  </div>
-                </CardContent>
-              </Card> */}
-
-              {/* Related Notifications */}
-              {/* <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Related Notifications</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {relatedNotifications.map((notification, index) => (
-                    <Link key={index} href={`/gazette/${notification.slug}`}>
-                      <div className="p-3 border rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
-                        <div className="font-medium text-sm mb-1">{notification.title}</div>
-                        <div className="text-xs text-gray-500 mb-1">{notification.state} • {notification.category}</div>
-                        <div className="text-xs text-gray-600">{new Date(notification.publishedDate).toLocaleDateString()}</div>
-                      </div>
-                    </Link>
-                  ))}
-                </CardContent>
-              </Card> */}
             </div>
           </div>
         </div>

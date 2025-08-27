@@ -6,8 +6,6 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import Link from "next/link"
-import Image from "next/image"
 
 export const metadata: Metadata = {
   title: 'Holiday List 2024 - Central & State Government Holidays | E-Library',
@@ -480,11 +478,11 @@ export default function HolidaysPage() {
                 </SelectContent>
               </Select>
               <div className="flex gap-2">
-                <Button variant="outline" className="flex-1">
+                <Button variant="outline" className="flex-1" aria-label="Download PDF">
                   <Download className="h-4 w-4 mr-2" />
                   Download PDF
                 </Button>
-                <Button variant="outline">
+                <Button variant="outline" aria-label="Subscribe to alerts">
                   <Bell className="h-4 w-4" />
                 </Button>
               </div>
@@ -575,64 +573,6 @@ export default function HolidaysPage() {
           </CardContent>
         </Card>
       </div>
-
-      {/* Footer */}
-      {/* <footer className="bg-gray-900 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <Image 
-                  src="/logo.png" 
-                  alt="Pragans Consultech" 
-                  width={160} 
-                  height={35}
-                  className="h-8 w-auto"
-                />
-              </div>
-              <p className="text-gray-400 leading-relaxed">
-                Your trusted partner for compliance and labor law resources.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-4">Quick Links</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/acts" className="hover:text-white transition-colors">Acts</Link></li>
-                <li><Link href="/minimum-wages" className="hover:text-white transition-colors">Minimum Wages</Link></li>
-                <li><Link href="/forms" className="hover:text-white transition-colors">Forms</Link></li>
-                <li><Link href="/gazette" className="hover:text-white transition-colors">Notifications</Link></li>
-                <li><Link href="/holidays" className="hover:text-white transition-colors">Holidays</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/help" className="hover:text-white transition-colors">Help Center</Link></li>
-                <li><Link href="/api" className="hover:text-white transition-colors">API Documentation</Link></li>
-                <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold mb-4">Stay Updated</h3>
-              <p className="text-gray-400 mb-4">Get the latest compliance updates</p>
-              <div className="flex gap-2">
-                <Input placeholder="Your email" className="bg-gray-800 border-gray-700 text-white" />
-                <Button className="bg-orange-500 hover:bg-orange-600">
-                  Subscribe
-                </Button>
-              </div>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 E-Library. All rights reserved.</p>
-          </div>
-        </div>
-      </footer> */}
     </div>
   )
 }
