@@ -11,13 +11,16 @@ import {
 const POPULAR_SEARCHES = [
   { label: "Act,Rules And Forms", href: "/acts", Icon: ScrollText },
   { label: "Gazette Notifications", href: "/gazette", Icon: Megaphone },
-  { label: "Holiday List", href: "/national-festival-holidays", Icon: CalendarDays },
+  { label: "Holiday List", href: "/holidays", Icon: CalendarDays },
   { label: "Labour welfare funds", href: "/welfare-fund", Icon: HandCoins },
   { label: "Minimum wages", href: "/minimum-wages", Icon: Banknote },
   { label: "Professional tax", href: "/professional-tax", Icon: Receipt },
-  { label: "Bonus Calculators", href: "/calculators/bonus", Icon: Calculator },
-  { label: "Gratuity Calculators", href: "/calculators/gratuity", Icon: FileText },
+  { label: "Calculators", href: "/calculators/bonus", Icon: Calculator },
+  // { label: "Bonus Calculators", href: "/calculators/bonus", Icon: Calculator },
+  // { label: "Gratuity Calculators", href: "/calculators/gratuity", Icon: FileText },
   { label: "Leaves Working Hours", href: "/leaves-working-hours", Icon:CalendarClock },
+  { label: "National Festival Holidays", href: "/national-festival-holidays", Icon:CalendarClock },
+  { label: "Applicability S&E Act", href: "/applicability-se-act", Icon:CalendarClock },
 ] as const
 
 export default function PopularSearch({
@@ -59,7 +62,7 @@ export default function PopularSearch({
           )
         })}
       </div>
-    </div>
+    </div>  
   )
 }
 

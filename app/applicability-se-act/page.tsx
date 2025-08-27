@@ -1,12 +1,18 @@
+
+
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Search, MapPin, Building2, Users, FileText } from "lucide-react"
-import Link from "next/link"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Search, MapPin, Building2, Users, FileText, Filter, Eye, Scale } from "lucide-react"
+import PopularSearch from "../PopularSearch/PopularSearch"
+
+
 
 const applicableStates = [
   { name: "Andaman and Nicobar Islands", slug: "andaman-nicobar", code: "AN" },
@@ -51,6 +57,17 @@ const nonApplicableStates = [
   { name: "Sikkim", slug: "sikkim", code: "SK" },
 ]
 
+const categories = [
+  "All Categories",
+  "Registration",
+  "Compliance",
+  "Working Hours",
+  "Licenses",
+  "Penalties"
+]
+
+const states = ["All States", "Maharashtra", "Karnataka", "Gujarat", "Tamil Nadu", "Delhi", "West Bengal"]
+
 export default function ApplicabilitySEActPage() {
   const [searchTerm, setSearchTerm] = useState("")
 
@@ -63,136 +80,338 @@ export default function ApplicabilitySEActPage() {
   )
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header Section */}
-      <div className="bg-gradient-to-br from-orange-50 to-white border-b border-orange-100">
-        <div className="container mx-auto px-4 py-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex items-center justify-center mb-6">
-              <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center shadow-lg">
-                <Building2 className="w-8 h-8 text-white" />
-              </div>
-            </div>
-            <h1 className="text-4xl font-bold text-black mb-4">Applicability of Shops & Establishments Act</h1>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              The Shops and Establishments Act regulates the working conditions of employees in commercial
-              establishments, shops, and other business premises. This page shows the applicability across different
-              states and union territories of India.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Search Section */}
+    <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <Input
-              type="text"
-              placeholder="Search states and union territories..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 py-3 text-lg border-orange-200 focus:border-orange-500 focus:ring-orange-500"
-            />
+        <div className="grid lg:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            {/* Page Header */}
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <h1 className="text-3xl font-bold text-slate-800 mb-2">Applicability of Shops & Establishments Act</h1>
+                  <p className="text-gray-600 text-lg">
+                    Complete guide to Shops & Establishments Act applicability, registration, and compliance across Indian states
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Badge variant="secondary" className="px-3 py-1">
+                    {filteredApplicableStates.length} Applicable States
+                  </Badge>
+                </div>
+              </div>
+
+              {/* Info Card */}
+              <Card className="bg-blue-50 border-blue-200">
+                <CardContent className="p-4">
+                  <div className="flex items-start gap-3">
+                    <Scale className="w-5 h-5 text-blue-600 mt-0.5" />
+                    <div>
+                      <h3 className="font-semibold text-blue-900 mb-1">What is Shops & Establishments Act?</h3>
+                      <p className="text-blue-800 text-sm leading-relaxed">
+                        The Shops and Establishments Act regulates the working conditions of employees in commercial
+                        establishments, shops, and other business premises. It covers aspects like working hours, holidays,
+                        leave entitlements, and other terms of employment across different states and union territories.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Horizontal Filters */}
+            <Card className="mb-8">
+              <CardContent className="py-2">
+                <div className="flex flex-col lg:flex-row gap-4 items-center">
+                  {/* Filters Button */}
+                  <Button variant="outline" className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200">
+                    <Filter className="w-4 h-4" />
+                    Filters
+                  </Button>
+                  
+                  {/* Search Input */}
+                  <div className="relative flex-1">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <Input 
+                      placeholder="Search states and union territories..." 
+                      className="pl-12 py-3 h-12 rounded-lg"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                  </div>
+
+                  {/* State Dropdown */}
+                  <Select>
+                    <SelectTrigger className="w-full lg:w-48 bg-gray-100 hover:bg-gray-200">
+                      <SelectValue placeholder="Select state" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {states.map((state) => (
+                        <SelectItem key={state} value={state.toLowerCase().replace(/ /g, '-')}>
+                          {state}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  {/* Category Dropdown */}
+                  <Select>
+                    <SelectTrigger className="w-full lg:w-48 bg-gray-100 hover:bg-gray-200">
+                      <SelectValue placeholder="Select category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.map((category) => (
+                        <SelectItem key={category} value={category.toLowerCase().replace(/ /g, '-')}>
+                          {category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  {/* Apply Button */}
+                  <Button className="bg-orange-500 hover:bg-orange-600 px-6">
+                    Apply
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Statistics Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+              <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-600">
+                        Applicable States
+                      </p>
+                      <p className="text-2xl font-bold text-gray-900">{filteredApplicableStates.length}</p>
+                    </div>
+                    <Users className="w-8 h-8 text-blue-600" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-600">
+                        Non-Applicable
+                      </p>
+                      <p className="text-2xl font-bold text-gray-900">{filteredNonApplicableStates.length}</p>
+                    </div>
+                    <FileText className="w-8 h-8 text-gray-600" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <p className="font-bold text-lg text-gray-900 group-hover:text-orange-600 transition-colors">
+                        Registration Guide
+                      </p>
+                      <p className="text-sm text-gray-600">Step-by-step process</p>
+                    </div>
+                    <Building2 className="shrink-0 w-6 h-6 md:w-7 md:h-7 text-orange-600" />
+                  </div>
+                  <Link href="/guides/se-act-registration">
+                    <Button size="sm" variant="outline" className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 bg-transparent">
+                      <Eye className="w-4 h-4 mr-2" />
+                      View Guide
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+              
+              <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <p className="font-bold text-lg text-gray-900 group-hover:text-orange-600 transition-colors">
+                        Compliance Check
+                      </p>
+                      <p className="text-sm text-gray-600">Verify requirements</p>
+                    </div>
+                    <Scale className="shrink-0 w-6 h-6 md:w-7 md:h-7 text-orange-600" />
+                  </div>
+                  <Link href="/tools/compliance-checker">
+                    <Button size="sm" variant="outline" className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 bg-transparent">
+                      <Eye className="w-4 h-4 mr-2" />
+                      Check Now
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* What is Shops & Establishments Act */}
+            <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+              <CardHeader>
+                <CardTitle className="group-hover:text-orange-600 transition-colors">What is Shops & Establishments Act?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4">
+                  The Shops and Establishments Act is state-specific legislation that regulates the working conditions, 
+                  rights, and welfare of workers employed in shops, commercial establishments, restaurants, hotels, 
+                  entertainment centers, and other establishments.
+                </p>
+                <p className="text-gray-700 mb-4">
+                  Each state has its own Shops and Establishments Act with specific provisions regarding working hours, 
+                  overtime, holidays, leave entitlements, employment conditions, and registration requirements for different 
+                  types of commercial establishments.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Scope and Coverage */}
+            <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+              <CardHeader>
+                <CardTitle className="group-hover:text-orange-600 transition-colors">Scope and Coverage</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 mb-4">
+                  The Act typically covers the following establishments:
+                </p>
+                <ul className="list-disc list-inside text-gray-700 mb-4 space-y-2">
+                  <li>Shops and commercial establishments</li>
+                  <li>Hotels, restaurants, and eating houses</li>
+                  <li>Entertainment and amusement centers</li>
+                  <li>Offices and business establishments</li>
+                  <li>Banks and financial institutions</li>
+                  <li>Educational and medical institutions</li>
+                </ul>
+                <p className="text-gray-700">
+                  The Act mandates registration for establishments employing a certain number of workers 
+                  and regulates their working conditions, wages, and welfare measures.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* State-wise Applicability */}
+            <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+              <CardHeader>
+                <CardTitle>State-wise Applicability</CardTitle>
+                <div className="text-sm text-gray-600">
+                  The Shops & Establishments Act is applicable in {filteredApplicableStates.length} states and union territories across India
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                  {/* Applicable States */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      Applicable States ({filteredApplicableStates.length})
+                    </h3>
+                    <div className="space-y-3">
+                      {filteredApplicableStates.map((state, index) => (
+                        <Link key={state.slug} href={`/applicability-se-act/${state.slug}`} className="block">
+                          <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-orange-50 hover:border-orange-200 transition-colors cursor-pointer group">
+                            <div>
+                              <span className="font-medium text-blue-600 group-hover:text-orange-600 transition-colors">
+                                {index + 1}. {state.name}
+                              </span>
+                              <div className="text-sm text-gray-700">
+                                State Code: {state.code}
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <MapPin className="w-4 h-4 text-gray-400 group-hover:text-orange-500 transition-colors" />
+                              <Badge variant="secondary" className="bg-green-100 text-green-800">
+                                Applicable
+                              </Badge>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Non-Applicable States */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      Non-Applicable States ({filteredNonApplicableStates.length})
+                    </h3>
+                    <div className="space-y-3">
+                      {filteredNonApplicableStates.map((state, index) => (
+                        <div
+                          key={state.slug}
+                          className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border"
+                        >
+                          <div>
+                            <span className="text-gray-700">
+                              {index + 1}. {state.name}
+                            </span>
+                            <div className="text-sm text-gray-500">
+                              State Code: {state.code}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4 text-gray-400" />
+                            <Badge variant="secondary" className="bg-gray-100 text-gray-600">
+                              Not Applicable
+                            </Badge>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Important Notes */}
+            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+              <CardHeader>
+                <CardTitle className="group-hover:text-orange-600 transition-colors">Important Notes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                    <p className="text-gray-700">
+                      Registration requirements and compliance procedures vary significantly across states. 
+                      Always refer to the specific state's legislation.
+                    </p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                    <p className="text-gray-700">
+                      Employers must display registration certificates prominently at the establishment premises.
+                    </p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                    <p className="text-gray-700">
+                      Non-compliance with registration and working condition requirements may result in 
+                      penalties and legal action.
+                    </p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                    <p className="text-gray-700">
+                      Regular renewal of registration certificates is mandatory in most states.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </div>
-      </div>
 
-      {/* Content Section */}
-      <div className="container mx-auto px-4 pb-12">
-        <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {/* Applicable States */}
-          <Card className="border-orange-200">
-            <CardHeader className="bg-gradient-to-r from-orange-50 to-orange-100 border-b border-orange-200">
-              <CardTitle className="flex items-center gap-3 text-black">
-                <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-                  <Users className="w-5 h-5 text-white" />
-                </div>
-                Applicable States
-                <Badge variant="secondary" className="bg-orange-100 text-orange-800">
-                  {filteredApplicableStates.length}
-                </Badge>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6">
-              <div className="grid gap-3">
-                {filteredApplicableStates.map((state, index) => (
-                  <Link key={state.slug} href={`/applicability-se-act/${state.slug}`} className="group block">
-                    <div className="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-orange-300 hover:bg-orange-50 transition-all duration-200">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
-                          <span className="text-sm font-semibold text-orange-700">{index + 1}</span>
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-black group-hover:text-orange-700 transition-colors">
-                            {state.name}
-                          </h3>
-                          <p className="text-sm text-gray-500">State Code: {state.code}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-gray-400 group-hover:text-orange-500 transition-colors" />
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-orange-600 hover:text-orange-700 hover:bg-orange-50"
-                        >
-                          View Details
-                        </Button>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          {/* Right Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24 space-y-6">
+              {/* Popular Search */}
+              <Card>
+                <CardContent className="p-6">
+                  <PopularSearch />
+                </CardContent>
+              </Card>
 
-          {/* Non-Applicable States */}
-          <Card className="border-gray-200">
-            <CardHeader className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
-              <CardTitle className="flex items-center gap-3 text-black">
-                <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">
-                  <FileText className="w-5 h-5 text-white" />
-                </div>
-                Non-Applicable States
-                <Badge variant="secondary" className="bg-gray-100 text-gray-800">
-                  {filteredNonApplicableStates.length}
-                </Badge>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6">
-              <div className="grid gap-3">
-                {filteredNonApplicableStates.map((state, index) => (
-                  <Link key={state.slug} href={`/applicability-se-act/${state.slug}`} className="group block">
-                    <div className="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-200">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-gray-200 transition-colors">
-                          <span className="text-sm font-semibold text-gray-700">{index + 1}</span>
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-black group-hover:text-gray-700 transition-colors">
-                            {state.name}
-                          </h3>
-                          <p className="text-sm text-gray-500">State Code: {state.code}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-gray-400 group-hover:text-gray-500 transition-colors" />
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-gray-600 hover:text-gray-700 hover:bg-gray-50"
-                        >
-                          View Details
-                        </Button>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </div>
     </div>
