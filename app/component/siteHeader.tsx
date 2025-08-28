@@ -44,31 +44,24 @@ const NAV = [
 export default function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [hideTopBar, setHideTopBar] = useState(false);  // Will be set to true once user scrolls past threshold
-
+  const [hideTopBar, setHideTopBar] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const threshold = 100;  // Set to hide after 100px scroll
+    const threshold = 100;
     let ticking = false;
 
     const updateScrollDirection = () => {
       const scrollY = window.scrollY;
-
-      // Set scrolled state for main header styling
       setScrolled(scrollY > 20);
 
-      // Hide/show top bar logic
       if (Math.abs(scrollY - lastScrollY.current) < 5) {
         ticking = false;
         return;
       }
 
-      if (scrollY > threshold) {
-        setHideTopBar(true);  // Hide once user scrolls beyond 100px
-      } else {
-        setHideTopBar(false);  // Show again if user scrolls back to top
-      }
+      if (scrollY > threshold) setHideTopBar(true);
+      else setHideTopBar(false);
 
       lastScrollY.current = scrollY > 0 ? scrollY : 0;
       ticking = false;
@@ -82,12 +75,9 @@ export default function SiteHeader() {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Dropdown and mobile menu states
   const [dropdownOpen, setDropdownOpen] = useState<number | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -120,34 +110,15 @@ export default function SiteHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-xl shadow-lg" : "bg-white/90 backdrop-blur-md"}`}
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur-xl shadow-lg" : "bg-white/90 backdrop-blur-md"
+      }`}
     >
-      {/* Top bar with orange theme - Full width */}
-      <div className={`bg-gradient-to-r from-orange-500 to-orange-600 text-white transition-all duration-300 ease-in-out overflow-hidden ${hideTopBar ? "h-0 py-0 opacity-0" : "h-10 py-2 opacity-100"}`}>
-        <div className="container mx-auto px-4">
-          <div className={`flex items-center justify-center text-sm transition-transform duration-300 ${hideTopBar ? "transform -translate-y-full" : "transform translate-y-0"}`}>
-            <div className="flex items-center gap-4">
-              <span className="bg-white/25 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2 shadow-sm border border-white/20">
-                <span className="w-2 h-2 bg-white rounded-full"></span>
-                New Feature: AI-Powered Compliance Assistant
-              </span>
-              <Link
-                href="/generate-ai-response"
-                className="text-white/90 hover:text-white transition-colors font-semibold text-xs underline underline-offset-2 decoration-white/60 hover:decoration-white px-2 py-1 rounded hover:bg-white/10"
-                aria-label="Click here for AI compliance assistant"
-              >
-                Click Here →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-4 border-b border-gray-200">
-        {/* Main header - This stays visible */}
-        <div className="h-16 lg:h-20 flex items-center justify-between">
-          {/* Brand */}
-          <Link href="/" className="flex items-center gap-3 group" aria-label="Go to homepage">
+        {/* ROW: logo left, everything else right */}
+        <div className="h-16 lg:h-20 flex items-center gap-4">
+          {/* Left: Logo (pinned) */}
+          <Link href="/" className="flex items-center gap-3 group shrink-0" aria-label="Go to homepage">
             <div className="relative">
               <Image
                 src="/logo.png"
@@ -161,217 +132,240 @@ export default function SiteHeader() {
             </div>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="max-lg:hidden flex items-center gap-1">
-            {NAV.map((item, index) => {
-              const active = pathname?.startsWith(item.href);
-              const hasDropdown = !!item.dropdown?.length;
+          {/* Right group: Desktop nav + CTAs + Mobile menu (pushed right) */}
+          <div className="ml-auto flex items-center gap-4">
+            {/* Desktop nav */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {NAV.map((item, index) => {
+                const active = pathname?.startsWith(item.href);
+                const hasDropdown = !!item.dropdown?.length;
 
-              return (
-                <div
-                  key={item.href}
-                  className="relative"
-                  onMouseEnter={() => hasDropdown && openMenu(index)}
-                  onMouseLeave={() => hasDropdown && scheduleClose()}
-                >
-                  <Link
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    aria-haspopup={hasDropdown ? "menu" : undefined}
-                    aria-expanded={hasDropdown ? dropdownOpen === index : undefined}
-                    className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 group ${active ? "text-orange-600" : "text-gray-700 hover:text-orange-600 hover:bg-orange-50/50"}`}
-                    onClick={(e) => {
-                      if (hasDropdown) {
-                        e.preventDefault();
-                        toggleMenu(index);
-                      }
-                    }}
-                    onKeyDown={(e) => {
-                      if (hasDropdown && (e.key === "Enter" || e.key === " ")) {
-                        e.preventDefault();
-                        toggleMenu(index);
-                      }
-                    }}
-                    onFocus={() => hasDropdown && openMenu(index)}
-                    onBlur={() => hasDropdown && scheduleClose()}
-                    aria-label={`Go to ${item.label}`}
+                return (
+                  <div
+                    key={item.href}
+                    className="relative"
+                    onMouseEnter={() => hasDropdown && openMenu(index)}
+                    onMouseLeave={() => hasDropdown && scheduleClose()}
                   >
-                    {item.label}
-                    {hasDropdown && (
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen === index ? "rotate-180" : ""}`}
-                      />
-                    )}
-                    {active && (
-                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-0.5 bg-orange-500 rounded-full" />
-                    )}
-                  </Link>
-
-                  {hasDropdown && dropdownOpen === index && (
-                    <div
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50"
-                      onMouseEnter={() => openMenu(index)}
-                      onMouseLeave={scheduleClose}
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      aria-haspopup={hasDropdown ? "menu" : undefined}
+                      aria-expanded={hasDropdown ? dropdownOpen === index : undefined}
+                      className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 group ${
+                        active ? "text-orange-600" : "text-gray-700 hover:text-orange-600 hover:bg-orange-50/50"
+                      }`}
+                      onClick={(e) => {
+                        if (hasDropdown) {
+                          e.preventDefault();
+                          toggleMenu(index);
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (hasDropdown && (e.key === "Enter" || e.key === " ")) {
+                          e.preventDefault();
+                          toggleMenu(index);
+                        }
+                      }}
+                      onFocus={() => hasDropdown && openMenu(index)}
+                      onBlur={() => hasDropdown && scheduleClose()}
+                      aria-label={`Go to ${item.label}`}
                     >
-                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 rotate-45" />
-                      {item.dropdown?.map((dropdownItem, idx) => {
-                        const dropdownActive = pathname === dropdownItem.href;
-                        return (
-                          <Link
-                            key={dropdownItem.href}
-                            href={dropdownItem.href}
-                            className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg text-sm font-medium transition-all duration-150 group ${dropdownActive ? "text-orange-600 bg-orange-50 shadow-sm" : "text-gray-700 hover:text-orange-600 hover:bg-orange-50/70"}`}
-                            onClick={() => setDropdownOpen(null)}
-                            aria-label={`Go to ${dropdownItem.label}`}
-                          >
-                            <div className={`w-2 h-2 rounded-full transition-colors ${dropdownActive ? "bg-orange-500" : "bg-gray-300 group-hover:bg-orange-400"}`} />
-                            <span className="flex-1">{dropdownItem.label}</span>
-                            <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </nav>
-
-          {/* Desktop CTAs */}
-          <div className="max-lg:hidden flex items-center gap-2">
-            <Button
-              variant="ghost"
-              className="rounded-xl hover:bg-orange-50 hover:text-orange-600 font-semibold px-6 transition-all"
-              aria-label="Sign in"
-            >
-              <User className="w-4 h-4 mr-2" />
-              Sign In
-            </Button>
-            <Button
-              className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl font-semibold px-6 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-200 group"
-              aria-label="Get started"
-            >
-              <span className="relative z-10">Get Started</span>
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5" />
-            </Button>
-          </div>
-
-          {/* Mobile Menu */}
-          <div className="lg:hidden flex items-center gap-2">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="rounded-xl hover:bg-orange-50 hover:text-orange-600"
-                  aria-label="Open menu"
-                >
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-80 bg-gradient-to-b from-white to-orange-50/30">
-                <SheetHeader className="border-b border-orange-100 pb-4">
-                  <Link href="/" className="flex items-center gap-2">
-                    <Image
-                      src="/logo.png"
-                      alt="Praans Consultech"
-                      width={150}
-                      height={40}
-                      priority
-                      className="h-10 w-auto"
-                    />
-                  </Link>
-                </SheetHeader>
-
-                <div className="mt-6 space-y-2">
-                  {NAV.map((item, index) => {
-                    const active = pathname?.startsWith(item.href);
-                    const hasDropdown = !!item.dropdown?.length;
-
-                    if (!hasDropdown) {
-                      return (
-                        <SheetClose asChild key={item.href}>
-                          <Link
-                            href={item.href}
-                            className={`flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition-all ${
-                              active ? "bg-orange-100 text-orange-700 shadow-sm" : "text-gray-700 hover:bg-orange-50"
-                            }`}
-                            aria-current={active ? "page" : undefined}
-                          >
-                            <div className={`w-2 h-2 rounded-full ${active ? "bg-orange-500" : "bg-gray-300"}`} />
-                            {item.label}
-                          </Link>
-                        </SheetClose>
-                      );
-                    }
-
-                    const isOpen = mobileOpen === index;
-                    return (
-                      <div key={item.href} className="rounded-xl overflow-hidden">
-                        <button
-                          type="button"
-                          onClick={() => toggleMobile(index)}
-                          aria-expanded={isOpen}
-                          aria-controls={`mobile-submenu-${index}`}
-                          className={`w-full flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-all ${
-                            active ? "bg-orange-100 text-orange-700" : "text-gray-700 hover:bg-orange-50"
+                      {item.label}
+                      {hasDropdown && (
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-200 ${
+                            dropdownOpen === index ? "rotate-180" : ""
                           }`}
-                          aria-label={`Toggle dropdown for ${item.label}`}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className={`w-2 h-2 rounded-full ${active ? "bg-orange-500" : "bg-gray-300"}`} />
-                            <span>{item.label}</span>
-                          </div>
-                          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
-                        </button>
+                        />
+                      )}
+                      {active && (
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-0.5 bg-orange-500 rounded-full" />
+                      )}
+                    </Link>
 
-                        {isOpen && (
-                          <div id={`mobile-submenu-${index}`} className="ml-6 mt-2 space-y-1">
-                            {item.dropdown?.map((dropdownItem) => {
-                              const dropdownActive = pathname === dropdownItem.href;
-                              return (
-                                <SheetClose asChild key={dropdownItem.href}>
-                                  <Link
-                                    href={dropdownItem.href}
-                                    className={`flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium transition-all ${
-                                      dropdownActive ? "bg-orange-100 text-orange-700" : "text-gray-600 hover:bg-orange-50 hover:text-orange-600"
-                                    }`}
-                                    aria-label={`Go to ${dropdownItem.label}`}
-                                  >
-                                    <div className={`w-1.5 h-1.5 rounded-full ${dropdownActive ? "bg-orange-500" : "bg-gray-300"}`} />
-                                    {dropdownItem.label}
-                                  </Link>
-                                </SheetClose>
-                              );
-                            })}
-                          </div>
-                        )}
+                    {hasDropdown && dropdownOpen === index && (
+                      <div
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50"
+                        onMouseEnter={() => openMenu(index)}
+                        onMouseLeave={scheduleClose}
+                      >
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 rotate-45" />
+                        {item.dropdown?.map((dropdownItem) => {
+                          const dropdownActive = pathname === dropdownItem.href;
+                          return (
+                            <Link
+                              key={dropdownItem.href}
+                              href={dropdownItem.href}
+                              className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg text-sm font-medium transition-all duration-150 group ${
+                                dropdownActive
+                                  ? "text-orange-600 bg-orange-50 shadow-sm"
+                                  : "text-gray-700 hover:text-orange-600 hover:bg-orange-50/70"
+                              }`}
+                              onClick={() => setDropdownOpen(null)}
+                              aria-label={`Go to ${dropdownItem.label}`}
+                            >
+                              <div
+                                className={`w-2 h-2 rounded-full transition-colors ${
+                                  dropdownActive ? "bg-orange-500" : "bg-gray-300 group-hover:bg-orange-400"
+                                }`}
+                              />
+                              <span className="flex-1">{dropdownItem.label}</span>
+                              <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                            </Link>
+                          );
+                        })}
                       </div>
-                    );
-                  })}
-                </div>
+                    )}
+                  </div>
+                );
+              })}
+            </nav>
 
-                <div className="mt-8 space-y-3 pt-6 border-t border-orange-100">
+            {/* Desktop CTAs */}
+            <div className="hidden lg:flex items-center gap-2">
+              <Button
+                variant="ghost"
+                className="rounded-xl hover:bg-orange-50 hover:text-orange-600 font-semibold px-6 transition-all"
+                aria-label="Sign in"
+              >
+                <User className="w-4 h-4 mr-2" />
+                Sign In
+              </Button>
+              <Button
+                className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl font-semibold px-6 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-200 group"
+                aria-label="Get started"
+              >
+                <span className="relative z-10">Get Started</span>
+                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5" />
+              </Button>
+            </div>
+
+            {/* Mobile Menu */}
+            <div className="lg:hidden flex items-center gap-2">
+              <Sheet>
+                <SheetTrigger asChild>
                   <Button
                     variant="ghost"
-                    size="lg"
-                    className="w-full justify-center rounded-xl hover:bg-orange-50 hover:text-orange-600 font-semibold"
-                    aria-label="Sign in"
+                    size="icon"
+                    className="rounded-xl hover:bg-orange-50 hover:text-orange-600"
+                    aria-label="Open menu"
                   >
-                    <User className="w-4 h-4 mr-2" />
-                    Sign In
+                    <Menu className="h-5 w-5" />
                   </Button>
-                  <Button
-                    size="lg"
-                    className="w-full justify-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl font-semibold shadow-lg"
-                    aria-label="Get started"
-                  >
-                    Get Started
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </div>
-              </SheetContent>
-            </Sheet>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-80 bg-gradient-to-b from-white to-orange-50/30">
+                  <SheetHeader className="border-b border-orange-100 pb-4">
+                    <Link href="/" className="flex items-center gap-2">
+                      <Image
+                        src="/logo.png"
+                        alt="Praans Consultech"
+                        width={150}
+                        height={40}
+                        priority
+                        className="h-10 w-auto"
+                      />
+                    </Link>
+                  </SheetHeader>
+
+                  <div className="mt-6 space-y-2">
+                    {NAV.map((item, index) => {
+                      const active = pathname?.startsWith(item.href);
+                      const hasDropdown = !!item.dropdown?.length;
+
+                      if (!hasDropdown) {
+                        return (
+                          <SheetClose asChild key={item.href}>
+                            <Link
+                              href={item.href}
+                              className={`flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition-all ${
+                                active ? "bg-orange-100 text-orange-700 shadow-sm" : "text-gray-700 hover:bg-orange-50"
+                              }`}
+                              aria-current={active ? "page" : undefined}
+                            >
+                              <div className={`w-2 h-2 rounded-full ${active ? "bg-orange-500" : "bg-gray-300"}`} />
+                              {item.label}
+                            </Link>
+                          </SheetClose>
+                        );
+                      }
+
+                      const isOpen = mobileOpen === index;
+                      return (
+                        <div key={item.href} className="rounded-xl overflow-hidden">
+                          <button
+                            type="button"
+                            onClick={() => toggleMobile(index)}
+                            aria-expanded={isOpen}
+                            aria-controls={`mobile-submenu-${index}`}
+                            className={`w-full flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-all ${
+                              active ? "bg-orange-100 text-orange-700" : "text-gray-700 hover:bg-orange-50"
+                            }`}
+                            aria-label={`Toggle dropdown for ${item.label}`}
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className={`w-2 h-2 rounded-full ${active ? "bg-orange-500" : "bg-gray-300"}`} />
+                              <span>{item.label}</span>
+                            </div>
+                            <ChevronDown
+                              className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                            />
+                          </button>
+
+                          {isOpen && (
+                            <div id={`mobile-submenu-${index}`} className="ml-6 mt-2 space-y-1">
+                              {item.dropdown?.map((dropdownItem) => {
+                                const dropdownActive = pathname === dropdownItem.href;
+                                return (
+                                  <SheetClose asChild key={dropdownItem.href}>
+                                    <Link
+                                      href={dropdownItem.href}
+                                      className={`flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium transition-all ${
+                                        dropdownActive
+                                          ? "bg-orange-100 text-orange-700"
+                                          : "text-gray-600 hover:bg-orange-50 hover:text-orange-600"
+                                      }`}
+                                      aria-label={`Go to ${dropdownItem.label}`}
+                                    >
+                                      <div
+                                        className={`w-1.5 h-1.5 rounded-full ${
+                                          dropdownActive ? "bg-orange-500" : "bg-gray-300"
+                                        }`}
+                                      />
+                                      {dropdownItem.label}
+                                    </Link>
+                                  </SheetClose>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-8 space-y-3 pt-6 border-t border-orange-100">
+                    <Button
+                      variant="ghost"
+                      size="lg"
+                      className="w-full justify-center rounded-xl hover:bg-orange-50 hover:text-orange-600 font-semibold"
+                      aria-label="Sign in"
+                    >
+                      <User className="w-4 h-4 mr-2" />
+                      Sign In
+                    </Button>
+                    <Button
+                      size="lg"
+                      className="w-full justify-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl font-semibold shadow-lg"
+                      aria-label="Get started"
+                    >
+                      Get Started
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </div>

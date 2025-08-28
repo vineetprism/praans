@@ -1140,53 +1140,72 @@
 
 
 
-
 "use client"
 
 import { useState, useRef, useEffect } from "react"
 
+// ---------- Types ----------
+type Role = "user" | "assistant"
+
+interface Message {
+  id: string
+  content: string
+  role: Role
+  // Store as ISO string to avoid hydration mismatches
+  timestamp: string
+}
+
+interface Chat {
+  id: string
+  title: string
+  messages: Message[]
+  createdAt: string
+  isActive: boolean
+}
+
+// ---------- Component ----------
 export default function AIAssistantPage() {
-  const [chatHistory, setChatHistory] = useState([
+  // Initial state with fixed timestamps (strings)
+  const [chatHistory, setChatHistory] = useState<Chat[]>([
     {
       id: "1",
       title: "Current Chat",
       messages: [
         {
           id: "1",
-          content: "Hello! I'm your Labour Law Compliance AI Assistant. How can I help you today?",
+          content:
+            "Hello! I'm your Labour Law Compliance AI Assistant. How can I help you today?",
           role: "assistant",
-          timestamp: new Date("2025-01-01T10:00:00"), // Fixed timestamp to avoid hydration mismatch
+          timestamp: "2025-01-01T10:00:00.000Z",
         },
       ],
-      createdAt: new Date("2025-01-01T10:00:00"), // Fixed timestamp
-      isActive: true
-    }
+      createdAt: "2025-01-01T10:00:00.000Z",
+      isActive: true,
+    },
   ])
-  
+
   const [currentChatId, setCurrentChatId] = useState("1")
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(true)
-  const messagesEndRef = useRef(null)
-  const messagesContainerRef = useRef(null)
 
-  const currentChat = chatHistory.find(chat => chat.id === currentChatId)
-  const messages = currentChat?.messages || []
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
 
-  // Scroll management
+  const currentChat = chatHistory.find((chat) => chat.id === currentChatId)
+  const messages = currentChat?.messages ?? []
+
+  // ---------- Scroll management ----------
   const scrollToBottom = () => {
-    if (messagesEndRef.current && messagesContainerRef.current) {
-      const container = messagesContainerRef.current
-      const scrollHeight = container.scrollHeight
-      const clientHeight = container.clientHeight
-      const isNearBottom = scrollHeight - container.scrollTop - clientHeight < 100
-      
-      if (isNearBottom || messages.length === 1) {
-        messagesEndRef.current.scrollIntoView({ 
-          behavior: "smooth",
-          block: "nearest"
-        })
-      }
+    const end = messagesEndRef.current
+    const container = messagesContainerRef.current
+    if (!end || !container) return
+
+    const isNearBottom =
+      container.scrollHeight - container.scrollTop - container.clientHeight < 100
+
+    if (isNearBottom || messages.length === 1) {
+      end.scrollIntoView({ behavior: "smooth", block: "nearest" })
     }
   }
 
@@ -1195,103 +1214,143 @@ export default function AIAssistantPage() {
     return () => clearTimeout(timer)
   }, [messages])
 
-  const generateResponse = (userInput) => {
+  // ---------- AI Response Logic (stubbed) ----------
+  const generateResponse = (userInput: string): string => {
     const lower = userInput.toLowerCase()
-    
-    if (lower.includes('wage') || lower.includes('salary')) {
-      return "Current minimum wage rates for 2025:\n\n• Maharashtra: ₹395 per day for unskilled\n• Karnataka: ₹458 per day for skilled\n• Delhi: ₹692 per day for skilled\n\nWould you like rates for other states?"
+
+    if (lower.includes("wage") || lower.includes("salary")) {
+      return (
+        "Current minimum wage rates for 2025:\n\n" +
+        "• Maharashtra: ₹395 per day for unskilled\n" +
+        "• Karnataka: ₹458 per day for skilled\n" +
+        "• Delhi: ₹692 per day for skilled\n\n" +
+        "Would you like rates for other states?"
+      )
     }
-    
-    if (lower.includes('gratuity')) {
-      return "Gratuity calculation formula:\n\n(Last salary × 15 × Years of service) ÷ 26\n\nEligibility: 5+ years service\nMaximum: ₹20 lakhs\n\nNeed help with calculation?"
+
+    if (lower.includes("gratuity")) {
+      return (
+        "Gratuity calculation formula:\n\n" +
+        "(Last salary × 15 × Years of service) ÷ 26\n\n" +
+        "Eligibility: 5+ years service\n" +
+        "Maximum: ₹20 lakhs\n\n" +
+        "Need help with calculation?"
+      )
     }
-    
-    if (lower.includes('pf') || lower.includes('provident')) {
-      return "PF contribution rates 2025:\n\n• Employee: 12% of basic\n• Employer: 12% of basic\n• Maximum ceiling: ₹15,000\n\nWant specific calculation help?"
+
+    if (lower.includes("pf") || lower.includes("provident")) {
+      return (
+        "PF contribution rates 2025:\n\n" +
+        "• Employee: 12% of basic\n" +
+        "• Employer: 12% of basic\n" +
+        "• Maximum ceiling: ₹15,000\n\n" +
+        "Want specific calculation help?"
+      )
     }
-    
-    if (lower.includes('esi')) {
-      return "ESI registration requirements:\n\n• Establishments with 10+ employees\n• Salary limit: ₹25,000 per month\n• Documents: Form 01, PAN, Address proof\n• Online at esic.nic.in\n\nNeed registration steps?"
+
+    if (lower.includes("esi")) {
+      return (
+        "ESI registration requirements:\n\n" +
+        "• Establishments with 10+ employees\n" +
+        "• Salary limit: ₹25,000 per month\n" +
+        "• Documents: Form 01, PAN, Address proof\n" +
+        "• Online at esic.nic.in\n\n" +
+        "Need registration steps?"
+      )
     }
-    
-    return `I can help with labour law queries about "${userInput}":\n\n• Minimum wage rates\n• Gratuity calculations\n• PF/ESI compliance\n• Leave policies\n• Documentation requirements\n\nWhat specific information do you need?`
+
+    return (
+      `I can help with labour law queries about "${userInput}":\n\n` +
+      "• Minimum wage rates\n" +
+      "• Gratuity calculations\n" +
+      "• PF/ESI compliance\n" +
+      "• Leave policies\n" +
+      "• Documentation requirements\n\n" +
+      "What specific information do you need?"
+    )
   }
 
+  // ---------- Actions ----------
   const handleSend = () => {
     if (!input.trim() || isLoading) return
 
-    const userMessage = {
+    const userMessage: Message = {
       id: Date.now().toString(),
       content: input.trim(),
       role: "user",
-      timestamp: new Date(),
+      timestamp: new Date().toISOString(),
     }
 
-    // Update current chat with new message
-    setChatHistory(prev => prev.map(chat => 
-      chat.id === currentChatId 
-        ? { ...chat, messages: [...chat.messages, userMessage] }
-        : chat
-    ))
+    setChatHistory((prev) =>
+      prev.map((chat) =>
+        chat.id === currentChatId
+          ? { ...chat, messages: [...chat.messages, userMessage] }
+          : chat
+      )
+    )
 
     const currentInput = input.trim()
     setInput("")
     setIsLoading(true)
-
     setTimeout(scrollToBottom, 50)
 
     setTimeout(() => {
-      const aiMessage = {
+      const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
         content: generateResponse(currentInput),
         role: "assistant",
-        timestamp: new Date(),
+        timestamp: new Date().toISOString(),
       }
-      
-      setChatHistory(prev => prev.map(chat => 
-        chat.id === currentChatId 
-          ? { ...chat, messages: [...chat.messages, aiMessage] }
-          : chat
-      ))
-      
+
+      setChatHistory((prev) =>
+        prev.map((chat) =>
+          chat.id === currentChatId
+            ? { ...chat, messages: [...chat.messages, aiMessage] }
+            : chat
+        )
+      )
+
       setIsLoading(false)
     }, 1200 + Math.random() * 800)
   }
 
   const createNewChat = () => {
     const newChatId = Date.now().toString()
-    const newChat = {
+    const newChat: Chat = {
       id: newChatId,
       title: "New Chat",
       messages: [
         {
           id: "1",
-          content: "Hello! I'm your Labour Law Compliance AI Assistant. How can I help you today?",
+          content:
+            "Hello! I'm your Labour Law Compliance AI Assistant. How can I help you today?",
           role: "assistant",
-          timestamp: new Date(),
+          timestamp: new Date().toISOString(),
         },
       ],
-      createdAt: new Date(),
-      isActive: false
+      createdAt: new Date().toISOString(),
+      isActive: false,
     }
 
-    setChatHistory(prev => [newChat, ...prev.map(chat => ({ ...chat, isActive: false }))])
+    setChatHistory((prev) => [
+      newChat,
+      ...prev.map((chat) => ({ ...chat, isActive: false })),
+    ])
     setCurrentChatId(newChatId)
   }
 
-  const switchChat = (chatId) => {
+  const switchChat = (chatId: string) => {
     setCurrentChatId(chatId)
-    setChatHistory(prev => prev.map(chat => ({
-      ...chat,
-      isActive: chat.id === chatId
-    })))
+    setChatHistory((prev) =>
+      prev.map((chat) => ({ ...chat, isActive: chat.id === chatId }))
+    )
   }
 
-  const deleteChat = (chatId) => {
+  const deleteChat = (chatId: string) => {
     if (chatHistory.length === 1) return // Don't delete last chat
-    
-    setChatHistory(prev => {
-      const filtered = prev.filter(chat => chat.id !== chatId)
+
+    setChatHistory((prev) => {
+      const filtered = prev.filter((chat) => chat.id !== chatId)
       if (chatId === currentChatId && filtered.length > 0) {
         setCurrentChatId(filtered[0].id)
         filtered[0].isActive = true
@@ -1306,15 +1365,18 @@ export default function AIAssistantPage() {
     { icon: "🏦", text: "PF Contribution", query: "PF contribution rates for 2025?" },
     { icon: "🏥", text: "ESI Registration", query: "ESI registration process and documents?" },
     { icon: "📋", text: "Leave Policies", query: "Leave entitlement under Shops Act?" },
-    { icon: "💳", text: "Professional Tax", query: "Professional Tax rates in Karnataka?" }
+    { icon: "💳", text: "Professional Tax", query: "Professional Tax rates in Karnataka?" },
   ]
 
+  // ---------- UI ----------
   return (
-    <div className="w-full bg-gray-100 flex overflow-hidden" style={{ height: 'calc(100vh - 140px)' }}>
-      
+    <div className="w-full bg-gray-100 flex overflow-hidden" style={{ height: "calc(100vh - 140px)" }}>
       {/* Sidebar */}
-      <div className={`bg-white border-r border-gray-200 transition-all duration-300 ${sidebarOpen ? 'w-80' : 'w-0'} overflow-hidden flex flex-col`}>
-        
+      <div
+        className={`bg-white border-r border-gray-200 transition-all duration-300 ${
+          sidebarOpen ? "w-80" : "w-0"
+        } overflow-hidden flex flex-col`}
+      >
         {/* Sidebar Header */}
         <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-orange-50 to-orange-100">
           <div className="flex items-center justify-between mb-4">
@@ -1328,11 +1390,11 @@ export default function AIAssistantPage() {
               </div>
             </div>
           </div>
-          
+
           {/* New Chat Button */}
           <button
             onClick={createNewChat}
-            className="w-full flex items-center justify-center gap-2 p-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl transition-all duration-200 shadow-md hover:shadow-lg font-medium"
+            className="w-full flex items-center justify-center gap-2 p-1 bg-orange-500 hover:bg-orange-600 text-white rounded-xl transition-all duration-200 shadow-md hover:shadow-lg font-medium"
           >
             <span className="text-lg">➕</span>
             <span>New Chat</span>
@@ -1341,45 +1403,57 @@ export default function AIAssistantPage() {
 
         {/* Chat History */}
         <div className="flex-1 overflow-y-auto p-3">
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-2 mb-3">Recent Chats</h3>
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-2 mb-3">
+            Recent Chats
+          </h3>
           <div className="space-y-2">
-            {chatHistory.map((chat) => (
-              <div
-                key={chat.id}
-                className={`group flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-200 ${
-                  chat.id === currentChatId 
-                    ? 'bg-orange-100 border border-orange-200 shadow-sm' 
-                    : 'hover:bg-gray-50 hover:shadow-sm'
-                }`}
-                onClick={() => switchChat(chat.id)}
-              >
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">
-                    {chat.messages[1]?.content.slice(0, 35) || chat.title}...
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">
-                    {chat.createdAt.toLocaleDateString()}
-                  </p>
+            {chatHistory.map((chat) => {
+              const preview =
+                chat.messages[1]?.content?.slice(0, 35) ||
+                chat.messages[0]?.content?.slice(0, 35) ||
+                chat.title
+
+              return (
+                <div
+                  key={chat.id}
+                  className={`group flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-200 ${
+                    chat.id === currentChatId
+                      ? "bg-orange-100 border border-orange-200 shadow-sm"
+                      : "hover:bg-gray-50 hover:shadow-sm"
+                  }`}
+                  onClick={() => switchChat(chat.id)}
+                >
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-gray-900 truncate">
+                      {preview}...
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {new Date(chat.createdAt).toLocaleDateString()}
+                    </p>
+                  </div>
+                  {chatHistory.length > 1 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        deleteChat(chat.id)
+                      }}
+                      className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-100 text-red-500 rounded-lg transition-all"
+                      title="Delete chat"
+                    >
+                      🗑️
+                    </button>
+                  )}
                 </div>
-                {chatHistory.length > 1 && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      deleteChat(chat.id)
-                    }}
-                    className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-100 text-red-500 rounded-lg transition-all"
-                  >
-                    🗑️
-                  </button>
-                )}
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 
         {/* Quick Actions */}
         <div className="p-4 border-t border-gray-200 bg-gray-50">
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Quick Actions</h3>
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
+            Quick Actions
+          </h3>
           <div className="grid grid-cols-2 gap-2">
             {quickActions.slice(0, 4).map((action, index) => (
               <button
@@ -1388,7 +1462,9 @@ export default function AIAssistantPage() {
                 className="flex flex-col items-center gap-1 p-3 bg-white hover:bg-orange-50 rounded-xl transition-all duration-200 text-center shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-200"
               >
                 <span className="text-xl mb-1">{action.icon}</span>
-                <span className="text-xs text-gray-700 leading-tight font-medium">{action.text}</span>
+                <span className="text-xs text-gray-700 leading-tight font-medium">
+                  {action.text}
+                </span>
               </button>
             ))}
           </div>
@@ -1397,44 +1473,42 @@ export default function AIAssistantPage() {
 
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col">
-        
         {/* Top Header */}
         <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center gap-4 shadow-sm">
           <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
+            onClick={() => setSidebarOpen((s) => !s)}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            aria-label={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
           >
-            <svg 
-              width="20" 
-              height="20" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
               strokeLinejoin="round"
               className="text-gray-600"
             >
               {sidebarOpen ? (
-                // Panel Left Close (hide sidebar)
                 <>
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="9" y1="3" x2="9" y2="21"/>
-                  <line x1="14" y1="8" x2="18" y2="12"/>
-                  <line x1="18" y1="12" x2="14" y2="16"/>
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <line x1="9" y1="3" x2="9" y2="21" />
+                  <line x1="14" y1="8" x2="18" y2="12" />
+                  <line x1="18" y1="12" x2="14" y2="16" />
                 </>
               ) : (
-                // Panel Left Open (show sidebar)
                 <>
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="9" y1="3" x2="9" y2="21"/>
-                  <line x1="6" y1="8" x2="10" y2="12"/>
-                  <line x1="10" y1="12" x2="6" y2="16"/>
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <line x1="9" y1="3" x2="9" y2="21" />
+                  <line x1="6" y1="8" x2="10" y2="12" />
+                  <line x1="10" y1="12" x2="6" y2="16" />
                 </>
               )}
             </svg>
           </button>
-          
+
           <div className="flex-1">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-md">
@@ -1449,14 +1523,16 @@ export default function AIAssistantPage() {
         </div>
 
         {/* Messages Area */}
-        <div 
+        <div
           ref={messagesContainerRef}
           className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50"
         >
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}
+              className={`flex gap-3 ${
+                message.role === "user" ? "justify-end" : "justify-start"
+              }`}
             >
               {message.role === "assistant" && (
                 <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center flex-shrink-0">
@@ -1466,7 +1542,7 @@ export default function AIAssistantPage() {
 
               <div className={`max-w-[70%] ${message.role === "user" ? "order-first" : ""}`}>
                 <div
-                  className={`p-4 rounded-2xl shadow-sm ${
+                  className={`p-2 rounded-2xl shadow-sm ${
                     message.role === "user"
                       ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white ml-auto"
                       : "bg-white text-gray-900 border border-gray-100"
@@ -1476,16 +1552,27 @@ export default function AIAssistantPage() {
                     {message.content}
                   </div>
                 </div>
-                
-                <div className={`flex items-center gap-2 mt-2 text-xs text-gray-500 ${message.role === "user" ? "justify-end" : "justify-start"}`}>
+
+                <div
+                  className={`flex items-center gap-2 mt-2 text-xs text-gray-500 ${
+                    message.role === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
                   <span>
-                    {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                    {new Date(message.timestamp).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                   </span>
                   {message.role === "assistant" && (
                     <div className="flex items-center gap-1">
-                      <button 
+                      <button
                         className="p-1 hover:bg-gray-200 rounded transition-colors"
-                        onClick={() => navigator.clipboard?.writeText(message.content)}
+                        onClick={() => {
+                          if (navigator.clipboard?.writeText) {
+                            navigator.clipboard.writeText(message.content).catch(() => {})
+                          }
+                        }}
                         title="Copy message"
                       >
                         📋
@@ -1516,14 +1603,20 @@ export default function AIAssistantPage() {
               </div>
               <div className="bg-white border border-gray-100 p-4 rounded-2xl shadow-sm">
                 <div className="flex items-center gap-1">
-                  <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
-                  <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                  <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" />
+                  <div
+                    className="w-2 h-2 bg-orange-400 rounded-full animate-bounce"
+                    style={{ animationDelay: "0.1s" }}
+                  />
+                  <div
+                    className="w-2 h-2 bg-orange-400 rounded-full animate-bounce"
+                    style={{ animationDelay: "0.2s" }}
+                  />
                 </div>
               </div>
             </div>
           )}
-          
+
           <div ref={messagesEndRef} className="h-1" />
         </div>
 
@@ -1534,7 +1627,7 @@ export default function AIAssistantPage() {
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={(e) => {
+                onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault()
                     handleSend()
@@ -1562,15 +1655,3 @@ export default function AIAssistantPage() {
     </div>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
