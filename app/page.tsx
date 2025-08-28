@@ -207,116 +207,78 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <section className="relative min-h-screen flex items-center justify-center px-4 md:px-6 bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden">
-        <div className="absolute inset-0 bg-orange-100/10" />
-        <div className="absolute inset-0 bg-gradient-to-bl from-orange-100/40 to-blue-100/20" />
-        <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 bg-orange-200/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48 bg-blue-200/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 md:w-96 md:h-96 bg-gradient-to-r from-orange-100/20 to-blue-100/20 rounded-full blur-3xl" />
+  <section className="relative min-h-[85vh] flex items-start justify-center pt-6 sm:pt-8 lg:pt-10 px-3 sm:px-5 lg:px-6 bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden">
+  {/* Background Elements */}
+  <div className="absolute inset-0 bg-orange-100/10" />
+  <div className="absolute inset-0 bg-gradient-to-bl from-orange-100/40 to-blue-100/20" />
+  <div className="absolute top-8 sm:top-12 left-5 sm:left-10 w-14 h-14 sm:w-20 sm:h-20 lg:w-28 lg:h-28 bg-orange-200/30 rounded-full blur-2xl animate-pulse" />
+  <div className="absolute bottom-8 sm:bottom-12 right-5 sm:right-10 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-blue-200/30 rounded-full blur-2xl animate-pulse" />
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-gradient-to-r from-orange-100/20 to-blue-100/20 rounded-full blur-2xl" />
 
-        {/* Content Container */}
-        <div className="max-w-7xl mx-auto text-center space-y-4 md:space-y-6 relative z-10 mb-30">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-slate-900 tracking-tight leading-tight sm:leading-[1.1] md:leading-[1.0] lg:leading-[0.95] xl:leading-[0.9] animate-fade-up">
-            Simplifying{" "}
-            <span className="relative inline-block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
-                Labour
-              </span>
-              <div className="absolute -bottom-1 sm:-bottom-2 md:-bottom-3 left-0 right-0 h-1 md:h-4 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
-            </span>{" "}
-            <br className="block sm:hidden" />
-            <span className="relative inline-block sm:mt-11">
-              <span className=" sm:mt-11 text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
-                Law
-              </span>
-              <div className="absolute -bottom-1 sm:-bottom-2 md:-bottom-3 left-0 right-0 h-1 md:h-4 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
-            </span>
-            <br />
-            <div className="text-slate-800 mt-4 md:mt-6 lg:mt-9">
-              Compliance
-            </div>
-            {/* <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-600 font-bold">
-              for Your Business
-            </span> */}
-            {/* <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text">
-  for Your Business
-</span> */}
-            {/* <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold bg-yellow-200 text-slate-800 px-2 rounded-md">
-  for Your Business
-</span> */}
-            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium italic text-blue-600">
-              for Your Business
-            </span>
-            {/* <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-indigo-600 animate-pulse">
-  for Your Business
-</span> */}
-            {/* <div className="typing-animation inline-block">
-                <h4 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-green-400">
-                    for Your Business
-                </h4>
-            </div> */}
-          </h1>
+  {/* Content Container */}
+  <div className="w-full max-w-5xl mx-auto text-center space-y-2 sm:space-y-3 relative z-10">
+    {/* Heading */}
+    <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight animate-fade-up">
+      Simplifying{" "}
+      <span className="relative inline-block">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
+          Labour
+        </span>
+        <div className="absolute -bottom-0.5 sm:-bottom-1 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
+      </span>
+      <br className="block sm:hidden" />
+      <span className="relative inline-block">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
+          Law
+        </span>
+        <div className="absolute -bottom-0.5 sm:-bottom-1 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
+      </span>
+      <br />
+      <div className="text-slate-800 mt-1">Compliance</div>
+      <span className="text-sm sm:text-base md:text-xl lg:text-2xl font-medium italic text-blue-600">
+        for Your Business
+      </span>
+    </h1>
 
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-4xl mx-auto animate-fade-up delay-100 leading-relaxed px-4">
-            All-in-One Platform: Software, Legal Advisory, Registrations & More
-            – PAN India
-          </p>
+    {/* Subtitle */}
+    <p className="text-xs sm:text-sm md:text-base text-gray-700 max-w-xl mx-auto animate-fade-up delay-100 leading-snug px-3">
+      All-in-One Platform: Software, Legal Advisory, Registrations & More – PAN India
+    </p>
 
-          {/* AI ChatBot Badge */}
-          <div className="pt-6 md:pt-8 mb-20">
-            <div
-              className="
-                relative inline-flex items-center gap-3 md:gap-4
-                h-14 md:h-20
-                px-8 md:px-7
-                rounded-full border-2 border-orange-300
-                bg-gradient-to-r from-orange-100 via-orange-50 to-red-100
-                text-orange-400
-              "
-            >
-              <Bot className="shrink-0 w-10 h-10 md:w-7 md:h-10 text-orange-400" />
-              <span
-                className="
-                  text-base md:text-2xl
-                  font-extrabold tracking-wide
-                  leading-none
-                  bg-gradient-to-r from-orange-700 via-red-600 to-orange-800
-                  bg-clip-text text-transparent
-                "
-              >
-                India's First Labour Law Compliance AI ChatBot
-              </span>
-              <Crown className="shrink-0 w-10 h-10 md:w-6 md:h-10 text-yellow-600" />
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center max-w-2xl mx-auto ">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto hover:cursor-pointer"
-              aria-label="Get a Free Demo Of Software"
-            >
-              Get a Free Demo Of Software
-              <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
-            </Button>
-            <Button
-              size="lg"
-              className="hover:cursor-pointer 
-            text-white 
-            bg-blue-950 
-            hover:bg-blue-900 
-            text-lg md:text-xl 
-            px-6 md:px-10 
-            py-4 md:py-6  
-            rounded-2xl 
-            font-bold 
-            w-full sm:w-auto"
-              aria-label="Talk to Our Compliance Experts"
-            >
-              Talk to Our Compliance Experts
-            </Button>
-          </div>
-        </div>
-      </section>
+    {/* AI ChatBot Badge */}
+    <div className="pt-2 sm:pt-3">
+      <div
+        className="relative inline-flex items-center gap-2 h-8 sm:h-9 md:h-10 px-3 sm:px-4 rounded-full border border-orange-300 bg-gradient-to-r from-orange-100 via-orange-50 to-red-100 text-orange-400"
+      >
+        <Bot className="shrink-0 w-4 h-4 sm:w-5 sm:h-5 text-orange-400" />
+        <span
+          className="text-[10px] sm:text-xs md:text-sm font-extrabold tracking-wide bg-gradient-to-r from-orange-700 via-red-600 to-orange-800 bg-clip-text text-transparent"
+        >
+          India&apos;s First Labour Law Compliance AI ChatBot
+        </span>
+        <Crown className="shrink-0 w-4 h-4 sm:w-5 sm:h-5 text-yellow-600" />
+      </div>
+    </div>
+
+    {/* CTA Buttons */}
+    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center max-w-md mx-auto pt-2">
+      <Button
+        size="sm"
+        className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 shadow-md hover:shadow-orange-500/25 rounded-lg font-bold w-full sm:w-auto"
+      >
+        Get a Free Demo Of Software
+        <ArrowRight className="ml-1 w-4 h-4" />
+      </Button>
+      <Button
+        size="sm"
+        className="text-white bg-blue-950 hover:bg-blue-900 text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg font-bold w-full sm:w-auto"
+      >
+        Talk to Our Compliance Experts
+      </Button>
+    </div>
+  </div>
+</section>
+
 
       {/* News & Updates Section */}
       <NewsCarouselSection />
