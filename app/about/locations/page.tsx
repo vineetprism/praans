@@ -1363,16 +1363,16 @@ export default function Locations() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-orange-50">
       {/* Header */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-gray-900 via-black to-gray-900">
+      <div className="relative overflow-hidden bg-gray-50">
         <div className="relative z-10 py-14">
-          <div className="container mx-auto px-6 text-center text-white">
-            <h1 className="text-5xl md:text-6xl font-black mb-4">
+          <div className="container mx-auto px-6 text-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-4">
               Pan-India{" "}
-              <span className="text-transparent bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text">
+              <span className="text-transparent bg-[#eb8535] bg-clip-text">
                 Presence
               </span>
             </h1>
-            <p className="text-gray-300 max-w-3xl mx-auto">
+            <p className="text-gray-700 max-w-3xl mx-auto">
               Strategic locations across India with offices in Haryana, Karnataka,
               and Assam.
             </p>
