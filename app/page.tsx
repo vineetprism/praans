@@ -207,79 +207,81 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
-
-
-<section className="relative min-h-screen flex items-center justify-center px-3 sm:px-5 lg:px-6 bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden">
+      
+<section className="relative min-h-[80vh] flex items-start justify-center pt-6 sm:pt-8 lg:pt-10 px-3 sm:px-5 lg:px-6 bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden">
   {/* Background Elements */}
   <div className="absolute inset-0 bg-orange-100/10" />
   <div className="absolute inset-0 bg-gradient-to-bl from-orange-100/40 to-blue-100/20" />
-  <div className="absolute top-10 sm:top-16 left-5 sm:left-10 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-orange-200/30 rounded-full blur-2xl animate-pulse" />
-  <div className="absolute bottom-10 sm:bottom-16 right-5 sm:right-10 w-20 h-20 sm:w-28 sm:h-28 lg:w-36 lg:h-36 bg-blue-200/30 rounded-full blur-2xl animate-pulse" />
-  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 sm:w-56 sm:h-56 lg:w-72 lg:h-72 bg-gradient-to-r from-orange-100/20 to-blue-100/20 rounded-full blur-2xl" />
+  <div className="absolute top-8 sm:top-12 left-5 sm:left-10 w-14 h-14 sm:w-20 sm:h-20 lg:w-28 lg:h-28 bg-orange-200/30 rounded-full blur-2xl animate-pulse" />
+  <div className="absolute bottom-8 sm:bottom-12 right-5 sm:right-10 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-blue-200/30 rounded-full blur-2xl animate-pulse" />
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-gradient-to-r from-orange-100/20 to-blue-100/20 rounded-full blur-2xl" />
 
   {/* Content Container */}
-  <div className="w-full max-w-5xl mx-auto text-center space-y-4 relative z-10">
+  <div className="w-full max-w-5xl mx-auto text-center space-y-2 sm:space-y-3 relative z-10">
     {/* Heading */}
-    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight animate-fade-up">
+    <h1 className="text-2xl sm:text-3xl md:text-9xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight animate-fade-up">
       Simplifying{" "}
       <span className="relative inline-block">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
           Labour
         </span>
-        <div className="absolute -bottom-1 sm:-bottom-1.5 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
+        <div className="absolute -bottom-0.5 sm:-bottom-1 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
       </span>
       <br className="block sm:hidden" />
-      <span className="relative inline-block sm:mt-3">
+      <span className="relative inline-block">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
           Law
         </span>
-        <div className="absolute -bottom-1 sm:-bottom-1.5 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
+        <div className="absolute -bottom-0.5 sm:-bottom-1 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm" />
       </span>
       <br />
-      <div className="text-slate-800 mt-2 sm:mt-3">Compliance</div>
-      <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium italic text-blue-600">
+      <div className="text-slate-800 mt-1">Compliance</div>
+      <span className="text-sm sm:text-base md:text-xl lg:text-2xl font-medium italic text-blue-600">
         for Your Business
       </span>
     </h1>
 
     {/* Subtitle */}
-    <p className="text-sm sm:text-base md:text-lg text-gray-700 max-w-2xl mx-auto animate-fade-up delay-100 leading-relaxed px-3">
+    <p className="text-xs sm:text-sm md:text-base text-gray-700 max-w-xl mx-auto animate-fade-up delay-100 leading-snug px-3">
       All-in-One Platform: Software, Legal Advisory, Registrations & More – PAN India
     </p>
 
     {/* AI ChatBot Badge */}
-    <div className="pt-4 md:pt-6">
+    <div className="pt-2 sm:pt-3">
       <div
-        className="relative inline-flex items-center gap-2 sm:gap-3 h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 rounded-full border border-orange-300 bg-gradient-to-r from-orange-100 via-orange-50 to-red-100 text-orange-400"
+        className="relative inline-flex items-center gap-2 h-8 sm:h-9 md:h-10 px-3 sm:px-4 rounded-full border border-orange-300 bg-gradient-to-r from-orange-100 via-orange-50 to-red-100 text-orange-400"
       >
-        <Bot className="shrink-0 w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-orange-400" />
+        <Bot className="shrink-0 w-4 h-4 sm:w-5 sm:h-5 text-orange-400" />
         <span
-          className="text-xs sm:text-sm md:text-base font-extrabold tracking-wide bg-gradient-to-r from-orange-700 via-red-600 to-orange-800 bg-clip-text text-transparent"
+          className="text-[10px] sm:text-xs md:text-sm font-extrabold tracking-wide bg-gradient-to-r from-orange-700 via-red-600 to-orange-800 bg-clip-text text-transparent"
         >
           India&apos;s First Labour Law Compliance AI ChatBot
         </span>
-        <Crown className="shrink-0 w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-yellow-600" />
+        <Crown className="shrink-0 w-4 h-4 sm:w-5 sm:h-5 text-yellow-600" />
       </div>
     </div>
 
     {/* CTA Buttons */}
-    <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center max-w-xl mx-auto pt-4">
+    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center max-w-md mx-auto pt-2">
       <Button
-        size="lg"
-        className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-sm sm:text-base md:text-lg px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 shadow-lg hover:shadow-orange-500/25 rounded-xl font-bold w-full sm:w-auto"
+        size="sm"
+        className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 shadow-md hover:shadow-orange-500/25 rounded-lg font-bold w-full sm:w-auto"
       >
         Get a Free Demo Of Software
-        <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+        <ArrowRight className="ml-1 w-4 h-4" />
       </Button>
       <Button
-        size="lg"
-        className="text-white bg-blue-950 hover:bg-blue-900 text-sm sm:text-base md:text-lg px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-xl font-bold w-full sm:w-auto"
+        size="sm"
+        className="text-white bg-blue-950 hover:bg-blue-900 text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg font-bold w-full sm:w-auto"
       >
         Talk to Our Compliance Experts
       </Button>
     </div>
   </div>
 </section>
+
+
+
 
 
       {/* News & Updates Section */}
