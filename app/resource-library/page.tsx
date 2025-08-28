@@ -260,7 +260,7 @@ const categories = [
     description: "Official holiday calendars by state and central government",
     icon: Calendar,
     color: "bg-pink-500",
-    href: "/national-festival-holidays",
+    href: "/holidays",
   },
   {
     title: "Labour Welfare Fund",
