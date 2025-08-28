@@ -149,61 +149,43 @@ const keyOfferings = [
   },
 ];
 
-
 const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
-  <Link key={index} href={offering.href} className="group block h-full" aria-label={offering.title}>
+  <Link
+    key={index}
+    href={offering.href}
+    className="group block h-full"
+    aria-label={offering.title}
+  >
     <div
-      className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-4 sm:p-5 lg:p-6 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 h-full flex flex-col"
+      className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-4 sm:p-5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 h-full flex flex-col"
       style={{
         background:
           "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
         backdropFilter: "blur(14px)",
       }}
     >
-      {/* Icon & Title Horizontal Container */}
-      <div className="flex items-center mb-3 sm:mb-4 gap-3">
-        {/* Icon Container - smaller size */}
+      {/* Top row: Icon + Title */}
+      <div className="flex items-center gap-3 mb-3">
         <div
-          className={`w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br ${offering.color} rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+          className={`w-8 h-8 bg-gradient-to-br ${offering.color} rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
         >
-          <offering.icon className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+          <offering.icon className="w-4 h-4 text-white" />
         </div>
-
-        {/* Title */}
-        <h3 className=" ml-4 text-base sm:text-lg font-semibold text-slate-800 leading-tight group-hover:text-orange-600 transition-colors duration-300">
+        <h3 className="text-base sm:text-lg font-semibold text-slate-800 leading-tight group-hover:text-orange-600 transition-colors duration-300">
           {offering.title}
         </h3>
-
-        <div className="flex justify-end mt-auto ml-20">
-          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center bg-gray-100 group-hover:bg-orange-50 transition-colors duration-300">
-            <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 group-hover:text-orange-600 transition-colors duration-300" />
-          </div>
-        </div>
       </div>
 
       {/* Description */}
-      <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed group-hover:text-gray-700 transition-colors duration-300 flex-1">
+      <p className="text-gray-600 text-sm sm:text-base leading-snug group-hover:text-gray-700 transition-colors duration-300">
         {offering.description}
       </p>
-
-      {/* Features Tags - 3 per row with smaller size */}
-      <div className="grid grid-cols-3 gap-1.5 mb-3">
-        {offering.features.map((feature, fidx) => (
-          <span
-            key={fidx}
-            className="bg-white/80 text-gray-700 px-1.5 py-1 rounded-md text-xs font-medium border border-gray-200 hover:bg-gray-50 transition-colors duration-200 text-center group-hover:border-orange-200 group-hover:bg-orange-50/50 truncate"
-          >
-            {feature}
-          </span>
-        ))}
-      </div>
-
-      {/* Arrow indicator */}
     </div>
   </Link>
 ));
 
-// --------------- PAGE ----------------
+
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -218,7 +200,7 @@ export default function HomePage() {
   {/* Content Container */}
   <div className="w-full max-w-5xl mx-auto text-center space-y-2 sm:space-y-3 relative z-10">
     {/* Heading */}
-    <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight animate-fade-up">
+    <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-6xl 2xl:text-[5.3rem] font-black text-slate-900 tracking-tight leading-tight animate-fade-up">
       Simplifying{" "}
       <span className="relative inline-block">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
@@ -280,32 +262,38 @@ export default function HomePage() {
 </section>
 
 
+
+
       {/* News & Updates Section */}
       <NewsCarouselSection />
 
       {/* Enhanced Key Offerings Section */}
-      <section className="relative bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden min-h-screen">
-        <div className="container mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
-          <section className="py-16 sm:py-20 lg:py-24">
-            <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-slate-900 leading-tight">
-                Single Platform for All Labour Law Compliances
-              </h2>
-              <p className="text-sm sm:text-base lg:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed px-4">
-                From automated software to expert legal support, we've got you
-                covered.
-              </p>
-            </div>
+      <section className="relative m-0 p-0 bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
+  <div className="w-full">
+    {/* Inner container keeps light horizontal breathing room only */}
+    <div className="mx-auto w-full max-w-7xl px-3 sm:px-4 lg:px-6">
+      {/* Compact vertical spacing so it fits in one laptop view */}
+      <section className="py-8 sm:py-10 lg:py-12 min-h-[70vh]">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-10">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-slate-900 leading-tight">
+            Single Platform for All Labour Law Compliances
+          </h2>
+          <p className="text-xs sm:text-sm lg:text-base text-gray-700 max-w-2xl mx-auto leading-snug px-3">
+            From automated software to expert legal support, we've got you covered.
+          </p>
+        </div>
 
-            {/* Cards Grid with increased spacing - Always 3 per row */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-7xl mx-auto">
-              {keyOfferings.map((offering: Offering, idx: number) => (
-                <OfferingCard key={idx} offering={offering} index={idx} />
-              ))}
-            </div>
-          </section>
+        {/* Always 3 per row on md+, compact gaps */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+          {keyOfferings.map((offering: Offering, idx: number) => (
+            <OfferingCard key={idx} offering={offering} index={idx} />
+          ))}
         </div>
       </section>
+    </div>
+  </div>
+</section>
+
 
       {/* Enhanced Category Grid */}
 
