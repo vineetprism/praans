@@ -135,7 +135,7 @@ export default function SiteHeader() {
           {/* Right group: Desktop nav + CTAs + Mobile menu (pushed right) */}
           <div className="ml-auto flex items-center gap-4">
             {/* Desktop nav */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center">
               {NAV.map((item, index) => {
                 const active = pathname?.startsWith(item.href);
                 const hasDropdown = !!item.dropdown?.length;
@@ -152,7 +152,7 @@ export default function SiteHeader() {
                       aria-current={active ? "page" : undefined}
                       aria-haspopup={hasDropdown ? "menu" : undefined}
                       aria-expanded={hasDropdown ? dropdownOpen === index : undefined}
-                      className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 group ${
+                      className={`relative flex items-center gap-2 px-3 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 group ${
                         active ? "text-orange-600" : "text-gray-700 hover:text-orange-600 hover:bg-orange-50/50"
                       }`}
                       onClick={(e) => {
