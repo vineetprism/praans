@@ -119,57 +119,82 @@ const NewsCarouselSection: React.FC = () => {
             {newsUpdates.map((news, index) => (
               <SwiperSlide key={index}>
                 <Card
-                  className="
-                    border-l-4 bg-orange-200 border-l-orange-500 hover:shadow-md transition-shadow duration-200
-                    h-[160px] sm:h-[180px] md:h-[200px] 2xl:h-[190px]
-                    flex flex-col
-                  "
-                >
-                  <CardHeader className="pb-2 p-4 2xl:p-5 flex-shrink-0">
-                    <CardTitle
-                      className="
-                        text-sm sm:text-base md:text-[1.05rem] 2xl:text-lg
-                        leading-tight hover:text-orange-500 transition-colors duration-200 line-clamp-2
-                        min-h-[2.5rem] 2xl:min-h-[3rem]
-                      "
-                    >
-                      {news.href ? (
-                        <Link href={news.href} className="hover:text-orange-500" aria-label={news.title}>
-                          {news.title}
-                        </Link>
-                      ) : (
-                        news.title
-                      )}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 pt-0 2xl:p-6 2xl:pt-0 flex flex-col justify-between flex-grow">
-                    <div className="flex-grow" />
-                    <div className="flex items-center justify-between gap-2 mt-auto">
-                      <span className="text-sm md:text-base 2xl:text-lg text-muted-foreground">
-                        {new Date(news.date).toLocaleDateString('en-GB', {
-                          day: '2-digit',
-                          month: '2-digit',
-                          year: 'numeric',
-                        })}
-                      </span>
-                      <div className="flex gap-1 flex-shrink-0">
-                        {news.href && (
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            className="text-xs sm:text-sm 2xl:text-base px-2 sm:px-3 2xl:px-4 py-1 h-7 2xl:h-9"
-                            asChild
-                            aria-label="Read"
-                          >
-                            <Link href={news.href}>
-                              Read <ArrowRight className="ml-1 w-3 h-3 2xl:w-4 2xl:h-4" />
-                            </Link>
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+  className="
+    border-l-4 bg-orange-200 border-l-orange-500 hover:shadow-md transition-shadow duration-200
+    h-[160px] sm:h-[170px] md:h-[135px] lg:h-[145px] 2xl:h-[190px]
+    flex flex-col
+  "
+>
+  <CardHeader
+    className="
+      p-4 pb-2
+      sm:p-4 sm:pb-2
+      md:p-3 md:pb-1
+      lg:p-3 lg:pb-1
+      2xl:p-5 2xl:pb-2
+      flex-shrink-0
+    "
+  >
+    <CardTitle
+      className="
+        text-sm sm:text-[0.95rem] md:text-[0.9rem] lg:text-[0.95rem] 2xl:text-lg
+        leading-tight hover:text-orange-500 transition-colors duration-200 line-clamp-2
+        min-h-[2.25rem] md:min-h-[2rem] lg:min-h-[2.25rem] 2xl:min-h-[3rem]
+      "
+    >
+      {news.href ? (
+        <Link href={news.href} className="hover:text-orange-500" aria-label={news.title}>
+          {news.title}
+        </Link>
+      ) : (
+        news.title
+      )}
+    </CardTitle>
+  </CardHeader>
+
+  <CardContent
+    className="
+      p-4 pt-0
+      md:p-3 md:pt-0
+      lg:p-3 lg:pt-0
+      2xl:p-6 2xl:pt-0
+      flex flex-col justify-between flex-grow
+    "
+  >
+    <div className="flex-grow" />
+    <div className="flex items-center justify-between gap-2 mt-auto">
+      <span className="text-sm md:text-[13px] lg:text-sm 2xl:text-lg text-muted-foreground">
+        {new Date(news.date).toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        })}
+      </span>
+
+      <div className="flex gap-1 flex-shrink-0">
+        {news.href && (
+          <Button
+            size="sm"
+            variant="ghost"
+            className="
+              text-[11px] sm:text-xs md:text-xs lg:text-xs 2xl:text-base
+              px-2 sm:px-2 md:px-2 lg:px-2 2xl:px-4
+              py-1
+              h-6 sm:h-6 md:h-7 lg:h-7 2xl:h-9
+            "
+            asChild
+            aria-label="Read"
+          >
+            <Link href={news.href}>
+              Read <ArrowRight className="ml-1 w-3 h-3 md:w-3 md:h-3 lg:w-3 lg:h-3 2xl:w-4 2xl:h-4" />
+            </Link>
+          </Button>
+        )}
+      </div>
+    </div>
+  </CardContent>
+</Card>
+
               </SwiperSlide>
             ))}
           </Swiper>
