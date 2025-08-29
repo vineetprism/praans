@@ -16,6 +16,12 @@ import {
   Shield,
   Settings,
   Layers,
+  CheckCircle,
+  Briefcase,
+  CheckCircle2,
+  BarChart3,
+  Rocket,
+  Building,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -588,9 +594,10 @@ export default function AboutPage() {
       {/* Certifications */}
       <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4 md:px-6">
+
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Certifications</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Certifications & Recognitions</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
               Recognitions that validate our compliance-first operating model.
@@ -600,50 +607,238 @@ export default function AboutPage() {
           {/* Cards Grid */}
           <div className="max-w-6xl mx-auto">
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {certifications.map((cert, i) => (
-                <Card
-                  key={i}
-                  className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200"
-                >
-                  {/* Top accent bar */}
-                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
 
-                  <CardContent className="p-6 md:p-7 pt-8 text-center">
-                    {/* Icon badge */}
-                    <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-orange-50 to-orange-200/70 group-hover:scale-105 transition-transform">
-                      <Award className="h-8 w-8 text-orange-600" />
-                    </div>
+              {/* ISO Certification */}
+              <div className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200">
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
+                <div className="p-6 md:p-7 pt-8 text-center">
+                  <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-orange-50 to-orange-200/70">
+                    <CheckCircle className="h-8 w-8 text-orange-600" />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">ISO Certification</h3>
+                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                    Ensures our services maintain the highest quality standards and reliability.
+                  </p>
+                </div>
+              </div>
 
-                    <h3 className="text-lg md:text-xl font-semibold text-slate-800">
-                      {cert.name}
-                    </h3>
+              {/* Startup India */}
+              <div className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200">
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
+                <div className="p-6 md:p-7 pt-8 text-center">
+                  <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-orange-50 to-orange-200/70">
+                    <Award className="h-8 w-8 text-orange-600" />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Startup India Recognition</h3>
+                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                    Certified under the flagship initiative of the Government of India.
+                  </p>
+                </div>
+              </div>
 
-                    <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
-                      {cert.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
+              {/* MSME Certification */}
+              <div className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200">
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
+                <div className="p-6 md:p-7 pt-8 text-center">
+                  <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-orange-50 to-orange-200/70">
+                    <Briefcase className="h-8 w-8 text-orange-600" />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">MSME Certification</h3>
+                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                    Recognition as a rapidly growing micro, small, and medium enterprise.
+                  </p>
+                </div>
+              </div>
+
+              {/* MCA Registration */}
+              <div className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200">
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
+                <div className="p-6 md:p-7 pt-8 text-center">
+                  <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-orange-50 to-orange-200/70">
+                    <Building2 className="h-8 w-8 text-orange-600" />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">MCA Registration</h3>
+                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                    Accredited under the Ministry of Corporate Affairs as a reliable compliance partner.
+                  </p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
       </section>
 
-      {/* Recognition */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4 md:px-6 max-w-8xl">
+      {/* Why Labour Law Compliance Matters Section */}
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
-              Media & Recognition
+              Why Labour Law Compliance Matters
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
-            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-              Third-party coverage and accolades that validate our execution.
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto mt-4 rounded-full" />
+          </div>
+
+          {/* Content */}
+          <div className="space-y-6 text-gray-700 text-base md:text-lg leading-relaxed text-justify">
+            <p>
+              India has extensive labour laws and rules that are constantly evolving. Businesses must comply with
+              numerous central and state-level legislations such as the <strong>Factories Act, Shops & Establishments Act,
+                Minimum Wages Act, Provident Fund Act, Employees’ State Insurance Act, CLRA Act, Payment of Bonus Act</strong>,
+              and many others.
+            </p>
+
+            <p className="font-medium text-slate-800">If compliance is not maintained, it can lead to:</p>
+
+            {/* Bullet List */}
+            <ul className="list-disc list-inside space-y-2 text-gray-700">
+              <li>Heavy financial penalties and fines</li>
+              <li>Court battles and prolonged legal disputes</li>
+              <li>Damage to business reputation</li>
+              <li>Operational disruptions during inspections</li>
+            </ul>
+
+            <p>
+              This is where <span className="font-semibold text-[#eb8535]">Praans Consultech</span> steps in as a trusted
+              compliance partner—ensuring your business remains compliant, safeguards its brand,
+              and continues to grow without disruptions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Promise */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+          {/* Heading */}
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Our Promise</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto mt-4 rounded-full" />
+            <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              We are more than just consultants, we, Praans Consultech, are partners in your growth journey of your business. We promise you to:
             </p>
           </div>
 
-          {/* Cards – scrollable preview, footer clickable */}
+          {/* Promises */}
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="w-6 h-6 text-orange-600 mt-1" />
+              <p className="text-gray-700 leading-relaxed">
+                Provide <strong>accurate, reliable, and timely</strong> compliance services.
+              </p>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <Cpu className="w-6 h-6 text-orange-600 mt-1" />
+              <p className="text-gray-700 leading-relaxed">
+                Offer <strong>technology-driven solutions</strong> that streamline your processes.
+              </p>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <Layers className="w-6 h-6 text-orange-600 mt-1" />
+              <p className="text-gray-700 leading-relaxed">
+                Assure <strong>end-to-end support</strong>—from registrations to litigation.
+              </p>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <ShieldCheck className="w-6 h-6 text-orange-600 mt-1" />
+              <p className="text-gray-700 leading-relaxed">
+                Safeguard your business from <strong>fines</strong> and <strong>compliance mismanagement</strong>.
+              </p>
+            </div>
+          </div>
+
+          {/* Closing Note */}
+          <div className="text-center mt-10">
+            <p className="text-base md:text-lg text-slate-800 max-w-3xl mx-auto leading-relaxed">
+              Legal compliance should never be a burden—it should <strong>enable your growth</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Who serve */}
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+
+          {/* Heading */}
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Who We Serve</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto mt-4 rounded-full" />
+            <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              {/* At <span className="font-semibold text-[#eb8535]">Praans Consultech</span>, we provide tailored compliance solutions for businesses of all sizes—because compliance is critical, no matter the scale. */}
+              We provide our services to:
+            </p>
+          </div>
+
+          {/* Service Categories */}
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+            {/* Startups */}
+            <div className="text-center bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-lg transition">
+              <Rocket className="w-10 h-10 text-orange-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-slate-800">Startups</h3>
+              <p className="mt-2 text-gray-600 text-sm leading-relaxed">
+                At reasonably priced compliance to guide and assist young businesses to get started its business on right track.
+              </p>
+            </div>
+
+            {/* SMEs */}
+            <div className="text-center bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-lg transition">
+              <BarChart3 className="w-10 h-10 text-orange-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-slate-800">SMEs</h3>
+              <p className="mt-2 text-gray-600 text-sm leading-relaxed">
+                With maximum risk mitigations and simplifying the complexity of compliance for the growth of business.
+              </p>
+            </div>
+
+            {/* Large Enterprises */}
+            <div className="text-center bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-lg transition">
+              <Building className="w-10 h-10 text-orange-600 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-slate-800">Large Enterprises</h3>
+              <p className="mt-2 text-gray-600 text-sm leading-relaxed">
+                Scalable solutions for operations with multiple locations throughout India.
+              </p>
+            </div>
+          </div>
+
+          {/* Closing Note */}
+          <div className="text-center mt-12">
+            <p className="text-base md:text-lg text-slate-800 max-w-3xl mx-auto leading-relaxed">
+              <strong>Praans Consultech</strong> — the name you can trust on in compliance partner, regardless of the size of the business.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Media & Awards Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-8xl">
+
+          {/* Heading */}
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+              Media & Awards
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Praans Consultech has quickly earned recognition in the industry for its
+              labour law consulting and compliance management services.
+            </p>
+          </div>
+
+          {/* Highlights List */}
+          <div className="max-w-3xl mx-auto mb-12 space-y-3 text-gray-700 text-base md:text-lg leading-relaxed">
+            <p>🏆 Acknowledged as the <strong>Best Labour Law Consultant</strong> for offering comprehensive compliance solutions.</p>
+            <p>🏆 Awarded for <strong>Excellence in Business Compliance</strong> for helping businesses streamline operations and avoid fines.</p>
+            <p>🏆 Recognized as a <strong>technologically advanced pioneer</strong> in the field of labour law compliance at leading business forums.</p>
+          </div>
+
+          {/* Articles Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
             {media.map((item, idx) => (
               <Card
@@ -671,7 +866,7 @@ export default function AboutPage() {
                     </Link>
                   </div>
 
-                  {/* Scrollable live preview (no Link wrapper, no pointer-events-none) */}
+                  {/* Scrollable live preview */}
                   <div className="w-full bg-white border-t">
                     <iframe
                       src={item.link!}
@@ -705,6 +900,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
     </div>
   )
 }
