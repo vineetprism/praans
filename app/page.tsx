@@ -147,49 +147,6 @@ const keyOfferings = [
   },
 ];
 
-// const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
-//   <Link
-//     key={index}
-//     href={offering.href}
-//     className="group block h-full"
-//     aria-label={offering.title}
-//   >
-//     <div
-//       className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-4 sm:p-5 2xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 h-full flex flex-col"
-//       style={{
-//         background:
-//           "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
-//         backdropFilter: "blur(14px)",
-//       }}
-//     >
-//       {/* Top row: Icon + Title */}
-//       <div className="flex items-center gap-3 2xl:gap-4 mb-3 2xl:mb-4">
-//         <div
-//           className={`w-8 h-8 2xl:w-10 2xl:h-10 bg-gradient-to-br ${offering.color} rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-//         >
-//           <offering.icon className="w-4 h-4 2xl:w-5 2xl:h-5 text-white" />
-//         </div>
-//         <h3 className="text-base sm:text-lg 2xl:text-xl font-semibold text-slate-800 leading-tight group-hover:text-orange-600 transition-colors duration-300">
-//           {offering.title}
-//         </h3>
-//       </div>
-//       {/* Description */}
-//       <p
-//         className="
-//           text-gray-700
-//           text-sm sm:text-base 2xl:text-lg
-//           leading-snug 2xl:leading-relaxed
-//           [text-align:justify] hyphens-auto break-words
-//           line-clamp-4
-//           group-hover:text-gray-800 transition-colors duration-300
-//         "
-//       >
-//         {offering.description}
-//       </p>
-//     </div>
-//   </Link>
-// ));
-
 const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
   <Link
     key={index}
@@ -257,7 +214,7 @@ export default function HomePage() {
         w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 2xl:w-44 2xl:h-44 
         bg-blue-200/30 rounded-full blur-2xl animate-pulse"
         />
-        
+
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
         w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 2xl:w-96 2xl:h-96 
