@@ -114,7 +114,7 @@ export default function SiteHeader() {
         scrolled ? "bg-white/95 backdrop-blur-xl shadow-lg" : "bg-white/90 backdrop-blur-md"
       }`}
     >
-      <div className="container mx-auto border-b border-gray-200">
+      <div className="container mx-auto border-b lg:px-3 border-gray-200">
         {/* ROW: logo left, everything else right */}
         <div className="h-12 lg:h-16 flex items-center gap-4">
           {/* Left: Logo (pinned) */}
@@ -126,7 +126,7 @@ export default function SiteHeader() {
                 width={180}
                 height={40}
                 priority
-                className="h-10 lg:h-12 w-auto transition-transform group-hover:scale-105"
+                className="h-10 lg:h-12 w-auto"
               />
               <div className="absolute inset-0 bg-orange-500/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
             </div>
