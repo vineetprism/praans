@@ -149,6 +149,7 @@ const keyOfferings = [
   },
 ];
 
+
 const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
   <Link
     key={index}
@@ -157,7 +158,7 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
     aria-label={offering.title}
   >
     <div
-      className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-4 sm:p-5 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 h-full flex flex-col"
+      className="relative bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-4 sm:p-5 2xl:p-6 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1 h-full flex flex-col"
       style={{
         background:
           "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%)",
@@ -165,26 +166,23 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
       }}
     >
       {/* Top row: Icon + Title */}
-      <div className="flex items-center gap-3 mb-3">
+      <div className="flex items-center gap-3 2xl:gap-4 mb-3 2xl:mb-4">
         <div
-          className={`w-8 h-8 bg-gradient-to-br ${offering.color} rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+          className={`w-8 h-8 2xl:w-10 2xl:h-10 bg-gradient-to-br ${offering.color} rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
         >
-          <offering.icon className="w-4 h-4 text-white" />
+          <offering.icon className="w-4 h-4 2xl:w-5 2xl:h-5 text-white" />
         </div>
-        <h3 className="text-base sm:text-lg font-semibold text-slate-800 leading-tight group-hover:text-orange-600 transition-colors duration-300">
+        <h3 className="text-base sm:text-lg 2xl:text-xl font-semibold text-slate-800 leading-tight group-hover:text-orange-600 transition-colors duration-300">
           {offering.title}
         </h3>
       </div>
-
       {/* Description */}
-      <p className="text-gray-600 text-sm sm:text-base leading-snug group-hover:text-gray-700 transition-colors duration-300">
+      <p className="text-gray-600 text-sm sm:text-base 2xl:text-lg leading-snug 2xl:leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
         {offering.description}
       </p>
     </div>
   </Link>
 ));
-
-
 
 export default function HomePage() {
   return (
@@ -301,32 +299,31 @@ export default function HomePage() {
       <NewsCarouselSection />
 
       {/* Enhanced Key Offerings Section */}
-      <section className="relative m-0 p-0 bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
-  <div className="w-full">
-    {/* Inner container keeps light horizontal breathing room only */}
-    <div className="mx-auto w-full max-w-7xl px-3 sm:px-4 lg:px-6">
-      {/* Compact vertical spacing so it fits in one laptop view */}
-      <section className="py-8 sm:py-10 lg:py-12 min-h-[70vh]">
-        <div className="text-center mb-6 sm:mb-8 lg:mb-10">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-slate-900 leading-tight">
-            Single Platform for All Labour Law Compliances
-          </h2>
-          <p className="text-xs sm:text-sm lg:text-base text-gray-700 max-w-2xl mx-auto leading-snug px-3">
-            From automated software to expert legal support, we've got you covered.
-          </p>
+      
+ <section className="relative m-0 p-0 bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
+      <div className="w-full">
+        {/* Inner container keeps light horizontal breathing room only */}
+        <div className="mx-auto w-full max-w-7xl 2xl:max-w-8xl px-3 sm:px-4 lg:px-6 2xl:px-8">
+          {/* Compact vertical spacing so it fits in one laptop view */}
+          <section className="py-8 sm:py-10 lg:py-12 2xl:py-16 min-h-[70vh] 2xl:min-h-[80vh]">
+            <div className="text-center mb-6 sm:mb-8 lg:mb-10 2xl:mb-12">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl 2xl:text-4xl font-bold mb-2 2xl:mb-3 text-slate-900 leading-tight">
+                Single Platform for All Labour Law Compliances
+              </h2>
+              <p className="text-xs sm:text-sm lg:text-base 2xl:text-lg text-gray-700 max-w-2xl 2xl:max-w-3xl mx-auto leading-snug 2xl:leading-relaxed px-3">
+                From automated software to expert legal support, we've got you covered.
+              </p>
+            </div>
+            {/* Always 3 per row on md+, compact gaps - 2xl shows better spacing */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 2xl:gap-8">
+              {keyOfferings.map((offering: Offering, idx: number) => (
+                <OfferingCard key={idx} offering={offering} index={idx} />
+              ))}
+            </div>
+          </section>
         </div>
-
-        {/* Always 3 per row on md+, compact gaps */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-          {keyOfferings.map((offering: Offering, idx: number) => (
-            <OfferingCard key={idx} offering={offering} index={idx} />
-          ))}
-        </div>
-      </section>
-    </div>
-  </div>
-</section>
-
+      </div>
+    </section>
 
       {/* Enhanced Category Grid */}
 
