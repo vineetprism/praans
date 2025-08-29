@@ -23,7 +23,6 @@ interface Offering {
   icon: LucideIcon;
   title: string;
   description: string;
-  features: string[];
   color: string;
   bgColor: string;
   href: string;
@@ -49,102 +48,57 @@ const keyOfferings = [
     title: "Smart Compliance Software",
     description:
       "Automated, error-free labour law management with AI-powered insights and real-time monitoring.",
-    features: [
-      "AI-Powered",
-      "Real-time Alerts",
-      "Auto Reports",
-      "Dispute Resolution",
-      "Auto Reports",
-      "Legal Defence",
-    ],
     color: "from-blue-500 to-blue-600",
     bgColor: "from-blue-50 to-blue-100",
     href: "/services/smart-compliance-software",
-  },
-  {
-    icon: Gavel,
-    title: "Legal Advisory",
-    description:
-      "Get expert help for complex labour laws from certified legal professionals.",
-    features: [
-      "Expert Consultation",
-      "Dispute Resolution",
-      "Real-time Alerts",
-      "Auto Reports",
-      "24/7 Support",
-      "Legal Updates",
-    ],
-    color: "from-purple-500 to-purple-600",
-    bgColor: "from-purple-50 to-purple-100",
-    href: "/services/legal-advisory-hr-policies",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "PAN India Registrations",
-    description:
-      "Fast licences, hassle-free filings across all states and territories.",
-    features: [
-      "PAN India Coverage",
-      "AI-Powered",
-      "Real-time Alerts",
-      "Auto Reports",
-      "Fast Processing",
-      "Hassle-free",
-    ],
-    color: "from-green-500 to-green-600",
-    bgColor: "from-green-50 to-green-100",
-    href: "/services/pan-india-registrations",
-  },
-  {
-    icon: Landmark,
-    title: "Litigation Support",
-    description: "Comprehensive dispute resolution and legal defence services.",
-    features: [
-      "Dispute Resolution",
-      "AI-Powered",
-      "Real-time Alerts",
-      "Auto Reports",
-      "Legal Defence",
-      "Court Support",
-    ],
-    color: "from-red-500 to-red-600",
-    bgColor: "from-red-50 to-red-100",
-    href: "/services/litigation-support",
   },
   {
     icon: Briefcase,
     title: "Compliance Outsourcing",
     description:
       "We manage it all, so you don't have to worry about compliance.",
-    features: [
-      "Full Management",
-      "Risk Mitigation",
-      "AI-Powered",
-      "Real-time Alerts",
-      "Auto Reports",
-      "Cost Effective",
-    ],
     color: "from-orange-500 to-orange-600",
     bgColor: "from-orange-50 to-orange-100",
     href: "/services/compliance-outsourcing",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "PAN India Registrations",
+    description:
+      "Fast licences, hassle-free filings across all states and territories.",
+    color: "from-green-500 to-green-600",
+    bgColor: "from-green-50 to-green-100",
+    href: "/services/pan-india-registrations",
   },
   {
     icon: ClipboardList,
     title: "Audit & Inspection",
     description:
       "Complete support for audits, inspections, and compliance verification.",
-    features: [
-      "Audit Support",
-      "AI-Powered",
-      "Real-time Alerts",
-      "Auto Reports",
-      "Inspection Ready",
-      "Compliance Check",
-    ],
     color: "from-indigo-500 to-indigo-600",
     bgColor: "from-indigo-50 to-indigo-100",
     href: "/services/audit-and-inspection",
   },
+  {
+    icon: Gavel,
+    title: "Legal Advisory & HR Policies",
+    description:
+      "Get expert help for complex labour laws from certified legal professionals.",
+    color: "from-purple-500 to-purple-600",
+    bgColor: "from-purple-50 to-purple-100",
+    href: "/services/legal-advisory-hr-policies",
+  },
+  
+  {
+    icon: Landmark,
+    title: "Litigation Support",
+    description: "Comprehensive dispute resolution and legal defence services.",
+    color: "from-red-500 to-red-600",
+    bgColor: "from-red-50 to-red-100",
+    href: "/services/litigation-support",
+  },
+  
+  
 ];
 
 const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
