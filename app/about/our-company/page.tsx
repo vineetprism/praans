@@ -160,56 +160,38 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-10 md:py-20 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">
+          <div className="text-center mb-8 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-6 text-slate-800">
               Our Story
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full"></div>
+            <div className="w-20 md:w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-start">
             {/* Left Content */}
-            <div className="space-y-6 text-gray-600 leading-relaxed">
-              <p className="text-base md:text-lg">
-                Founded in 2021, <strong>Praans Consultech</strong> was born with a
-                vision to simplify labour law compliance for businesses across India.
+            <div className="space-y-4 md:space-y-6 text-gray-600 leading-relaxed">
+              <p className="text-base md:text-lg text-justify">
+                Founded in 2021, <strong className="text-[#eb8535]">Praans Consultech</strong> has become as one of India’s most trusted labour law consultants, technology-driven solution providers and compliance partners. With the motive to bring the labour law compliance in streamline and simplified it for businesses in India. Together we bring innovations, technology and legal expertise on ground level executions to ensure that organisations of any kind and sizes remain fully compliant with ever-evolving labour laws.
               </p>
 
-              <p className="text-base md:text-lg">
-                Our founders combined their expertise to create a
-                <strong> tech-driven compliance platform</strong> that replaces
-                outdated manual systems with intelligent automation.
-              </p>
-
-              <div className="bg-gray-100 p-6 rounded-2xl border-l-4 border-orange-400">
-                <p className="text-base md:text-lg font-semibold text-[#eb8535] mb-1">
-                  Milestone Achievement
-                </p>
-                <p className="text-base md:text-lg text-gray-700">
-                  In 2022, we launched our{" "}
-                  <strong>AI-powered Compliance Management Software</strong>, setting
-                  a new benchmark in efficiency and accuracy.
-                </p>
-              </div>
-
-              <p className="text-base md:text-lg">
-                Today, we serve clients nationwide, helping them stay compliant,
-                minimize risks, and focus on growth while we handle the complexity.
+              <p className="text-base md:text-lg text-justify">
+                At <strong className="text-[#eb8535]">Praans Consultech</strong>, Just filing returns and meeting deadlines is not  about managing compliance, it is much more than that and we understand it. It’s about risk mitigations, ensuring legal accuracy, creating a smooth operational framework that supports growth and protection against penalties for business. Our founders, <strong>Mr. Sandeep Kumar, Mr. Nitesh Kumar, and Ms. Allisha Sharma,</strong> identified the growing gap in how businesses managed multi-location compliance. The process we were known in past is usually slow, error prone and so we were not able to keeps with whole regulatory landscape. With this understanding, they joined hands to create a single-window solution that would transform the way businesses handle compliance.
               </p>
             </div>
 
             {/* Right Side Image */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-xl md:max-w-2xl lg:max-w-3xl aspect-[4/3]">
+            <div className="flex justify-center lg:justify-end order-last lg:order-none">
+              <div className="relative w-full max-w-xl md:max-w-2xl lg:max-w-3xl 
+                        h-56 sm:h-72 md:h-[420px] lg:h-[600px]">
                 <Image
-                  src="/about/about.jpg"
+                  src="/about/about.webp"
                   alt="Praans Consultech Story"
                   fill
                   priority={false}
                   className="rounded-2xl object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 60vw, 50vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1280px) 60vw, 50vw"
                 />
               </div>
             </div>
@@ -217,8 +199,168 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Our Journey Section */}
+      <section className="relative py-8 md:py-10 lg:py-12 bg-gray-50 overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="max-w-5xl mx-auto space-y-8">
+
+            {/* Heading + Paragraphs */}
+            <div className="space-y-8 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-6 text-slate-800">
+                Our Journey
+              </h2>
+              <div className="w-20 md:w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full"></div>
+
+              <div className="space-y-6 text-base md:text-lg text-gray-600 leading-relaxed text-justify">
+                <p>
+                  When Praans Consultech started in 2022, our aim was simple and precise – to become a trusted compliance partner for Indian businesses. Our core team brought together years of industry experience in labour laws, HR operations, and corporate legal advisory. They understood how errors in compliance could lead to heavy penalties, disrupt business operations, and cause reputational damage.
+                </p>
+                <p>
+                  To counter these challenges, our team developed <span className="font-semibold text-[#eb8535]">AI-based Intelligent Compliance Management Software</span> by 2023. It automates filings, generates real-time alerts, simplifies workflows, and monitors deadlines. A breakthrough that reduced the burden of spreadsheets and manual registers, while enabling seamless multi-state compliance.
+                </p>
+                <p>
+                  Since then, we have expanded rapidly, serving clients across all states and union territories of India. Praans Consultech has emerged as a trusted compliance partner for start-ups, SMEs, and large enterprises across industries – a safe and faster way to manage compliance.
+                </p>
+              </div>
+            </div>
+
+            {/* Timeline */}
+            <div className="relative border-l-2 border-orange-500 ml-6">
+              {/* 2022 */}
+              <div className="mb-8 ml-6 relative">
+                <span className="absolute -left-8 top-1 w-4 h-4 bg-orange-500 rounded-full border-2 border-white"></span>
+                <h3 className="text-lg font-semibold text-slate-800">2022</h3>
+                <p className="text-gray-600">Company Founded</p>
+              </div>
+
+              {/* 2023 */}
+              <div className="mb-8 ml-6 relative">
+                <span className="absolute -left-8 top-1 w-4 h-4 bg-orange-500 rounded-full border-2 border-white"></span>
+                <h3 className="text-lg font-semibold text-slate-800">2023</h3>
+                <p className="text-gray-600">Recognized as Start-up India and Compliance Software Launched</p>
+              </div>
+
+              {/* 2024 */}
+              <div className="mb-8 ml-6 relative">
+                <span className="absolute -left-8 top-1 w-4 h-4 bg-orange-500 rounded-full border-2 border-white"></span>
+                <h3 className="text-lg font-semibold text-slate-800">2024</h3>
+                <p className="text-gray-600">PAN India Reach for Labour Law Compliances</p>
+              </div>
+
+              {/* 2025 */}
+              <div className="ml-6 relative">
+                <span className="absolute -left-8 top-1 w-4 h-4 bg-orange-500 rounded-full border-2 border-white"></span>
+                <h3 className="text-lg font-semibold text-slate-800">2025</h3>
+                <p className="text-gray-600">Awarded as the Best Labour Law Consultant, Certified by ISO, and Launched our AI Chatbot for Labour Law</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Our Services Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+
+          {/* Heading */}
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
+              Our Services
+            </h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              At <span className="font-semibold text-[#eb8535]">Praans Consultech</span>, we are honoured to provide
+              end-to-end labour law solutions under one portal.
+              Our services include comprehensive support designed to
+              keep your business fully compliant with ever-evolving regulations.
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto mt-6 rounded-full"></div>
+          </div>
+
+          {/* Services Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {/* Service 1 */}
+            <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
+              <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                AI-Based Compliance Management Software
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Smart automation for error-free compliance, real-time alerts,
+                digital record maintenance, and compliance tracking.
+              </p>
+            </div>
+
+            {/* Service 2 */}
+            <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
+              <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                Labour Law Registrations
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Complete assistance and support in obtaining registrations
+                and licenses under applicable laws across India.
+              </p>
+            </div>
+
+            {/* Service 3 */}
+            <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
+              <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                Compliance Outsourcing Solutions
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Ease of doing business: you focus on growth, while we manage
+                all your compliance requirements.
+              </p>
+            </div>
+
+            {/* Service 4 */}
+            <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
+              <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                Litigation Support & Legal Representation
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Professional support for disputes, complex labour law cases,
+                and inspections with expert representation.
+              </p>
+            </div>
+
+            {/* Service 5 */}
+            <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
+              <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                Labour Law Advisory Services
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Risk mitigation and strategic guidance to ensure long-term
+                compliance and legal accuracy.
+              </p>
+            </div>
+
+            {/* Service 6 */}
+            <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
+              <h3 className="text-lg font-semibold text-slate-800 mb-2">
+                Audit and Inspection Support
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Dedicated on-ground team for audits and managing labour
+                inspections seamlessly.
+              </p>
+            </div>
+          </div>
+
+          {/* Closing Note */}
+          <div className="text-center mt-12">
+            <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
+              Considering all the above services, your business is in safe hands
+              — ensuring smooth operations, zero compliance gaps, and strong risk
+              mitigation across India.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
       {/* Stats Cards */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      {/* <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">
@@ -230,7 +372,6 @@ export default function AboutPage() {
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4"></div>
           </div>
 
-          {/* Stats Cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12 md:mt-16 max-w-6xl mx-auto">
             {stats.map((stat, index) => (
               <Card
@@ -252,7 +393,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Vision & Mission */}
       <section className="relative overflow-hidden py-16 md:py-20 bg-white">
@@ -266,7 +407,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">
               Our Mission and Vision
             </h2>
-            <p className="mt-3 text-gray-600 max-w-3xl mx-auto">
+            <p className="mt-3 text-gray-600 max-w-3xl mx-auto text-justify">
               Guiding principles that drive our commitment to compliance excellence and
               business wellbeing
             </p>
@@ -289,7 +430,7 @@ export default function AboutPage() {
                   OUR MISSION
                 </h3>
 
-                <p className="mt-5 text-center text-gray-600 max-w-xl mx-auto">
+                <p className="mt-5 text-center text-gray-600 max-w-xl mx-auto text-justify">
                   To empower businesses with intelligent tools and expert support for labour law compliance.
                   Certifications ISO , Startup India, MSME, Ministry of corporate affairs.
 
@@ -311,7 +452,7 @@ export default function AboutPage() {
                   OUR VISION
                 </h3>
 
-                <p className="mt-5 text-center text-gray-600 max-w-xl mx-auto">
+                <p className="mt-5 text-center text-gray-600 max-w-xl mx-auto text-justify">
                   To become India’s most trusted and technology-driven partner in labour law compliance making complex regulations simple, accessible, and manageable for every business.
                 </p>
               </CardContent>
