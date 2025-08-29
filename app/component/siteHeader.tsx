@@ -114,7 +114,7 @@ export default function SiteHeader() {
         scrolled ? "bg-white/95 backdrop-blur-xl shadow-lg" : "bg-white/90 backdrop-blur-md"
       }`}
     >
-      <div className="container mx-auto border-b lg:px-3 border-gray-200">
+      <div className="container mx-auto border-b lg:px-4 border-gray-200">
         {/* ROW: logo left, everything else right */}
         <div className="h-12 lg:h-16 flex items-center gap-4">
           {/* Left: Logo (pinned) */}
