@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import React, { useRef } from 'react';
@@ -44,24 +45,45 @@ const NewsCarouselSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Search */}
-          <form action="/updates" method="GET" className="w-full md:w-auto flex items-center gap-2" aria-label="Search updates">
-            <input
-              type="text"
-              name="q"
-              placeholder="Search updates…"
-              className="w-full md:w-72 2xl:w-[28rem] px-3 py-2 2xl:py-3 border rounded-lg text-sm 2xl:text-base focus:outline-none focus:ring-2 focus:ring-orange-500"
-              aria-label="Search query"
-            />
-            <Button
-              type="submit"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 2xl:px-6 2xl:py-3 rounded-lg text-sm 2xl:text-base font-semibold"
-              aria-label="Search"
-            >
-              Search
-              <ArrowRight className="ml-2 h-4 w-4 2xl:h-5 2xl:w-5" />
-            </Button>
-          </form>
+          <div className="w-full md:w-auto space-y-3">
+            {/* Search */}
+            <form action="/updates" method="GET" className="flex items-center gap-2" aria-label="Search updates">
+              <input
+                type="text"
+                name="q"
+                placeholder="Search updates…"
+                className="w-full md:w-72 2xl:w-[28rem] px-3 py-2 2xl:py-3 border rounded-lg text-sm 2xl:text-base focus:outline-none focus:ring-2 focus:ring-orange-500"
+                aria-label="Search query"
+              />
+              <Button
+                type="submit"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 2xl:px-6 2xl:py-3 rounded-lg text-sm 2xl:text-base font-semibold"
+                aria-label="Search"
+              >
+                Search
+                <ArrowRight className="ml-1 h-2 w-3 2xl:h-5 2xl:w-5" />
+              </Button>
+            </form>
+
+            {/* Newsletter Subscription */}
+            <form action="/newsletter-subscribe" method="POST" className="flex items-center gap-2" aria-label="Newsletter subscription">
+              <input
+                type="email"
+                name="email"
+                placeholder="Your email..."
+                required
+                className="w-full md:w-72 2xl:w-[28rem] px-3 py-2 2xl:py-3 border rounded-lg text-sm 2xl:text-base focus:outline-none focus:ring-2 focus:ring-orange-500"
+                aria-label="Email for newsletter"
+              />
+              <Button
+                type="submit"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 2xl:px-6 2xl:py-3 rounded-lg text-sm 2xl:text-base font-semibold whitespace-nowrap"
+                aria-label="Subscribe to newsletter"
+              >
+                Subscribe
+              </Button>
+            </form>
+          </div>
         </div>
 
         {/* Swiper */}
