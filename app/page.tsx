@@ -47,7 +47,7 @@ const keyOfferings = [
     icon: Monitor,
     title: "Smart Compliance Software",
     description:
-      "Automated, error-free labour law management with AI-powered insights and real-time monitoring.",
+      "Precise and automated management of Labour laws.",
     color: "from-blue-500 to-blue-600",
     bgColor: "from-blue-50 to-blue-100",
     href: "/services/smart-compliance-software",
@@ -56,7 +56,7 @@ const keyOfferings = [
     icon: Briefcase,
     title: "Compliance Outsourcing",
     description:
-      "We manage it all, so you don't have to worry about compliance.",
+      " Easing of workload.",
     color: "from-orange-500 to-orange-600",
     bgColor: "from-orange-50 to-orange-100",
     href: "/services/compliance-outsourcing",
@@ -65,7 +65,7 @@ const keyOfferings = [
     icon: ClipboardCheck,
     title: "PAN India Registrations",
     description:
-      "Fast licences, hassle-free filings across all states and territories.",
+      "National wide and smooth filing processes.",
     color: "from-green-500 to-green-600",
     bgColor: "from-green-50 to-green-100",
     href: "/services/pan-india-registrations",
@@ -74,7 +74,7 @@ const keyOfferings = [
     icon: ClipboardList,
     title: "Audit & Inspection",
     description:
-      "Complete support for audits, inspections, and compliance verification.",
+      "Provide Help and supports for the auditing and inspections.",
     color: "from-indigo-500 to-indigo-600",
     bgColor: "from-indigo-50 to-indigo-100",
     href: "/services/audit-and-inspection",
@@ -83,7 +83,7 @@ const keyOfferings = [
     icon: Gavel,
     title: "Legal Advisory & HR Policies",
     description:
-      "Get expert help for complex labour laws from certified legal professionals.",
+      "Provide professional support and help for complex labour regulations.",
     color: "from-purple-500 to-purple-600",
     bgColor: "from-purple-50 to-purple-100",
     href: "/services/legal-advisory-hr-policies",
@@ -92,7 +92,7 @@ const keyOfferings = [
   {
     icon: Landmark,
     title: "Litigation Support",
-    description: "Comprehensive dispute resolution and legal defence services.",
+    description: " Dispute resolutions and Support for legal defence.",
     color: "from-red-500 to-red-600",
     bgColor: "from-red-50 to-red-100",
     href: "/services/litigation-support",
