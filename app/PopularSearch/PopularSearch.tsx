@@ -294,7 +294,7 @@ const POPULAR_SEARCHES = [
 
 export default function PopularSearch({
   title = "Quick Access",
-  className = "",
+  className = "2xl:h-120 2xl:text-3xl font-semibold",
 }: { title?: string; className?: string }) {
   const pathname = usePathname()
   const router = useRouter()
@@ -321,11 +321,11 @@ export default function PopularSearch({
               onMouseEnter={() => router.prefetch(href)}
               aria-current={isActive ? "page" : undefined}
               className={[
-                "inline-flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors group hover:shadow-md duration-300 border-l-2 border-l-orange-500",
+                "inline-flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors group hover:shadow-md duration-300 border-l-2 border-l-orange-500 ",
                 isActive ? "bg-orange-100 text-orange-600" : "hover:bg-orange-100 hover:text-orange-600",
               ].join(" ")}
             >
-              <Icon className="w-4 h-4 flex-shrink-0" />
+              <Icon className="w-4 h-4 flex-shrink-0 " />
               <span className="truncate leading-normal">{label}</span>
             </Link>
           )
