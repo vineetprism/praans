@@ -51,11 +51,11 @@ export default function ResourceLibrary() {
       <div className="absolute inset-0 bg-gradient-to-br from-orange-100/10 via-transparent to-blue-100/10" />
       <div className="mx-auto w-full max-w-7xl 2xl:max-w-[120rem] px-3 sm:px-4 md:px-6 2xl:px-8 relative z-10 py-4 2xl:py-6">
         {/* Header with responsive sizing */}
-        <div className="text-center mb-20 sm:mb-5 md:mb-6 lg:mb-7 xl:mb-8 2xl:mb-30">
-          <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+        <div className="text-center mb-20 sm:mb-5 md:mb-6 lg:mb-8 xl:mb-8 2xl:mb-30">
+          <h2 className="text-base sm:text-lg md:text-xl lg:text-4xl xl:text-4xl 2xl:text-7xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
             Explore Our <span className="bg-clip-text bg-gradient-to-r from-orange-500 to-orange-400">Resource Library</span>
           </h2>
-          <p className="mt-4 sm:mt-2 text-[11px] sm:text-xs md:text-sm lg:text-base 2xl:text-lg text-gray-600 max-w-2xl sm:max-w-3xl lg:max-w-4xl 2xl:max-w-5xl mx-auto leading-snug 2xl:leading-relaxed">
+          <p className="mt-4 sm:mt-2 text-[11px] sm:text-xs md:text-sm 2xl:text-[1.2rem] text-gray-600 max-w-2xl sm:max-w-3xl lg:max-w-4xl 2xl:max-w-5xl mx-auto leading-snug 2xl:leading-relaxed">
             Navigate through our comprehensive collection of compliance resources organized by category.
           </p>
         </div>
