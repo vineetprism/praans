@@ -97,7 +97,7 @@ const keyStrengths = [
 export default function FounderPage() {
   return (
     <div className="bg-gray-50">
-      <section className="relative py-16 md:py-20 lg:py-10 bg-gray-50 overflow-hidden">
+      <section className="relative py-16 md:py-20 lg:py-10 2xl:py-24 bg-gray-50 overflow-hidden">
         <div className="absolute inset-0" />
         <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48 rounded-full blur-3xl" />
@@ -106,9 +106,9 @@ export default function FounderPage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
             Our <span className="text-[#eb8535]">Founder</span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          {/* <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             The leadership behind Praans Consultech—Sandeep Kumar, Nitesh Kumar, and Allisha Sharma—blending deep labour-law expertise with product-first execution to make compliance effortless across India.
-          </p>
+          </p> */}
         </div>
       </section>
 
@@ -329,7 +329,7 @@ export default function FounderPage() {
                     {/* Icon above title (stacked) */}
                     <div className="flex flex-col items-start">
                       <div className="mb-3">
-                        <div className="w-8 h-8 md:w-10 md:h-10 lg:w-8 lg:h-8 rounded-lg bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center shadow-sm">
+                        <div className="w-6 h-6 md:w-6 md:h-6 lg:w-6 lg:h-6 2xl:w-6 2xl:h-6 rounded-lg bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center shadow-sm">
                           <Icon className="w-5 h-5 text-[#eb8535]" aria-hidden />
                         </div>
                       </div>

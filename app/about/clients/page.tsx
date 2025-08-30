@@ -19,7 +19,8 @@ import {
   Map,
   Star,
   TrendingUp,
-  Shield
+  Shield,
+  Dog
 } from "lucide-react"
 
 export const metadata = {
@@ -30,26 +31,26 @@ export const metadata = {
 
 
 const clientSectors = [
-  { icon: Truck, name: "Logistics & Warehousing", count: "500+" },
-  { icon: Factory, name: "Manufacturing & Industrial Units", count: "800+" },
-  { icon: Store, name: "Retail & E-Commerce", count: "600+" },
-  { icon: Stethoscope, name: "Healthcare & Pharmaceuticals", count: "300+" },
-  { icon: Building2, name: "Construction & Infrastructure", count: "450+" },
-  { icon: Laptop, name: "Information Technology & BPO", count: "350+" },
-  { icon: Utensils, name: "Food & Beverage Industry", count: "250+" },
-  { icon: Tractor, name: "Agriculture & Farming Sector", count: "200+" },
-  { icon: School, name: "Education & EdTech Companies", count: "180+" },
-  { icon: Landmark, name: "Banking, Finance & Insurance (BFSI)", count: "120+" },
-  { icon: Users, name: "Manpower Supply & Contract Staffing", count: "400+" },
-  { icon: Coffee, name: "Restaurants, Cafes & Food Service", count: "300+" },
-  { icon: Briefcase, name: "Business Consulting & Professional Services", count: "150+" },
-]
+  { icon: Truck, name: "Logistics & Warehousing" },
+  { icon: Factory, name: "Manufacturing & Industrial Units" },
+  { icon: Store, name: "Retail & E-Commerce" },
+  { icon: Stethoscope, name: "Healthcare & Pharmaceuticals" },
+  { icon: Building2, name: "Construction & Infrastructure" },
+  { icon: Laptop, name: "Information Technology & BPO" },
+  { icon: Utensils, name: "Food & Beverage Industry" },
+  { icon: Tractor, name: "Agriculture & Farming Sector" },
+  { icon: School, name: "Education & EdTech Companies" },
+  { icon: Landmark, name: "Banking, Finance & Insurance (BFSI)" },
+  { icon: Users, name: "Manpower Supply & Contract Staffing Firms" },
+  { icon: Dog, name: "Pet Care & Veterinary Services" },
+  { icon: Coffee, name: "Restaurants, Cafes & Food Service Chains" },
+  { icon: Briefcase, name: "Business Consulting & Professional Services" },
+];
 
 const stats = [
-  { icon: UserCheck, value: "5000+", label: "Happy Clients", color: "text-blue-500" },
-  { icon: UsersRound, value: "50,000+", label: "Employees Covered", color: "text-green-500" },
-  { icon: Map, value: "28+", label: "States & UTs Covered", color: "text-orange-500" },
-  { icon: TrendingUp, value: "99.9%", label: "Success Rate", color: "text-purple-500" },
+  { icon: UserCheck, value: "100+", label: "Clients Served", color: "text-blue-500" },
+  { icon: UsersRound, value: "4,000+", label: "Employees Covered", color: "text-green-500" },
+  { icon: Map, value: "25+", label: "PAN India Operations", color: "text-orange-500" },
 ]
 
 const testimonials = [
@@ -100,80 +101,76 @@ export default function OurClientsPage() {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gray-50">
+      <section className="relative py-16 md:py-20 lg:py-10 2xl:py-24 bg-gray-50 overflow-hidden">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-4 text-slate-800">Our <span className="text-[#eb8535]">CLients</span></h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          {/* <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Trusted by businesses across all major sectors in India for seamless labour law compliance
-          </p>
+          </p> */}
         </div>
       </section>
 
       {/* Client Sectors */}
-      <section className="py-20 bg-white">
+      <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-slate-800">
-              Trusted Across All Major Industries
+              Trusted by Businesses Across All Major Sectors
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              We proudly serve a diverse portfolio of clients across India, delivering tailored compliance solutions for every industry's unique needs
+            <p className="text-xl text-gray-600 max-w-6xl mx-auto text-justify">
+              We proudly serve a wide spectrum of clients across India, offering tailored labour law compliance solutions that meet the unique needs of each industry. From startups and SMEs to large enterprises, our clients trust us to manage their statutory obligations with accuracy, consistency, and integrity.
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
             {clientSectors.map((sector, index) => (
-              <Card key={index} className="shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gray-50">
-                <CardContent className="p-6">
+              <Card
+                key={index}
+                className="h-full hover:shadow-md transition-all duration-300 hover:-translate-y-1 bg-gray-50"
+              >
+                <CardContent className="px-3 py-3 h-full">
                   <div className="flex items-center gap-4 mb-3">
-                    <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                    <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center shrink-0">
                       <sector.icon className="w-6 h-6 text-orange-500" />
                     </div>
                     <div className="flex-1">
                       <h3 className="font-bold text-gray-800 text-sm">{sector.name}</h3>
-                      <p className="text-orange-600 font-semibold text-sm">{sector.count} clients</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
-              Our Impact on Clients
-            </h2>
-
-            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-              Snapshot of our scale, consistency, and nationwide delivery—real metrics that move the needle.
+          <div className="mt-12 text-center max-w-4xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 leading-relaxed w-full mx-auto text-justify">
+              From ensuring proper registrations and renewals to managing inspections,
+              audits, contract labour documentation, and compliance reporting, we
+              handle it all. Our team brings in-depth legal expertise, industry
+              experience, and tech-enabled solutions that help clients stay fully
+              compliant and penalty-free.
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
-          </div>
 
-          {/* Stats */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="text-center p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <stat.icon className={`w-12 h-12 mx-auto mb-4 ${stat.color}`} />
-                <p className="text-4xl font-bold text-slate-800 mb-2">{stat.value}</p>
-                <p className="text-gray-600 font-medium">{stat.label}</p>
-              </div>
-            ))}
+            {/* Added top margin so stats don’t collide with the paragraph */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mt-8">
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="text-center p-6 bg-gray-50 rounded-xl transition-shadow"
+                >
+                  <stat.icon className={`w-12 h-12 mx-auto mb-4 ${stat.color}`} />
+                  <p className="text-4xl font-bold text-slate-800 mb-2">{stat.value}</p>
+                  <p className="text-gray-600 font-medium">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Client Testimonials */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-slate-800">What Our Clients Say</h2>
@@ -205,10 +202,10 @@ export default function OurClientsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Why Clients Choose Us */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      {/* <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-slate-800">Why Clients Choose Us</h2>
@@ -227,31 +224,38 @@ export default function OurClientsPage() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Confidentiality Statement */}
-      {/* <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <Card className="bg-gradient-to-r from-orange-100 to-blue-100 p-8 max-w-4xl mx-auto shadow-xl">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="flex-shrink-0">
-                <Lock className="w-16 h-16 text-orange-500" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-3 text-slate-800">🔒 Confidentiality You Can Rely On</h3>
-                <p className="text-gray-700 leading-relaxed">
-                  Our professional integrity and commitment to discretion have helped us build lasting relationships
-                  across industries. Clients value not just our expertise—but our ability to handle their compliance
-                  needs quietly, efficiently, and with full respect for privacy.
-                </p>
-              </div>
-            </div>
-          </Card>
-        </div>
       </section> */}
 
+      <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-gray-50">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+            🔒 Confidentiality You Can Rely On
+          </h2>
+          <p className="text-lg text-gray-700 mb-4 text-justify">
+            We recognize the highly confidential and complex nature of compliance and
+            labour law matters. That’s why we maintain a strict policy of client
+            confidentiality. While we work with several well-known organizations across
+            sectors, we do not share any client names, business details, or project
+            specifics in public domains.
+          </p>
+          <p className="text-lg text-gray-700 mb-4 text-justify">
+            Our professional integrity and commitment to discretion have helped us
+            build lasting relationships across industries. Clients value not just our
+            expertise—but our ability to handle their compliance needs quietly,
+            efficiently, and with full respect for privacy.
+          </p>
+          <p className="text-lg text-gray-700 text-justify">
+            Whether you’re an education institution, a fast-growing restaurant chain,
+            or a multinational with operations in multiple states, we provide tailored
+            support and scalable solutions to help your business grow—securely and
+            compliantly.
+          </p>
+        </div>
+      </section>
+
+
       {/* CTA Section */}
-      <section className="py-20 bg-slate-800 text-white">
+      <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-slate-800 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Join Our Growing Family of Satisfied Clients?</h2>
           <p className="text-xl mb-8 text-gray-300">
