@@ -4,7 +4,7 @@
 
 import React from 'react';
 import {
-  Scale, Bell, Calendar, Wallet, DollarSign,
+  Scale, Bell, Calendar, Wallet, DollarSign, 
   CreditCard, Calculator, Clock,
 } from 'lucide-react';
 import Link from 'next/link';
@@ -25,17 +25,17 @@ const categories = [
 const CategoryCard = React.memo(({ category, index }: { category: any; index: number }) => (
   <Link key={index} href={category.href} className="group block h-full cursor-pointer">
     <div className="relative border border-gray-100 shadow-sm bg-white rounded-lg hover:shadow-md hover:border-orange-200/50 transition flex flex-col h-full w-full">
-      <div className={`h-0.5 2xl:h-1 ${category.color}`} />
-      <div className="flex-1 flex flex-col p-2 md:p-3 2xl:p-5">
-        <div className="flex items-center gap-2 md:gap-3 2xl:gap-4 mb-1 md:mb-2 2xl:mb-3">
-          <div className={`w-7 h-7 md:w-8 md:h-8 2xl:w-10 2xl:h-10 ${category.color} rounded-md flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform`}>
-            <category.icon className="text-white" size={14} />
+      <div className={`h-1 rounded-xl 2xl:h-1 ${category.color}`} />
+      <div className="flex-1 flex flex-col p-2 sm:p-2 md:p-3 lg:p-3 xl:p-4 2xl:p-5">
+        <div className="flex items-center gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-3 2xl:gap-4 mb-1 sm:mb-1 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-3">
+          <div className={`w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-5 lg:h-5 xl:w-7 xl:h-7 2xl:w-10 2xl:h-10 ${category.color} rounded-md flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform`}>
+            <category.icon className="text-white lg:w-4 lg:h-4" size={10} />
           </div>
-          <h3 className="text-xs md:text-sm 2xl:text-lg font-semibold text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-1 leading-tight">
+          <h3 className="text-[10px] sm:text-[11px] md:text-xs lg:text-sm xl:text-sm 2xl:text-base font-semibold text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-1 leading-tight">
             {category.title}
           </h3>
         </div>
-        <p className="text-[11px] md:text-xs 2xl:text-base text-gray-600 group-hover:text-gray-700 leading-snug 2xl:leading-normal line-clamp-2">
+        <p className="text-[9px] sm:text-[10px] md:text-[11px] lg:text-xs xl:text-xs 2xl:text-sm text-gray-600 group-hover:text-gray-700 leading-tight 2xl:leading-normal line-clamp-2">
           {category.description}
         </p>
       </div>
@@ -45,35 +45,36 @@ const CategoryCard = React.memo(({ category, index }: { category: any; index: nu
 
 export default function ResourceLibrary() {
   return (
-    <section className="bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden min-h-screen">
+
+
+    <section className="bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden min-h-screen 2xl:scale-110">
       <div className="absolute inset-0 bg-gradient-to-br from-orange-100/10 via-transparent to-blue-100/10" />
-      {/* ↓ narrower on 2xl */}
-      <div className="mx-auto w-full max-w-7xl 2xl:max-w-[110rem] px-3 sm:px-4 md:px-6 2xl:px-8 relative z-10 py-4 2xl:py-6">
-        {/* Header spacing fixed */}
-        <div className="text-center mb-3 md:mb-4 2xl:mb-6">
-          <h2 className="text-lg md:text-2xl lg:text-3xl 2xl:text-5xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+      <div className="mx-auto w-full max-w-7xl 2xl:max-w-[120rem] px-3 sm:px-4 md:px-6 2xl:px-8 relative z-10 py-4 2xl:py-6">
+        {/* Header with responsive sizing */}
+        <div className="text-center mb-20 sm:mb-5 md:mb-6 lg:mb-7 xl:mb-8 2xl:mb-30">
+          <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
             Explore Our <span className="bg-clip-text bg-gradient-to-r from-orange-500 to-orange-400">Resource Library</span>
           </h2>
-          <p className="mt-1 text-xs md:text-sm 2xl:text-lg text-gray-600 max-w-3xl 2xl:max-w-5xl mx-auto leading-snug 2xl:leading-relaxed">
+          <p className="mt-4 sm:mt-2 text-[11px] sm:text-xs md:text-sm lg:text-base 2xl:text-lg text-gray-600 max-w-2xl sm:max-w-3xl lg:max-w-4xl 2xl:max-w-5xl mx-auto leading-snug 2xl:leading-relaxed">
             Navigate through our comprehensive collection of compliance resources organized by category.
           </p>
         </div>
 
-        {/* Grid — 4 cols; smaller 2xl gap; items stretch; height capped */}
+        {/* Grid with 4 cards per row */}
         <div
           className="
-            grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4
-            gap-2 md:gap-3 2xl:gap-5
+            grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4
+            gap-3 sm:gap-4 md:gap-4 lg:gap-4 xl:gap-6 2xl:gap-8
             items-stretch justify-items-stretch
             mx-auto
-            max-h-[calc(100vh-140px)] 2xl:max-h-[calc(100vh-160px)]
-            overflow-hidden
+            w-full
+            max-h-[calc(100vh-160px)] sm:max-h-[calc(100vh-170px)] md:max-h-[calc(100vh-180px)] 2xl:max-h-[calc(100vh-220px)]
           "
         >
           {categories.map((category, index) => (
             <div
               key={index}
-              className="h-[120px] md:h-[125px] lg:h-[130px] xl:h-[135px] 2xl:h-[160px]"
+              className="h-[80px] sm:h-[85px] md:h-[90px] lg:h-[100px] xl:h-[110px] 2xl:h-[140px] w-full"
             >
               <CategoryCard category={category} index={index} />
             </div>

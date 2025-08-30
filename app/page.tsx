@@ -182,7 +182,7 @@ export default function HomePage() {
         >
           {/* Heading */}
           <h1
-            className="text-xl sm:text-3xl md:text-4xl lg:text-[5.5rem] 2xl:text-[6.5rem]
+            className="text-xl sm:text-3xl md:text-3xl lg:text-[5.5rem] 2xl:text-[7.1rem]
           font-black text-slate-900 tracking-tight leading-tight animate-fade-up"
           >
             Simplifying{" "}
@@ -208,11 +208,11 @@ export default function HomePage() {
               />
             </span>
             <br />
-            <div className="text-slate-800 mt-1 2xl:mt-3 2xl:text-[6.5rem]">
+            <div className="text-slate-800 mt-1 2xl:mt-5 2xl:text-[6.9rem]  ">
               Compliance
             </div>
             <p
-              className="text-sm sm:text-base md:text-2xl lg:text-4xl 2xl:text-4xl 
+              className="text-sm sm:text-base md:text-2xl lg:text-4xl 2xl:text-6xl 
             font-medium italic text-blue-600 "
             >
               for Your Business
@@ -221,7 +221,7 @@ export default function HomePage() {
 
           {/* Subtitle */}
           <p
-            className="text-xs sm:text-sm md:text-base 2xl:text-2xl 
+            className="text-xs sm:text-sm md:text-base  lg:text-xl 2xl:text-4xl 
           text-gray-700 max-w-xl 2xl:max-w-4xl mx-auto 
           animate-fade-up delay-100 leading-snug 2xl:leading-normal px-3 2xl:px-6"
           >
@@ -243,7 +243,7 @@ export default function HomePage() {
   "
             >
               <Bot className="shrink-0 w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 2xl:w-7 2xl:h-7 text-white/90" />
-              <span className="relative z-10 font-black tracking-tight text-[10px] sm:text-xs md:text-sm lg:text-xl 2xl:text-2xl">
+              <span className="relative z-10 font-black tracking-tight text-[10px] sm:text-xs md:text-xl lg:text-2xl lg:py-30 2xl:text-4xl">
                 India&apos;s First Labour Law Compliance AI ChatBot
               </span>
               <Crown className="shrink-0 w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 2xl:w-7 2xl:h-7 text-yellow-300" />
@@ -258,9 +258,9 @@ export default function HomePage() {
             <Button
               size="sm"
               className="bg-gradient-to-r  bg-blue-950 hover:bg-blue-900 
-              text-white text-xs sm:text-sm 2xl:text-lg 
+              text-white text-xs sm:text-sm 2xl:text-xl 
               px-4 sm:px-5 2xl:px-8 lg:h-10
-              py-3 sm:py-2.5 2xl:py-5 
+              py-3 sm:py-2.5 2xl:py-8 
               shadow-md hover:shadow-orange-500/25 rounded-lg font-bold w-full sm:w-auto
               "
             >
@@ -270,9 +270,9 @@ export default function HomePage() {
             <Button
               size="sm"
               className="text-white bg-blue-950 hover:bg-blue-900 
-              text-xs sm:text-sm 2xl:text-lg 
+              text-xs sm:text-sm 2xl:text-xl 
               px-4 sm:px-5 2xl:px-8 
-              py-2 sm:py-2.5 2xl:py-5 
+              py-2 sm:py-2.5 2xl:py-8 
               rounded-lg font-bold w-full sm:w-auto lg:h-10"
             >
               Talk to Our Compliance Experts
