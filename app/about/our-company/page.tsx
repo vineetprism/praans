@@ -152,7 +152,7 @@ export default function AboutPage() {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-16 md:py-20 lg:py-24 bg-gray-50 overflow-hidden">
+      <section className="relative py-16 md:py-20 lg:py-10 bg-gray-50 overflow-hidden">
         <div className="absolute inset-0" />
         <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48 bg-blue-200/30 rounded-full blur-3xl" />
@@ -168,7 +168,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-10 md:py-20 bg-white">
+      <section className="py-10 md:py-20 lg:py-10 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           <div className="text-center mb-8 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-6 text-slate-800">
@@ -208,7 +208,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Journey Section */}
-      <section className="relative py-8 md:py-10 lg:py-12 bg-gray-50 overflow-hidden">
+      <section className="relative py-8 md:py-10 lg:py-10 bg-gray-50 overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-5xl mx-auto space-y-8">
 
@@ -268,7 +268,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Services Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 lg:pu-10 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
 
           {/* Heading */}
@@ -367,7 +367,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 md:py-20 bg-gray-50">
+      <section className="py-16 md:py-20 lg:py-10 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
@@ -464,7 +464,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Team Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 lg:py-10 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-5xl">
 
           {/* Heading */}
@@ -491,7 +491,7 @@ export default function AboutPage() {
 
 
       {/* Vision & Mission */}
-      <section className="relative overflow-hidden py-16 md:py-20 bg-gray-50">
+      <section className="relative overflow-hidden py-16 md:py-20 lg:py-10 bg-gray-50">
         {/* Soft background glows */}
         <div className="pointer-events-none absolute -left-32 top-24 h-64 w-64 rounded-full bg-cyan-200/20 blur-3xl" />
         <div className="pointer-events-none absolute -right-32 bottom-24 h-72 w-72 rounded-full bg-amber-200/20 blur-3xl" />
@@ -592,7 +592,7 @@ export default function AboutPage() {
       </section> */}
 
       {/* Certifications */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 lg:py-10 bg-white">
         <div className="container mx-auto px-4 md:px-6">
 
           {/* Heading */}
@@ -670,7 +670,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Labour Law Compliance Matters Section */}
-      <section className="py-16 md:py-20 bg-gray-50">
+      <section className="py-16 md:py-20 lg:10 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
 
           {/* Heading */}
@@ -710,7 +710,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Promise */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 lg:py-10 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
@@ -762,7 +762,7 @@ export default function AboutPage() {
       </section>
 
       {/* Who serve */}
-      <section className="py-16 md:py-20 bg-gray-50">
+      <section className="py-16 md:py-20 lg:py-10 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
 
           {/* Heading */}
@@ -816,7 +816,7 @@ export default function AboutPage() {
       </section>
 
       {/* Media & Awards Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 lg:py-10 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-8xl">
 
           {/* Heading */}
