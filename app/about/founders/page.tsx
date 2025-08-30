@@ -97,7 +97,7 @@ const keyStrengths = [
 export default function FounderPage() {
   return (
     <div className="bg-gray-50">
-      <section className="relative py-16 md:py-20 lg:py-20 bg-gray-50 overflow-hidden">
+      <section className="relative py-16 md:py-20 lg:py-10 bg-gray-50 overflow-hidden">
         <div className="absolute inset-0" />
         <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48 rounded-full blur-3xl" />
@@ -113,7 +113,7 @@ export default function FounderPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="relative py-16 md:py-20 lg:py-20 bg-white">
+      <section className="relative py-16 md:py-20 lg:py-10 bg-white">
         <div className="absolute inset-0" />
         <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40" />
         <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48" />
@@ -195,7 +195,7 @@ export default function FounderPage() {
       </section>
 
       {/* From Field Expertise to Tech-Driven Solutions */}
-      <section className="relative py-16 md:py-20 lg:py-20 bg-gray-50 overflow-hidden">
+      <section className="relative py-16 md:py-20 lg:py-10 bg-gray-50 overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-5xl mx-auto space-y-8 text-center">
 
@@ -264,7 +264,7 @@ export default function FounderPage() {
 
 
       {/* Vision & Innovation */}
-      <section className="py-16 md:py-20 lg:py-20 bg-white relative overflow-hidden">
+      <section className="py-16 md:py-20 lg:py-10 bg-white relative overflow-hidden">
         <div className="absolute inset-0" />
         <div className="absolute top-20 left-10 w-32 h-32  rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-40 h-40 rounded-full blur-3xl" />
@@ -278,7 +278,7 @@ export default function FounderPage() {
 
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <Card className="bg-gray-50 backdrop-blur-sm border-0 text-gray-700">
-                <CardContent className="p-8 md:p-10">
+                <CardContent className="p-8 md:p-10 lg:pt-0 lg:pb-0">
                   <div className="text-center mb-6">
                     <Target className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 text-orange-400" />
                     <h3 className="text-xl md:text-2xl font-semibold mb-4">Our founder's vision is both practical and impactful:</h3>
@@ -304,7 +304,7 @@ export default function FounderPage() {
       </section>
 
       {/* Why Leadership Matters */}
-      <section className="py-16 md:py-20 lg:py-20 bg-gray-50">
+      <section className="py-16 md:py-20 lg:py-10 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">
@@ -317,7 +317,7 @@ export default function FounderPage() {
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4"></div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-4 max-w-5xl mx-auto">
             {keyStrengths.map((strength, index) => {
               const Icon = strength.icon;
               return (
@@ -325,11 +325,11 @@ export default function FounderPage() {
                   key={index}
                   className="group hover:shadow-md transition-all duration-300 border-0 shadow-sm"
                 >
-                  <CardContent className="pl-4 pr-4 md:pl-5 md:pr-5">
+                  <CardContent className="pl-4 pr-4 md:pl-5 md:pr-5 lg:pt-0 lg:pb-0">
                     {/* Icon above title (stacked) */}
                     <div className="flex flex-col items-start">
                       <div className="mb-3">
-                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center shadow-sm">
+                        <div className="w-8 h-8 md:w-10 md:h-10 lg:w-8 lg:h-8 rounded-lg bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center shadow-sm">
                           <Icon className="w-5 h-5 text-[#eb8535]" aria-hidden />
                         </div>
                       </div>
@@ -344,9 +344,9 @@ export default function FounderPage() {
             })}
           </div>
 
-          <div className="text-center mt-12 md:mt-16">
+          <div className="text-center mt-12 md:mt-16 lg:mt-10">
             <Card className="bg-gray-100 max-w-4xl mx-auto">
-              <CardContent className="p-3 md:p-4">
+              <CardContent className="p-3 md:p-4 lg:p-0">
                 <p className="text-lg md:text-xl font-semibold text-gray-600 leading-relaxed mb-0 text-center">
                   Our founder continues to lead Praans Consultech as one of the most reputable and reliable labour-law consultancies in India, with a fast-growing network and PAN-India presence.
                 </p>
@@ -357,7 +357,7 @@ export default function FounderPage() {
       </section>
 
       {/* Media Recognition */}
-      <section className="py-16 md:py-20 lg:py-20 bg-white">
+      <section className="py-16 md:py-20 lg:py-10 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-8xl">
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
@@ -433,7 +433,7 @@ export default function FounderPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 lg:py-20 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 text-white relative overflow-hidden">
+      <section className="py-16 md:py-20 lg:py-10 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-blue-500/10" />
         <div className="absolute top-20 left-10 w-32 h-32 bg-orange-200/20 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-200/20 rounded-full blur-3xl" />

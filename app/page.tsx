@@ -182,7 +182,7 @@ export default function HomePage() {
         >
           {/* Heading */}
           <h1
-            className="text-xl sm:text-3xl md:text-3xl lg:text-[5.5rem] 2xl:text-[7.1rem]
+            className="text-xl sm:text-3xl md:text-3xl lg:text-[5.6rem] 2xl:text-[7.1rem]
           font-black text-slate-900 tracking-tight leading-tight animate-fade-up"
           >
             Simplifying{" "}
@@ -208,7 +208,7 @@ export default function HomePage() {
               />
             </span>
             <br />
-            <div className="text-slate-800 mt-1 2xl:mt-5 2xl:text-[6.9rem]  ">
+            <div className="text-slate-800 mt-1 2xl:mt-5 2xl:text-[6.9rem]">
               Compliance
             </div>
             <p
@@ -315,12 +315,12 @@ export default function HomePage() {
 
       <ResourceLibrary />
       {/* Enhanced CTA Section */}
-      <section className="py-16 md:py-20 lg:py-24  bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 text-white relative overflow-hidden lg">
+      <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 text-white relative overflow-hidden lg">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-blue-500/10" />
         <div className="absolute top-20 left-10 w-24 h-24 md:w-32 md:h-32 bg-orange-200/20 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-32 h-32 md:w-40 md:h-40 bg-blue-200/20 rounded-full blur-3xl" />
 
-        <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 text-center relative z-10 lg:scale-94">
           <div className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-sm font-semibold mb-6 md:mb-8 shadow-lg">
             <TrendingUp className="w-4 h-4" />
             <span>Get Started Today</span>
