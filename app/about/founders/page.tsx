@@ -14,6 +14,10 @@ import {
   TrendingUp,
   Globe,
   Zap,
+  Gavel,
+  Bell,
+  Server,
+  ClipboardCheck,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -71,12 +75,29 @@ const services = [
   { title: "Audit and Inspection Handling", description: "Complete support during statutory audits, inspections, and departmental visits" },
 ]
 
+
 const keyStrengths = [
-  { icon: Zap, title: "Real-time Compliance Alerts", description: "Designed for your industry with automated notifications" },
-  { icon: Globe, title: "Local Execution with Centralized Control", description: "Pan-India operations with unified management" },
-  { icon: Shield, title: "Expert Legal Handling", description: "Professional management of inspections, notices, and legal issues" },
-  { icon: TrendingUp, title: "Scalable Solutions", description: "Perfect for startups, MSMEs, and large enterprises" },
-]
+  {
+    title: "Local executions with centralized control",
+    icon: MapPin,
+  },
+  {
+    title: "Expert handling of notices, legal issues, and inspections",
+    icon: Gavel,
+  },
+  {
+    title: "Real-time compliance alerts tailored to your industry",
+    icon: Bell,
+  },
+  {
+    title: "Scalable solutions for large businesses, MSMEs and startups",
+    icon: Server,
+  },
+  {
+    title: "Smooth readiness for auditing and inspections",
+    icon: ClipboardCheck,
+  },
+];
 
 
 export default function FounderPage() {
@@ -98,196 +119,154 @@ export default function FounderPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="relative py-16 md:py-20 lg:py-24 bg-white overflow-hidden">
+      <section className="relative py-16 md:py-20 lg:py-24 bg-white">
         <div className="absolute inset-0" />
-        <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40 " />
+        <div className="absolute top-20 left-10 w-32 h-32 md:w-40 md:h-40" />
         <div className="absolute bottom-20 right-10 w-40 h-40 md:w-48 md:h-48" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 md:gap-0 items-center max-w-7xl mx-auto">
-            <div className="space-y-6 md:space-y-8 pl-8">
-              <div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
-                  Meet Our Founder
-                </h1>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[#eb8535] mb-4 md:mb-6 leading-relaxed">
-                  Your Trusted Labour Law Consultant with Over 15 Years of Expertise
-                </h2>
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                  At Praans Consultech, our journey is led by a visionary labour law consultant who brings over 15 years of in-depth experience in managing and simplifying labour law compliance for businesses across India. Our founder is not only a legal expert but a trusted partner to countless organizations seeking clarity and control over their statutory responsibilities.<br /><br />
-                  With a background in managing compliance for over 2,500 locations and more than 50,000 employees PAN India, our founder has demonstrated exceptional capability in handling complex labour law operations across multiple states and sectors. Formerly the Director of Legal & Compliance at a top logistics and courier company, their leadership in large-scale operations laid the foundation for what Praans Consultech stands for today excellence, reliability, and innovation in labour law compliance.
+          <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
+            {/* LEFT: Text */}
+            <div className="space-y-6 md:space-y-8 pl-4 md:pl-8">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-slate-800 leading-tight">
+                Meet Our Founder
+              </h1>
 
-                </p>
-              </div>
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[#eb8535] mb-4 leading-relaxed">
+                Our reliable Labour Law Consultant with more than 15 years of experience
+              </h2>
+
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed text-justify break-words whitespace-normal">
+                At Praans Consultech, our founder — a labour law adviser with over 15 years of experience in managing and streamlining
+                labour law compliance for businesses PAN India — is driving our mission. Our founder is a trusted partner to
+                numerous businesses looking for clarity and control over their statutory responsibilities, in addition to being a legal expert.
+              </p>
+
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed text-justify break-words whitespace-normal">
+                They’ve managed compliance across multiple states and industries for 2,500+ locations and 50,000+ people PAN India.
+                Praans Consultech stands for dependability, excellence and innovation in labour law compliance, built on leadership
+                that ran legal & compliance for large logistics and courier firms.
+              </p>
             </div>
 
-            {/* Founder Image Placeholder */}
-            <div className="flex justify-center lg:justify-center">
-              <div className="relative">
-                <div className="w-80 h-80 md:w-96 md:h-96 lg:w-[400px] lg:h-[400px] rounded-3xl flex items-center justify-center">
-                  <div className="w-full h-full rounded-3xl flex items-center justify-center">
-                    <div className="text-center w-full h-full">
-                      <Image
-                        src="/services/MG.png"
-                        alt="Sandeep Kumar — Founder, Praans Consultech"
-                        width={800}
-                        height={800}
-                        priority
-                        className="rounded-3xl object-cover w-full h-full"
-                      />
-                    </div>
-                  </div>
+            {/* RIGHT: Image - responsive and cannot force horizontal overflow */}
+            <div className="flex justify-center items-start">
+              <div className="relative flex-shrink-0 w-full max-w-[400px]">
+                <div className="w-full aspect-[1/1] rounded-3xl overflow-hidden">
+                  <Image
+                    src="/services/MG.png"
+                    alt="Sandeep Kumar — Founder, Praans Consultech"
+                    width={800}
+                    height={800}
+                    priority
+                    className="object-cover w-full h-full"
+                  />
                 </div>
-                <div className="absolute -top-4 -left-4 w-24 h-24 bg-orange-200/50 rounded-full blur-xl"></div>
-                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-200/50 rounded-full blur-xl"></div>
+
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-orange-200/50 rounded-full blur-xl" />
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-200/50 rounded-full blur-xl" />
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Professional Journey (Education in text, now FULL WIDTH) */}
-      <section className="py-16 md:py-20 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">Professional Journey</h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full" />
-            </div>
+          {/* EDUCATION: keep inside the same container (no nested .container) */}
+          <div className="max-w-6xl mx-auto mt-12 md:mt-16">
+            <div
+              role="region"
+              aria-labelledby="education-heading"
+              className="w-full bg-gray-100 rounded-2xl p-6 md:p-8 lg:p-10"
+            >
+              <h3 id="education-heading" className="text-2xl md:text-3xl font-bold text-slate-800">
+                Education <span className="text-[#eb8535]">&amp; Credentials</span>
+              </h3>
 
-            {/* Row 1: narrative + expertise card */}
-            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
-              {/* Left: Narrative */}
-              <div className="space-y-6 text-gray-700 leading-relaxed">
-                <p className="text-base md:text-lg">
-                  Our founder is not only a legal expert but a trusted partner to countless organizations seeking
-                  clarity and control over their statutory responsibilities. With a background in managing compliance
-                  for over <strong>2,500 locations and more than 50,000 employees PAN India</strong>, our founder has
-                  demonstrated exceptional capability in handling complex labour law operations across multiple states and sectors.
-                </p>
-
-                <div className="bg-gray-100 p-6 md:p-8 rounded-2xl border-l-4 border-[#eb8535]">
-                  <p className="text-base md:text-lg font-semibold text-[#eb8535] mb-2">Previous Leadership Role</p>
-                  <p className="text-base md:text-lg text-gray-700">
-                    Formerly the <strong>Director of Legal & Compliance</strong> at a top logistics and courier
-                    company, their leadership in large-scale operations laid the foundation for what Praans Consultech
-                    stands for today—excellence, reliability, and innovation in labour law compliance.
-                  </p>
-                </div>
-
-                <p className="text-base md:text-lg">
-                  This rare combination of practical experience, legal acumen, and academic excellence positions our
-                  founder among the <strong>top labour law consultants in India</strong>.
-                </p>
-              </div>
-
-              {/* Right: Expertise Card */}
-              <Card className="shadow-xl border-0 bg-gradient-to-br from-white to-gray-50">
-                <CardContent className="p-8 md:p-10">
-                  <div className="text-center mb-6">
-                    <Briefcase className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 text-[#eb8535]" />
-                    <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">Professional Expertise</h3>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">Multi-state compliance management</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">Large-scale operations leadership</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">Legal & compliance strategy</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">Technology-driven solutions</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Row 2: FULL-WIDTH Education */}
-            <div className="mt-12 md:mt-16 rounded-2xl bg-gray-100 p-6 md:p-8 lg:p-10">
-              <h3 className="text-2xl md:text-3xl font-bold text-slate-800">Education <span className="text-[#eb8535]">& Credentials</span></h3>
-              <p className="mt-2 text-gray-700 max-w-none">
+              <p className="mt-2 text-gray-700">
                 Grounded in rigorous academics and ongoing research, building the toolkit that powers execution:
               </p>
-              <ul className="mt-4 space-y-3 list-disc pl-5 text-gray-800 text-base md:text-lg max-w-none">
+
+              <ul className="mt-4 space-y-3 list-disc pl-6 text-gray-800 text-base md:text-lg">
                 <li><strong>B.Sc.</strong> — analytical problem-solving to decode complex regulatory issues.</li>
-                <li>
-                  <strong>LL.B. & LL.M.</strong> — deep command of Indian labour laws, employment regulations, and industrial relations.
-                </li>
-                <li>
-                  <strong>PG Diploma in Labour Laws & Industrial Relations</strong> — strong foundations in statutory frameworks and IR.
-                </li>
-                <li>
-                  <strong>XLRI Alumnus</strong> — advanced leadership and HR management insight from a top B-school.
-                </li>
-                <li>
-                  <strong>Ph.D. (Pursuing)</strong> — active research in labour law and compliance systems to stay ahead of change.
-                </li>
+                <li><strong>LL.B. &amp; LL.M.</strong> — deep command of Indian labour laws, employment regulations, and industrial relations.</li>
+                <li><strong>PG Diploma in Labour Laws &amp; Industrial Relations</strong> — strong foundations in statutory frameworks and IR.</li>
+                <li><strong>XLRI Alumnus</strong> — advanced leadership and HR management insight from a top B-school.</li>
+                <li><strong>Ph.D. (Pursuing)</strong> — active research in labour law and compliance systems to stay ahead of change.</li>
               </ul>
+
+              <p className="mt-4 text-center text-gray-800 font-semibold text-base md:text-lg">
+                Our founder is one of the leading labour law advisors in India — a unique blend of real-world experience, legal knowledge, and academic distinction.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="relative py-16 md:py-20 lg:py-24 bg-gradient-to-br from-white via-slate-50 to-white overflow-hidden">
-  <div className="container mx-auto px-4 md:px-6 relative z-10">
-    <div className="max-w-5xl mx-auto space-y-8 text-center">
-      
-      {/* Heading */}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 leading-tight">
-        From Field Expertise to Tech-Driven Solutions
-      </h2>
-      
-      {/* Intro Paragraph */}
-      <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-        Understanding the growing need for automation and real-time compliance tracking, our founder envisioned a smarter way for businesses to manage their statutory obligations. This led to the creation of <span className="font-semibold text-[#eb8535]">Praans Consultech’s AI-based Compliance Management Software</span>, launched in 2022. Designed with real-world challenges in mind, this intelligent platform helps businesses automate compliance tracking, receive deadline alerts, manage registers, and avoid penalties.
-      </p>
-      
-      {/* Service List */}
-      <div className="grid md:grid-cols-2 gap-6 mt-8 text-left">
-        
-        <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">Labour Law Registrations</h3>
-          <p className="text-gray-600 text-sm">Shops & Establishments, CLRA, ESIC, EPF, and more</p>
-        </div>
-        
-        <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">AI-Powered Compliance Software</h3>
-          <p className="text-gray-600 text-sm">Monitor and manage statutory obligations seamlessly</p>
-        </div>
-        
-        <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">Compliance Outsourcing</h3>
-          <p className="text-gray-600 text-sm">Seamless labour law management from Start to Finish</p>
-        </div>
-        
-        <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">Labour Law Litigation Support</h3>
-          <p className="text-gray-600 text-sm">Legal representation and case management</p>
-        </div>
-        
-        <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">Advisory Services</h3>
-          <p className="text-gray-600 text-sm">Expert guidance on labour law strategy, audits, and reforms</p>
-        </div>
-        
-        <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
-          <h3 className="text-lg font-semibold text-slate-800 mb-2">Audit & Inspection Handling</h3>
-          <p className="text-gray-600 text-sm">Complete support during statutory audits, inspections, and departmental visits</p>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</section>
+      {/* From Field Expertise to Tech-Driven Solutions */}
+      <section className="relative py-16 md:py-20 lg:py-24 bg-gray-50 overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="max-w-5xl mx-auto space-y-8 text-center">
 
+            {/* Heading */}
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 leading-tight">
+              From Field Expertise to Tech-Driven Solutions
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-orange-500 mx-auto rounded-full"></div>
+
+            {/* Intro Paragraphs — now full width of the parent (same as card grid) */}
+            <p className="text-base md:text-lg text-gray-600 leading-relaxed w-full mx-auto text-justify">
+              To meet the growing need for real-time compliance tracking and automation, our founder developed a smart way for businesses to manage their statutory obligations. Praans Consultech launched its AI-based Compliance Management Software in 2022 — designed with real-world challenges in mind. The platform helps organisations automate compliance tracking, receive deadline alerts, maintain registers, and avoid penalties.
+            </p>
+
+            <p className="text-base md:text-lg text-gray-600 leading-relaxed w-full mx-auto text-justify">
+              Backed by hands-on field experience and a visionary approach, this solution helped Praans Consultech become a leading labour-law consultancy in India, offering focused services that combine legal expertise with technology.
+            </p>
+
+            {/* Service List */}
+            <div className="grid md:grid-cols-3 gap-6 mt-8 text-left">
+              <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
+                <h3 className="text-lg font-semibold text-slate-800 mb-2">Labour Law Registrations</h3>
+                <p className="text-gray-600 text-sm">
+                  Shops & Establishments, CLRA, ESIC, EPF and other statutory registrations.
+                </p>
+              </div>
+
+              <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
+                <h3 className="text-lg font-semibold text-slate-800 mb-2">AI-Powered Compliance Software</h3>
+                <p className="text-gray-600 text-sm">
+                  Monitor and manage statutory obligations seamlessly with automated alerts and register management.
+                </p>
+              </div>
+
+              <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
+                <h3 className="text-lg font-semibold text-slate-800 mb-2">Compliance Outsourcing</h3>
+                <p className="text-gray-600 text-sm">
+                  End-to-end labour law management — from registrations to routine compliance execution.
+                </p>
+              </div>
+
+              <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
+                <h3 className="text-lg font-semibold text-slate-800 mb-2">Labour Law Litigation Support</h3>
+                <p className="text-gray-600 text-sm">
+                  Legal representation and case management for employment and industrial disputes.
+                </p>
+              </div>
+
+              <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
+                <h3 className="text-lg font-semibold text-slate-800 mb-2">Advisory Services</h3>
+                <p className="text-gray-600 text-sm">
+                  Strategic guidance on labour law policy, audits, process redesign and regulatory reforms.
+                </p>
+              </div>
+
+              <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100 hover:shadow-lg transition">
+                <h3 className="text-lg font-semibold text-slate-800 mb-2">Audit & Inspection Handling</h3>
+                <p className="text-gray-600 text-sm">
+                  Complete support during statutory audits, inspections and departmental visits.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
 
       {/* Vision & Innovation */}
@@ -310,7 +289,7 @@ export default function FounderPage() {
                     <Target className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 text-orange-400" />
                     <h3 className="text-xl md:text-2xl font-semibold mb-4">Our founder's vision is both practical and impactful:</h3>
                   </div>
-                  <blockquote className="text-base md:text-lg text-gray-600 leading-relaxed italic border-l-4 border-orange-400 pl-6">
+                  <blockquote className="text-base md:text-lg text-gray-600 leading-relaxed italic border-l-4 border-orange-400 pl-6 text-justify">
                     "To empower businesses across India with accessible, affordable, and intelligent labour law compliance
                     solutions—ensuring legal safety while promoting employee welfare and operational efficiency."
                   </blockquote>
@@ -319,16 +298,7 @@ export default function FounderPage() {
 
               <div className="space-y-6 text-gray-700">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4">Simplifying Compliance, Empowering Businesses</h2>
-                {/* <p className="text-base md:text-lg leading-relaxed">
-                  Understanding the growing need for automation and real-time compliance tracking, our founder envisioned a
-                  smarter way for businesses to manage their statutory obligations. This led to the creation of{" "}
-                  <strong>Praans Consultech's AI-based Compliance Management Software, launched in 2022</strong>.
-                </p>
-                <p className="text-base md:text-lg leading-relaxed">
-                  Designed with real-world challenges in mind, this intelligent platform helps businesses automate compliance
-                  tracking, receive deadline alerts, manage registers, and avoid penalties.
-                </p> */}
-                <p className="text-base md:text-lg leading-relaxed">
+                <p className="text-base md:text-lg leading-relaxed text-justify">
                   They strongly believe that labour law compliance shouldn't be a burden but a well-managed system that
                   promotes fair practices, protects organizations, and upholds employee rights. This belief fuels everything
                   we do at Praans Consultech.
@@ -339,77 +309,52 @@ export default function FounderPage() {
         </div>
       </section>
 
-      {/* Services Offered */}
+      {/* Why Leadership Matters */}
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">Our Comprehensive Services</h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Our founder's hands-on experience and visionary approach have helped us become a leading labour law
-              consultancy firm in India
-            </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4"></div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {services.map((service, index) => (
-              <Card key={index} className="shadow-lg bg-white hover:shadow-xl transition-all duration-300 group border-0">
-                <CardContent className="p-6 md:p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-2 group-hover:text-orange-600 transition-colors duration-300">
-                        {service.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm md:text-base leading-relaxed">{service.description}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Leadership Matters */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">Why Our Founder's Leadership Matters</h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">
+              Why Our Founder's Leadership Matters
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto text-justify">
               In a country where labour laws vary by state, enforcement is dynamic, and penalties are costly, having a knowledgeable
-              and proactive labour law compliance consultant makes all the difference
+              and proactive labour law compliance consultant makes all the difference.
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
-            {keyStrengths.map((strength, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
-                <CardContent className="p-6 md:p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-orange-100 to-orange-200 text-orange-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <strength.icon className="w-6 h-6 md:w-7 md:h-7" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-2 group-hover:text-orange-600 transition-colors duration-300">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+            {keyStrengths.map((strength, index) => {
+              const Icon = strength.icon;
+              return (
+                <Card
+                  key={index}
+                  className="group hover:shadow-md transition-all duration-300 border-0 shadow-sm"
+                >
+                  <CardContent className="pl-4 pr-4 md:pl-5 md:pr-5">
+                    {/* Icon above title (stacked) */}
+                    <div className="flex flex-col items-start">
+                      <div className="mb-3">
+                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center shadow-sm">
+                          <Icon className="w-5 h-5 text-[#eb8535]" aria-hidden />
+                        </div>
+                      </div>
+
+                      <h3 className="text-base md:text-lg text-slate-700 font-semibold mb-1 group-hover:text-orange-600 transition-colors duration-300">
                         {strength.title}
                       </h3>
-                      <p className="text-gray-600 text-sm md:text-base leading-relaxed">{strength.description}</p>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
           <div className="text-center mt-12 md:mt-16">
-            <Card className="bg-[#eb8535] border-0 shadow-xl max-w-4xl mx-auto">
-              <CardContent className="p-8 md:p-12">
-                <p className="text-lg md:text-xl font-semibold text-gray-200 leading-relaxed mb-6">
-                  With a growing client base and PAN India presence, our founder continues to innovate and lead Praans Consultech as one of the most trusted labour law consultants in India.
+            <Card className="bg-gray-100 max-w-4xl mx-auto">
+              <CardContent className="p-3 md:p-4">
+                <p className="text-lg md:text-xl font-semibold text-gray-600 leading-relaxed mb-0 text-center">
+                  Our founder continues to lead Praans Consultech as one of the most reputable and reliable labour-law consultancies in India, with a fast-growing network and PAN-India presence.
                 </p>
               </CardContent>
             </Card>
@@ -418,7 +363,7 @@ export default function FounderPage() {
       </section>
 
       {/* Media Recognition */}
-      <section className="py-16 md:py-20 bg-gray-50">
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-8xl">
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
