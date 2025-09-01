@@ -226,14 +226,14 @@ export default function SiteHeader() {
             <div className="hidden lg:flex items-center gap-2">
               <Button
                 variant="ghost"
-                className="rounded-xl hover:bg-orange-50 hover:text-orange-600 font-semibold px-6 transition-all"
+                className="rounded-xl hover:bg-orange-50 hover:text-orange-600 font-semibold px-6 transition-all cursor-pointer"
                 aria-label="Sign in"
               >
                 <User className="w-4 h-4 mr-2" />
                 Sign In
               </Button>
               <Button
-                className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl font-semibold px-6 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-200 group"
+                className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl font-semibold px-6 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-200 group cursor-pointer"
                 aria-label="Get started"
               >
                 <span className="relative z-10">Get Started</span>

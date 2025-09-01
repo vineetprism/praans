@@ -73,7 +73,7 @@ const keyOfferings = [
     bgColor: "from-purple-50 to-purple-100",
     href: "/services/legal-advisory-hr-policies",
   },
-  
+
   {
     icon: Landmark,
     title: "Litigation Support",
@@ -82,8 +82,8 @@ const keyOfferings = [
     bgColor: "from-red-50 to-red-100",
     href: "/services/litigation-support",
   },
-  
-  
+
+
 ];
 
 const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
@@ -128,32 +128,32 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
     </div>
   </Link>
 ));
-export const MiddleSection=()=>{
-    return(
-          <section className="relative m-0 p-0 bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
-        <div className="w-full">
-          {/* ⬇️ Wider on 2xl, slightly tighter side padding */}
-          <div className="mx-auto w-full max-w-7xl 2xl:max-w-[110rem] px-3 sm:px-4 lg:px-6 2xl:px-6">
-            <section className="py-8 sm:py-10 lg:py-12 2xl:py-16 min-h-[70vh] 2xl:min-h-[80vh]">
-              <div className="text-center mb-6 sm:mb-8 lg:mb-10 2xl:mb-12">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-2 2xl:mb-3 text-slate-900 leading-tight">
-                  Single Platform for All Labour Law Compliances
-                </h2>
-                <p className="text-xs sm:text-sm md:text-[1rem] lg:text-base 2xl:text-lg text-gray-700 max-w-2xl 2xl:max-w-3xl mx-auto leading-snug 2xl:leading-relaxed px-3">
-                  From automated software to expert legal support, we've got you
-                  covered.
-                </p>
-              </div>
+export const MiddleSection = () => {
+  return (
+    <section className="relative m-0 p-0 bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
+      <div className="w-full">
+        {/* ⬇️ Wider on 2xl, slightly tighter side padding */}
+        <div className="mx-auto w-full max-w-7xl 2xl:max-w-[110rem] px-3 sm:px-4 lg:px-6 2xl:px-6">
+          <section className="py-8 sm:py-10 lg:py-12 2xl:py-16 min-h-[70vh] 2xl:min-h-[80vh]">
+            <div className="text-center mb-6 sm:mb-8 lg:mb-10 2xl:mb-12">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-2 2xl:mb-3 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+                Single Platform for All <span className="bg-clip-text bg-gradient-to-r from-orange-500 to-orange-400">Labour Law Compliances</span>
+              </h2>
+              <p className="text-xs sm:text-sm md:text-[1rem] lg:text-base 2xl:text-lg text-gray-700 max-w-2xl 2xl:max-w-3xl mx-auto leading-snug 2xl:leading-relaxed px-3">
+                From automated software to expert legal support, we've got you
+                covered.
+              </p>
+            </div>
 
-              {/* ⬇️ Same 3 columns, but bigger gap at 2xl */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 2xl:gap-10">
-                {keyOfferings.map((offering: Offering, idx: number) => (
-                  <OfferingCard key={idx} offering={offering} index={idx} />
-                ))}
-              </div>
-            </section>
-          </div>
+            {/* ⬇️ Same 3 columns, but bigger gap at 2xl */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 2xl:gap-10">
+              {keyOfferings.map((offering: Offering, idx: number) => (
+                <OfferingCard key={idx} offering={offering} index={idx} />
+              ))}
+            </div>
+          </section>
         </div>
-      </section>
-    )
+      </div>
+    </section>
+  )
 }
