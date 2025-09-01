@@ -19,22 +19,15 @@ export default function HeroSection() {
     <section
   className="
     relative flex items-center justify-center
-    /* Height: fluid, height-driven (no more 80vw) */
     min-h-[clamp(22rem,62vh,78vh)]
     supports-[min-height:100dvh]:min-h-[clamp(22rem,62dvh,78dvh)]
-
-    /* Padding-X same */
     px-4 sm:px-6 lg:px-8 2xl:px-16
-
-    /* Bottom padding: fluid + safe-area aware */
     pb-[max(env(safe-area-inset-bottom),_clamp(1rem,6vh,3rem))]
     landscape:pb-[clamp(.5rem,4vh,2rem)]
-
     bg-gradient-to-br from-orange-50 via-white to-blue-50
-    overflow-hidden
+    overflow-hidden lg:pt-3
   "
 >
-
       {/* Background Elements */}
       <div className="absolute inset-0 bg-orange-100/10  " />
       <div className="absolute inset-0 bg-gradient-to-bl from-orange-100/40 to-blue-100/20" />
@@ -58,7 +51,7 @@ export default function HeroSection() {
       {/* Content Container - Moderately broader on 2xl */}
       <div
         className="w-full max-w-5xl 2xl:max-w-8xl mx-auto text-center 
-        space-y-0.5 min-[390px]:space-y-0.5 sm:space-y-6 md:space-y-5 lg:space-y-2 2xl:space-y-0.5 relative z-10"
+        space-y-0.5 min-[390px]:space-y-0.5 sm:space-y-6 md:space-y-5 lg:space-y-4 2xl:space-y-0.5 relative z-10"
       >
         {/* Heading */}
         <h1
