@@ -104,11 +104,11 @@ export default function FounderPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
             {/* LEFT: Text */}
             <div className="space-y-6 md:space-y-8 pl-4 md:pl-8">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 text-slate-800 leading-tight">
+              <h1 className="text-xl md:text-4xl lg:text-5xl font-bold mb-3 text-slate-800 leading-tight">
                 Meet Our Founder
               </h1>
 
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-[#eb8535] mb-4 leading-relaxed">
+              <h2 className="text-xl md:text-2xl lg:text-2xl font-semibold text-[#eb8535] mb-4 leading-relaxed">
                 Our reliable Labour Law Consultant with more than 15 years of experience
               </h2>
 
@@ -182,8 +182,8 @@ export default function FounderPage() {
           <div className="max-w-5xl mx-auto space-y-8 text-center">
 
             {/* Heading */}
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 leading-tight">
-              From Field Expertise to Tech-Driven Solutions
+            <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-800 leading-tight">
+              From Field Expertise to <span className="text-[#eb8535]">Tech-Driven Solutions</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-orange-500 mx-auto rounded-full"></div>
 
@@ -254,8 +254,8 @@ export default function FounderPage() {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">Our Vision</h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-orange-500 mx-auto rounded-full"></div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">Our <span className="text-[#eb8535]">Vision</span></h2>
+              <div className="w-24 h-1 bg-[#eb8535] mx-auto rounded-full"></div>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -290,7 +290,7 @@ export default function FounderPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">
-              Why Our Founder's Leadership Matters
+              Why Our Founder's <span className="text-[#eb8535]">Leadership Matters</span> 
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto text-justify">
               In a country where labour laws vary by state, enforcement is dynamic, and penalties are costly, having a knowledgeable
@@ -344,9 +344,9 @@ export default function FounderPage() {
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
-              Featured Articles
+              Featured <span className="text-[#eb8535]">Articles</span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
+            <div className="w-24 h-1 bg-[#eb8535] mx-auto rounded-full mt-4" />
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
               Third-party coverage and accolades that validate our execution.
             </p>

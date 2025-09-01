@@ -128,7 +128,7 @@ export default function SiteHeader() {
                 priority
                 className="h-10 lg:h-12 w-auto"
               />
-              <div className="absolute inset-0 bg-orange-500/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+              {/* <div className="absolute inset-0 bg-orange-500/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity -z-10" /> */}
             </div>
           </Link>
 
@@ -179,9 +179,9 @@ export default function SiteHeader() {
                           }`}
                         />
                       )}
-                      {active && (
+                      {/* {active && (
                         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-0.5 bg-orange-500 rounded-full" />
-                      )}
+                      )} */}
                     </Link>
 
                     {hasDropdown && dropdownOpen === index && (

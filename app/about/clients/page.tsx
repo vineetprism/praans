@@ -47,7 +47,7 @@ const clientSectors = [
 const stats = [
   { icon: UserCheck, value: "100+", label: "Clients Served", color: "text-blue-500" },
   { icon: UsersRound, value: "4,000+", label: "Employees Covered", color: "text-green-500" },
-  { icon: Map, value: "25+", label: "PAN India Operations", color: "text-orange-500" },
+  { icon: Map, value: "25+", label: "PAN India Operations", color: "text-orange-400" },
 ]
 
 
@@ -70,12 +70,12 @@ export default function OurClientsPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-slate-800">
-              Trusted by Businesses Across All Major Sectors
+              Trusted by Businesses Across <span className="text-[#eb8535]">All Major Sectors</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-6xl mx-auto text-justify">
               We proudly serve a wide spectrum of clients across India, offering tailored labour law compliance solutions that meet the unique needs of each industry. From startups and SMEs to large enterprises, our clients trust us to manage their statutory obligations with accuracy, consistency, and integrity.
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
+            <div className="w-24 h-1 bg-[#eb8535] mx-auto rounded-full mt-4" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
@@ -127,7 +127,7 @@ export default function OurClientsPage() {
       <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-            🔒 Confidentiality You Can Rely On
+            🔒 Confidentiality <span className="text-[#eb8535]">You Can Rely On</span>
           </h2>
           <p className="text-lg text-gray-700 mb-4 text-justify">
             We recognize the highly confidential and complex nature of compliance and
