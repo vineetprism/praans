@@ -163,7 +163,7 @@ export default function HeroSection() {
      <section
         className="
       relative min-h-screen flex items-center justify-center 
-      pb-7 sm:pb:30 md:pb-10 lg:pb-20 2xl:pt-20
+      pb-7 sm:pb:30 md:pb-10 lg:pb-20 2xl:pb-20
       px-4 sm:px-6 lg:px-8 2xl:px-16
       bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden
      
@@ -192,7 +192,7 @@ export default function HeroSection() {
         {/* Content Container - Moderately broader on 2xl */}
         <div
           className="w-full max-w-5xl 2xl:max-w-8xl mx-auto text-center 
-        space-y-3 sm:space-y-6 md:space-y-5 lg:space-y-2 2xl:space-y-6 relative z-10"
+        space-y-0.5 sm:space-y-6 md:space-y-5 lg:space-y-2 2xl:space-y-0.5 relative z-10"
         >
           {/* Heading */}
           <h1
