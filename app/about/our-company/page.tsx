@@ -91,11 +91,11 @@ export default function AboutPage() {
             {/* Left Content */}
             <div className="space-y-4 md:space-y-6 text-gray-600 leading-relaxed">
               <p className="text-base md:text-lg text-justify">
-                Founded in 2021, <strong className="text-[#eb8535]">Praans Consultech</strong> has become as one of India’s most trusted labour law consultants, technology-driven solution providers and compliance partners. With the motive to bring the labour law compliance in streamline and simplified it for businesses in India. Together we bring innovations, technology and legal expertise on ground level executions to ensure that organisations of any kind and sizes remain fully compliant with ever-evolving labour laws.
+                Founded in 2021, <strong className="text-[#eb8535]"><em>Praans Consultech</em></strong> has become as one of India’s most trusted labour law consultants, technology-driven solution providers and compliance partners. With the motive to bring the labour law compliance in streamline and simplified it for businesses in India. Together we bring innovations, technology and legal expertise on ground level executions to ensure that organisations of any kind and sizes remain fully compliant with ever-evolving labour laws.
               </p>
 
               <p className="text-base md:text-lg text-justify">
-                At <strong className="text-[#eb8535]">Praans Consultech</strong>, Just filing returns and meeting deadlines is not  about managing compliance, it is much more than that and we understand it. It’s about risk mitigations, ensuring legal accuracy, creating a smooth operational framework that supports growth and protection against penalties for business. Our founders, <strong><em>Mr. Sandeep Kumar, Mr. Nitesh Kumar, and Ms. Allisha Sharma,</em></strong> identified the growing gap in how businesses managed multi-location compliance. The process we were known in past is usually slow, error prone and so we were not able to keeps with whole regulatory landscape. With this understanding, they joined hands to create a single-window solution that would transform the way businesses handle compliance.
+                At <strong className="text-[#eb8535]"><em>Praans Consultech</em></strong>, Just filing returns and meeting deadlines is not  about managing compliance, it is much more than that and we understand it. It’s about risk mitigations, ensuring legal accuracy, creating a smooth operational framework that supports growth and protection against penalties for business. Our founders, <strong><em>Mr. Sandeep Kumar, Mr. Nitesh Kumar, and Ms. Allisha Sharma,</em></strong> identified the growing gap in how businesses managed multi-location compliance. The process we were known in past is usually slow, error prone and so we were not able to keeps with whole regulatory landscape. With this understanding, they joined hands to create a single-window solution that would transform the way businesses handle compliance.
               </p>
             </div>
 
@@ -131,10 +131,10 @@ export default function AboutPage() {
 
               <div className="space-y-6 text-base md:text-lg text-gray-600 leading-relaxed text-justify">
                 <p>
-                  When Praans Consultech started in <span className="font-semibold text-[#eb8535]">2021</span>, our aim was simple and precise – to become a trusted compliance partner for Indian businesses. Our core team brought together years of industry experience in labour laws, HR operations, and corporate legal advisory. They understood how errors in compliance could lead to heavy penalties, disrupt business operations, and cause reputational damage.
+                  When <span className="text-[#eb8535]"><em>Praans Consultech</em></span> started in <span className="font-semibold text-[#eb8535]"><em>2021</em></span>, our aim was simple and precise – to become a trusted compliance partner for Indian businesses. Our core team brought together years of industry experience in labour laws, HR operations, and corporate legal advisory. They understood how errors in compliance could lead to heavy penalties, disrupt business operations, and cause reputational damage.
                 </p>
                 <p>
-                  To counter these challenges, our team developed <span className="font-semibold text-[#eb8535]">AI-based Intelligent Compliance Management Software</span> by 2023. It automates filings, generates real-time alerts, simplifies workflows, and monitors deadlines. A breakthrough that reduced the burden of spreadsheets and manual registers, while enabling seamless multi-state compliance.
+                  To counter these challenges, our team developed <span className="font-semibold text-[#eb8535]"><em>AI-based Intelligent Compliance Management Software</em></span> by 2023. It automates filings, generates real-time alerts, simplifies workflows, and monitors deadlines. A breakthrough that reduced the burden of spreadsheets and manual registers, while enabling seamless multi-state compliance.
                 </p>
                 <p>
                   Since then, we have expanded rapidly, serving clients across all states and union territories of India. Praans Consultech has emerged as a trusted compliance partner for start-ups, SMEs, and large enterprises across industries – a safe and faster way to manage compliance.
@@ -187,7 +187,7 @@ export default function AboutPage() {
               Our <span className="text-[#eb8535]">Services</span>
             </h2>
             <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              At <span className="font-semibold text-[#eb8535]">Praans Consultech</span>, we are honoured to provide
+              At <span className="font-semibold text-[#eb8535]"><em>Praans Consultech</em></span>, we are honoured to provide
               end-to-end labour law solutions under one portal.
               Our services include comprehensive support designed to
               keep your business fully compliant with ever-evolving regulations.
@@ -386,7 +386,7 @@ export default function AboutPage() {
           {/* Content */}
           <div className="text-gray-600 text-base md:text-lg leading-relaxed text-justify space-y-6">
             <p>
-              <span className="font-semibold text-[#eb8535]">Praans Consultech</span> is powered by a dynamic team of legal experts, HR specialists,
+              <span className="font-semibold text-[#eb8535]"><em>Praans Consultech</em></span> is powered by a dynamic team of legal experts, HR specialists,
               and technology professionals. We strongly believe that legal knowledge is more effective
               when combined with modern tools and practical execution.
             </p>
@@ -574,7 +574,7 @@ export default function AboutPage() {
             </ul>
 
             <p>
-              This is where <span className="font-semibold text-[#eb8535]">Praans Consultech</span> steps in as a trusted
+              This is where <span className="font-semibold text-[#eb8535]"><em>Praans Consultech</em></span> steps in as a trusted
               compliance partner—ensuring your business remains compliant, safeguards its brand,
               and continues to grow without disruptions.
             </p>
@@ -597,28 +597,28 @@ export default function AboutPage() {
           {/* Promises */}
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-6 h-6 text-orange-600 mt-1" />
+              <CheckCircle2 className="w-6 h-6 text-orange-400 mt-1" />
               <p className="text-gray-700 leading-relaxed">
                 Provide <strong>accurate, reliable, and timely</strong> compliance services.
               </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <Cpu className="w-6 h-6 text-orange-600 mt-1" />
+              <Cpu className="w-6 h-6 text-orange-400 mt-1" />
               <p className="text-gray-700 leading-relaxed">
                 Offer <strong>technology-driven solutions</strong> that streamline your processes.
               </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <Layers className="w-6 h-6 text-orange-600 mt-1" />
+              <Layers className="w-6 h-6 text-orange-400 mt-1" />
               <p className="text-gray-700 leading-relaxed">
                 Assure <strong>end-to-end support</strong>—from registrations to litigation.
               </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <ShieldCheck className="w-6 h-6 text-orange-600 mt-1" />
+              <ShieldCheck className="w-6 h-6 text-orange-400 mt-1" />
               <p className="text-gray-700 leading-relaxed">
                 Safeguard your business from <strong>fines</strong> and <strong>compliance mismanagement</strong>.
               </p>
