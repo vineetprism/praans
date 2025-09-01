@@ -594,7 +594,7 @@ const NewsCarouselSection: React.FC = () => {
     <>
       <style dangerouslySetInnerHTML={{ __html: paginationStyles }} />
       <section className="w-full py-8 md:py-12 lg:py-16 xl:py-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-9xl">
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-8 lg:mb-12 gap-6 lg:gap-8">
           {/* Title Section */}
