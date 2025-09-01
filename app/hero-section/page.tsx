@@ -7,26 +7,45 @@ import Link from 'next/link';
 
 export default function HeroSection() {
   return (
-    <section
-      className="
-      relative min-h-screen flex items-center justify-center 
-      pb-7 sm:pb:30 md:pb-10 lg:pb-20 2xl:pb-20
-      px-4 sm:px-6 lg:px-8 2xl:px-16
-      bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden
+    // <section
+    //   className="
+    //   relative min-h-[clamp(20rem,80vw,100dvh)] flex items-center justify-center 
+    //   pb-7 min-[390px]:pb-80 sm:pb-30 md:pb-10 lg:pb-20 2xl:pb-20
+    //   px-4 sm:px-6 lg:px-8 2xl:px-16
+    //   bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden
      
-      "
-    >
+    //   "
+    // >
+    <section
+  className="
+    relative flex items-center justify-center
+    /* Height: fluid, height-driven (no more 80vw) */
+    min-h-[clamp(22rem,62vh,78vh)]
+    supports-[min-height:100dvh]:min-h-[clamp(22rem,62dvh,78dvh)]
+
+    /* Padding-X same */
+    px-4 sm:px-6 lg:px-8 2xl:px-16
+
+    /* Bottom padding: fluid + safe-area aware */
+    pb-[max(env(safe-area-inset-bottom),_clamp(1rem,6vh,3rem))]
+    landscape:pb-[clamp(.5rem,4vh,2rem)]
+
+    bg-gradient-to-br from-orange-50 via-white to-blue-50
+    overflow-hidden
+  "
+>
+
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-orange-100/10" />
+      <div className="absolute inset-0 bg-orange-100/10  " />
       <div className="absolute inset-0 bg-gradient-to-bl from-orange-100/40 to-blue-100/20" />
       <div
         className="absolute top-8 sm:top-12 left-5 sm:left-10 
-        w-14 h-14 sm:w-20 sm:h-20 lg:w-28 lg:h-28 2xl:w-40 2xl:h-40 
+         sm:w-20 sm:h-20 lg:w-28 lg:h-28 2xl:w-40 2xl:h-40 
         bg-orange-200/30 rounded-full blur-2xl"
       />
       <div
         className="absolute bottom-8 sm:bottom-12 right-5 sm:right-10 
-        w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 2xl:w-44 2xl:h-44 
+    w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 2xl:w-44 2xl:h-44 
         bg-blue-200/30 rounded-full blur-2xl"
       />
 
@@ -39,13 +58,14 @@ export default function HeroSection() {
       {/* Content Container - Moderately broader on 2xl */}
       <div
         className="w-full max-w-5xl 2xl:max-w-8xl mx-auto text-center 
-        space-y-0.5 sm:space-y-6 md:space-y-5 lg:space-y-2 2xl:space-y-0.5 relative z-10"
+        space-y-0.5 min-[390px]:space-y-0.5 sm:space-y-6 md:space-y-5 lg:space-y-2 2xl:space-y-0.5 relative z-10"
       >
         {/* Heading */}
         <h1
-          className="text-[2rem] sm:text-5xl md:text-6xl lg:text-[5rem] 2xl:text-[7.1rem]
+          className="text-[2rem]  min-[360px]:text-[34px] min-[375px]:text-[37px] min-[390px]:text-[37px] min-[414px]:text-[37px] min-[430px]:text-[px] sm:text-5xl md:text-6xl lg:text-[5rem] 2xl:text-[7.1rem]
           font-black text-slate-900 tracking-tight"
         >
+        
           Simplifying{" "}
           <span className="relative inline-block">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
