@@ -42,93 +42,6 @@ type MediaItem = {
   image?: string;
 };
 
-const whyChooseUs = [
-  {
-    icon: Cpu,
-    title: "AI-Driven Compliance",
-    description: "Smart software for error-free filings & real-time alerts",
-    highlight: "99.9% Accuracy"
-  },
-  {
-    icon: Globe,
-    title: "Pan-India Coverage",
-    description: "Local experts in every state for seamless compliance",
-    highlight: "All States & UTs"
-  },
-  {
-    icon: ShieldCheck,
-    title: "End-to-End Solutions",
-    description: "From registrations to litigation, we handle it all",
-    highlight: "Complete Service"
-  },
-  {
-    icon: UsersRound,
-    title: "Expert Team",
-    description: "Labour law specialists & HR professionals on your side",
-    highlight: "Expert Support"
-  },
-  {
-    icon: Headset,
-    title: "Proactive Support",
-    description: "Timely updates & guidance to prevent penalties",
-    highlight: "24/7 Available"
-  },
-  {
-    icon: Scaling,
-    title: "Customized for You",
-    description: "Scalable solutions for startups to enterprises",
-    highlight: "All Business Sizes"
-  },
-]
-
-
-
-const stats = [
-  {
-    icon: Users,
-    number: "5000+",
-    label: "Happy Clients",
-    color: "text-blue-600"
-  },
-  {
-    icon: MapPin,
-    number: "36",
-    label: "States & UTs Covered",
-    color: "text-green-600"
-  },
-  {
-    icon: Calendar,
-    number: "2021",
-    label: "Established",
-    color: "text-purple-600"
-  },
-  {
-    icon: Building2,
-    number: "100%",
-    label: "Success Rate",
-    color: "text-orange-400"
-  }
-]
-
-const certifications = [
-  {
-    name: "ISO Certified",
-    description: "Quality Management System"
-  },
-  {
-    name: "Startup India",
-    description: "Government Recognition Program"
-  },
-  {
-    name: "MSME Registered",
-    description: "Micro, Small & Medium Enterprise"
-  },
-  {
-    name: "Ministry of Corporate Affairs",
-    description: "Government Approved Entity"
-  }
-]
-
 const media: MediaItem[] = [
   {
     title:
@@ -161,9 +74,6 @@ export default function AboutPage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
             About Praans <span className="text-[#eb8535]">Consultech</span>
           </h1>
-          {/* <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Simplifying Labour Law Compliance for businesses across India since 2021
-          </p> */}
         </div>
       </section>
 
@@ -185,7 +95,7 @@ export default function AboutPage() {
               </p>
 
               <p className="text-base md:text-lg text-justify">
-                At <strong className="text-[#eb8535]">Praans Consultech</strong>, Just filing returns and meeting deadlines is not  about managing compliance, it is much more than that and we understand it. It’s about risk mitigations, ensuring legal accuracy, creating a smooth operational framework that supports growth and protection against penalties for business. Our founders, <strong>Mr. Sandeep Kumar, Mr. Nitesh Kumar, and Ms. Allisha Sharma,</strong> identified the growing gap in how businesses managed multi-location compliance. The process we were known in past is usually slow, error prone and so we were not able to keeps with whole regulatory landscape. With this understanding, they joined hands to create a single-window solution that would transform the way businesses handle compliance.
+                At <strong className="text-[#eb8535]">Praans Consultech</strong>, Just filing returns and meeting deadlines is not  about managing compliance, it is much more than that and we understand it. It’s about risk mitigations, ensuring legal accuracy, creating a smooth operational framework that supports growth and protection against penalties for business. Our founders, <strong><em>Mr. Sandeep Kumar, Mr. Nitesh Kumar, and Ms. Allisha Sharma,</em></strong> identified the growing gap in how businesses managed multi-location compliance. The process we were known in past is usually slow, error prone and so we were not able to keeps with whole regulatory landscape. With this understanding, they joined hands to create a single-window solution that would transform the way businesses handle compliance.
               </p>
             </div>
 
@@ -221,7 +131,7 @@ export default function AboutPage() {
 
               <div className="space-y-6 text-base md:text-lg text-gray-600 leading-relaxed text-justify">
                 <p>
-                  When Praans Consultech started in 2022, our aim was simple and precise – to become a trusted compliance partner for Indian businesses. Our core team brought together years of industry experience in labour laws, HR operations, and corporate legal advisory. They understood how errors in compliance could lead to heavy penalties, disrupt business operations, and cause reputational damage.
+                  When Praans Consultech started in <span className="font-semibold text-[#eb8535]">2021</span>, our aim was simple and precise – to become a trusted compliance partner for Indian businesses. Our core team brought together years of industry experience in labour laws, HR operations, and corporate legal advisory. They understood how errors in compliance could lead to heavy penalties, disrupt business operations, and cause reputational damage.
                 </p>
                 <p>
                   To counter these challenges, our team developed <span className="font-semibold text-[#eb8535]">AI-based Intelligent Compliance Management Software</span> by 2023. It automates filings, generates real-time alerts, simplifies workflows, and monitors deadlines. A breakthrough that reduced the burden of spreadsheets and manual registers, while enabling seamless multi-state compliance.
@@ -553,43 +463,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      {/* Why Choose Us */}
-      {/* <section className="py-16 md:py-20 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">Why Praans Consultech?</h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              We take pride in being a single-window solution for all statutory and regulatory compliance needs
-            </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4"></div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {whyChooseUs.map((item, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
-                <CardContent className="p-6 md:p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-orange-100 to-orange-200 text-orange-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <item.icon className="w-6 h-6 md:w-7 md:h-7" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-lg md:text-xl font-semibold text-slate-800 group-hover:text-orange-600 transition-colors duration-300">
-                          {item.title}
-                        </h3>
-                      </div>
-                      <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* Certifications */}
       <section className="py-16 md:py-20 lg:py-10 bg-white">

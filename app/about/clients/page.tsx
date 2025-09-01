@@ -17,9 +17,6 @@ import {
   UserCheck,
   UsersRound,
   Map,
-  Star,
-  TrendingUp,
-  Shield,
   Dog
 } from "lucide-react"
 
@@ -53,49 +50,7 @@ const stats = [
   { icon: Map, value: "25+", label: "PAN India Operations", color: "text-orange-500" },
 ]
 
-const testimonials = [
-  {
-    quote: "Praans Consultech has been instrumental in streamlining our compliance processes across 200+ locations. Their AI-powered platform saves us hours of manual work.",
-    company: "Leading Logistics Company",
-    industry: "Transportation & Logistics",
-    size: "10,000+ employees"
-  },
-  {
-    quote: "The expertise and proactive support from Praans team helped us navigate complex labour law requirements seamlessly during our expansion.",
-    company: "Major Manufacturing Group",
-    industry: "Manufacturing",
-    size: "5,000+ employees"
-  },
-  {
-    quote: "Their compliance outsourcing service allows us to focus on our core business while ensuring 100% regulatory compliance across all our outlets.",
-    company: "Retail Chain",
-    industry: "Retail & E-Commerce",
-    size: "15,000+ employees"
-  }
-]
 
-const whyClientsChooseUs = [
-  {
-    icon: Shield,
-    title: "100% Compliance Assurance",
-    description: "Zero penalties and complete regulatory compliance across all locations"
-  },
-  {
-    icon: Star,
-    title: "Industry Expertise",
-    description: "Deep understanding of sector-specific labour law requirements"
-  },
-  {
-    icon: TrendingUp,
-    title: "Proven Track Record",
-    description: "Successfully serving 5000+ clients with 99.9% success rate"
-  },
-  {
-    icon: Users,
-    title: "Dedicated Support",
-    description: "Assigned compliance managers and 24/7 expert support"
-  }
-]
 
 export default function OurClientsPage() {
   return (
@@ -169,63 +124,6 @@ export default function OurClientsPage() {
         </div>
       </section>
 
-      {/* Client Testimonials */}
-      {/* <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-slate-800">What Our Clients Say</h2>
-            <p className="text-xl text-gray-600">Real feedback from businesses we've helped succeed</p>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="shadow-xl hover:shadow-2xl transition-shadow duration-300 bg-gradient-to-br from-white to-gray-50">
-                <CardContent className="p-8">
-                  <div className="mb-6">
-                    <div className="flex items-center gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                    <blockquote className="text-gray-700 italic leading-relaxed">
-                      "{testimonial.quote}"
-                    </blockquote>
-                  </div>
-                  <div className="border-t pt-6">
-                    <p className="font-bold text-slate-800">{testimonial.company}</p>
-                    <p className="text-orange-600 text-sm">{testimonial.industry}</p>
-                    <p className="text-gray-500 text-sm">{testimonial.size}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-      {/* Why Clients Choose Us */}
-      {/* <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-slate-800">Why Clients Choose Us</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full mt-4" />
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {whyClientsChooseUs.map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-3 text-slate-800">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
       <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
@@ -252,7 +150,6 @@ export default function OurClientsPage() {
           </p>
         </div>
       </section>
-
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-slate-800 text-white">

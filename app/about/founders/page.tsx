@@ -53,21 +53,6 @@ const media: MediaItem[] = [
   },
 ];
 
-const achievements = [
-  { icon: Clock, number: "15+", label: "Years of Expertise", color: "text-blue-600" },
-  { icon: MapPin, number: "2,500+", label: "Locations Managed", color: "text-green-600" },
-  { icon: Users, number: "50,000+", label: "Employees Covered", color: "text-purple-600" },
-  { icon: Building2, number: "100%", label: "PAN India Coverage", color: "text-orange-400" },
-]
-
-const services = [
-  { title: "Labour Law Registrations", description: "Shops & Establishments, CLRA, ESIC, EPF, and more" },
-  { title: "AI-Powered Compliance Software", description: "Monitor and manage statutory obligations seamlessly" },
-  { title: "Compliance Outsourcing", description: "Seamless labour law management from Start to Finish" },
-  { title: "Labour Law Litigation Support", description: "Legal representation and case management" },
-  { title: "Advisory Services", description: "Expert guidance on labour law strategy, audits, and reforms" },
-  { title: "Audit and Inspection Handling", description: "Complete support during statutory audits, inspections, and departmental visits" },
-]
 
 
 const keyStrengths = [
@@ -106,9 +91,6 @@ export default function FounderPage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
             Our <span className="text-[#eb8535]">Founder</span>
           </h1>
-          {/* <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            The leadership behind Praans Consultech—Sandeep Kumar, Nitesh Kumar, and Allisha Sharma—blending deep labour-law expertise with product-first execution to make compliance effortless across India.
-          </p> */}
         </div>
       </section>
 
