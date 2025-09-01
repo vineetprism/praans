@@ -98,12 +98,12 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight ">
                 Stay Compliant, Stay Prepared, Stay Confident
               </h1>
 
               {/* constrain width for better readability on tablets */}
-              <p className="mt-4 text-lg text-slate-700 max-w-xl">
+              <p className="mt-4 text-lg text-slate-700 max-w-xl text-justify">
                 Labour-law audits and inspections are more than box-checking — they’re critical to operational resilience and risk mitigation. Praans Consultech combines field-enabled expertise with tech-backed processes to handle documentation review, gap remediation and live inspection support, so your statutory compliance is accurate, defensible and inspection-ready.
               </p>
 
@@ -149,7 +149,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
         </div>
       </section>
 
-
       {/* What is an Audit / Inspection */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6 lg:px-8">
@@ -175,7 +174,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                   What is a Labour Law Audit?
                 </h2>
 
-                <p className="text-slate-700 mb-5">
+                <p className="text-slate-700 mb-5 text-justify">
                   A labour law audit is a detailed examination of your company’s statutory records, processes, and practices
                   to ensure compliance with central and state-specific labour regulations. These audits are often part of
                   internal control systems or preemptive measures to avoid penalties and legal actions.
@@ -267,7 +266,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                   Understanding Labour Law Inspections
                 </h2>
 
-                <p className="text-slate-700 mb-4">
+                <p className="text-slate-700 mb-4 text-justify">
                   A labour law inspection is a physical verification of compliance by government-authorized officials.
                   It may be scheduled, a surprise visit, or prompted by a complaint or whistleblower. Inspectors review
                   records, premises and processes to confirm statutory compliance.
@@ -373,7 +372,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                       {item.title}
                     </h3>
 
-                    <p className="mt-2 text-sm text-gray-600 group-hover:text-white/90 transition-colors duration-200">
+                    <p className="mt-2 text-sm text-gray-600 group-hover:text-white/90 transition-colors duration-200 text-justify">
                       {item.description}
                     </p>
                   </div>
@@ -431,8 +430,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
   `}</style>
       </section>
 
-
-
       {/* Our Services */}
       <section className="py-14 bg-white">
         <div className="container mx-auto px-6 lg:px-8">
@@ -454,7 +451,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-xl">{service.title}</h3>
-                      <p className="mt-2 text-sm text-gray-600">{service.description}</p>
+                      <p className="mt-2 text-sm text-gray-600 text-justify">{service.description}</p>
                     </div>
                   </div>
                 </Card>
@@ -465,19 +462,19 @@ export default function LegalAdvisoryHrPoliciesPage() {
       </section>
 
       {/* Technology */}
-      <section className="py-14 bg-[#1c2752] text-white">
+      <section className="py-14 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8 grid gap-8 md:grid-cols-2 items-center">
           <div>
             <h2 className="text-3xl font-bold mb-4">Technology-Enabled Compliance</h2>
 
-            <p className="text-gray-200 mb-6 max-w-xl">
+            <p className="text-gray-600 mb-6 max-w-xl text-justify">
               To enhance accuracy and efficiency, we integrate our AI-powered compliance management software with
               our audit and inspection services. The platform gives you a single pane of glass to track status,
               centralise documents, automate reminders and produce defensible, inspection-ready reports — so your
               compliance program is transparent, auditable and operational.
             </p>
 
-            <ul className="space-y-3 text-gray-200">
+            <ul className="space-y-3 text-gray-600">
               <li className="flex items-start gap-3">
                 <Cpu className="w-5 h-5 text-orange-400 mt-1" />
                 <span>Track compliance status in real-time</span>
@@ -504,7 +501,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
               </li>
             </ul>
 
-            <p className="text-gray-300 mt-6 max-w-lg">
+            <p className="text-gray-600 mt-6 max-w-lg">
               With technology on your side, your compliance ecosystem becomes more organised, proactive and inspection-ready—always.
             </p>
           </div>
@@ -559,7 +556,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900">{reason}</h3>
-                      <p className="mt-2 text-sm text-gray-600">{microCopy}</p>
+                      <p className="mt-2 text-sm text-gray-600 text-justify">{microCopy}</p>
                     </div>
                   </div>
                 </div>
@@ -571,19 +568,19 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
       {/* CTA — updated copy */}
       <section className="py-12 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1700px] px-6 lg:px-8">
-          <div className="bg-[#2a3154] text-white rounded-lg p-8 sm:p-12 shadow-lg text-center">
-            <h2 className="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight">
+        <div className="mx-auto px-6 lg:px-8">
+          <div className="rounded-lg p-8 sm:p-12 text-center">
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-5 text-slate-700 leading-tight">
               Let’s Simplify Your Compliance Journey
             </h2>
 
-            <p className="mx-auto max-w-7xl text-gray-200 text-base sm:text-lg leading-relaxed mb-4">
+            <p className="mx-auto max-w-7xl text-gray-600 text-base sm:text-lg leading-relaxed mb-4 text-justify">
               Labour law compliance doesn’t have to be overwhelming. With Praans Consultech,
               you receive strategic support, smart software, and a dedicated team that ensures
               every requirement is met accurately and on time.
             </p>
 
-            <p className="mx-auto max-w-6xl text-gray-200 text-base sm:text-lg leading-relaxed mb-10">
+            <p className="mx-auto max-w-6xl text-gray-600 text-base sm:text-lg leading-relaxed mb-10 text-justify">
               Let us help you transform your compliance process into a strength, not a stress.
               Book your free consultation to explore our labour law compliance outsourcing solutions.
             </p>
@@ -603,7 +600,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
               <Link
                 href="mailto:info@praansconsultech.com"
                 aria-label="Email Praans Consultech"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white bg-transparent text-[#eb8535] text-lg font-bold
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-[#eb8535] bg-transparent text-[#eb8535] text-lg font-bold
                          hover:bg-[#eb8535] hover:text-white hover:border-white
                          hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
                          transition duration-200 cursor-pointer"

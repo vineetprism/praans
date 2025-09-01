@@ -489,7 +489,7 @@ export default function AboutPage() {
                     <CheckCircle className="h-8 w-8 text-orange-600" />
                   </div>
                   <h3 className="text-lg md:text-xl font-semibold text-slate-800">ISO Certification</h3>
-                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed text-justify">
                     Ensures our services maintain the highest quality standards and reliability.
                   </p>
                 </div>
@@ -503,7 +503,7 @@ export default function AboutPage() {
                     <Award className="h-8 w-8 text-orange-600" />
                   </div>
                   <h3 className="text-lg md:text-xl font-semibold text-slate-800">Startup India Recognition</h3>
-                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed text-justify">
                     Certified under the flagship initiative of the Government of India.
                   </p>
                 </div>
@@ -517,7 +517,7 @@ export default function AboutPage() {
                     <Briefcase className="h-8 w-8 text-orange-600" />
                   </div>
                   <h3 className="text-lg md:text-xl font-semibold text-slate-800">MSME Certification</h3>
-                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed text-justify">
                     Recognition as a rapidly growing micro, small, and medium enterprise.
                   </p>
                 </div>
@@ -531,7 +531,7 @@ export default function AboutPage() {
                     <Building2 className="h-8 w-8 text-orange-600" />
                   </div>
                   <h3 className="text-lg md:text-xl font-semibold text-slate-800">MCA Registration</h3>
-                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed text-justify">
                     Accredited under the Ministry of Corporate Affairs as a reliable compliance partner.
                   </p>
                 </div>
@@ -655,7 +655,7 @@ export default function AboutPage() {
             <div className="text-center bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-lg transition">
               <Rocket className="w-10 h-10 text-orange-400 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-slate-800">Startups</h3>
-              <p className="mt-2 text-gray-600 text-sm leading-relaxed">
+              <p className="mt-2 text-gray-600 text-sm leading-relaxed text-justify">
                 At reasonably priced compliance to guide and assist young businesses to get started its business on right track.
               </p>
             </div>
@@ -664,7 +664,7 @@ export default function AboutPage() {
             <div className="text-center bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-lg transition">
               <BarChart3 className="w-10 h-10 text-orange-400 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-slate-800">SMEs</h3>
-              <p className="mt-2 text-gray-600 text-sm leading-relaxed">
+              <p className="mt-2 text-gray-600 text-sm leading-relaxed text-justify">
                 With maximum risk mitigations and simplifying the complexity of compliance for the growth of business.
               </p>
             </div>
@@ -673,7 +673,7 @@ export default function AboutPage() {
             <div className="text-center bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-lg transition">
               <Building className="w-10 h-10 text-orange-400 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-slate-800">Large Enterprises</h3>
-              <p className="mt-2 text-gray-600 text-sm leading-relaxed">
+              <p className="mt-2 text-gray-600 text-sm leading-relaxed text-justify">
                 Scalable solutions for operations with multiple locations throughout India.
               </p>
             </div>
