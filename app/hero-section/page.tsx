@@ -196,8 +196,8 @@ export default function HeroSection() {
         >
           {/* Heading */}
           <h1
-            className="text-[2rem] sm:text-5xl md:text-6xl lg:text-[5rem] 2xl:text-8xl
-          font-black text-slate-900 tracking-tight leading-tight"
+            className="text-[2rem] sm:text-5xl md:text-6xl lg:text-[5rem] 2xl:text-[7.1rem]
+          font-black text-slate-900 tracking-tight"
           >
             Simplifying{" "}
             <span className="relative inline-block">
@@ -207,27 +207,27 @@ export default function HeroSection() {
               <div
                 className="absolute -bottom-0.5 sm:-bottom-1 left-0 right-0 
               h-0.5 sm:h-1 2xl:h-1.5 
-              bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm"
+              bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm "
               />
             </span>
-            <br className="block sm:hidden" />
+            <br className="block sm:hidden"/>
             <span className="relative inline-block">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
                 Law
               </span>
-              <div
+              <div  
                 className="absolute -bottom-0.5 sm:-bottom-1 left-0 right-0 
               h-0.5 sm:h-1 2xl:h-1.5 
               bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-60 blur-sm"
               />
             </span>
             <br />
-            <div className="text-slate-800 mt-1 2xl:mt-5 2xl:text-[6.9rem]">
+            <div className="text-slate-800 mt-1 2xl:mt-5 2xl:text-[6.5rem]">
               Compliance
             </div>
             <p
               className="text-[25px] sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-6xl 
-            font-medium italic text-blue-600 mt-2 sm:mt-4 "
+            font-medium italic text-blue-600 mt-1 sm:mt-4 2xl:mb-10"
             >
               for Your Business
             </p>
