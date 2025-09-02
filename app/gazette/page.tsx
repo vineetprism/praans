@@ -1,48 +1,76 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Search, Filter, Bell, Newspaper, TrendingUp } from 'lucide-react'
-import Link from "next/link"
-import PopularSearch from "../PopularSearch/PopularSearch"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Search,
+  Filter,
+  Bell,
+  Newspaper,
+  TrendingUp,
+  CalendarIcon,
+  Eye,
+} from "lucide-react";
+import Link from "next/link";
+import PopularSearch from "../PopularSearch/PopularSearch";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { useState } from "react";
 
 const notifications = [
   {
     id: 1,
-    title: "Notification regarding revision of Minimum Wages for Maharashtra State",
+    title:
+      "Notification regarding the Display of Bengali Language on Top of All Signage's in KMC, West Bengal",
     notificationNumber: "G.O. No. LMW-2024/CR-45/Lab-2",
     department: "Labour and Employment Department",
     state: "Maharashtra",
-    category: "Minimum Wages",
-    description: "Revision of minimum wages for various categories of workers in Maharashtra state effective from January 1, 2025",
+    category: "Language Policy",
+    description:
+      "The Kolkata Municipal Corporation, Government of West Bengal Vide Municipal Commissioners Circular No.34 of 2025-26, has updated Notification regarding the Display of Bengali Language on Top of All S...",
     publishedDate: "2024-12-20",
-    effectiveDate: "2025-01-01",
+    effectiveDate: "30th Aug, 2025",
+    updatedDate: "30th Aug, 2025",
     fileSize: "1.2 MB",
     format: "PDF",
     isNew: true,
     priority: "High",
     views: 2847,
-    slug: "maharashtra-minimum-wages-revision-2025"
+    slug: "maharashtra-minimum-wages-revision-2025",
   },
   {
     id: 2,
-    title: "Amendment to Contract Labour (Regulation and Abolition) Central Rules, 1971",
+    title:
+      "Amendment to Contract Labour (Regulation and Abolition) Central Rules, 1971",
     notificationNumber: "S.O. 4521(E)",
     department: "Ministry of Labour and Employment",
     state: "Central",
     category: "Contract Labour",
-    description: "Amendment to rules regarding digital registration and compliance mechanisms for contract labour establishments",
+    description:
+      "Amendment to rules regarding digital registration and compliance mechanisms for contract labour establishments under the Contract Labour Act...",
     publishedDate: "2024-12-18",
-    effectiveDate: "2024-12-18",
+    effectiveDate: "18th Dec, 2024",
+    updatedDate: "18th Dec, 2024",
     fileSize: "856 KB",
     format: "PDF",
     isNew: true,
     priority: "High",
     views: 1923,
-    slug: "contract-labour-rules-amendment-2024"
+    slug: "contract-labour-rules-amendment-2024",
   },
   {
     id: 3,
@@ -51,15 +79,17 @@ const notifications = [
     department: "Finance Department",
     state: "Karnataka",
     category: "Professional Tax",
-    description: "Revised professional tax slabs and rates applicable for the financial year 2025-26",
+    description:
+      "Revised professional tax slabs and rates applicable for the financial year 2025-26 as per the Karnataka Finance Department circular...",
     publishedDate: "2024-12-15",
-    effectiveDate: "2025-04-01",
+    effectiveDate: "1st Apr, 2025",
+    updatedDate: "15th Dec, 2024",
     fileSize: "634 KB",
     format: "PDF",
     isNew: true,
     priority: "Medium",
     views: 1456,
-    slug: "karnataka-professional-tax-rates-2025"
+    slug: "karnataka-professional-tax-rates-2025",
   },
   {
     id: 4,
@@ -68,99 +98,19 @@ const notifications = [
     department: "Employees' Provident Fund Organisation",
     state: "Central",
     category: "Provident Fund",
-    description: "Changes in PF contribution rates and administrative charges effective from February 2025",
+    description:
+      "Changes in PF contribution rates and administrative charges effective from February 2025 as notified by EPFO headquarters...",
     publishedDate: "2024-12-12",
-    effectiveDate: "2025-02-01",
+    effectiveDate: "1st Feb, 2025",
+    updatedDate: "12th Dec, 2024",
     fileSize: "423 KB",
     format: "PDF",
     isNew: false,
     priority: "High",
     views: 3241,
-    slug: "pf-contribution-rate-changes-2025"
+    slug: "pf-contribution-rate-changes-2025",
   },
-  {
-    id: 5,
-    title: "ESI Medical Benefit rates revision notification",
-    notificationNumber: "F.No.1/15/2024-P&P",
-    department: "Employees' State Insurance Corporation",
-    state: "Central",
-    category: "ESI",
-    description: "Revision of medical benefit rates and reimbursement limits under ESI scheme",
-    publishedDate: "2024-12-10",
-    effectiveDate: "2025-01-01",
-    fileSize: "789 KB",
-    format: "PDF",
-    isNew: false,
-    priority: "Medium",
-    views: 1834,
-    slug: "esi-medical-benefit-rates-revision-2025"
-  },
-  {
-    id: 6,
-    title: "Tamil Nadu Shops and Establishments Act - Amendment Notification",
-    notificationNumber: "G.O.(Ms.)No.156",
-    department: "Labour and Employment Department",
-    state: "Tamil Nadu",
-    category: "Shops & Establishments",
-    description: "Amendment to working hours and overtime provisions for shops and establishments",
-    publishedDate: "2024-12-08",
-    effectiveDate: "2024-12-15",
-    fileSize: "567 KB",
-    format: "PDF",
-    isNew: false,
-    priority: "Medium",
-    views: 987,
-    slug: "tamil-nadu-shops-establishments-amendment-2024"
-  },
-  {
-    id: 7,
-    title: "Maternity Benefit Act - Enhanced benefit rates notification",
-    notificationNumber: "S.O. 4234(E)",
-    department: "Ministry of Labour and Employment",
-    state: "Central",
-    category: "Maternity Benefits",
-    description: "Enhancement of maternity benefit rates and extension of coverage to more categories",
-    publishedDate: "2024-12-05",
-    effectiveDate: "2025-01-01",
-    fileSize: "445 KB",
-    format: "PDF",
-    isNew: false,
-    priority: "High",
-    views: 2156,
-    slug: "maternity-benefit-enhanced-rates-2025"
-  },
-  {
-    id: 8,
-    title: "Factory License fee revision - Gujarat State",
-    notificationNumber: "GHN/25/2024/IND-1023-L",
-    department: "Industries and Mines Department",
-    state: "Gujarat",
-    category: "Factory Registration",
-    description: "Revision of factory license fees and renewal charges for various categories of factories",
-    publishedDate: "2024-12-03",
-    effectiveDate: "2025-01-01",
-    fileSize: "312 KB",
-    format: "PDF",
-    isNew: false,
-    priority: "Low",
-    views: 743,
-    slug: "gujarat-factory-license-fee-revision-2025"
-  }
-]
-
-const categories = [
-  "All Categories",
-  "Minimum Wages",
-  "Contract Labour",
-  "Professional Tax",
-  "Provident Fund",
-  "ESI",
-  "Shops & Establishments",
-  "Maternity Benefits",
-  "Factory Registration",
-  "Bonus",
-  "Gratuity"
-]
+];
 
 const states = [
   "All States",
@@ -172,257 +122,413 @@ const states = [
   "Delhi",
   "West Bengal",
   "Rajasthan",
-  "Uttar Pradesh"
-]
-
-const priorities = [
-  "All Priorities",
-  "High",
-  "Medium",
-  "Low"
-]
-
-const departments = [
-  "All Departments",
-  "Ministry of Labour and Employment",
-  "Labour and Employment Department",
-  "Finance Department",
-  "Employees' Provident Fund Organisation",
-  "Employees' State Insurance Corporation",
-  "Industries and Mines Department"
-]
-
-const popularSearches = [
-  "Minimum wage notification",
-  "PF rate changes",
-  "Professional tax updates",
-  "ESI benefit revision",
-  "Contract labour amendments",
-  "Factory license updates"
-]
-
-const getPriorityColor = (priority: string) => {
-  switch (priority) {
-    case 'High':
-      return 'bg-red-100 text-red-700'
-    case 'Medium':
-      return 'bg-yellow-100 text-yellow-700'
-    case 'Low':
-      return 'bg-green-100 text-green-700'
-    default:
-      return 'bg-gray-100 text-gray-700'
-  }
-}
-
-const formatViews = (views: number) => {
-  if (views >= 1000) {
-    return `${(views / 1000).toFixed(1)}k`
-  }
-  return views.toString()
-}
+  "Uttar Pradesh",
+];
 
 export default function GazetteNotificationsPage() {
+  const [fromDate, setFromDate] = useState();
+  const [toDate, setToDate] = useState();
+
   return (
     <div className="min-h-screen bg-gray-50">
-
-      <div className="container mx-auto px-4 py-8">
-        {/* Top Filter and Search Bar */}
-        <Card className="mb-8">
-          <CardContent className="p-6">
-            <div className="flex flex-col lg:flex-row gap-4 items-center">
-              {/* Filters Button */}
-              <Button variant="outline" className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200" aria-label="Filters">
-                <Filter className="w-4 h-4" />
-                Filters
-              </Button>
-              
+      <div
+        className="
+        container mx-auto
+        px-2 py-2
+        min-[375px]:px-3 min-[375px]:py-3
+        sm:px-4 sm:py-4
+        lg:px-5 lg:py-5
+        xl:px-6
+      "
+      >
+        {/* Fixed Horizontal Filter Bar */}
+        <div className="mb-3 sm:mb-4">
+          <div
+            className="
+    flex flex-col gap-2 
+    lg:flex-row lg:items-end lg:gap-3
+    p-2 sm:p-3
+  "
+          >
+            {/* Top Row on Mobile, Single Row on Desktop */}
+            <div
+              className="
+      flex flex-col gap-2
+      sm:flex-row sm:items-end sm:gap-2.5
+      lg:flex-row lg:gap-3 lg:flex-1
+    "
+            >
               {/* Search Input */}
-              <div className="relative flex-1">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" aria-label="Search" />
-                <Input placeholder="Search by title..." className="pl-12 py-3 h-12 rounded-lg" />
+              <div className="relative flex-1 min-w-0">
+                <Search
+                  className="
+          absolute left-3 top-1/2 -translate-y-1/2 
+          text-gray-400 pointer-events-none w-4 h-4
+        "
+                />
+                <Input
+                  placeholder="Search by title..."
+                  className="
+          w-full rounded-lg border-gray-300 bg-white
+          h-8 sm:h-9 lg:h-10
+          pl-9 sm:pl-10
+          pr-3 sm:pr-4
+          text-xs sm:text-sm
+          placeholder:text-gray-500
+        "
+                />
               </div>
-              
-              {/* Category Dropdown */}
-              <Select>
-                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200" aria-label="Category">
-                  <SelectValue placeholder="Select category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map((category) => (
-                    <SelectItem key={category} value={category.toLowerCase().replace(/ /g, '-')}>
-                      {category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              
-              {/* State Dropdown */}
-              <Select>
-                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200" aria-label="State">
-                  <SelectValue placeholder="Select state" />
-                </SelectTrigger>
-                <SelectContent>
-                  {states.map((state) => (
-                    <SelectItem key={state} value={state.toLowerCase().replace(/ /g, '-')}>
-                      {state}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              
-              {/* Priority Dropdown */}
-              <Select>
-                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200" aria-label="Priority">
-                  <SelectValue placeholder="Select priority" />
-                </SelectTrigger>
-                <SelectContent>
-                  {priorities.map((priority) => (
-                    <SelectItem key={priority} value={priority.toLowerCase()}>
-                      {priority}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              
-              {/* Department Dropdown */}
-              <Select>
-                <SelectTrigger className="w-48 bg-gray-100 hover:bg-gray-200" aria-label="Department">
-                  <SelectValue placeholder="Select department" />
-                </SelectTrigger>
-                <SelectContent>
-                  {departments.map((dept) => (
-                    <SelectItem key={dept} value={dept.toLowerCase().replace(/ /g, '-')}>
-                      {dept}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              
-              {/* Apply Button */}
-              <Button className="bg-orange-500 hover:bg-orange-600 px-6" aria-label="apply filters">
-                Apply
-              </Button>
             </div>
-          </CardContent>
-        </Card>
 
-        <div className="grid lg:grid-cols-4 gap-8">
-          {/* Sidebar with Quick Access */}
-         <div className="lg:col-span-1 lg:order-2">
-    <Card className="sticky top-24">
-      <CardContent className="space-y-6">
-        <PopularSearch className="mt-4" />
-      </CardContent>
-    </Card>
-  </div>
+            {/* Date Pickers Row - All in one line */}
+            <div
+              className="
+      flex flex-col gap-2
+      sm:flex-row sm:gap-2.5 sm:items-end
+      lg:gap-3 lg:flex-row lg:items-end
+    "
+            >
+              {/* From Date */}
+              {/* <div className="flex-shrink-0 sm:w-28 lg:w-32">
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="
+              w-full justify-start text-left font-normal
+              bg-white hover:bg-gray-50 border-gray-300
+              h-8 sm:h-9 lg:h-10
+              px-3
+              text-xs sm:text-sm
+            "
+                    >
+                      <CalendarIcon className="mr-2 w-4 h-4 flex-shrink-0" />
+                      <span className="truncate">
+                        {fromDate ? format(fromDate, "dd-MM-yyyy") : "From"}
+                      </span>
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={fromDate}
+                      onSelect={setFromDate}
+                      initialFocus
+                      className="rounded-md border"
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div> */}
+
+              {/* To Date */}
+              {/* <div className="flex-shrink-0 sm:w-28 lg:w-32">
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="
+              w-full justify-start text-left font-normal
+              bg-white hover:bg-gray-50 border-gray-300
+              h-8 sm:h-9 lg:h-10
+              px-3
+              text-xs sm:text-sm
+            "
+                    >
+                      <CalendarIcon className="mr-2 w-4 h-4 flex-shrink-0" />
+                      <span className="truncate">
+                        {toDate ? format(toDate, "dd-MM-yyyy") : "To"}
+                      </span>
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={toDate}
+                      onSelect={setToDate}
+                      initialFocus
+                      className="rounded-md border"
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div> */}
+              {/* State Dropdown */}
+              <div className="flex-shrink-0 sm:w-28 lg:w-32">
+                <Select>
+                  <SelectTrigger
+                    className="
+            w-full bg-white hover:bg-gray-50 border-gray-300
+            h-8 sm:h-9 lg:h-10
+            px-3
+            text-xs sm:text-sm
+          "
+                  >
+                    <SelectValue placeholder="State" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {states.map((state) => (
+                      <SelectItem
+                        key={state}
+                        value={state.toLowerCase().replace(/ /g, "-")}
+                        className="text-xs sm:text-sm"
+                      >
+                        {state}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Update Date */}
+              <div className="flex-shrink-0 sm:w-28 lg:w-32">
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="
+              w-full justify-start text-left font-normal
+              bg-white hover:bg-gray-50 border-gray-300
+              h-8 sm:h-9 lg:h-10
+              px-3
+              text-xs sm:text-sm
+            "
+                    >
+                      <CalendarIcon className="w-auto h-4 flex-shrink-0" />
+                      <span className="">Updated Date</span>
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      initialFocus
+                      className="rounded-md border"
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+
+              {/* Effective Date */}
+              <div className="flex-shrink-0 sm:w-28 lg:w-32">
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="
+              w-full justify-start text-left font-normal
+              bg-white hover:bg-gray-50 border-gray-300
+              h-8 sm:h-9 lg:h-10
+              px-3
+              text-xs sm:text-sm
+            "
+                    >
+                      <CalendarIcon className="w-4 h-4 flex-shrink-0" />
+                      <span className="">Effective Date</span>
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      initialFocus
+                      className="rounded-md border"
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+
+              {/* Apply Button */}
+              <div className="flex-shrink-0">
+                <Button
+                  className="
+          bg-orange-500 hover:bg-orange-600 text-white font-medium
+          h-8 sm:h-9 lg:h-10
+          px-4 sm:px-5 lg:px-6
+          text-xs sm:text-sm
+          w-full sm:w-auto
+        "
+                >
+                  Apply
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid gap-3 sm:gap-4 lg:grid-cols-5">
+          {/* Ultra Compact Sidebar */}
+          <div className=" lg:col-span-1 lg:order-2 order-1">
+            <Card className="sticky top-0 p-2 md:p-3 lg:p-0.5 xl:p-0.5 2xl:p-6">
+              <CardContent className="p-2">
+                <PopularSearch className="mt-0" />
+              </CardContent>
+            </Card>
+          </div>
 
           {/* Main Content */}
-          <div className="lg:col-span-3">
-            {/* Page Header */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-4">
+          <div className="lg:col-span-4 lg:order-1 order-2">
+            {/* Ultra Compact Page Header */}
+            <div className="mb-3 sm:mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 mb-2">
                 <div>
-                  <h1 className="text-3xl font-bold text-slate-800 mb-2">Gazette Notifications</h1>
-                  <p className="text-gray-600 text-lg">
-                    Stay updated with the latest government notifications, circulars, and amendments across various labour laws
+                  <div className="flex justify-between">
+                    <h1
+                    className="
+                    font-bold text-slate-800
+                    text-base min-[375px]:text-lg sm:text-xl
+                    mb-1
+                  "
+                  >
+                    Gazette Notifications :
+                  </h1>
+                  <Badge
+                  variant="secondary"
+                  className="
+                  px-1.5 py-0.5 text-[9px] min-[375px]:text-[10px] bg-orange-400 text-white font-bold
+                "
+                >
+                  {notifications.length} Notifications
+                </Badge>
+                  </div>
+                  <p
+                    className="
+                    text-gray-600 leading-relaxed
+                    text-[10px] min-[375px]:text-xs sm:text-sm text-justify
+                  "
+                  >
+                    “Gazette Notification” is an authorized legal document
+                    issued by the Ministries of Government of India, published
+                    in the official gazette vide Government of India Printing
+                    Presses containing significant Statutory Orders (S.O) and
+                    General Statutory Rules (G.S.R). Any change, update,
+                    amendment, or new information is usually announced by the
+                    Government of India through Gazette Notifications.{" "}
                   </p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Badge variant="secondary" className="px-3 py-1">
-                    {notifications.length} Notifications
-                  </Badge>
-                </div>
+                
               </div>
-
-              {/* Info Card */}
-              <Card className="bg-blue-50 border-blue-200">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-3">
-                    <Bell className="w-5 h-5 text-blue-600 mt-0.5" />
-                    <div>
-                      <h3 className="font-semibold text-blue-900 mb-1">About Gazette Notifications</h3>
-                      <p className="text-blue-800 text-sm leading-relaxed">
-                        Gazette notifications are official government publications that announce new laws, amendments, rules, 
-                        and important policy changes. These notifications have legal validity and are essential for compliance.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
-            {/* Notifications Grid */}
-            <div className="grid gap-6">
+
+            {/* Ultra Compressed Cards - 4 per viewport */}
+            <div className="space-y-0.5 sm:space-y-1">
               {notifications.map((notification) => (
-                <Card key={notification.id} className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
-                  <CardHeader className="pb-4">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <CardTitle className="text-xl group-hover:text-orange-600 transition-colors leading-tight mb-2">
+                <Card
+                  key={notification.id}
+                  className="
+                  group hover:shadow-md transition-all duration-200 
+                  border-l-4 border-l-orange-500 shadow-sm bg-white lg:h-35
+                "
+                >
+                  <CardContent className="p-1.5 sm:p-2 lg:p-2.5">
+                    <div className="flex items-start justify-between gap-2.5">
+                      {/* Left Content - Ultra Compressed */}
+                      <div className="flex-1 min-w-0">
+                        <CardTitle
+                          className="
+                          group-hover:text-orange-600 transition-colors 
+                          leading-tight mb-1
+                          text-[12px] min-[375px]:text-xs sm:text-sm lg:text-base
+                          font-semibold text-gray-900 line-clamp-2
+                        "
+                        >
                           {notification.title}
                         </CardTitle>
-                        <p>{notification.description}</p>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  
-                  <CardContent className="pt-0">
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-3">
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
-                          aria-label="Read more"
-                          asChild
+
+                        <p
+                          className="
+                          text-gray-700 leading-snug mb-1.5
+                          text-[11px] min-[375px]:text-[10px] sm:text-[0.8rem] lg:text-sm
+                          line-clamp-2
+                        "
                         >
-                          <Link href={`/gazette/${notification.slug}`} aria-label="Read more">
-                            <Newspaper className="w-4 h-4 mr-2" />
-                            Read More
-                          </Link>
-                        </Button>
+                          {notification.description}
+                        </p>
+
+                        {/* Read More Button - Ultra Compact */}
+                        <div className="mb-1">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="
+                             bg-orange-400 text-white hover:bg-orange-500 hover:text-shadow-amber-50  border-gray-300
+                              
+                              h-5 sm:h-6 lg:h-7
+                              px-2 sm:px-2.5 lg:px-3
+                              text-[9px] sm:text-[10px] lg:text-xs
+                              font-medium rounded-sm
+                              inline-flex items-center gap-1
+                            "
+                            asChild
+                          >
+                            <Link
+                              href={`/gazette/${notification.slug}`}
+                              className=""
+                            >
+                              <Eye className="w-3 h-3 2xl:w-4 2xl:h-4 flex-shrink-0" />
+                              <span className="whitespace-nowrap">
+                                Read More
+                              </span>
+                            </Link>
+                          </Button>
+                        </div>
                       </div>
-                   
+
+                      {/* Right Side - State + Dates */}
+                      <div className="flex-shrink-0 text-right">
+                        {/* State Badge */}
+                        <div className="mb-1.5">
+                          <Badge
+                            variant="outline"
+                            className="
+                            bg-blue-50 text-blue-700 border-blue-200
+                            text-[12px] sm:text-[9px] lg:text-[12px] 
+                            px-1.5 py-0.5 font-medium
+                          "
+                          >
+                            {notification.state}
+                          </Badge>
+                        </div>
+
+                        {/* Dates Section */}
+                        <div className="space-y-0.5 text-[11px] sm:text-[9px] lg:text-[12px] 2xl:text-[0.8rem] text-gray-600">
+                          <div>
+                            <span className="font-medium text-gray-700">
+                              Updated Date:{" "}
+                            </span>
+                            <span className="text-gray-900 font-medium">
+                              {notification.updatedDate}
+                            </span>
+                          </div>
+                          <div>
+                            <span className="font-medium text-gray-700">
+                              Effective Date:{" "}
+                            </span>
+                            <span className="text-gray-900 font-medium">
+                              {notification.effectiveDate}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
 
-            {/* Load More */}
-            <div className="text-center mt-12">
-              <Button variant="outline" size="lg" className="px-8" aria-label="Load more notifications">
-                Load More Notifications
+            {/* Load More Button */}
+            <div className="text-center mt-4 sm:mt-5">
+              <Button
+                size="lg"
+                // variant="outline"
+                className="
+                shadow-sm bg-orange-400 text-white hover:bg-orange-500
+                h-7 sm:h-8 px-4 sm:px-5
+                text-[10px] sm:text-xs hover:cursor-pointer
+              "
+              >
+                Load More
               </Button>
             </div>
           </div>
         </div>
-
-        {/* Help Section */}
-        <div className="mt-16">
-          <Card className="bg-gradient-to-r from-orange-50 to-blue-50 border-0">
-            <CardContent className="p-8">
-              <div className="text-center max-w-2xl mx-auto">
-                <Bell className="w-12 h-12 text-orange-500 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-slate-800 mb-4">Stay Updated with Notifications</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  Subscribe to our notification service to receive instant alerts about new gazette notifications, 
-                  amendments, and important compliance updates relevant to your business.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-orange-500 hover:bg-orange-600" aria-label="Subscribe to alerts">
-                    <Bell className="w-4 h-4 mr-2" />
-                    Subscribe to Alerts
-                  </Button>
-                  <Button variant="outline" aria-label="View trending">
-                    <TrendingUp className="w-4 h-4 mr-2" />
-                    View Trending
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </div>
-  )
+  );
 }

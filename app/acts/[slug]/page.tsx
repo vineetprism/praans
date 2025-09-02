@@ -275,24 +275,24 @@ export default function ActDetailPage({ params }: ActDetailPageProps) {
             </Card>
             <Tabs
               defaultValue="overview"
-              className="space-y-1 sm:space-y-3 lg:space-y-0.5"
+              className="space-y-1 sm:space-y-3 lg:space-y-0.5 "
             >
               <TabsList className="grid grid-cols-3 w-full mx-auto h-auto gap-1 sm:gap-2 ">
                 <TabsTrigger
                   value="overview"
-                  className="text-[4vw] min-[360px]:text-xs sm:text-[1rem]  py-1 px-1 md:text-[0.8rem] lg:text-[0.8rem] 2xl:text-sm sm:px-2 sm:py-1.5 rounded-md transition-all"
+                  className="text-[4vw] min-[360px]:text-xs sm:text-[1rem]  py-1 px-1 md:text-[0.8rem] lg:text-[0.8rem] 2xl:text-sm sm:px-2 sm:py-1.5 rounded-md hover:cursor-pointer"
                 >
                   Act Details
                 </TabsTrigger>
                 <TabsTrigger
                   value="rules"
-                  className="text-[4vw] min-[360px]:text-xs sm:text-sm md:text-[0.8rem] lg:text-[0.8rem] 2xl:text-sm py-1 px-1 sm:px-2 sm:py-1.5 rounded-md transition-all"
+                  className="text-[4vw] min-[360px]:text-xs sm:text-sm md:text-[0.8rem] lg:text-[0.8rem] 2xl:text-sm py-1 px-1 sm:px-2 sm:py-1.5 rounded-md hover:cursor-pointer"
                 >
                   Rules
                 </TabsTrigger>
                 <TabsTrigger
                   value="forms"
-                  className="text-[4vw] min-[360px]:text-xs sm:text-sm  md:text-[0.8rem] lg:text-[0.8rem] 2xl:text-sm py-1 px-1 sm:px-2 sm:py-1.5 rounded-md transition-all"
+                  className="text-[4vw] min-[360px]:text-xs sm:text-sm  md:text-[0.8rem] lg:text-[0.8rem] 2xl:text-sm py-1 px-1 sm:px-2 sm:py-1.5 rounded-md hover:cursor-pointer"
                 >
                   Forms
                 </TabsTrigger>
@@ -313,7 +313,7 @@ export default function ActDetailPage({ params }: ActDetailPageProps) {
                       <Button
                         onClick={handleActDownload}
                         className="bg-orange-500 hover:bg-orange-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 
-                                 text-[10px] sm:text-xs lg:text-sm rounded-md transition-colors duration-200 h-auto"
+                                 text-[10px] sm:text-xs lg:text-sm rounded-md transition-colors duration-200 h-auto hover:cursor-pointer"
                         aria-label="download act"
                       >
                         <Download className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1" />
@@ -436,10 +436,10 @@ export default function ActDetailPage({ params }: ActDetailPageProps) {
                           await downloadFile(downloadItem);
                         }}
                         className="bg-orange-500 hover:bg-orange-600 text-white px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 
-                                 text-[10px] sm:text-xs lg:text-sm rounded-md transition-colors duration-200 h-auto"
+                                 text-[10px] sm:text-xs lg:text-sm rounded-md transition-colors duration-200 h-auto hover:cursor-pointer"
                         aria-label="download rules"
                       >
-                        <Download className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1" />
+                        <Download className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1 " />
                         Download Rules
                       </Button>
                     </div>
@@ -590,17 +590,17 @@ export default function ActDetailPage({ params }: ActDetailPageProps) {
                     <div className="hidden lg:block">
                       <Table>
                         <TableHeader>
-                          <TableRow className="bg-gray-50 border-gray-200">
-                            <TableHead className="w-16 text-[10px] sm:text-xs font-semibold py-2">
+                          <TableRow className="bg-gray-50 border-gray-200 ">
+                            <TableHead className="w-16 text-[10px] sm:text-xs font-semibold py-2 2xl:text-[1rem]">
                               Form No.
                             </TableHead>
-                            <TableHead className="text-[10px] sm:text-xs font-semibold py-2">
+                            <TableHead className="text-[10px] sm:text-xs font-semibold py-2 2xl:text-[1rem]">
                               Title
                             </TableHead>
-                            <TableHead className="hidden xl:table-cell text-[10px] sm:text-xs font-semibold py-2">
+                            <TableHead className="hidden xl:table-cell text-[10px] sm:text-xs font-semibold py-2 2xl:text-[1rem]">
                               Description
                             </TableHead>
-                            <TableHead className="w-28 text-[10px] sm:text-xs font-semibold py-2">
+                            <TableHead className="w-28 text-[10px] sm:text-xs font-semibold py-2 2xl:text-[1rem]">
                               Actions
                             </TableHead>
                           </TableRow>
@@ -614,15 +614,15 @@ export default function ActDetailPage({ params }: ActDetailPageProps) {
                               <TableCell className="py-2">
                                 <Badge
                                   variant="outline"
-                                  className="text-[10px] text-orange-600 border-orange-200"
+                                  className="text-[10px] text-orange-600 border-orange-200 2xl:text-[0.8rem]"
                                 >
                                   {form.formNumber}
                                 </Badge>
                               </TableCell>
-                              <TableCell className="font-medium text-[11px] sm:text-xs py-2">
+                              <TableCell className="font-medium text-[11px] sm:text-xs py-2 2xl:text-[0.8rem]">
                                 {form.title}
                               </TableCell>
-                              <TableCell className="hidden xl:table-cell text-[11px] 2xl:text-[12px] text-gray-600 py-2 max-w-xs">
+                              <TableCell className="hidden xl:table-cell text-[11px] text-gray-600 py-2 max-w-xs 2xl:text-[0.8rem]">
                                 <span className="line-clamp-2">
                                   {form.description}
                                 </span>
@@ -630,12 +630,12 @@ export default function ActDetailPage({ params }: ActDetailPageProps) {
                               <TableCell className="py-2">
                                 <div className="flex gap-1">
                                   <Button
-                                    size="sm"
-                                    // variant="outline"
-                                    className="h-6 px-2 text-[9px] bg-orange-400 text-white"
+                                    size="lg"
+                                    variant="outline"
+                                    className="h-7 px-2 bg-orange-400 text-white 2xl:text-[0.8rem] hover:cursor-pointer"
                                     onClick={() => handleFormDownload(form)}
                                   >
-                                    <Download className="w-2.5 h-2.5 mr-1" />
+                                    <Download className="w-3 h-3 mr-1" />
                                     Download
                                   </Button>
                                 </div>
