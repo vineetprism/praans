@@ -126,7 +126,7 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
     </div>
   </Link>
 ));
-export const MiddleSection = () => {
+export const ServiceSection = () => {
   return (
     <section className="relative m-0 p-0 bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
       <div className="w-full">
