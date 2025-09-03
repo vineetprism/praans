@@ -1,3 +1,4 @@
+import { MiddleSection } from "@/app/middle-section/page"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Eye,
@@ -176,7 +177,6 @@ export default function AboutPage() {
       <section className="py-16 md:py-20 lg:pu-10 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
 
-          {/* Heading */}
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
               Our <span className="text-orange-500">Services</span>
@@ -190,10 +190,8 @@ export default function AboutPage() {
             <div className="w-24 h-1 bg-orange-500 mx-auto mt-6 rounded-full"></div>
           </div>
 
-          {/* Services Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            {/* Service 1 */}
             <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
               <h3 className="text-lg font-semibold text-slate-800 mb-2">
                 AI-Based Compliance Management Software
@@ -204,7 +202,6 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Service 2 */}
             <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
               <h3 className="text-lg font-semibold text-slate-800 mb-2">
                 Labour Law Registrations
@@ -215,7 +212,6 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Service 3 */}
             <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
               <h3 className="text-lg font-semibold text-slate-800 mb-2">
                 Compliance Outsourcing Solutions
@@ -226,7 +222,6 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Service 4 */}
             <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
               <h3 className="text-lg font-semibold text-slate-800 mb-2">
                 Litigation Support & Legal Representation
@@ -237,7 +232,6 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Service 5 */}
             <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
               <h3 className="text-lg font-semibold text-slate-800 mb-2">
                 Labour Law Advisory Services
@@ -248,7 +242,6 @@ export default function AboutPage() {
               </p>
             </div>
 
-            {/* Service 6 */}
             <div className="bg-white shadow-md hover:shadow-xl rounded-xl p-6 border border-gray-100 transition">
               <h3 className="text-lg font-semibold text-slate-800 mb-2">
                 Audit and Inspection Support
@@ -260,7 +253,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Closing Note */}
           <div className="text-center mt-12">
             <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
               Considering all the above services, your business is in safe hands
@@ -270,6 +262,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      {/* <MiddleSection/> */}
 
       {/* Why Choose Us */}
       <section className="py-16 md:py-20 lg:py-10 bg-gray-50">

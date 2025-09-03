@@ -107,7 +107,6 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
         backdropFilter: "blur(14px)",
       }}
     >
-      {/* Icon + Title (unchanged vibe; just bigger on 2xl) */}
       <div className="flex items-center gap-3 2xl:gap-4 mb-3 2xl:mb-5">
         <div
           className={`w-8 h-8 2xl:w-12 2xl:h-12 bg-gradient-to-br ${offering.color}
@@ -121,7 +120,6 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
         </h3>
       </div>
 
-      {/* Description aligned + slightly larger at 2xl */}
       <p className="text-gray-600 text-sm sm:text-base 2xl:text-lg leading-snug 2xl:leading-normal [text-align:justify] hyphens-auto break-words line-clamp-4 group-hover:text-gray-700 transition-colors duration-300">
         {offering.description}
       </p>
@@ -132,7 +130,6 @@ export const MiddleSection = () => {
   return (
     <section className="relative m-0 p-0 bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
       <div className="w-full">
-        {/* ⬇️ Wider on 2xl, slightly tighter side padding */}
         <div className="mx-auto w-full max-w-7xl 2xl:max-w-[110rem] px-3 sm:px-4 lg:px-6 2xl:px-6">
           <section className="py-8 sm:py-10 lg:py-12 2xl:py-16 min-h-[70vh] 2xl:min-h-[80vh]">
             <div className="text-center mb-6 sm:mb-8 lg:mb-10 2xl:mb-12">
@@ -145,7 +142,6 @@ export const MiddleSection = () => {
               </p>
             </div>
 
-            {/* ⬇️ Same 3 columns, but bigger gap at 2xl */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 2xl:gap-10">
               {keyOfferings.map((offering: Offering, idx: number) => (
                 <OfferingCard key={idx} offering={offering} index={idx} />
