@@ -7,8 +7,8 @@ import SiteFooter from "@/app/component/siteFooter"
 
 export const metadata: Metadata = {
   title: "Praans Consultech",
-  description: "Praans Consultech",
-  generator: "Praans Consultech",
+  description: "Praans Consultech | AI-driven platform for labour law compliance and business registration in India",
+  generator: "Praans Consultech | AI-driven platform for labour law compliance and business registration in India",
 }
 
 export default function RootLayout({

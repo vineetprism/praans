@@ -93,7 +93,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
           <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 items-center">
             <div>
               <div className="inline-flex items-center gap-3 mb-4">
-                <span className="inline-block bg-orange-50 text-[#eb8535] font-semibold text-sm px-3 py-1 rounded-full">
+                <span className="inline-block bg-orange-50 text-orange-500 font-semibold text-sm px-3 py-1 rounded-full">
                   Labour Law Audit & Inspection Services
                 </span>
               </div>
@@ -112,7 +112,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 <Link href="/contact" aria-label="Book free consultation">
                   <Button
                     size="lg"
-                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-tertiary bg-[#eb8535] text-white text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
+                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-tertiary bg-orange-500 text-white text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
                     aria-label="Book free consultation"
                   >
                     <Phone className="w-4 h-4 mr-2" />
@@ -125,7 +125,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                     size="lg"
                     variant="ghost"
                     aria-label="See services"
-                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-[#eb8535] bg-transparent text-gray-600 text-lg hover:bg-[#eb8535] hover:text-white hover:border-white font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
+                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-transparent text-gray-600 text-lg hover:bg-orange-500 hover:text-white hover:border-white font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
                   >
                     View Services
                   </Button>
@@ -152,7 +152,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
       {/* What is an Audit / Inspection */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6 lg:px-8">
-          {/* make grid items stretch to same height */}
           <div className="grid gap-8 md:grid-cols-2 items-stretch">
             {/* Audit Card */}
             <article
@@ -257,7 +256,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
               <div className="ml-4 flex-1">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-white/60 text-[#eb8535] border border-orange-100">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-white/60 text-orange-500 border border-orange-100">
                     Inspection Essentials
                   </span>
                 </div>
@@ -325,7 +324,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
               <div className="mt-6 pt-4">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-[#eb8535] hover:underline"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-orange-500 hover:underline"
                   aria-label="Request on-site inspection support"
                 >
                   Request On-site Support
@@ -365,7 +364,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                       className="w-14 h-14 mb-3 rounded-full flex items-center justify-center bg-white border border-orange-100 transition-colors duration-200"
                       aria-hidden="true"
                     >
-                      <item.icon className="w-6 h-6 text-[#eb8535] group-hover:text-white transition-colors duration-200" />
+                      <item.icon className="w-6 h-6 text-orange-500 group-hover:text-white transition-colors duration-200" />
                     </div>
 
                     <h3 className="font-semibold text-lg group-hover:text-white transition-colors duration-200">
@@ -447,7 +446,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 <Card key={idx} className="p-6 border border-slate-100 shadow-sm">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-md bg-orange-50 flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-[#eb8535]" />
+                      <Icon className="w-6 h-6 text-orange-500" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-xl">{service.title}</h3>
@@ -476,27 +475,27 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
             <ul className="space-y-3 text-gray-600">
               <li className="flex items-start gap-3">
-                <Cpu className="w-5 h-5 text-orange-400 mt-1" />
+                <Cpu className="w-5 h-5 text-orange-500 mt-1" />
                 <span>Track compliance status in real-time</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <FileText className="w-5 h-5 text-orange-400 mt-1" />
+                <FileText className="w-5 h-5 text-orange-500 mt-1" />
                 <span>Maintain digital records of registers and forms</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-orange-400 mt-1" />
+                <Mail className="w-5 h-5 text-orange-500 mt-1" />
                 <span>Receive automated alerts for upcoming deadlines</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <Users className="w-5 h-5 text-orange-400 mt-1" />
+                <Users className="w-5 h-5 text-orange-500 mt-1" />
                 <span>Centralise documents across locations</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <Search className="w-5 h-5 text-orange-400 mt-1" />
+                <Search className="w-5 h-5 text-orange-500 mt-1" />
                 <span>Generate audit reports and compliance checklists instantly</span>
               </li>
             </ul>
@@ -550,7 +549,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0">
                       <div className="w-12 h-12 rounded-md bg-orange-50 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-[#eb8535]" />
+                        <Icon className="w-6 h-6 text-orange-500" />
                       </div>
                     </div>
 
@@ -589,8 +588,8 @@ export default function LegalAdvisoryHrPoliciesPage() {
               <Link
                 href="tel:+91-9050576838"
                 aria-label="Call Praans Consultech"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-tertiary bg-[#eb8535] text-white text-lg font-bold
-                         hover:bg-transparent hover:text-[#eb8535]
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-tertiary bg-orange-500 text-white text-lg font-bold
+                         hover:bg-transparent hover:text-orange-500
                          hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
                          transition duration-200 cursor-pointer"
               >
@@ -600,8 +599,8 @@ export default function LegalAdvisoryHrPoliciesPage() {
               <Link
                 href="mailto:info@praansconsultech.com"
                 aria-label="Email Praans Consultech"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-[#eb8535] bg-transparent text-[#eb8535] text-lg font-bold
-                         hover:bg-[#eb8535] hover:text-white hover:border-white
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-orange-500 bg-transparent text-orange-500 text-lg font-bold
+                         hover:bg-orange-500 hover:text-white hover:border-white
                          hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
                          transition duration-200 cursor-pointer"
               >
@@ -616,7 +615,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
       <div className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
         <Link href="tel:+91-9582200771" aria-label="Quick consult" >
           <button
-            className="bg-[#eb8535] text-white px-4 py-2 rounded-full shadow-md flex items-center gap-2"
+            className="bg-orange-500 text-white px-4 py-2 rounded-full shadow-md flex items-center gap-2"
             aria-label="Quick consult"
           >
             <Phone className="w-4 h-4" />

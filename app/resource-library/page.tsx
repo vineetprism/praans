@@ -91,24 +91,20 @@ const categories = [
 
 const CategoryCard = React.memo(
   ({ category, index }: { category: any; index: number }) => (
-    <Link key={index} href={category.href} className="group block h-full cursor-pointer">
+    <Link key={index} href={category.href} className="group block h-full cursor-pointer" aria-label={`Read update: ${category.title}`}>
       <div className="relative border border-gray-100 shadow-sm bg-white rounded-lg hover:shadow-md hover:border-orange-200/50 transition flex flex-col h-full w-full">
         <div className={`h-1 rounded-xl 2xl:h-1 ${category.color}`} />
-        {/* Mobile: thoda zyada padding for tap comfort; md+ same */}
         <div className="flex-1 flex flex-col p-3 sm:p-2 md:p-3 lg:p-3 xl:p-4 2xl:p-5">
           <div className="flex items-center gap-2 sm:gap-2 md:gap-3 lg:gap-3 xl:gap-3 2xl:gap-4 mb-1 sm:mb-1 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-3">
-            {/* Mobile icon slightly bigger */}
             <div
               className={`w-7 h-7 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-5 lg:h-5 xl:w-7 xl:h-7 2xl:w-10 2xl:h-10 ${category.color} rounded-md flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform`}
             >
               <category.icon className="text-white w-4 h-4 lg:w-4 lg:h-4" />
             </div>
-            {/* Mobile title bigger & legible; md+ same */}
             <h3 className="text-[12px] sm:text-[11px] md:text-xs lg:text-sm xl:text-sm 2xl:text-base font-semibold text-slate-900 group-hover:text-orange-600 transition-colors line-clamp-1 leading-tight">
               {category.title}
             </h3>
           </div>
-          {/* Mobile description bigger; md+ same */}
           <p className="text-[11px] sm:text-[10px] md:text-[11px] lg:text-xs xl:text-xs 2xl:text-sm text-gray-600 group-hover:text-gray-700 leading-snug 2xl:leading-normal line-clamp-2">
             {category.description}
           </p>
@@ -123,7 +119,6 @@ export default function ResourceLibrary() {
     <section className="bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden min-h-screen">
       <div className="absolute inset-0 bg-gradient-to-br from-orange-100/10 via-transparent to-blue-100/10" />
       <div className="mx-auto w-full max-w-7xl 2xl:max-w-[120rem] px-3 sm:px-4 md:px-6 2xl:px-8 relative z-10 py-4 2xl:py-6">
-        {/* Header – mobile margin reduced, text slightly bigger; md+ same */}
         <div className="text-center mb-6 sm:mb-5 md:mb-6 lg:mb-8 xl:mb-8 2xl:mb-30">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
             Explore Our{" "}
@@ -136,7 +131,6 @@ export default function ResourceLibrary() {
           </p>
         </div>
 
-        {/* Grid — phone = 1 col + centered; sm+ keep your layout */}
         <div
           className="
             grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4
@@ -149,7 +143,6 @@ export default function ResourceLibrary() {
           {categories.map((category, index) => (
             <div
               key={index}
-              // Phone: center + wider card. sm+ widths unchanged.
               className="
                 w-[94%] max-w-[26rem] sm:w-full
                 h-auto min-h-[92px] sm:h-[85px] md:h-[90px] lg:h-[100px] xl:h-[110px] 2xl:h-[140px]

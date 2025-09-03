@@ -111,7 +111,7 @@ export default function HeroSection() {
   "
           >
             <Bot className="w-10 h-10 sm:w-6 sm:h-6 lg:w-7 lg:h-7 2xl:w-8 2xl:h-8" />
-            <Link href="/generate-ai-response">
+            <Link href="/generate-ai-response" aria-label="India's First Labour Law Compliance AI ChatBot">
               <span className="relative z-10 font-black tracking-tight text-[16px] sm:text-xs md:text-xl lg:text-2xl lg:py-30 2xl:text-4xl">
                 India&apos;s First Labour Law Compliance AI ChatBot
               </span>
@@ -134,6 +134,7 @@ export default function HeroSection() {
               py-3 sm:py-2.5 2xl:py-8 
               shadow-md hover:shadow-orange-500/25 rounded-lg font-bold w-full sm:w-auto
               "
+            aria-label="Get a Free Demo Of Software"
           >
             Get a Free Demo Of Software
             <ArrowRight className="ml-1 w-4 h-4 2xl:w-5 2xl:h-5" />
@@ -145,6 +146,7 @@ export default function HeroSection() {
               px-4 sm:px-5 2xl:px-8 
               py-2 sm:py-2.5 2xl:py-8 
               rounded-lg font-bold w-full sm:w-auto lg:h-10"
+            aria-label="Talk to Our Compliance Experts"
           >
             Talk to Our Compliance Experts
           </Button>
