@@ -38,7 +38,7 @@
 
 // app/layout.tsx
 import type { Metadata } from "next"
-import { Playfair_Display } from "next/font/google"
+import { Poppins } from "next/font/google"
 import "./globals.css"
 import SiteHeader from "@/app/component/siteHeader"
 import SiteFooter from "@/app/component/siteFooter"
@@ -51,18 +51,18 @@ export const metadata: Metadata = {
     "Praans Consultech | AI-driven platform for labour law compliance and business registration in India",
 }
 
-// Global font: Playfair Display
-const playfair = Playfair_Display({
+// Load Poppins as the global sans
+const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-serif",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-sans", // Tailwind will read this
   display: "swap",
 })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={playfair.variable}>
-      <body className="font-serif antialiased bg-gray-50 text-slate-900 min-h-screen flex flex-col">
+    <html lang="en" className={poppins.variable}>
+      <body className="font-sans antialiased bg-gray-50 text-slate-900 min-h-screen flex flex-col">
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
@@ -70,4 +70,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
-
