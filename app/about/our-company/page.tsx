@@ -1,4 +1,3 @@
-import { MiddleSection } from "@/app/service-section/page"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Eye,
