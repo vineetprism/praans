@@ -125,12 +125,12 @@ export default function HeroSection() {
         <div
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 2xl:gap-6 
           justify-center max-w-lg sm:max-w-2xl 2xl:max-w-3xl mx-auto 
-          pt-6 sm:pt-8 2xl:pt-12">
+          pt-6 sm:pt-8 lg:pt-2 2xl:pt-12">
           <Button
             size="lg"
-            className="bg-gradient-to-r  bg-blue-950 hover:bg-blue-900 
-              text-white text-xs sm:text-sm 2xl:text-xl 
-              px-4 sm:px-5 2xl:px-8 lg:h-10
+            className="bg-gradient-to-r bg-blue-950 hover:bg-blue-900 
+              text-white text-xs sm:text-sm lg:text-[1rem] 2xl:text-xl 
+              px-4 sm:px-5 2xl:px-8 lg:h-11
               py-3 sm:py-2.5 2xl:py-8 
               shadow-md hover:shadow-orange-500/25 rounded-lg font-bold w-full sm:w-auto
               "
@@ -142,10 +142,10 @@ export default function HeroSection() {
           <Button
             size="lg"
             className="text-white bg-blue-950 hover:bg-blue-900 
-              text-xs sm:text-sm 2xl:text-xl 
+              text-xs sm:text-sm lg:text-[1rem] 2xl:text-xl 
               px-4 sm:px-5 2xl:px-8 
               py-2 sm:py-2.5 2xl:py-8 
-              rounded-lg font-bold w-full sm:w-auto lg:h-10"
+              rounded-lg font-bold w-full sm:w-auto lg:h-11"
             aria-label="Talk to Our Compliance Experts"
           >
             Talk to Our Compliance Experts
