@@ -364,7 +364,7 @@ const totalPages = 10; // Set this based on your total data
           {/* LEFT: title + desc + read more */}
           <div className="min-w-0">
             <h3 className="
-              group-hover:text-orange-600 transition-colors leading-tight my-1
+             
               text-[12px] min-[375px]:text-xs sm:text-sm lg:text-base
               font-semibold text-gray-900 line-clamp-2
             ">
