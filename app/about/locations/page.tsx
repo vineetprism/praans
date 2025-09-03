@@ -1368,7 +1368,7 @@ export default function Locations() {
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
               Pan-India{" "}
-              <span className="text-transparent bg-[#eb8535] bg-clip-text">
+              <span className="text-transparent bg-orange-500 bg-clip-text">
                 Presence
               </span>
             </h1>
@@ -1601,7 +1601,7 @@ export default function Locations() {
                 type="button"
                 aria-label="Get Google Maps directions"
                 onClick={() => window.open(getDirectionsUrl(selectedOffice), "_blank")}
-                className="w-full mt-4 bg-[#eb8535] hover:bg-[#e07022] text-white font-semibold py-3 px-4 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-2 group"
+                className="w-full mt-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-2 group"
               >
                 Get Directions
                 <svg

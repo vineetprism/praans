@@ -47,7 +47,7 @@ const clientSectors = [
 const stats = [
   { icon: UserCheck, value: "100+", label: "Clients Served", color: "text-blue-500" },
   { icon: UsersRound, value: "4,000+", label: "Employees Covered", color: "text-green-500" },
-  { icon: Map, value: "25+", label: "PAN India Operations", color: "text-orange-400" },
+  { icon: Map, value: "25+", label: "PAN India Operations", color: "text-orange-500" },
 ]
 
 
@@ -58,10 +58,7 @@ export default function OurClientsPage() {
       {/* Hero Section */}
       <section className="relative py-16 md:py-20 lg:py-10 2xl:py-24 bg-gray-50 overflow-hidden">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-slate-800">Our <span className="text-[#eb8535]">CLients</span></h1>
-          {/* <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Trusted by businesses across all major sectors in India for seamless labour law compliance
-          </p> */}
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 text-slate-800">Our <span className="text-orange-500">CLients</span></h1>
         </div>
       </section>
 
@@ -70,12 +67,12 @@ export default function OurClientsPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4 text-slate-800">
-              Trusted by Businesses Across <span className="text-[#eb8535]">All Major Sectors</span>
+              Trusted by Businesses Across <span className="text-orange-500">All Major Sectors</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-6xl mx-auto text-justify">
               We proudly serve a wide spectrum of clients across India, offering tailored labour law compliance solutions that meet the unique needs of each industry. From startups and SMEs to large enterprises, our clients trust us to manage their statutory obligations with accuracy, consistency, and integrity.
             </p>
-            <div className="w-24 h-1 bg-[#eb8535] mx-auto rounded-full mt-4" />
+            <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-4" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
@@ -127,7 +124,7 @@ export default function OurClientsPage() {
       <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-            🔒 Confidentiality <span className="text-[#eb8535]">You Can Rely On</span>
+            🔒 Confidentiality <span className="text-orange-500">You Can Rely On</span>
           </h2>
           <p className="text-lg text-gray-700 mb-4 text-justify">
             We recognize the highly confidential and complex nature of compliance and
@@ -159,10 +156,10 @@ export default function OurClientsPage() {
             Let's discuss how we can simplify your labour law compliance and help your business grow
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-[#eb8535] hover:bg-orange-400 text-white text-lg px-8 py-6 cursor-pointer" aria-label="Get Free Consultaion" >
+            <Button size="lg" className="bg-orange-500 hover:bg-orange-400 text-white text-lg px-8 py-6 cursor-pointer" aria-label="Get Free Consultaion" >
               Get Free Consultation
             </Button>
-            <Button size="lg" variant="outline" className="border-2 border-white text-slate-800 hover:text-[#eb8535] text-lg px-8 py-6 cursor-pointer" aria-label="View Case Studies" >
+            <Button size="lg" variant="outline" className="border-2 border-white text-slate-800 hover:text-orange-500 text-lg px-8 py-6 cursor-pointer" aria-label="View Case Studies" >
               View Case Studies
             </Button>
           </div>

@@ -16,7 +16,7 @@ export default function SiteFooter() {
             <div className="flex items-center space-x-2 mb-6">
               <Link href="/" aria-label="Praans Consultech">
                 <Image
-                  src="/logo.png"
+                  src="/logo.webp"
                   alt="Praans Consultech"
                   width={160}
                   height={35}

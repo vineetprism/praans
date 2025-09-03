@@ -1,13 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
-  Building2,
-  Users,
   MapPin,
   Target,
   ArrowRight,
   ExternalLink,
-  Clock,
   Gavel,
   Bell,
   Server,
@@ -89,7 +86,7 @@ export default function FounderPage() {
 
         <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
-            Our <span className="text-[#eb8535]">Founder</span>
+            Our <span className="text-orange-500">Founder</span>
           </h1>
         </div>
       </section>
@@ -108,7 +105,7 @@ export default function FounderPage() {
                 Meet Our Founder
               </h1>
 
-              <h2 className="text-xl md:text-2xl lg:text-2xl font-semibold text-[#eb8535] mb-4 leading-relaxed">
+              <h2 className="text-xl md:text-2xl lg:text-2xl font-semibold text-orange-500 mb-4 leading-relaxed">
                 Our reliable Labour Law Consultant with more than 15 years of experience
               </h2>
 
@@ -153,7 +150,7 @@ export default function FounderPage() {
               className="w-full bg-gray-100 rounded-2xl p-6 md:p-8 lg:p-10"
             >
               <h3 id="education-heading" className="text-2xl md:text-3xl font-bold text-slate-800">
-                Education <span className="text-[#eb8535]">&amp; Credentials</span>
+                Education <span className="text-orange-500">&amp; Credentials</span>
               </h3>
 
               <p className="mt-2 text-gray-700">
@@ -183,7 +180,7 @@ export default function FounderPage() {
 
             {/* Heading */}
             <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-800 leading-tight">
-              From Field Expertise to <span className="text-[#eb8535]">Tech-Driven Solutions</span>
+              From Field Expertise to <span className="text-orange-500">Tech-Driven Solutions</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-orange-500 mx-auto rounded-full"></div>
 
@@ -254,18 +251,18 @@ export default function FounderPage() {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">Our <span className="text-[#eb8535]">Vision</span></h2>
-              <div className="w-24 h-1 bg-[#eb8535] mx-auto rounded-full"></div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">Our <span className="text-orange-500">Vision</span></h2>
+              <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full"></div>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <Card className="bg-gray-50 backdrop-blur-sm border-0 text-gray-700">
                 <CardContent className="p-8 md:p-10 lg:pt-0 lg:pb-0">
                   <div className="text-center mb-6">
-                    <Target className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 text-orange-400" />
+                    <Target className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 text-orange-500" />
                     <h3 className="text-xl md:text-2xl font-semibold mb-4">Our founder's vision is both practical and impactful:</h3>
                   </div>
-                  <blockquote className="text-base md:text-lg text-gray-600 leading-relaxed italic border-l-4 border-orange-400 pl-6 text-justify">
+                  <blockquote className="text-base md:text-lg text-gray-600 leading-relaxed italic border-l-4 border-orange-500 pl-6 text-justify">
                     "To empower businesses across India with accessible, affordable, and intelligent labour law compliance
                     solutions—ensuring legal safety while promoting employee welfare and operational efficiency."
                   </blockquote>
@@ -290,7 +287,7 @@ export default function FounderPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">
-              Why Our Founder's <span className="text-[#eb8535]">Leadership Matters</span> 
+              Why Our Founder's <span className="text-orange-500">Leadership Matters</span>
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto text-justify">
               In a country where labour laws vary by state, enforcement is dynamic, and penalties are costly, having a knowledgeable
@@ -312,7 +309,7 @@ export default function FounderPage() {
                     <div className="flex flex-col items-start">
                       <div className="mb-3">
                         <div className="w-6 h-6 md:w-6 md:h-6 lg:w-6 lg:h-6 2xl:w-6 2xl:h-6 rounded-lg bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center shadow-sm">
-                          <Icon className="w-5 h-5 text-[#eb8535]" aria-hidden />
+                          <Icon className="w-5 h-5 text-orange-500" aria-hidden />
                         </div>
                       </div>
 
@@ -344,9 +341,9 @@ export default function FounderPage() {
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
-              Featured <span className="text-[#eb8535]">Articles</span>
+              Featured <span className="text-orange-500">Articles</span>
             </h2>
-            <div className="w-24 h-1 bg-[#eb8535] mx-auto rounded-full mt-4" />
+            <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-4" />
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
               Third-party coverage and accolades that validate our execution.
             </p>
@@ -363,16 +360,15 @@ export default function FounderPage() {
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
 
                 <CardContent className="p-0 flex flex-col h-full">
-                  {/* Header row (CTA) */}
                   <div className="px-6 pt-4 pb-2 flex items-start justify-between">
-                    <span className="text-xs font-bold bg-orange-100 text-[#eb8535] px-2 py-1 rounded-full">
+                    <span className="text-xs font-bold bg-orange-100 text-orange-500 px-2 py-1 rounded-full">
                       {item.type}
                     </span>
                     <Link
                       href={item.link!}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-orange-600 hover:text-orange-700 text-sm font-medium inline-flex items-center gap-2"
+                      className="text-orange-500 hover:text-orange-700 text-sm font-medium inline-flex items-center gap-2"
                     >
                       Open article
                       <ExternalLink className="h-4 w-4" />
@@ -400,7 +396,7 @@ export default function FounderPage() {
                     aria-label={`Open article: ${item.title}`}
                   >
                     <div className="mb-2 flex items-start justify-between">
-                      <span className="text-xs text-orange-400 font-medium">{item.year}</span>
+                      <span className="text-xs text-orange-500 font-medium">{item.year}</span>
                     </div>
                     <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-1 leading-tight">
                       {item.title}
@@ -429,7 +425,7 @@ export default function FounderPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center max-w-2xl mx-auto">
-            <Button className="bg-[#eb8535] hover:bg-orange-400 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto cursor-pointer" aria-label="get expert consultation">
+            <Button className="bg-orange-500 hover:bg-orange-400 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto cursor-pointer" aria-label="get expert consultation">
               Get Expert Consultation
               <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
             </Button>

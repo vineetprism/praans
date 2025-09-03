@@ -4,14 +4,9 @@ import {
   Cpu,
   Globe,
   ShieldCheck,
-  UsersRound,
-  Headset,
-  Scaling,
   Award,
   Building2,
-  Calendar,
   Users,
-  MapPin,
   ExternalLink,
   Shield,
   Settings,
@@ -72,7 +67,7 @@ export default function AboutPage() {
 
         <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight">
-            About Praans <span className="text-[#eb8535]">Consultech</span>
+            About Praans <span className="text-orange-500">Consultech</span>
           </h1>
         </div>
       </section>
@@ -82,20 +77,20 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           <div className="text-center mb-8 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-6 text-slate-800">
-              Our <span className="text-[#eb8535]">Story</span>
+              Our <span className="text-orange-500">Story</span>
             </h2>
-            <div className="w-20 md:w-24 h-1 bg-[#eb8535] mx-auto rounded-full"></div>
+            <div className="w-20 md:w-24 h-1 bg-orange-500 mx-auto rounded-full"></div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-start">
             {/* Left Content */}
             <div className="space-y-4 md:space-y-6 text-gray-600 leading-relaxed">
               <p className="text-base md:text-lg text-justify">
-                Founded in 2021, <strong className="text-[#eb8535]"><em>Praans Consultech</em></strong> has become as one of India’s most trusted labour law consultants, technology-driven solution providers and compliance partners. With the motive to bring the labour law compliance in streamline and simplified it for businesses in India. Together we bring innovations, technology and legal expertise on ground level executions to ensure that organisations of any kind and sizes remain fully compliant with ever-evolving labour laws.
+                Founded in 2021, <strong className="text-orange-500"><em>Praans Consultech</em></strong> has become as one of India’s most trusted labour law consultants, technology-driven solution providers and compliance partners. With the motive to bring the labour law compliance in streamline and simplified it for businesses in India. Together we bring innovations, technology and legal expertise on ground level executions to ensure that organisations of any kind and sizes remain fully compliant with ever-evolving labour laws.
               </p>
 
               <p className="text-base md:text-lg text-justify">
-                At <strong className="text-[#eb8535]"><em>Praans Consultech</em></strong>, Just filing returns and meeting deadlines is not  about managing compliance, it is much more than that and we understand it. It’s about risk mitigations, ensuring legal accuracy, creating a smooth operational framework that supports growth and protection against penalties for business. Our founders, <strong><em>Mr. Sandeep Kumar, Mr. Nitesh Kumar, and Ms. Allisha Sharma,</em></strong> identified the growing gap in how businesses managed multi-location compliance. The process we were known in past is usually slow, error prone and so we were not able to keeps with whole regulatory landscape. With this understanding, they joined hands to create a single-window solution that would transform the way businesses handle compliance.
+                At <strong className="text-orange-500"><em>Praans Consultech</em></strong>, Just filing returns and meeting deadlines is not  about managing compliance, it is much more than that and we understand it. It’s about risk mitigations, ensuring legal accuracy, creating a smooth operational framework that supports growth and protection against penalties for business. Our founders, <strong><em>Mr. Sandeep Kumar, Mr. Nitesh Kumar, and Ms. Allisha Sharma,</em></strong> identified the growing gap in how businesses managed multi-location compliance. The process we were known in past is usually slow, error prone and so we were not able to keeps with whole regulatory landscape. With this understanding, they joined hands to create a single-window solution that would transform the way businesses handle compliance.
               </p>
             </div>
 
@@ -125,16 +120,16 @@ export default function AboutPage() {
             {/* Heading + Paragraphs */}
             <div className="space-y-8 text-center">
               <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-6 text-slate-800">
-                Our <span className="text-[#eb8535]">Journey</span>
+                Our <span className="text-orange-500">Journey</span>
               </h2>
-              <div className="w-20 md:w-24 h-1 bg-[#eb8535] mx-auto rounded-full"></div>
+              <div className="w-20 md:w-24 h-1 bg-orange-500 mx-auto rounded-full"></div>
 
               <div className="space-y-6 text-base md:text-lg text-gray-600 leading-relaxed text-justify">
                 <p>
-                  When <span className="text-[#eb8535]"><em>Praans Consultech</em></span> started in <span className="font-semibold text-[#eb8535]"><em>2021</em></span>, our aim was simple and precise – to become a trusted compliance partner for Indian businesses. Our core team brought together years of industry experience in labour laws, HR operations, and corporate legal advisory. They understood how errors in compliance could lead to heavy penalties, disrupt business operations, and cause reputational damage.
+                  When <span className="text-orange-500"><em>Praans Consultech</em></span> started in <span className="font-semibold text-orange-500"><em>2021</em></span>, our aim was simple and precise – to become a trusted compliance partner for Indian businesses. Our core team brought together years of industry experience in labour laws, HR operations, and corporate legal advisory. They understood how errors in compliance could lead to heavy penalties, disrupt business operations, and cause reputational damage.
                 </p>
                 <p>
-                  To counter these challenges, our team developed <span className="font-semibold text-[#eb8535]"><em>AI-based Intelligent Compliance Management Software</em></span> by 2023. It automates filings, generates real-time alerts, simplifies workflows, and monitors deadlines. A breakthrough that reduced the burden of spreadsheets and manual registers, while enabling seamless multi-state compliance.
+                  To counter these challenges, our team developed <span className="font-semibold text-orange-500"><em>AI-based Intelligent Compliance Management Software</em></span> by 2023. It automates filings, generates real-time alerts, simplifies workflows, and monitors deadlines. A breakthrough that reduced the burden of spreadsheets and manual registers, while enabling seamless multi-state compliance.
                 </p>
                 <p>
                   Since then, we have expanded rapidly, serving clients across all states and union territories of India. Praans Consultech has emerged as a trusted compliance partner for start-ups, SMEs, and large enterprises across industries – a safe and faster way to manage compliance.
@@ -184,15 +179,15 @@ export default function AboutPage() {
           {/* Heading */}
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
-              Our <span className="text-[#eb8535]">Services</span>
+              Our <span className="text-orange-500">Services</span>
             </h2>
             <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              At <span className="font-semibold text-[#eb8535]"><em>Praans Consultech</em></span>, we are honoured to provide
+              At <span className="font-semibold text-orange-500"><em>Praans Consultech</em></span>, we are honoured to provide
               end-to-end labour law solutions under one portal.
               Our services include comprehensive support designed to
               keep your business fully compliant with ever-evolving regulations.
             </p>
-            <div className="w-24 h-1 bg-[#eb8535] mx-auto mt-6 rounded-full"></div>
+            <div className="w-24 h-1 bg-orange-500 mx-auto mt-6 rounded-full"></div>
           </div>
 
           {/* Services Grid */}
@@ -281,11 +276,11 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Why Choose <span className="text-[#eb8535]">Praans Consultech?</span></h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Why Choose <span className="text-orange-500">Praans Consultech?</span></h2>
             <p className="mt-4 text-gray-600 max-w-3xl mx-auto">
               Tech-first. Reliable. Battle-tested expertise. We own the compliance problem so you can focus on growth.
             </p>
-            <div className="w-24 h-1 bg-[#eb8535] mx-auto mt-6 rounded-full" />
+            <div className="w-24 h-1 bg-orange-500 mx-auto mt-6 rounded-full" />
           </div>
 
           {/* Value Grid */}
@@ -379,14 +374,14 @@ export default function AboutPage() {
 
           {/* Heading */}
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Our <span className="text-[#eb8535]">Team</span></h2>
-            <div className="w-24 h-1 bg-[#eb8535] mx-auto mt-4 rounded-full" />
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Our <span className="text-orange-500">Team</span></h2>
+            <div className="w-24 h-1 bg-orange-500 mx-auto mt-4 rounded-full" />
           </div>
 
           {/* Content */}
           <div className="text-gray-600 text-base md:text-lg leading-relaxed text-justify space-y-6">
             <p>
-              <span className="font-semibold text-[#eb8535]"><em>Praans Consultech</em></span> is powered by a dynamic team of legal experts, HR specialists,
+              <span className="font-semibold text-orange-500"><em>Praans Consultech</em></span> is powered by a dynamic team of legal experts, HR specialists,
               and technology professionals. We strongly believe that legal knowledge is more effective
               when combined with modern tools and practical execution.
             </p>
@@ -410,7 +405,7 @@ export default function AboutPage() {
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-slate-800">
-              Our Mission <span className="text-[#eb8535]">and Vision</span> 
+              Our Mission <span className="text-orange-500">and Vision</span>
             </h2>
             <p className="mt-3 text-gray-600 max-w-3xl mx-auto text-justify">
               Guiding principles that drive our commitment to compliance excellence and
@@ -444,14 +439,14 @@ export default function AboutPage() {
             {/* Vision */}
             <Card className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200 pt-10">
               {/* top colored strip */}
-              <div className="absolute top-0 left-0 w-full h-2 bg-[#eb8535] rounded-t-2xl" />
+              <div className="absolute top-0 left-0 w-full h-2 bg-orange-500 rounded-t-2xl" />
               <CardContent className="p-8">
                 {/* Icon badge */}
                 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-orange-50">
-                  <Eye className="h-8 w-8 text-[#eb8535]" />
+                  <Eye className="h-8 w-8 text-orange-500" />
                 </div>
 
-                <h3 className="text-center text-2xl font-extrabold tracking-wide text-[#eb8535]">
+                <h3 className="text-center text-2xl font-extrabold tracking-wide text-orange-500">
                   OUR VISION
                 </h3>
 
@@ -470,8 +465,8 @@ export default function AboutPage() {
 
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Certifications <span className="text-[#eb8535]">& Recognitions</span></h2>
-            <div className="w-24 h-1 bg-[#eb8535] mx-auto rounded-full mt-4" />
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Certifications <span className="text-orange-500">& Recognitions</span></h2>
+            <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-4" />
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
               Recognitions that validate our compliance-first operating model.
             </p>
@@ -549,9 +544,9 @@ export default function AboutPage() {
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
-              Why Labour Law <span className="text-[#eb8535]">Compliance Matters</span>
+              Why Labour Law <span className="text-orange-500">Compliance Matters</span>
             </h2>
-            <div className="w-24 h-1 bg-[#eb8535] mx-auto mt-4 rounded-full" />
+            <div className="w-24 h-1 bg-orange-500 mx-auto mt-4 rounded-full" />
           </div>
 
           {/* Content */}
@@ -574,7 +569,7 @@ export default function AboutPage() {
             </ul>
 
             <p>
-              This is where <span className="font-semibold text-[#eb8535]"><em>Praans Consultech</em></span> steps in as a trusted
+              This is where <span className="font-semibold text-orange-500"><em>Praans Consultech</em></span> steps in as a trusted
               compliance partner—ensuring your business remains compliant, safeguards its brand,
               and continues to grow without disruptions.
             </p>
@@ -587,8 +582,8 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Our <span className="text-[#eb8535]">Promise</span></h2>
-            <div className="w-24 h-1 bg-[#eb8535] mx-auto mt-4 rounded-full" />
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Our <span className="text-orange-500">Promise</span></h2>
+            <div className="w-24 h-1 bg-orange-500 mx-auto mt-4 rounded-full" />
             <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed">
               We are more than just consultants, we, Praans Consultech, are partners in your growth journey of your business. We promise you to:
             </p>
@@ -597,28 +592,28 @@ export default function AboutPage() {
           {/* Promises */}
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-6 h-6 text-orange-400 mt-1" />
+              <CheckCircle2 className="w-6 h-6 text-orange-500 mt-1" />
               <p className="text-gray-700 leading-relaxed">
                 Provide <strong>accurate, reliable, and timely</strong> compliance services.
               </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <Cpu className="w-6 h-6 text-orange-400 mt-1" />
+              <Cpu className="w-6 h-6 text-orange-500 mt-1" />
               <p className="text-gray-700 leading-relaxed">
                 Offer <strong>technology-driven solutions</strong> that streamline your processes.
               </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <Layers className="w-6 h-6 text-orange-400 mt-1" />
+              <Layers className="w-6 h-6 text-orange-500 mt-1" />
               <p className="text-gray-700 leading-relaxed">
                 Assure <strong>end-to-end support</strong>—from registrations to litigation.
               </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <ShieldCheck className="w-6 h-6 text-orange-400 mt-1" />
+              <ShieldCheck className="w-6 h-6 text-orange-500 mt-1" />
               <p className="text-gray-700 leading-relaxed">
                 Safeguard your business from <strong>fines</strong> and <strong>compliance mismanagement</strong>.
               </p>
@@ -640,8 +635,8 @@ export default function AboutPage() {
 
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Who We <span className="text-[#eb8535]">Serve</span></h2>
-            <div className="w-24 h-1 bg-[#eb8535] mx-auto mt-4 rounded-full" />
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Who We <span className="text-orange-500">Serve</span></h2>
+            <div className="w-24 h-1 bg-orange-500 mx-auto mt-4 rounded-full" />
             <p className="mt-4 text-gray-600 max-w-3xl mx-auto leading-relaxed">
               {/* At <span className="font-semibold text-[#eb8535]">Praans Consultech</span>, we provide tailored compliance solutions for businesses of all sizes—because compliance is critical, no matter the scale. */}
               We provide our services to:
@@ -653,7 +648,7 @@ export default function AboutPage() {
 
             {/* Startups */}
             <div className="text-center bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-lg transition">
-              <Rocket className="w-10 h-10 text-orange-400 mx-auto mb-4" />
+              <Rocket className="w-10 h-10 text-orange-500 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-slate-800">Startups</h3>
               <p className="mt-2 text-gray-600 text-sm leading-relaxed text-justify">
                 At reasonably priced compliance to guide and assist young businesses to get started its business on right track.
@@ -662,7 +657,7 @@ export default function AboutPage() {
 
             {/* SMEs */}
             <div className="text-center bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-lg transition">
-              <BarChart3 className="w-10 h-10 text-orange-400 mx-auto mb-4" />
+              <BarChart3 className="w-10 h-10 text-orange-500 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-slate-800">SMEs</h3>
               <p className="mt-2 text-gray-600 text-sm leading-relaxed text-justify">
                 With maximum risk mitigations and simplifying the complexity of compliance for the growth of business.
@@ -671,7 +666,7 @@ export default function AboutPage() {
 
             {/* Large Enterprises */}
             <div className="text-center bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-lg transition">
-              <Building className="w-10 h-10 text-orange-400 mx-auto mb-4" />
+              <Building className="w-10 h-10 text-orange-500 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-slate-800">Large Enterprises</h3>
               <p className="mt-2 text-gray-600 text-sm leading-relaxed text-justify">
                 Scalable solutions for operations with multiple locations throughout India.
@@ -695,9 +690,9 @@ export default function AboutPage() {
           {/* Heading */}
           <div className="text-center mb-10 md:mb-14">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
-              Media & <span className="text-[#eb8535]">Awards</span>
+              Media & <span className="text-orange-500">Awards</span>
             </h2>
-            <div className="w-24 h-1 bg-[#eb8535] mx-auto rounded-full mt-4" />
+            <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-4" />
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
               Praans Consultech has quickly earned recognition in the industry for its
               labour law consulting and compliance management services.
@@ -724,7 +719,7 @@ export default function AboutPage() {
                 <CardContent className="p-0 flex flex-col h-full">
                   {/* Header row (CTA) */}
                   <div className="px-6 pt-4 pb-2 flex items-start justify-between">
-                    <span className="text-xs font-bold bg-orange-100 text-[#eb8535] px-2 py-1 rounded-full">
+                    <span className="text-xs font-bold bg-orange-100 text-orange-500 px-2 py-1 rounded-full">
                       {item.type}
                     </span>
                     <Link
@@ -760,7 +755,7 @@ export default function AboutPage() {
                     aria-label={`Open article: ${item.title}`}
                   >
                     <div className="mb-2 flex items-start justify-between">
-                      <span className="text-xs text-orange-400 font-medium">{item.year}</span>
+                      <span className="text-xs text-orange-500 font-medium">{item.year}</span>
                     </div>
                     <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-1 leading-tight">
                       {item.title}

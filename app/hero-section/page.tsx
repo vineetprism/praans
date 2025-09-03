@@ -7,17 +7,8 @@ import Link from 'next/link';
 
 export default function HeroSection() {
   return (
-    // <section
-    //   className="
-    //   relative min-h-[clamp(20rem,80vw,100dvh)] flex items-center justify-center 
-    //   pb-7 min-[390px]:pb-80 sm:pb-30 md:pb-10 lg:pb-20 2xl:pb-20
-    //   px-4 sm:px-6 lg:px-8 2xl:px-16
-    //   bg-gradient-to-br from-orange-50 via-white to-blue-50 overflow-hidden
-     
-    //   "
-    // >
     <section
-  className="
+      className="
     relative flex items-center justify-center
     min-h-[clamp(22rem,62vh,78vh)]
     supports-[min-height:100dvh]:min-h-[clamp(22rem,62dvh,78dvh)]
@@ -27,7 +18,7 @@ export default function HeroSection() {
     bg-gradient-to-br from-orange-50 via-white to-blue-50
     overflow-hidden lg:pt-3
   "
->
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-orange-100/10  " />
       <div className="absolute inset-0 bg-gradient-to-bl from-orange-100/40 to-blue-100/20" />
@@ -58,7 +49,7 @@ export default function HeroSection() {
           className="text-[2rem]  min-[360px]:text-[34px] min-[375px]:text-[37px] min-[390px]:text-[37px] min-[414px]:text-[37px] min-[430px]:text-[px] sm:text-5xl md:text-6xl lg:text-[5rem] 2xl:text-[7.1rem]
           font-black text-slate-900 tracking-tight"
         >
-        
+
           Simplifying{" "}
           <span className="relative inline-block">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">

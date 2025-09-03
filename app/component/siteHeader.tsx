@@ -121,7 +121,7 @@ export default function SiteHeader() {
           <Link href="/" className="flex items-center gap-3 group shrink-0" aria-label="Go to homepage">
             <div className="relative">
               <Image
-                src="/logo.png"
+                src="/logo.webp"
                 alt="Praans Consultech"
                 width={180}
                 height={40}
