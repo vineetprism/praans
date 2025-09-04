@@ -40,8 +40,8 @@
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import "./globals.css"
-import SiteHeader from "@/app/component/siteHeader"
-import SiteFooter from "@/app/component/siteFooter"
+import SiteHeader from "@/app/_component/siteHeader"
+import SiteFooter from "@/app/_component/siteFooter"
 
 export const metadata: Metadata = {
   title: "Praans Consultech",
