@@ -1,7 +1,7 @@
 import { FileText, Scale, Bell, Calendar, Wallet, Clock, DollarSign, CreditCard, Users, Shield, Zap, ChevronRight, Calculator } from 'lucide-react'
 import Link from "next/link"
 import React from "react"
-import ResourceLibrary from "../resource-library/page"
+import ResourceLibrary from '../_component/Home/resource-library/page';
 
 // Type definitions
 interface Category {
