@@ -734,49 +734,83 @@ export default function StateDetailPage() {
             </div>
 
             {/* Desktop Table View (Medium+ Devices) */}
-            <div className="hidden md:block bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="bg-orange-100 border-b border-gray-200">
-                      <th className="p-2 md:p-3 lg:p-4 text-left font-semibold text-gray-900 text-xs md:text-sm lg:text-base">S.No</th>
-                      <th className="p-2 md:p-3 lg:p-4 text-left font-semibold text-gray-900 text-xs md:text-sm lg:text-base">Holiday Name</th>
-                      <th className="p-2 md:p-3 lg:p-4 text-left font-semibold text-gray-900 text-xs md:text-sm lg:text-base">Month</th>
-                      <th className="p-2 md:p-3 lg:p-4 text-left font-semibold text-gray-900 text-xs md:text-sm lg:text-base">Date</th>
-                      <th className="p-2 md:p-3 lg:p-4 text-left font-semibold text-gray-900 text-xs md:text-sm lg:text-base">Day</th>
-                      <th className="p-2 md:p-3 lg:p-4 text-left font-semibold text-gray-900 text-xs md:text-sm lg:text-base">Type</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredHolidays.map((holiday, index) => (
-                      <tr
-                        key={holiday.id}
-                        className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
-                      >
-                        <td className="p-2 md:p-3 lg:p-4 text-gray-700 text-xs md:text-sm lg:text-base">{index + 1}</td>
-                        <td className="p-2 md:p-3 lg:p-4 text-gray-700 text-xs md:text-sm lg:text-base font-medium">{holiday.name}</td>
-                        <td className="p-2 md:p-3 lg:p-4 text-gray-700 text-xs md:text-sm lg:text-base">{holiday.month}</td>
-                        <td className="p-2 md:p-3 lg:p-4 text-gray-700 text-xs md:text-sm lg:text-base font-mono">{holiday.date}</td>
-                        <td className="p-2 md:p-3 lg:p-4 text-gray-700 text-xs md:text-sm lg:text-base">{holiday.day}</td>
-                        <td className="p-2 md:p-3 lg:p-4">
-                          <span
-                            className={`px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-medium ${
-                              holiday.type === "National"
-                                ? "bg-green-100 text-green-800"
-                                : holiday.type === "Regional"
-                                  ? "bg-blue-100 text-blue-800"
-                                  : "bg-gray-100 text-gray-800"
-                            }`}
-                          >
-                            {holiday.type}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+           <div
+  className="
+    hidden md:block bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden
+    lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] min-[1600px]:max-w-[1560px] min-[1800px]:max-w-[1720px] min-[1920px]:max-w-[1880px]
+    lg:mx-auto
+  "
+>
+  <div className="overflow-x-auto">
+    <table className="w-full table-fixed">
+      <thead>
+        <tr className="bg-orange-400 border-b border-gray-200">
+          {["S.No", "Holiday Name", "Month", "Date", "Day", "Type"].map((h) => (
+            <th
+              key={h}
+              className="
+                text-left font-semibold text-white whitespace-nowrap
+                p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4
+                text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base
+              "
+            >
+              {h}
+            </th>
+          ))}
+        </tr>
+      </thead>
+
+      <tbody>
+        {filteredHolidays.map((holiday, index) => (
+          <tr
+            key={holiday.id}
+            className="border-b border-gray-100 hover:bg-orange-100"
+          >
+            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+              {index + 1}
+            </td>
+
+            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base truncate">
+              {holiday.name}
+            </td>
+
+            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+              {holiday.month}
+            </td>
+
+            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+              {holiday.date}
+            </td>
+
+            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+              {holiday.day}
+            </td>
+
+            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4">
+              <span
+                className={`
+                  rounded-full font-medium
+                  px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5
+                  text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px]
+                  ${
+                    holiday.type === "National"
+                      ? "bg-green-100 text-green-800"
+                      : holiday.type === "Regional"
+                      ? "bg-blue-100 text-blue-800"
+                      : "bg-gray-100 text-gray-800"
+                  }
+                `}
+              >
+                {holiday.type}
+              </span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
           </div>
         </div>
       </div>
