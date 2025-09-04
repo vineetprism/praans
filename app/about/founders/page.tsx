@@ -124,13 +124,13 @@ export default function FounderPage() {
 
             {/* RIGHT: Image - responsive and cannot force horizontal overflow */}
             <div className="flex justify-center items-start">
-              <div className="relative flex-shrink-0 w-full max-w-[400px]">
-                <div className="w-full aspect-[1/1] rounded-3xl overflow-hidden">
+              <div className="relative flex-shrink-0 w-full max-w-[400px] h-full">
+                <div className="w-full h-full rounded-3xl overflow-hidden">
                   <Image
-                    src="/services/MG.png"
+                    src="/services/admin.webp"
                     alt="Sandeep Kumar — Founder, Praans Consultech"
                     width={800}
-                    height={800}
+                    height={800} // better ratio
                     priority
                     className="object-cover w-full h-full"
                   />
