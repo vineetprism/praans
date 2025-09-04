@@ -267,7 +267,6 @@
 //                         </div>
 //                       </div>
 
-                      
 //                     </div>
 //                   </div>
 //                 </div>
@@ -373,19 +372,10 @@
 
 
 
-
-
-
-
-
-
-
-
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Select,
   SelectContent,
@@ -616,8 +606,6 @@ export default function StateDetailPage() {
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-
-                    
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between flex-1 gap-2 sm:gap-3">
                       <h1 className="font-bold text-slate-800 text-sm min-[375px]:text-base sm:text-lg md:text-xl lg:text-2xl leading-tight">
                         {data.name} Holidays :
@@ -632,9 +620,18 @@ export default function StateDetailPage() {
                             <SelectValue placeholder="All Months" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="all" className="text-xs sm:text-sm">All Months</SelectItem>
+                            <SelectItem
+                              value="all"
+                              className="text-xs sm:text-sm"
+                            >
+                              All Months
+                            </SelectItem>
                             {months.map((month) => (
-                              <SelectItem key={month} value={month} className="text-xs sm:text-sm">
+                              <SelectItem
+                                key={month}
+                                value={month}
+                                className="text-xs sm:text-sm"
+                              >
                                 {month}
                               </SelectItem>
                             ))}
@@ -643,8 +640,9 @@ export default function StateDetailPage() {
 
                         <Button className="h-10 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 hover:bg-orange-600 text-white text-xs min-[375px]:text-xs sm:text-sm transition-colors px-2 sm:px-3 md:px-4">
                           <Download className="w-3 h-3 min-[375px]:w-3 min-[375px]:h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                          <span className=" min-[375px]:inline">Download Holiday</span>
-                          {/* <span className="min-[375px]:hidden">Download</span> */}
+                          <span className=" min-[375px]:inline">
+                            Download Holiday
+                          </span>
                         </Button>
                       </div>
                     </div>
@@ -665,7 +663,10 @@ export default function StateDetailPage() {
             {/* Mobile Card View (Small Devices) */}
             <div className="block sm:hidden space-y-2 min-[375px]:space-y-3">
               {filteredHolidays.map((holiday, index) => (
-                <div key={holiday.id} className="bg-white rounded-lg border border-gray-200 p-3 min-[375px]:p-3 shadow-sm">
+                <div
+                  key={holiday.id}
+                  className="bg-white rounded-lg border border-gray-200 p-3 min-[375px]:p-3 shadow-sm"
+                >
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1 pr-2">
                       <h3 className="font-semibold text-xs min-[375px]:text-sm text-gray-900 line-clamp-2 mb-1">
@@ -681,8 +682,8 @@ export default function StateDetailPage() {
                           holiday.type === "National"
                             ? "bg-green-100 text-green-800"
                             : holiday.type === "Regional"
-                              ? "bg-blue-100 text-blue-800"
-                              : "bg-gray-100 text-gray-800"
+                            ? "bg-blue-100 text-blue-800"
+                            : "bg-gray-100 text-gray-800"
                         }`}
                       >
                         {holiday.type}
@@ -690,7 +691,9 @@ export default function StateDetailPage() {
                     </div>
                   </div>
                   <div className="flex items-center justify-between text-xs text-gray-500">
-                    <span className="w-5 h-5 bg-orange-400 rounded-full text-white text-xs font-medium flex items-center justify-center">{index + 1}</span>
+                    <span className="w-5 h-5 bg-orange-400 rounded-full text-white text-xs font-medium flex items-center justify-center">
+                      {index + 1}
+                    </span>
                     <span>{holiday.month}</span>
                   </div>
                 </div>
@@ -700,7 +703,10 @@ export default function StateDetailPage() {
             {/* Tablet Card View (Small-Medium Devices) */}
             <div className="hidden sm:block md:hidden space-y-3">
               {filteredHolidays.map((holiday, index) => (
-                <div key={holiday.id} className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+                <div
+                  key={holiday.id}
+                  className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm"
+                >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3 flex-1">
                       <span className="w-8 h-8 bg-orange-400 rounded-full text-white text-sm font-medium flex items-center justify-center flex-shrink-0">
@@ -721,8 +727,8 @@ export default function StateDetailPage() {
                           holiday.type === "National"
                             ? "bg-green-100 text-green-800"
                             : holiday.type === "Regional"
-                              ? "bg-blue-100 text-blue-800"
-                              : "bg-gray-100 text-gray-800"
+                            ? "bg-blue-100 text-blue-800"
+                            : "bg-gray-100 text-gray-800"
                         }`}
                       >
                         {holiday.type}
@@ -734,61 +740,68 @@ export default function StateDetailPage() {
             </div>
 
             {/* Desktop Table View (Medium+ Devices) */}
-           <div
-  className="
+            <div
+              className="
     hidden md:block bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden
     lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] min-[1600px]:max-w-[1560px] min-[1800px]:max-w-[1720px] min-[1920px]:max-w-[1880px]
     lg:mx-auto
   "
->
-  <div className="overflow-x-auto">
-    <table className="w-full table-fixed">
-      <thead>
-        <tr className="bg-orange-400 border-b border-gray-200">
-          {["S.No", "Holiday Name", "Month", "Date", "Day", "Type"].map((h) => (
-            <th
-              key={h}
-              className="
+            >
+              <div className="overflow-x-auto">
+                <table className="w-full table-fixed">
+                  <thead>
+                    <tr className="bg-orange-400 border-b border-gray-200">
+                      {[
+                        "S.No",
+                        "Holiday Name",
+                        "Month",
+                        "Date",
+                        "Day",
+                        "Type",
+                      ].map((h) => (
+                        <th
+                          key={h}
+                          className="
                 text-left font-semibold text-white whitespace-nowrap
                 p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4
                 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base
               "
-            >
-              {h}
-            </th>
-          ))}
-        </tr>
-      </thead>
+                        >
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
 
-      <tbody>
-        {filteredHolidays.map((holiday, index) => (
-          <tr
-            key={holiday.id}
-            className="border-b border-gray-100 hover:bg-orange-100"
-          >
-            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
-              {index + 1}
-            </td>
+                  <tbody>
+                    {filteredHolidays.map((holiday, index) => (
+                      <tr
+                        key={holiday.id}
+                        className="border-b border-gray-100 hover:bg-orange-100"
+                      >
+                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+                          {index + 1}
+                        </td>
 
-            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base truncate">
-              {holiday.name}
-            </td>
+                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base truncate">
+                          {holiday.name}
+                        </td>
 
-            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
-              {holiday.month}
-            </td>
+                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+                          {holiday.month}
+                        </td>
 
-            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
-              {holiday.date}
-            </td>
+                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+                          {holiday.date}
+                        </td>
 
-            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
-              {holiday.day}
-            </td>
+                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+                          {holiday.day}
+                        </td>
 
-            <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4">
-              <span
-                className={`
+                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4">
+                          <span
+                            className={`
                   rounded-full font-medium
                   px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5
                   text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px]
@@ -800,25 +813,19 @@ export default function StateDetailPage() {
                       : "bg-gray-100 text-gray-800"
                   }
                 `}
-              >
-                {holiday.type}
-              </span>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</div>
-
+                          >
+                            {holiday.type}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-
-
-
-

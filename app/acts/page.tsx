@@ -16,10 +16,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search, Filter, Eye, Scale } from "lucide-react";
+import {
+  Search,
+  Filter,
+  Eye,
+  Scale,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import Link from "next/link";
 import { downloadFile, type DownloadItem } from "@/lib/download-utils";
 import PopularSearch from "../PopularSearch/PopularSearch";
+import { useState } from "react";
 
 const acts = [
   {
@@ -142,6 +150,9 @@ const states = [
 ];
 
 export default function ActsPage() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10; // Set this based on your total data
+
   const handleActDownload = async (act: (typeof acts)[0]) => {
     const downloadItem: DownloadItem = {
       url: `/acts/downloads/${act.slug}.pdf`,
@@ -163,35 +174,28 @@ export default function ActsPage() {
                   <h1 className="text-2xl sm:text-2xl md:text-xl lg:text-xl xl:text-xl 2xl:text-3xl font-bold text-slate-800 mb-1 md:mb-1 lg:mb-1 xl:mb-1 2xl:mb-2">
                     Labour Acts & Regulations :
                   </h1>
-                  {/* <p className="text-gray-600 text-base sm:text-base md:text-sm lg:text-sm xl:text-sm 2xl:text-lg">
+                  <p className="text-gray-600 text-base sm:text-base md:text-sm lg:text-sm xl:text-sm 2xl:text-lg">
                     Comprehensive collection of central and state labour acts
-                    with latest amendments and updates
-                  </p> */}
+                    with latest amendments and updates.published in the official
+                    gazette vide Government of India Printing Presses containing
+                    significant Statutory Orders (S.O) and General Statutory
+                    Rules (G.S.R).
+                  </p>
                 </div>
-                <div className="flex items-center gap-2">
+                {/* <div className="flex items-center gap-2">
                   <Badge
                     variant="secondary"
                     className="px-2 py-1 text-xs md:text-xs lg:text-xs xl:text-xs 2xl:text-sm"
                   >
                     {acts.length} Acts Available
                   </Badge>
-                </div>
+                </div> */}
               </div>
             </div>
 
             {/* Filter Section - Compact */}
 
             <div className="flex flex-col lg:flex-row lg:items-center gap-3 mb-4 p-2">
-              <Button
-                variant="outline"
-                className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200
-               px-3 py-2 text-xs h-8 lg:h-8 2xl:h-10
-               lg:text-sm 2xl:text-base lg:flex-shrink-0"
-              >
-                <Filter className="w-3 h-3 lg:w-4 lg:h-4 2xl:w-5 2xl:h-5" />
-                Filters
-              </Button>
-
               {/* Search Input */}
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 2xl:w-5 2xl:h-5" />
@@ -232,11 +236,17 @@ export default function ActsPage() {
             </div>
 
             {/* Acts Cards - Ultra Compact for md, lg, xl */}
-            <div className="grid gap-3 sm:gap-3 md:gap-2 lg:gap-2 xl:gap-1 2xl:gap-4">
+            <div className="grid gap-3 sm:gap-3 md:gap-2 lg:gap-2 xl:gap-2 2xl:gap-4">
               {acts.map((act) => (
                 <Card
                   key={act.id}
-                  className="xl:h-27 2xl:h-47 hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500 h-full flex flex-col"
+                  className="
+        lg:h-28 xl:h-31 2xl:h-47
+        group bg-orange-50 border border-gray-200 rounded-lg shadow-sm
+        hover:shadow-md transition-all duration-200
+        border-l-4 border-l-orange-500 overflow-hidden
+        h-full flex flex-col
+      "
                 >
                   <CardHeader className="lg:pb:20 2xl:pb-2 px-4 2xl:px-6 lg:-mb-5.5 2xl:pt-4 flex-shrink-0">
                     <div className="flex items-start justify-between min-h-0">
@@ -247,8 +257,10 @@ export default function ActsPage() {
                           className="block"
                         >
                           <CardTitle
-                            className="text-sm 2xl:text-lg hover:text-orange-600 transition-colors 
-                               leading-tight mb-0.5 2xl:mb-1 cursor-pointer"
+                            className="
+                  text-sm 2xl:text-lg hover:text-orange-600 transition-colors
+                  leading-tight mb-0.5 2xl:mb-1 cursor-pointer
+                "
                           >
                             <div className="flex items-center justify-between gap-2 2xl:gap-4 min-w-0">
                               <div className="flex-1 min-w-0">
@@ -258,8 +270,8 @@ export default function ActsPage() {
                               </div>
                               <Badge
                                 variant="outline"
-                                className="bg-indigo-50 text-indigo-700 border-indigo-200 
-                         text-xs 2xl:text-sm flex-shrink-0 max-w-[100px] truncate"
+                                className="bg-blue-50 text-blue-700 border-blue-200 
+                      text-xs 2xl:text-sm flex-shrink-0 max-w-[100px] truncate"
                               >
                                 {act.applicableState}
                               </Badge>
@@ -268,8 +280,8 @@ export default function ActsPage() {
                         </Link>
 
                         <CardDescription
-                          className="text-gray-600 leading-snug line-clamp-2
-                                   text-xs 2xl:text-sm mb-1 2xl:mb-2 break-words"
+                          className="text-gray-700 leading-snug line-clamp-2
+                text-xs 2xl:text-sm mb-1 2xl:mb-2 break-words"
                         >
                           {act.description}
                         </CardDescription>
@@ -280,12 +292,14 @@ export default function ActsPage() {
                   <CardContent className="pt-0 pb-3 2xl:pb-4 px-4 2xl:px-6 mt-auto flex-shrink-0">
                     <div className="flex items-center justify-start">
                       <Button
-                        variant="outline"
                         size="sm"
                         aria-label="read more"
-                        className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 
-                 bg-transparent text-xs 2xl:text-sm h-7 2xl:h-8 px-2 2xl:px-3
-                 transition-all duration-200"
+                        className="
+              bg-orange-400 text-white hover:bg-orange-500
+              h-8 2xl:h-8 px-2 2xl:px-3
+              text-xs 2xl:text-sm font-medium rounded-sm
+              inline-flex items-center gap-1 transition-all duration-200
+            "
                         asChild
                       >
                         <Link
@@ -303,14 +317,79 @@ export default function ActsPage() {
             </div>
 
             {/* Load More - Compact */}
-            <div className="text-center mt-6 sm:mt-8 md:mt-4 lg:mt-4 xl:mt-4 2xl:mt-12">
+            <div className="flex justify-center items-center gap-1 sm:gap-2 mt-4 sm:mt-5">
+              {/* Previous Button */}
               <Button
                 variant="outline"
-                size="lg"
-                className="px-6 bg-transparent text-sm md:text-xs lg:text-xs xl:text-xs 2xl:text-base"
-                aria-label="for more acts"
+                size="sm"
+                className="
+      h-7 sm:h-8 px-2 sm:px-3
+      text-[10px] sm:text-xs
+      border-gray-300 hover:bg-gray-50
+    "
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(currentPage - 1)}
               >
-                Load More Acts
+                <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
+              </Button>
+
+              {/* Page Numbers */}
+              {[1, 2, 3, 4, 5].map((page) => (
+                <Button
+                  key={page}
+                  variant={currentPage === page ? "default" : "outline"}
+                  size="sm"
+                  className={`
+        h-7 sm:h-8 px-2.5 sm:px-3.5
+        text-[10px] sm:text-xs
+        ${
+          currentPage === page
+            ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
+            : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
+        }
+      `}
+                  onClick={() => setCurrentPage(page)}
+                >
+                  {page}
+                </Button>
+              ))}
+
+              {/* Dots for more pages */}
+              <span className="px-1 text-gray-400 text-[10px] sm:text-xs">
+                ...
+              </span>
+
+              {/* Last page */}
+              <Button
+                variant={currentPage === totalPages ? "default" : "outline"}
+                size="sm"
+                className={`
+      h-7 sm:h-8 px-2.5 sm:px-3.5
+      text-[10px] sm:text-xs
+      ${
+        currentPage === totalPages
+          ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
+          : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
+      }
+    `}
+                onClick={() => setCurrentPage(totalPages)}
+              >
+                {totalPages}
+              </Button>
+
+              {/* Next Button */}
+              <Button
+                variant="outline"
+                size="sm"
+                className="
+      h-7 sm:h-8 px-2 sm:px-3
+      text-[10px] sm:text-xs
+      border-gray-300 hover:bg-gray-50
+    "
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(currentPage + 1)}
+              >
+                <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
               </Button>
             </div>
           </div>
