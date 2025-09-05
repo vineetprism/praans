@@ -1,9 +1,412 @@
+// import { Metadata } from 'next'
+// import Link from 'next/link'
+// import { notFound } from 'next/navigation'
+// import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+// import { Button } from '@/components/ui/button'
+// import { Download, ExternalLink, FileText, Globe, IndianRupee } from 'lucide-react'
+
+// interface StateWageData {
+//   state: string
+//   slug: string
+//   act: string
+//   rule: string
+//   applicability: string
+//   frequency: string
+//   form: string
+//   website: string
+//   lastUpdated: string
+//   wageRates: {
+//     category: string
+//     skilled: number
+//     semiSkilled: number
+//     unskilled: number
+//     remarks: string
+//   }[]
+//   employmentCategories: {
+//     category: string
+//     description: string
+//     applicableRate: string
+//     overtime: string
+//     nightShift: string
+//   }[]
+// }
+
+// const stateWageData: Record<string, StateWageData> = {
+//   'andhra-pradesh': {
+//     state: 'Andhra Pradesh',
+//     slug: 'andhra-pradesh',
+//     act: 'Andhra Pradesh Minimum Wages Act, 1948',
+//     rule: 'The Andhra Pradesh Minimum Wages Rules, 1950',
+//     applicability: 'All establishments employing workers in scheduled employments',
+//     frequency: 'Revised every 5 years or as notified',
+//     form: 'Form MW-1, MW-2',
+//     website: 'https://labour.ap.gov.in',
+//     lastUpdated: '1st January 2024',
+//     wageRates: [
+//       {
+//         category: 'Agricultural Workers',
+//         skilled: 395,
+//         semiSkilled: 365,
+//         unskilled: 335,
+//         remarks: 'Includes farm labourers, plantation workers'
+//       },
+//       {
+//         category: 'Construction Workers',
+//         skilled: 425,
+//         semiSkilled: 395,
+//         unskilled: 365,
+//         remarks: 'Building and other construction work'
+//       },
+//       {
+//         category: 'Manufacturing',
+//         skilled: 415,
+//         semiSkilled: 385,
+//         unskilled: 355,
+//         remarks: 'Factory workers, industrial establishments'
+//       },
+//       {
+//         category: 'Service Sector',
+//         skilled: 405,
+//         semiSkilled: 375,
+//         unskilled: 345,
+//         remarks: 'Hotels, restaurants, security services'
+//       }
+//     ],
+//     employmentCategories: [
+//       {
+//         category: 'Agriculture',
+//         description: 'Cultivation of crops, plantation work, animal husbandry',
+//         applicableRate: 'Unskilled: ₹335, Semi-skilled: ₹365, Skilled: ₹395',
+//         overtime: '2x normal rate after 9 hours',
+//         nightShift: '25% additional allowance'
+//       },
+//       {
+//         category: 'Construction',
+//         description: 'Building construction, road work, infrastructure projects',
+//         applicableRate: 'Unskilled: ₹365, Semi-skilled: ₹395, Skilled: ₹425',
+//         overtime: '2x normal rate after 8 hours',
+//         nightShift: '30% additional allowance'
+//       },
+//       {
+//         category: 'Manufacturing',
+//         description: 'Factory work, industrial production, processing units',
+//         applicableRate: 'Unskilled: ₹355, Semi-skilled: ₹385, Skilled: ₹415',
+//         overtime: '2x normal rate after 8 hours',
+//         nightShift: '25% additional allowance'
+//       }
+//     ]
+//   },
+//   'maharashtra': {
+//     state: 'Maharashtra',
+//     slug: 'maharashtra',
+//     act: 'Maharashtra Minimum Wages Act, 1948',
+//     rule: 'The Maharashtra Minimum Wages Rules, 1963',
+//     applicability: 'All establishments employing workers in scheduled employments',
+//     frequency: 'Revised every 5 years or as notified',
+//     form: 'Form MW-1, MW-2, MW-3',
+//     website: 'https://mahakamgar.maharashtra.gov.in',
+//     lastUpdated: '1st January 2024',
+//     wageRates: [
+//       {
+//         category: 'Agricultural Workers',
+//         skilled: 425,
+//         semiSkilled: 395,
+//         unskilled: 365,
+//         remarks: 'Includes farm labourers, plantation workers'
+//       },
+//       {
+//         category: 'Construction Workers',
+//         skilled: 455,
+//         semiSkilled: 425,
+//         unskilled: 395,
+//         remarks: 'Building and other construction work'
+//       },
+//       {
+//         category: 'Manufacturing',
+//         skilled: 445,
+//         semiSkilled: 415,
+//         unskilled: 385,
+//         remarks: 'Factory workers, industrial establishments'
+//       },
+//       {
+//         category: 'Service Sector',
+//         skilled: 435,
+//         semiSkilled: 405,
+//         unskilled: 375,
+//         remarks: 'Hotels, restaurants, security services'
+//       }
+//     ],
+//     employmentCategories: [
+//       {
+//         category: 'Agriculture',
+//         description: 'Cultivation of crops, plantation work, animal husbandry',
+//         applicableRate: 'Unskilled: ₹365, Semi-skilled: ₹395, Skilled: ₹425',
+//         overtime: '2x normal rate after 9 hours',
+//         nightShift: '25% additional allowance'
+//       },
+//       {
+//         category: 'Construction',
+//         description: 'Building construction, road work, infrastructure projects',
+//         applicableRate: 'Unskilled: ₹395, Semi-skilled: ₹425, Skilled: ₹455',
+//         overtime: '2x normal rate after 8 hours',
+//         nightShift: '30% additional allowance'
+//       },
+//       {
+//         category: 'Manufacturing',
+//         description: 'Factory work, industrial production, processing units',
+//         applicableRate: 'Unskilled: ₹385, Semi-skilled: ₹415, Skilled: ₹445',
+//         overtime: '2x normal rate after 8 hours',
+//         nightShift: '25% additional allowance'
+//       }
+//     ]
+//   },
+//   'karnataka': {
+//     state: 'Karnataka',
+//     slug: 'karnataka',
+//     act: 'Karnataka Minimum Wages Act, 1948',
+//     rule: 'The Karnataka Minimum Wages Rules, 1958',
+//     applicability: 'All establishments employing workers in scheduled employments',
+//     frequency: 'Revised every 5 years or as notified',
+//     form: 'Form MW-1, MW-2',
+//     website: 'https://labour.karnataka.gov.in',
+//     lastUpdated: '1st January 2024',
+//     wageRates: [
+//       {
+//         category: 'Agricultural Workers',
+//         skilled: 425,
+//         semiSkilled: 395,
+//         unskilled: 365,
+//         remarks: 'Includes farm labourers, plantation workers'
+//       },
+//       {
+//         category: 'Construction Workers',
+//         skilled: 455,
+//         semiSkilled: 425,
+//         unskilled: 395,
+//         remarks: 'Building and other construction work'
+//       },
+//       {
+//         category: 'Manufacturing',
+//         skilled: 445,
+//         semiSkilled: 415,
+//         unskilled: 385,
+//         remarks: 'Factory workers, industrial establishments'
+//       },
+//       {
+//         category: 'Service Sector',
+//         skilled: 435,
+//         semiSkilled: 405,
+//         unskilled: 375,
+//         remarks: 'Hotels, restaurants, security services'
+//       }
+//     ],
+//     employmentCategories: [
+//       {
+//         category: 'Agriculture',
+//         description: 'Cultivation of crops, plantation work, animal husbandry',
+//         applicableRate: 'Unskilled: ₹365, Semi-skilled: ₹395, Skilled: ₹425',
+//         overtime: '2x normal rate after 9 hours',
+//         nightShift: '25% additional allowance'
+//       },
+//       {
+//         category: 'Construction',
+//         description: 'Building construction, road work, infrastructure projects',
+//         applicableRate: 'Unskilled: ₹395, Semi-skilled: ₹425, Skilled: ₹455',
+//         overtime: '2x normal rate after 8 hours',
+//         nightShift: '30% additional allowance'
+//       },
+//       {
+//         category: 'Manufacturing',
+//         description: 'Factory work, industrial production, processing units',
+//         applicableRate: 'Unskilled: ₹385, Semi-skilled: ₹415, Skilled: ₹445',
+//         overtime: '2x normal rate after 8 hours',
+//         nightShift: '25% additional allowance'
+//       }
+//     ]
+//   }
+// }
+
+// export async function generateMetadata({ params }: { params: { state: string } }): Promise<Metadata> {
+//   const stateData = stateWageData[params.state]
+
+//   if (!stateData) {
+//     return {
+//       title: 'State Not Found | Minimum Wages',
+//       description: 'The requested state minimum wage information could not be found.'
+//     }
+//   }
+
+//   return {
+//     title: `${stateData.state} Minimum Wages - Current Rates & Notifications | E-Library`,
+//     description: `Complete minimum wage information for ${stateData.state}. Find current wage rates, employment categories, overtime rates, and compliance requirements.`,
+//     keywords: `${stateData.state} minimum wages, wage rates, labour compliance, ${stateData.state} labour laws`,
+//   }
+// }
+
+// export default function StateMinimumWagesPage({ params }: { params: { state: string } }) {
+//   const stateData = stateWageData[params.state]
+
+//   if (!stateData) {
+//     notFound()
+//   }
+
+//   return (
+//     <div className="min-h-screen bg-gray-50">
+
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+//         <div className="flex flex-col lg:flex-row gap-8">
+
+
+//           {/* Main Content */}
+//           <div className="lg:w-3/4">
+//             <div className="mb-8">
+//               <h1 className="text-3xl font-bold text-gray-900 mb-2">Minimum Wages</h1>
+//               <h2 className="text-xl text-gray-600">{stateData.state}</h2>
+//             </div>
+
+        
+
+//             {/* Minimum Wage Rates */}
+//             <Card className="mb-8">
+//               <CardHeader>
+//                 <CardTitle className="text-center">Minimum Wage Rates (Daily in ₹)</CardTitle>
+//               </CardHeader>
+//               <CardContent className="p-0">
+//                 <div className="overflow-x-auto">
+//                   <table className="min-w-full">
+//                     <thead className="bg-gray-50">
+//                       <tr>
+//                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+//                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Skilled</th>
+//                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Semi-Skilled</th>
+//                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unskilled</th>
+//                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Remarks</th>
+//                       </tr>
+//                     </thead>
+//                     <tbody className="bg-white divide-y divide-gray-200">
+//                       {stateData.wageRates.map((rate, index) => (
+//                         <tr key={index}>
+//                           <td className="px-6 py-4 text-sm font-medium text-gray-900">{rate.category}</td>
+//                           <td className="px-6 py-4 text-sm text-gray-900">₹{rate.skilled}</td>
+//                           <td className="px-6 py-4 text-sm text-gray-900">₹{rate.semiSkilled}</td>
+//                           <td className="px-6 py-4 text-sm text-gray-900">₹{rate.unskilled}</td>
+//                           <td className="px-6 py-4 text-sm text-gray-500">{rate.remarks}</td>
+//                         </tr>
+//                       ))}
+//                     </tbody>
+//                   </table>
+//                 </div>
+//               </CardContent>
+//             </Card>
+
+//             {/* Employment Categories */}
+//             <Card className="mb-8">
+//               <CardHeader>
+//                 <CardTitle>Employment Categories & Additional Benefits</CardTitle>
+//               </CardHeader>
+//               <CardContent className="p-0">
+//                 <div className="overflow-x-auto">
+//                   <table className="min-w-full">
+//                     <thead className="bg-gray-50">
+//                       <tr>
+//                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+//                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+//                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Applicable Rate</th>
+//                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Overtime</th>
+//                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Night Shift</th>
+//                       </tr>
+//                     </thead>
+//                     <tbody className="bg-white divide-y divide-gray-200">
+//                       {stateData.employmentCategories.map((category, index) => (
+//                         <tr key={index}>
+//                           <td className="px-6 py-4 text-sm font-medium text-gray-900">{category.category}</td>
+//                           <td className="px-6 py-4 text-sm text-gray-900">{category.description}</td>
+//                           <td className="px-6 py-4 text-sm text-gray-900">{category.applicableRate}</td>
+//                           <td className="px-6 py-4 text-sm text-gray-900">{category.overtime}</td>
+//                           <td className="px-6 py-4 text-sm text-gray-900">{category.nightShift}</td>
+//                         </tr>
+//                       ))}
+//                     </tbody>
+//                   </table>
+//                 </div>
+//               </CardContent>
+//             </Card>
+
+//             {/* Quick Actions */}
+//             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+//               <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+//                 <CardContent className="p-6 text-center">
+//                   <Download className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+//                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Download Forms</h3>
+//                   <p className="text-sm text-gray-600">Get wage-related forms and returns</p>
+//                 </CardContent>
+//               </Card>
+//               <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+//                 <CardContent className="p-6 text-center">
+//                   <IndianRupee className="h-12 w-12 text-green-600 mx-auto mb-4" />
+//                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Wage Calculator</h3>
+//                   <p className="text-sm text-gray-600">Calculate wages and overtime</p>
+//                 </CardContent>
+//               </Card>
+//               <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+//                 <CardContent className="p-6 text-center">
+//                   <Globe className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+//                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Official Website</h3>
+//                   <p className="text-sm text-gray-600">Visit state labour department</p>
+//                 </CardContent>
+//               </Card>
+//             </div>
+
+//             {/* Important Notes */}
+//             <Card>
+//               <CardHeader>
+//                 <CardTitle>Important Notes</CardTitle>
+//               </CardHeader>
+//               <CardContent>
+//                 <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+//                   <ul className="text-sm text-yellow-700 space-y-2">
+//                     <li>• Minimum wage rates are subject to periodic revision by the state government</li>
+//                     <li>• Employers must display wage rates prominently at the workplace</li>
+//                     <li>• Payment below minimum wage is a punishable offense under the Act</li>
+//                     <li>• Different rates may apply for different geographical areas within the state</li>
+//                     <li>• Always refer to the latest official notifications for current rates</li>
+//                   </ul>
+//                 </div>
+//               </CardContent>
+//             </Card>
+//           </div>
+//         </div>
+//       </div>
+
+//     </div>
+//   )
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Download, ExternalLink, FileText, Globe, IndianRupee } from 'lucide-react'
+import PopularSearch from '@/app/PopularSearch/PopularSearch'
 
 interface StateWageData {
   state: string
@@ -252,115 +655,84 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
+        
+        {/* Popular Search - Top for Mobile/Tablet */}
+        <div className="lg:hidden mb-3 sm:mb-4">
+          <Card className="shadow-sm">
+            <CardContent className="p-2 sm:p-3">
+              <PopularSearch className="mb-0" />
+            </CardContent>
+          </Card>
+        </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar */}
-          <div className="lg:w-1/4">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Select State</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {Object.values(stateWageData).map((state) => (
-                    <Link
-                      key={state.slug}
-                      href={`/minimum-wages/${state.slug}`}
-                      className={`block px-3 py-2 rounded-md text-sm transition-colors ${state.slug === params.state
-                          ? 'bg-blue-100 text-blue-700 font-medium'
-                          : 'text-gray-700 hover:bg-gray-100'
-                        }`}
-                      aria-label={state.state}
-                    >
-                      {state.state}
-                    </Link>
-                  ))}
-                </div>
-                <div className="mt-4 pt-4 border-t">
-                  <p className="text-xs text-gray-500">
-                    Updated As On:<br />
-                    {stateData.lastUpdated}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
+        <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5">
+          
           {/* Main Content */}
-          <div className="lg:w-3/4">
-            <div className="mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Minimum Wages</h1>
-              <h2 className="text-xl text-gray-600">{stateData.state}</h2>
+          <div className="lg:col-span-3">
+            <div className="mb-4 sm:mb-5 lg:mb-4">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Minimum Wages :</h1>
+              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-lg xl:text-xl text-orange-600 font-semibold">{stateData.state}</h2>
             </div>
 
-            {/* Act Information Table */}
-            <Card className="mb-8">
-              <CardContent className="p-0">
-                <div className="overflow-x-auto">
-                  <table className="min-w-full">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Act</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rule</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Applicability</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Frequency</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Form</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Website</th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white">
-                      <tr>
-                        <td className="px-6 py-4 text-sm text-gray-900">{stateData.act}</td>
-                        <td className="px-6 py-4 text-sm text-gray-900">{stateData.rule}</td>
-                        <td className="px-6 py-4 text-sm text-gray-900">{stateData.applicability}</td>
-                        <td className="px-6 py-4 text-sm text-gray-900">{stateData.frequency}</td>
-                        <td className="px-6 py-4 text-sm">
-                          <Button variant="outline" size="sm" aria-label='Download Form'>
-                            <FileText className="h-4 w-4 mr-1" />
-                            {stateData.form}
-                          </Button>
-                        </td>
-                        <td className="px-6 py-4 text-sm">
-                          <Button variant="outline" size="sm" asChild aria-label='Official Site'>
-                            <a href={stateData.website} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="h-4 w-4 mr-1" />
-                              Official Site
-                            </a>
-                          </Button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Minimum Wage Rates - Mobile Card View */}
+            <div className="block md:hidden mb-4">
+              <Card className="shadow-sm">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-center text-base font-bold text-gray-900">Minimum Wage Rates (Daily in ₹)</CardTitle>
+                </CardHeader>
+                <CardContent className="p-3">
+                  <div className="space-y-3">
+                    {stateData.wageRates.map((rate, index) => (
+                      <div key={index} className="bg-gray-50 rounded-lg p-3 border">
+                        <h3 className="font-semibold text-sm text-gray-900 mb-2">{rate.category}</h3>
+                        <div className="grid grid-cols-3 gap-2 text-xs">
+                          <div className="text-center">
+                            <div className="font-medium text-orange-600">Skilled</div>
+                            <div className="font-bold">₹{rate.skilled}</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="font-medium text-orange-600">Semi-Skilled</div>
+                            <div className="font-bold">₹{rate.semiSkilled}</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="font-medium text-orange-600">Unskilled</div>
+                            <div className="font-bold">₹{rate.unskilled}</div>
+                          </div>
+                        </div>
+                        <p className="text-xs text-gray-600 mt-2">{rate.remarks}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
-            {/* Minimum Wage Rates */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-center">Minimum Wage Rates (Daily in ₹)</CardTitle>
+            {/* Minimum Wage Rates - Desktop Table */}
+            <Card className="hidden md:block mb-4 lg:mb-3 shadow-sm">
+              <CardHeader className="pb-2 lg:pb-1">
+                <CardTitle className="text-center text-lg lg:text-base xl:text-lg font-bold text-gray-900">Minimum Wage Rates (Daily in ₹)</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
                   <table className="min-w-full">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-orange-500">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Skilled</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Semi-Skilled</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unskilled</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Remarks</th>
+                        <th className="px-3 lg:px-4 py-2 lg:py-2.5 text-left text-xs lg:text-sm font-semibold text-white uppercase tracking-wide">Category</th>
+                        <th className="px-3 lg:px-4 py-2 lg:py-2.5 text-left text-xs lg:text-sm font-semibold text-white uppercase tracking-wide">Skilled</th>
+                        <th className="px-3 lg:px-4 py-2 lg:py-2.5 text-left text-xs lg:text-sm font-semibold text-white uppercase tracking-wide">Semi-Skilled</th>
+                        <th className="px-3 lg:px-4 py-2 lg:py-2.5 text-left text-xs lg:text-sm font-semibold text-white uppercase tracking-wide">Unskilled</th>
+                        <th className="px-3 lg:px-4 py-2 lg:py-2.5 text-left text-xs lg:text-sm font-semibold text-white uppercase tracking-wide">Remarks</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
                       {stateData.wageRates.map((rate, index) => (
-                        <tr key={index}>
-                          <td className="px-6 py-4 text-sm font-medium text-gray-900">{rate.category}</td>
-                          <td className="px-6 py-4 text-sm text-gray-900">₹{rate.skilled}</td>
-                          <td className="px-6 py-4 text-sm text-gray-900">₹{rate.semiSkilled}</td>
-                          <td className="px-6 py-4 text-sm text-gray-900">₹{rate.unskilled}</td>
-                          <td className="px-6 py-4 text-sm text-gray-500">{rate.remarks}</td>
+                        <tr key={index} className="hover:bg-gray-50 transition-colors">
+                          <td className="px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm font-medium text-gray-900">{rate.category}</td>
+                          <td className="px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm font-semibold text-green-600">₹{rate.skilled}</td>
+                          <td className="px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm font-semibold text-green-600">₹{rate.semiSkilled}</td>
+                          <td className="px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm font-semibold text-green-600">₹{rate.unskilled}</td>
+                          <td className="px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm text-gray-600">{rate.remarks}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -369,31 +741,55 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
               </CardContent>
             </Card>
 
-            {/* Employment Categories */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle>Employment Categories & Additional Benefits</CardTitle>
+            {/* Employment Categories - Mobile Card View */}
+            <div className="block md:hidden mb-4">
+              <Card className="shadow-sm">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-base font-bold text-gray-900">Employment Categories & Benefits</CardTitle>
+                </CardHeader>
+                <CardContent className="p-3">
+                  <div className="space-y-3">
+                    {stateData.employmentCategories.map((category, index) => (
+                      <div key={index} className="bg-gray-50 rounded-lg p-3 border">
+                        <h3 className="font-semibold text-sm text-orange-600 mb-2">{category.category}</h3>
+                        <div className="space-y-1 text-xs">
+                          <p><span className="font-medium">Description:</span> {category.description}</p>
+                          <p><span className="font-medium">Rate:</span> {category.applicableRate}</p>
+                          <p><span className="font-medium">Overtime:</span> {category.overtime}</p>
+                          <p><span className="font-medium">Night Shift:</span> {category.nightShift}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Employment Categories - Desktop Table */}
+            <Card className="hidden md:block mb-4 lg:mb-3 shadow-sm">
+              <CardHeader className="pb-2 lg:pb-1">
+                <CardTitle className="text-lg lg:text-base xl:text-lg font-bold text-gray-900">Employment Categories & Additional Benefits</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
                   <table className="min-w-full">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-orange-500">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Applicable Rate</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Overtime</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Night Shift</th>
+                        <th className="px-3 lg:px-4 py-2 lg:py-2.5 text-left text-xs lg:text-sm font-semibold text-white uppercase tracking-wide">Category</th>
+                        <th className="px-3 lg:px-4 py-2 lg:py-2.5 text-left text-xs lg:text-sm font-semibold text-white uppercase tracking-wide">Description</th>
+                        <th className="px-3 lg:px-4 py-2 lg:py-2.5 text-left text-xs lg:text-sm font-semibold text-white uppercase tracking-wide">Applicable Rate</th>
+                        <th className="px-3 lg:px-4 py-2 lg:py-2.5 text-left text-xs lg:text-sm font-semibold text-white uppercase tracking-wide">Overtime</th>
+                        <th className="px-3 lg:px-4 py-2 lg:py-2.5 text-left text-xs lg:text-sm font-semibold text-white uppercase tracking-wide">Night Shift</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
                       {stateData.employmentCategories.map((category, index) => (
-                        <tr key={index}>
-                          <td className="px-6 py-4 text-sm font-medium text-gray-900">{category.category}</td>
-                          <td className="px-6 py-4 text-sm text-gray-900">{category.description}</td>
-                          <td className="px-6 py-4 text-sm text-gray-900">{category.applicableRate}</td>
-                          <td className="px-6 py-4 text-sm text-gray-900">{category.overtime}</td>
-                          <td className="px-6 py-4 text-sm text-gray-900">{category.nightShift}</td>
+                        <tr key={index} className="hover:bg-gray-50 transition-colors">
+                          <td className="px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm font-medium text-orange-600">{category.category}</td>
+                          <td className="px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm text-gray-700">{category.description}</td>
+                          <td className="px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm text-gray-900">{category.applicableRate}</td>
+                          <td className="px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm text-gray-900">{category.overtime}</td>
+                          <td className="px-3 lg:px-4 py-2 lg:py-3 text-xs lg:text-sm text-gray-900">{category.nightShift}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -403,38 +799,38 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
             </Card>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                <CardContent className="p-6 text-center">
-                  <Download className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Download Forms</h3>
-                  <p className="text-sm text-gray-600">Get wage-related forms and returns</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4 mb-4 lg:mb-3">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-orange-200">
+                <CardContent className="p-3 lg:p-4 text-center">
+                  <Download className="h-8 w-8 lg:h-10 lg:w-10 text-orange-500 mx-auto mb-2 lg:mb-3" />
+                  <h3 className="text-sm lg:text-base font-semibold text-gray-900 mb-1">Download Notifactions</h3>
+                  <p className="text-xs lg:text-sm text-gray-600">Get wage-related forms and returns</p>
                 </CardContent>
               </Card>
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                <CardContent className="p-6 text-center">
-                  <IndianRupee className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Wage Calculator</h3>
-                  <p className="text-sm text-gray-600">Calculate wages and overtime</p>
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-orange-200">
+                <CardContent className="p-3 lg:p-4 text-center">
+                  <IndianRupee className="h-8 w-8 lg:h-10 lg:w-10 text-orange-500 mx-auto mb-2 lg:mb-3" />
+                  <h3 className="text-sm lg:text-base font-semibold text-gray-900 mb-1">Wage Calculator</h3>
+                  <p className="text-xs lg:text-sm text-gray-600">Calculate wages and overtime</p>
                 </CardContent>
               </Card>
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-                <CardContent className="p-6 text-center">
-                  <Globe className="h-12 w-12 text-purple-600 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Official Website</h3>
-                  <p className="text-sm text-gray-600">Visit state labour department</p>
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-orange-200">
+                <CardContent className="p-3 lg:p-4 text-center">
+                  <Globe className="h-8 w-8 lg:h-10 lg:w-10 text-orange-500 mx-auto mb-2 lg:mb-3" />
+                  <h3 className="text-sm lg:text-base font-semibold text-gray-900 mb-1">Official Website</h3>
+                  <p className="text-xs lg:text-sm text-gray-600">Visit state labour department</p>
                 </CardContent>
               </Card>
             </div>
 
             {/* Important Notes */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Important Notes</CardTitle>
+            {/* <Card className="shadow-sm">
+              <CardHeader className="pb-2 lg:pb-1">
+                <CardTitle className="text-lg lg:text-base xl:text-lg font-bold text-gray-900">Important Notes</CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-                  <ul className="text-sm text-yellow-700 space-y-2">
+              <CardContent className="p-3 lg:p-4">
+                <div className="bg-orange-50 border-l-4 border-orange-400 p-3 lg:p-4">
+                  <ul className="text-xs lg:text-sm text-orange-700 space-y-1 lg:space-y-2">
                     <li>• Minimum wage rates are subject to periodic revision by the state government</li>
                     <li>• Employers must display wage rates prominently at the workplace</li>
                     <li>• Payment below minimum wage is a punishable offense under the Act</li>
@@ -443,11 +839,21 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
                   </ul>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
+          </div>
+
+          {/* Right Sidebar - Popular Search (Desktop Only) */}
+          <div className="hidden lg:block lg:col-span-1">
+            <div className="sticky top-2 lg:top-3">
+              <Card className="shadow-sm hover:shadow-md transition-shadow">
+                <CardContent className="p-2 lg:p-3 xl:p-4">
+                  <PopularSearch className="mb-0" />
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
   )
 }
