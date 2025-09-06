@@ -9,6 +9,7 @@ import {
   Filter,
   Eye,
   Scale,
+  Gavel,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -216,9 +217,9 @@ const quickActionCards = [
     link: "/calculators/professional-tax",
   },
   {
-    title: "AI PT Assistant",
+    title: "Intrest & Penality Calculator",
     description: "AI Powered PT Interest & Penalties Calculator",
-    icon: Bot,
+    icon: Calculator,
     action: "View AI Tool",
     link: "/ai-tools/pt-calculator",
   },
@@ -292,13 +293,13 @@ export default function ProfessionalTaxPage() {
               </div>
 
               {/* Apply Button */}
-              <Button
+              {/* <Button
                 className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 h-8 sm:h-9 md:h-10 lg:h-9 text-xs sm:text-sm"
                 // variant="outline"
                 aria-label="apply filters"
               >
                 Apply
-              </Button>
+              </Button> */}
             </div>
 
             {/* Statistics Cards */}
@@ -342,9 +343,7 @@ export default function ProfessionalTaxPage() {
                         <p className="font-bold text-lg text-gray-900 group-hover:text-orange-600 transition-colors">
                           {card.title}
                         </p>
-                        {/* <p className="text-sm text-gray-600">
-                          {card.description}
-                        </p> */}
+                       
                       </div>
                       <card.icon className="shrink-0 w-6 h-6 md:w-7 md:h-7 text-orange-600" />
                     </div>

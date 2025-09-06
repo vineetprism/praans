@@ -299,13 +299,13 @@ export default function MinimumWagesPage() {
   </div>
 
               {/* Apply Button */}
-              <Button
+              {/* <Button
                 className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 h-8 sm:h-9 md:h-10 lg:h-9 text-xs sm:text-sm"
                 // variant="outline"
                 aria-label="apply filters"
               >
                 Apply
-              </Button>
+              </Button> */}
             </div>
 
             {/* Mobile Card View (Small Devices) */}

@@ -272,7 +272,7 @@ export default function GazetteNotificationsPage() {
               </div>
 
               {/* Apply Button */}
-              <div className="flex-shrink-0">
+              {/* <div className="flex-shrink-0">
                 <Button
                   className="
           bg-orange-500 hover:bg-orange-600 text-white font-medium
@@ -284,7 +284,7 @@ export default function GazetteNotificationsPage() {
                 >
                   Apply
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -317,14 +317,14 @@ export default function GazetteNotificationsPage() {
                     >
                       Gazette Notifications :
                     </h1>
-                    <Badge
+                    {/* <Badge
                       variant="secondary"
                       className="
                   px-1.5 py-0.5 text-[9px] min-[375px]:text-[10px] bg-orange-400 text-white font-bold
                 "
                     >
                       {notifications.length} Notifications
-                    </Badge>
+                    </Badge> */}
                   </div>
                   <p
                     className="
@@ -423,7 +423,7 @@ export default function GazetteNotificationsPage() {
                             <span className="text-slate-500 font-semibold">
                               Effective Date:&nbsp;
                             </span>
-                            <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-sky-600 to-indigo-600 tabular-nums underline decoration-sky-300/60">
+                            <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-rose-600 tabular-nums underline decoration-orange-300/60">
                               {notification.effectiveDate}
                             </span>
                           </div>

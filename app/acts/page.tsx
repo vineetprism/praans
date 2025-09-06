@@ -161,7 +161,6 @@ export default function ActsPage() {
     };
     await downloadFile(downloadItem);
   };
-
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 md:px-4 lg:px-4 xl:px-4 2xl:px-6 py-6 sm:py-6 md:py-4 lg:py-4 xl:py-4 2xl:py-8">
@@ -171,10 +170,13 @@ export default function ActsPage() {
             <div className="mb-6 sm:mb-6 md:mb-4 lg:mb-4 xl:mb-4 2xl:mb-8">
               <div className="flex items-center justify-between mb-3 md:mb-2 lg:mb-2 xl:mb-2 2xl:mb-4">
                 <div>
-                  <h1 className="text-2xl sm:text-2xl md:text-xl lg:text-xl xl:text-xl 2xl:text-3xl font-bold text-slate-800 mb-1 md:mb-1 lg:mb-1 xl:mb-1 2xl:mb-2">
+                  <h1 className="  font-bold text-slate-800
+                    text-base min-[375px]:text-lg sm:text-xl
+                    mb-1">
                     Labour Acts & Regulations :
                   </h1>
-                  <p className="text-gray-600 text-base sm:text-base md:text-sm lg:text-sm xl:text-sm 2xl:text-lg">
+                  <p className=" text-gray-600 leading-relaxed
+                    text-[10px] min-[375px]:text-xs sm:text-sm text-justify pb-2">
                     Comprehensive collection of central and state labour acts
                     with latest amendments and updates.published in the official
                     gazette vide Government of India Printing Presses containing
@@ -228,83 +230,80 @@ export default function ActsPage() {
             </div>
 
             {/* Acts Cards - Ultra Compact for md, lg, xl */}
-            <div className="grid gap-3 sm:gap-3 md:gap-2 lg:gap-2 xl:gap-2 2xl:gap-4">
+            <div className="lg:space-y-2">
               {acts.map((act) => (
-                <Card
+                <div
                   key={act.id}
                   className="
-        lg:h-28 xl:h-31 2xl:h-47
         group bg-orange-50 border border-gray-200 rounded-lg shadow-sm
         hover:shadow-md transition-all duration-200
         border-l-4 border-l-orange-500 overflow-hidden
-        h-full flex flex-col
       "
                 >
-                  <CardHeader className="lg:pb:20 2xl:pb-2 px-4 2xl:px-6 lg:-mb-5.5 2xl:pt-4 flex-shrink-0">
-                    <div className="flex items-start justify-between min-h-0">
-                      <div className="flex-1 min-w-0">
-                        <Link
-                          href={`/acts/${act.slug}`}
-                          aria-label="title of act"
-                          className="block"
+                  <div className="p-2 sm:p-3 lg:p-3">
+                    {/* 1 col on mobile, 2 col (content + right meta) on md+ */}
+                    <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-start gap-2.5 md:gap-3">
+                      {/* LEFT: title + desc + read more */}
+                      <div className="min-w-0 flex flex-col">
+                        <h4
+                          className="
+                text-[12px] min-[375px]:text-xs sm:text-sm lg:text-sm
+                font-semibold text-gray-900 line-clamp-2
+              "
                         >
-                          <CardTitle
-                            className="
-                  text-sm 2xl:text-lg hover:text-orange-600 transition-colors
-                  leading-tight mb-0.5 2xl:mb-1 cursor-pointer
-                "
-                          >
-                            <div className="flex items-center justify-between gap-2 2xl:gap-4 min-w-0">
-                              <div className="flex-1 min-w-0">
-                                <span className="text-slate-800 font-semibold line-clamp-1 break-words text-sm 2xl:text-lg">
-                                  {act.title} /Rules/Forms
-                                </span>
-                              </div>
-                              <Badge
-                                variant="outline"
-                                className="bg-blue-50 text-blue-700 border-blue-200 
-                      text-xs 2xl:text-sm flex-shrink-0 max-w-[100px] truncate"
-                              >
-                                {act.applicableState}
-                              </Badge>
-                            </div>
-                          </CardTitle>
-                        </Link>
+                          {act.title} /Rules/Forms
+                        </h4>
 
-                        <CardDescription
-                          className="text-gray-700 leading-snug line-clamp-2
-                text-xs 2xl:text-sm mb-1 2xl:mb-2 break-words"
+                        <p
+                          className="
+                text-gray-700 leading-snug mt-2
+                text-[11px] min-[375px]:text-[10px] sm:text-[0.8rem] lg:text-xs
+                line-clamp-2 break-words
+              "
                         >
                           {act.description}
-                        </CardDescription>
+                        </p>
+
+                        <div className="mt-2 md:mt-3">
+                          <Button
+                            size="sm"
+                            className="
+                  bg-orange-400 text-white hover:bg-orange-500
+                  h-6 sm:h-7 lg:h-8 px-2 sm:px-2.5 lg:px-3
+                  text-[9px] sm:text-[10px] lg:text-xs font-medium rounded-sm
+                  inline-flex items-center gap-1
+                "
+                            asChild
+                          >
+                            <Link
+                              href={`/acts/${act.slug}`}
+                              className="flex items-center gap-1"
+                            >
+                              <Eye className="w-3 h-3 2xl:w-4 2xl:h-4" />
+                              <span className="whitespace-nowrap">
+                                Read More
+                              </span>
+                            </Link>
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* RIGHT: state badge + dates + download */}
+                      <div className="md:pl-3 flex flex-col items-end justify-between gap-2">
+                        <Badge
+                          variant="outline"
+                          className="
+                bg-blue-50 text-blue-700 border-blue-200
+                text-[11px] sm:text-[10px] lg:text-[12px]
+                px-1.5 py-0.5 font-medium flex-shrink-0 truncate max-w-[120px]
+              "
+                        >
+                          {act.applicableState}
+                        </Badge>
                       </div>
                     </div>
-                  </CardHeader>
-
-                  <CardContent className="pt-0 pb-3 2xl:pb-4 px-4 2xl:px-6 mt-auto flex-shrink-0">
-                    <div className="flex items-center justify-start">
-                      <Button
-                        size="sm"
-                        aria-label="read more"
-                        className="
-              bg-orange-400 text-white hover:bg-orange-500
-              h-8 2xl:h-8 px-2 2xl:px-3
-              text-xs 2xl:text-sm font-medium rounded-sm
-              inline-flex items-center gap-1 transition-all duration-200
-            "
-                        asChild
-                      >
-                        <Link
-                          href={`/acts/${act.slug}`}
-                          className="flex items-center gap-1 min-w-0"
-                        >
-                          <Eye className="w-3 h-3 2xl:w-4 2xl:h-4 flex-shrink-0" />
-                          <span className="whitespace-nowrap">Read More</span>
-                        </Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
 
