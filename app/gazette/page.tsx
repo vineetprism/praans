@@ -302,7 +302,7 @@ export default function GazetteNotificationsPage() {
           </div>
 
           {/* Main Content */}
-          <div className="lg:col-span-4 lg:order-1 order-2">
+          <div className="lg:col-span-4 lg:order-1 order-2 ">
             {/* Ultra Compact Page Header */}
             <div className="mb-3 sm:mb-4">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 mb-2">
@@ -343,7 +343,7 @@ export default function GazetteNotificationsPage() {
             </div>
 
             {/* Div Cards with Full Width - Previously Card Components */}
-            <div className="space-y-0.5 sm:space-y-2.5">
+            <div className="lg:space-y-2">
               {notifications.map((notification) => (
                 <div
                   key={notification.id}
@@ -353,25 +353,25 @@ export default function GazetteNotificationsPage() {
         border-l-4 border-l-orange-500 overflow-hidden
       "
                 >
-                  <div className="p-2 sm:p-3 lg:p-3.5">
+                  <div className="p-2 sm:p-3 lg:p-1">
                     {/* 1 col on mobile, 1fr + auto on md+ so right side never pushes out */}
                     <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-start gap-2.5 md:gap-3">
                       {/* LEFT: title + desc + read more */}
                       <div className="min-w-0">
-                        <h3
+                        <h4
                           className="
              
-              text-[12px] min-[375px]:text-xs sm:text-sm lg:text-base
+              text-[12px] min-[375px]:text-xs sm:text-sm lg:sm
               font-semibold text-gray-900 line-clamp-2
             "
                         >
                           {notification.title}
-                        </h3>
+                        </h4>
 
                         <p
                           className="
               text-gray-700 leading-snug mt-3
-              text-[11px] min-[375px]:text-[10px] sm:text-[0.8rem] lg:text-sm
+              text-[11px] min-[375px]:text-[10px] sm:text-[0.8rem] lg:text-xs
               line-clamp-2
             "
                         >

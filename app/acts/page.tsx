@@ -225,14 +225,6 @@ export default function ActsPage() {
                   ))}
                 </SelectContent>
               </Select>
-
-              {/* Apply Button */}
-              <Button
-                className="bg-orange-500 hover:bg-orange-600 text-white
-                     px-4 h-8 lg:h-8 2xl:h-10 text-xs lg:text-sm 2xl:text-base"
-              >
-                Apply
-              </Button>
             </div>
 
             {/* Acts Cards - Ultra Compact for md, lg, xl */}

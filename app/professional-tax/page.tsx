@@ -20,7 +20,13 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import PopularSearch from "../PopularSearch/PopularSearch";
 
 export const metadata: Metadata = {
@@ -188,10 +194,18 @@ const categories = [
   "Tax Slabs",
   "Compliance",
   "Forms",
-  "Registration"
+  "Registration",
 ];
 
-const states = ["All States", "Maharashtra", "Karnataka", "Gujarat", "Tamil Nadu", "West Bengal", "Kerala"];
+const states = [
+  "All States",
+  "Maharashtra",
+  "Karnataka",
+  "Gujarat",
+  "Tamil Nadu",
+  "West Bengal",
+  "Kerala",
+];
 
 const quickActionCards = [
   {
@@ -199,15 +213,15 @@ const quickActionCards = [
     description: "Calculate professional tax for all states",
     icon: Calculator,
     action: "View Calculator",
-    link: "/calculators/professional-tax"
+    link: "/calculators/professional-tax",
   },
   {
     title: "AI PT Assistant",
     description: "AI Powered PT Interest & Penalties Calculator",
     icon: Bot,
     action: "View AI Tool",
-    link: "/ai-tools/pt-calculator"
-  }
+    link: "/ai-tools/pt-calculator",
+  },
 ];
 
 export default function ProfessionalTaxPage() {
@@ -221,103 +235,90 @@ export default function ProfessionalTaxPage() {
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h1 className="text-3xl font-bold text-slate-800 mb-2">Professional Tax</h1>
-                  <p className="text-gray-600 text-lg">
-                    Complete guide to Professional Tax rates, slabs, and compliance across all Indian states
+                  <h1 className="text-3xl font-bold text-slate-800 mb-2">
+                    Professional Tax :
+                  </h1>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed">
+                    Professional Tax is a state-level tax levied on all persons
+                    earning income through employment, profession, or calling.
+                    It is governed by individual state legislation and varies
+                    across states in terms of rates, slabs, and compliance
+                    requirements.
                   </p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Badge variant="secondary" className="px-3 py-1">
-                    {professionalTaxStates.length} Applicable States
-                  </Badge>
-                </div>
               </div>
-
-              {/* Info Card */}
-              <Card className="bg-blue-50 border-blue-200">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-3">
-                    <Scale className="w-5 h-5 text-blue-600 mt-0.5" />
-                    <div>
-                      <h3 className="font-semibold text-blue-900 mb-1">What is Professional Tax?</h3>
-                      <p className="text-blue-800 text-sm leading-relaxed">
-                        Professional Tax is a state-level tax levied on all persons earning income through employment,
-                        profession, or calling. It is governed by individual state legislation and varies across states
-                        in terms of rates, slabs, and compliance requirements.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
 
             {/* Horizontal Filters */}
-            <Card className="mb-8">
-              <CardContent className="py-2">
-                <div className="flex flex-col lg:flex-row gap-4 items-center">
-                  {/* Filters Button */}
-                  <Button variant="outline" className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200" aria-label="Filters">
-                    <Filter className="w-4 h-4" />
-                    Filters
-                  </Button>
-                  {/* Search Input */}
-                  <div className="relative flex-1">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" aria-label="Search" />
-                    <Input placeholder="Search Professional Tax, PT rates, slabs..." className="pl-12 py-3 h-12 rounded-lg" />
-                  </div>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center mb-6 sm:mb-8 md:mb-10">
+              {/* Search Input */}
+              <div className="relative flex-1">
+                <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
+                <Input
+                  placeholder="Search by state..."
+                  className="pl-10 sm:pl-12 h-8 sm:h-9 md:h-10 rounded-lg text-xs sm:text-sm 
+                                  "
+                />
+              </div>
 
-                  {/* State Dropdown */}
-                  <Select>
-                    <SelectTrigger className="w-full lg:w-48 bg-gray-100 hover:bg-gray-200">
-                      <SelectValue placeholder="Select state" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {states.map((state) => (
-                        <SelectItem key={state} value={state.toLowerCase().replace(/ /g, '-')}>
-                          {state}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+              {/* State Dropdown */}
+              <div className="w-full sm:w-auto">
+                <Select>
+                  <SelectTrigger
+                    className="
+                          w-full sm:w-48 md:w-52 h-8 sm:h-9 md:h-10
+                          bg-white text-gray-900 border border-gray-300 rounded-lg
+                          text-xs sm:text-sm
+                          focus:outline-none
+                          focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-white
+                          !focus-visible:ring-orange-500 !focus-visible:border-orange-500
+                          hover:bg-orange-50
+                        "
+                  >
+                    <SelectValue placeholder="Select state" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border border-gray-200 shadow-md">
+                    {states.map((state) => (
+                      <SelectItem
+                        key={state}
+                        value={state}
+                        className="text-xs sm:text-sm text-gray-900 cursor-pointer focus:bg-orange-100 focus:text-orange-700"
+                      >
+                        {state}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
 
-                  {/* Category Dropdown */}
-                  <Select>
-                    <SelectTrigger className="w-full lg:w-48 bg-gray-100 hover:bg-gray-200">
-                      <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categories.map((category) => (
-                        <SelectItem key={category} value={category.toLowerCase().replace(/ /g, '-')}>
-                          {category}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
-                  {/* Apply Button */}
-                  <Button className="bg-orange-500 hover:bg-orange-600 px-6" aria-label="Apply">
-                    Apply
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+              {/* Apply Button */}
+              <Button
+                className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 h-8 sm:h-9 md:h-10 lg:h-9 text-xs sm:text-sm"
+                // variant="outline"
+                aria-label="apply filters"
+              >
+                Apply
+              </Button>
+            </div>
 
             {/* Statistics Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
-              <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
-                <CardContent className="p-6">
+              <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500 lg:h-40 lg:w-auto">
+                <CardContent className="p-6 ">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-gray-600">
                         Applicable States
                       </p>
-                      <p className="text-2xl font-bold text-gray-900">{professionalTaxStates.length}</p>
+                      <p className="text-2xl font-bold text-gray-900">
+                        {professionalTaxStates.length}
+                      </p>
                     </div>
                     <Users className="w-8 h-8 text-blue-600" />
                   </div>
                 </CardContent>
               </Card>
-              <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+              <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500 lg:h-40" >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
@@ -331,19 +332,29 @@ export default function ProfessionalTaxPage() {
                 </CardContent>
               </Card>
               {quickActionCards.map((card, index) => (
-                <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+                <Card
+                  key={index}
+                  className="border-l-4 border-l-orange-500 lg:h-40"
+                >
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-3">
                       <div>
                         <p className="font-bold text-lg text-gray-900 group-hover:text-orange-600 transition-colors">
                           {card.title}
                         </p>
-                        <p className="text-sm text-gray-600">{card.description}</p>
+                        {/* <p className="text-sm text-gray-600">
+                          {card.description}
+                        </p> */}
                       </div>
                       <card.icon className="shrink-0 w-6 h-6 md:w-7 md:h-7 text-orange-600" />
                     </div>
                     <Link href={card.link} aria-label="View Calculator">
-                      <Button size="sm" variant="outline" className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 bg-transparent" aria-label="View Calculator">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="bg-orange-400 text-white hover:text-orange-600 hover:cursor-pointer"
+                        aria-label="View Calculator"
+                      >
                         <Eye className="w-4 h-4 mr-2" />
                         {card.action}
                       </Button>
@@ -353,58 +364,10 @@ export default function ProfessionalTaxPage() {
               ))}
             </div>
 
-            {/* What is Professional Tax */}
-            <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
-              <CardHeader>
-                <CardTitle className="group-hover:text-orange-600 transition-colors">What is Professional Tax?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 mb-4">
-                  Professional Tax is a direct tax levied by state governments
-                  on individuals earning income through employment, profession,
-                  or calling. It is collected by the employer from the
-                  employee's salary and remitted to the state government.
-                </p>
-                <p className="text-gray-700 mb-4">
-                  The tax is governed by individual state legislation, and each
-                  state has its own rates, slabs, and compliance requirements.
-                  The maximum amount of professional tax that can be levied is
-                  ₹2,500 per year as per the Constitution of India.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Scope and Coverage */}
-            <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
-              <CardHeader>
-                <CardTitle className="group-hover:text-orange-600 transition-colors">Scope and Coverage</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 mb-4">
-                  Professional Tax applies to all persons earning income
-                  through:
-                </p>
-                <ul className="list-disc list-inside text-gray-700 mb-4 space-y-2">
-                  <li>Employment or service under any person</li>
-                  <li>Carrying on any profession</li>
-                  <li>Carrying on any trade, calling or employment</li>
-                  <li>Company directors and partners in firms</li>
-                </ul>
-                <p className="text-gray-700">
-                  The tax is applicable to both residents and non-residents
-                  earning income within the state jurisdiction.
-                </p>
-              </CardContent>
-            </Card>
-
             {/* State-wise Applicability */}
             <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
               <CardHeader>
-                <CardTitle>State-wise Applicability</CardTitle>
-                <CardDescription>
-                  Professional Tax is currently applicable in {professionalTaxStates.length} states across
-                  India
-                </CardDescription>
+                <CardTitle>State-wise Applicability :</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
@@ -415,7 +378,11 @@ export default function ProfessionalTaxPage() {
                     </h3>
                     <div className="space-y-3">
                       {professionalTaxStates.map((state, index) => (
-                        <Link key={index} href={state.link} aria-label="View State-wise Applicability">
+                        <Link
+                          key={index}
+                          href={state.link}
+                          aria-label="View State-wise Applicability"
+                        >
                           <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-orange-50 hover:border-orange-200 transition-colors cursor-pointer group">
                             <div>
                               <span className="font-medium text-blue-600 group-hover:text-orange-600 transition-colors">
@@ -459,45 +426,6 @@ export default function ProfessionalTaxPage() {
                         </div>
                       ))}
                     </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Important Notes */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
-              <CardHeader>
-                <CardTitle className="group-hover:text-orange-600 transition-colors">Important Notes</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">
-                      Professional Tax rates and slabs vary significantly across
-                      states. Always refer to the specific state's legislation.
-                    </p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">
-                      Employers are responsible for deducting PT from employee
-                      salaries and remitting to the state government.
-                    </p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">
-                      Non-compliance with Professional Tax regulations may
-                      result in penalties and interest charges.
-                    </p>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
-                    <p className="text-gray-700">
-                      Some states provide exemptions for certain categories of
-                      employees or income levels.
-                    </p>
                   </div>
                 </div>
               </CardContent>

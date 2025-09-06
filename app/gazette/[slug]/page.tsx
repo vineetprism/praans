@@ -122,7 +122,7 @@ export default function NotificationDetailPage() {
                 <div className="flex-1">
                   <h1 className="
                     font-bold text-gray-900 leading-tight mb-1
-                    text-base sm:text-lg lg:text-xl xl:text-2xl
+                    text-base sm:text-lg lg:text-sm xl:text-lg
                   ">
                     {displayData.title}
                   </h1>
@@ -150,7 +150,7 @@ export default function NotificationDetailPage() {
               <div className="mb-3">
                 <p className="
                   text-gray-700 leading-relaxed
-                  text-sm sm:text-base text-justify
+                  text-sm sm:text-base text-justify lg:text-sm
                 ">
                   {displayData.description}
                 </p>
@@ -160,7 +160,7 @@ export default function NotificationDetailPage() {
               <div className="mb-3">
                 <h3 className="
                   font-semibold text-gray-900 mb-2
-                  text-sm sm:text-base lg:text-lg
+                  text-sm sm:text-base lg:text-md
                 ">
                   Impact :
                 </h3>
@@ -172,7 +172,7 @@ export default function NotificationDetailPage() {
                       "></div>
                       <p className="
                         text-gray-700 leading-relaxed
-                        text-sm sm:text-base
+                        text-sm sm:text-base lg:text-sm
                       ">
                         {impactPoint}
                       </p>
