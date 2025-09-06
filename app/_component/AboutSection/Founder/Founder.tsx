@@ -36,9 +36,9 @@ export default function Founder() {
                     {/* RIGHT: Image - responsive and cannot force horizontal overflow */}
                     <div className="flex justify-center items-start">
                         <div className="relative flex-shrink-0 w-full max-w-[400px] h-full">
-                            <div className="w-full h-full rounded-3xl overflow-hidden">
+                            <div className="w-full h-[500px] rounded-3xl overflow-hidden">
                                 <Image
-                                    src="/services/admin.webp"
+                                    src="/services/adm.webp"
                                     alt="Sandeep Kumar — Founder, Praans Consultech"
                                     width={800}
                                     height={800} // better ratio
@@ -46,9 +46,6 @@ export default function Founder() {
                                     className="object-cover w-full h-full"
                                 />
                             </div>
-
-                            <div className="absolute -top-4 -left-4 w-24 h-24 bg-orange-200/50 rounded-full blur-xl" />
-                            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-200/50 rounded-full blur-xl" />
                         </div>
                     </div>
                 </div>

@@ -6,16 +6,18 @@ const OurStory = () => {
     <>
       <section className="py-10 md:py-20 lg:py-10 bg-white">
         <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+          {/* Heading */}
           <div className="text-center mb-8 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-6 text-slate-800">
               Our <span className="text-orange-500">Story</span>
             </h2>
-            <div className="w-20 md:w-24 h-1 bg-orange-500 mx-auto rounded-full"></div>
+            <div className="w-20 md:w-24 h-1 bg-orange-500 mx-auto rounded-full" />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-start">
-            {/* Left Content */}
-            <div className="space-y-4 md:space-y-6 text-gray-600 leading-relaxed">
+          {/* Two-column: force equal heights */}
+          <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-stretch">
+            {/* Left: Text */}
+            <div className="h-full space-y-4 md:space-y-6 text-gray-600 leading-relaxed">
               <p className="text-base md:text-lg text-justify">
                 Founded in 2021, <strong className="text-orange-500"><em>Praans Consultech</em></strong> has become as one of India’s most trusted labour law consultants, technology-driven solution providers and compliance partners. With the motive to bring the labour law compliance in streamline and simplified it for businesses in India. Together we bring innovations, technology and legal expertise on ground level executions to ensure that organisations of any kind and sizes remain fully compliant with ever-evolving labour laws.
               </p>
@@ -25,15 +27,15 @@ const OurStory = () => {
               </p>
             </div>
 
-            {/* Right Side Image */}
-            <div className="flex justify-center lg:justify-end order-last lg:order-none">
+            {/* Right: Image matches text column height on lg+ */}
+            <div className="order-last lg:order-none h-full flex justify-center lg:justify-end">
               <div className="relative w-full max-w-xl md:max-w-2xl lg:max-w-3xl 
-                        h-56 sm:h-72 md:h-[420px] lg:h-[600px]">
+                              h-64 sm:h-80 md:h-96 lg:h-full lg:min-h-[420px]">
                 <Image
                   src="/about/about.webp"
                   alt="Praans Consultech Story"
                   fill
-                  priority={true}
+                  priority
                   className="rounded-2xl object-cover"
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1280px) 60vw, 50vw"
                 />

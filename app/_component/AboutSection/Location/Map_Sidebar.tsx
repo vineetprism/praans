@@ -163,7 +163,7 @@ export default function Map_Sidebar() {
                 {/* Map */}
                 <div className="lg:col-span-2">
                     <div className="bg-white rounded-2xl shadow-xl p-3 border border-gray-100">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">India Office Locations</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2">Pan India Locations</h2>
                         <p className="text-sm text-gray-600 mb-3">
                             Offices in Haryana (HQ), Karnataka, and Assam. Click markers for details.
                         </p>
@@ -302,16 +302,6 @@ export default function Map_Sidebar() {
                                     <div className="flex items-center gap-2">
                                         <span className="inline-block w-4 h-4 rounded-full bg-gradient-to-r from-amber-300 to-sky-300" />
                                         <span className="font-medium text-gray-700">Other States (varied colors)</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <svg width="16" height="16" viewBox="0 0 24 24">
-                                            <path
-                                                d="M12 2C7.03 2 3 6.03 3 11c0 5.25 7.5 11 9 11s9-5.75 9-11c0-4.97-4.03-9-9-9z"
-                                                fill="#111111"
-                                            />
-                                            <circle cx="12" cy="10" r="3.2" fill="#ffffff" />
-                                        </svg>
-                                        <span className="font-medium text-gray-700">State Pins</span>
                                     </div>
                                 </div>
                             </div>

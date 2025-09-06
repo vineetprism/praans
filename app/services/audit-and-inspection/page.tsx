@@ -86,10 +86,8 @@ const serviceIcons = [Shield, FileText, Users, CheckCircle, Cpu]
 export default function LegalAdvisoryHrPoliciesPage() {
   return (
     <div className="bg-white text-slate-900">
-      {/* Hero */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
-          {/* stack on md (768px) and go 2-col on lg */}
           <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 items-center">
             <div>
               <div className="inline-flex items-center gap-3 mb-4">
@@ -102,7 +100,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 Stay Compliant, Stay Prepared, Stay Confident
               </h1>
 
-              {/* constrain width for better readability on tablets */}
               <p className="mt-4 text-lg text-slate-700 max-w-xl text-justify">
                 Labour-law audits and inspections are more than box-checking — they’re critical to operational resilience and risk mitigation. Praans Consultech combines field-enabled expertise with tech-backed processes to handle documentation review, gap remediation and live inspection support, so your statutory compliance is accurate, defensible and inspection-ready.
               </p>
@@ -232,7 +229,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 </dl>
               </div>
 
-              {/* CTA stays pinned to bottom so cards align visually */}
               <div className="mt-6 pt-4">
                 <Link
                   href="/services#audit"
@@ -247,7 +243,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
               </div>
             </article>
 
-            {/* Inspection Card */}
             <article
               className="relative rounded-lg p-6 bg-orange-50 border border-orange-100 shadow-sm overflow-hidden flex flex-col h-full"
               aria-labelledby="inspection-title"

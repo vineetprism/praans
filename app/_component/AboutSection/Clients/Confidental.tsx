@@ -5,7 +5,7 @@ export default function Confidental() {
         <section className="py-16 md:py-20 lg:py-10 2xl:py-24 bg-gray-50">
             <div className="container mx-auto px-4 max-w-4xl text-center">
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-                    🔒 Confidentiality <span className="text-orange-500">You Can Rely On</span>
+                    Confidentiality <span className="text-orange-500">You Can Rely On</span>
                 </h2>
                 <p className="text-lg text-gray-700 mb-4 text-justify">
                     We recognize the highly confidential and complex nature of compliance and
