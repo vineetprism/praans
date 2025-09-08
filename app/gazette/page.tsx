@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Select,
@@ -127,7 +127,7 @@ const states = [
 ];
 
 export default function GazetteNotificationsPage() {
-  
+
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 10; // Set this based on your total data
 
@@ -270,21 +270,6 @@ export default function GazetteNotificationsPage() {
                   </PopoverContent>
                 </Popover>
               </div>
-
-              {/* Apply Button */}
-              {/* <div className="flex-shrink-0">
-                <Button
-                  className="
-          bg-orange-500 hover:bg-orange-600 text-white font-medium
-          h-8 sm:h-9 lg:h-10
-          px-4 sm:px-5 lg:px-6
-          text-xs sm:text-sm
-          w-full sm:w-auto
-        "
-                >
-                  Apply
-                </Button>
-              </div> */}
             </div>
           </div>
         </div>
@@ -317,14 +302,6 @@ export default function GazetteNotificationsPage() {
                     >
                       Gazette Notifications :
                     </h1>
-                    {/* <Badge
-                      variant="secondary"
-                      className="
-                  px-1.5 py-0.5 text-[9px] min-[375px]:text-[10px] bg-orange-400 text-white font-bold
-                "
-                    >
-                      {notifications.length} Notifications
-                    </Badge> */}
                   </div>
                   <p
                     className="
@@ -389,8 +366,9 @@ export default function GazetteNotificationsPage() {
                   inline-flex items-center gap-1
                 "
                             asChild
+                            aria-label="Read More"
                           >
-                            <Link href={`/gazette/${notification.slug}`}>
+                            <Link href={`/gazette/${notification.slug}`} aria-label="Read More">
                               <Eye className="w-3 h-3 2xl:w-4 2xl:h-4" />
                               <span className="whitespace-nowrap">
                                 Read More
@@ -438,6 +416,7 @@ export default function GazetteNotificationsPage() {
                 text-[9px] sm:text-[10px] lg:text-xs font-medium rounded-sm
                 inline-flex items-center gap-1 shrink-0 w-auto max-w-full hover:cursor-pointer
               "
+                          aria-label="Download"
                         >
                           <Download className="w-3 h-3 2xl:w-4 2xl:h-4" />
                           <span className="whitespace-nowrap">Download</span>
@@ -461,6 +440,7 @@ export default function GazetteNotificationsPage() {
       text-[10px] sm:text-xs
       border-gray-300 hover:bg-gray-50
     "
+                aria-label="Previous"
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage(currentPage - 1)}
               >
@@ -476,12 +456,12 @@ export default function GazetteNotificationsPage() {
                   className={`
         h-7 sm:h-8 px-2.5 sm:px-3.5
         text-[10px] sm:text-xs
-        ${
-          currentPage === page
-            ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
-            : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
-        }
+        ${currentPage === page
+                      ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
+                      : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
+                    }
       `}
+                  aria-label={`Page ${page}`}
                   onClick={() => setCurrentPage(page)}
                 >
                   {page}
@@ -500,12 +480,12 @@ export default function GazetteNotificationsPage() {
                 className={`
       h-7 sm:h-8 px-2.5 sm:px-3.5
       text-[10px] sm:text-xs
-      ${
-        currentPage === totalPages
-          ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
-          : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
-      }
+      ${currentPage === totalPages
+                    ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
+                    : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
+                  }
     `}
+                aria-label={`Page ${totalPages}`}
                 onClick={() => setCurrentPage(totalPages)}
               >
                 {totalPages}
@@ -520,6 +500,7 @@ export default function GazetteNotificationsPage() {
       text-[10px] sm:text-xs
       border-gray-300 hover:bg-gray-50
     "
+                aria-label="Next"
                 disabled={currentPage === totalPages}
                 onClick={() => setCurrentPage(currentPage + 1)}
               >
