@@ -132,7 +132,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
   }, [])
   return (
     <div className="bg-white text-slate-900">
-      <section className="py-16 bg-gray-50">
+      <section className="py-8 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
           {/* stack on md (768px) and go 2-col on lg */}
           <div className="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-4 items-stretch">
@@ -155,7 +155,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 </p>
               </div>
 
-              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="mt-8 mb-4 sm:mb-4 md:mb-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link href="/contact" aria-label="Book free consultation">
                   <Button
                     size="lg"

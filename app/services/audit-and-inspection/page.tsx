@@ -86,7 +86,7 @@ const serviceIcons = [Shield, FileText, Users, CheckCircle, Cpu]
 export default function LegalAdvisoryHrPoliciesPage() {
   return (
     <div className="bg-white text-slate-900">
-      <section className="py-16 bg-gray-50">
+      <section className="py-8 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-1 lg:grid-cols-2 items-stretch lg:gap-4">
             {/* LEFT: Text content */}
@@ -110,7 +110,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 inspection-ready.
               </p>
 
-              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="mt-8 mb-4 sm:mb-4 md:mb-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link href="/contact" aria-label="Book free consultation">
                   <Button
                     size="lg"
@@ -143,8 +143,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
           </div>
         </div>
       </section>
-
-
 
       {/* What is an Audit / Inspection */}
       <section className="py-12 bg-white">
@@ -231,7 +229,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
               <div className="mt-6 pt-4">
                 <Link
-                  href="/services#audit"
+                  href=""
                   className="inline-flex items-center gap-2 text-sm font-medium text-blue-700 hover:underline"
                   aria-label="Learn more about labour law audits"
                 >
