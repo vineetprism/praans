@@ -86,60 +86,61 @@ const serviceIcons = [Shield, FileText, Users, CheckCircle, Cpu]
 export default function LegalAdvisoryHrPoliciesPage() {
   return (
     <div className="bg-white text-slate-900">
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid gap-2 md:grid-cols-1 lg:grid-cols-2 items-stretch">
-            {/* LEFT: Text content */}
-            <div className="flex flex-col justify-center">
-              <div className="inline-flex items-center gap-3 mb-4">
-                <span className="inline-block bg-orange-50 text-orange-500 font-semibold text-sm px-3 py-1 rounded-full">
-                  Labour Law Audit & Inspection Services
-                </span>
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-                Stay Compliant, Stay Prepared, Stay Confident
-              </h1>
-
-              <p className="mt-4 text-lg text-slate-700 max-w-xl text-justify">
-                Labour-law audits and inspections are more than box-checking — they’re
-                critical to operational resilience and risk mitigation. Praans
-                Consultech combines field-enabled expertise with tech-backed processes
-                to handle documentation review, gap remediation and live inspection
-                support, so your statutory compliance is accurate, defensible and
-                inspection-ready.
-              </p>
-
-              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link href="/contact" aria-label="Book free consultation">
-                  <Button
-                    size="lg"
-                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-tertiary bg-orange-500 text-white text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
-                    aria-label="Book free consultation"
-                  >
-                    <Phone className="w-4 h-4 mr-2" />
-                    Book Free Consultation
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            {/* RIGHT: Image column */}
-            <div className="flex items-stretch justify-center mt-8 lg:mt-0">
-              <div className="w-full max-w-md rounded-xl overflow-hidden shadow-sm border border-slate-100 bg-white flex">
-                <Image
-                  src="/services/labour-law.webp"
-                  alt="Labour law advisory"
-                  width={900}
-                  height={600}
-                  className="object-cover w-full h-auto lg:h-full" // responsive fix
-                  priority
-                />
-              </div>
-            </div>
-          </div>
+<section className="py-16 bg-gray-50">
+  <div className="container mx-auto px-6 lg:px-8">
+    <div className="grid md:grid-cols-1 lg:grid-cols-2 items-stretch lg:gap-4">
+      {/* LEFT: Text content */}
+      <div className="flex flex-col justify-center">
+        <div className="inline-flex items-center gap-3 mb-4">
+          <span className="inline-block bg-orange-50 text-orange-500 font-semibold text-sm px-3 py-1 rounded-full">
+            Labour Law Audit & Inspection Services
+          </span>
         </div>
-      </section>
+
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+          Stay Compliant, Stay Prepared, Stay Confident
+        </h1>
+
+        <p className="mt-4 text-lg text-slate-700 max-w-xl text-justify">
+          Labour-law audits and inspections are more than box-checking — they’re
+          critical to operational resilience and risk mitigation. Praans
+          Consultech combines field-enabled expertise with tech-backed processes
+          to handle documentation review, gap remediation and live inspection
+          support, so your statutory compliance is accurate, defensible and
+          inspection-ready.
+        </p>
+
+        <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <Link href="/contact" aria-label="Book free consultation">
+            <Button
+              size="lg"
+              className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-tertiary bg-orange-500 text-white text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
+              aria-label="Book free consultation"
+            >
+              <Phone className="w-4 h-4 mr-2" />
+              Book Free Consultation
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      {/* RIGHT: Image column */}
+      <div className="flex items-stretch">
+        <div className="w-full rounded-xl overflow-hidden shadow-sm border border-slate-100 bg-white flex">
+          <Image
+            src="/services/labour-law.webp"
+            alt="Labour law advisory"
+            width={900}
+            height={600}
+            className="object-cover w-full h-auto lg:h-full"
+            priority
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
       {/* What is an Audit / Inspection */}
