@@ -32,7 +32,7 @@ const geoUrl =
 
 const HIGHLIGHT_HEX = "#eb8535";
 
-// Office-focus states (kept for outline)
+// Optional: keep a manual highlight list (besides real office states)
 const highlightStates = new Set(["haryana", "karnataka", "assam"]);
 
 const norm = (s: string) =>
@@ -45,12 +45,12 @@ const isJammuKashmir = (key: string) => key === "jammu and kashmir";
 
 // --- Color palette & mapper (stable per state) ---
 const STATE_PALETTE = [
-  "#fde68a","#fdba74","#fecaca","#fbcfe8","#c7d2fe","#bfdbfe",
-  "#bae6fd","#a5f3fc","#99f6e4","#a7f3d0","#bbf7d0","#d9f99d",
-  "#fef08a","#fcd34d","#fda4af","#f9a8d4","#e9d5ff","#c4b5fd",
-  "#a5b4fc","#93c5fd","#7dd3fc","#67e8f9","#5eead4","#6ee7b7",
-  "#86efac","#bef264","#fde047","#fed7aa","#fecdd3","#f5d0fe",
-  "#e2e8f0","#cbd5e1","#d6d3d1","#e7e5e4","#ffe4e6","#ddd6fe",
+  "#fde68a", "#fdba74", "#fecaca", "#fbcfe8", "#c7d2fe", "#bfdbfe",
+  "#bae6fd", "#a5f3fc", "#99f6e4", "#a7f3d0", "#bbf7d0", "#d9f99d",
+  "#fef08a", "#fcd34d", "#fda4af", "#f9a8d4", "#e9d5ff", "#c4b5fd",
+  "#a5b4fc", "#93c5fd", "#7dd3fc", "#67e8f9", "#5eead4", "#6ee7b7",
+  "#86efac", "#bef264", "#fde047", "#fed7aa", "#fecdd3", "#f5d0fe",
+  "#e2e8f0", "#cbd5e1", "#d6d3d1", "#e7e5e4", "#ffe4e6", "#ddd6fe",
 ];
 
 const colorForState = (stateKey: string) => {
@@ -137,7 +137,7 @@ export default function Locations() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-orange-50">
       <div className="container mx-auto px-4 py-8 space-y-8">
         <div className="bg-white rounded-2xl shadow-xl p-3 border border-gray-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">India Office Locations</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Pan India Locations</h2>
           <p className="text-sm text-gray-600 mb-3">
             Offices in Haryana (HQ), Karnataka, and Assam.
           </p>
@@ -151,10 +151,26 @@ export default function Locations() {
               preserveAspectRatio="xMidYMid meet"
               className="w-full h-auto border border-gray-200 rounded-lg"
             >
-              {/* STATES: FULLY COLORED */}
+              {/* STATES: FILL + AUTO-HIGHLIGHT OFFICE STATES */}
               <Geographies geography={geoUrl}>
-                {({ geographies }) =>
-                  geographies.map((geo) => {
+                {({ geographies }) => {
+                  // 1) Build actual office states from office coordinates
+                  const officeStateKeys = new Set<string>();
+                  for (const geo of geographies) {
+                    const rawName =
+                      geo.properties?.ST_NM ||
+                      geo.properties?.NAME_1 ||
+                      geo.properties?.name ||
+                      geo.properties?.st_nm ||
+                      "";
+                    const key = norm(String(rawName));
+                    const hasOffice = officeLocations.some((o) =>
+                      geoContains(geo as GeoPermissibleObjects, o.coordinates)
+                    );
+                    if (hasOffice) officeStateKeys.add(key);
+                  }
+
+                  return geographies.map((geo) => {
                     const rawName =
                       geo.properties?.ST_NM ||
                       geo.properties?.NAME_1 ||
@@ -163,16 +179,21 @@ export default function Locations() {
                       "";
                     const key = norm(String(rawName));
 
-                    const fillColor = colorForState(key);
-                    const isOffice = highlightStates.has(key);
+                    const isOfficeState = officeStateKeys.has(key);
+                    const isManualHighlight = highlightStates.has(key);
+                    const emphasized = isOfficeState || isManualHighlight;
+
+                    const fillColor = isOfficeState
+                      ? HIGHLIGHT_HEX // solid brand for actual office states
+                      : colorForState(key);
 
                     return (
                       <Geography
                         key={geo.rsmKey}
                         geography={geo}
                         fill={fillColor}
-                        stroke={isOffice ? HIGHLIGHT_HEX : "#9ca3af"}
-                        strokeWidth={isOffice ? 1.5 : 1}
+                        stroke={emphasized ? "#b45309" : "#9ca3af"}
+                        strokeWidth={emphasized ? 1.6 : 1}
                         style={{
                           default: { outline: "none" },
                           hover: { outline: "none", opacity: 0.92, transition: "all 0.2s ease" },
@@ -180,11 +201,12 @@ export default function Locations() {
                         }}
                       />
                     );
-                  })
-                }
+                  });
+                }}
               </Geographies>
 
-              {/* SAME PIN on every state, excluding Andaman & Nicobar and Ladakh; J&K pin forced to Jammu */}
+              {/* SAME PIN on every state (except Andaman & Ladakh).
+                  J&K pin is forced to Jammu for better visibility. */}
               <Geographies geography={geoUrl}>
                 {({ geographies }) =>
                   geographies.map((geo) => {
@@ -244,17 +266,17 @@ export default function Locations() {
             </ComposableMap>
           </div>
 
-          {/* Legend (optional) */}
+          {/* Legend */}
           <div className="flex justify-center mt-4">
             <div className="bg-orange-50 rounded-xl p-3 border border-orange-200 text-sm">
               <div className="flex flex-wrap justify-center gap-6">
                 <div className="flex items-center gap-2">
                   <span className="inline-block w-4 h-4 rounded-full" style={{ background: HIGHLIGHT_HEX }} />
-                  <span className="font-medium text-gray-700">Office States (outlined)</span>
+                  <span className="font-medium text-gray-700">Office States (filled)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="inline-block w-4 h-4 rounded-full border border-gray-300 bg-white" />
-                  <span className="font-medium text-gray-700">All States Colored</span>
+                  <span className="font-medium text-gray-700">Other States (palette)</span>
                 </div>
               </div>
             </div>
