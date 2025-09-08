@@ -198,7 +198,7 @@ export default function GazetteNotificationsPage() {
             w-full bg-white hover:bg-gray-50 border-gray-300
             h-9 sm:h-9 
             py-[1.2rem] 
-            text-xs sm:text-sm
+            text-xs sm:text-sm 
           "
                   >
                     <SelectValue placeholder="State" />
