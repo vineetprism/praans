@@ -121,19 +121,6 @@ export default function LegalAdvisoryHrPoliciesPage() {
                     Book Free Consultation
                   </Button>
                 </Link>
-
-                {/* 
-          <Link href="/services" aria-label="See services">
-            <Button
-              size="lg"
-              variant="ghost"
-              aria-label="See services"
-              className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-transparent text-gray-600 text-lg hover:bg-orange-500 hover:text-white hover:border-white font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
-            >
-              View Services
-            </Button>
-          </Link> 
-          */}
               </div>
             </div>
 
@@ -141,7 +128,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
             <div className="flex items-stretch justify-center mt-8 lg:mt-0">
               <div className="w-full max-w-md rounded-xl overflow-hidden shadow-sm border border-slate-100 bg-white flex">
                 <Image
-                  src="/services/labour-law.jpg"
+                  src="/services/labour-law.webp"
                   alt="Labour law advisory"
                   width={900}
                   height={600}
@@ -466,7 +453,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
       {/* Technology */}
       <section className="py-14 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8 grid gap-8 md:grid-cols-2 items-stretch">
+        <div className="container mx-auto px-6 lg:px-8 grid gap-1 md:grid-cols-2 items-stretch">
           {/* LEFT: Text content */}
           <div className="flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-4">Technology-Enabled Compliance</h2>
@@ -514,10 +501,11 @@ export default function LegalAdvisoryHrPoliciesPage() {
           <div className="flex items-stretch justify-center mt-8 md:mt-0">
             <div className="w-full max-w-md rounded-lg overflow-hidden bg-white flex">
               <Image
-                src="/services/technology-compliance.jpg"
+                src="/services/technology-compliance.webp"
                 alt="Compliance software dashboard"
                 width={900}
                 height={600}
+                priority
                 className="object-cover w-full h-auto md:h-full" // 🔑 dynamic height
               />
             </div>
