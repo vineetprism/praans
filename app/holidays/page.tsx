@@ -1,12 +1,9 @@
-
-
 "use client"
 
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import Link from "next/link"
-import { MapPin, Calendar, CheckCircle, ChevronRight } from "lucide-react"
+import { Calendar, ChevronRight } from "lucide-react"
 import PopularSearch from "../PopularSearch/PopularSearch"
 
 const applicableStates = [

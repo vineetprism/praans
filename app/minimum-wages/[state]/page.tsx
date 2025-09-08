@@ -1,11 +1,7 @@
-
-
 import { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Download, ExternalLink, FileText, Globe, IndianRupee } from 'lucide-react'
+import { Download, Globe, IndianRupee } from 'lucide-react'
 import PopularSearch from '@/app/PopularSearch/PopularSearch'
 
 interface StateWageData {
@@ -259,7 +255,7 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
-        
+
         {/* Popular Search - Top for Mobile/Tablet */}
         <div className="lg:hidden mb-3 sm:mb-4">
           <Card className="shadow-sm">
@@ -270,7 +266,7 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
         </div>
 
         <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5 ">
-          
+
           {/* Main Content */}
           <div className="lg:col-span-3">
             <div className="mb-4 sm:mb-5 lg:mb-4 flex justify-between">
@@ -425,24 +421,6 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
                 </CardContent>
               </Card>
             </div>
-
-            {/* Important Notes */}
-            {/* <Card className="shadow-sm">
-              <CardHeader className="pb-2 lg:pb-1">
-                <CardTitle className="text-lg lg:text-base xl:text-lg font-bold text-gray-900">Important Notes</CardTitle>
-              </CardHeader>
-              <CardContent className="p-3 lg:p-4">
-                <div className="bg-orange-50 border-l-4 border-orange-400 p-3 lg:p-4">
-                  <ul className="text-xs lg:text-sm text-orange-700 space-y-1 lg:space-y-2">
-                    <li>• Minimum wage rates are subject to periodic revision by the state government</li>
-                    <li>• Employers must display wage rates prominently at the workplace</li>
-                    <li>• Payment below minimum wage is a punishable offense under the Act</li>
-                    <li>• Different rates may apply for different geographical areas within the state</li>
-                    <li>• Always refer to the latest official notifications for current rates</li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card> */}
           </div>
 
           {/* Right Sidebar - Popular Search (Desktop Only) */}

@@ -5,17 +5,12 @@ import {
   Calculator,
   Users,
   IndianRupee,
-  Bot,
-  Filter,
   Eye,
-  Scale,
-  Gavel,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -178,26 +173,6 @@ const nonApplicableStates = [
   "Uttarakhand",
 ];
 
-const trendingSearches = [
-  "Professional Tax Rates 2024",
-  "PT Slab Calculation",
-  "Professional Tax Forms",
-  "PT Registration Process",
-  "Professional Tax Exemptions",
-  "PT Due Dates",
-  "Professional Tax Certificate",
-  "PT Compliance Requirements",
-];
-
-const categories = [
-  "All Categories",
-  "PT Rates",
-  "Tax Slabs",
-  "Compliance",
-  "Forms",
-  "Registration",
-];
-
 const states = [
   "All States",
   "Maharashtra",
@@ -291,15 +266,6 @@ export default function ProfessionalTaxPage() {
                   </SelectContent>
                 </Select>
               </div>
-
-              {/* Apply Button */}
-              {/* <Button
-                className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 h-8 sm:h-9 md:h-10 lg:h-9 text-xs sm:text-sm"
-                // variant="outline"
-                aria-label="apply filters"
-              >
-                Apply
-              </Button> */}
             </div>
 
             {/* Statistics Cards */}
@@ -343,7 +309,7 @@ export default function ProfessionalTaxPage() {
                         <p className="font-bold text-lg text-gray-900 group-hover:text-orange-600 transition-colors">
                           {card.title}
                         </p>
-                       
+
                       </div>
                       <card.icon className="shrink-0 w-6 h-6 md:w-7 md:h-7 text-orange-600" />
                     </div>

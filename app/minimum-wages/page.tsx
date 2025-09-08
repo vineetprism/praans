@@ -1,10 +1,6 @@
-
-
-
 import { Metadata } from "next";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -16,12 +12,6 @@ import {
 } from "@/components/ui/select";
 import {
   Search,
-  Users,
-  Building,
-  Clock,
-  IndianRupee,
-  Filter,
-  Scale,
 } from "lucide-react";
 import PopularSearch from "../PopularSearch/PopularSearch";
 
@@ -184,16 +174,6 @@ const stateWiseWages = [
   },
 ];
 
-const categories = [
-  "All Categories",
-  "Agricultural",
-  "Construction",
-  "Manufacturing",
-  "Service Sector",
-  "Domestic Workers",
-  "Contract Workers",
-];
-
 const states = [
   "All States",
   "Andhra Pradesh",
@@ -207,24 +187,11 @@ const states = [
   "West Bengal",
 ];
 
-const trendingSearches = [
-  "Minimum wage rates 2024",
-  "State wise minimum wages",
-  "Skilled worker wages",
-  "Unskilled labour rates",
-  "Minimum wage notification",
-  "Daily wage calculation",
-  "Overtime wage rates",
-  "Agricultural wages",
-  "Construction worker wages",
-  "Domestic worker wages",
-];
-
 export default function MinimumWagesPage() {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-3 py-3 sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-6 lg:py-6 xl:px-8 xl:py-8">
-        
+
         {/* Popular Search - Top for Mobile/Tablet */}
         <div className="lg:hidden mb-4 sm:mb-5 md:mb-6">
           <Card className="shadow-sm">
@@ -269,10 +236,10 @@ export default function MinimumWagesPage() {
               </div>
 
               {/* State Dropdown */}
-          <div className="w-full sm:w-auto">
-    <Select>
-      <SelectTrigger
-        className="
+              <div className="w-full sm:w-auto">
+                <Select>
+                  <SelectTrigger
+                    className="
           w-full sm:w-48 md:w-52 h-8 sm:h-9 md:h-10
           bg-white text-gray-900 border border-gray-300 rounded-lg
           text-xs sm:text-sm
@@ -281,31 +248,22 @@ export default function MinimumWagesPage() {
           !focus-visible:ring-orange-500 !focus-visible:border-orange-500
           hover:bg-orange-50
         "
-      >
-        <SelectValue placeholder="Select state" />
-      </SelectTrigger>
-      <SelectContent className="bg-white border border-gray-200 shadow-md">
-        {states.map((state) => (
-          <SelectItem
-            key={state}
-            value={state}
-            className="text-xs sm:text-sm text-gray-900 cursor-pointer focus:bg-orange-100 focus:text-orange-700"
-          >
-            {state}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  </div>
-
-              {/* Apply Button */}
-              {/* <Button
-                className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 h-8 sm:h-9 md:h-10 lg:h-9 text-xs sm:text-sm"
-                // variant="outline"
-                aria-label="apply filters"
-              >
-                Apply
-              </Button> */}
+                  >
+                    <SelectValue placeholder="Select state" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border border-gray-200 shadow-md">
+                    {states.map((state) => (
+                      <SelectItem
+                        key={state}
+                        value={state}
+                        className="text-xs sm:text-sm text-gray-900 cursor-pointer focus:bg-orange-100 focus:text-orange-700"
+                      >
+                        {state}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             {/* Mobile Card View (Small Devices) */}
@@ -321,10 +279,6 @@ export default function MinimumWagesPage() {
                         {wage.state}
                       </h3>
                       <div className="text-xs text-black space-y-1">
-                        {/* <div className="flex items-center gap-2">
-                          <IndianRupee className="w-3 h-3" />
-                          <span className="font-medium text-black">₹{wage.dailyRate}</span>
-                        </div> */}
                         <div>Updated Date: {wage.updatedDate}</div>
                         <div>Effective Date: {wage.effectiveDate}</div>
                       </div>
@@ -335,11 +289,13 @@ export default function MinimumWagesPage() {
                         size="sm"
                         className="text-xs text-orange-400"
                         asChild
+                        aria-label="view details"
                       >
                         <Link
                           href={`/minimum-wages/${wage.state
                             .toLowerCase()
                             .replace(/\s+/g, "-")}`}
+                          aria-label="view details"
                         >
                           View
                         </Link>
@@ -376,11 +332,13 @@ export default function MinimumWagesPage() {
                         size="sm"
                         className="bg-orange-400 text-white"
                         asChild
+                        aria-label="view details"
                       >
                         <Link
                           href={`/minimum-wages/${wage.state
                             .toLowerCase()
                             .replace(/\s+/g, "-")}`}
+                          aria-label="view details"
                         >
                           View Details
                         </Link>
@@ -404,9 +362,6 @@ export default function MinimumWagesPage() {
                         <th className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 text-left text-xs md:text-xs lg:text-sm font-semibold text-white tracking-wide">
                           State
                         </th>
-                        {/* <th className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 text-left text-xs md:text-xs lg:text-sm font-semibold text-white tracking-wide">
-                          Wage Rate (₹)
-                        </th> */}
                         <th className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 text-left text-xs md:text-xs lg:text-sm font-semibold text-white tracking-wide">
                           Updated Date
                         </th>
@@ -426,11 +381,6 @@ export default function MinimumWagesPage() {
                               {wage.state}
                             </div>
                           </td>
-                          {/* <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap">
-                            <div className="text-xs md:text-xs lg:text-sm font-semibold text-green-600">
-                              ₹{wage.dailyRate}
-                            </div>
-                          </td> */}
                           <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap">
                             <div className="text-xs md:text-xs lg:text-sm text-gray-700">
                               {wage.updatedDate}

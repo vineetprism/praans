@@ -4,9 +4,6 @@ import { Input } from "@/components/ui/input";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -18,9 +15,7 @@ import {
 } from "@/components/ui/select";
 import {
   Search,
-  Filter,
   Eye,
-  Scale,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -128,15 +123,6 @@ const acts = [
   },
 ];
 
-const categories = [
-  "All Categories",
-  "Industrial Safety",
-  "Contract Labour",
-  "Shops & Establishments",
-  "Welfare Fund",
-  "Wages & Payment",
-  "Employment Terms",
-];
 
 const states = [
   "All States",
@@ -184,14 +170,6 @@ export default function ActsPage() {
                     Rules (G.S.R).
                   </p>
                 </div>
-                {/* <div className="flex items-center gap-2">
-                  <Badge
-                    variant="secondary"
-                    className="px-2 py-1 text-xs md:text-xs lg:text-xs xl:text-xs 2xl:text-sm"
-                  >
-                    {acts.length} Acts Available
-                  </Badge>
-                </div> */}
               </div>
             </div>
 
@@ -320,6 +298,7 @@ export default function ActsPage() {
     "
                 disabled={currentPage === 1}
                 onClick={() => setCurrentPage(currentPage - 1)}
+                aria-label="Previous Page"
               >
                 <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
               </Button>
@@ -333,13 +312,13 @@ export default function ActsPage() {
                   className={`
         h-7 sm:h-8 px-2.5 sm:px-3.5
         text-[10px] sm:text-xs
-        ${
-          currentPage === page
-            ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
-            : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
-        }
+        ${currentPage === page
+                      ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
+                      : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
+                    }
       `}
                   onClick={() => setCurrentPage(page)}
+                  aria-label={`Page ${page}`}
                 >
                   {page}
                 </Button>
@@ -357,13 +336,13 @@ export default function ActsPage() {
                 className={`
       h-7 sm:h-8 px-2.5 sm:px-3.5
       text-[10px] sm:text-xs
-      ${
-        currentPage === totalPages
-          ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
-          : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
-      }
+      ${currentPage === totalPages
+                    ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
+                    : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
+                  }
     `}
                 onClick={() => setCurrentPage(totalPages)}
+                aria-label={`Page ${totalPages}`}
               >
                 {totalPages}
               </Button>
@@ -379,6 +358,7 @@ export default function ActsPage() {
     "
                 disabled={currentPage === totalPages}
                 onClick={() => setCurrentPage(currentPage + 1)}
+                aria-label="Next Page"
               >
                 <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
               </Button>
