@@ -86,60 +86,63 @@ const serviceIcons = [Shield, FileText, Users, CheckCircle, Cpu]
 export default function LegalAdvisoryHrPoliciesPage() {
   return (
     <div className="bg-white text-slate-900">
-<section className="py-16 bg-gray-50">
-  <div className="container mx-auto px-6 lg:px-8">
-    <div className="grid md:grid-cols-1 lg:grid-cols-2 items-stretch lg:gap-4">
-      {/* LEFT: Text content */}
-      <div className="flex flex-col justify-center">
-        <div className="inline-flex items-center gap-3 mb-4">
-          <span className="inline-block bg-orange-50 text-orange-500 font-semibold text-sm px-3 py-1 rounded-full">
-            Labour Law Audit & Inspection Services
-          </span>
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-1 lg:grid-cols-2 items-stretch lg:gap-4">
+            {/* LEFT: Text content */}
+            <div className="flex flex-col justify-center">
+              <div className="inline-flex items-center gap-3 mb-4">
+                <span className="inline-block bg-orange-50 text-orange-500 font-semibold text-sm px-3 py-1 rounded-full">
+                  Labour Law Audit & Inspection Services
+                </span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                Stay Compliant, Stay Prepared, Stay Confident
+              </h1>
+
+              <p className="mt-4 text-lg text-slate-700 max-w-xl text-justify">
+                Labour-law audits and inspections are more than box-checking — they’re
+                critical to operational resilience and risk mitigation. Praans
+                Consultech combines field-enabled expertise with tech-backed processes
+                to handle documentation review, gap remediation and live inspection
+                support, so your statutory compliance is accurate, defensible and
+                inspection-ready.
+              </p>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Link href="/contact" aria-label="Book free consultation">
+                  <Button
+                    size="lg"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-6 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg font-bold
+                         hover:bg-transparent hover:text-orange-500
+                         hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
+                         transition duration-200 cursor-pointer"
+                    aria-label="Book free consultation"
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    Book Free Consultation
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* RIGHT: Image column */}
+            <div className="flex items-stretch">
+              <div className="w-full rounded-xl overflow-hidden shadow-sm border border-slate-100 bg-white flex">
+                <Image
+                  src="/services/labour-law.webp"
+                  alt="Labour law advisory"
+                  width={900}
+                  height={600}
+                  className="object-cover w-full h-auto lg:h-full"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
         </div>
-
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-          Stay Compliant, Stay Prepared, Stay Confident
-        </h1>
-
-        <p className="mt-4 text-lg text-slate-700 max-w-xl text-justify">
-          Labour-law audits and inspections are more than box-checking — they’re
-          critical to operational resilience and risk mitigation. Praans
-          Consultech combines field-enabled expertise with tech-backed processes
-          to handle documentation review, gap remediation and live inspection
-          support, so your statutory compliance is accurate, defensible and
-          inspection-ready.
-        </p>
-
-        <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
-          <Link href="/contact" aria-label="Book free consultation">
-            <Button
-              size="lg"
-              className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-tertiary bg-orange-500 text-white text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
-              aria-label="Book free consultation"
-            >
-              <Phone className="w-4 h-4 mr-2" />
-              Book Free Consultation
-            </Button>
-          </Link>
-        </div>
-      </div>
-
-      {/* RIGHT: Image column */}
-      <div className="flex items-stretch">
-        <div className="w-full rounded-xl overflow-hidden shadow-sm border border-slate-100 bg-white flex">
-          <Image
-            src="/services/labour-law.webp"
-            alt="Labour law advisory"
-            width={900}
-            height={600}
-            className="object-cover w-full h-auto lg:h-full"
-            priority
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
 
 
@@ -454,7 +457,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
       {/* Technology */}
       <section className="py-14 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8 grid gap-1 md:grid-cols-2 items-stretch">
+        <div className="container mx-auto px-6 lg:px-8 lg:gap-4 grid md:grid-cols-2 items-stretch">
           {/* LEFT: Text content */}
           <div className="flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-4">Technology-Enabled Compliance</h2>
@@ -499,20 +502,21 @@ export default function LegalAdvisoryHrPoliciesPage() {
           </div>
 
           {/* RIGHT: Image column */}
-          <div className="flex items-stretch justify-center mt-8 md:mt-0">
-            <div className="w-full max-w-md rounded-lg overflow-hidden bg-white flex">
+          <div className="flex items-stretch">
+            <div className="w-full rounded-lg overflow-hidden bg-white flex">
               <Image
                 src="/services/technology-compliance.webp"
                 alt="Compliance software dashboard"
                 width={900}
                 height={600}
                 priority
-                className="object-cover w-full h-auto md:h-full" // 🔑 dynamic height
+                className="object-cover w-full h-auto md:h-full"
               />
             </div>
           </div>
         </div>
       </section>
+
 
 
       {/* Why Choose Us */}
@@ -584,7 +588,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
               <Link
                 href="tel:+91-9050576838"
                 aria-label="Call Praans Consultech"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-tertiary bg-orange-500 text-white text-lg font-bold
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg font-bold
                          hover:bg-transparent hover:text-orange-500
                          hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
                          transition duration-200 cursor-pointer"
@@ -596,7 +600,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                 href="mailto:info@praansconsultech.com"
                 aria-label="Email Praans Consultech"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-orange-500 bg-transparent text-orange-500 text-lg font-bold
-                         hover:bg-orange-500 hover:text-white hover:border-white
+                         hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500
                          hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
                          transition duration-200 cursor-pointer"
               >

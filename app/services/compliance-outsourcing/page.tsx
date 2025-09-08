@@ -19,6 +19,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { useEffect, useRef } from "react"
 
 // 1) Replace existing whyReadinessMatters with this
 const whyReadinessMatters = [
@@ -104,13 +105,39 @@ const whyChooseUs = [
 const serviceIcons = [Shield, FileText, Users, CheckCircle, Cpu]
 
 export default function LegalAdvisoryHrPoliciesPage() {
+
+  const textRef = useRef<HTMLDivElement | null>(null)
+  const imgRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (!textRef.current || !imgRef.current) return
+
+    const sync = () => {
+      if (!textRef.current || !imgRef.current) return
+      imgRef.current.style.height = 'auto'
+      const h = textRef.current.offsetHeight
+      imgRef.current.style.height = `${h}px`
+    }
+
+    // initial + observers
+    sync()
+    const ro = new ResizeObserver(sync)
+    ro.observe(textRef.current)
+    window.addEventListener('resize', sync, { passive: true })
+
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', sync)
+    }
+  }, [])
   return (
     <div className="bg-white text-slate-900">
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
           {/* stack on md (768px) and go 2-col on lg */}
-          <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 items-center">
-            <div>
+          <div className="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-4 items-stretch">
+            {/* LEFT: Text content */}
+            <div className="flex flex-col justify-center">
               <div className="inline-flex items-center gap-3 mb-4">
                 <span className="inline-block bg-orange-50 text-orange-500 font-semibold text-sm px-3 py-1 rounded-full">
                   Your Trusted Partner for Labour Law Compliance Outsourcing
@@ -122,12 +149,11 @@ export default function LegalAdvisoryHrPoliciesPage() {
               </h1>
 
               {/* updated copy */}
-              <div className="mt-4 text-lg text-slate-700 max-w-xl">
+              <div className="mt-4 text-lg text-slate-700 max-w-xl text-justify">
                 <p>
                   In today's complex regulatory landscape, managing labour law compliance is one of the most critical yet challenging responsibilities for businesses across industries. At Praans Consultech, we simplify this process by offering end-to-end labour law compliance outsourcing solutions that are accurate, reliable, and fully aligned with the latest government rules and industry practices.
                 </p>
               </div>
-
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link href="/contact" aria-label="Book free consultation">
@@ -140,27 +166,18 @@ export default function LegalAdvisoryHrPoliciesPage() {
                     Book Free Consultation
                   </Button>
                 </Link>
-
-                <Link href="/services" aria-label="See services">
-                  <Button
-                    size="lg"
-                    variant="ghost"
-                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-transparent text-gray-600 text-lg hover:bg-[#eb8535] hover:text-white hover:border-white font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
-                  >
-                    View Services
-                  </Button>
-                </Link>
               </div>
             </div>
 
-            <div className="flex items-center justify-center">
-              <div className="w-full max-w-md rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white">
+            {/* RIGHT: Image column */}
+            <div className="flex items-stretch">
+              <div className="w-full rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white flex">
                 <Image
                   src="/services/compliance.jpg"
                   alt="Labour law advisory"
                   width={900}
                   height={600}
-                  className="object-cover w-full h-56 sm:h-64 md:h-80 lg:h-96"
+                  className="object-cover w-full h-auto lg:h-full"
                   priority
                 />
               </div>
@@ -169,11 +186,12 @@ export default function LegalAdvisoryHrPoliciesPage() {
         </div>
       </section>
 
+
       <section className="py-14 bg-white">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold">Why Outsource Labour Law Compliance?</h2>
-            <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
+            <p className="mt-2 text-gray-600 max-w-2xl mx-auto text-justify">
               Outsourcing your labour law compliance is no longer an optional convenience, it's a competitive advantage. Here’s why businesses across India are turning to Praans Consultech.
             </p>
           </div>
@@ -201,7 +219,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                       {item.title}
                     </h3>
 
-                    <p className="mt-2 text-sm text-gray-600 group-hover:text-white/90 transition-colors duration-200">
+                    <p className="mt-2 text-sm text-gray-600 group-hover:text-white/90 transition-colors duration-200 text-justify">
                       {item.description}
                     </p>
                   </div>
@@ -213,97 +231,104 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
         {/* Remove shadow on pseudo-element hover as well */}
         <style jsx>{`
-    .surface::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: #eb8535;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
-      z-index: 0;
-      box-shadow: none !important; /* ensure no shadow */
-    }
+            .surface::before {
+              content: "";
+              position: absolute;
+              inset: 0;
+              background-color: #eb8535;
+              transform: scaleX(0);
+              transform-origin: left;
+              transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+              z-index: 0;
+              box-shadow: none !important; /* ensure no shadow */
+            }
 
-    .group:hover .surface::before,
-    .group:focus-within .surface::before,
-    .group:focus .surface::before {
-      transform: scaleX(1);
-      box-shadow: none !important; /* explicitly disable hover shadow */
-    }
+            .group:hover .surface::before,
+            .group:focus-within .surface::before,
+            .group:focus .surface::before {
+              transform: scaleX(1);
+              box-shadow: none !important; /* explicitly disable hover shadow */
+            }
 
-    .surface > .relative {
-      z-index: 10;
-    }
+            .surface > .relative {
+              z-index: 10;
+            }
 
-    .group:hover h3,
-    .group:focus-within h3,
-    .group:focus h3 {
-      color: #ffffff !important;
-    }
+            .group:hover h3,
+            .group:focus-within h3,
+            .group:focus h3 {
+              color: #ffffff !important;
+            }
 
-    .group:hover p,
-    .group:focus-within p,
-    .group:focus p {
-      color: rgba(255, 255, 255, 0.9) !important;
-    }
+            .group:hover p,
+            .group:focus-within p,
+            .group:focus p {
+              color: rgba(255, 255, 255, 0.9) !important;
+            }
 
-    .group:hover .w-14,
-    .group:focus-within .w-14,
-    .group:focus .w-14 {
-      background-color: rgba(255, 255, 255, 0.08) !important;
-    }
-  `}</style>
+            .group:hover .w-14,
+            .group:focus-within .w-14,
+            .group:focus .w-14 {
+              background-color: rgba(255, 255, 255, 0.08) !important;
+            }
+          `}</style>
       </section>
 
-      {/* Meet the Founder — creative, responsive, no animations */}
       <section className="py-14 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-16">
-          <div className="grid gap-10 items-center md:grid-cols-2">
-            {/* Founder Section */}
-            <div className="order-1 md:order-2 flex justify-center md:justify-end pr-40">
-              <div className="w-full max-w-sm rounded-2xl overflow-hidden border border-slate-100 bg-white">
-                <div className="relative">
-                  <Image
-                    src="/services/MG.png"
-                    alt="Sandeep Kumar — Founder, Praans Consultech"
-                    width={500}
-                    height={500}
-                    className="object-cover w-full h-72 sm:h-80 md:h-[500px]"
-                    priority
-                  />
+          {/* Equal-height row, no column gap (gap comes from buttons/content only) */}
+          <div className="grid md:grid-cols-2 items-stretch">
+            {/* RIGHT: Image (height mirrors text) */}
+            <div className="order-1 md:order-2 flex items-stretch">
+              <div
+                ref={imgRef}
+                className="relative w-full rounded-2xl overflow-hidden border border-slate-100 bg-white flex items-center justify-center"
+              >
+                <Image
+                  src="/services/adm.webp"
+                  alt="Sandeep Kumar — Founder, Praans Consultech"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="w-full h-full object-cover object-top md:object-[50%_20%] rounded-2xl"
+                />
 
-                  <div className="absolute top-4 left-4 flex items-center gap-2 bg-white/95 text-slate-900 px-3 py-1 rounded-full text-sm font-medium border">
-                    <Shield className="w-4 h-4 text-orange-500" />
-                    Founder & Head — Compliance
-                  </div>
+
+                <div className="absolute top-4 left-4 flex items-center gap-2 bg-white/95 text-slate-900 px-3 py-1 rounded-full text-sm font-medium border shadow-sm">
+                  <Shield className="w-4 h-4 text-orange-500" />
+                  Founder &amp; Head — Compliance
                 </div>
               </div>
             </div>
 
-            {/* Founder Details */}
-            <div className="order-2 md:order-1 flex flex-col justify-center gap-5 pl-40">
+            {/* LEFT: Text (the height source) */}
+            <div
+              ref={textRef}
+              className="order-2 md:order-1 flex flex-col justify-start gap-5"
+            >
               <div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
                   Meet Our Founder — Vision Backed by Legal Expertise
                 </h2>
-                <p className="mt-3 text-base text-slate-700 max-w-xl">
-                  Sandeep leads Praans Consultech with hands-on experience in large-scale compliance operations, audit handling and regulatory strategy. We translate that operational expertise into practical, audit-ready solutions that reduce risk and keep your business running.
+                <p className="mt-3 text-base text-slate-700 max-w-xl text-justify">
+                  Sandeep leads Praans Consultech with hands-on experience in large-scale compliance operations,
+                  audit handling and regulatory strategy. We translate that operational expertise into practical,
+                  audit-ready solutions that reduce risk and keep your business running.
                 </p>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <h4 className="text-md font-semibold text-gray-900">Key Experience</h4>
                   <ul className="text-sm text-gray-600 space-y-2 list-disc pl-5 marker:text-orange-500">
                     <li>Directed statutory compliance for 2,500+ locations nationwide</li>
-                    <li>Managed payroll & contractor compliance for 50,000+ personnel</li>
-                    <li>Delivered audit & inspection programs for enterprise clients</li>
+                    <li>Managed payroll &amp; contractor compliance for 50,000+ personnel</li>
+                    <li>Delivered audit &amp; inspection programs for enterprise clients</li>
                   </ul>
                 </div>
 
                 <div className="space-y-2">
-                  <h4 className="text-md font-semibold text-gray-900">Education & Credentials</h4>
+                  <h4 className="text-md font-semibold text-gray-900">Education &amp; Credentials</h4>
                   <div className="flex flex-wrap gap-2">
                     <span className="inline-flex items-center px-3 py-1 rounded-full bg-slate-50 text-slate-800 text-xs border border-orange-500">B.Sc.</span>
                     <span className="inline-flex items-center px-3 py-1 rounded-full bg-slate-50 text-slate-800 text-xs border border-orange-500">LL.M.</span>
@@ -315,38 +340,38 @@ export default function LegalAdvisoryHrPoliciesPage() {
               </div>
 
               <div className="mt-2 flex flex-col sm:flex-row gap-3">
-                <Link href="/contact" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg hover:bg-transparent hover:text-[#eb8535] font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer">
+                <Link
+                  href="/contact"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg hover:bg-transparent hover:text-[#eb8535] font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer"
+                >
                   Book Consultation
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* Expert Team Section */}
+          {/* Expert Team block (unchanged) */}
           <div className="mt-16 bg-gray-50 rounded-2xl border border-slate-100 p-8">
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
               Our Expert Team – The Foundation of Our Service Delivery
             </h3>
-            <p className="mt-4 text-base text-slate-700">
-              Supporting the founder is a dedicated team of legal professionals, compliance officers, documentation specialists, and field executives. Each member brings domain-specific knowledge in Indian labour laws, regional rules, and sector-specific requirements. Our team holds expertise in:
+            <p className="mt-4 text-base text-slate-700 text-justify">
+              Supporting the founder is a dedicated team of legal professionals, compliance officers, documentation
+              specialists, and field executives. Each member brings domain-specific knowledge in Indian labour laws,
+              regional rules, and sector-specific requirements. Our team holds expertise in:
             </p>
-
-            {/* Expertise List */}
-            <div className="mt-4 text-sm text-slate-600 space-y-2 list-disc pl-5 marker:text-orange-500">
-              <ul className="text-sm text-gray-600 space-y-2 list-disc pl-5 marker:text-orange-500">
-                <li>Establishment Compliance</li>
-                <li>Factory Compliance</li>
-                <li>Payroll Compliance</li>
-                <li>Contractor Compliance</li>
-                <li>Registration & Licenses</li>
-                <li>Audit and Inspection</li>
-                <li>And many more</li>
-              </ul>
-            </div>
-
-            {/* Working closely with clients */}
-            <p className="mt-4 text-base text-slate-700">
-              They work closely with HR departments, government authorities, and client management to ensure timely submissions, legal clarity, and smooth on-ground execution—making us a trusted compliance partner across industries.
+            <ul className="mt-4 text-sm text-gray-600 space-y-2 list-disc pl-5 marker:text-orange-500">
+              <li>Establishment Compliance</li>
+              <li>Factory Compliance</li>
+              <li>Payroll Compliance</li>
+              <li>Contractor Compliance</li>
+              <li>Registration &amp; Licenses</li>
+              <li>Audit and Inspection</li>
+              <li>And many more</li>
+            </ul>
+            <p className="mt-4 text-base text-slate-700 text-justify">
+              They work closely with HR departments, government authorities, and client management to ensure timely submissions,
+              legal clarity, and smooth on-ground execution—making us a trusted compliance partner across industries.
             </p>
           </div>
         </div>
@@ -357,7 +382,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-10">
             <h2 className="text-3xl font-bold">Empowering Compliance Through Smart Technology</h2>
-            <p className="mt-3 text-gray-600">
+            <p className="mt-3 text-gray-600 text-justify">
               We combine traditional legal consulting with smart automation. Our in-house, AI-enabled compliance management software ensures full control, clarity, and convenience over all your compliance activities.
               With our software + service model, your organization stays legally secure, operationally efficient, and always ahead of compliance challenges.
             </p>
@@ -374,7 +399,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-xl">{service.title}</h3>
-                      <p className="mt-2 text-sm text-gray-600">{service.description}</p>
+                      <p className="mt-2 text-sm text-gray-600 text-justify">{service.description}</p>
                     </div>
                   </div>
                 </Card>
@@ -385,9 +410,10 @@ export default function LegalAdvisoryHrPoliciesPage() {
       </section>
 
       {/* Technology */}
-      <section className="py-14 bg-gray-50 text-white">
-        <div className="container mx-auto px-6 lg:px-8 grid gap-8 md:grid-cols-2 items-center">
-          <div className="pl-40">
+      <section className="py-14 bg-gray-50">
+        <div className="container mx-auto px-6 lg:px-8 grid md:grid-cols-2 items-stretch">
+          {/* LEFT: Text content */}
+          <div className="flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-4 text-black">Industries We Serve</h2>
 
             <p className="text-gray-700 mb-6 max-w-xl">
@@ -436,25 +462,26 @@ export default function LegalAdvisoryHrPoliciesPage() {
               </li>
             </ul>
 
-
-            <p className="text-gray-700 mt-6 max-w-lg">
+            <p className="text-gray-700 mt-6 max-w-lg text-justify">
               Each industry has its own set of legal requirements, and we ensure full compliance with both central and state-specific labour laws for every sector.
             </p>
           </div>
 
-          <div className="flex items-center justify-center pr-40">
-            <div className="w-full max-w-md rounded-lg overflow-hidden bg-white">
+          {/* RIGHT: Image column */}
+          <div className="flex items-stretch">
+            <div className="w-full rounded-lg overflow-hidden bg-white flex">
               <Image
                 src="/services/industry.jpg"
                 alt="Compliance software dashboard"
                 width={900}
                 height={600}
-                className="object-cover w-full h-64 sm:h-80 md:h-96"
+                className="object-cover w-full h-auto md:h-full"
               />
             </div>
           </div>
         </div>
       </section>
+
 
       {/* Why Choose Us */}
       <section className="py-14">
@@ -492,7 +519,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900">{reason}</h3>
-                      <p className="mt-2 text-sm text-gray-600">{microCopy}</p>
+                      <p className="mt-2 text-sm text-gray-600 text-justify">{microCopy}</p>
                     </div>
                   </div>
                 </div>
@@ -505,18 +532,18 @@ export default function LegalAdvisoryHrPoliciesPage() {
       {/* Cta Section */}
       <section className="py-12 bg-gray-50">
         <div className="mx-auto w-full max-w-[1700px] px-6 lg:px-8">
-          <div className="bg-[#2a3154] text-white rounded-lg p-8 sm:p-12 shadow-lg text-center">
+          <div className="rounded-lg p-8 sm:p-12 text-center">
             <h2 className="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight">
               Let’s Simplify Your Compliance Journey
             </h2>
 
-            <p className="mx-auto max-w-7xl text-gray-200 text-base sm:text-lg leading-relaxed mb-4">
+            <p className="mx-auto max-w-7xl text-gray-600 text-base sm:text-lg leading-relaxed mb-4 text-justify">
               Labour law compliance doesn’t have to be overwhelming. With Praans Consultech,
               you receive strategic support, smart software, and a dedicated team that ensures
               every requirement is met accurately and on time.
             </p>
 
-            <p className="mx-auto max-w-6xl text-gray-200 text-base sm:text-lg leading-relaxed mb-10">
+            <p className="mx-auto max-w-6xl text-gray-600 text-base sm:text-lg leading-relaxed mb-10 text-justify">
               Let us help you transform your compliance process into a strength, not a stress.
               Book your free consultation to explore our labour law compliance outsourcing solutions.
             </p>
