@@ -101,7 +101,7 @@ const stateWageData: Record<string, StateWageData> = {
       }
     ]
   },
-  
+
   'maharashtra': {
     state: 'Maharashtra',
     slug: 'maharashtra',
@@ -269,13 +269,13 @@ export default function StateMinimumWagesPage({ params }: { params: { state: str
           </Card>
         </div>
 
-        <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5">
+        <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5 ">
           
           {/* Main Content */}
           <div className="lg:col-span-3">
-            <div className="mb-4 sm:mb-5 lg:mb-4">
+            <div className="mb-4 sm:mb-5 lg:mb-4 flex justify-between">
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Minimum Wages :</h1>
-              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-lg xl:text-xl text-orange-600 font-semibold">{stateData.state}</h2>
+              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-2xl text-orange-600 font-semibold">{stateData.state}</h2>
             </div>
 
             {/* Minimum Wage Rates - Mobile Card View */}

@@ -147,7 +147,7 @@ const holidayData = [
 ];
 
 const months = [
-  "All Months",
+  // "All Months",
   "January",
   "February",
   "March",

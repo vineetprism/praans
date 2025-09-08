@@ -73,11 +73,11 @@ export default function HolidaysPage() {
                   <h2 className="text-base sm:text-lg font-semibold text-slate-800 mb-2">
                     Holiday Lists :
                 </h2>
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-1 ">
                 {/* Year Selector */}
                 <div className="flex-shrink-0">
                   <Select defaultValue="2025">
-                    <SelectTrigger className="w-24 sm:w-32 border-orange-300 focus:ring-orange-500 h-9">
+                    <SelectTrigger className="w-24 sm:w-32 border-orange-300 focus:ring-orange-500 h-9 ">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>

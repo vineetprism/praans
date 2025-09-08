@@ -115,7 +115,8 @@ export default function SiteFooter() {
               Stay Updated
             </h3>
             <p className="text-gray-400 mb-6 text-lg">
-              Get the latest compliance updates
+              {/* Get the latest compliance updates */}
+               Subscribe Newsletter for latest update
             </p>
             <div className="flex gap-3">
               <Input

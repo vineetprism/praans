@@ -1101,9 +1101,9 @@ export default function StateProfessionalTaxPage({
           <div className="lg:col-span-3 xl:col-span-4 relative z-10">
             
             {/* Page Header */}
-            <div className="mb-3 sm:mb-4 lg:mb-3">
+            <div className="mb-3 sm:mb-4 lg:mb-3 flex justify-between">
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">
-                Professional Tax
+                Professional Tax :
               </h1>
               <h2 className="text-lg sm:text-xl md:text-2xl lg:text-lg xl:text-xl text-orange-600 font-semibold">
                 {stateData.name}
