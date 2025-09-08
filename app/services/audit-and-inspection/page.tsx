@@ -88,22 +88,27 @@ export default function LegalAdvisoryHrPoliciesPage() {
     <div className="bg-white text-slate-900">
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 items-center">
-            <div>
+          <div className="grid gap-2 md:grid-cols-1 lg:grid-cols-2 items-stretch">
+            {/* LEFT: Text content */}
+            <div className="flex flex-col justify-center">
               <div className="inline-flex items-center gap-3 mb-4">
                 <span className="inline-block bg-orange-50 text-orange-500 font-semibold text-sm px-3 py-1 rounded-full">
                   Labour Law Audit & Inspection Services
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight ">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
                 Stay Compliant, Stay Prepared, Stay Confident
               </h1>
 
               <p className="mt-4 text-lg text-slate-700 max-w-xl text-justify">
-                Labour-law audits and inspections are more than box-checking — they’re critical to operational resilience and risk mitigation. Praans Consultech combines field-enabled expertise with tech-backed processes to handle documentation review, gap remediation and live inspection support, so your statutory compliance is accurate, defensible and inspection-ready.
+                Labour-law audits and inspections are more than box-checking — they’re
+                critical to operational resilience and risk mitigation. Praans
+                Consultech combines field-enabled expertise with tech-backed processes
+                to handle documentation review, gap remediation and live inspection
+                support, so your statutory compliance is accurate, defensible and
+                inspection-ready.
               </p>
-
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link href="/contact" aria-label="Book free consultation">
@@ -117,27 +122,30 @@ export default function LegalAdvisoryHrPoliciesPage() {
                   </Button>
                 </Link>
 
-                <Link href="/services" aria-label="See services">
-                  <Button
-                    size="lg"
-                    variant="ghost"
-                    aria-label="See services"
-                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-transparent text-gray-600 text-lg hover:bg-orange-500 hover:text-white hover:border-white font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
-                  >
-                    View Services
-                  </Button>
-                </Link>
+                {/* 
+          <Link href="/services" aria-label="See services">
+            <Button
+              size="lg"
+              variant="ghost"
+              aria-label="See services"
+              className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-transparent text-gray-600 text-lg hover:bg-orange-500 hover:text-white hover:border-white font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
+            >
+              View Services
+            </Button>
+          </Link> 
+          */}
               </div>
             </div>
 
-            <div className="flex items-center justify-center">
-              <div className="w-full max-w-md rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white">
+            {/* RIGHT: Image column */}
+            <div className="flex items-stretch justify-center mt-8 lg:mt-0">
+              <div className="w-full max-w-md rounded-xl overflow-hidden shadow-sm border border-slate-100 bg-white flex">
                 <Image
                   src="/services/labour-law.jpg"
                   alt="Labour law advisory"
                   width={900}
                   height={600}
-                  className="object-cover w-full h-56 sm:h-64 md:h-72 lg:h-80"
+                  className="object-cover w-full h-auto lg:h-full" // responsive fix
                   priority
                 />
               </div>
@@ -145,6 +153,7 @@ export default function LegalAdvisoryHrPoliciesPage() {
           </div>
         </div>
       </section>
+
 
       {/* What is an Audit / Inspection */}
       <section className="py-12 bg-white">
@@ -457,8 +466,9 @@ export default function LegalAdvisoryHrPoliciesPage() {
 
       {/* Technology */}
       <section className="py-14 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8 grid gap-8 md:grid-cols-2 items-center">
-          <div>
+        <div className="container mx-auto px-6 lg:px-8 grid gap-8 md:grid-cols-2 items-stretch">
+          {/* LEFT: Text content */}
+          <div className="flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-4">Technology-Enabled Compliance</h2>
 
             <p className="text-gray-600 mb-6 max-w-xl text-justify">
@@ -500,19 +510,21 @@ export default function LegalAdvisoryHrPoliciesPage() {
             </p>
           </div>
 
-          <div className="flex items-center justify-center">
-            <div className="w-full max-w-md rounded-lg overflow-hidden bg-white">
+          {/* RIGHT: Image column */}
+          <div className="flex items-stretch justify-center mt-8 md:mt-0">
+            <div className="w-full max-w-md rounded-lg overflow-hidden bg-white flex">
               <Image
                 src="/services/technology-compliance.jpg"
                 alt="Compliance software dashboard"
                 width={900}
                 height={600}
-                className="object-cover w-full h-64 sm:h-80"
+                className="object-cover w-full h-auto md:h-full" // 🔑 dynamic height
               />
             </div>
           </div>
         </div>
       </section>
+
 
       {/* Why Choose Us */}
       <section className="py-14">
