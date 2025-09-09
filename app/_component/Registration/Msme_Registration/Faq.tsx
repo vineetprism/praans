@@ -76,20 +76,20 @@ function FaqItem({
 
 export default function FaqPage() {
     const faqs = [
-        { q: "What is MSME registration?", a: "Dummy answer: MSME registration recognizes Micro, Small, and Medium Enterprises and lets them avail eligible schemes and benefits." },
-        { q: "Is MSME registration mandatory?", a: "Dummy answer: Not for every business, but registration helps you access subsidies, credit support, and government programs." },
-        { q: "Who can apply for MSME registration?", a: "Dummy answer: Eligible manufacturing and service enterprises under prescribed investment/turnover limits." },
-        { q: "What are the benefits of MSME registration?", a: "Dummy answer: Easier credit, tender preferences, subsidies, and protection against delayed payments, among others." },
-        { q: "Is the MSME registration process online?", a: "Dummy answer: Yes, the complete process (application, document upload, and certificate) is online." },
-        { q: "What documents are required for MSME registration?", a: "Dummy answer: Aadhaar of owner, PAN, business address proof, bank details, and investment/turnover information." },
-        { q: "Can existing businesses apply for MSME registration?", a: "Dummy answer: Yes, existing businesses can apply provided they meet current MSME criteria." },
-        { q: "How long does it take to get MSME registration?", a: "Dummy answer: Typically from a few hours up to 2 working days after successful submission." },
-        { q: "Is there a fee for MSME registration?", a: "Dummy answer: Govt portals generally don’t charge; any 3rd-party platform or consultancy may have their own fee." },
-        { q: "Is the MSME certificate valid for a lifetime?", a: "Dummy answer: It remains valid unless your enterprise crosses the defined thresholds or you need to update details." },
-        { q: "Can trading businesses register as MSMEs?", a: "Dummy answer: As per current rules, trading activity isn’t covered; manufacturing and services are eligible." },
-        { q: "Can I edit my MSME registration details later?", a: "Dummy answer: Yes—log in to the portal and update permissible fields as per the portal’s rules." },
-        { q: "Is GST mandatory for MSME registration?", a: "Dummy answer: Not by default. GST depends on your turnover and applicable tax laws." },
-        { q: "What happens if I don’t register my MSME?", a: "Dummy answer: You may still operate, but you’ll miss the benefits and protection granted to registered MSMEs." },
+        { q: "What is MSME registration?", a: "MSME registration is a government certification that recognizes Micro, Small, and Medium Enterprises and allows them to access various benefits and schemes." },
+        { q: "Is MSME registration mandatory?", a: "No, it is not mandatory but highly recommended to avail government benefits and protections." },
+        { q: "Who can apply for MSME registration?", a: "Manufacturing and service sector businesses within prescribed investment and turnover limits can apply." },
+        { q: "What are the benefits of MSME registration?", a: "Benefits include easier loan access, subsidies, tax exemptions, protection against delayed payments, and more." },
+        { q: "Is the MSME registration process online?", a: "Yes, the entire process is online through the Udyam Registration Portal." },
+        { q: "What documents are required for MSME registration?", a: "Aadhar Card, PAN Card, business details, and investment/turnover details are required." },
+        { q: "Can existing businesses apply for MSME registration?", a: "Yes, any eligible existing business can apply." },
+        { q: "How long does it take to get MSME registration?", a: "You can receive the MSME certificate immediately after verification." },
+        { q: "Is there a fee for MSME registration?", a: "No, the government does not charge any fee for MSME registration." },
+        { q: "Is the MSME certificate valid for a lifetime?", a: "Yes, the MSME registration certificate is valid for a lifetime unless revoked due to non-compliance." },
+        { q: "Can trading businesses register as MSMEs?", a: "No, MSME registration is only for manufacturing and service businesses." },
+        { q: "Can I edit my MSME registration details later?", a: "Yes, you can update your details on the Udyam Portal." },
+        { q: "Is GST mandatory for MSME registration?", a: "Yes, GST is mandatory for MSME registration if applicable to your business." },
+        { q: "What happens if I don’t register my MSME?", a: "You won’t be eligible for government schemes, benefits, or legal protections offered to MSMEs." },
     ];
 
     const [openIndex, setOpenIndex] = useState<number | null>(0);

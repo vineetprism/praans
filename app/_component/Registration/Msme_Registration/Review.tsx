@@ -7,7 +7,6 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-/* -------------------- Data -------------------- */
 type Review = {
   name: string;
   date: string;
@@ -20,52 +19,46 @@ const REVIEWS: Review[] = [
   {
     name: "Sachin Sharma",
     date: "2025-05-15",
-    text: "Best Consultant for FSSAI and GST Registration",
-    avatar:
-      "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=160&auto=format&fit=crop",
+    text: "Best Consultant for FSSAI and GST Registration.",
+    avatar: "", // no local file yet -> will show "S"
     stars: 4,
   },
   {
     name: "Subodh Excel",
     date: "2025-05-14",
-    text: "One of the best compliance consultancy",
-    avatar:
-      "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=160&auto=format&fit=crop",
+    text: "One of the best compliance consultancy.",
+    avatar: "", // no local file yet -> will show "S"
     stars: 5,
   },
   {
     name: "Pankaj Sharma",
     date: "2025-05-14",
     text: "Best labour law consultant. Highly recommended.",
-    avatar:
-      "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=160&auto=format&fit=crop",
+    avatar: "/testimonial/pankaj.png",
     stars: 5,
   },
   {
     name: "Nishita Jain",
     date: "2025-05-11",
     text:
-      "We’ve had a great experience working with Praans Consultech. Their legal guidance has been clear, prompt, and always solution-oriented. They bring a lot of value.",
-    avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=160&auto=format&fit=crop",
+      "We've had a great experience working with Praans Consultech. Their legal guidance has been clear, prompt, and always solution-oriented. They bring a strong understanding of both compliance and business practicality, which has been invaluable to us. Highly recommended for anyone seeking reliable and professional legal support.",
+    avatar: "/testimonial/nishita.png",
     stars: 5,
   },
   {
-    name: "kavita gupta",
+    name: "Kavita Gupta",
     date: "2025-05-10",
     text:
       "I took GST and Shop registration services for my family business from the Praans and we are very much satisfied.",
-    avatar:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=160&auto=format&fit=crop",
+    avatar: "", // will show "K"
     stars: 4,
   },
   {
-    name: "sagar malik",
+    name: "Sagar Malik",
     date: "2025-05-09",
     text:
-      "Best labour law consultant in Haryana. I was in need of shop and establishment registration in Gurugram for my office, and Praans provided us within 2 days.",
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=160&auto=format&fit=crop",
+      "Best labour law consultant in Haryana. I was in need of shop and establishment registration in Gurugram for my office, and Praans provided us within 2 days. Then I again approached for GST , PF , and ESI registration along with MSME. It was also provided within time.Very speedy process. The whole process was online. Now, Praaan Consultech is my all time labour law consultant.",
+    avatar: "/testimonial/sagar.png",
     stars: 5,
   },
   {
@@ -73,13 +66,10 @@ const REVIEWS: Review[] = [
     date: "2025-05-09",
     text:
       "# Experienced staff # # Correct Advice # #Fast in process# # Best company in India for GST , FSSAI and Shop registration# # Highly recommended#",
-    avatar:
-      "https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=160&auto=format&fit=crop",
+    avatar: "/testimonial/kunal.png",
     stars: 5,
   },
 ];
-
-/* -------------------- UI bits -------------------- */
 
 const StarRow = ({ n }: { n: number }) => (
   <div className="flex items-center justify-center gap-1">
@@ -102,7 +92,49 @@ const GoogleBadge = () => (
   </span>
 );
 
-/** Clamp to ~4 lines with CSS. We detect if clamp is needed via DOM measure. */
+// 👉 New: avatar with letter fallback (local uploads preferred)
+function Avatar({
+  name,
+  src,
+  size = 56,
+  className = "h-14 w-14 object-cover",
+}: {
+  name: string;
+  src?: string;
+  size?: number;
+  className?: string;
+}) {
+  const [errored, setErrored] = useState(false);
+  const initial = (name?.trim()?.[0] ?? "?").toUpperCase();
+
+  // If there's no src or it errored, show initial-based circle
+  if (!src || errored) {
+    return (
+      <div
+        className="h-14 w-14 rounded-full bg-slate-100 text-slate-700 grid place-items-center font-semibold text-lg uppercase"
+        aria-label={name}
+        role="img"
+      >
+        {initial}
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={name}
+      width={size}
+      height={size}
+      className={className}
+      onError={() => setErrored(true)}
+      unoptimized={src.startsWith("/")} // local files don't need next/image optimization
+      priority={false}
+    />
+  );
+}
+
+
 function ClampedText({
   text,
   expanded,
@@ -121,7 +153,7 @@ function ClampedText({
       const prev = el.style.cssText;
       el.style.display = "-webkit-box";
       // @ts-ignore
-      el.style.webkitLineClamp = "4";
+      el.style.webkitLineClamp = "3"; // ⬅️ clamp to 3 lines for measurement
       // @ts-ignore
       el.style.webkitBoxOrient = "vertical";
       el.style.overflow = "hidden";
@@ -139,8 +171,10 @@ function ClampedText({
     ? {}
     : {
       display: "-webkit-box",
-      WebkitLineClamp: 4 as any,
-      WebkitBoxOrient: "vertical" as any,
+      // @ts-ignore
+      WebkitLineClamp: 3, // ⬅️ clamp to 3 lines when collapsed
+      // @ts-ignore
+      WebkitBoxOrient: "vertical",
       overflow: "hidden",
     };
 
@@ -161,18 +195,16 @@ function Card({ review }: { review: Review }) {
 
   return (
     <div className="relative w-full">
-      {/* avatar stays inside; plenty of space on top */}
-      <div className="relative overflow-visible flex h-full min-h-[290px] flex-col justify-start rounded-2xl border border-slate-200 bg-white p-6 pt-20 shadow-[0_10px_34px_rgba(16,24,40,0.08)]">
-        {/* Avatar */}
+      <div className="relative overflow-visible flex h-full min-h=[290px] min-h-[290px] flex-col justify-start rounded-2xl border border-slate-200 bg-white p-6 pt-20 shadow-[0_10px_34px_rgba(16,24,40,0.08)]">
         <div className="absolute left-1/2 top-2 -translate-x-1/2 z-10">
           <div className="relative h-14 w-14 overflow-hidden rounded-full ring-4 ring-white shadow-lg">
-            <Image
+            <Avatar
+              name={review.name}
               src={review.avatar}
-              alt={review.name}
-              width={56}
-              height={56}
+              size={56}
               className="h-14 w-14 object-cover"
             />
+
             <GoogleBadge />
           </div>
         </div>
@@ -213,23 +245,43 @@ function Card({ review }: { review: Review }) {
   );
 }
 
-/* White round nav buttons */
-function NavButtons() {
+/* White round nav buttons — accept generic React refs */
+function NavButtons({
+  prevRef,
+  nextRef,
+}: {
+  prevRef: React.Ref<HTMLButtonElement>;
+  nextRef: React.Ref<HTMLButtonElement>;
+}) {
   return (
     <>
       <button
-        className="navPrev absolute left-2 md:left-4 top-1/2 z-20 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white text-slate-700 shadow-[0_4px_18px_rgba(2,6,23,0.15)] ring-1 ring-slate-200 hover:bg-slate-50"
+        ref={prevRef}
+        className="absolute left-2 md:left-4 top-1/2 z-20 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white text-slate-700 shadow-[0_4px_18px_rgba(2,6,23,0.15)] ring-1 ring-slate-200 hover:bg-slate-50"
         aria-label="Previous"
       >
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg
+          viewBox="0 0 24 24"
+          className="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
           <path d="M15 18l-6-6 6-6" />
         </svg>
       </button>
       <button
-        className="navNext absolute right-2 md:right-4 top-1/2 z-20 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white text-slate-700 shadow-[0_4px_18px_rgba(2,6,23,0.15)] ring-1 ring-slate-200 hover:bg-slate-50"
+        ref={nextRef}
+        className="absolute right-2 md:right-4 top-1/2 z-20 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white text-slate-700 shadow-[0_4px_18px_rgba(2,6,23,0.15)] ring-1 ring-slate-200 hover:bg-slate-50"
         aria-label="Next"
       >
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg
+          viewBox="0 0 24 24"
+          className="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
           <path d="M9 6l6 6-6 6" />
         </svg>
       </button>
@@ -237,11 +289,9 @@ function NavButtons() {
   );
 }
 
-/* -------------------- NEW Benefits Section (IMAGE-BASED) -------------------- */
-
 type Feature = {
   title: string;
-  img: string; // path to your image in /public or remote URL
+  img: string;
 };
 
 const FEATURES: Feature[] = [
@@ -289,10 +339,11 @@ function BenefitsSection() {
 /* -------------------- Page -------------------- */
 export default function TestimonialsThreeExact() {
   const loopSlides = useMemo(() => Math.max(REVIEWS.length, 6), []);
+  const prevRef = useRef<HTMLButtonElement>(null);
+  const nextRef = useRef<HTMLButtonElement>(null);
 
   return (
     <>
-      {/* Keep avatar visible vertically, hide horizontal peeking slides */}
       <style jsx global>{`
         .swiper {
           overflow-x: hidden !important;
@@ -304,18 +355,40 @@ export default function TestimonialsThreeExact() {
         }
       `}</style>
 
-      {/* Testimonials Carousel */}
       <section className="bg-gray-50 py-4 sm:py-6">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <NavButtons />
+          <NavButtons prevRef={prevRef} nextRef={nextRef} />
 
           <Swiper
             modules={[Autoplay, Navigation]}
             loop
             loopPreventsSliding={false}
             loopAdditionalSlides={loopSlides}
-            autoplay={{ delay: 2600, disableOnInteraction: false }}
-            navigation={{ nextEl: ".navNext", prevEl: ".navPrev" }}
+            autoplay={{
+              delay: 2600,
+              disableOnInteraction: false,
+              reverseDirection: true,
+              pauseOnMouseEnter: true,
+            }}
+            onBeforeInit={(swiper) => {
+              const nav = swiper.params.navigation;
+              if (nav && typeof nav === "object") {
+                nav.prevEl = prevRef.current!;
+                nav.nextEl = nextRef.current!;
+              } else {
+                swiper.params.navigation = {
+                  prevEl: prevRef.current!,
+                  nextEl: nextRef.current!,
+                };
+              }
+            }}
+            onInit={(swiper) => {
+              // @ts-ignore
+              swiper.navigation.init();
+              // @ts-ignore
+              swiper.navigation.update();
+            }}
+            navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
             spaceBetween={28}
             centeredSlides={false}
             slidesPerView={1}
@@ -336,7 +409,6 @@ export default function TestimonialsThreeExact() {
         </div>
       </section>
 
-      {/* NEW Benefits grid (now using images) */}
       <BenefitsSection />
     </>
   );
