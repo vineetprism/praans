@@ -437,9 +437,9 @@ const NAV = [
   },
   {
     label: "Registration",
-    href: "/registration",
+    href: "",
     dropdown: [
-      { label: "Shop & Establishment License", href: "/registration/shop-establishment" },
+      { label: "MSME Registration", href: "/registration/msme" },
       { label: "Factory License", href: "/registration/factory-license" },
       { label: "Contract Labour License", href: "/registration/contract-labour" },
       { label: "ESIC Registration", href: "/registration/esic" },

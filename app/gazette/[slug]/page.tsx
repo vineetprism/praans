@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Download } from 'lucide-react'
 import { useParams } from "next/navigation"
-import PopularSearch from "@/app/PopularSearch/PopularSearch" // Adjust the import path as needed
+import PopularSearch from "@/app/PopularSearch/PopularSearch" 
 
 // Mock database of gazette notifications with SEO-friendly slugs
 const notificationsDatabase = {
