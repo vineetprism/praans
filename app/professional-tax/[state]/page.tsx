@@ -385,7 +385,7 @@ export default function StateProfessionalTaxPage({
                   </Button>
                 </CardContent>
               </Card>
-            </div>
+            </div> 
 
             {/* Act Information - Mobile Card View */}
             <div className="block lg:hidden mb-4">

@@ -2,7 +2,7 @@
 
 "use client"
 
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -17,10 +17,15 @@ import {
   CheckCircle,
   XCircle,
   FileClock,
-  ScrollText
+  ScrollText,
+  Calculator,
+  CalculatorIcon,
+  Eye,
+  MapPin
 } from "lucide-react"
 import Link from "next/link"
 import PopularSearch from "../PopularSearch/PopularSearch"
+import { Button } from "@/components/ui/button"
 
 const applicableStates = [
   { name: 'Andhra Pradesh', slug: 'andhra-pradesh', contributionRate: '₹20/month', lastUpdated: '2024-12-15', establishments: 2847 },
@@ -158,36 +163,6 @@ export default function WelfareFundPage() {
                   </SelectContent>
                 </Select>
               </div>
-
-              {/* Contribution Range Filter */}
-              <div className="w-full sm:w-auto">
-                <Select>
-                  <SelectTrigger
-                    className="
-                          w-full sm:w-48 md:w-52 h-8 sm:h-9 md:h-10
-                          bg-white text-gray-900 border border-gray-300 rounded-lg
-                          text-xs sm:text-sm
-                          focus:outline-none
-                          focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-white
-                          !focus-visible:ring-orange-500 !focus-visible:border-orange-500
-                          hover:bg-orange-50
-                        "
-                  >
-                    <SelectValue placeholder="Contribution range" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white border border-gray-200 shadow-md">
-                    {filterOptions.contributionRange.map((range) => (
-                      <SelectItem
-                        key={range}
-                        value={range.toLowerCase().replace(/ /g, '-')}
-                        className="text-xs sm:text-sm text-gray-900 cursor-pointer focus:bg-orange-100 focus:text-orange-700"
-                      >
-                        {range}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
             </div>
 
             {/* Statistics Cards */}
@@ -224,25 +199,46 @@ export default function WelfareFundPage() {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">
-                      </p>
-                      <p className="text-2xl font-bold text-gray-900">₹22</p>
+                      {/* <p className="text-sm font-medium text-gray-600">
+                        LWF Calculator
+                      </p> */}
+                      <p className="text-xl text-gray-900 pb-4">  LWF Calculator</p>
                     </div>
-                    <IndianRupee className="w-8 h-8 text-green-600" />
+                    <Calculator className="w-8 h-8 text-orange-600" />
                   </div>
+                  <Link href="/tools/compliance-checker">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="bg-orange-500 text-white hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 hover:cursor-pointer"
+                    >
+                      <Eye className="w-4 h-4 mr-2" />
+                      View
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500 lg:h-40">
-                <CardContent className="p-6">
+                <CardContent className="px-8">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-medium text-gray-600">
+                      {/* <p className="text-sm font-medium text-gray-600">
                         Coverage
-                      </p>
-                      <p className="text-2xl font-bold text-gray-900">Workers</p>
+                      </p> */}
+                      <p className="text-xl text-gray-900">Intrest & Penality Calculator</p>
                     </div>
-                    <Users className="w-8 h-8 text-purple-600" />
+                    <CalculatorIcon className="w-14 h-14 text-orange-600" />
                   </div>
+                  <Link href="/tools/compliance-checker">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="bg-orange-500 text-white hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 hover:cursor-pointer"
+                    >
+                      <Eye className="w-4 h-4 mr-2" />
+                      View
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </div>
@@ -275,12 +271,17 @@ export default function WelfareFundPage() {
                                 Contribution: {state.contributionRate}
                               </div> */}
                             </div>
-                            <Badge
-                              variant="secondary"
-                              className="bg-green-100 text-green-800"
-                            >
-                              Applicable
-                            </Badge>
+                            
+                            <div className="flex items-center gap-2">
+                              <MapPin className="w-4 h-4 text-green-600 group-hover:text-orange-500 transition-colors" />
+                              <Badge
+                                variant="secondary"
+                                className="bg-green-100 text-green-800"
+                              >
+                                Applicable
+                              </Badge>
+                            </div>
+                            
                           </div>
                         </Link>
                       ))}
@@ -300,12 +301,15 @@ export default function WelfareFundPage() {
                           <span className="text-gray-700">
                             {index + 1}. {state.name}
                           </span>
-                          <Badge
-                            variant="secondary"
-                            className="bg-gray-100 text-gray-600"
-                          >
-                            Not Applicable
-                          </Badge>
+                          <div className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4 text-gray-400" />
+                            <Badge
+                              variant="secondary"
+                              className="bg-gray-100 text-gray-600"
+                            >
+                              Not Applicable
+                            </Badge>
+                          </div>
                         </div>
                       ))}
                     </div>

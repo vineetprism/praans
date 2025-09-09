@@ -1,7 +1,8 @@
-"use client"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+
+"use client";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   ArrowLeft,
   Building2,
@@ -13,8 +14,8 @@ import {
   AlertTriangle,
   CheckCircle,
   XCircle,
-} from "lucide-react"
-import PopularSearch from "@/app/PopularSearch/PopularSearch"
+} from "lucide-react";
+import PopularSearch from "@/app/PopularSearch/PopularSearch";
 
 // Sample data for state details
 const getStateDetails = (slug: string) => {
@@ -94,7 +95,7 @@ const getStateDetails = (slug: string) => {
         repeatOffense: "₹2000 - ₹10000",
       },
     },
-  }
+  };
 
   return (
     stateData[slug] || {
@@ -116,7 +117,11 @@ const getStateDetails = (slug: string) => {
         weekly: "48 hours",
         overtime: "After 9 hours daily",
       },
-      holidays: ["26th January (Republic Day)", "15th August (Independence Day)", "2nd October (Gandhi Jayanti)"],
+      holidays: [
+        "26th January (Republic Day)",
+        "15th August (Independence Day)",
+        "2nd October (Gandhi Jayanti)",
+      ],
       registration: {
         required: true,
         fee: "₹500 - ₹2000",
@@ -129,73 +134,55 @@ const getStateDetails = (slug: string) => {
         repeatOffense: "₹1000 - ₹5000",
       },
     }
-  )
-}
+  );
+};
 
 export default function StateDetailPage() {
   // For demo purposes, using a default slug
-  const slug = "andhra-pradesh"
-  const stateDetails = getStateDetails(slug)
+  const slug = "andhra-pradesh";
+  const stateDetails = getStateDetails(slug);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-7xl mx-auto">
-            <button className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 mb-6 transition-colors">
-              <ArrowLeft className="w-4 h-4" />
-              Back to Applicability List
-            </button>
-
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center shadow-lg">
-                <Building2 className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-slate-800">{stateDetails.name} - S&E Act Details</h1>
-                <p className="text-gray-600">State Code: {stateDetails.code}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Badge
-                className={stateDetails.applicable ? "bg-green-500 hover:bg-green-600 text-white" : "bg-red-500 hover:bg-red-600 text-white"}
-              >
-                {stateDetails.applicable ? (
-                  <CheckCircle className="w-4 h-4 mr-1" />
-                ) : (
-                  <XCircle className="w-4 h-4 mr-1" />
-                )}
-                {stateDetails.applicable ? "Applicable" : "Not Applicable"}
-              </Badge>
-              <span className="text-sm text-gray-500">Last Updated: {stateDetails.lastUpdated}</span>
-            </div>
-          </div>
+      <div className="container mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
+        
+        {/* Popular Search - Top for Mobile/Tablet */}
+        <div className="lg:hidden mb-3 sm:mb-4">
+          <Card className="shadow-sm">
+            <CardContent className="p-2 sm:p-3">
+              <PopularSearch className="mb-0" />
+            </CardContent>
+          </Card>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-4 gap-8">
+        {/* Page Header */}
+        <div className="mb-4 sm:mb-5 lg:mb-4">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-2xl font-semibold text-slate-800 leading-tight">
+            {stateDetails.name} - S&E Act Details
+          </h2>
+        </div>
+
+        <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5">
           {/* Main Content */}
-          <div className="lg:col-span-3 space-y-8">
+          <div className="lg:col-span-3 space-y-3 lg:space-y-4">
             {/* Act Information */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-slate-800 group-hover:text-orange-600 transition-colors">
-                  <FileText className="w-6 h-6 text-orange-600" />
+            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500 shadow-sm">
+              <CardHeader className="pb-2 lg:pb-3">
+                <CardTitle className="flex items-center gap-2 lg:gap-3 text-base lg:text-lg text-slate-800 group-hover:text-orange-600 transition-colors">
+                  <FileText className="w-5 h-5 lg:w-6 lg:h-6 text-orange-600" />
                   Act Information
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-4">
+              <CardContent className="p-3 lg:p-4">
+                <div className="space-y-3 lg:space-y-4">
                   <div>
-                    <h3 className="font-semibold text-slate-800 mb-2">Governing Act</h3>
-                    <p className="text-gray-700">{stateDetails.act}</p>
+                    <h3 className="font-semibold text-sm lg:text-base text-slate-800 mb-1 lg:mb-2">
+                      Governing Act
+                    </h3>
+                    <p className="text-xs lg:text-sm text-gray-700 leading-relaxed">{stateDetails.act}</p>
                   </div>
-                  <Button className="bg-orange-500 hover:bg-orange-600 text-white">
-                    <Download className="w-4 h-4 mr-2" />
+                  <Button className="bg-orange-500 hover:bg-orange-600 text-white text-xs lg:text-sm h-7 lg:h-8 px-3 lg:px-4">
+                    <Download className="w-3 h-3 lg:w-4 lg:h-4 mr-1 lg:mr-2" />
                     Download Act Document
                   </Button>
                 </div>
@@ -203,145 +190,209 @@ export default function StateDetailPage() {
             </Card>
 
             {/* Applicability Matrix */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-slate-800 group-hover:text-orange-600 transition-colors">
-                  <Building2 className="w-6 h-6 text-orange-600" />
+            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500 shadow-sm">
+              <CardHeader className="pb-2 lg:pb-3">
+                <CardTitle className="flex items-center gap-2 lg:gap-3 text-base lg:text-lg text-slate-800 group-hover:text-orange-600 transition-colors">
+                  <Building2 className="w-5 h-5 lg:w-6 lg:h-6 text-orange-600" />
                   Applicability Matrix
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid md:grid-cols-3 gap-4">
-                  {Object.entries(stateDetails.applicability).map(([type, applicable]) => (
-                    <div key={type} className="flex items-center justify-between p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
-                      <span className="font-medium text-slate-800 capitalize">{type}</span>
-                      <Badge className={applicable === "Yes" ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-600"}>
-                        {applicable === "Yes" ? (
-                          <CheckCircle className="w-3 h-3 mr-1 text-green-600" />
-                        ) : (
-                          <XCircle className="w-3 h-3 mr-1 text-red-600" />
-                        )}
-                        {applicable as string}
-                      </Badge>
-                    </div>
-                  ))}
+              <CardContent className="p-3 lg:p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3">
+                  {Object.entries(stateDetails.applicability).map(
+                    ([type, applicable]) => (
+                      <div
+                        key={type}
+                        className="flex items-center justify-between p-2 lg:p-3 rounded-lg border border-gray-200 hover:bg-orange-50 transition-colors"
+                      >
+                        <span className="font-medium text-xs lg:text-sm text-slate-800 capitalize">
+                          {type}
+                        </span>
+                        <Badge
+                          className={
+                            applicable === "Yes"
+                              ? "bg-green-100 text-green-800 text-xs"
+                              : "bg-gray-100 text-gray-600 text-xs"
+                          }
+                        >
+                          {applicable === "Yes" ? (
+                            <CheckCircle className="w-2 h-2 lg:w-3 lg:h-3 mr-1 text-green-600" />
+                          ) : (
+                            <XCircle className="w-2 h-2 lg:w-3 lg:h-3 mr-1 text-red-600" />
+                          )}
+                          {applicable as string}
+                        </Badge>
+                      </div>
+                    )
+                  )}
                 </div>
               </CardContent>
             </Card>
 
             {/* Working Hours */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-slate-800 group-hover:text-orange-600 transition-colors">
-                  <Clock className="w-6 h-6 text-orange-600" />
+            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500 shadow-sm">
+              <CardHeader className="pb-2 lg:pb-3">
+                <CardTitle className="flex items-center gap-2 lg:gap-3 text-base lg:text-lg text-slate-800 group-hover:text-orange-600 transition-colors">
+                  <Clock className="w-5 h-5 lg:w-6 lg:h-6 text-orange-600" />
                   Working Hours & Overtime
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="p-4 bg-orange-50 rounded-lg border border-orange-100">
-                    <h3 className="font-semibold text-slate-800 mb-2">Daily Hours</h3>
-                    <p className="text-2xl font-bold text-orange-600">{stateDetails.workingHours.daily}</p>
+              <CardContent className="p-3 lg:p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4">
+                  <div className="p-3 lg:p-4 bg-orange-50 rounded-lg border border-orange-100">
+                    <h3 className="font-semibold text-xs lg:text-sm text-slate-800 mb-1 lg:mb-2">
+                      Daily Hours
+                    </h3>
+                    <p className="text-lg lg:text-2xl font-bold text-orange-600">
+                      {stateDetails.workingHours.daily}
+                    </p>
                   </div>
-                  <div className="p-4 bg-orange-50 rounded-lg border border-orange-100">
-                    <h3 className="font-semibold text-slate-800 mb-2">Weekly Hours</h3>
-                    <p className="text-2xl font-bold text-orange-600">{stateDetails.workingHours.weekly}</p>
+                  <div className="p-3 lg:p-4 bg-orange-50 rounded-lg border border-orange-100">
+                    <h3 className="font-semibold text-xs lg:text-sm text-slate-800 mb-1 lg:mb-2">
+                      Weekly Hours
+                    </h3>
+                    <p className="text-lg lg:text-2xl font-bold text-orange-600">
+                      {stateDetails.workingHours.weekly}
+                    </p>
                   </div>
-                  <div className="p-4 bg-orange-50 rounded-lg border border-orange-100">
-                    <h3 className="font-semibold text-slate-800 mb-2">Overtime</h3>
-                    <p className="text-sm text-gray-700">{stateDetails.workingHours.overtime}</p>
+                  <div className="p-3 lg:p-4 bg-orange-50 rounded-lg border border-orange-100">
+                    <h3 className="font-semibold text-xs lg:text-sm text-slate-800 mb-1 lg:mb-2">
+                      Overtime
+                    </h3>
+                    <p className="text-xs lg:text-sm text-gray-700 font-medium">
+                      {stateDetails.workingHours.overtime}
+                    </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* Registration Requirements */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-slate-800 group-hover:text-orange-600 transition-colors">
-                  <Users className="w-6 h-6 text-orange-600" />
+            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500 shadow-sm">
+              <CardHeader className="pb-2 lg:pb-3">
+                <CardTitle className="flex items-center gap-2 lg:gap-3 text-base lg:text-lg text-slate-800 group-hover:text-orange-600 transition-colors">
+                  <Users className="w-5 h-5 lg:w-6 lg:h-6 text-orange-600" />
                   Registration Requirements
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-semibold text-slate-800 mb-2">Registration Required</h3>
-                    <Badge className={stateDetails.registration.required ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-600"}>
+              <CardContent className="p-3 lg:p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+                  <div className="p-3 lg:p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h3 className="font-semibold text-xs lg:text-sm text-slate-800 mb-1 lg:mb-2">
+                      Registration Required
+                    </h3>
+                    <Badge
+                      className={
+                        stateDetails.registration.required
+                          ? "bg-green-100 text-green-800 text-xs"
+                          : "bg-gray-100 text-gray-600 text-xs"
+                      }
+                    >
                       {stateDetails.registration.required ? "Yes" : "No"}
                     </Badge>
                   </div>
-                  <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-semibold text-slate-800 mb-2">Registration Fee</h3>
-                    <p className="text-gray-700 font-medium">{stateDetails.registration.fee}</p>
+                  <div className="p-3 lg:p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h3 className="font-semibold text-xs lg:text-sm text-slate-800 mb-1 lg:mb-2">
+                      Registration Fee
+                    </h3>
+                    <p className="text-xs lg:text-sm text-gray-700 font-medium">
+                      {stateDetails.registration.fee}
+                    </p>
                   </div>
-                  <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-semibold text-slate-800 mb-2">Validity</h3>
-                    <p className="text-gray-700 font-medium">{stateDetails.registration.validity}</p>
+                  <div className="p-3 lg:p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h3 className="font-semibold text-xs lg:text-sm text-slate-800 mb-1 lg:mb-2">
+                      Validity
+                    </h3>
+                    <p className="text-xs lg:text-sm text-gray-700 font-medium">
+                      {stateDetails.registration.validity}
+                    </p>
                   </div>
-                  <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-semibold text-slate-800 mb-2">Renewal</h3>
-                    <p className="text-gray-700 font-medium">{stateDetails.registration.renewal}</p>
+                  <div className="p-3 lg:p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h3 className="font-semibold text-xs lg:text-sm text-slate-800 mb-1 lg:mb-2">
+                      Renewal
+                    </h3>
+                    <p className="text-xs lg:text-sm text-gray-700 font-medium">
+                      {stateDetails.registration.renewal}
+                    </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* Holidays */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-slate-800 group-hover:text-orange-600 transition-colors">
-                  <Calendar className="w-6 h-6 text-orange-600" />
+            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500 shadow-sm">
+              <CardHeader className="pb-2 lg:pb-3">
+                <CardTitle className="flex items-center gap-2 lg:gap-3 text-base lg:text-lg text-slate-800 group-hover:text-orange-600 transition-colors">
+                  <Calendar className="w-5 h-5 lg:w-6 lg:h-6 text-orange-600" />
                   Mandatory Holidays
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid gap-3">
-                  {stateDetails.holidays.map((holiday: string, index: number) => (
-                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
-                      <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                        <span className="text-sm font-semibold text-orange-700">{index + 1}</span>
+              <CardContent className="p-3 lg:p-4">
+                <div className="grid gap-2 lg:gap-3">
+                  {stateDetails.holidays.map(
+                    (holiday: string, index: number) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-2 lg:gap-3 p-2 lg:p-3 rounded-lg border border-gray-200 hover:bg-orange-50 transition-colors"
+                      >
+                        <div className="w-6 h-6 lg:w-8 lg:h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                          <span className="text-xs lg:text-sm font-semibold text-orange-700">
+                            {index + 1}
+                          </span>
+                        </div>
+                        <span className="text-xs lg:text-sm text-gray-700">{holiday}</span>
                       </div>
-                      <span className="text-gray-700">{holiday}</span>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </div>
               </CardContent>
             </Card>
 
             {/* Penalties */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-red-500">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-slate-800 group-hover:text-red-600 transition-colors">
-                  <AlertTriangle className="w-6 h-6 text-red-600" />
+            <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-red-500 shadow-sm">
+              <CardHeader className="pb-2 lg:pb-3">
+                <CardTitle className="flex items-center gap-2 lg:gap-3 text-base lg:text-lg text-slate-800 group-hover:text-red-600 transition-colors">
+                  <AlertTriangle className="w-5 h-5 lg:w-6 lg:h-6 text-red-600" />
                   Penalties & Consequences
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid gap-4">
-                  <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-                    <h3 className="font-semibold text-slate-800 mb-2">Non-Registration</h3>
-                    <p className="text-red-600 font-medium">{stateDetails.penalties.nonRegistration}</p>
+              <CardContent className="p-3 lg:p-4">
+                <div className="grid gap-3 lg:gap-4">
+                  <div className="p-3 lg:p-4 bg-red-50 rounded-lg border border-red-200">
+                    <h3 className="font-semibold text-xs lg:text-sm text-slate-800 mb-1 lg:mb-2">
+                      Non-Registration
+                    </h3>
+                    <p className="text-red-600 font-medium text-xs lg:text-sm">
+                      {stateDetails.penalties.nonRegistration}
+                    </p>
                   </div>
-                  <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-                    <h3 className="font-semibold text-slate-800 mb-2">Act Violations</h3>
-                    <p className="text-red-600 font-medium">{stateDetails.penalties.violations}</p>
+                  <div className="p-3 lg:p-4 bg-red-50 rounded-lg border border-red-200">
+                    <h3 className="font-semibold text-xs lg:text-sm text-slate-800 mb-1 lg:mb-2">
+                      Act Violations
+                    </h3>
+                    <p className="text-red-600 font-medium text-xs lg:text-sm">
+                      {stateDetails.penalties.violations}
+                    </p>
                   </div>
-                  <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-                    <h3 className="font-semibold text-slate-800 mb-2">Repeat Offense</h3>
-                    <p className="text-red-600 font-medium">{stateDetails.penalties.repeatOffense}</p>
+                  <div className="p-3 lg:p-4 bg-red-50 rounded-lg border border-red-200">
+                    <h3 className="font-semibold text-xs lg:text-sm text-slate-800 mb-1 lg:mb-2">
+                      Repeat Offense
+                    </h3>
+                    <p className="text-red-600 font-medium text-xs lg:text-sm">
+                      {stateDetails.penalties.repeatOffense}
+                    </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Right Sidebar - Popular Search */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-4 space-y-6">
-              <Card className="group hover:shadow-lg transition-all duration-300">
-                <CardContent className="p-6">
-                  <PopularSearch />
+          {/* Right Sidebar - Popular Search (Desktop Only) */}
+          <div className="hidden lg:block lg:col-span-1">
+            <div className="sticky top-2 lg:top-3">
+              <Card className="shadow-sm hover:shadow-md transition-shadow">
+                <CardContent className="p-2 lg:p-3 xl:p-4">
+                  <PopularSearch className="mb-0" />
                 </CardContent>
               </Card>
             </div>
@@ -349,5 +400,5 @@ export default function StateDetailPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
