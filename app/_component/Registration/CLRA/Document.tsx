@@ -40,7 +40,7 @@ export default function CLRADocs() {
     <main className="bg-[#f6f8fc] text-slate-900">
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         {/* Two groups, each with its own heading and list */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-y-10 gap-x-16 sm:gap-x-20 lg:gap-x-28 xl:gap-x-40">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-y-12 gap-x-10 sm:gap-x-14 lg:gap-x-20 xl:gap-x-28">
           {/* Left: CLRA Registration */}
           <div>
             <h3 className="text-[18px] sm:text-[20px] lg:text-[22px] font-extrabold tracking-tight text-[#142a63]">
@@ -51,8 +51,8 @@ export default function CLRADocs() {
               {LEFT_DOCS.map((item, idx) => (
                 <li key={`l-${idx}`} className="flex items-start gap-3">
                   <NavyBullet />
-                  {/* Keep one-line on wide screens, wrap on smaller */}
-                  <span className="xl:whitespace-nowrap">{item}</span>
+                  {/* Wrap safely on all screens; no overflow */}
+                  <span className="block min-w-0 break-words">{item}</span>
                 </li>
               ))}
             </ul>
@@ -68,7 +68,7 @@ export default function CLRADocs() {
               {RIGHT_DOCS.map((item, idx) => (
                 <li key={`r-${idx}`} className="flex items-start gap-3">
                   <NavyBullet />
-                  <span className="xl:whitespace-nowrap">{item}</span>
+                  <span className="block min-w-0 break-words">{item}</span>
                 </li>
               ))}
             </ul>
