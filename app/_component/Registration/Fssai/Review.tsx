@@ -310,7 +310,7 @@ function BenefitsSection() {
         <section className="bg-white py-4 sm:py-6">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <h2 className="text-center text-[26px] sm:text-[30px] font-extrabold text-[#142a63]">
-                    Why Choose Us For MSME Registration ?
+                    Why Choose Us For FSSAI Registration ?
                 </h2>
 
                 <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

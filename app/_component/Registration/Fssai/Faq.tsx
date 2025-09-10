@@ -177,7 +177,7 @@ export default function FaqPage() {
                         {statesLeft.map((state) => (
                             <li key={state} className="flex items-center gap-2 text-[15px] text-slate-800">
                                 <PinIcon />
-                                <span>MSME Registration in {state}</span>
+                                <span>FSSAI Registration in {state}</span>
                             </li>
                         ))}
                     </ul>
@@ -186,7 +186,7 @@ export default function FaqPage() {
                         {statesRight.map((state) => (
                             <li key={state} className="flex items-center gap-2 text-[15px] text-slate-800">
                                 <PinIcon />
-                                <span>MSME Registration in {state}</span>
+                                <span>FSSAI Registration in {state}</span>
                             </li>
                         ))}
                     </ul>
