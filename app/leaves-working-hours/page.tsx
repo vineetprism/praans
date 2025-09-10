@@ -49,10 +49,12 @@ export default function LeavesWorkingHoursPage() {
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h1 className="text-3xl font-bold text-slate-800 mb-2">Leave & Working Hours</h1>
-                  <p className="text-gray-600 text-lg">
-                    Comprehensive guide to statutory leave policies and working hours regulations across Indian states
-                  </p>
+                  <h2 className="text-3xl font-bold text-slate-800 mb-2">Leave & Working Hours</h2>
+                     <p className="text-gray-700 leading-relaxed text-xs sm:text-sm text-justify mb-3">
+                        "Statutory Leave" ensures a healthy work-life balance and boosts employee motivation levels.
+                        "Working Hours" regulations define the laboring time an employee is expected to work in exchange
+                        for pay as enumerated by Labour Codes.
+                      </p>
                 </div>
                 <div className="flex items-center gap-3">
                   <Badge variant="secondary" className="px-3 py-1">
@@ -80,7 +82,7 @@ export default function LeavesWorkingHoursPage() {
             </div>
 
             {/* Leave Section */}
-            <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+            {/* <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
               <CardHeader>
                 <CardTitle className="text-xl group-hover:text-orange-600 transition-colors">Leave</CardTitle>
               </CardHeader>
@@ -90,10 +92,10 @@ export default function LeavesWorkingHoursPage() {
                   an interval for rest, opening and closing hours, holidays, overtime work, annual leave, sick leave, casual leave, condition of the employment, etc.
                 </p>
               </CardContent>
-            </Card>
+            </Card> */}
 
             {/* Concept of Leaves */}
-            <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+            {/* <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
               <CardHeader>
                 <CardTitle className="text-xl group-hover:text-orange-600 transition-colors">Concept of Leaves</CardTitle>
               </CardHeader>
@@ -109,7 +111,7 @@ export default function LeavesWorkingHoursPage() {
                   Generally, the framework of the Act is similar throughout. However, the leave provision under the Act varies for every state.
                 </p>
               </CardContent>
-            </Card>
+            </Card> */}
 
             {/* Leave & Working Hours For States */}
             <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
