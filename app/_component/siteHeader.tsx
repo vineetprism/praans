@@ -441,11 +441,11 @@ const NAV = [
     dropdown: [
       { label: "MSME Registration", href: "/registration/msme" },
       { label: "FSSAI Registration", href: "/registration/fssai" },
-      { label: "Contract Labour License", href: "/registration/contract-labour" },
+      { label: "Contract Labour License", href: "/registration/clra" },
       { label: "ESIC Registration", href: "/registration/esic" },
       { label: "EPF Registration", href: "/registration/epf" },
       { label: "Professional Tax Registration", href: "/registration/professional-tax" },
-      { label: "Labour Welfare Fund", href: "/registration/labour-welfare-fund" },
+      { label: "Shop & Establishment Registration", href: "/registration/shop-establishment-registration" },
       { label: "Minimum Wages Registration", href: "/registration/minimum-wages" },
     ],
   },
