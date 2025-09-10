@@ -440,7 +440,7 @@ const NAV = [
     href: "",
     dropdown: [
       { label: "MSME Registration", href: "/registration/msme" },
-      { label: "Factory License", href: "/registration/factory-license" },
+      { label: "FSSAI Registration", href: "/registration/fssai" },
       { label: "Contract Labour License", href: "/registration/contract-labour" },
       { label: "ESIC Registration", href: "/registration/esic" },
       { label: "EPF Registration", href: "/registration/epf" },

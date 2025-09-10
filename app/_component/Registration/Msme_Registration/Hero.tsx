@@ -8,11 +8,6 @@ export default function MsmeHero() {
 
   return (
     <section className="relative overflow-hidden bg-white">
-      {/* Background */}
-      {/* <div className="absolute inset-0 -z-10 bg-gradient-to-br from-orange-50 via-white to-blue-50" />
-      <div className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rotate-12 rounded-3xl bg-orange-500/20 blur-3xl" />
-      <div className="pointer-events-none absolute -right-24 top-0 h-[28rem] w-[28rem] -rotate-12 rounded-3xl bg-orange-400/30 blur-3xl" /> */}
-
       {/* Content container */}
       <div className="mx-auto max-w-7xl px-4 py-2 sm:py-4 lg:py-6">
         <div className="grid gap-2 lg:grid-cols-2 lg:items-start">
