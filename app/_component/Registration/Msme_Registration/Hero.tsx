@@ -7,68 +7,66 @@ export default function MsmeHero() {
   const [hear, setHear] = useState("Google");
 
   return (
-    <section className="relative overflow-hidden bg-white">
-      {/* Content container */}
-      <div className="mx-auto max-w-7xl px-4 py-2 sm:py-4 lg:py-6">
-        <div className="grid gap-2 lg:grid-cols-2 lg:items-start">
+    <section className="relative w-full overflow-hidden bg-white">
+      {/* CONTENT */}
+      <div className="mx-auto w-full px-4 py-2 sm:py-4 lg:py-6">
+        <div className="grid gap-6 lg:grid-cols-12 lg:items-start">
           {/* LEFT */}
-          <div className="max-w-2xl">
-            <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+          <div className="max-w-none lg:col-span-7">
+            {/* HEADLINE: single line on all devices with horizontal scroll if needed */}
+            <h1 className="w-full whitespace-nowrap text-2xl font-extrabold tracking-tight text-slate-900 sm:text-2xl xl:text-3xl">
               India’s Trusted <span className="text-orange-500">MSME Registration Consultant</span>
             </h1>
-            <p className="mt-1 text-sm font-semibold text-slate-600">
+
+            {/* Centered under headline */}
+            <p className="mt-1 text-center text-sm font-semibold text-slate-600">
               (An ISO Certified Company)
             </p>
 
-            <p className="mt-4 text-[15px] leading-7 text-slate-700">
+            {/* PROMO LINE: single line + scroll if needed */}
+            <p className="mt-4 w-full overflow-x-auto whitespace-nowrap text-[15px] leading-7 text-slate-700">
               Get Your MSME Registration Done Quickly and Hassle-Free Starting from Just{" "}
               <span className="font-bold text-slate-900">Rs.799/-</span>
             </p>
 
+            {/* BULLETS: each on one line; scroll on narrow screens */}
             <ul className="mt-6 space-y-2 text-[15px] leading-6 text-slate-800">
-              <li className="flex items-start gap-2">
+              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Get Your Renewed Registration in Just 4 Hours
               </li>
-              <li className="flex items-start gap-2">
+              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Apply New Registration in Just 2 Hours
               </li>
-              <li className="flex items-start gap-2">
+              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 <span>
                   <span className="font-semibold">Free</span> Consultation
                 </span>
               </li>
-              <li className="flex items-start gap-2">
+              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Money Back Guarantee
               </li>
-              <li className="flex items-start gap-2">
+              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 100% Online Process
               </li>
             </ul>
 
-            <div className="mt-5 flex items-center gap-2 text-[15px] text-slate-800">
-              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full">
-                ⭐
-              </span>
+            {/* STATS: single line */}
+            <div className="mt-5 flex w-full items-center gap-2 overflow-x-auto whitespace-nowrap text-[15px] text-slate-800">
+              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full">⭐</span>
               15 Years experience in MSME Registration PAN India
             </div>
 
             <button
               type="button"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500 hover:cursor-pointer"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500"
             >
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/30 ">
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-3.5 w-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
+              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/30">
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.1 12.81 19.79 19.79 0 010 4.18 2 2 0 012 2h3a2 2 0 012 1.72c.12.9.3 1.78.57 2.63a2 2 0 01-.45 2.11L6.1 9.9a16 16 0 006 6l1.44-1.02a2 2 0 012.11-.45c.85.27 1.73.45 2.63.57A2 2 0 0122 16.92z" />
                 </svg>
               </span>
@@ -76,8 +74,8 @@ export default function MsmeHero() {
             </button>
           </div>
 
-          {/* RIGHT: CARD (full width in its column; capped for comfort) */}
-          <div className="w-full lg:ml-auto">
+          {/* RIGHT */}
+          <div className="w-full lg:col-span-5 lg:ml-auto">
             <div className="mx-auto w-full max-w-[560px] rounded-xl bg-white p-5 shadow-xl ring-1 ring-slate-200/70 sm:p-6">
               <form
                 onSubmit={(e) => {
@@ -87,9 +85,7 @@ export default function MsmeHero() {
                 className="space-y-4"
               >
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
-                    Name
-                  </label>
+                  <label className="mb-1 block text-sm font-medium text-slate-700">Name</label>
                   <input
                     className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2"
                     required
@@ -97,9 +93,7 @@ export default function MsmeHero() {
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
-                    Mobile Number
-                  </label>
+                  <label className="mb-1 block text-sm font-medium text-slate-700">Mobile Number</label>
                   <input
                     type="tel"
                     inputMode="numeric"
@@ -110,9 +104,7 @@ export default function MsmeHero() {
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
-                    E-mail Id
-                  </label>
+                  <label className="mb-1 block text-sm font-medium text-slate-700">E-mail Id</label>
                   <input
                     type="email"
                     className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2"
@@ -121,9 +113,7 @@ export default function MsmeHero() {
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
-                    State
-                  </label>
+                  <label className="mb-1 block text-sm font-medium text-slate-700">State</label>
                   <select
                     value={state}
                     onChange={(e) => setState(e.target.value)}
@@ -162,9 +152,7 @@ export default function MsmeHero() {
                     <optgroup label="Union Territories">
                       <option>Andaman and Nicobar Islands</option>
                       <option>Chandigarh</option>
-                      <option>
-                        Dadra and Nagar Haveli and Daman and Diu
-                      </option>
+                      <option>Dadra and Nagar Haveli and Daman and Diu</option>
                       <option>Delhi</option>
                       <option>Jammu and Kashmir</option>
                       <option>Ladakh</option>
@@ -198,7 +186,7 @@ export default function MsmeHero() {
 
                 <button
                   type="submit"
-                  className="mt-2 w-full rounded-md bg-orange-500 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 hover:cursor-pointer"
+                  className="mt-2 w-full rounded-md bg-orange-500 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 >
                   Submit
                 </button>
@@ -208,10 +196,10 @@ export default function MsmeHero() {
         </div>
       </div>
 
-      {/* FULL-WIDTH ORANGE STRIP */}
+      {/* ORANGE STRIP — single line everywhere; horizontal scroll on very small widths */}
       <div className="w-full bg-orange-500">
-        <div className="mx-auto max-w-7xl px-4 py-6 text-sm font-semibold text-white">
-          <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
+        <div className="mx-auto w-full px-4 py-6 text-sm font-semibold text-white">
+          <div className="flex w-full items-center justify-between gap-6 overflow-x-auto whitespace-nowrap">
             <span>
               Support:{" "}
               <Link href="mailto:info@praansconsultech.com" className="hover:underline">
