@@ -169,18 +169,32 @@ export default function MsmeHero() {
         </div>
       </div>
 
-      {/* ORANGE STRIP */}
+      {/* FULL-WIDTH ORANGE STRIP */}
       <div className="w-full bg-orange-500">
-        <div className="mx-auto w-full px-4 py-6 text-sm font-semibold text-white">
-          <div className="flex w-full items-center justify-between gap-6 overflow-x-auto whitespace-nowrap">
+        <div className="mx-auto max-w-7xl px-4 py-6 text-sm font-semibold text-white">
+          <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
             <span>
-              Support: <Link href="mailto:info@praansconsultech.com" className="hover:underline">info@praansconsultech.com</Link>
+              Support:{" "}
+              <Link href="mailto:info@praansconsultech.com" className="hover:underline">
+                info@praansconsultech.com
+              </Link>
             </span>
             <span>
-              Talk to us: <Link href="tel:+919050576838" className="hover:underline">+91 9050576838</Link>
+              Talk to us:{" "}
+              <Link href="tel:+919050576838" className="hover:underline">
+                +91 9050576838
+              </Link>
             </span>
             <span>
-              Website: <Link href="https://www.praansconsultech.com" target="_blank" rel="noreferrer" className="hover:underline">www.praansconsultech.com</Link>
+              Website:{" "}
+              <Link
+                href="https://www.praansconsultech.com"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:underline"
+              >
+                www.praansconsultech.com
+              </Link>
             </span>
           </div>
         </div>
