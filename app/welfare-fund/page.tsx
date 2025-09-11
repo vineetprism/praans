@@ -285,7 +285,7 @@ export default function WelfareFundPage() {
                           </div>
                         </Link>
                       ))}
-                    </div>
+                    </div>  
                   </div>
                   {/* Non-Applicable States */}
                   <div>
