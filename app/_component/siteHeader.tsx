@@ -447,6 +447,7 @@ const NAV = [
       { label: "Professional Tax Registration", href: "/registration/professional-tax" },
       { label: "Shop & Establishment Registration", href: "/registration/shop-establishment-registration" },
       { label: "Minimum Wages Registration", href: "/registration/minimum-wages" },
+      { label: "Labour Welfare Fund Registration", href: "/registration/labour-welfare-fund" },
     ],
   },
   { label: "Contact", href: "/contact" },
