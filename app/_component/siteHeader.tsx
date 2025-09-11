@@ -442,7 +442,7 @@ const NAV = [
       { label: "MSME Registration", href: "/registration/msme" },
       { label: "FSSAI Registration", href: "/registration/fssai" },
       { label: "Contract Labour License", href: "/registration/clra" },
-      { label: "ESIC Registration", href: "/registration/esic" },
+      { label: "GST Registration", href: "/registration/gst" },
       { label: "EPF Registration", href: "/registration/epf" },
       { label: "Professional Tax Registration", href: "/registration/professional-tax" },
       { label: "Shop & Establishment Registration", href: "/registration/shop-establishment-registration" },
