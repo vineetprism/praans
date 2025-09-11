@@ -14,9 +14,13 @@ export default function MsmeHero() {
           {/* LEFT */}
           <div className="max-w-none lg:col-span-7 pl-3 sm:pl-6 md:pl-10 lg:pl-14 xl:pl-20 2xl:pl-24">
             {/* HEADLINE */}
-            <h1 className="w-full whitespace-nowrap text-2xl font-extrabold tracking-tight text-slate-900 sm:text-2xl xl:text-3xl">
-              India’s Trusted <span className="text-orange-500">Shop &amp; Establishment Registration Consultant</span>
+            <h1 className="w-full text-2xl font-extrabold tracking-tight text-slate-900 sm:text-2xl xl:text-3xl whitespace-nowrap lg:whitespace-normal lg:text-center">
+              India’s Trusted{" "}
+              <span className="text-orange-500">Shop &amp; Establishment Registration</span>
+              <span className="text-orange-500 hidden lg:block">Consultant</span>
+              <span className="text-orange-500 lg:hidden"> Consultant</span>
             </h1>
+
 
             {/* ISO under headline */}
             <p className="mt-1 text-center text-sm font-semibold text-slate-600">
@@ -24,7 +28,7 @@ export default function MsmeHero() {
             </p>
 
             {/* PROMO LINE */}
-            <p className="mt-4 w-full overflow-x-auto whitespace-nowrap text-[15px] leading-7 text-slate-700">
+            <p className="mt-4 w-full whitespace-nowrap text-[15px] leading-7 text-slate-700">
               Get Your Shop &amp; Establishment Registration Done Quickly and Hassle-Free Starting from Just{" "}
               <span className="font-bold text-slate-900">Rs.1299/-</span>
             </p>
