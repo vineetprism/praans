@@ -443,11 +443,10 @@ const NAV = [
       { label: "FSSAI Registration", href: "/registration/fssai" },
       { label: "Contract Labour License", href: "/registration/clra" },
       { label: "GST Registration", href: "/registration/gst" },
-      { label: "EPF Registration", href: "/registration/epf" },
       { label: "Professional Tax Registration", href: "/registration/professional-tax" },
       { label: "Shop & Establishment Registration", href: "/registration/shop-establishment-registration" },
-      { label: "Minimum Wages Registration", href: "/registration/minimum-wages" },
       { label: "Labour Welfare Fund Registration", href: "/registration/labour-welfare-fund" },
+      { label: "Trade Licence Registration", href: "/registration/trade-licence" },
     ],
   },
   { label: "Contact", href: "/contact" },
@@ -523,9 +522,8 @@ export default function SiteHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-xl shadow-lg" : "bg-white/90 backdrop-blur-md"
-      }`}
+      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-xl shadow-lg" : "bg-white/90 backdrop-blur-md"
+        }`}
     >
       <div className="container mx-auto border-b lg:px-4 border-gray-200">
         {/* ROW: logo left, everything else right */}
@@ -565,9 +563,8 @@ export default function SiteHeader() {
                       aria-current={active ? "page" : undefined}
                       aria-haspopup={hasDropdown ? "menu" : undefined}
                       aria-expanded={hasDropdown ? dropdownOpen === index : undefined}
-                      className={`relative flex items-center gap-2 px-3 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 group ${
-                        active ? "text-orange-600" : "text-gray-700 hover:text-orange-600 hover:bg-orange-50/50"
-                      }`}
+                      className={`relative flex items-center gap-2 px-3 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 group ${active ? "text-orange-600" : "text-gray-700 hover:text-orange-600 hover:bg-orange-50/50"
+                        }`}
                       onClick={(e) => {
                         if (hasDropdown) {
                           e.preventDefault();
@@ -587,9 +584,8 @@ export default function SiteHeader() {
                       {item.label}
                       {hasDropdown && (
                         <ChevronDown
-                          className={`w-4 h-4 transition-transform duration-200 ${
-                            dropdownOpen === index ? "rotate-180" : ""
-                          }`}
+                          className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen === index ? "rotate-180" : ""
+                            }`}
                         />
                       )}
                       {/* {active && (
@@ -610,18 +606,16 @@ export default function SiteHeader() {
                             <Link
                               key={dropdownItem.href}
                               href={dropdownItem.href}
-                              className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg text-sm font-medium transition-all duration-150 group ${
-                                dropdownActive
+                              className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg text-sm font-medium transition-all duration-150 group ${dropdownActive
                                   ? "text-orange-600 bg-orange-50 shadow-sm"
                                   : "text-gray-700 hover:text-orange-600 hover:bg-orange-50/70"
-                              }`}
+                                }`}
                               onClick={() => setDropdownOpen(null)}
                               aria-label={`Go to ${dropdownItem.label}`}
                             >
                               <div
-                                className={`w-2 h-2 rounded-full transition-colors ${
-                                  dropdownActive ? "bg-orange-500" : "bg-gray-300 group-hover:bg-orange-400"
-                                }`}
+                                className={`w-2 h-2 rounded-full transition-colors ${dropdownActive ? "bg-orange-500" : "bg-gray-300 group-hover:bg-orange-400"
+                                  }`}
                               />
                               <span className="flex-1">{dropdownItem.label}</span>
                               <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
@@ -691,9 +685,8 @@ export default function SiteHeader() {
                           <SheetClose asChild key={item.href}>
                             <Link
                               href={item.href}
-                              className={`flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition-all ${
-                                active ? "bg-orange-100 text-orange-700 shadow-sm" : "text-gray-700 hover:bg-orange-50"
-                              }`}
+                              className={`flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition-all ${active ? "bg-orange-100 text-orange-700 shadow-sm" : "text-gray-700 hover:bg-orange-50"
+                                }`}
                               aria-current={active ? "page" : undefined}
                             >
                               <div className={`w-2 h-2 rounded-full ${active ? "bg-orange-500" : "bg-gray-300"}`} />
@@ -711,9 +704,8 @@ export default function SiteHeader() {
                             onClick={() => toggleMobile(index)}
                             aria-expanded={isOpen}
                             aria-controls={`mobile-submenu-${index}`}
-                            className={`w-full flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-all ${
-                              active ? "bg-orange-100 text-orange-700" : "text-gray-700 hover:bg-orange-50"
-                            }`}
+                            className={`w-full flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-all ${active ? "bg-orange-100 text-orange-700" : "text-gray-700 hover:bg-orange-50"
+                              }`}
                             aria-label={`Toggle dropdown for ${item.label}`}
                           >
                             <div className="flex items-center gap-3">
@@ -733,17 +725,15 @@ export default function SiteHeader() {
                                   <SheetClose asChild key={dropdownItem.href}>
                                     <Link
                                       href={dropdownItem.href}
-                                      className={`flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium transition-all ${
-                                        dropdownActive
+                                      className={`flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium transition-all ${dropdownActive
                                           ? "bg-orange-100 text-orange-700"
                                           : "text-gray-600 hover:bg-orange-50 hover:text-orange-600"
-                                      }`}
+                                        }`}
                                       aria-label={`Go to ${dropdownItem.label}`}
                                     >
                                       <div
-                                        className={`w-1.5 h-1.5 rounded-full ${
-                                          dropdownActive ? "bg-orange-500" : "bg-gray-300"
-                                        }`}
+                                        className={`w-1.5 h-1.5 rounded-full ${dropdownActive ? "bg-orange-500" : "bg-gray-300"
+                                          }`}
                                       />
                                       {dropdownItem.label}
                                     </Link>
