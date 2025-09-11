@@ -439,14 +439,14 @@ const NAV = [
     label: "Registration",
     href: "",
     dropdown: [
-      { label: "MSME Registration", href: "/registration/msme" },
-      { label: "FSSAI Registration", href: "/registration/fssai" },
-      { label: "Contract Labour License", href: "/registration/clra" },
-      { label: "GST Registration", href: "/registration/gst" },
-      { label: "Professional Tax Registration", href: "/registration/professional-tax" },
       { label: "Shop & Establishment Registration", href: "/registration/shop-establishment-registration" },
-      { label: "Labour Welfare Fund Registration", href: "/registration/labour-welfare-fund" },
+      { label: "Contract Labour License", href: "/registration/clra" },
+      { label: "Professional Tax Registration", href: "/registration/professional-tax" },
       { label: "Trade Licence Registration", href: "/registration/trade-licence" },
+      { label: "Labour Welfare Fund Registration", href: "/registration/labour-welfare-fund" },
+      { label: "FSSAI Registration", href: "/registration/fssai" },
+      { label: "GST Registration", href: "/registration/gst" },
+      { label: "MSME Registration", href: "/registration/msme" },
     ],
   },
   { label: "Contact", href: "/contact" },
@@ -607,8 +607,8 @@ export default function SiteHeader() {
                               key={dropdownItem.href}
                               href={dropdownItem.href}
                               className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg text-sm font-medium transition-all duration-150 group ${dropdownActive
-                                  ? "text-orange-600 bg-orange-50 shadow-sm"
-                                  : "text-gray-700 hover:text-orange-600 hover:bg-orange-50/70"
+                                ? "text-orange-600 bg-orange-50 shadow-sm"
+                                : "text-gray-700 hover:text-orange-600 hover:bg-orange-50/70"
                                 }`}
                               onClick={() => setDropdownOpen(null)}
                               aria-label={`Go to ${dropdownItem.label}`}
@@ -726,8 +726,8 @@ export default function SiteHeader() {
                                     <Link
                                       href={dropdownItem.href}
                                       className={`flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium transition-all ${dropdownActive
-                                          ? "bg-orange-100 text-orange-700"
-                                          : "text-gray-600 hover:bg-orange-50 hover:text-orange-600"
+                                        ? "bg-orange-100 text-orange-700"
+                                        : "text-gray-600 hover:bg-orange-50 hover:text-orange-600"
                                         }`}
                                       aria-label={`Go to ${dropdownItem.label}`}
                                     >
