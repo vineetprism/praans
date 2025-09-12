@@ -62,9 +62,9 @@ const poppins = Poppins({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body className="font-sans antialiased bg-gray-50 text-slate-900 min-h-screen flex flex-col">
+      <body className="font-sans antialiased">
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main className="">{children}</main>
         <SiteFooter />
       </body>
     </html>

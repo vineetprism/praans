@@ -69,7 +69,7 @@ export default function HeroSection() {
       >
         {/* Heading */}
         <h1
-          className="text-[2rem] min-[360px]:text-[34px] min-[375px]:text-[37px] min-[390px]:text-[37px] min-[414px]:text-[37px] min-[430px]:text-[px] sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[0.5rem] 2xl:text-[6.5rem]
+          className="text-[2rem] min-[360px]:text-[34px] min-[375px]:text-[37px] min-[390px]:text-[37px] min-[414px]:text-[37px] min-[430px]:text-[px] sm:text-5xl md:text-6xl lg:text-[5.9rem] xl:text-[6.8rem] 2xl:text-[6.8rem]
           font-black text-slate-900 tracking-tight"
         >
 
@@ -120,7 +120,7 @@ export default function HeroSection() {
 
         {/* AI ChatBot Badge */}
 
-        <div className="pt-1 sm:pt-6 md:pt-2 lg:pt-4 2xl:pt-4 ">
+        <div className="pt-3 sm:pt-8 md:pt-2 lg:pt-4 2xl:pt-4 ">
 
           <div
             className="
@@ -156,7 +156,7 @@ export default function HeroSection() {
               px-4 sm:px-5 2xl:px-8 lg:h-11
               py-3 sm:py-2.5 2xl:py-6
               shadow-md hover:shadow-orange-500/25 rounded-lg font-bold w-full sm:w-auto
-              "
+              " 
             aria-label="Get a Free Demo Of Software"
           >
             Get a Free Demo Of Software
@@ -182,7 +182,7 @@ export default function HeroSection() {
 
 
 
-
+  
 
 
 

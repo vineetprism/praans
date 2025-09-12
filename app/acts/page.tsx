@@ -840,9 +840,117 @@
 
 
 
+// import { Metadata } from "next";
+// import ActsPageClient from "../_component/ActRuleForm/ActsPageClient";
+
+// export const metadata: Metadata = {
+//   title: "Labour Acts & Regulations | Complete Legal Database",
+//   description:
+//     "Comprehensive collection of central and state labour acts with latest amendments and updates. Search through Acts, Rules, and Forms.",
+//   keywords: [
+//     "Labour Acts",
+//     "Labour Regulations",
+//     "Legal Database",
+//     "Indian Labour Laws",
+//     "Employment Acts",
+//     "Workplace Regulations",
+//     "Legal Compliance",
+//   ],
+// };
+
+// type ActItem = {
+//   id: number;
+//   title: string;
+//   slug: string;               // ✅ add this
+//   state: string;
+//   short_description: string;
+//   act_doc_url?: string | null;
+//   rule_doc_url?: string | null;
+//   forms_count?: number;
+//   created_at?: string;
+// };
+
+// type ApiResponse = {
+//   data: ActItem[];
+//   links: { first: string | null; last: string | null; prev: string | null; next: string | null };
+//   meta: {
+//     current_page: number;
+//     from: number | null;
+//     last_page: number;
+//     path: string;
+//     per_page: number;
+//     to: number | null;
+//     total: number;
+//   };
+// };
+
+// const API_BASE = "http://100.110.147.101:8000/api/act-rule-forms";
+
+// async function getActsData(page: number = 1): Promise<ApiResponse> {
+//   try {
+//     const res = await fetch(`${API_BASE}?page=${page}`, { next: { revalidate: 1800 } });
+//     if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch acts data`);
+//     return await res.json();
+//   } catch (error) {
+//     console.error("Error fetching acts data:", error);
+//     return {
+//       data: [],
+//       links: { first: null, last: null, prev: null, next: null },
+//       meta: { current_page: 1, from: null, last_page: 1, path: "", per_page: 10, to: null, total: 0 },
+//     };
+//   }
+// }
+
+// export default async function ActsPage({ searchParams }: { searchParams: { page?: string } }) {
+//   const currentPage = Number(searchParams.page) || 1;
+//   const initialData = await getActsData(currentPage);
+
+//   return <ActsPageClient initialData={initialData} initialPage={currentPage} />;
+// }
+
+
+
+
+
+
+
+
+
 import { Metadata } from "next";
 import ActsPageClient from "../_component/ActRuleForm/ActsPageClient";
 
+const API_BASE = "http://100.110.147.101:8000/api/act-rule-forms";
+const STATES_API_BASE = "http://100.110.147.101:8000/api/states";
+
+// Fetch Acts Data
+async function getActsData(page: number = 1) {
+  try {
+    const res = await fetch(`${API_BASE}?page=${page}`, { next: { revalidate: 1800 } });
+    if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch acts data`);
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching acts data:", error);
+    return {
+      data: [],
+      links: { first: null, last: null, prev: null, next: null },
+      meta: { current_page: 1, from: null, last_page: 1, path: "", per_page: 10, to: null, total: 0 },
+    };
+  }
+}
+
+// Fetch States Data
+async function getStatesData() {
+  try {
+    const res = await fetch(STATES_API_BASE);
+    if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch states data`);
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching states data:", error);
+    return { states: [] };
+  }
+}
+
+// Server-side metadata
 export const metadata: Metadata = {
   title: "Labour Acts & Regulations | Complete Legal Database",
   description:
@@ -858,52 +966,12 @@ export const metadata: Metadata = {
   ],
 };
 
-type ActItem = {
-  id: number;
-  title: string;
-  slug: string;               // ✅ add this
-  state: string;
-  short_description: string;
-  act_doc_url?: string | null;
-  rule_doc_url?: string | null;
-  forms_count?: number;
-  created_at?: string;
-};
-
-type ApiResponse = {
-  data: ActItem[];
-  links: { first: string | null; last: string | null; prev: string | null; next: string | null };
-  meta: {
-    current_page: number;
-    from: number | null;
-    last_page: number;
-    path: string;
-    per_page: number;
-    to: number | null;
-    total: number;
-  };
-};
-
-const API_BASE = "http://100.110.147.101:8000/api/act-rule-forms";
-
-async function getActsData(page: number = 1): Promise<ApiResponse> {
-  try {
-    const res = await fetch(`${API_BASE}?page=${page}`, { next: { revalidate: 1800 } });
-    if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch acts data`);
-    return await res.json();
-  } catch (error) {
-    console.error("Error fetching acts data:", error);
-    return {
-      data: [],
-      links: { first: null, last: null, prev: null, next: null },
-      meta: { current_page: 1, from: null, last_page: 1, path: "", per_page: 10, to: null, total: 0 },
-    };
-  }
-}
-
+// Main server component
 export default async function ActsPage({ searchParams }: { searchParams: { page?: string } }) {
   const currentPage = Number(searchParams.page) || 1;
-  const initialData = await getActsData(currentPage);
 
-  return <ActsPageClient initialData={initialData} initialPage={currentPage} />;
+  // Fetch acts and states data
+  const [initialData, statesData] = await Promise.all([getActsData(currentPage), getStatesData()]);
+
+  return <ActsPageClient initialData={initialData} initialPage={currentPage} states={statesData.states} />;
 }
