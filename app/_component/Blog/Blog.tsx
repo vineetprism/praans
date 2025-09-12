@@ -38,63 +38,76 @@ const blogPosts: BlogPost[] = [
     },
 ];
 
-const BlogPage = () => {
+export default function BlogPage() {
     return (
         <div className="container mx-auto px-4 py-8">
-            {/* Spread the love section */}
+            {/* Social Media Links */}
             <div className="flex justify-between py-4">
                 <div className="flex gap-3">
-                    {/* Social media icons with orange color */}
-                    <Link href="#" className="text-orange-400 hover:text-orange-500">
+                    <Link href="#" className="text-orange-400 hover:text-orange-500 transition-colors">
                         <Facebook size={24} />
                     </Link>
-                    <Link href="#" className="text-orange-400 hover:text-orange-500">
+                    <Link href="#" className="text-orange-400 hover:text-orange-500 transition-colors">
                         <Twitter size={24} />
                     </Link>
-                    <Link href="#" className="text-orange-400 hover:text-orange-500">
+                    <Link href="#" className="text-orange-400 hover:text-orange-500 transition-colors">
                         <Linkedin size={24} />
                     </Link>
-                    <Link href="#" className="text-orange-400 hover:text-orange-500">
+                    <Link href="#" className="text-orange-400 hover:text-orange-500 transition-colors">
                         <FaPinterest size={24} />
                     </Link>
-                    <Link href="#" className="text-orange-400 hover:text-orange-500">
+                    <Link href="#" className="text-orange-400 hover:text-orange-500 transition-colors">
                         <FaWhatsapp size={24} />
                     </Link>
                 </div>
             </div>
 
-            {/* Blog Posts */}
+            {/* Blog Posts Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {blogPosts.map((post, index) => (
-                    <div
+                    <article
                         key={index}
-                        className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full"
+                        className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
                     >
-                        {/* Image takes full height and width with responsive design */}
-                        <div className="relative w-full h-48 sm:h-56 md:h-64 lg:h-80">
+                        {/* Image Container - Fixed aspect ratio */}
+                        <div className="relative w-full aspect-[4/3] overflow-hidden">
                             <Image
                                 src={post.image}
                                 alt={post.title}
                                 fill
-                                className="w-full h-full object-cover"
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                className="object-cover hover:scale-105 transition-transform duration-300"
+                                priority={index < 3} // Prioritize loading for first 3 images
                             />
                         </div>
-                        <div className="p-4 flex-grow">
-                            <h2 className="text-xl font-bold text-gray-900">{post.title}</h2>
-                            <span className="text-gray-600 text-sm">{post.date} // No Comments</span>
-                            <p className="mt-3 text-gray-700">{post.description}</p>
+                        
+                        {/* Content Container */}
+                        <div className="p-6">
+                            <h2 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2 leading-tight">
+                                {post.title}
+                            </h2>
+                            
+                            <div className="text-gray-500 text-sm mb-3 flex items-center gap-2">
+                                <time dateTime={post.date}>{post.date}</time>
+                                <span>•</span>
+                                <span>No Comments</span>
+                            </div>
+                            
+                            <p className="text-gray-700 mb-4 line-clamp-3 leading-relaxed">
+                                {post.description}
+                            </p>
+                            
                             <Link
                                 href={post.link}
-                                className="inline-block mt-4 px-4 py-2 bg-orange-500 text-white font-semibold rounded hover:bg-orange-400"
+                                className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                             >
-                                Read More &rarr;
+                                Read More
+                                <span aria-hidden="true">→</span>
                             </Link>
                         </div>
-                    </div>
+                    </article>
                 ))}
             </div>
         </div>
     );
-};
-
-export default BlogPage;
+}

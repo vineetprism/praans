@@ -129,9 +129,7 @@ export default function SiteHeader() {
         }`}
     >
       <div className="container mx-auto border-b lg:px-4 border-gray-200">
-        {/* ROW: logo left, everything else right */}
         <div className="h-12 lg:h-16 flex items-center gap-4">
-          {/* Left: Logo (pinned) */}
           <Link href="/" className="flex items-center gap-3 group shrink-0" aria-label="Go to homepage">
             <div className="relative">
               <Image
@@ -145,9 +143,7 @@ export default function SiteHeader() {
             </div>
           </Link>
 
-          {/* Right group: Desktop nav + CTAs + Mobile menu (pushed right) */}
           <div className="ml-auto flex items-center gap-4">
-            {/* Desktop nav */}
             <nav className="hidden lg:flex items-center">
               {NAV.map((item, index) => {
                 const active = pathname?.startsWith(item.href);
@@ -228,7 +224,6 @@ export default function SiteHeader() {
               })}
             </nav>
 
-            {/* Desktop CTAs */}
             <div className="hidden lg:flex items-center gap-2">
               <Button
                 variant="ghost"

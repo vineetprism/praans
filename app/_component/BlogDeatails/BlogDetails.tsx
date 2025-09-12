@@ -2,7 +2,7 @@ import React from "react";
 import { Facebook, Twitter, Linkedin, Calendar, User, MessageCircle, Eye } from "lucide-react";
 import { FaLinkedin, FaTwitter } from "react-icons/fa";
 
-const BlogPostPage = () => {
+export default function BlogPostPage () {
     return (
         <div className="bg-gray-50 min-h-screen">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 max-w-7xl">
@@ -146,5 +146,3 @@ const BlogPostPage = () => {
         </div>
     );
 };
-
-export default BlogPostPage;
