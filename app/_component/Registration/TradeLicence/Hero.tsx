@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function MsmeHero() {
+export default function TradeLicenceHero() {
   const [state, setState] = useState("Andhra Pradesh");
   const [hear, setHear] = useState("Google");
 
