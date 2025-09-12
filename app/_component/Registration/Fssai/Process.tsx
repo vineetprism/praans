@@ -13,7 +13,6 @@ const STEPS: Step[] = [
   { title: "FSSAI License", img: "/process/fssai.webp", alt: "FSSAI license" },
 ];
 
-/* ------------------------------- Components ------------------------------ */
 
 const StepCard = ({ step }: { step: Step }) => {
   const { title, img, alt } = step;
@@ -36,7 +35,6 @@ const StepCard = ({ step }: { step: Step }) => {
   );
 };
 
-/** Arrow as an image (right arrow). On non-xl we rotate it for the vertical flow. */
 const ArrowImg = ({ className = "", size = 28 }: { className?: string; size?: number }) => (
   <div
     className={`relative ${className}`}
@@ -53,7 +51,6 @@ const ArrowImg = ({ className = "", size = 28 }: { className?: string; size?: nu
   </div>
 );
 
-/* --------------------------------- Page ---------------------------------- */
 
 export default function FssaiProcessPage() {
   return (
@@ -77,10 +74,6 @@ export default function FssaiProcessPage() {
       {/* Steps */}
       <section className="bg-white py-4 sm:py-6">
         <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
-          {/* 
-            At md+ we allow wrapping & center items.
-            Only at xl we force one line and show horizontal arrows.
-          */}
           <div className="flex flex-col items-center gap-6 md:gap-x-10 md:gap-y-8
                           md:flex-row md:flex-wrap md:justify-center
                           xl:flex-nowrap xl:justify-between">
@@ -89,9 +82,7 @@ export default function FssaiProcessPage() {
                 <StepCard step={s} />
                 {idx < STEPS.length - 1 && (
                   <>
-                    {/* Horizontal arrow only on extra-large screens */}
                     <ArrowImg className="hidden xl:block" size={28} />
-                    {/* Vertical arrow on small/medium/large (incl. 1024px) */}
                     <ArrowImg className="xl:hidden rotate-90" size={24} />
                   </>
                 )}

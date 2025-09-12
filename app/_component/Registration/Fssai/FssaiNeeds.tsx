@@ -96,7 +96,7 @@ const SERVICES = [
     title: "CLRA",
     desc:
       "The Contract Labour is a central law designed to regulate the employment of contract labour in India, ensuring their rights and welfare.",
-    href: "/registration/contract-labour",
+    href: "/registration/clra",
   },
 ];
 
