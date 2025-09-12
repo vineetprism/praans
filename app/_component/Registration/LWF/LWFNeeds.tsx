@@ -16,45 +16,45 @@ const Bullet = () => (
   </svg>
 );
 
-/* ------------------ Testimonials content (unchanged) ------------------ */
 const TESTIMONIALS = [
   {
     quote:
-      "Professional, reliable, and efficient! Praans Consultech made the entire FSSAI registration process quick and easy for us. Highly recommend their services!",
-    name: "Nikhil Sharma",
-    org: "Hunny Bunny Restaurant",
+      "Thanks to their expert assistance, we were able to comply with all Labour Welfare Fund regulations without any hassle. Highly recommended.",
+    name: "Amit Kumar",
+    org: "Grocery Company",
   },
   {
     quote:
-      "The entire FSSAI registration process was effortless with Praans Consultech. They ensured everything was in place, and we received our certification without any issues.",
-    name: "Harinder Singh",
-    org: "Anaya Foods",
+      "Their prompt and professional service ensured our Labour Welfare Fund contribution was completed without delay. Great experience!",
+    name: "Rajendra Kumar",
+    org: "E-commerce firm",
   },
   {
     quote:
-      "The team at Praans Consultech handled our FSSAI registration with great care and efficiency. They provided clear guidance and made the process stress-free.",
-    name: "Suman",
-    org: "Kung Fu Chinese",
+      "The team provided thorough guidance on Labour Welfare Fund compliance and ensured that all requirements were met promptly.",
+    name: "Gautam Sharma",
+    org: "IT firm",
   },
   {
     quote:
-      "Thanks to Praans Consultech, we got our FSSAI registration done in no time. Their expertise and attention to detail were invaluable.",
-    name: "Nishil Kumar",
-    org: "The Dhaba",
+      "We received seamless support for Labour Welfare Fund compliance. The entire process was hassle-free and handled professionally.",
+    name: "Chirag Arora",
+    org: "Ayurvedic firm",
   },
   {
     quote:
-      "A seamless experience from start to finish. The team took care of all the formalities for FSSAI registration, and we received prompt updates throughout the process.",
-    name: "Sagar Singh",
-    org: "Cloud Kitchen",
+      "Their reliable service ensured that we met all Labour Welfare Fund deadlines, and everything was filed on time without any issues.",
+    name: "Sagar Malik",
+    org: "NBFC",
   },
   {
     quote:
-      "We are very pleased with the service provided. Praans Consultech helped us navigate the complexities of FSSAI registration smoothly and quickly.",
-    name: "Santosh Malik",
-    org: "Cloud Kitchen",
+      "The Labour Welfare Fund registration was completed smoothly and on time. The team guided us every step of the way, making the process very efficient.",
+    name: "Suman Soni",
+    org: "Automobile factory",
   },
 ];
+
 
 /* ------------------ RIGHT-SIDE CONTENT: LWF ------------------ */
 const WHO_NEEDS_LWF = [

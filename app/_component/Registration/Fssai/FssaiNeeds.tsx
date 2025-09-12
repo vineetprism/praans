@@ -3,14 +3,10 @@
 import Image from "next/image";
 import React from "react";
 
-// ==== Swiper (carousel) ====
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-/* --------------------------------------------------------- */
-/* Icons / small helpers                                     */
-/* --------------------------------------------------------- */
 const Bullet = () => (
   <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0">
     <circle cx="12" cy="12" r="8" fill="none" stroke="#f97316" strokeWidth="2" />
@@ -18,22 +14,7 @@ const Bullet = () => (
   </svg>
 );
 
-/* --------------------------------------------------------- */
-/* Content                                                    */
-/* --------------------------------------------------------- */
 const TESTIMONIALS = [
-  {
-    quote:
-      "Professional, reliable, and efficient! Praans Consultech made the entire FSSAI registration process quick and easy for us. Highly recommend their services!",
-    name: "Nikhil Sharma",
-    org: "Hunny Bunny Restaurant",
-  },
-  {
-    quote:
-      "The entire FSSAI registration process was effortless with Praans Consultech. They ensured everything was in place, and we received our certification without any issues.",
-    name: "Harinder Singh",
-    org: "Anaya Foods",
-  },
   {
     quote:
       "The team at Praans Consultech handled our FSSAI registration with great care and efficiency. They provided clear guidance and made the process stress-free.",
@@ -54,11 +35,24 @@ const TESTIMONIALS = [
   },
   {
     quote:
+      "Professional, reliable, and efficient! Praans Consultech made the entire FSSAI registration process quick and easy for us. Highly recommend their services!",
+    name: "Nikhil Sharma",
+    org: "Hunny Bunny Restaurant",
+  },
+  {
+    quote:
+      "The entire FSSAI registration process was effortless with Praans Consultech. They ensured everything was in place, and we received our certification without any issues.",
+    name: "Harinder Singh",
+    org: "Anaya Foods",
+  },
+  {
+    quote:
       "We are very pleased with the service provided. Praans Consultech helped us navigate the complexities of FSSAI registration smoothly and quickly.",
     name: "Santosh Malik",
     org: "Cloud Kitchen",
   },
 ];
+
 
 /** Two-column list content */
 const WHO_NEEDS = [
@@ -106,9 +100,6 @@ const SERVICES = [
   },
 ];
 
-/* --------------------------------------------------------- */
-/* UI pieces                                                  */
-/* --------------------------------------------------------- */
 function ServiceCard({
   title,
   desc,
@@ -181,9 +172,6 @@ function TestimonialCard({
   );
 }
 
-/* --------------------------------------------------------- */
-/* Page                                                       */
-/* --------------------------------------------------------- */
 export default function FssaiNeeds() {
   return (
     <main className="bg-[#f6f8fc]">

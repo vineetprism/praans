@@ -15,13 +15,44 @@ const Bullet = () => (
 );
 
 const TESTIMONIALS = [
-  { quote: "Professional, reliable, and efficient! Praans Consultech made the entire FSSAI registration process quick and easy for us. Highly recommend their services!", name: "Nikhil Sharma", org: "Hunny Bunny Restaurant" },
-  { quote: "The entire FSSAI registration process was effortless with Praans Consultech. They ensured everything was in place, and we received our certification without any issues.", name: "Harinder Singh", org: "Anaya Foods" },
-  { quote: "The team at Praans Consultech handled our FSSAI registration with great care and efficiency. They provided clear guidance and made the process stress-free.", name: "Suman", org: "Kung Fu Chinese" },
-  { quote: "Thanks to Praans Consultech, we got our FSSAI registration done in no time. Their expertise and attention to detail were invaluable.", name: "Nishil Kumar", org: "The Dhaba" },
-  { quote: "A seamless experience from start to finish. The team took care of all the formalities for FSSAI registration, and we received prompt updates throughout the process.", name: "Sagar Singh", org: "Cloud Kitchen" },
-  { quote: "We are very pleased with the service provided. Praans Consultech helped us navigate the complexities of FSSAI registration smoothly and quickly.", name: "Santosh Malik", org: "Cloud Kitchen" },
+  {
+    quote:
+      "The team’s expertise in CLRA registration was evident. They provided clear instructions and ensured we met all compliance requirements promptly.",
+    name: "Ajay Kumar",
+    org: "Adwork Facilities",
+  },
+  {
+    quote:
+      "We were able to get our CLRA license in record time, thanks to their proactive approach and attention to detail. Very satisfied with the service.",
+    name: "Rajendra Kumar",
+    org: "Perfect Hires",
+  },
+  {
+    quote:
+      "The process of obtaining our CLRA registration was made incredibly easy. The team was thorough, professional, and kept us informed every step of the way.",
+    name: "Harish Sharma",
+    org: "Automobile Industry",
+  },
+  {
+    quote:
+      "The team made the CLRA registration process quick and hassle-free. They guided us step by step, ensuring compliance with all legal requirements.",
+    name: "Dilip Mishra",
+    org: "L&L Security",
+  },
+  {
+    quote:
+      "We were able to obtain our CLRA licence without any issues. Their professional approach and timely responses made the entire experience smooth and efficient.",
+    name: "Brajesh Kumar",
+    org: "Prestigious Housekeeping Facilities",
+  },
+  {
+    quote:
+      "Excellent service in handling our CLRA registration. They ensured all our documentation was in order and helped us obtain the license with minimal effort.",
+    name: "Naeem Ahmed",
+    org: "Educational Institute",
+  },
 ];
+
 
 const WHO_NEEDS_SHOP = [
   "Shops, commercial establishments, and offices",

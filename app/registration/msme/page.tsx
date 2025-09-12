@@ -13,16 +13,13 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
     title:
-        "MSME (Udyam) Registration Consultant (PAN India) | Praans Consultech",
+        "MSME Registration Consultant (PAN India) | Praans Consultech",
     description:
-        "End-to-end MSME/Udyam registration, renewals, updates/corrections, and certificate download. Fast TAT, expert guidance, PAN-India coverage, and free consultation.",
+        "End-to-end MSME registration, renewals, updates/corrections, and certificate download. Fast TAT, expert guidance, PAN-India coverage, and free consultation.",
     keywords: [
         "MSME Registration",
-        "Udyam Registration",
-        "Udyam Certificate",
         "MSME Certificate",
         "MSME Renewal",
-        "Udyam Update",
         "NIC Code Selection",
         "Micro Small Medium Enterprise",
         "Labour & Compliance India",

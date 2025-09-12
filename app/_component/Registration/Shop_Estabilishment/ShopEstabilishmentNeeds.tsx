@@ -20,41 +20,42 @@ const Bullet = () => (
 const TESTIMONIALS = [
     {
         quote:
-            "Professional, reliable, and efficient! Praans Consultech made the entire FSSAI registration process quick and easy for us. Highly recommend their services!",
-        name: "Nikhil Sharma",
-        org: "Hunny Bunny Restaurant",
+            "I recently availed of shop and establishment registration services from a Praans Consultech , and I am extremely satisfied with the experience",
+        name: "Neelam Bajpai",
+        org: "Rishi Foods, Almora",
     },
     {
         quote:
-            "The entire FSSAI registration process was effortless with Praans Consultech. They ensured everything was in place, and we received our certification without any issues.",
-        name: "Harinder Singh",
-        org: "Anaya Foods",
+            "The Shop and Establishment registration process was smooth and well-organized. The team provided clear instructions, handled all the paperwork, and completed the process on time.",
+        name: "Dhiraj Kumar",
+        org: "Moontown Salon, Guwahati",
     },
     {
         quote:
-            "The team at Praans Consultech handled our FSSAI registration with great care and efficiency. They provided clear guidance and made the process stress-free.",
-        name: "Suman",
-        org: "Kung Fu Chinese",
+            "They ensured all legal formalities were taken care of with minimal effort on my part. A perfect choice for startups and small businesses!",
+        name: "",
+        org: "Mom’s Café , Gurugram",
     },
     {
         quote:
-            "Thanks to Praans Consultech, we got our FSSAI registration done in no time. Their expertise and attention to detail were invaluable.",
-        name: "Nishil Kumar",
-        org: "The Dhaba",
+            "The team provided exceptional support during my Shop and Establishment registration in Delhi. They were patient, answered all my questions, and made sure my business met all regulatory requirements.",
+        name: "Anil Kumar",
+        org: "Sunny Boot House",
     },
     {
         quote:
-            "A seamless experience from start to finish. The team took care of all the formalities for FSSAI registration, and we received prompt updates throughout the process.",
-        name: "Sagar Singh",
-        org: "Cloud Kitchen",
+            "Excellent support for our EPF and ESI registration! The entire process was seamless, completely paperless, and remarkably fast.",
+        name: "Krishan Sharma",
+        org: "Sunrise Enterprise",
     },
     {
         quote:
-            "We are very pleased with the service provided. Praans Consultech helped us navigate the complexities of FSSAI registration smoothly and quickly.",
-        name: "Santosh Malik",
-        org: "Cloud Kitchen",
+            "As a growing business, we faced regulatory challenges, but the team made it seamless, handling everything from registrations to licenses. ..",
+        name: "Azman Hashmi",
+        org: "Leather house",
     },
 ];
+
 
 /* ------------------ Shop & Establishment content ------------------ */
 const WHO_NEEDS_SHOP = [
@@ -191,7 +192,7 @@ export default function ShopEstabilishmentNeeds() {
                                 768: { slidesPerView: 2 },
                             }}
                             allowTouchMove
-                            className="!h-[260px] sm:!h-[280px] lg:!h-[180px]"
+                            className="!h-[280px] sm:!h-[280px] lg:!h-[220px]"
                         >
                             {TESTIMONIALS.map((t, i) => (
                                 <SwiperSlide key={i} className="!h-full">

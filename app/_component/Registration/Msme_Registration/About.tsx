@@ -13,21 +13,14 @@ export default function MsmeRegistrationAbout() {
               </h1>
 
               <p className="mt-6 text-[15px] leading-7 text-slate-700 text-justify">
-                Micro, Small, and Medium Enterprises (MSMEs) play a crucial role in India’s
-                economic growth—creating jobs, fostering innovation, and boosting exports. To
-                support these businesses, the Government of India offers a range of benefits under
-                the MSME Development Act, 2006. Registering as an MSME is the first step toward
-                accessing these benefits and unlocking your business potential.
+                Micro, Small, and Medium Enterprises (MSMEs) play a crucial role in India’s economic growth—creating jobs, fostering innovation, and boosting exports. To support these businesses, the Government of India offers a range of benefits under the MSME Development Act, 2006. Registering as an MSME is the first step toward accessing these benefits and unlocking your business potential.
               </p>
 
               <h2 className="mt-10 text-md font-bold leading-tight sm:text-[20px]">
                 What is MSME Registration?
               </h2>
               <p className="mt-4 text-[15px] leading-7 text-slate-700 text-justify">
-                MSME registration is a government certification provided to small and medium-sized
-                enterprises. It recognises their contribution to the economy and enables access to
-                subsidies, schemes, incentives, and easier procurement norms—designed to support and
-                accelerate growth.
+                MSME registration is a government certification provided to small and medium-sized enterprises. It recognises their contribution to the economy and enables access to subsidies, schemes, incentives, and easier procurement norms—designed to support and accelerate growth.
               </p>
             </div>
 

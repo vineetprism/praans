@@ -26,41 +26,42 @@ const Bullet = () => (
 const TESTIMONIALS = [
   {
     quote:
-      "Professional, reliable, and efficient! Praans Consultech made the entire FSSAI registration process quick and easy for us. Highly recommend their services!",
-    name: "Nikhil Sharma",
-    org: "Hunny Bunny Restaurant",
+      "Smooth Filing Experience! Their team is prompt and professional. They guided us through every step of the Professional Tax filing process.",
+    name: "Priyanka Sharma",
+    org: "Café chain",
   },
   {
     quote:
-      "The entire FSSAI registration process was effortless with Praans Consultech. They ensured everything was in place, and we received our certification without any issues.",
-    name: "Harinder Singh",
-    org: "Anaya Foods",
+      "Prompt and Professional! We relied on their expertise for our Professional Tax filings, and they made the entire process stress-free and easy to understand.",
+    name: "Raju Thakur",
+    org: "Online car rental",
   },
   {
     quote:
-      "The team at Praans Consultech handled our FSSAI registration with great care and efficiency. They provided clear guidance and made the process stress-free.",
-    name: "Suman",
-    org: "Kung Fu Chinese",
+      "Expert Guidance! Thanks to their expert guidance, our Professional Tax filings were completed without any complications or delays.",
+    name: "Neeraj Sharma",
+    org: "Pet care clinic chain",
   },
   {
     quote:
-      "Thanks to Praans Consultech, we got our FSSAI registration done in no time. Their expertise and attention to detail were invaluable.",
-    name: "Nishil Kumar",
-    org: "The Dhaba",
+      "Excellent Service! The Professional Tax service was excellent—timely, accurate, and handled with utmost professionalism.",
+    name: "Monika Sharma",
+    org: "IT firm",
   },
   {
     quote:
-      "A seamless experience from start to finish. The team took care of all the formalities for FSSAI registration, and we received prompt updates throughout the process.",
-    name: "Sagar Singh",
-    org: "Cloud Kitchen",
+      "Quick and Efficient Service! Their Professional Tax filing service was fast and seamless. We got everything done on time with minimal effort.",
+    name: "Abhilasha Aggarwal",
+    org: "Online cattle app",
   },
   {
     quote:
-      "We are very pleased with the service provided. Praans Consultech helped us navigate the complexities of FSSAI registration smoothly and quickly.",
-    name: "Santosh Malik",
-    org: "Cloud Kitchen",
+      "Highly Reliable and Accurate! They ensured our Professional Tax compliance was handled accurately and efficiently. Great service all around.",
+    name: "Subodh Yadav",
+    org: "Online car sale–purchase",
   },
 ];
+
 
 /* ------------------ Updated right-side content ------------------ */
 const WHO_PROF_TAX = [

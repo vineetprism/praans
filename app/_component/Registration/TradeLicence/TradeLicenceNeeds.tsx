@@ -26,39 +26,39 @@ type Review = {
 const TESTIMONIALS: Review[] = [
   {
     quote:
-      "Professional, reliable, and efficient! Praans Consultech made the entire registration process quick and easy for us. Highly recommend their services!",
-    name: "Nikhil Sharma",
-    org: "Hunny Bunny Restaurant",
+      "Highly Satisfied with the Service! We were able to obtain our trade license without any issues. The service was fast, reliable, and accurate.",
+    name: "Beny Mali",
+    org: "Cafe",
   },
   {
     quote:
-      "The whole process was effortless with Praans Consultech. Everything was in place and we received our approvals without any issues.",
-    name: "Harinder Singh",
-    org: "Anaya Foods",
+      "Exceptional Support Throughout! From the initial consultation to receiving the trade license, their support was exceptional. Everything was taken care of smoothly.",
+    name: "Pradeep Sharma",
+    org: "Educational Institute",
   },
   {
     quote:
-      "The team handled our application with great care and efficiency. Clear guidance and a truly stress-free experience.",
-    name: "Suman",
-    org: "Kung Fu Chinese",
+      "The team’s in-depth knowledge of the trade license process made all the difference. Highly recommended for seamless registration.",
+    name: "Subhankar Ghosh",
+    org: "Transport Office",
   },
   {
     quote:
-      "Thanks to Praans Consultech, we got our licence in no time. Their expertise and attention to detail were invaluable.",
-    name: "Nishil Kumar",
-    org: "The Dhaba",
+      "Our trade license was processed without any delays. The entire process was clear, transparent, and well-handled.",
+    name: "Santosh Singh",
+    org: "Yoga Centre",
   },
   {
     quote:
-      "A seamless experience from start to finish. The team took care of all formalities and kept us updated throughout.",
-    name: "Sagar Singh",
-    org: "Cloud Kitchen",
+      "We were impressed with how quickly our trade license was obtained. Their reliable service made the entire process stress-free.",
+    name: "Harinder Chaudhary",
+    org: "Grocery warehouse",
   },
   {
     quote:
-      "Very pleased with the service provided. They helped us navigate the process smoothly and quickly.",
-    name: "Santosh Malik",
-    org: "Cloud Kitchen",
+      "The team handled our trade license registration with complete professionalism. The process was quick and hassle-free.",
+    name: "Yuvaraj",
+    org: "Logistics Firm",
   },
 ];
 

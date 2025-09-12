@@ -2,6 +2,100 @@
 import Link from "next/link";
 import { useState } from "react";
 
+/** Second-image style: short top line, long bottom line, brushy + rounded, 5s loop */
+function PriceHighlight({ children }: { children: React.ReactNode }) {
+  return (
+    <span
+      className="relative inline-block align-middle leading-none"
+      style={
+        {
+          // tune these quickly if you need
+          // @ts-ignore
+          "--gapTop": "12px",        // distance of top line from text
+          // @ts-ignore
+          "--gapBottom": "14px",     // distance of bottom line from text
+          // @ts-ignore
+          "--overTop": "12px",       // how much top line extends beyond text
+          // @ts-ignore
+          "--overBottom": "56px",    // how much bottom line extends beyond text (longer like your ref)
+          // @ts-ignore
+          "--thickness": 6,          // stroke width
+        } as React.CSSProperties
+      }
+    >
+      <span className="relative z-[1] inline-block font-extrabold text-2xl text-slate-900">
+        {children}
+      </span>
+
+      {/* TOP line — slightly wider than text */}
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 -translate-x-1/2"
+        viewBox="0 0 100 20"
+        style={{
+          width: "calc(100% + var(--overTop))",
+          height: 14,
+          top: "calc(-1 * var(--gapTop))",
+        }}
+      >
+        <path
+          // subtle arc, almost straight
+          d="M1,15 C34,10 66,10 99,15"
+          fill="none"
+          stroke="#F97316"
+          strokeWidth="var(--thickness)"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          pathLength={100}
+          style={{
+            strokeDasharray: 100,
+            strokeDashoffset: 100,
+            animation: "drawLoop 5s ease-in-out infinite",
+          }}
+        />
+      </svg>
+
+      {/* BOTTOM line — noticeably longer like the screenshot */}
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 -translate-x-1/2"
+        viewBox="0 0 100 20"
+        style={{
+          width: "calc(100% + var(--overBottom))",
+          height: 16,
+          bottom: "calc(-1 * var(--gapBottom))",
+        }}
+      >
+        <path
+          // mirror arc, very slight curve
+          d="M1,6 C34,10 66,10 99,6"
+          fill="none"
+          stroke="#F97316"
+          strokeWidth="var(--thickness)"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          pathLength={100}
+          style={{
+            strokeDasharray: 100,
+            strokeDashoffset: 100,
+            animation: "drawLoop 5s ease-in-out infinite 160ms",
+          }}
+        />
+      </svg>
+
+      <style jsx>{`
+        /* Draw -> hold -> reset; total cycle = 5s */
+        @keyframes drawLoop {
+          0%   { stroke-dashoffset: 100; opacity: 0.98; }
+          14%  { stroke-dashoffset: 0;   opacity: 1;    }
+          86%  { stroke-dashoffset: 0;   opacity: 1;    }
+          100% { stroke-dashoffset: 100; opacity: 0.98; }
+        }
+      `}</style>
+    </span>
+  );
+}
+
 export default function LWFHero() {
   const [state, setState] = useState("Andhra Pradesh");
   const [hear, setHear] = useState("Google");
@@ -31,7 +125,7 @@ export default function LWFHero() {
             {/* PROMO LINE */}
             <p className="mt-4 w-full text-[15px] leading-7 text-slate-700 whitespace-normal">
               Get Your Labour Welfare Fund Done Quickly and Hassle-Free Starting from Just{" "}
-              <span className="font-bold text-slate-900">Rs.4999/-</span> Only
+              <PriceHighlight>Rs.4999/-</PriceHighlight> 
             </p>
 
             {/* BULLETS */}
