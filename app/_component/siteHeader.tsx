@@ -449,8 +449,9 @@ const NAV = [
       { label: "MSME Registration", href: "/registration/msme" },
     ],
   },
-  { label: "Contact", href: "/contact" },
   { label: "Resource Library", href: "/library" },
+  // { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function SiteHeader() {
