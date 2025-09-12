@@ -14,13 +14,12 @@ export default function MsmeHero() {
           {/* LEFT */}
           <div className="max-w-none lg:col-span-7 pl-3 sm:pl-6 md:pl-10 lg:pl-14 xl:pl-20 2xl:pl-24">
             {/* HEADLINE */}
-            <h1 className="w-full text-2xl font-extrabold tracking-tight text-slate-900 sm:text-2xl xl:text-3xl whitespace-nowrap lg:whitespace-normal lg:text-center">
+            <h1 className="w-full text-2xl font-extrabold tracking-tight text-slate-900 sm:text-2xl xl:text-3xl whitespace-normal lg:text-center">
               India’s Trusted{" "}
               <span className="text-orange-500">Professional Tax Registration</span>
               <span className="text-orange-500 hidden lg:block">Consultant</span>
               <span className="text-orange-500 lg:hidden"> Consultant</span>
             </h1>
-
 
             {/* ISO under headline */}
             <p className="mt-1 text-center text-sm font-semibold text-slate-600">
@@ -28,33 +27,33 @@ export default function MsmeHero() {
             </p>
 
             {/* PROMO LINE */}
-            <p className="mt-4 w-full overflow-x-auto whitespace-nowrap text-[15px] leading-7 text-slate-700">
+            <p className="mt-4 w-full text-[15px] leading-7 text-slate-700 whitespace-normal">
               Get Your Professional Tax Registration Done Quickly and Hassle-Free Starting from just{" "}
               <span className="font-bold text-slate-900">Rs.4999/-</span> Only
             </p>
 
             {/* BULLETS */}
             <ul className="mt-6 space-y-2 text-[15px] leading-6 text-slate-800">
-              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
+              <li className="flex w-full items-start gap-2">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Apply New Licence in Just 2 Hours
               </li>
-              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
+              <li className="flex w-full items-start gap-2">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Free Consultation
               </li>
-              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
+              <li className="flex w-full items-start gap-2">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Money Back Guarantee
               </li>
-              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
+              <li className="flex w-full items-start gap-2">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 100% Online Process
               </li>
             </ul>
 
             {/* STATS */}
-            <div className="mt-5 flex w-full items-center gap-2 overflow-x-auto whitespace-nowrap text-[15px] text-slate-800">
+            <div className="mt-5 flex w-full flex-wrap items-center gap-2 text-[15px] text-slate-800">
               <span className="inline-flex h-6 w-6 items-center justify-center rounded-full">⭐</span>
               15 Years experience in Professional Tax Registration PAN India
             </div>

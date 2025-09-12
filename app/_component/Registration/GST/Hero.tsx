@@ -12,9 +12,9 @@ export default function MsmeHero() {
       <div className="mx-auto w-full px-4 py-2 sm:py-4 lg:py-6">
         <div className="grid gap-4 lg:grid-cols-12 lg:items-start lg:gap-5">
           {/* LEFT */}
-          <div className="max-w-none lg:col-span-7 pl-3 sm:pl-6 md:pl-10 lg:pl-14 xl:pl-20 2xl:pl-24">
+          <div className="max-w-none lg:col-span-7 pl-3 sm:pl-6 md:pl-10 lg:pl-14 xl:pl-20 2xl:pl-24 break-words">
             {/* HEADLINE */}
-            <h1 className="w-full whitespace-nowrap text-2xl font-extrabold tracking-tight text-slate-900 sm:text-2xl xl:text-3xl">
+            <h1 className="w-full text-2xl font-extrabold tracking-tight text-slate-900 sm:text-2xl xl:text-3xl whitespace-normal lg:text-center">
               India’s Trusted <span className="text-orange-500">GST Registration Consultant</span>
             </h1>
 
@@ -24,33 +24,33 @@ export default function MsmeHero() {
             </p>
 
             {/* PROMO LINE */}
-            <p className="mt-4 w-full overflow-x-auto whitespace-nowrap text-[15px] leading-7 text-slate-700">
+            <p className="mt-4 w-full text-[15px] leading-7 text-slate-700 whitespace-normal">
               Get Your GST Registration Done Quickly and Hassle-Free Starting from Just{" "}
               <span className="font-bold text-slate-900">Rs.999/-</span> Only.
             </p>
 
             {/* BULLETS */}
             <ul className="mt-6 space-y-2 text-[15px] leading-6 text-slate-800">
-              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
+              <li className="flex w-full items-start gap-2">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Apply New Registration in Just 2 Hours
               </li>
-              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
+              <li className="flex w-full items-start gap-2">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Free Consultation
               </li>
-              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
+              <li className="flex w-full items-start gap-2">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Money Back Guarantee
               </li>
-              <li className="flex w-full items-start gap-2 overflow-x-auto whitespace-nowrap">
+              <li className="flex w-full items-start gap-2">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Pay Service Charge After Registration
               </li>
             </ul>
 
             {/* STATS */}
-            <div className="mt-5 flex w-full items-center gap-2 overflow-x-auto whitespace-nowrap text-[15px] text-slate-800">
+            <div className="mt-5 flex w-full flex-wrap items-center gap-2 text-[15px] text-slate-800">
               <span className="inline-flex h-6 w-6 items-center justify-center rounded-full">⭐</span>
               8 Years experience in GST Registration PAN India
             </div>
@@ -195,3 +195,4 @@ export default function MsmeHero() {
     </section>
   );
 }
+
