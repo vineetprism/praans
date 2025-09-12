@@ -100,6 +100,10 @@ export default function ProfessionalTaxHero() {
   const [state, setState] = useState("Andhra Pradesh");
   const [hear, setHear] = useState("Google");
 
+  const whatsappNumber = "919050576838"; // no '+' or spaces
+  const waMsg = encodeURIComponent("Hi, I need expert advice on FSSAI registration.");
+  const waLink = `https://wa.me/${whatsappNumber}?text=${waMsg}`;
+
   return (
     <section className="relative w-full overflow-hidden bg-white">
       {/* CONTENT */}
@@ -152,9 +156,12 @@ export default function ProfessionalTaxHero() {
               15 Years experience in Professional Tax Registration PAN India
             </div>
 
-            <button
-              type="button"
+            <Link
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              aria-label="Chat on WhatsApp for Expert Advice"
             >
               <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/30">
                 <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -162,7 +169,7 @@ export default function ProfessionalTaxHero() {
                 </svg>
               </span>
               For Expert Advice
-            </button>
+            </Link>
           </div>
 
           {/* RIGHT — unchanged form */}
