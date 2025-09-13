@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -245,7 +244,6 @@ function Card({ review }: { review: Review }) {
     );
 }
 
-/* White round nav buttons — accept generic React refs */
 function NavButtons({
     prevRef,
     nextRef,
@@ -330,7 +328,7 @@ function BenefitsSection() {
                     {FEATURES.map(({ title, desc, img }) => (
                         <div
                             key={title}
-                            className="rounded-2xl bg-[#f7f8ff] ring-1 ring-slate-200 shadow-[0_8px_28px_rgba(2,6,23,0.06)] p-6 flex flex-col items-center text-center"
+                            className="rounded-2xl bg-[#f7f8ff] ring-1 ring-slate-200 shadow-[0_8px_28px_rgba(2,6,23,0.06)] p-4 flex flex-col items-center text-center"
                         >
                             <Image
                                 unoptimized
@@ -338,7 +336,7 @@ function BenefitsSection() {
                                 alt={title}
                                 width={96}
                                 height={96}
-                                className="w-16 h-16 md:w-20 md:h-20 object-contain"
+                                className="w-12 h-12 md:w-16 md:h-16 object-contain"
                             />
                             <p className="mt-4 font-semibold text-slate-900">{title}</p>
                             <p className="mt-2 text-sm text-slate-600">{desc}</p>

@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -92,7 +91,6 @@ const GoogleBadge = () => (
     </span>
 );
 
-// 👉 New: avatar with letter fallback (local uploads preferred)
 function Avatar({
     name,
     src,
@@ -107,7 +105,6 @@ function Avatar({
     const [errored, setErrored] = useState(false);
     const initial = (name?.trim()?.[0] ?? "?").toUpperCase();
 
-    // If there's no src or it errored, show initial-based circle
     if (!src || errored) {
         return (
             <div
@@ -152,9 +149,7 @@ function ClampedText({
             if (!el) return;
             const prev = el.style.cssText;
             el.style.display = "-webkit-box";
-            // @ts-ignore
-            el.style.webkitLineClamp = "3"; // ⬅️ clamp to 3 lines for measurement
-            // @ts-ignore
+            el.style.webkitLineClamp = "3";
             el.style.webkitBoxOrient = "vertical";
             el.style.overflow = "hidden";
             const needs = el.scrollHeight > el.clientHeight + 1;
@@ -171,9 +166,7 @@ function ClampedText({
         ? {}
         : {
             display: "-webkit-box",
-            // @ts-ignore
-            WebkitLineClamp: 3, // ⬅️ clamp to 3 lines when collapsed
-            // @ts-ignore
+            WebkitLineClamp: 3,
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
         };
@@ -245,7 +238,6 @@ function Card({ review }: { review: Review }) {
     );
 }
 
-/* White round nav buttons — accept generic React refs */
 function NavButtons({
     prevRef,
     nextRef,
@@ -309,15 +301,15 @@ function BenefitsSection() {
     return (
         <section className="bg-white py-4 sm:py-6">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <h2 className="text-center text-[26px] sm:text-[30px] font-extrabold text-[#142a63]">
+                <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#1c284f]">
                     Why Choose Us for Professional Tax Registration Licence?
                 </h2>
 
                 <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    {FEATURES.map(({ title, img }) => (
+                    {FEATURES?.map(({ title, img }) => (
                         <div
                             key={title}
-                            className="rounded-2xl bg-[#f7f8ff] ring-1 ring-slate-200 shadow-[0_8px_28px_rgba(2,6,23,0.06)] p-6 flex flex-col items-center justify-center text-center"
+                            className="rounded-2xl bg-[#f7f8ff] ring-1 ring-slate-200 shadow-[0_8px_28px_rgba(2,6,23,0.06)] p-4 flex flex-col items-center justify-center text-center"
                         >
                             <Image
                                 unoptimized
@@ -325,7 +317,7 @@ function BenefitsSection() {
                                 alt={title}
                                 width={96}
                                 height={96}
-                                className="w-16 h-16 md:w-20 md:h-20 object-contain"
+                                className="w-12 h-12 md:w-16 md:h-16 object-contain"
                             />
                             <p className="mt-4 font-semibold text-slate-900">{title}</p>
                         </div>

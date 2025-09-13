@@ -1,16 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function LwfOverviewPage() {
     return (
         <main className="bg-white">
-            {/* Top: Intro + Image */}
             <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
                 <div className="grid gap-8 lg:grid-cols-2 items-stretch">
-                    {/* LEFT: Copy */}
                     <div className="flex flex-col justify-between h-full">
-                        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+                        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1c284f]">
                             Labour Welfare Fund Registration in India
                         </h1>
 
@@ -59,11 +58,11 @@ export default function LwfOverviewPage() {
 
             {/* ===== Below: Labour Welfare Fund Rates and Payment ===== */}
             <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 text-center">
-                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1c284f]">
                     Labour Welfare Fund Rates and Payment
                 </h2>
 
-                <p className="mx-auto mt-4 max-w-4xl text-[15px] leading-7 text-slate-700 text-justify">
+                <p className="mx-auto mt-4 max-w-4xl text-[15px] leading-7 text-slate-600 text-justify">
                     The Labour Welfare Fund (LWF) is a statutory contribution administered by individual state governments by
                     constituting labour welfare boards in India, aimed at promoting the welfare and well-being of workers.
                     The fund is utilized for various employee benefits, such as housing, education, health, and vocational
@@ -72,12 +71,12 @@ export default function LwfOverviewPage() {
                 </p>
 
                 <div className="mt-6">
-                    <a
+                    <Link
                         href="#worker-benefits"
                         className="inline-flex items-center justify-center rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
                     >
                         Worker Benefits: The Labour Welfare Fund Explained
-                    </a>
+                    </Link>
                 </div>
             </section>
 

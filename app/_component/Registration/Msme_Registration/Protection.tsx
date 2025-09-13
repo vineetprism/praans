@@ -1,6 +1,5 @@
 import React from "react";
 
-/* ---------- Data ---------- */
 type Item = { title: string; desc: string };
 
 const exportPromotion: Item[] = [
@@ -75,14 +74,12 @@ const ipInnovation: Item[] = [
   },
 ];
 
-/* ---------- Page ---------- */
 export default function ProtectionPage() {
   return (
     <main className="bg-white text-slate-900">
-      {/* Top band */}
       <section className="bg-[#f5f7fc]">
         <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8 py-4">
-          <h1 className="text-center text-[26px] sm:text-[30px] font-extrabold text-[#142a63]">
+          <h1 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
             Protection Against Delayed Payments
           </h1>
           <p className="mx-auto mt-4 max-w-5xl text-center text-[15px] leading-7 text-slate-900 text-justify">
@@ -94,22 +91,18 @@ export default function ProtectionPage() {
         </div>
       </section>
 
-      {/* Export Promotion and Subsidies */}
       <Section bg="white" title="Export Promotion and Subsidies">
         <CardsGrid items={exportPromotion} hoverColor="#eb8535" />
       </Section>
 
-      {/* Technology and Skill Development */}
       <Section bg="gray" title="Technology and Skill Development">
         <CardsGrid items={techAndSkill} hoverColor="#eb8535" />
       </Section>
 
-      {/* Infrastructure and Utility Benefits */}
       <Section bg="white" title="Infrastructure and Utility Benefits">
         <CardsGrid items={infraUtility} hoverColor="#eb8535" />
       </Section>
 
-      {/* Intellectual Property and Innovation Support */}
       <Section bg="gray" title="Intellectual Property and Innovation Support">
         <CardsGrid items={ipInnovation} hoverColor="#eb8535" />
       </Section>
@@ -147,7 +140,7 @@ function CardsGrid({
 }) {
   return (
     <div className="mx-auto grid max-w-6xl items-stretch gap-6 px-5 sm:px-6 lg:px-8 md:grid-cols-2 lg:grid-cols-3 text-justify">
-      {items.map((it) => (
+      {items?.map((it) => (
         <Card key={it.title} title={it.title} desc={it.desc} hoverColor={hoverColor} />
       ))}
     </div>
@@ -166,7 +159,6 @@ function Card({
   return (
     <div className="group relative h-full">
       <div className="relative h-full overflow-hidden rounded-2xl shadow-[0_10px_35px_rgba(16,24,40,0.08)] ring-1 ring-slate-200">
-        {/* top→bottom overlay */}
         <span
           aria-hidden
           className="absolute inset-0 origin-top scale-y-0 transition-transform duration-300 ease-out group-hover:scale-y-100"

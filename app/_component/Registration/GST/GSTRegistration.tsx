@@ -5,9 +5,8 @@ export default function GSTRegistration() {
     <section className="bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
         <div className="grid gap-10 lg:grid-cols-2">
-          {/* LEFT */}
           <div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1c284f]">
               GST Registration in India
             </h2>
 
@@ -29,9 +28,8 @@ export default function GSTRegistration() {
             </div>
           </div>
 
-          {/* RIGHT */}
           <div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1c284f]">
               What is GST Registration?
             </h2>
 

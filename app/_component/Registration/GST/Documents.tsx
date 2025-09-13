@@ -2,7 +2,6 @@
 
 import React from "react";
 
-/* Orange bullet icon */
 const Bullet = () => (
   <svg viewBox="0 0 24 24" width={16} height={16} className="mt-1.5 shrink-0">
     <circle cx="12" cy="12" r="7" fill="none" stroke="#f97316" strokeWidth="2" />
@@ -10,7 +9,6 @@ const Bullet = () => (
   </svg>
 );
 
-/* ---------- DATA ---------- */
 const DOC_GROUPS: {
   title: string;
   items: string[];
@@ -68,19 +66,15 @@ const PENALTIES: { title: string; desc: string }[] = [
   },
 ];
 
-/* ---------- PAGE ---------- */
 export default function GstDocsAndPenalties() {
   return (
     <main className="bg-[#f6f8fc]">
-      {/* Documents Required */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-        <h2 className="text-center text-[24px] sm:text-[30px] font-extrabold text-[#142a63]">
+        <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
           Documents Required For GST Registration
         </h2>
 
-        {/* 3-column layout (L / Center / R) */}
         <div className="mt-8 grid gap-10 lg:grid-cols-3">
-          {/* Left column */}
           <div className="space-y-8">
             {DOC_GROUPS.slice(0, 1).map((g) => (
               <Group key={g.title} {...g} />
@@ -90,7 +84,6 @@ export default function GstDocsAndPenalties() {
             ))}
           </div>
 
-          {/* Middle column */}
           <div className="space-y-8">
             {DOC_GROUPS.slice(1, 2).map((g) => (
               <Group key={g.title} {...g} />
@@ -100,7 +93,6 @@ export default function GstDocsAndPenalties() {
             ))}
           </div>
 
-          {/* Right column */}
           <div className="space-y-8">
             {DOC_GROUPS.slice(2, 3).map((g) => (
               <Group key={g.title} {...g} />
@@ -112,12 +104,10 @@ export default function GstDocsAndPenalties() {
         </div>
       </section>
 
-      {/* Divider */}
       <div className="h-px w-full bg-slate-200/70" />
 
-      {/* Penalties */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-center text-[24px] sm:text-[30px] font-extrabold text-[#142a63]">
+        <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
           Penalties For Non-Compliance
         </h2>
 
@@ -126,10 +116,10 @@ export default function GstDocsAndPenalties() {
         </p>
 
         <div className="mt-10 grid gap-10 text-center sm:grid-cols-2 lg:grid-cols-3">
-          {PENALTIES.map(({ title, desc }) => (
+          {PENALTIES?.map(({ title, desc }) => (
             <div key={title} className="mx-auto max-w-md">
               <h3 className="text-[16px] font-extrabold text-[#ff6b00]">{title}</h3>
-              <p className="mt-2 text-[15px] leading-7 text-slate-700">{desc}</p>
+              <p className="mt-2 text-[15px] leading-7 text-slate-700 text-justify">{desc}</p>
             </div>
           ))}
         </div>
@@ -138,13 +128,12 @@ export default function GstDocsAndPenalties() {
   );
 }
 
-/* ---------- Subcomponents ---------- */
 function Group({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <h3 className="text-[18px] font-extrabold text-slate-900">{title}</h3>
-      <ul className="mt-3 space-y-3 text-[15px] leading-7 text-slate-700">
-        {items.map((it) => (
+      <h3 className="text-[18px] font-extrabold text-slate-800">{title}</h3>
+      <ul className="mt-2 space-y-2 text-[15px] leading-7 text-slate-700">
+        {items?.map((it) => (
           <li key={it} className="flex gap-2">
             <Bullet />
             <span>{it}</span>

@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 
 const PlayIcon = () => (
@@ -43,8 +42,8 @@ function FaqItem({
                 onClick={onToggle}
                 className="
             w-full flex items-start justify-start gap-3
-            rounded-2xl bg-[#f47b20] px-5 py-4
-            text-[16px] sm:text-[17px] font-medium text-white shadow-sm
+            rounded-2xl bg-[#f47b20] px-5 py-3
+            text-[14px] sm:text-[15px] font-medium text-white shadow-sm
             cursor-pointer text-left focus:outline-none
           "
             >
@@ -62,8 +61,8 @@ function FaqItem({
                     }`}
             >
                 <div className="overflow-hidden">
-                    <div className="bg-white px-6 py-5">
-                        <p className="text-[15px] leading-7 text-slate-900 font-medium">
+                    <div className="bg-white px-6 py-3">
+                        <p className="text-[15px] leading-7 text-slate-800 font-medium">
                             {a}
                         </p>
                     </div>
@@ -134,13 +133,13 @@ export default function FaqPage() {
     return (
         <main className="bg-gray-50">
             <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-4 sm:py-6">
-                <h1 className="text-center text-[28px] sm:text-[32px] font-extrabold text-[#142a63]">
+                <h1 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
                     Frequently Asked Questions
                 </h1>
 
                 <div className="mt-8 grid gap-6 lg:grid-cols-2">
                     <div className="space-y-4">
-                        {col1.map((item, idx) => {
+                        {col1?.map((item, idx) => {
                             const index = idx;
                             return (
                                 <FaqItem
@@ -155,7 +154,7 @@ export default function FaqPage() {
                     </div>
 
                     <div className="space-y-4">
-                        {col2.map((item, idx) => {
+                        {col2?.map((item, idx) => {
                             const index = mid + idx;
                             return (
                                 <FaqItem
@@ -172,7 +171,7 @@ export default function FaqPage() {
             </section>
 
             <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-12">
-                <h1 className="text-center text-[28px] sm:text-[32px] font-extrabold text-[#142a63]">
+                <h1 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
                     Get Your GST Registration Today!
                 </h1>
                 <p className="mx-auto max-w-4xl text-center text-[15px] text-slate-800 mt-2">
@@ -182,8 +181,8 @@ export default function FaqPage() {
 
                 <div className="mx-auto mt-12 max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-3">
                     <ul className="space-y-3">
-                        {statesLeft.map((state) => (
-                            <li key={state} className="flex items-center gap-2 text-[15px] text-slate-800">
+                        {statesLeft?.map((state) => (
+                            <li key={state} className="flex items-center gap-2 text-[15px] text-slate-700">
                                 <PinIcon />
                                 <span>GST Registration in {state}</span>
                             </li>
@@ -192,7 +191,7 @@ export default function FaqPage() {
 
                     <ul className="space-y-3">
                         {statesRight.map((state) => (
-                            <li key={state} className="flex items-center gap-2 text-[15px] text-slate-800">
+                            <li key={state} className="flex items-center gap-2 text-[15px] text-slate-700">
                                 <PinIcon />
                                 <span>GST Registration in {state}</span>
                             </li>
@@ -202,10 +201,9 @@ export default function FaqPage() {
             </section>
 
 
-            {/* ===================== DISCLAIMER (same box) ===================== */}
             <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 pb-14">
                 <div className="mx-auto max-w-5xl">
-                    <div className="text-[20px] font-bold text-slate-800 mb-2">Disclaimer :</div>
+                    <div className="text-[22px] font-bold text-slate-800 mb-2">Disclaimer :</div>
                     <div className="rounded-md border border-slate-200 p-5 text-[14px] leading-7 text-slate-700 text-justify">
                         This website is privately operated and not affiliated with any government entity. We do
                         not represent or are affiliated with, endorsed by, or in any way connected to any

@@ -18,8 +18,8 @@ const CheckBadge = ({ className = "" }: { className?: string }) => (
     className={className}
     aria-hidden
   >
-    <circle cx="12" cy="12" r="9" fill="none" stroke="#142a63" strokeWidth="2" />
-    <path d="M8.5 12.5l2.5 2.5 4.5-5" fill="none" stroke="#142a63" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="12" cy="12" r="9" fill="none" stroke="#f57f28" strokeWidth="2" />
+    <path d="M8.5 12.5l2.5 2.5 4.5-5" fill="none" stroke="#f57f28" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
@@ -70,11 +70,11 @@ export default function WhoCanApplyPage() {
 
           {/* RIGHT: Content */}
           <div className="flex min-h-[260px] sm:min-h-[300px] lg:min-h-[360px] flex-col justify-center">
-            <h1 className="text-[18px] sm:text-[21px] lg:text-[23px] font-semibold tracking-tight text-slate-900 leading-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#142a63] leading-tight">
               Who Can Apply for MSME Registration?
             </h1>
 
-            <div className="mt-3 space-y-3 text-[15px] leading-[1.55] text-slate-800">
+            <div className="mt-3 space-y-2 text-[15px] leading-[1.55] text-slate-800">
               <div className="flex items-start gap-3">
                 <Bullet />
                 <p>
@@ -133,7 +133,7 @@ export default function WhoCanApplyPage() {
         </div>
 
         {/* Full-width logos strip (already full-bleed using negative margins; keep if you need) */}
-        <div className="mt-10 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] shadow-md w-screen">
+        <div className="mt-10 relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border-2 border-orange-400 bg-white p-4 sm:p-6">
             <div className="mx-auto max-w-7xl grid w-full grid-cols-2 gap-6 place-items-center sm:grid-cols-4">
               <div className="relative h-14 w-40">
@@ -156,12 +156,12 @@ export default function WhoCanApplyPage() {
       {/* ===================== FULL-WIDTH TESTIMONIALS (bg-white) ===================== */}
       <section className="bg-white py-4 sm:py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <h2 className="text-center text-[28px] sm:text-[34px] font-extrabold text-[#142a63]">
+          <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
             Client Testimonials
           </h2>
 
           <div className="mt-6 grid gap-10 sm:gap-12 md:grid-cols-2 place-items-center">
-            {TESTIMONIALS.map((t, i) => (
+            {TESTIMONIALS?.map((t, i) => (
               <article key={i} className="text-center">
                 <p className="mx-auto text-center text-[15px] leading-7 text-slate-800 max-w-[56ch]">
                   {t.quote}
@@ -179,13 +179,12 @@ export default function WhoCanApplyPage() {
       {/* ===================== NEW: Documents Required section ===================== */}
       <section className="py-4 sm:py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <h2 className="text-center text-[26px] sm:text-[30px] font-extrabold text-[#142a63]">
+          <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
             Documents Required For MSME Registration
           </h2>
 
           <div className="mt-6 grid gap-8 md:grid-cols-2">
-            {/* Left column */}
-            <ul className="space-y-5">
+            <ul className="space-y-3">
               {DOCS_LEFT.map((item, idx) => (
                 <li key={`l-${idx}`} className="flex items-start gap-3 text-[15px] text-slate-800">
                   <CheckBadge className="mt-0.5" />
@@ -194,8 +193,7 @@ export default function WhoCanApplyPage() {
               ))}
             </ul>
 
-            {/* Right column */}
-            <ul className="space-y-5">
+            <ul className="space-y-3">
               {DOCS_RIGHT.map((item, idx) => (
                 <li key={`r-${idx}`} className="flex items-start gap-3 text-[15px] text-slate-800">
                   <CheckBadge className="mt-0.5" />

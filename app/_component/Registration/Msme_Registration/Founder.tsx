@@ -1,12 +1,11 @@
 "use client";
-
 import Image from "next/image";
 
 export default function FounderPage() {
   return (
     <main className="bg-white">
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-        <h1 className="text-center text-[22px] sm:text-[26px] lg:text-[28px] font-extrabold tracking-wider text-[#142a63] uppercase">
+        <h1 className="text-center text-2xl sm:text-3xl font-bold text-[#1b2851] uppercase">
           Founder of Praans Consultech
         </h1>
 
@@ -43,13 +42,11 @@ export default function FounderPage() {
             </div>
           </div>
 
-          {/* RIGHT: Photo + name + degree strip — force column to full height and let image fill */}
           <div className="lg:col-span-5 h-full">
             <div className="flex h-full flex-col items-center">
-              {/* Let this container take all remaining height; keep a sensible min height on small screens */}
               <div className="relative w-full h-full min-h-[360px]">
                 <Image
-                  src="/services/admin1.jpg" // update if needed
+                  src="/services/admin1.jpg"
                   alt="Sandeep Kumar - Founder of Praans Consultech"
                   fill
                   priority
@@ -57,13 +54,12 @@ export default function FounderPage() {
                 />
               </div>
 
-              {/* Name + degree stay below the image inside the same stretched column */}
               <div className="mt-4 text-center">
                 <div className="text-[26px] sm:text-[32px] lg:text-[36px] font-extrabold tracking-wide text-[#ff4f8a]">
                   Sandeep Kumar
                 </div>
 
-                <div className="mt-3 inline-flex items-center rounded-[4px] bg-[#142a63] px-6 py-3 text-white text-[14px] sm:text-[15px] font-semibold shadow-sm">
+                <div className="mt-3 w-full inline-flex items-center rounded-[4px] bg-[#142a63] px-6 py-2 text-white text-[14px] sm:text-[15px] font-semibold shadow-sm">
                   B.Sc, LL.B, LL.M , XLRI , (Ph.D)
                 </div>
               </div>

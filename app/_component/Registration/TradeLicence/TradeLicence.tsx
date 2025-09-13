@@ -5,13 +5,10 @@ import Image from "next/image";
 export default function TradeLicence() {
   return (
     <main className="bg-white">
-      {/* Intro + visual */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-        {/* Text on the left, compact visual on the right (like your screenshot) */}
         <div className="grid gap-10 lg:grid-cols-2 items-center">
-          {/* LEFT: Copy */}
           <div className="flex flex-col gap-5">
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1c284f]">
               Trade Licence Registration in India
             </h1>
 

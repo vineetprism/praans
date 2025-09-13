@@ -1,22 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function ProfessionalTaxRegistration() {
   return (
     <main className="bg-[#f6f8fc] text-slate-900">
-      {/* ============== Intro Section (Grid) ============== */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-        {/* 12-column grid; equal height on lg+ */}
         <div className="grid gap-8 lg:grid-cols-12 lg:items-stretch">
-          {/* Left: Copy (7/12) */}
           <div className="lg:col-span-7">
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#1e2751] tracking-tight">
               Professional Tax Registration in India
             </h1>
 
-            <div className="mt-5 space-y-4 text-[15px] leading-7 text-slate-800 text-justify">
+            <div className="mt-5 space-y-4 text-[15px] leading-7 text-slate-700 text-justify">
               <p>
                 Professional Tax (PT) registration is a mandatory process for individuals and
                 businesses that are required to pay professional tax under state laws. The
@@ -42,12 +40,9 @@ export default function ProfessionalTaxRegistration() {
             </div>
           </div>
 
-          {/* Right: Image (5/12) */}
           <div className="lg:col-span-5">
-            {/* Make the image column fill the grid cell’s height */}
             <div className="h-full">
               <div className="relative h-full min-h-[320px] w-full overflow-hidden rounded-xl ring-1 ring-slate-200 shadow-sm">
-                {/* Fill ensures the image covers the full column height */}
                 <Image
                   src="/register/pt.webp"     // <- your image path
                   alt="Filling professional tax form"
@@ -62,14 +57,13 @@ export default function ProfessionalTaxRegistration() {
         </div>
       </section>
 
-      {/* ============== Rates & Payment Section ============== */}
       <section className="bg-white/60">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12">
-          <h2 className="text-center text-2xl sm:text-3xl font-extrabold tracking-tight">
+          <h2 className="text-center text-2xl sm:text-3xl font-bold text-[#1e2751] tracking-tight">
             Professional Tax Rates and Payment
           </h2>
 
-          <p className="mx-auto mt-5 max-w-4xl text-center text-[15px] leading-7 text-slate-800">
+          <p className="mx-auto mt-5 max-w-4xl text-center text-[15px] leading-7 text-slate-700">
             The rates for professional tax vary from state to state, with each state having its own
             tax slabs and exemptions. The tax is usually deducted monthly by employers and paid to
             the state government. Self-employed professionals must make quarterly or annual payments
@@ -77,12 +71,12 @@ export default function ProfessionalTaxRegistration() {
           </p>
 
           <div className="mt-7 flex justify-center">
-            <a
+            <Link
               href="#"
-              className="rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer"
             >
               Professional Tax Rates- PAN India
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -2,15 +2,13 @@
 
 import React from "react";
 
-/* Small bullet icon */
 const Dot = () => (
-  <svg viewBox="0 0 24 24" width={18} height={18} className="mt-1.5 text-slate-700">
+  <svg viewBox="0 0 24 24" width={18} height={18} className="mt-1.5 text-orange-500">
     <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
     <circle cx="12" cy="12" r="2" fill="currentColor" />
   </svg>
 );
 
-/* ---------- Data ---------- */
 const LEFT_DOCS = [
   "Proof of Identity of the owner such as (Aadhar card, Voter ID, PAN card, passport) etc.",
   "Passport size photo of owner",
@@ -50,20 +48,18 @@ const KEY_POINTS_RIGHT = [
   },
 ];
 
-/* ---------- Page ---------- */
 export default function TradeLicenceDocuments() {
   return (
     <main>
-      {/* ===== Stripe 1: Documents (full-bleed light background) ===== */}
       <div className="relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw] bg-[#f6f8fc]">
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <h2 className="text-center text-[24px] sm:text-[30px] font-extrabold text-slate-900">
+          <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
             General Documents Required For Trade Licence Registration In India
           </h2>
 
           <div className="mt-8 grid gap-10 md:grid-cols-2">
-            <ul className="space-y-4 text-[15px] leading-7 text-slate-800">
-              {LEFT_DOCS.map((t) => (
+            <ul className="space-y-2 text-[15px] leading-7 text-slate-800">
+              {LEFT_DOCS?.map((t) => (
                 <li key={t} className="flex gap-3">
                   <Dot />
                   <span>{t}</span>
@@ -71,8 +67,8 @@ export default function TradeLicenceDocuments() {
               ))}
             </ul>
 
-            <ul className="space-y-4 text-[15px] leading-7 text-slate-800">
-              {RIGHT_DOCS.map((t) => (
+            <ul className="space-y-2 text-[15px] leading-7 text-slate-800">
+              {RIGHT_DOCS?.map((t) => (
                 <li key={t} className="flex gap-3">
                   <Dot />
                   <span>{t}</span>
@@ -83,28 +79,27 @@ export default function TradeLicenceDocuments() {
         </section>
       </div>
 
-      {/* ===== Stripe 2: Key Points (full-bleed white background) ===== */}
       <div className="relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw] bg-gray-50">
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-          <h2 className="text-center text-[24px] sm:text-[30px] font-extrabold text-slate-900">
+          <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
             Key Points To Remember About Trade Licence
           </h2>
 
           <div className="mt-10 grid gap-10 md:grid-cols-2">
-            <div className="space-y-8">
-              {KEY_POINTS_LEFT.map(({ title, body }) => (
+            <div className="space-y-4">
+              {KEY_POINTS_LEFT?.map(({ title, body }) => (
                 <div key={title}>
                   <h3 className="text-[15px] font-extrabold text-[#ef6a00]">{title}</h3>
-                  <p className="mt-2 text-[15px] leading-7 text-slate-700">{body}</p>
+                  <p className="mt-1 text-[15px] leading-7 text-slate-700">{body}</p>
                 </div>
               ))}
             </div>
 
-            <div className="space-y-8">
-              {KEY_POINTS_RIGHT.map(({ title, body }) => (
+            <div className="space-y-4">
+              {KEY_POINTS_RIGHT?.map(({ title, body }) => (
                 <div key={title}>
                   <h3 className="text-[15px] font-extrabold text-[#ef6a00]">{title}</h3>
-                  <p className="mt-2 text-[15px] leading-7 text-slate-700">{body}</p>
+                  <p className="mt-1 text-[15px] leading-7 text-slate-700">{body}</p>
                 </div>
               ))}
             </div>

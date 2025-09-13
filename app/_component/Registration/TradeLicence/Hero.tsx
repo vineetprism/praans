@@ -2,24 +2,17 @@
 import Link from "next/link";
 import { useState } from "react";
 
-/** Second-image style: short top line, long bottom line, brushy + rounded, 5s loop */
 function PriceHighlight({ children }: { children: React.ReactNode }) {
   return (
     <span
       className="relative inline-block align-middle leading-none"
       style={
         {
-          // tune these quickly if you need
-          // @ts-ignore
-          "--gapTop": "12px",        // distance of top line from text
-          // @ts-ignore
-          "--gapBottom": "14px",     // distance of bottom line from text
-          // @ts-ignore
-          "--overTop": "12px",       // how much top line extends beyond text
-          // @ts-ignore
-          "--overBottom": "56px",    // how much bottom line extends beyond text (longer like your ref)
-          // @ts-ignore
-          "--thickness": 6,          // stroke width
+          "--gapTop": "12px",        
+          "--gapBottom": "14px",     
+          "--overTop": "12px",       
+          "--overBottom": "56px",    
+          "--thickness": 6,          
         } as React.CSSProperties
       }
     >
@@ -27,7 +20,6 @@ function PriceHighlight({ children }: { children: React.ReactNode }) {
         {children}
       </span>
 
-      {/* TOP line — slightly wider than text */}
       <svg
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 -translate-x-1/2"
@@ -39,7 +31,6 @@ function PriceHighlight({ children }: { children: React.ReactNode }) {
         }}
       >
         <path
-          // subtle arc, almost straight
           d="M1,15 C34,10 66,10 99,15"
           fill="none"
           stroke="#F97316"
@@ -55,7 +46,6 @@ function PriceHighlight({ children }: { children: React.ReactNode }) {
         />
       </svg>
 
-      {/* BOTTOM line — noticeably longer like the screenshot */}
       <svg
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 -translate-x-1/2"
@@ -67,7 +57,6 @@ function PriceHighlight({ children }: { children: React.ReactNode }) {
         }}
       >
         <path
-          // mirror arc, very slight curve
           d="M1,6 C34,10 66,10 99,6"
           fill="none"
           stroke="#F97316"
@@ -84,7 +73,6 @@ function PriceHighlight({ children }: { children: React.ReactNode }) {
       </svg>
 
       <style jsx>{`
-        /* Draw -> hold -> reset; total cycle = 5s */
         @keyframes drawLoop {
           0%   { stroke-dashoffset: 100; opacity: 0.98; }
           14%  { stroke-dashoffset: 0;   opacity: 1;    }
@@ -106,34 +94,26 @@ export default function TradeLicenceHero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-white">
-      {/* CONTENT */}
       <div className="mx-auto w-full px-4 py-2 sm:py-4 lg:py-6">
         <div className="grid gap-4 lg:grid-cols-12 lg:items-start lg:gap-5">
-          {/* LEFT */}
           <div className="max-w-none lg:col-span-7 pl-3 sm:pl-6 md:pl-10 lg:pl-14 xl:pl-20 2xl:pl-24 break-words">
-            {/* HEADLINE */}
-            <h1 className="w-full text-center text-2xl font-extrabold tracking-tight text-[#1c284f] sm:text-2xl xl:text-3xl whitespace-normal lg:whitespace-normal">
+            <h1 className="w-full text-center text-2xl font-extrabold tracking-tight text-[#1c284f] sm:text-3xl whitespace-normal lg:whitespace-normal">
               India’s Trusted{" "}
               <span className="text-orange-500">Trade Licence Registration</span>
-              {/* show on laptop/desktop: new line */}
               <span className="text-orange-500 hidden lg:block">Consultant</span>
-              {/* keep inline on small screens */}
               <span className="text-orange-500 lg:hidden"> Consultant</span>
             </h1>
 
-            {/* ISO under headline */}
-            <p className="mt-1 text-center text-sm font-semibold text-slate-600">
+            <p className="mt-1 text-center text-sm font-semibold text-slate-700">
               (An ISO Certified Company)
             </p>
 
-            {/* PROMO LINE */}
-            <p className="mt-4 w-full text-[15px] leading-7 text-slate-700 whitespace-normal">
+            <p className="mt-4 w-full text-[15px] leading-7 font-semibold text-slate-700 whitespace-normal">
               Get Your Trade Licence Done Quickly and Hassle-Free Starting from Just{" "}
               <PriceHighlight>Rs.4999/-</PriceHighlight>
             </p>
 
-            {/* BULLETS */}
-            <ul className="mt-6 space-y-2 text-[15px] leading-6 text-slate-800">
+            <ul className="mt-6 space-y-2 text-[15px] leading-6 font-semibold text-slate-800">
               <li className="flex w-full items-start gap-2">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Apply New Licence in Just 2 Hours
@@ -152,8 +132,7 @@ export default function TradeLicenceHero() {
               </li>
             </ul>
 
-            {/* STATS */}
-            <div className="mt-5 flex w-full flex-wrap items-center gap-2 text-[15px] text-slate-800">
+            <div className="mt-5 flex w-full flex-wrap items-center gap-2 text-[15px] font-semibold text-slate-800">
               <span className="inline-flex h-6 w-6 items-center justify-center rounded-full">⭐</span>
               15 Years experience in Trade Licence Registration PAN India
             </div>
@@ -174,7 +153,6 @@ export default function TradeLicenceHero() {
             </Link>
           </div>
 
-          {/* RIGHT — unchanged form */}
           <div className="w-full lg:col-span-5 lg:ml-auto">
             <div className="mx-auto w-full max-w-[560px] rounded-xl bg-white p-5 shadow-xl ring-1 ring-slate-200/70 sm:p-6">
               <form
@@ -185,22 +163,22 @@ export default function TradeLicenceHero() {
                 className="space-y-4"
               >
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">Name</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-600">Name</label>
                   <input className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2" required />
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">Mobile Number</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-600">Mobile Number</label>
                   <input type="tel" inputMode="numeric" pattern="[0-9]{10}" className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2" required />
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">E-mail Id</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-600">E-mail Id</label>
                   <input type="email" className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2" required />
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">State</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-600">State</label>
                   <select value={state} onChange={(e) => setState(e.target.value)} className="w-full appearance-none rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2">
                     <optgroup label="States">
                       <option>Andhra Pradesh</option>
@@ -246,7 +224,7 @@ export default function TradeLicenceHero() {
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">How did you hear about us?</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-600">How did you hear about us?</label>
                   <div className="relative">
                     <select value={hear} onChange={(e) => setHear(e.target.value)} className="w-full appearance-none rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2">
                       <option>Google</option>
@@ -259,7 +237,7 @@ export default function TradeLicenceHero() {
                   </div>
                 </div>
 
-                <button type="submit" className="mt-2 w-full rounded-md bg-orange-500 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <button type="submit" className="mt-2 w-full cursor-pointer rounded-md bg-orange-500 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
                   Submit
                 </button>
               </form>

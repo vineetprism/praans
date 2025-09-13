@@ -2,9 +2,8 @@
 
 import React from "react";
 
-/* Small bullet icon */
 const Dot = () => (
-  <svg viewBox="0 0 24 24" width={18} height={18} className="mt-1.5 text-slate-700">
+  <svg viewBox="0 0 24 24" width={18} height={18} className="mt-1.5 text-orange-500">
     <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
     <circle cx="12" cy="12" r="2" fill="currentColor" />
   </svg>
@@ -51,16 +50,15 @@ const KEY_POINTS_RIGHT = [
 export default function LWFDocuments() {
   return (
     <main>
-      {/* Section 1: Documents (light gray background) */}
       <section className="bg-[#f6f8fc] py-10 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="text-center text-[24px] sm:text-[30px] font-extrabold text-slate-900">
+          <h2 className="text-center text-[24px] sm:text-[30px] font-extrabold text-[#1c284f]">
             General Documents Required For LWF Registration In India
           </h2>
 
           <div className="mt-8 grid gap-10 md:grid-cols-2">
-            <ul className="space-y-4 text-[15px] leading-7 text-slate-800">
-              {LEFT_DOCS.map((t) => (
+            <ul className="space-y-2 text-[15px] leading-7 text-slate-800">
+              {LEFT_DOCS?.map((t) => (
                 <li key={t} className="flex gap-3">
                   <Dot />
                   <span>{t}</span>
@@ -68,8 +66,8 @@ export default function LWFDocuments() {
               ))}
             </ul>
 
-            <ul className="space-y-4 text-[15px] leading-7 text-slate-800">
-              {RIGHT_DOCS.map((t) => (
+            <ul className="space-y-2 text-[15px] leading-7 text-slate-800">
+              {RIGHT_DOCS?.map((t) => (
                 <li key={t} className="flex gap-3">
                   <Dot />
                   <span>{t}</span>
@@ -80,28 +78,27 @@ export default function LWFDocuments() {
         </div>
       </section>
 
-      {/* Section 2: Key Points (white background) */}
       <section className="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <h2 className="text-center text-[22px] sm:text-[28px] font-extrabold text-slate-900">
+          <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#1c284f]">
             Key Points To Remember About Labour Welfare Fund
           </h2>
 
           <div className="mt-10 grid gap-10 md:grid-cols-2">
-            <div className="space-y-8">
-              {KEY_POINTS_LEFT.map(({ title, body }) => (
+            <div className="space-y-4">
+              {KEY_POINTS_LEFT?.map(({ title, body }) => (
                 <div key={title}>
                   <h3 className="text-[15px] font-extrabold text-[#ef6a00]">{title}</h3>
-                  <p className="mt-2 text-[15px] leading-7 text-slate-700">{body}</p>
+                  <p className="mt-1 text-[15px] leading-7 text-slate-700">{body}</p>
                 </div>
               ))}
             </div>
 
-            <div className="space-y-8">
-              {KEY_POINTS_RIGHT.map(({ title, body }) => (
+            <div className="space-y-4">
+              {KEY_POINTS_RIGHT?.map(({ title, body }) => (
                 <div key={title}>
                   <h3 className="text-[15px] font-extrabold text-[#ef6a00]">{title}</h3>
-                  <p className="mt-2 text-[15px] leading-7 text-slate-700">{body}</p>
+                  <p className="mt-1 text-[15px] leading-7 text-slate-700">{body}</p>
                 </div>
               ))}
             </div>

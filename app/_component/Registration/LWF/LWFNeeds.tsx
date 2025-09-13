@@ -3,12 +3,10 @@
 import Image from "next/image";
 import React from "react";
 
-// ==== Swiper (carousel) ====
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-/* ------------------ Small helper: bullet icon ------------------ */
 const Bullet = () => (
   <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0 mt-1.5">
     <circle cx="12" cy="12" r="8" fill="none" stroke="#f97316" strokeWidth="2" />
@@ -56,7 +54,6 @@ const TESTIMONIALS = [
 ];
 
 
-/* ------------------ RIGHT-SIDE CONTENT: LWF ------------------ */
 const WHO_NEEDS_LWF = [
   {
     title: "Employers of establishments",
@@ -75,7 +72,6 @@ const WHO_NEEDS_LWF = [
   },
 ];
 
-/* Card for equal-height testimonial slides */
 function TestimonialCard({
   quote,
   name,
@@ -102,9 +98,7 @@ export default function LWFNeeds() {
   return (
     <main className="bg-[#f6f8fc]">
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        {/* 👉 make both columns the same height; image follows text height */}
         <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* LEFT: image — remove fixed min-heights; let it stretch to text height */}
           <div className="h-full">
             <div className="relative h-full min-h-[260px] w-full overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-200">
               <Image
@@ -118,19 +112,18 @@ export default function LWFNeeds() {
             </div>
           </div>
 
-          {/* RIGHT: content — no fixed min-height; natural text height drives the row */}
           <div className="h-full">
             <div className="flex h-full flex-col justify-center">
-              <h1 className="text-[26px] sm:text-[30px] lg:text-[34px] font-extrabold leading-tight tracking-tight text-slate-900">
+              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1c284f]">
                 Who Needs to Register for LWF?
               </h1>
 
-              <p className="mt-2 text-sm font-semibold text-slate-900">
+              <p className="mt-2 text-sm font-semibold text-[#1c284f]">
                 Labour Welfare Fund registration is mandatory for:
               </p>
 
-              <div className="mt-4 space-y-3 text-[15px] leading-7 text-slate-800">
-                {WHO_NEEDS_LWF.map((item) => (
+              <div className="mt-4 space-y-3 text-[15px] leading-7 text-[#1c284f]">
+                {WHO_NEEDS_LWF?.map((item) => (
                   <div key={item.title} className="flex gap-3">
                     <Bullet />
                     <p>
@@ -143,8 +136,7 @@ export default function LWFNeeds() {
           </div>
         </div>
 
-        {/* Full-width logos (unchanged) */}
-        <div className="relative left-1/2 right-1/2 mt-10 w-screen -ml-[50vw] -mr-[50vw] shadow-md">
+        <div className="relative left-1/2 right-1/2 mt-10 w-screen -ml-[50vw] -mr-[50vw] px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border-2 border-orange-400 bg-white p-4 sm:p-6">
             <div className="mx-auto grid w-full max-w-7xl grid-cols-2 place-items-center gap-6 sm:grid-cols-4">
               <div className="relative h-14 w-40">
@@ -164,10 +156,9 @@ export default function LWFNeeds() {
         </div>
       </section>
 
-      {/* Testimonials (unchanged) */}
       <section className="bg-white py-4 sm:py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <h2 className="text-center text-[28px] sm:text-[34px] font-extrabold text-[#142a63]">
+          <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#1c284f]">
             Client Testimonials
           </h2>
 

@@ -6,8 +6,7 @@ export default function ProfessionalTaxTypes() {
   return (
     <main className="bg-white text-slate-900">
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-        {/* Title */}
-        <h1 className="text-center text-[28px] sm:text-[34px] font-extrabold tracking-tight">
+        <h1 className="text-center text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1e2751]">
           Types of Professional Tax Registrations
         </h1>
         <p className="mx-auto mt-3 max-w-4xl text-center text-[14px] leading-7 text-slate-700">
@@ -15,10 +14,8 @@ export default function ProfessionalTaxTypes() {
           The Employer Certificate (EC) and the Registration Certificate (RC).
         </p>
 
-        {/* Two columns */}
         <div className="mt-10 grid gap-8 lg:grid-cols-2">
-          {/* Left: Employer Certificate (Enrolment Certificate) */}
-          <article className="rounded-2xl bg-white p-6 ring-1 ring-orange-200">
+          <article className="rounded-2xl bg-white p-5 ring-1 ring-orange-200">
             <h2 className="text-lg sm:text-xl font-extrabold text-[#f47b20]">
               Employer Certificate (Enrolment Certificate)
             </h2>
@@ -49,8 +46,7 @@ export default function ProfessionalTaxTypes() {
             </div>
           </article>
 
-          {/* Right: Registration Certificate (Employer Registration) */}
-          <article className="rounded-2xl bg-white p-6 ring-1 ring-orange-200">
+          <article className="rounded-2xl bg-white p-5 ring-1 ring-orange-200">
             <h2 className="text-lg sm:text-xl font-extrabold text-[#f47b20]">
               Registration Certificate (Employer Registration Certificate)
             </h2>

@@ -1,12 +1,10 @@
 "use client";
-
 import Image from "next/image";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-/* Small helper: bullet icon (orange) */
 const Bullet = () => (
   <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0 mt-1.5">
     <circle cx="12" cy="12" r="8" fill="none" stroke="#f97316" strokeWidth="2" />
@@ -30,7 +28,6 @@ const TESTIMONIALS = [
 ];
 
 
-/* === UPDATED TEXT FOR GST (as per image) === */
 const WHO_NEEDS_GST = [
   "Turnover-Based Requirement: Businesses with an annual turnover exceeding ₹20 lakh (₹10 lakh for special category states).",
   "Interstate Supply: Any business involved in the supply of goods or services across state borders.",
@@ -58,9 +55,7 @@ export default function GSTNeeds() {
   return (
     <main className="bg-[#f6f8fc]">
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        {/* Two columns share height */}
         <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* LEFT: image (show full image without cropping) */}
           <div className="self-stretch min-h-[1px]">
             <div className="relative h-full min-h-[360px] w-full overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-200 bg-white p-2 grid place-items-center">
               <Image
@@ -74,15 +69,14 @@ export default function GSTNeeds() {
             </div>
           </div>
 
-          {/* RIGHT: text */}
           <div className="self-stretch min-h-[1px]">
             <div className="flex h-full flex-col justify-center">
-              <h1 className="text-[24px] sm:text-[28px] lg:text-[32px] font-extrabold leading-tight tracking-tight text-slate-900">
+              <h1 className="text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-[#1c284f]">
                 Who Needs GST Registration?
               </h1>
 
-              <div className="mt-5 space-y-3 text-[14px] leading-6 font-semibold text-slate-800">
-                {WHO_NEEDS_GST.map((item) => (
+              <div className="mt-5 space-y-2 text-[14px] leading-6 font-semibold text-slate-700">
+                {WHO_NEEDS_GST?.map((item) => (
                   <div key={item} className="flex gap-3">
                     <Bullet />
                     <p>{item}</p>
@@ -93,8 +87,7 @@ export default function GSTNeeds() {
           </div>
         </div>
 
-        {/* Logos */}
-        <div className="relative left-1/2 right-1/2 mt-16 w-screen -ml-[50vw] -mr-[50vw] shadow-md">
+        <div className="relative left-1/2 right-1/2 mt-16 w-screen -ml-[50vw] -mr-[50vw] px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border-2 border-orange-400 bg-white p-4 sm:p-6">
             <div className="mx-auto grid w-full max-w-7xl grid-cols-2 place-items-center gap-6 sm:grid-cols-4">
               <div className="relative h-14 w-40">
@@ -117,7 +110,7 @@ export default function GSTNeeds() {
       {/* Testimonials (unchanged) */}
       <section className="bg-white py-4 sm:py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <h2 className="text-center text-[28px] sm:text-[34px] font-extrabold text-[#142a63]">
+          <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
             Client Testimonials
           </h2>
 
@@ -132,7 +125,7 @@ export default function GSTNeeds() {
               allowTouchMove
               className="!h-[260px] sm:!h-[280px] lg:!h-[180px]"
             >
-              {TESTIMONIALS.map((t, i) => (
+              {TESTIMONIALS?.map((t, i) => (
                 <SwiperSlide key={i} className="!h-full">
                   <TestimonialCard {...t} />
                 </SwiperSlide>

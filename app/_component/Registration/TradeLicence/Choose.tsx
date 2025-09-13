@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 
 type Feature = { title: string; img: string };
@@ -24,10 +23,10 @@ export default function WhyChooseTradeLicence() {
         </h2>
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {FEATURES.map(({ title, img }) => (
+          {FEATURES?.map(({ title, img }) => (
             <div
               key={title}
-              className="rounded-2xl bg-[#f7f8ff] ring-1 ring-slate-200 shadow-[0_8px_28px_rgba(2,6,23,0.06)] p-6 flex flex-col items-center justify-center text-center"
+              className="rounded-2xl bg-[#f7f8ff] ring-1 ring-slate-200 shadow-[0_8px_28px_rgba(2,6,23,0.06)] p-4 flex flex-col items-center justify-center text-center"
             >
               <Image
                 unoptimized
@@ -35,7 +34,7 @@ export default function WhyChooseTradeLicence() {
                 alt={title}
                 width={96}
                 height={96}
-                className="w-16 h-16 md:w-20 md:h-20 object-contain"
+                className="w-12 h-12 md:w-16 md:h-16 object-contain"
               />
               <p className="mt-4 font-semibold text-slate-900">{title}</p>
             </div>

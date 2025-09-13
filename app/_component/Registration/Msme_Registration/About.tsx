@@ -8,7 +8,7 @@ export default function MsmeRegistrationAbout() {
           <div className="grid items-start gap-10 lg:grid-cols-2">
             {/* LEFT: Text */}
             <div>
-              <h1 className="text-md font-bold leading-tight sm:text-[20px]">
+              <h1 className="text-xl font-bold leading-tight sm:text-2xl text-[#142a63]">
                 MSME Registration: Empowering Small Businesses
               </h1>
 
@@ -16,7 +16,7 @@ export default function MsmeRegistrationAbout() {
                 Micro, Small, and Medium Enterprises (MSMEs) play a crucial role in India’s economic growth—creating jobs, fostering innovation, and boosting exports. To support these businesses, the Government of India offers a range of benefits under the MSME Development Act, 2006. Registering as an MSME is the first step toward accessing these benefits and unlocking your business potential.
               </p>
 
-              <h2 className="mt-10 text-md font-bold leading-tight sm:text-[20px]">
+              <h2 className="mt-10 text-xl font-bold leading-tight sm:text-2xl text-[#142a63]">
                 What is MSME Registration?
               </h2>
               <p className="mt-4 text-[15px] leading-7 text-slate-700 text-justify">

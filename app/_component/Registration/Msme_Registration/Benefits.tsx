@@ -27,10 +27,10 @@ export default function BenefitsPage() {
             {/* TOP BAND */}
             <section className="bg-[#f5f7fc]">
                 <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8 py-4">
-                    <h1 className="text-center text-[28px] sm:text-[34px] font-extrabold text-[#eb8535]">
+                    <h1 className="text-center text-2xl sm:text-3xl font-extrabold text-[#eb8535]">
                         Benefits of MSME Registration
                     </h1>
-                    <p className="mx-auto mt-4 max-w-5xl text-center text-[14.5px] font-semibold leading-7 text-slate-900 text-justify">
+                    <p className="mx-auto mt-4 max-w-5xl text-center text-[14.5px] font-semibold leading-7 text-slate-800 text-justify">
                         The Micro, Small, and Medium Enterprises (MSMEs) sector is vital to India’s economic growth, contributing significantly to GDP, employment, and exports. To empower and support MSMEs, the Government of India provides numerous benefits to registered entities. Here’s a detailed breakdown:
                     </p>
                 </div>
@@ -38,7 +38,7 @@ export default function BenefitsPage() {
 
             {/* FINANCIAL BENEFITS — hover orange */}
             <PlainSection bg="white">
-                <h2 className="text-center text-[28px] sm:text-[34px] font-extrabold text-[#142a63]">Financial Benefits</h2>
+                <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">Financial Benefits</h2>
                 <div className="mx-auto mt-10 grid max-w-6xl items-stretch gap-6 px-5 sm:px-6 lg:px-8 md:grid-cols-2 lg:grid-cols-3 text-justify">
                     {financialBenefits.map((b) => (
                         <BenefitCard key={b.title} title={b.title} desc={b.desc} hoverColor="#eb8535" />
@@ -48,7 +48,7 @@ export default function BenefitsPage() {
 
             {/* TAX & COMPLIANCE — hover navy */}
             <PlainSection bg="gray">
-                <h2 className="text-center text-[28px] sm:text-[34px] font-extrabold text-[#142a63]">Tax and Compliance Benefits</h2>
+                <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">Tax and Compliance Benefits</h2>
                 <div className="mx-auto mt-10 grid max-w-6xl items-stretch gap-6 px-5 sm:px-6 lg:px-8 sm:grid-cols-2 lg:grid-cols-4 text-justify">
                     {taxBenefits.map((b) => (
                         <BenefitCard key={b.title} title={b.title} desc={b.desc} />
@@ -58,7 +58,7 @@ export default function BenefitsPage() {
 
             {/* GOVT PROCUREMENT — hover orange */}
             <PlainSection bg="white">
-                <h2 className="text-center text-[28px] sm:text-[34px] font-extrabold text-[#142a63]">Government Procurement Benefits</h2>
+                <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">Government Procurement Benefits</h2>
                 <div className="mx-auto mt-10 grid max-w-6xl items-stretch gap-6 px-5 sm:px-6 lg:px-8 md:grid-cols-2 lg:grid-cols-3 text-justify">
                     {govtProcurement.map((b) => (
                         <BenefitCard key={b.title} title={b.title} desc={b.desc} hoverColor="#eb8535" />

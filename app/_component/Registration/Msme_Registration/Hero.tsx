@@ -118,18 +118,18 @@ const waLink = `https://wa.me/${whatsappNumber}?text=${waMsg}`;
             </h1>
 
             {/* ISO under headline */}
-            <p className="mt-1 text-center text-sm font-semibold text-slate-600">
+            <p className="mt-1 text-center text-sm font-semibold text-slate-700">
               (An ISO Certified Company)
             </p>
 
             {/* PROMO LINE */}
-            <p className="mt-4 w-full text-[15px] leading-7 text-slate-700 whitespace-normal">
+            <p className="mt-4 w-full text-[15px] leading-7 font-semibold text-slate-700 whitespace-normal">
               Get Your MSME Registration Done Quickly and Hassle-Free Starting from Just{" "}
               <PriceHighlight>Rs.799/-</PriceHighlight>
             </p>
 
             {/* BULLETS */}
-            <ul className="mt-6 space-y-2 text-[15px] leading-6 text-slate-800">
+            <ul className="mt-6 space-y-2 text-[15px] leading-6 font-semibold text-slate-700">
               <li className="flex w-full items-start gap-2 whitespace-normal">
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500" />
                 Get Your Renewed Registration in Just 4 Hours
@@ -155,7 +155,7 @@ const waLink = `https://wa.me/${whatsappNumber}?text=${waMsg}`;
             </ul>
 
             {/* STATS */}
-            <div className="mt-5 flex w-full flex-wrap items-center gap-2 whitespace-normal text-[15px] text-slate-800">
+            <div className="mt-5 flex w-full flex-wrap items-center gap-2 whitespace-normal text-[15px] font-semibold text-slate-700">
               <span className="inline-flex h-6 w-6 items-center justify-center rounded-full">⭐</span>
               15 Years experience in MSME Registration PAN India
             </div>
@@ -187,29 +187,29 @@ const waLink = `https://wa.me/${whatsappNumber}?text=${waMsg}`;
                 className="space-y-4"
               >
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">Name</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-600">Name</label>
                   <input className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2" required />
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">Mobile Number</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-600">Mobile Number</label>
                   <input type="tel" inputMode="numeric" pattern="[0-9]{10}" className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2" required />
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">E-mail Id</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-600">E-mail Id</label>
                   <input type="email" className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2" required />
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">State</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-600">State</label>
                   <select value={state} onChange={(e) => setState(e.target.value)} className="w-full appearance-none rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2">
                     {/* ...unchanged options... */}
                   </select>
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">How did you hear about us?</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-600">How did you hear about us?</label>
                   <div className="relative">
                     <select value={hear} onChange={(e) => setHear(e.target.value)} className="w-full appearance-none rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2">
                       <option>Google</option>
@@ -222,7 +222,7 @@ const waLink = `https://wa.me/${whatsappNumber}?text=${waMsg}`;
                   </div>
                 </div>
 
-                <button type="submit" className="mt-2 w-full rounded-md bg-orange-500 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <button type="submit" className="mt-2 w-full cursor-pointer rounded-md bg-orange-500 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
                   Submit
                 </button>
               </form>

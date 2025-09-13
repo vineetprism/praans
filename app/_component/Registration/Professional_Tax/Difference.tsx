@@ -6,7 +6,7 @@ export default function ProfessionalTaxKeyDifference() {
   return (
     <main className="bg-[#f6f8fc] text-slate-900">
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-center text-[28px] sm:text-[32px] font-extrabold tracking-tight">
+        <h1 className="text-center text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1e2751]">
           Key Difference
         </h1>
 

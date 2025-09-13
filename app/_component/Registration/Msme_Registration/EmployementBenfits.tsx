@@ -23,7 +23,7 @@ export default function EmploymentPage() {
       {/* Top band */}
       <section className="bg-[#f5f7fc]">
         <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8 py-4">
-          <h1 className="text-center text-[26px] sm:text-[30px] font-extrabold text-[#142a63]">
+          <h1 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
             Sick Unit Support and Rehabilitation
           </h1>
           <p className="mx-auto mt-4 max-w-5xl text-center text-[15px] leading-7 text-slate-900">
@@ -34,7 +34,6 @@ export default function EmploymentPage() {
         </div>
       </section>
 
-      {/* Employment Benefits */}
       <Section bg="white" title="Employment Benefits">
         <CardsGrid items={employmentBenefits} hoverColor="#eb8535" />
       </Section>
@@ -42,7 +41,6 @@ export default function EmploymentPage() {
   );
 }
 
-/* ---------- Reusable blocks ---------- */
 
 function Section({
   children,
@@ -87,7 +85,6 @@ function Card({
   return (
     <div className="group relative h-full">
       <div className="relative h-full overflow-hidden rounded-2xl shadow-[0_10px_25px_rgba(16,24,40,0.08)] ring-1 ring-slate-200">
-        {/* hover overlay */}
         <span
           aria-hidden
           className="absolute inset-0 origin-top scale-y-0 transition-transform duration-300 ease-out group-hover:scale-y-100"
@@ -102,7 +99,6 @@ function Card({
               {desc}
             </p>
           </div>
-          {/* no mt-auto — keeps bottom tight */}
         </div>
       </div>
     </div>
