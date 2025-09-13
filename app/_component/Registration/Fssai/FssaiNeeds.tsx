@@ -1,11 +1,10 @@
 "use client";
-
 import Image from "next/image";
 import React from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import Link from "next/link";
 
 const Bullet = () => (
   <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0">
@@ -54,13 +53,11 @@ const TESTIMONIALS = [
 ];
 
 
-/** Two-column list content */
 const WHO_NEEDS = [
   ["Transporter", "Distributor", "Manufacturer", "Storage", "Restaurant", "Dhaba", "Canteen"],
   ["Retailer", "Wholesaler", "Food Vending Agencies Importer", "E-commerce Exporter", "Club", "Hawker", "Others"],
 ];
 
-/* ===== More Services ===== */
 const SERVICES = [
   {
     title: "MSME Registration",
@@ -110,19 +107,20 @@ function ServiceCard({
   href: string;
 }) {
   return (
-    <article className="flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-7 text-center shadow-sm ring-1 ring-slate-200/60 transition hover:shadow-md">
+    <article className="flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-5 text-center shadow-sm ring-1 ring-slate-200/60 transition hover:shadow-md">
       <div>
-        <h3 className="text-xl font-extrabold tracking-tight text-[#142a63]">{title}</h3>
-        <p className="mt-4 text-[15px] leading-7 text-slate-700 text-justify">{desc}</p>
+        <h3 className="text-xl font-semibold tracking-tight text-[#142a63]">{title}</h3>
+        <p className="mt-3 text-[15px] leading-7 text-slate-600 text-justify">{desc}</p>
       </div>
 
-      <div className="mt-6">
-        <a
+      <div className="mt-4">
+        <Link
           href={href}
           className="inline-block text-[15px] font-semibold text-[#0f265c] underline underline-offset-4 hover:text-orange-500"
+          aria-label="Learn More"
         >
           Learn More
-        </a>
+        </Link>
       </div>
     </article>
   );
@@ -130,14 +128,14 @@ function ServiceCard({
 
 function MoreServices() {
   return (
-    <section className="py-10 sm:py-12">
+    <section className="py-6 sm:py-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-[28px] sm:text-[34px] font-extrabold text-[#142a63]">
+        <h2 className="text-center text-2xl sm:text-3xl font-bold text-[#142a63]">
           More Services
         </h2>
 
         <div className="mx-auto mt-8 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s) => (
+          {SERVICES?.map((s) => (
             <ServiceCard key={s.title} {...s} />
           ))}
         </div>
@@ -146,7 +144,6 @@ function MoreServices() {
   );
 }
 
-/* Card used inside the Swiper to guarantee equal heights */
 function TestimonialCard({
   quote,
   name,
@@ -158,12 +155,10 @@ function TestimonialCard({
 }) {
   return (
     <article className="flex h-full w-full flex-col justify-between rounded-xl border border-orange-200 bg-white p-6 text-center shadow-sm">
-      {/* Grow zone keeps all cards equal height */}
       <div className="flex grow items-center justify-center">
         <p className="max-w-[56ch] text-[15px] leading-7 text-slate-800">{quote}</p>
       </div>
 
-      {/* Fixed footer */}
       <div className="mt-4">
         <div className="font-semibold text-slate-900">{name}</div>
         <div className="text-sm text-slate-600">{org}</div>
@@ -176,9 +171,7 @@ export default function FssaiNeeds() {
   return (
     <main className="bg-[#f6f8fc]">
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Make the two columns stretch to the same row height */}
         <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* LEFT image (kept as-is) */}
           <div className="h-full rounded-2xl p-4 lg:p-5">
             <div className="relative h-full min-h-[300px] w-full overflow-hidden rounded-2xl">
               <Image
@@ -186,23 +179,23 @@ export default function FssaiNeeds() {
                 alt="FSSAI Registration illustration"
                 fill
                 priority
-                className="object-contain"
+                className="rounded-2xl object-contain"
+                sizes="(min-width:1024px) 50vw, 100vw"
               />
             </div>
           </div>
 
-          {/* RIGHT content */}
+
           <div className="flex h-full flex-col justify-center">
-            <h1 className="text-[20px] sm:text-[24px] lg:text-[26px] font-extrabold tracking-tight text-slate-900">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1c284f]">
               Who Needs a FSSAI FoSCos License?
             </h1>
 
-            {/* Bullets split in two columns on md+; single column on mobile */}
-            <div className="mt-5 grid gap-x-10 gap-y-3 sm:grid-cols-2">
-              {WHO_NEEDS.map((col, colIdx) => (
-                <ul key={colIdx} className="space-y-3">
-                  {col.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-[15px] text-slate-800">
+            <div className="mt-5 grid gap-x-10 gap-y-2 sm:grid-cols-2">
+              {WHO_NEEDS?.map((col, colIdx) => (
+                <ul key={colIdx} className="space-y-2">
+                  {col?.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-[15px] text-slate-800">
                       <Bullet />
                       <span>{item}</span>
                     </li>
@@ -213,8 +206,7 @@ export default function FssaiNeeds() {
           </div>
         </div>
 
-        {/* Full-width logos strip */}
-        <div className="relative left-1/2 right-1/2 mt-10 w-screen -ml-[50vw] -mr-[50vw] shadow-md">
+        <div className="relative left-1/2 mt-10 w-screen -ml-[50vw] -mr-[50vw] px-[clamp(12px,4vw,28px)]">
           <div className="rounded-2xl border-2 border-orange-400 bg-white p-4 sm:p-6">
             <div className="mx-auto grid w-full max-w-7xl grid-cols-2 place-items-center gap-6 sm:grid-cols-4">
               <div className="relative h-14 w-40">
@@ -234,10 +226,9 @@ export default function FssaiNeeds() {
         </div>
       </section>
 
-      {/* ===================== Client Testimonials (Swiper) ===================== */}
       <section className="bg-white py-4 sm:py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <h2 className="text-center text-[28px] sm:text-[34px] font-extrabold text-[#142a63]">
+          <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
             Client Testimonials
           </h2>
 
@@ -250,13 +241,12 @@ export default function FssaiNeeds() {
               spaceBetween={24}
               breakpoints={{
                 0: { slidesPerView: 1 },
-                768: { slidesPerView: 2 }, // show two cards from md+
+                768: { slidesPerView: 2 },
               }}
               allowTouchMove
-              // lock a uniform height so all slides match (tweak if you want)
               className="!h-[260px] sm:!h-[280px] lg:!h-[180px]"
             >
-              {TESTIMONIALS.map((t, i) => (
+              {TESTIMONIALS?.map((t, i) => (
                 <SwiperSlide key={i} className="!h-full">
                   <TestimonialCard {...t} />
                 </SwiperSlide>
@@ -266,7 +256,6 @@ export default function FssaiNeeds() {
         </div>
       </section>
 
-      {/* ===================== More Services ===================== */}
       <MoreServices />
     </main>
   );

@@ -112,7 +112,7 @@ export default function LWFHero() {
           {/* LEFT */}
           <div className="max-w-none lg:col-span-7 pl-3 sm:pl-6 md:pl-10 lg:pl-14 xl:pl-20 2xl:pl-24">
             {/* HEADLINE */}
-            <h1 className="w-full text-center text-2xl font-extrabold tracking-tight text-slate-900 sm:text-2xl xl:text-3xl whitespace-normal">
+            <h1 className="w-full text-center text-2xl font-extrabold tracking-tight text-[#1c284f] sm:text-2xl xl:text-3xl whitespace-normal">
               India’s Trusted{" "}
               <span className="text-orange-500">Labour Welfare Fund Registration</span>
               {/* show on laptop/desktop: new line */}

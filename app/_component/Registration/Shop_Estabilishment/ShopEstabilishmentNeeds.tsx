@@ -1,14 +1,11 @@
 "use client";
-
 import Image from "next/image";
 import React from "react";
 
-// ==== Swiper (carousel) ====
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-/* ------------------ Small helper: bullet icon ------------------ */
 const Bullet = () => (
     <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0 mt-1.5">
         <circle cx="12" cy="12" r="8" fill="none" stroke="#f97316" strokeWidth="2" />
@@ -16,7 +13,6 @@ const Bullet = () => (
     </svg>
 );
 
-/* ------------------ Testimonials content ------------------ */
 const TESTIMONIALS = [
     {
         quote:
@@ -57,7 +53,6 @@ const TESTIMONIALS = [
 ];
 
 
-/* ------------------ Shop & Establishment content ------------------ */
 const WHO_NEEDS_SHOP = [
     "Shops, commercial establishments, and offices",
     "Hotels, restaurants, and other hospitality establishments",
@@ -78,7 +73,6 @@ const EXEMPTIONS = [
     "Family-Run Businesses Without Employees",
 ];
 
-/* Card for equal-height testimonial slides */
 function TestimonialCard({
     quote,
     name,
@@ -105,13 +99,9 @@ export default function ShopEstabilishmentNeeds() {
     return (
         <main className="bg-[#f6f8fc]">
             <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-                {/* Two columns; image stack on the left, content on the right */}
                 <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
-                    {/* LEFT: stacked images */}
                     <div className="relative">
-                        {/* Back image */}
                         <div className="relative h-[420px] sm:h-[480px] lg:h-[520px] overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-200">
-                            {/* Replace with your preferred background image */}
                             <Image
                                 src="/apply/professional-tax.jpg"
                                 alt="People discussing registration"
@@ -123,14 +113,13 @@ export default function ShopEstabilishmentNeeds() {
                         </div>
                     </div>
 
-                    {/* RIGHT: text content */}
                     <div className="flex h-full flex-col justify-center">
-                        <h1 className="text-[20px] sm:text-[22px] lg:text-[24px] font-extrabold leading-tight tracking-tight text-slate-900">
+                        <h1 className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight text-[#1c284f]">
                             Who Needs a Shop & Establishment Registration?
                         </h1>
 
-                        <div className="mt-2 space-y-1 text-[14px] leading-6 font-semibold text-slate-800">
-                            {WHO_NEEDS_SHOP.map((item) => (
+                        <div className="mt-2 space-y-0 text-[14px] leading-6 font-semibold text-slate-800">
+                            {WHO_NEEDS_SHOP?.map((item) => (
                                 <div key={item} className="flex gap-3">
                                     <Bullet />
                                     <p>{item}</p>
@@ -138,11 +127,11 @@ export default function ShopEstabilishmentNeeds() {
                             ))}
                         </div>
 
-                        <h2 className="mt-8 text-[20px] sm:text-[22px] lg:text-[24px] font-extrabold tracking-tight text-slate-900">
+                        <h2 className="mt-6 text-2xl sm:text-3xl font-bold tracking-tight text-[#1c284f]">
                             Exemption
                         </h2>
-                        <div className="mt-2 space-y-1 text-[14px] leading-6 font-semibold text-slate-800">
-                            {EXEMPTIONS.map((item) => (
+                        <div className="mt-2 space-y-0 text-[14px] leading-6 font-semibold text-slate-800">
+                            {EXEMPTIONS?.map((item) => (
                                 <div key={item} className="flex gap-3">
                                     <Bullet />
                                     <p>{item}</p>
@@ -152,8 +141,7 @@ export default function ShopEstabilishmentNeeds() {
                     </div>
                 </div>
 
-                {/* Full-width logos (kept) */}
-                <div className="relative left-1/2 right-1/2 mt-16 w-screen -ml-[50vw] -mr-[50vw] shadow-md">
+                <div className="relative left-1/2 mt-10 w-screen -ml-[50vw] -mr-[50vw] px-[clamp(12px,4vw,28px)]">
                     <div className="rounded-2xl border-2 border-orange-400 bg-white p-4 sm:p-6">
                         <div className="mx-auto grid w-full max-w-7xl grid-cols-2 place-items-center gap-6 sm:grid-cols-4">
                             <div className="relative h-14 w-40">
@@ -176,7 +164,7 @@ export default function ShopEstabilishmentNeeds() {
             {/* Testimonials */}
             <section className="bg-white py-4 sm:py-6">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                    <h2 className="text-center text-[28px] sm:text-[34px] font-extrabold text-[#142a63]">
+                    <h2 className="text-center text-2xl sm:text-3xl font-bold text-[#142a63]">
                         Client Testimonials
                     </h2>
 

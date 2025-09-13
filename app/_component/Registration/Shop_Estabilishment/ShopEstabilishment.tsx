@@ -6,13 +6,10 @@ import React from "react";
 export default function ShopEstabilishment() {
     return (
         <main className="bg-white text-slate-900">
-            {/* ============== Intro Section (Grid) ============== */}
             <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
-                {/* 12-column grid; equal height on lg+ */}
                 <div className="grid gap-8 lg:grid-cols-12 lg:items-stretch">
-                    {/* Left: Copy (7/12) */}
                     <div className="lg:col-span-7">
-                        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                        <h1 className="text-2xl sm:text-3xl font-bold text-[#1c284f] tracking-tight">
                             Shop and Establishment Registration in India
                         </h1>
 
@@ -33,14 +30,11 @@ export default function ShopEstabilishment() {
                         </div>
                     </div>
 
-                    {/* Right: Image (5/12) */}
                     <div className="lg:col-span-5">
-                        {/* Make the image column fill the grid cell’s height */}
                         <div className="h-full">
                             <div className="relative h-full min-h-[320px] w-full overflow-hidden rounded-xl ring-1 ring-slate-200 shadow-sm">
-                                {/* Fill ensures the image covers the full column height */}
                                 <Image
-                                    src="/register/shop.webp"     // <- your image path
+                                    src="/register/shop.webp"
                                     alt="Filling professional tax form"
                                     fill
                                     priority

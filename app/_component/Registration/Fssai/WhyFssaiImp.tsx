@@ -1,8 +1,6 @@
 "use client";
-
 import React from "react";
 
-/* ---------- Section wrapper (your PlainSection) ---------- */
 function PlainSection({
     children,
     bg,
@@ -17,12 +15,10 @@ function PlainSection({
     );
 }
 
-/* ---------- Card ---------- */
 function BenefitCard({ title, desc }: { title: string; desc: string }) {
     return (
         <div className="group relative h-full">
             <div className="relative h-full overflow-hidden rounded-2xl ring-1 ring-slate-200 shadow-[0_10px_30px_rgba(20,42,99,0.06)]">
-                {/* NAVY overlay that slides from top -> bottom on hover */}
                 <div
                     className="
               absolute inset-0 rounded-2xl bg-orange-500
@@ -31,13 +27,11 @@ function BenefitCard({ title, desc }: { title: string; desc: string }) {
               z-0
             "
                 >
-                    {/* Optional soft circle like your screenshot */}
                     <div className="absolute -left-3 -top-3 h-12 w-12 rounded-full bg-white/10" />
                 </div>
 
-                {/* Card content (kept above the overlay) */}
                 <div className="relative z-10 h-full p-4 transition-colors">
-                    <h3 className="text-lg font-semibold text-slate-900 transition-colors duration-300 group-hover:text-white">
+                    <h3 className="text-lg font-semibold text-slate-800 transition-colors duration-300 group-hover:text-white">
                         {title}
                     </h3>
                     <p className="mt-3 text-[15px] leading-7 text-slate-600 transition-colors duration-300 group-hover:text-white/90">
@@ -50,7 +44,6 @@ function BenefitCard({ title, desc }: { title: string; desc: string }) {
 }
 
 
-/* ---------- Data ---------- */
 const benefits = [
     {
         title: "Legal Compliance",
@@ -94,17 +87,16 @@ const benefits = [
     },
 ];
 
-/* ---------- Page ---------- */
 export default function WhyFssaiImp() {
     return (
         <main className="bg-white">
             <PlainSection bg="gray">
-                <h2 className="text-center text-[28px] sm:text-[34px] font-extrabold text-slate-900">
+                <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-[#1c284f]">
                     Why is FSSAI Registration Important?
                 </h2>
                 <div className="mx-auto mt-10 grid max-w-6xl auto-rows-fr gap-6 px-5 sm:px-6 lg:px-8 sm:grid-cols-2 lg:grid-cols-4 text-justify">
-                    {benefits.map((b) => (
-                        <BenefitCard key={b.title} title={b.title} desc={b.desc} />
+                    {benefits?.map((b) => (
+                        <BenefitCard key={b?.title} title={b?.title} desc={b?.desc} />
                     ))}
                 </div>
             </PlainSection>
