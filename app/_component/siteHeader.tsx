@@ -128,7 +128,7 @@ export default function SiteHeader() {
       className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-xl shadow-lg" : "bg-white/90 backdrop-blur-md"
         }`}
     >
-      <div className="container mx-auto border-b lg:px-4 border-gray-200">
+      <div className=" mx-auto border-b lg:px-4 border-gray-200">
         <div className="h-12 lg:h-16 flex items-center gap-4">
           <Link href="/" className="flex items-center gap-3 group shrink-0" aria-label="Go to homepage">
             <div className="relative">

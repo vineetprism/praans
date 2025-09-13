@@ -133,7 +133,7 @@ export default function GazetteNotificationsPage() {
     <div className="min-h-screen bg-gray-50">
       <div
         className="
-        container mx-auto
+         mx-auto
         px-2 py-2
         min-[375px]:px-3 min-[375px]:py-3
         sm:px-4 sm:py-4

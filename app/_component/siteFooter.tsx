@@ -10,7 +10,7 @@ export default function SiteFooter() {
   return (
     <footer className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 text-white py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-blue-500/5" />
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           <div>
             <div className="flex items-center space-x-2 mb-6">

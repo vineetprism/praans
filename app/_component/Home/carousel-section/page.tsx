@@ -83,7 +83,7 @@ export default function NewsCarouselSection() {
     <>
       <style dangerouslySetInnerHTML={{ __html: paginationStyles }} />
       <section className="w-full pt-6 pb-2 md:pt-8 md:pb-3 lg:pt-10 lg:pb-4">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-9xl">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-9xl">
           {/* Header */}
           {/* Header Section */}
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 md:mb-6 lg:mb-8 gap-4">
