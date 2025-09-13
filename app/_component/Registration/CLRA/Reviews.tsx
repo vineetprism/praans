@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -20,14 +19,14 @@ const REVIEWS: Review[] = [
         name: "Sachin Sharma",
         date: "2025-05-15",
         text: "Best Consultant for FSSAI and GST Registration.",
-        avatar: "", // no local file yet -> will show "S"
+        avatar: "", 
         stars: 4,
     },
     {
         name: "Subodh Excel",
         date: "2025-05-14",
         text: "One of the best compliance consultancy.",
-        avatar: "", // no local file yet -> will show "S"
+        avatar: "", 
         stars: 5,
     },
     {
@@ -50,7 +49,7 @@ const REVIEWS: Review[] = [
         date: "2025-05-10",
         text:
             "I took GST and Shop registration services for my family business from the Praans and we are very much satisfied.",
-        avatar: "", // will show "K"
+        avatar: "", 
         stars: 4,
     },
     {
@@ -92,7 +91,6 @@ const GoogleBadge = () => (
     </span>
 );
 
-// 👉 New: avatar with letter fallback (local uploads preferred)
 function Avatar({
     name,
     src,
@@ -107,7 +105,6 @@ function Avatar({
     const [errored, setErrored] = useState(false);
     const initial = (name?.trim()?.[0] ?? "?").toUpperCase();
 
-    // If there's no src or it errored, show initial-based circle
     if (!src || errored) {
         return (
             <div
@@ -128,7 +125,7 @@ function Avatar({
             height={size}
             className={className}
             onError={() => setErrored(true)}
-            unoptimized={src.startsWith("/")} // local files don't need next/image optimization
+            unoptimized={src.startsWith("/")}
             priority={false}
         />
     );
@@ -152,9 +149,7 @@ function ClampedText({
             if (!el) return;
             const prev = el.style.cssText;
             el.style.display = "-webkit-box";
-            // @ts-ignore
-            el.style.webkitLineClamp = "3"; // ⬅️ clamp to 3 lines for measurement
-            // @ts-ignore
+            el.style.webkitLineClamp = "3";
             el.style.webkitBoxOrient = "vertical";
             el.style.overflow = "hidden";
             const needs = el.scrollHeight > el.clientHeight + 1;
@@ -171,9 +166,7 @@ function ClampedText({
         ? {}
         : {
             display: "-webkit-box",
-            // @ts-ignore
-            WebkitLineClamp: 3, // ⬅️ clamp to 3 lines when collapsed
-            // @ts-ignore
+            WebkitLineClamp: 3,
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
         };
@@ -245,7 +238,6 @@ function Card({ review }: { review: Review }) {
     );
 }
 
-/* White round nav buttons — accept generic React refs */
 function NavButtons({
     prevRef,
     nextRef,
@@ -309,15 +301,15 @@ function BenefitsSection() {
     return (
         <section className="bg-white py-4 sm:py-6">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <h2 className="text-center text-[26px] sm:text-[30px] font-extrabold text-[#142a63]">
+                <h2 className="text-center text-2xl sm:text-3xl font-bold text-[#1c284f]">
                     Why Choose Us for Shop & Establishment Licence?
                 </h2>
 
                 <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    {FEATURES.map(({ title, img }) => (
+                    {FEATURES?.map(({ title, img }) => (
                         <div
                             key={title}
-                            className="rounded-2xl bg-[#f7f8ff] ring-1 ring-slate-200 shadow-[0_8px_28px_rgba(2,6,23,0.06)] p-6 flex flex-col items-center justify-center text-center"
+                            className="rounded-2xl bg-[#f7f8ff] ring-1 ring-slate-200 shadow-[0_8px_28px_rgba(2,6,23,0.06)] p-4 flex flex-col items-center justify-center text-center"
                         >
                             <Image
                                 unoptimized
@@ -325,9 +317,11 @@ function BenefitsSection() {
                                 alt={title}
                                 width={96}
                                 height={96}
-                                className="w-16 h-16 md:w-20 md:h-20 object-contain"
+                                className="w-12 h-12 md:w-16 md:h-16 object-contain"
                             />
-                            <p className="mt-4 font-semibold text-slate-900">{title}</p>
+                            <p className="mt-3 text-[15px] font-semibold text-slate-900">
+                                {title}
+                            </p>
                         </div>
                     ))}
                 </div>
@@ -336,7 +330,6 @@ function BenefitsSection() {
     );
 }
 
-/* -------------------- Page -------------------- */
 export default function CLRAReviews() {
     const loopSlides = useMemo(() => Math.max(REVIEWS.length, 6), []);
     const prevRef = useRef<HTMLButtonElement>(null);
@@ -383,9 +376,7 @@ export default function CLRAReviews() {
                             }
                         }}
                         onInit={(swiper) => {
-                            // @ts-ignore
                             swiper.navigation.init();
-                            // @ts-ignore
                             swiper.navigation.update();
                         }}
                         navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}

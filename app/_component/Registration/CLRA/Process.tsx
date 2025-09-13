@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import Image from "next/image";
 
@@ -13,30 +12,28 @@ const STEPS: Step[] = [
     { title: "CLRA Registration/ Licence Certificate", img: "/process/clra.webp", alt: "CLRA Registration/ Licence Certificate" },
 ];
 
-/* ------------------------------- Components ------------------------------ */
 
 const StepCard = ({ step }: { step: Step }) => {
     const { title, img, alt } = step;
     return (
         <div className="flex flex-col items-center text-center">
-            <div className="grid place-items-center w-[88px] h-[88px]">
+            <div className="grid place-items-center w-[64px] h-[64px]">
                 <Image
                     src={img}
                     alt={alt ?? title}
                     width={64}
                     height={64}
-                    className="w-10 h-10 md:w-12 md:h-12 object-contain"
+                    className="w-12 h-12 md:w-12 md:h-12 object-contain"
                     priority
                 />
             </div>
-            <p className="mt-3 text-[15px] font-semibold text-[#142a63] max-w-[200px]">
+            <p className="text-[15px] font-semibold text-[#142a63] max-w-[200px]">
                 {title}
             </p>
         </div>
     );
 };
 
-/** Arrow as an image (right arrow). On non-xl we rotate it for the vertical flow. */
 const ArrowImg = ({ className = "", size = 28 }: { className?: string; size?: number }) => (
     <div
         className={`relative ${className}`}
@@ -53,15 +50,12 @@ const ArrowImg = ({ className = "", size = 28 }: { className?: string; size?: nu
     </div>
 );
 
-/* --------------------------------- Page ---------------------------------- */
-
 export default function CLRAProcessPage() {
     return (
         <main className="bg-white text-slate-900">
-            {/* Top banner */}
             <section className="bg-[#16284b] text-white py-4 sm:py-6">
                 <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-[26px] sm:text-[32px] font-extrabold tracking-tight">
+                    <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
                         CLRA Registration/ Licence Process
                     </h1>
                     <p className="mt-4 text-[15px] leading-7 text-white/90">
@@ -73,21 +67,18 @@ export default function CLRAProcessPage() {
                 </div>
             </section>
 
-            {/* Steps */}
             <section className="bg-white py-4 sm:py-6">
                 <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
 
                     <div className="flex flex-col items-center gap-6 md:gap-x-10 md:gap-y-8
                           md:flex-row md:flex-wrap md:justify-center
                           xl:flex-nowrap xl:justify-between">
-                        {STEPS.map((s, idx) => (
+                        {STEPS?.map((s, idx) => (
                             <React.Fragment key={s.title}>
                                 <StepCard step={s} />
                                 {idx < STEPS.length - 1 && (
                                     <>
-                                        {/* Horizontal arrow only on extra-large screens */}
                                         <ArrowImg className="hidden xl:block" size={28} />
-                                        {/* Vertical arrow on small/medium/large (incl. 1024px) */}
                                         <ArrowImg className="xl:hidden rotate-90" size={24} />
                                     </>
                                 )}

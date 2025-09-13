@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import React from "react";
 
@@ -7,15 +6,13 @@ export default function ClraRegistration() {
     return (
         <main className="bg-white text-slate-900">
             <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
-                {/* Make both columns share the same row height */}
                 <div className="grid lg:grid-cols-12 items-stretch gap-8">
-                    {/* LEFT: text (defines the row height) */}
                     <div className="lg:col-span-7 self-stretch">
-                        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                        <h1 className="text-2xl sm:text-3xl font-bold text-[#1c284f] tracking-tight">
                             CLRA Registration & Licence in India
                         </h1>
 
-                        <div className="mt-5 space-y-4 text-[15px] leading-7 text-slate-800 text-justify">
+                        <div className="mt-5 space-y-4 text-[15px] leading-7 text-slate-700 text-justify">
                             <p>
                                 <span className="font-bold">
                                     The Contract Labour (Regulation and Abolition) Act, 1970 (CLRA
@@ -50,9 +47,7 @@ export default function ClraRegistration() {
                         </div>
                     </div>
 
-                    {/* RIGHT: image – stretches to match left column */}
                     <div className="lg:col-span-5 self-stretch min-h-[1px]">
-                        {/* Ensure the wrapper fills the cell height and never collapses */}
                         <div className="relative h-full min-h-[340px] w-full overflow-hidden rounded-xl">
                             <Image
                                 src="/register/clra.webp"

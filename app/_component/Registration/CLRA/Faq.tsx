@@ -43,8 +43,8 @@ function FaqItem({
                 onClick={onToggle}
                 className="
             w-full flex items-start justify-start gap-3
-            rounded-2xl bg-[#f47b20] px-5 py-4
-            text-[16px] sm:text-[17px] font-medium text-white shadow-sm
+            rounded-2xl bg-[#f47b20] px-5 py-3
+            text-[14px] sm:text-[15px] font-medium text-white shadow-sm
             cursor-pointer text-left focus:outline-none
           "
             >
@@ -62,8 +62,8 @@ function FaqItem({
                     }`}
             >
                 <div className="overflow-hidden">
-                    <div className="bg-white px-6 py-5">
-                        <p className="text-[15px] leading-7 text-slate-900 font-medium">
+                    <div className="bg-white px-6 py-4">
+                        <p className="text-[15px] leading-7 text-slate-700 font-medium">
                             {a}
                         </p>
                     </div>
@@ -134,13 +134,13 @@ export default function FaqPage() {
     return (
         <main className="bg-gray-50">
             <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-4 sm:py-6">
-                <h1 className="text-center text-[28px] sm:text-[32px] font-extrabold text-[#142a63]">
+                <h1 className="text-center text-2xl sm:text-3xl font-bold text-[#1b2851]">
                     Frequently Asked Questions
                 </h1>
 
                 <div className="mt-8 grid gap-6 lg:grid-cols-2">
                     <div className="space-y-4">
-                        {col1.map((item, idx) => {
+                        {col1?.map((item, idx) => {
                             const index = idx;
                             return (
                                 <FaqItem
@@ -155,7 +155,7 @@ export default function FaqPage() {
                     </div>
 
                     <div className="space-y-4">
-                        {col2.map((item, idx) => {
+                        {col2?.map((item, idx) => { 
                             const index = mid + idx;
                             return (
                                 <FaqItem
@@ -174,8 +174,8 @@ export default function FaqPage() {
             <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 pb-6 py-12">
                 <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-3">
                     <ul className="space-y-3">
-                        {statesLeft.map((state) => (
-                            <li key={state} className="flex items-center gap-2 text-[15px] text-slate-800">
+                        {statesLeft?.map((state) => (
+                            <li key={state} className="flex items-center gap-2 text-[15px] text-slate-600">
                                 <PinIcon />
                                 <span>CLRA Registration in {state}</span>
                             </li>
@@ -183,8 +183,8 @@ export default function FaqPage() {
                     </ul>
 
                     <ul className="space-y-3">
-                        {statesRight.map((state) => (
-                            <li key={state} className="flex items-center gap-2 text-[15px] text-slate-800">
+                        {statesRight?.map((state) => (
+                            <li key={state} className="flex items-center gap-2 text-[15px] text-slate-600">
                                 <PinIcon />
                                 <span>CLRA Registration in {state}</span>
                             </li>
