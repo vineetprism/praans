@@ -1,0 +1,113 @@
+import Link from "next/link";
+import BlogSlug from "@/app/_component/Blog/[slug]/page";
+
+type ApiPost = {
+  id: number;
+  title: string;
+  slug: string;
+  content?: string | null;
+  short_description?: string | null;
+  published_date?: string | null;
+  image_url?: string | null;
+  image_path?: string | null;
+  meta_image_url?: string | null;
+  meta_image_path?: string | null;
+  meta_title?: string | null;
+  meta_description?: string | null;
+  meta_keywords?: string | null;
+  tags?: string[] | null;
+};
+
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
+  "http://100.110.147.101:8000";
+
+const FILE_HOST =
+  process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") || API_BASE;
+
+/* ---------- tiny helper for metadata image ---------- */
+function normalizeImageUrlForMeta(post?: Partial<ApiPost> | null): string | undefined {
+  if (!post) return undefined;
+  const raw =
+    post.image_url ||
+    post.meta_image_url ||
+    (post.image_path ? `/storage/${post.image_path}` : undefined) ||
+    (post.meta_image_path ? `/storage/${post.meta_image_path}` : undefined);
+  if (!raw) return undefined;
+
+  try {
+    const u = new URL(raw as string, FILE_HOST);
+    const base = new URL(FILE_HOST);
+    const isLocal = ["127.0.0.1", "127.1.1.0", "localhost"].includes(u.hostname);
+    const origin = isLocal ? base.origin : u.origin;
+    const cleanPath = encodeURI(decodeURI(u.pathname));
+    return `${origin}${cleanPath}${u.search}${u.hash}`;
+  } catch {
+    const path = (raw as string).startsWith("/") ? (raw as string) : `/${raw}`;
+    return `${FILE_HOST}${path}`;
+  }
+}
+
+/* ---------- SEO metadata ---------- */
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const res = await fetch(`${API_BASE}/api/posts/${params.slug}`, { cache: "no-store" }).catch(() => null);
+  if (!res || !res.ok) return { title: "Blog | Prism" };
+
+  const json = await res.json();
+  const data: ApiPost =
+    json && json.data && !Array.isArray(json.data) ? json.data :
+    Array.isArray(json?.data) ? json.data[0] : json;
+
+  const title = data?.meta_title || data?.title || "Blog | Prism";
+  const description = data?.meta_description || data?.short_description || "";
+  const img = normalizeImageUrlForMeta(data);
+
+  return {
+    title,
+    description,
+    openGraph: { title, description, images: img ? [{ url: img }] : [] },
+    twitter: { card: "summary_large_image", title, description, images: img ? [img] : [] },
+  };
+}
+
+/* ---------- Page (ISR fetch -> render-only component) ---------- */
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  // ✅ 30-min ISR
+  const res = await fetch(`${API_BASE}/api/posts/${params.slug}`, {
+    next: { revalidate: 1800 },
+  }).catch(() => null);
+
+  if (!res || !res.ok) {
+    return (
+      <div className="bg-gray-50 min-h-screen">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 max-w-7xl">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Post not found</h1>
+          <p className="text-gray-600">We couldn’t fetch this article right now.</p>
+          <Link href="/blog" className="text-orange-600 font-semibold mt-3 inline-block">← Back to Blog</Link>
+        </div>
+      </div>
+    );
+  }
+
+  const json = await res.json();
+  const post: ApiPost =
+    json && json.data && !Array.isArray(json.data) ? json.data :
+    Array.isArray(json?.data) ? json.data[0] : json;
+
+  if (!post) {
+    return (
+      <div className="bg-gray-50 min-h-screen">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 max-w-7xl">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">No data</h1>
+          <p className="text-gray-600">This slug didn’t return any content.</p>
+          <Link href="/blog" className="text-orange-600 font-semibold mt-3 inline-block">← Back to Blog</Link>
+        </div>
+      </div>
+    );
+  }
+
+  // 🔥 render-only component — same design as your static version
+  return <BlogSlug post={post} />;
+}
+
+

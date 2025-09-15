@@ -1,0 +1,122 @@
+import React from 'react'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardHeader, CardTitle } from "@/components/ui/card"
+import { Phone, Mail, MapPin, Building } from "lucide-react"
+import Link from 'next/link'
+
+const officeLocations = [
+    {
+        city: "Corporate Office - Gurugram",
+        address: "CP-9, Sector-8, IMT Manesar, Gurugram, Haryana - 122052",
+        icon: Building,
+    },
+    {
+        city: "Regional Office - Bangalore",
+        address: "No 1/3, 3rd Main, 4th Cross, Mathikere, Bangalore – 560054",
+        icon: MapPin,
+    },
+    {
+        city: "Regional Office - Guwahati",
+        address: "283, Paltan Bazar, Guwahati, Kamrup Metro, Assam - 781008",
+        icon: MapPin,
+    },
+]
+
+export default function Contact() {
+    return (
+        <>
+            <section className="py-20 bg-white">
+                <div className="container mx-auto px-4">
+                    <div className="grid md:grid-cols-2 gap-12">
+                        {/* Contact Info */}
+                        <div className="space-y-8">
+                            <div>
+                                <h2 className="text-3xl font-bold mb-6 text-slate-800">Our Offices</h2>
+                                {officeLocations.map((office, index) => (
+                                    <Card key={index} className="mb-6 border-l-4 border-[#eb8535]">
+                                        <CardHeader className="flex flex-row items-start gap-4 p-5">
+                                            <office.icon className="w-8 h-8 text-[#eb8535] mt-1 flex-shrink-0" />
+                                            <div>
+                                                <CardTitle className="text-xl">{office.city}</CardTitle>
+                                                <p className="text-gray-600">{office.address}</p>
+                                            </div>
+                                        </CardHeader>
+                                    </Card>
+                                ))}
+                            </div>
+                            <div>
+                                <h3 className="text-2xl font-bold mb-4">General Inquiries</h3>
+                                <div className="space-y-4">
+                                    <Link
+                                        href="tel:+919050576838"
+                                        className="flex items-center gap-3 text-lg text-gray-700 hover:text-[#eb8535]"
+                                        aria-label="Call us"
+                                    >
+                                        <Phone className="w-6 h-6 text-orange-500" />
+                                        <span>+91-9050576838</span>
+                                    </Link>
+                                    <a
+                                        href="mailto:info@praansconsultech.com"
+                                        className="flex items-center gap-3 text-lg text-gray-700 hover:text-[#eb8535]"
+                                        aria-label="Send email"
+                                    >
+                                        <Mail className="w-6 h-6 text-orange-500" />
+                                        <span>info@praansconsultech.com</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Contact Form */}
+                        <div>
+                            <Card className="p-8 shadow-sm">
+                                <h2 className="text-3xl font-bold mb-6 text-slate-800">Send Us a Message</h2>
+                                <form className="space-y-6">
+                                    <div className="grid sm:grid-cols-2 gap-6">
+                                        <div>
+                                            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                                                Full Name
+                                            </label>
+                                            <Input id="name" placeholder="Enter Your Name" className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400" />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                                                Email Address
+                                            </label>
+                                            <Input id="email" type="email" placeholder="Enter Your Email..." className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                                            Phone Number
+                                        </label>
+                                        <Input id="phone" placeholder="Enter Your Phone Number" className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400" />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                                            Subject
+                                        </label>
+                                        <Input id="subject" placeholder="Regarding Compliance Outsourcing" className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400" />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                                            Your Message
+                                        </label>
+                                        <Textarea id="message" placeholder="Please describe your requirements..." rows={10} className="focus:bg-orange-50 focus:ring-2 focus:ring-orange-400" />
+                                    </div>
+                                    <div>
+                                        <Button type="submit" className="w-full bg-[#eb8535] hover:bg-orange-400 text-lg py-3 cursor-pointer">
+                                            Submit Inquiry
+                                        </Button>
+                                    </div>
+                                </form>
+                            </Card>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </>
+    )
+}
