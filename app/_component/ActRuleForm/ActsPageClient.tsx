@@ -1828,18 +1828,6 @@
 //   );
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
 // "use client";
 
 // import { useMemo, useState, useEffect, useTransition } from "react";
@@ -2232,26 +2220,6 @@
 //   );
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 "use client";
 
 import { useMemo, useState, useEffect, useTransition } from "react";
@@ -2290,7 +2258,12 @@ type ActItem = {
 
 type ApiResponse = {
   data: ActItem[];
-  links: { first: string | null; last: string | null; prev: string | null; next: string | null };
+  links: {
+    first: string | null;
+    last: string | null;
+    prev: string | null;
+    next: string | null;
+  };
   meta: {
     current_page: number;
     from: number | null;
@@ -2328,15 +2301,16 @@ const ExpandableDescription = ({ description }: { description: string }) => {
           <div className="relative mt-2">
             <p className="text-gray-700 leading-snug text-[11px] sm:text-[0.8rem] lg:text-xs break-words cursor-help line-clamp-2 pr-12">
               {description}
+              <span className=" text-orange-500 text-[12px] font-medium whitespace-nowrap">
+                ...more
+              </span>
             </p>
-            <div className="absolute top-0 right-0 h-full flex items-end">
-              <div className="bg-gradient-to-l from-orange-50 via-orange-50 to-transparent pl-4 pr-1 pb-0">
-                <span className="text-orange-500 text-[10px] font-medium whitespace-nowrap">...more</span>
-              </div>
-            </div>
           </div>
         </TooltipTrigger>
-        <TooltipContent side="top" className="max-w-md p-3 bg-orange-400 text-white text-xs leading-relaxed">
+        <TooltipContent
+          side="top"
+          className="max-w-md p-3 bg-orange-400 text-white text-xs leading-relaxed"
+        >
           <p>{description}</p>
         </TooltipContent>
       </Tooltip>
@@ -2344,7 +2318,10 @@ const ExpandableDescription = ({ description }: { description: string }) => {
   );
 };
 
-export default function ActsPageClient({ initialData, initialPage }: ActsPageClientProps) {
+export default function ActsPageClient({
+  initialData,
+  initialPage,
+}: ActsPageClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
@@ -2388,12 +2365,16 @@ export default function ActsPageClient({ initialData, initialPage }: ActsPageCli
   const filtered = useMemo(() => {
     let rows = acts;
     if (stateFilter && stateFilter !== "All States") {
-      rows = rows.filter((r) => r.state.toLowerCase() === stateFilter.toLowerCase());
+      rows = rows.filter(
+        (r) => r.state.toLowerCase() === stateFilter.toLowerCase()
+      );
     }
     if (q.trim()) {
       const needle = q.trim().toLowerCase();
       rows = rows.filter(
-        (r) => r.title.toLowerCase().includes(needle) || r.short_description.toLowerCase().includes(needle),
+        (r) =>
+          r.title.toLowerCase().includes(needle) ||
+          r.short_description.toLowerCase().includes(needle)
       );
     }
     return rows;
@@ -2424,10 +2405,13 @@ export default function ActsPageClient({ initialData, initialPage }: ActsPageCli
           {/* ---- Main ---- */}
           <div className="min-w-0">
             <div className="mb-6">
-              <h1 className="font-bold text-slate-800 text-base sm:text-xl mb-1">Labour Acts &amp; Regulations :</h1>
+              <h1 className="font-bold text-slate-800 text-base sm:text-xl mb-1">
+                Labour Acts &amp; Regulations :
+              </h1>
               <p className="text-gray-600 leading-relaxed text-[10px] sm:text-sm text-justify">
-                Comprehensive collection of central and state labour acts with latest amendments and updates. Data is
-                automatically updated every 30 minutes using ISR for optimal performance.
+                Comprehensive collection of central and state labour acts with
+                latest amendments and updates. Data is automatically updated
+                every 30 minutes using ISR for optimal performance.
               </p>
             </div>
 
@@ -2446,7 +2430,11 @@ export default function ActsPageClient({ initialData, initialPage }: ActsPageCli
               </div>
 
               {/* Select with scrollable list */}
-              <Select value={stateFilter || undefined} onValueChange={handleStateChange} disabled={isPending}>
+              <Select
+                value={stateFilter || undefined}
+                onValueChange={handleStateChange}
+                disabled={isPending}
+              >
                 <SelectTrigger className="h-8 2xl:h-10 text-xs lg:text-sm bg-gray-100">
                   <SelectValue placeholder="Select State" />
                 </SelectTrigger>
@@ -2488,26 +2476,34 @@ export default function ActsPageClient({ initialData, initialPage }: ActsPageCli
                         className="w-full bg-orange-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border-l-4 border-l-orange-500 overflow-hidden"
                       >
                         <div className="p-3">
-                          <div className="grid gap-3">
+                          {/* LEFT content + RIGHT state (top-right) */}
+                          <div className="grid grid-cols-[1fr_auto] gap-3">
+                            {/* LEFT */}
                             <div className="min-w-0">
                               <h4 className="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-2">
                                 {act.title}
                               </h4>
-                              <ExpandableDescription description={act.short_description} />
+
+                              <ExpandableDescription
+                                description={act.short_description}
+                              />
+
+                              <div className="mt-2">
+                                <Button
+                                  size="sm"
+                                  className="bg-orange-400 text-white hover:bg-orange-500 h-8 px-3 text-xs font-medium rounded-sm inline-flex items-center gap-1"
+                                  asChild
+                                >
+                                  <Link href={`/acts/${act.slug || act.id}`}>
+                                    <Eye className="w-4 h-4" />
+                                    <span>Read More</span>
+                                  </Link>
+                                </Button>
+                              </div>
                             </div>
 
-                            <div className="flex items-center justify-between">
-                              <Button
-                                size="sm"
-                                className="bg-orange-400 text-white hover:bg-orange-500 h-8 px-3 text-xs font-medium rounded-sm inline-flex items-center gap-1"
-                                asChild
-                              >
-                                <Link href={`/acts/${act.slug || act.id}`}>
-                                  <Eye className="w-4 h-4" />
-                                  <span>Read More</span>
-                                </Link>
-                              </Button>
-
+                            {/* RIGHT (state badge) */}
+                            <div className="pl-3 self-start justify-self-end">
                               <span className="inline-flex items-center bg-blue-50 text-blue-700 border border-blue-200 text-[11px] lg:text-[12px] px-1.5 py-0.5 font-medium rounded">
                                 {act.state || "All India"}
                               </span>
@@ -2576,7 +2572,9 @@ export default function ActsPageClient({ initialData, initialPage }: ActsPageCli
                   size="sm"
                   className="h-8 px-3 text-xs border-gray-300 hover:bg-gray-50"
                   disabled={currentPage >= lastPage}
-                  onClick={() => handlePageChange(Math.min(lastPage, currentPage + 1))}
+                  onClick={() =>
+                    handlePageChange(Math.min(lastPage, currentPage + 1))
+                  }
                   aria-label="Next Page"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -2596,7 +2594,7 @@ export default function ActsPageClient({ initialData, initialPage }: ActsPageCli
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   );
 }
