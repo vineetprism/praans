@@ -1,26 +1,19 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 
-const metadata = {
-  title: "Disclaimer | Praans Consultech",
-  description:
-    "Read our disclaimer to understand the limitations of liability and the accuracy of the information provided on our website.",
-  keywords: "disclaimer praans consultech, labour law disclaimer, statutory registration disclaimer",
-}
-
 export default function Disclaimer() {
 
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Main Content */}
       <main className="py-16">
         <div className="container mx-auto px-4">
-          <Card className="max-w-4xl mx-auto shadow-lg">
+          <Card className="max-w-4xl mx-auto">
             <CardHeader>
               <CardTitle className="text-3xl font-bold text-slate-800">Disclaimer</CardTitle>
             </CardHeader>
-            <CardContent className="prose prose-slate max-w-none text-gray-700 leading-relaxed">
+            <CardContent className="max-w-none text-gray-700 leading-relaxed">
               <p>
                 The information provided on this website is published by Praans Consultech solely for general
                 informational purposes related to labour law compliance, statutory registrations, advisory services,
