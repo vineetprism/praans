@@ -69,7 +69,7 @@ export default function HeroSection() {
       >
         {/* Heading */}
         <h1
-          className="text-[2rem] min-[360px]:text-[34px] min-[375px]:text-[37px] min-[390px]:text-[37px] min-[414px]:text-[37px] min-[430px]:text-[px] sm:text-5xl md:text-6xl lg:text-[5.9rem] xl:text-[6.8rem] 2xl:text-[6.8rem]
+          className="text-[2rem] min-[360px]:text-[34px] min-[375px]:text-[37px] min-[390px]:text-[37px] min-[414px]:text-[37px] min-[430px]:text-[px] sm:text-5xl md:text-6xl lg:text-[5.9rem] xl:text-[6.8rem] 2xl:text-[6.5rem]
           font-black text-slate-900 tracking-tight"
         >
 
@@ -109,7 +109,7 @@ export default function HeroSection() {
 
         {/* Subtitle */}
         <p
-          className="text-base sm:text-lg md:text-xl lg:text-2xl 2xl:text-2xl 
+          className="text-base sm:text-lg md:text-xl lg:text-2xl 2xl:text-[1.3rem]
           text-gray-700 max-w-2xl 2xl:max-w-3xl mx-auto 
           leading-relaxed px-2 sm:px-4 2xl:px-6
           font-medium -my-2"
