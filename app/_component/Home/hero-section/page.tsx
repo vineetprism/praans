@@ -65,7 +65,7 @@ export default function HeroSection() {
       {/* Content Container - Moderately broader on 2xl */}
       <div
         className="w-full max-w-5xl 2xl:max-w-8xl mx-auto text-center 
-        space-y-0.5 min-[390px]:space-y-0.5 sm:space-y-6 md:space-y-5 lg:space-y-4 2xl:space-y-8 relative z-10"
+        space-y-0.5 min-[390px]:space-y-0.5 sm:space-y-6 md:space-y-5 lg:space-y-4 2xl:space-y-7 relative z-10"
       >
         {/* Heading */}
         <h1
