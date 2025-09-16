@@ -50,7 +50,10 @@ function normalizeImageUrlForMeta(post?: Partial<ApiPost> | null): string | unde
 
 /* ---------- SEO metadata ---------- */
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const res = await fetch(`${API_BASE}/api/posts/${params.slug}`, { cache: "no-store" }).catch(() => null);
+  // ✅ Await `params` to access the `slug`
+  const { slug } = await params;
+
+  const res = await fetch(`${API_BASE}/api/posts/${slug}`, { cache: "no-store" }).catch(() => null);
   if (!res || !res.ok) return { title: "Blog | Prism" };
 
   const json = await res.json();
@@ -72,8 +75,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 /* ---------- Page (ISR fetch -> render-only component) ---------- */
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  // ✅ Await `params` to access the `slug`
+  const { slug } = await params;
+
   // ✅ 30-min ISR
-  const res = await fetch(`${API_BASE}/api/posts/${params.slug}`, {
+  const res = await fetch(`${API_BASE}/api/posts/${slug}`, {
     next: { revalidate: 1800 },
   }).catch(() => null);
 
@@ -109,5 +115,3 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   // 🔥 render-only component — same design as your static version
   return <BlogSlug post={post} />;
 }
-
-
