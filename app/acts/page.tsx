@@ -913,14 +913,16 @@
 
 
 
-
+// prns.prisminfoways.com
 
 
 import { Metadata } from "next";
 import ActsPageClient from "../_component/ActRuleForm/ActsPageClient";
 
-const API_BASE = "http://100.110.147.101:8000/api/act-rule-forms";
-const STATES_API_BASE = "http://100.110.147.101:8000/api/states";
+// const API_BASE = "http://100.110.147.101:8000/api/act-rule-forms";
+const API_BASE = "https://prns.prisminfoways.com";
+// const STATES_API_BASE = "http://100.110.147.101:8000/api/states";
+const STATES_API_BASE = "https://prns.prisminfoways.com";
 
 // Fetch Acts Data
 async function getActsData(page: number = 1) {

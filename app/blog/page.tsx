@@ -225,13 +225,16 @@ type ApiResponse = { data: ApiPost[] };
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
+  // "https://prns.prisminfoways.com";
+  // "http://100.110.147.101:8000";
+  console.log(process.env.NEXT_PUBLIC_API_BASE);
 
 export default async function BlogPage() {
   // ✅ ISR here (30 minutes)
   const res = await fetch(`${API_BASE}/api/posts`, {
     next: { revalidate: 1800 },
   });
+
 
   if (!res.ok) {
     // Soft-fail: render empty state using renderer too (for layout parity)

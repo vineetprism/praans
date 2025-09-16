@@ -11,7 +11,7 @@ import { Metadata } from 'next'
 import React from 'react'
 
 export const metadata: Metadata = {
-    title: "CLRA Registration & Licence Consultant (PAN India) | Praans Consultech",
+    title: "CLRA Registration & Licence Consultant (PAN India) in Gurugram | Praans Consultech",
     description:
         "End-to-end CLRA Registration & Labour Licence services for contractors and principal employers. Fast TAT, expert guidance, PAN-India support, and free consultation.",
     keywords: [

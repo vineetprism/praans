@@ -1047,7 +1047,8 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ActDetailClient from "@/app/_component/ActRuleForm/[slug]/page";
 
-const API_BASE = "http://100.110.147.101:8000/api/act-rule-forms";
+// const API_BASE = "http://100.110.147.101:8000/api/act-rule-forms";
+const API_BASE = "prns.prisminfoways.com";
 
 // Types based on actual API response
 type FormAPI = {
