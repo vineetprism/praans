@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import "./globals.css"
-import SiteHeader from "./_component/siteHeader"
+import Header from "./_component/siteHeader"
 import SiteFooter from "./_component/siteFooter"
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default function RootLayout({
       </head>
       {/* Global shell */}
       <body className={`${GeistSans.variable} ${GeistMono.variable} antialiased bg-gray-50 text-slate-900 min-h-screen flex flex-col`}>
-        <SiteHeader />
+        <Header />
         <main className="flex-1">{children}</main>
         <SiteFooter />
       </body>

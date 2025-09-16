@@ -56,7 +56,7 @@ const NAV = [
   { label: "Contact", href: "/contact" },
 ];
 
-export default function SiteHeader() {
+export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [hideTopBar, setHideTopBar] = useState(false);

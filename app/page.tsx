@@ -10,8 +10,15 @@ export const metadata: Metadata = {
   title: "Praans Consultech | Labour Law Compliance Solutions in India",
   description:
     "Praans Consultech is a trusted partner for labour law compliance in India. Explore our services, resource library, compliance updates, and expert guidance to streamline statutory compliance for your business.",
-  keywords:
-    "Praans Consultech, labour law compliance India, compliance outsourcing, HR solutions, compliance services, minimum wages, professional tax, labour welfare fund, acts and gazettes, resource library",
+  keywords: [
+    "labour welfare fund",
+    "Shop & Establishment Registration",
+    "FSSAI",
+    "Professional Tax",
+    "MSME Registration",
+    "GST Registration",
+    "Trade Licence"
+  ]
 };
 
 export default function HomePage() {
