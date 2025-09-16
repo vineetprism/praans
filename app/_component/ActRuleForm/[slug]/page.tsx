@@ -72,7 +72,7 @@
 //       // not absolute, fall through to path
 //     }
 //   }
-  
+
 //   // Relative path (e.g., act_doc_path)
 //   if (path) {
 //     // ensure leading slash & /storage prefix
@@ -82,7 +82,7 @@
 //     const cleanPath = encodeURI(decodeURI(p));
 //     return `${FILE_HOST}${cleanPath}`;
 //   }
-  
+
 //   return null;
 // }
 
@@ -173,7 +173,7 @@
 //                       {act.state}
 //                     </Badge>
 //                   </div>
-                  
+
 //                   {/* Stats */}
 //                   <div className="grid grid-cols-3 gap-1 p-1 rounded h-6">
 //                     <div className="text-center">
@@ -245,45 +245,45 @@
 //                         className="prose prose-sm max-w-none text-gray-700 leading-relaxed
 //                                   /* Paragraph Styling - API content ke liye */
 //                                   [&_p]:mb-4 [&_p]:leading-relaxed [&_p]:text-gray-700 [&_p]:text-[15px]
-                                  
+
 //                                   /* Heading Styling - API se aane wale headings ke liye */
 //                                   [&_h1]:text-xl [&_h1]:font-bold [&_h1]:text-slate-900 [&_h1]:mb-4 [&_h1]:mt-6
 //                                   [&_h2]:text-lg [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mb-3 [&_h2]:mt-5
 //                                   [&_h3]:text-base [&_h3]:font-bold [&_h3]:text-slate-800 [&_h3]:mb-3 [&_h3]:mt-4
 //                                   [&_h4]:text-sm [&_h4]:font-semibold [&_h4]:text-slate-700 [&_h4]:mb-2 [&_h4]:mt-3
-                                  
+
 //                                   /* List Styling - API content mein jo bhi lists hain */
 //                                   [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ul]:space-y-1
 //                                   [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_ol]:space-y-1
 //                                   [&_li]:text-gray-700 [&_li]:leading-relaxed [&_li]:mb-1 [&_li]:text-[14px]
-                                  
+
 //                                   /* List Markers ko orange color */
 //                                   [&_ul>li]:marker:text-orange-500 
 //                                   [&_ol>li]:marker:text-orange-500 [&_ol>li]:marker:font-semibold
-                                  
+
 //                                   /* Nested Lists */
 //                                   [&_ul_ul]:list-circle [&_ul_ul]:mt-2 [&_ul_ul]:pl-4
 //                                   [&_ol_ol]:list-lower-roman [&_ol_ol]:mt-2 [&_ol_ol]:pl-4
 //                                   [&_ul_ul_ul]:list-square
-                                  
+
 //                                   /* Strong/Bold Text */
 //                                   [&_strong]:font-semibold [&_strong]:text-slate-900
 //                                   [&_b]:font-semibold [&_b]:text-slate-900
-                                  
+
 //                                   /* Links */
 //                                   [&_a]:text-orange-600 [&_a]:no-underline hover:[&_a]:underline [&_a]:font-medium
-                                  
+
 //                                   /* Special HTML elements jo API se aa sakte hain */
 //                                   [&_mark]:bg-yellow-200 [&_mark]:px-1 [&_mark]:rounded [&_mark]:text-gray-800
 //                                   [&_strike]:line-through [&_strike]:text-gray-500
 //                                   [&_u]:underline [&_u]:decoration-orange-400
 //                                   [&_em]:italic [&_em]:text-gray-600
 //                                   [&_i]:italic [&_i]:text-gray-600
-                                  
+
 //                                   /* Code blocks */
 //                                   [&_pre]:bg-gray-100 [&_pre]:p-3 [&_pre]:rounded [&_pre]:text-sm [&_pre]:overflow-x-auto [&_pre]:mb-4
 //                                   [&_code]:bg-gray-100 [&_code]:px-2 [&_code]:py-1 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono
-                                  
+
 //                                   /* Blockquote */
 //                                   [&_blockquote]:border-l-4 [&_blockquote]:border-orange-300 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-gray-600 [&_blockquote]:mb-4"
 //                         dangerouslySetInnerHTML={{ __html: sanitizeHTML(act.act_desc) }}
@@ -347,7 +347,7 @@
 //                                   [&_pre]:bg-gray-100 [&_pre]:p-3 [&_pre]:rounded [&_pre]:text-sm [&_pre]:overflow-x-auto [&_pre]:mb-4
 //                                   [&_code]:bg-gray-100 [&_code]:px-2 [&_code]:py-1 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono
 //                                   [&_blockquote]:border-l-4 [&_blockquote]:border-orange-300 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-gray-600 [&_blockquote]:mb-4
-                                  
+
 //                                   /* Background for Rules */
 //                                   p-3 sm:p-4 bg-gray-50 rounded-md lg:rounded-lg"
 //                         dangerouslySetInnerHTML={{ __html: sanitizeHTML(act.rule_desc) }}
@@ -606,7 +606,7 @@
 //       // not absolute, fall through to path
 //     }
 //   }
-  
+
 //   // Relative path (e.g., act_doc_path)
 //   if (path) {
 //     // ensure leading slash & /storage prefix
@@ -616,7 +616,7 @@
 //     const cleanPath = encodeURI(decodeURI(p));
 //     return `${FILE_HOST}${cleanPath}`;
 //   }
-  
+
 //   return null;
 // }
 
@@ -708,7 +708,7 @@
 //                         {act.state}
 //                       </Badge>
 //                     </div>
-                    
+
 //                     {/* Stats */}
 //                     <div className="grid grid-cols-3 gap-1 p-1 rounded h-6">
 //                       <div className="text-center">
@@ -780,45 +780,45 @@
 //                           className="prose prose-sm max-w-none text-gray-700 leading-relaxed
 //                                     /* Paragraph Styling - API content ke liye */
 //                                     [&_p]:mb-4 [&_p]:leading-relaxed [&_p]:text-gray-700 [&_p]:text-[15px]
-                                    
+
 //                                     /* Heading Styling - API se aane wale headings ke liye */
 //                                     [&_h1]:text-xl [&_h1]:font-bold [&_h1]:text-slate-900 [&_h1]:mb-4 [&_h1]:mt-6
 //                                     [&_h2]:text-lg [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mb-3 [&_h2]:mt-5
 //                                     [&_h3]:text-base [&_h3]:font-bold [&_h3]:text-slate-800 [&_h3]:mb-3 [&_h3]:mt-4
 //                                     [&_h4]:text-sm [&_h4]:font-semibold [&_h4]:text-slate-700 [&_h4]:mb-2 [&_h4]:mt-3
-                                    
+
 //                                     /* List Styling - API content mein jo bhi lists hain */
 //                                     [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ul]:space-y-1
 //                                     [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_ol]:space-y-1
 //                                     [&_li]:text-gray-700 [&_li]:leading-relaxed [&_li]:mb-1 [&_li]:text-[14px]
-                                    
+
 //                                     /* List Markers ko orange color */
 //                                     [&_ul>li]:marker:text-orange-500 
 //                                     [&_ol>li]:marker:text-orange-500 [&_ol>li]:marker:font-semibold
-                                    
+
 //                                     /* Nested Lists */
 //                                     [&_ul_ul]:list-circle [&_ul_ul]:mt-2 [&_ul_ul]:pl-4
 //                                     [&_ol_ol]:list-lower-roman [&_ol_ol]:mt-2 [&_ol_ol]:pl-4
 //                                     [&_ul_ul_ul]:list-square
-                                    
+
 //                                     /* Strong/Bold Text */
 //                                     [&_strong]:font-semibold [&_strong]:text-slate-900
 //                                     [&_b]:font-semibold [&_b]:text-slate-900
-                                    
+
 //                                     /* Links */
 //                                     [&_a]:text-orange-600 [&_a]:no-underline hover:[&_a]:underline [&_a]:font-medium
-                                    
+
 //                                     /* Special HTML elements jo API se aa sakte hain */
 //                                     [&_mark]:bg-yellow-200 [&_mark]:px-1 [&_mark]:rounded [&_mark]:text-gray-800
 //                                     [&_strike]:line-through [&_strike]:text-gray-500
 //                                     [&_u]:underline [&_u]:decoration-orange-400
 //                                     [&_em]:italic [&_em]:text-gray-600
 //                                     [&_i]:italic [&_i]:text-gray-600
-                                    
+
 //                                     /* Code blocks */
 //                                     [&_pre]:bg-gray-100 [&_pre]:p-3 [&_pre]:rounded [&_pre]:text-sm [&_pre]:overflow-x-auto [&_pre]:mb-4
 //                                     [&_code]:bg-gray-100 [&_code]:px-2 [&_code]:py-1 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono
-                                    
+
 //                                     /* Blockquote */
 //                                     [&_blockquote]:border-l-4 [&_blockquote]:border-orange-300 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-gray-600 [&_blockquote]:mb-4"
 //                           dangerouslySetInnerHTML={{ __html: sanitizeHTML(act.act_desc) }}
@@ -882,7 +882,7 @@
 //                                     [&_pre]:bg-gray-100 [&_pre]:p-3 [&_pre]:rounded [&_pre]:text-sm [&_pre]:overflow-x-auto [&_pre]:mb-4
 //                                     [&_code]:bg-gray-100 [&_code]:px-2 [&_code]:py-1 [&_code]:rounded [&_code]:text-sm [&_code]:font-mono
 //                                     [&_blockquote]:border-l-4 [&_blockquote]:border-orange-300 [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-gray-600 [&_blockquote]:mb-4
-                                    
+
 //                                     /* Background for Rules */
 //                                     p-3 sm:p-4  rounded-md lg:rounded-lg"
 //                           dangerouslySetInnerHTML={{ __html: sanitizeHTML(act.rule_desc) }}
@@ -995,7 +995,7 @@
 //                                           {form.form_no}
 //                                         </Badge>
 //                                       </TableCell>
-                                      
+
 //                                       {/* ✅ Title with Tooltip */}
 //                                       <TableCell className="py-2 max-w-64">
 //                                         <Tooltip>
@@ -1009,7 +1009,7 @@
 //                                           </TooltipContent>
 //                                         </Tooltip>
 //                                       </TableCell>
-                                      
+
 //                                       {/* ✅ Description with Tooltip */}
 //                                       <TableCell className="hidden xl:table-cell py-2 max-w-80">
 //                                         <Tooltip>
@@ -1023,7 +1023,7 @@
 //                                           </TooltipContent>
 //                                         </Tooltip>
 //                                       </TableCell>
-                                      
+
 //                                       <TableCell className="py-2 text-[14px] text-gray-500 font-medium">
 //                                         {formatDate(form.created_at)}
 //                                       </TableCell>
@@ -1176,14 +1176,14 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
     if (typeof window !== "undefined") {
       return DOMPurify.sanitize(htmlContent, {
         ALLOWED_TAGS: [
-          "p","br","strong","em","u","b","i",
-          "h1","h2","h3","h4","h5","h6",
-          "ul","ol","li","blockquote","div","span","a",
-          "pre","code","mark","strike",
+          "p", "br", "strong", "em", "u", "b", "i",
+          "h1", "h2", "h3", "h4", "h5", "h6",
+          "ul", "ol", "li", "blockquote", "div", "span", "a",
+          "pre", "code", "mark", "strike",
         ],
-        ALLOWED_ATTR: ["href","target","class","id","type","start","reversed","style","color","data-as-button"],
+        ALLOWED_ATTR: ["href", "target", "class", "id", "type", "start", "reversed", "style", "color", "data-as-button"],
         KEEP_CONTENT: true,
-        ADD_ATTR: ["type","start"],
+        ADD_ATTR: ["type", "start"],
       });
     }
     return htmlContent;
@@ -1312,7 +1312,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                         )}
                       </div>
                     </CardHeader>
-                    <CardContent className="pt-0 -mt-8">
+                    <CardContent className="pt-0 -mt-12 px-15 text-justify">
                       {act.act_desc ? (
                         <div
                           className="prose prose-sm max-w-none text-gray-700 leading-relaxed
@@ -1372,7 +1372,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                         )}
                       </div>
                     </CardHeader>
-                    <CardContent className="pt-0 -mt-8">
+                    <CardContent className="pt-0 -mt-12 text-justify">
                       {act.rule_desc ? (
                         <div
                           className="prose prose-sm max-w-none text-gray-700 leading-relaxed
@@ -1503,12 +1503,6 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                                   <TableHead className="w-64 text-[10px] sm:text-xs font-semibold py-2 2xl:text-base">
                                     Title
                                   </TableHead>
-                                  <TableHead className="hidden xl:table-cell w-80 text-[10px] sm:text-xs font-semibold py-2 2xl:text-base">
-                                    Description
-                                  </TableHead>
-                                  <TableHead className="w-24 text-[10px] sm:text-xs font-semibold py-2 2xl:text-base">
-                                    Date
-                                  </TableHead>
                                   <TableHead className="w-28 text-[10px] sm:text-xs font-semibold py-2 2xl:text-base">
                                     Actions
                                   </TableHead>
@@ -1545,26 +1539,6 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                                         </Tooltip>
                                       </TableCell>
 
-                                      {/* Description + Tooltip */}
-                                      <TableCell className="hidden xl:table-cell py-2 max-w-80">
-                                        <Tooltip>
-                                          <TooltipTrigger asChild>
-                                            <div className="text-[11px] text-gray-600 2xl:text-sm truncate cursor-help">
-                                              {form.short_desc}
-                                            </div>
-                                          </TooltipTrigger>
-                                          <TooltipContent
-                                            side="top"
-                                            className="max-w-md p-3 text-xs bg-orange-400 text-white rounded-md shadow-lg"
-                                          >
-                                            <p className="whitespace-pre-wrap">{form.short_desc}</p>
-                                          </TooltipContent>
-                                        </Tooltip>
-                                      </TableCell>
-
-                                      <TableCell className="py-2 text-[14px] text-gray-500 font-medium">
-                                        {formatDate(form.created_at)}
-                                      </TableCell>
                                       <TableCell className="py-2">
                                         {href ? (
                                           <Button
@@ -1586,6 +1560,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                               </TableBody>
                             </Table>
                           </div>
+
                         </>
                       )}
                     </CardContent>

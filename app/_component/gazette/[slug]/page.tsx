@@ -1,17 +1,18 @@
-// components/gazette/GazetteView.tsx
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Download } from "lucide-react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
+import SanitizedHtmlContent from "@/app/SanitizedHtmlContent/page"; // Import here
 
 export type GazetteVM = {
   title: string;
   stateName: string;
   shortDescription: string;
-  updatedLabel: string;   
-  effectiveLabel: string; 
-  safeHtml: string;       
+  updatedLabel: string;
+  effectiveLabel: string;
+  safeHtml: string;   
   downloadUrl: string | null;
 };
 
@@ -22,7 +23,7 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
       <div className="w-full px-0 py-3 sm:py-4 lg:py-5">
         {/* 2-col grid: main flexible + fixed sidebar */}
         <div className="grid gap-4 lg:gap-6 md:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_360px]">
-          
+
           {/* PopularSearch on small screens */}
           <div className="md:hidden px-3 sm:px-4 lg:px-6">
             <Card>
@@ -70,35 +71,22 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
                 </p>
               )}
 
-              {/* Long HTML content */}
-              {vm.safeHtml && (
-                <article
-                  className="prose prose-sm sm:prose-base max-w-none text-gray-800 mb-4"
-                  dangerouslySetInnerHTML={{ __html: vm.safeHtml }}
-                />
-              )}
+              {/* Sanitized and styled HTML content */}
+              {vm.safeHtml && <SanitizedHtmlContent html={vm.safeHtml} />}
 
               {/* Download */}
-              <div className="flex justify-start">
+              <div className="flex justify-start mt-3">
                 {vm.downloadUrl ? (
                   <Button
                     className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 sm:px-5 sm:py-2 text-sm sm:text-base rounded-md font-medium inline-flex items-center gap-2 hover:cursor-pointer"
                     asChild
                   >
-                    <a href={vm.downloadUrl} target="_blank" rel="noopener noreferrer">
+                    <a href={vm.downloadUrl} target="_blank" rel="noopener noreferrer" >
                       <Download className="w-4 h-4" />
                       Download
                     </a>
                   </Button>
-                ) : (
-                  <Button
-                    className="bg-orange-500 text-white px-4 py-2 sm:px-5 sm:py-2 text-sm sm:text-base rounded-md font-medium inline-flex items-center gap-2"
-                    disabled
-                  >
-                    <Download className="w-4 h-4" />
-                    No File
-                  </Button>
-                )}
+                ) : null}
               </div>
             </div>
           </main>

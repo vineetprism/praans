@@ -1249,8 +1249,8 @@ type ActDetailAPI = {
     slug: string;
     state: string;
     short_description: string;
-    act_desc: string;            // HTML content
-    rule_desc: string;           // HTML content
+    act_desc: string;      
+    rule_desc: string;           
     act_doc_path?: string | null;
     act_doc_url?: string | null;
     rule_doc_path?: string | null;

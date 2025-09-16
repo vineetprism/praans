@@ -2220,6 +2220,13 @@
 //   );
 // }
 
+
+
+
+
+
+
+
 "use client";
 
 import { useMemo, useState, useEffect, useTransition } from "react";
@@ -2337,7 +2344,7 @@ export default function ActsPageClient({
   useEffect(() => {
     const fetchStates = async () => {
       try {
-        const response = await fetch("http://100.110.147.101:8000/api/states");
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/states`);
         const data: StateApiResponse = await response.json();
         setStates(data.states);
       } catch (error) {
