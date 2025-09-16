@@ -10,14 +10,15 @@ import {
   Eye,
 } from "lucide-react";
 import DOMPurify from "isomorphic-dompurify";
+import Link from "next/link";
 
 type ApiPost = {
   id: number;
   title: string;
   slug: string;
-  author:string;
-  name:string | null;
-  category:string;
+  author?: { name: string };
+  name?: string;
+  category?: { name: string };
   content?: string | null;
   short_description?: string | null;
   published_date?: string | null;
@@ -35,7 +36,6 @@ const FILE_HOST =
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "";
 
-/* ---------- helpers (render-only) ---------- */
 function normalizeImageUrl(post: ApiPost): string | null {
   const raw =
     post.image_url ||
@@ -69,29 +69,25 @@ function formatDate(iso?: string | null): string {
   });
 }
 
-/* ---------- View ---------- */
 export default function BlogSlug({ post }: { post: ApiPost }) {
   const hero = normalizeImageUrl(post);
   const published = formatDate(post.published_date);
   const safeHtml = DOMPurify.sanitize(post.content || "", {
     ALLOWED_TAGS: [
-      "p","br","strong","em","u","b","i",
-      "h1","h2","h3","h4","h5","h6",
-      "ul","ol","li","blockquote","div","span","a",
-      "pre","code","mark","strike"
+      "p", "br", "strong", "em", "u", "b", "i",
+      "h1", "h2", "h3", "h4", "h5", "h6",
+      "ul", "ol", "li", "blockquote", "div", "span", "a",
+      "pre", "code", "mark", "strike"
     ],
-    ALLOWED_ATTR: ["href","target","class","id","type","start","reversed","style"],
+    ALLOWED_ATTR: ["href", "target", "class", "id", "type", "start", "reversed", "style"],
     KEEP_CONTENT: true,
   });
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* EXACT same container + grid skeleton as your static page */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
-          {/* Main Content - 3 columns on large screens */}
           <div className="col-span-1 lg:col-span-3">
-            {/* Header Section */}
             <div className="mb-6 sm:mb-8">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight break-words">
                 {post.title}
@@ -99,7 +95,7 @@ export default function BlogSlug({ post }: { post: ApiPost }) {
               <div className="flex flex-wrap items-center text-xs sm:text-sm text-gray-600 gap-2 sm:gap-4">
                 <div className="flex items-center gap-1">
                   <User size={14} className="sm:w-4 sm:h-4" />
-                  <span className="truncate">{post.author.name}</span>
+                  <span className="truncate">{post.author?.name || "Unknown Author"}</span>
                 </div>
                 {published && (
                   <div className="flex items-center gap-1">
@@ -109,13 +105,12 @@ export default function BlogSlug({ post }: { post: ApiPost }) {
                 )}
 
                 <div className="flex items-center gap-1">
-                     <MessageCircle size={14} className="sm:w-4 sm:h-4" />
-                  <span className="hidden sm:inline">{post.category.name}</span>
+                  <MessageCircle size={14} className="sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">{post.category?.name || "Uncategorized"}</span>
                 </div>
               </div>
             </div>
 
-            {/* Image Section — object-contain like your design */}
             {hero && (
               <div className="relative w-full mb-6 sm:mb-8 rounded-lg overflow-hidden">
                 <img
@@ -126,77 +121,54 @@ export default function BlogSlug({ post }: { post: ApiPost }) {
               </div>
             )}
 
-            {/* Social Share Section (same circular buttons) */}
             <div className="mb-6 sm:mb-8">
               <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-3">Spread the love</h3>
               <div className="flex gap-2 flex-wrap">
-                <a
+                <Link
                   className="bg-blue-600 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0"
                   href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${SITE_URL}/blog/${post.slug}`)}`}
                   target="_blank"
                 >
                   <Facebook size={16} className="sm:w-5 sm:h-5" />
-                </a>
-                <a
+                </Link>
+                <Link
                   className="bg-gray-800 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-gray-900 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0"
                   href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`${SITE_URL}/blog/${post.slug}`)}&text=${encodeURIComponent(post.title)}`}
                   target="_blank"
                 >
                   <Twitter size={16} className="sm:w-5 sm:h-5" />
-                </a>
-                <button className="bg-orange-600 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-orange-700 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0">
-                  <span className="text-white text-xs sm:text-sm font-bold">R</span>
-                </button>
-                <a
+                </Link>
+                <Link
                   className="bg-blue-700 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-blue-800 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0"
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${SITE_URL}/blog/${post.slug}`)}`}
                   target="_blank"
                 >
                   <Linkedin size={16} className="sm:w-5 sm:h-5" />
-                </a>
-                <button className="bg-red-600 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-red-700 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0">
-                  <span className="text-white text-xs sm:text-sm font-bold">P</span>
-                </button>
-                <button className="bg-blue-500 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-blue-600 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0">
-                  <span className="text-white text-xs sm:text-sm font-bold">M</span>
-                </button>
-                <button className="bg-orange-500 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-orange-600 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0">
-                  <span className="text-white text-xs sm:text-sm font-bold">M</span>
-                </button>
-                <button className="bg-green-500 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-green-600 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0">
-                  <span className="text-white text-xs sm:text-sm font-bold">W</span>
-                </button>
-                <button className="bg-gray-400 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-gray-500 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0">
-                  <span className="text-xs sm:text-sm font-bold">+</span>
-                </button>
+                </Link>
               </div>
             </div>
 
-            {/* Content Section (API HTML) */}
             <div className="rounded-lg">
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Introduction</h2>
               <div
-                className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-gray-700 space-y-4"
+                className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-gray-700 space-y-4 text-justify"
                 dangerouslySetInnerHTML={{ __html: safeHtml }}
               />
             </div>
           </div>
 
-          {/* Right Sidebar - 1 column on large screens, full width on smaller screens */}
           <div className="col-span-1 lg:col-span-1 order-first lg:order-last">
             <div className="rounded-lg p-4 sm:p-6 border bg-white lg:sticky lg:top-24">
               <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-4 text-center">
                 Our Visitors
               </h3>
 
-              {/* Digital Counter Display */}
               <div className="text-center mb-4 sm:mb-6">
                 <div className="bg-gray-900 text-white px-3 sm:px-4 py-2 rounded font-mono text-lg sm:text-xl lg:text-2xl inline-block">
                   012794
                 </div>
               </div>
 
-              {/* Visitor Statistics */}
               <div className="space-y-1 sm:space-y-2 lg:space-y-3 text-xs sm:text-sm overflow-hidden">
                 <div className="flex items-center justify-between min-w-0 gap-1">
                   <div className="flex items-center gap-1 sm:gap-2 min-w-0 flex-shrink">
@@ -229,7 +201,6 @@ export default function BlogSlug({ post }: { post: ApiPost }) {
               </div>
             </div>
           </div>
-          {/* /Sidebar */}
         </div>
       </div>
     </div>

@@ -5,6 +5,9 @@ type ApiPost = {
   id: number;
   title: string;
   slug: string;
+  author: string;
+  name: string | null;
+  category: string;
   content?: string | null;
   short_description?: string | null;
   published_date?: string | null;
