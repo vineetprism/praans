@@ -1042,13 +1042,195 @@
 
 
 
+// // app/acts/[slug]/page.tsx (Server Component)
+// import { notFound } from "next/navigation";
+// import { Metadata } from "next";
+// import ActDetailClient from "@/app/_component/ActRuleForm/[slug]/page";
+
+// // const API_BASE = "http://100.110.147.101:8000/api/act-rule-forms";
+// const API_BASE = "prns.prisminfoways.com";
+
+// // Types based on actual API response
+// type FormAPI = {
+//   id: number;
+//   form_no: string;
+//   title: string;
+//   short_desc: string;
+//   pdf_url: string | null;
+//   created_at: string;
+// };
+
+// type ActDetailAPI = {
+//   data: {
+//     id: number;
+//     title: string;
+//     slug: string;
+//     state: string;
+//     short_description: string;
+//     act_desc: string;            // HTML content
+//     rule_desc: string;           // HTML content
+//     act_doc_path?: string | null;
+//     act_doc_url?: string | null;
+//     rule_doc_path?: string | null;
+//     rule_doc_url?: string | null;
+//     forms: FormAPI[];
+//     created_at: string;
+//   };
+// };
+
+// // Server-side data fetching with ISR
+// async function getActDetail(slug: string): Promise<ActDetailAPI | null> {
+//   try {
+//     const res = await fetch(`${API_BASE}/${slug}`, {
+//       next: { 
+//         revalidate: 1800  // 30 minutes ISR cache
+//       },
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json',
+//       }
+//     });
+    
+//     if (!res.ok) {
+//       console.error(`Failed to fetch act detail for slug: ${slug}, Status: ${res.status}`);
+//       return null;
+//     }
+    
+//     const data = await res.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching act detail:", error);
+//     return null;
+//   }
+// }
+
+// // Dynamic metadata generation from API
+// export async function generateMetadata({ 
+//   params 
+// }: { 
+//   params: { slug: string } 
+// }): Promise<Metadata> {
+//   const payload = await getActDetail(params.slug);
+//   const act = payload?.data;
+  
+//   if (!act) {
+//     return {
+//       title: "Act Not Found | Labour Acts Database",
+//       description: "The requested labour act could not be found.",
+//       robots: {
+//         index: false,
+//         follow: false,
+//       }
+//     };
+//   }
+
+//   return {
+//     title: `${act.title} | Labour Acts Database`,
+//     description: act.short_description,
+//     keywords: [
+//       act.title,
+//       "Labour Act",
+//       "Legal Database", 
+//       act.state,
+//       "Employment Law",
+//       "Indian Labour Laws",
+//       "Rules and Forms",
+//       act.slug
+//     ],
+//     openGraph: {
+//       title: act.title,
+//       description: act.short_description,
+//       type: "article",
+//       url: `/acts/${act.slug}`,
+//       siteName: "Labour Acts Database"
+//     },
+//     twitter: {
+//       card: "summary",
+//       title: act.title,
+//       description: act.short_description,
+//     },
+//     robots: {
+//       index: true,
+//       follow: true,
+//       googleBot: {
+//         index: true,
+//         follow: true,
+//         'max-video-preview': -1,
+//         'max-image-preview': 'large',
+//         'max-snippet': -1,
+//       },
+//     },
+//     alternates: {
+//       canonical: `/acts/${act.slug}`,
+//     }
+//   };
+// }
+
+// // Main server component
+// export default async function ActDetailPage({ 
+//   params 
+// }: { 
+//   params: { slug: string } 
+// }) {
+//   const payload = await getActDetail(params.slug);
+//   const act = payload?.data;
+  
+//   if (!act) {
+//     notFound();
+//   }
+
+//   return (
+//     <>
+//       {/* JSON-LD Structured Data */}
+//       <script
+//         type="application/ld+json"
+//         dangerouslySetInnerHTML={{
+//           __html: JSON.stringify({
+//             "@context": "https://schema.org",
+//             "@type": "GovernmentOrganization",
+//             "name": act.title,
+//             "description": act.short_description,
+//             "url": `/acts/${act.slug}`,
+//             "areaServed": act.state,
+//             "dateCreated": act.created_at,
+//             "governmentType": "Legal Database"
+//           }),
+//         }}
+//       />
+      
+//       <ActDetailClient act={act} />
+//     </>
+//   );
+// }
+
+// // Generate static params for ISR (optional)
+// export async function generateStaticParams() {
+//   try {
+//     // You can fetch popular slugs here for pre-generation
+//     // const popularSlugs = await fetch(`${API_BASE}/popular-acts`).then(res => res.json());
+    
+//     return [
+//       { slug: 'maharashtra-shops-and-establishments-act-2017' },
+//       // Add more popular slugs here
+//     ];
+//   } catch (error) {
+//     console.error('Error generating static params:', error);
+//     return [];
+//   }
+// }
+
+
+
+
+
+
 // app/acts/[slug]/page.tsx (Server Component)
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ActDetailClient from "@/app/_component/ActRuleForm/[slug]/page";
 
-// const API_BASE = "http://100.110.147.101:8000/api/act-rule-forms";
-const API_BASE = "prns.prisminfoways.com";
+// API base ko environment variable se connect karo
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 
 // Types based on actual API response
 type FormAPI = {
@@ -1081,7 +1263,7 @@ type ActDetailAPI = {
 // Server-side data fetching with ISR
 async function getActDetail(slug: string): Promise<ActDetailAPI | null> {
   try {
-    const res = await fetch(`${API_BASE}/${slug}`, {
+    const res = await fetch(`${API_BASE}/api/act-rule-forms/${slug}`, {
       next: { 
         revalidate: 1800  // 30 minutes ISR cache
       },
@@ -1206,9 +1388,6 @@ export default async function ActDetailPage({
 // Generate static params for ISR (optional)
 export async function generateStaticParams() {
   try {
-    // You can fetch popular slugs here for pre-generation
-    // const popularSlugs = await fetch(`${API_BASE}/popular-acts`).then(res => res.json());
-    
     return [
       { slug: 'maharashtra-shops-and-establishments-act-2017' },
       // Add more popular slugs here

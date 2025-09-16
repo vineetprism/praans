@@ -9,9 +9,9 @@ export type GazetteVM = {
   title: string;
   stateName: string;
   shortDescription: string;
-  updatedLabel: string;   // already formatted (e.g. "1st Sep, 2025")
-  effectiveLabel: string; // already formatted
-  safeHtml: string;       // already sanitized HTML
+  updatedLabel: string;   
+  effectiveLabel: string; 
+  safeHtml: string;       
   downloadUrl: string | null;
 };
 
