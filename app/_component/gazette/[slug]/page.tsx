@@ -73,7 +73,6 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
 
               {/* Sanitized and styled HTML content */}
               {vm.safeHtml && <SanitizedHtmlContent html={vm.safeHtml} />}
-
               {/* Download */}
               <div className="flex justify-start mt-3">
                 {vm.downloadUrl ? (
