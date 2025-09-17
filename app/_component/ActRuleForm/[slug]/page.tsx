@@ -1638,6 +1638,7 @@ type ActDetail = {
   slug: string;
   state: string;
   short_description: string;
+  form_quote: string;
   act_desc: string; // HTML content from API
   rule_desc: string; // HTML content from API
   section_count: number;
@@ -1656,9 +1657,7 @@ interface ActDetailClientProps {
   act: ActDetail;
 }
 
-/* =========================
-   ✅ Base host override
-   ========================= */
+
 const FILE_HOST =
   process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") ||
   "http://100.110.147.101:8000";
@@ -1713,6 +1712,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
     if (!finalUrl) return alert("Rules document not available");
     window.open(finalUrl, "_blank");
   };
+
 
   const handleFormDownload = (form: FormAPI) => {
     const finalUrl = normalizeUrl(form.pdf_url, null);
@@ -1875,8 +1875,14 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                         <CardTitle className="flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base lg:text-lg">
                           <FileText className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-orange-500 flex-shrink-0" />
                           <span>Forms:</span>
+
                         </CardTitle>
+
                       </div>
+                      <span className="text-[14px] sm:text-xs lg:text-sm bg-orange-100 text-gray-700 p-2 rounded-md">
+                        {act.form_quote}
+                      </span>
+
                     </CardHeader>
                     <CardContent className="pt-0">
                       {forms.length === 0 ? (
@@ -1941,7 +1947,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                           </div>
 
                           {/* Desktop Table */}
-                          <div className="hidden lg:block overflow-hidden -mt-8">
+                          <div className="hidden lg:block overflow-hidden -mt-6">
                             <Table>
                               <TableHeader>
                                 <TableRow className="bg-gray-50 border-gray-200">

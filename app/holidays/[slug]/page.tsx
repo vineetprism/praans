@@ -352,23 +352,25 @@ export default function StateDetailPage() {
             </div>
 
             {/* Filters Section */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 py-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 py-5">
               {/* Start Date */}
-              <div>
-                <label className=" text-xs sm:text-sm font-medium text-gray-700 mb-1">
-                  From Date : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div className="flex items-center space-x-2">
+                <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1">
+                  From Date:
                 </label>
                 <DatePicker selected={startDate} onChange={setStartDate} placeholder="Start date" />
               </div>
 
               {/* End Date */}
-              <div>
-                <label className=" text-xs sm:text-sm font-medium text-gray-700 mb-1 ml-2">
-                  To Date :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div className="flex items-center space-x-2">
+                <label className="text-xs sm:text-sm font-medium text-gray-700 mb-1">
+                  To Date:
                 </label>
                 <DatePicker selected={endDate} onChange={setEndDate} placeholder="End date" />
               </div>
             </div>
+
+
 
             {/* Mobile Card View */}
             <div className="block sm:hidden space-y-2 min-[375px]:space-y-3">
@@ -388,13 +390,12 @@ export default function StateDetailPage() {
                     </div>
                     <div className="flex-shrink-0">
                       <span
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          holiday.type === "National"
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${holiday.type === "National"
                             ? "bg-green-100 text-green-800"
                             : holiday.type === "Regional"
-                            ? "bg-blue-100 text-blue-800"
-                            : "bg-gray-100 text-gray-800"
-                        }`}
+                              ? "bg-blue-100 text-blue-800"
+                              : "bg-gray-100 text-gray-800"
+                          }`}
                       >
                         {holiday.type}
                       </span>
@@ -433,13 +434,12 @@ export default function StateDetailPage() {
                     </div>
                     <div className="flex-shrink-0">
                       <span
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${
-                          holiday.type === "National"
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${holiday.type === "National"
                             ? "bg-green-100 text-green-800"
                             : holiday.type === "Regional"
-                            ? "bg-blue-100 text-blue-800"
-                            : "bg-gray-100 text-gray-800"
-                        }`}
+                              ? "bg-blue-100 text-blue-800"
+                              : "bg-gray-100 text-gray-800"
+                          }`}
                       >
                         {holiday.type}
                       </span>
@@ -494,13 +494,12 @@ export default function StateDetailPage() {
 
                         <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4">
                           <span
-                            className={`rounded-full font-medium px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5 text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px] ${
-                              holiday.type === "National"
+                            className={`rounded-full font-medium px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5 text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px] ${holiday.type === "National"
                                 ? "bg-green-100 text-green-800"
                                 : holiday.type === "Regional"
-                                ? "bg-blue-100 text-blue-800"
-                                : "bg-gray-100 text-gray-800"
-                            }`}
+                                  ? "bg-blue-100 text-blue-800"
+                                  : "bg-gray-100 text-gray-800"
+                              }`}
                           >
                             {holiday.type}
                           </span>
