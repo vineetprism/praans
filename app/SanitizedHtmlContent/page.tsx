@@ -21,11 +21,11 @@ export default function SanitizedHtmlContent({ html }: SanitizedHtmlContentProps
         ADD_ATTR: ["type", "start"],
       });
     }
-    return htmlContent;
+    return htmlContent; 
   };
 
   return (
-    <div
+    <div 
       className="
         prose prose-sm max-w-none text-gray-700 leading-relaxed
         [&_p]:mb-4 [&_p]:leading-relaxed [&_p]:text-gray-700 [&_p]:text-[15px]
