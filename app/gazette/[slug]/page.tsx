@@ -399,7 +399,6 @@
 
 
 
-// app/gazette/[slug]/page.tsx (SERVER component)
 import DOMPurify from "isomorphic-dompurify";
 import GazetteView, { GazetteVM } from "@/app/_component/gazette/[slug]/page";
 

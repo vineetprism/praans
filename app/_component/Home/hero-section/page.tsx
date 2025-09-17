@@ -7,7 +7,9 @@ import Link from 'next/link';
 
 export default function HeroSection() {
   return (
-  //   <section
+  
+  
+    //   <section
   //     className="
     // relative flex items-center justify-center
     // min-h-[clamp(22rem,62vh,78vh)]
@@ -19,6 +21,8 @@ export default function HeroSection() {
     // overflow-hidden lg:pt-2
   // "
   //   >
+
+
   <section
   className="
   relative flex items-center justify-center
@@ -69,7 +73,7 @@ export default function HeroSection() {
       >
         {/* Heading */}
         <h1
-          className="text-[2rem] min-[360px]:text-[34px] min-[375px]:text-[37px] min-[390px]:text-[37px] min-[414px]:text-[37px] min-[430px]:text-[px] sm:text-5xl md:text-6xl lg:text-[5.6rem] xl:text-[6.6rem] 2xl:text-[6.5rem]
+          className="text-[2rem] min-[360px]:text-[34px] min-[375px]:text-[37px] min-[390px]:text-[37px] min-[414px]:text-[37px] min-[430px]:text-[px] sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[6.2rem] 2xl:text-[6.5rem]
           font-black text-slate-900 tracking-tight"
         >
 

@@ -40,22 +40,11 @@ const config = {
       colors: {
         primary: "#eb8535",
       },
-    //   fontFamily: {
-    //     sans: [
-    //       "Inter",
-    //       "ui-sans-serif",
-    //       "system-ui",
-    //       "-apple-system",
-    //       "Segoe UI",
-    //       "Roboto",
-    //       "Helvetica Neue",
-    //       "Arial",
-    //       "Noto Sans",
-    //       "Apple Color Emoji",
-    //       "Segoe UI Emoji",
-    //       "Segoe UI Symbol",
-    //     ],
-    //   },
+      fontFamily: {
+        sans: [
+          'Geist Sans', 'Arial', 'sans-serif'
+        ],
+      },
     },
   },
   plugins: [forms, typography, lineClamp, aspectRatio],
