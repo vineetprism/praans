@@ -6,7 +6,7 @@ import Header from "./_component/siteHeader"
 import SiteFooter from "./_component/siteFooter"
 
 export const metadata: Metadata = {
-  title: "Praans Consultech",
+  title: "Praans Consultech | AI-driven platform for labour law compliance and business registration in India",
   description: "Praans Consultech | AI-driven platform for labour law compliance and business registration in India",
   generator: "Praans Consultech | AI-driven platform for labour law compliance and business registration in India",
 }
