@@ -51,8 +51,8 @@ const NAV = [
       { label: "MSME Registration", href: "/registration/msme" },
     ],
   },
+    { label: "Blog", href: "/blog" },
   { label: "Library", href: "/library" },
-  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

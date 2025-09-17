@@ -2249,6 +2249,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Search, Eye, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
+import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";  // Import the new component
 
 // ---------- Types ----------
 type ActItem = {
@@ -2325,6 +2326,288 @@ const ExpandableDescription = ({ description }: { description: string }) => {
   );
 };
 
+// export default function ActsPageClient({
+//   initialData,
+//   initialPage,
+// }: ActsPageClientProps) {
+//   const router = useRouter();
+//   const searchParams = useSearchParams();
+//   const [isPending, startTransition] = useTransition();
+
+//   // State
+//   const [states, setStates] = useState<{ id: number; name: string }[]>([]);
+//   const [stateFilter, setStateFilter] = useState<string>(""); // "" => placeholder will show
+//   const [q, setQ] = useState<string>("");
+
+//   // Server data
+//   const serverData = initialData;
+
+//   useEffect(() => {
+//     const fetchStates = async () => {
+//       try {
+//         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/states`);
+//         const data: StateApiResponse = await response.json();
+//         setStates(data.states);
+//       } catch (error) {
+//         console.error("Error fetching states:", error);
+//       }
+//     };
+//     fetchStates();
+//   }, []);
+
+//   const currentPage = serverData?.meta?.current_page ?? initialPage;
+//   const lastPage = serverData?.meta?.last_page ?? 1;
+//   const acts = serverData?.data ?? [];
+
+//   const handlePageChange = (newPage: number) => {
+//     startTransition(() => {
+//       const params = new URLSearchParams(searchParams);
+//       if (newPage === 1) params.delete("page");
+//       else params.set("page", String(newPage));
+//       const newUrl = params.toString() ? `?${params.toString()}` : "";
+//       router.push(`/acts${newUrl}`);
+//     });
+//   };
+
+//   // Filters
+//   const filtered = useMemo(() => {
+//     let rows = acts;
+//     if (stateFilter && stateFilter !== "All States") {
+//       rows = rows.filter(
+//         (r) => r.state.toLowerCase() === stateFilter.toLowerCase()
+//       );
+//     }
+//     if (q.trim()) {
+//       const needle = q.trim().toLowerCase();
+//       rows = rows.filter(
+//         (r) =>
+//           r.title.toLowerCase().includes(needle) ||
+//           r.short_description.toLowerCase().includes(needle)
+//       );
+//     }
+//     return rows;
+//   }, [acts, q, stateFilter]);
+
+//   const pageNumbers = useMemo(() => {
+//     const max = Math.min(lastPage, 5);
+//     return Array.from({ length: max }, (_, i) => i + 1);
+//   }, [lastPage]);
+
+//   const handleSearchChange = (value: string) => {
+//     setQ(value);
+//     if (currentPage !== 1) handlePageChange(1);
+//   };
+
+//   const handleStateChange = (value: string) => {
+//     setStateFilter(value);
+//     if (currentPage !== 1) handlePageChange(1);
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gray-50">
+//       {/* ---- Full-width wrapper: NO max-width, NO container ---- */}
+//       {/* For absolutely zero side padding, replace px-2 sm:px-4 md:px-6 lg:px-8 with px-0 */}
+//       <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8 py-6">
+//         {/* 1 col on mobile; from md: [main flexible, sidebar fixed] */}
+//         <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_360px]">
+//           {/* ---- Main ---- */}
+//           <div className="min-w-0">
+//             <div className="mb-6">
+//               <h1 className="font-bold text-slate-800 text-base sm:text-xl mb-1">
+//                 Labour Acts &amp; Regulations :
+//               </h1>
+//               <p className="text-gray-600 leading-relaxed text-[10px] sm:text-sm text-justify">
+//                 Comprehensive collection of central and state labour acts with
+//                 latest amendments and updates. Data is automatically updated
+//                 every 30 minutes using ISR for optimal performance.
+//               </p>
+//             </div>
+
+//             {/* Filters */}
+//             <div className="grid gap-3 mb-4 p-2 sm:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_240px]">
+//               {/* Search */}
+//               <div className="relative">
+//                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 2xl:w-5 2xl:h-5" />
+//                 <Input
+//                   value={q}
+//                   onChange={(e) => handleSearchChange(e.target.value)}
+//                   placeholder="Search by title..."
+//                   className="pl-10 h-8 2xl:h-10 text-xs lg:text-sm focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+//                   disabled={isPending}
+//                 />
+//               </div>
+
+//               {/* Select with scrollable list */}
+//               <Select
+//                 value={stateFilter || undefined}
+//                 onValueChange={handleStateChange}
+//                 disabled={isPending}
+//               >
+//                 <SelectTrigger className="h-8 2xl:h-10 text-xs lg:text-sm bg-gray-100">
+//                   <SelectValue placeholder="Select State" />
+//                 </SelectTrigger>
+//                 <SelectContent
+//                   position="popper"
+//                   sideOffset={6}
+//                   className="z-[60] w-[var(--radix-select-trigger-width)] max-h-60 overflow-y-auto p-0 rounded-md border bg-white shadow-md"
+//                 >
+//                   <SelectItem value="All States">All States</SelectItem>
+//                   {states.map((s) => (
+//                     <SelectItem key={s.id} value={s.name}>
+//                       {s.name}
+//                     </SelectItem>
+//                   ))}
+//                 </SelectContent>
+//               </Select>
+//             </div>
+
+//             {/* Loader */}
+//             {isPending && (
+//               <div className="flex items-center justify-center p-4">
+//                 <Loader2 className="w-6 h-6 animate-spin text-orange-500" />
+//                 <span className="ml-2 text-sm text-gray-600">Loading...</span>
+//               </div>
+//             )}
+
+//             {/* ONE CARD PER ROW, FULL WIDTH OF MAIN COLUMN */}
+//             {!isPending && (
+//               <>
+//                 {filtered.length === 0 ? (
+//                   <div className="text-sm text-gray-600 p-3 bg-gray-50 rounded-lg border border-gray-200">
+//                     No results found for your filters.
+//                   </div>
+//                 ) : (
+//                   <div className="grid grid-cols-1 gap-3">
+//                     {filtered.map((act) => (
+//                       <div
+//                         key={act.id}
+//                         className="w-full bg-orange-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border-l-4 border-l-orange-500 overflow-hidden"
+//                       >
+//                         <div className="p-3">
+//                           {/* LEFT content + RIGHT state (top-right) */}
+//                           <div className="grid grid-cols-[1fr_auto] gap-3">
+//                             {/* LEFT */}
+//                             <div className="min-w-0">
+//                               <h4 className="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-2">
+//                                 {act.title}
+//                               </h4>
+
+//                               <ExpandableDescription
+//                                 description={act.short_description}
+//                               />
+
+//                               <div className="mt-2">
+//                                 <Button
+//                                   size="sm"
+//                                   className="bg-orange-400 text-white hover:bg-orange-500 h-8 px-3 text-xs font-medium rounded-sm inline-flex items-center gap-1"
+//                                   asChild
+//                                 >
+//                                   <Link href={`/acts/${act.slug || act.id}`}>
+//                                     <Eye className="w-4 h-4" />
+//                                     <span>Read More</span>
+//                                   </Link>
+//                                 </Button>
+//                               </div>
+//                             </div>
+
+//                             {/* RIGHT (state badge) */}
+//                             <div className="pl-3 self-start justify-self-end">
+//                               <span className="inline-flex items-center bg-blue-50 text-blue-700 border border-blue-200 text-[11px] lg:text-[12px] px-1.5 py-0.5 font-medium rounded">
+//                                 {act.state || "All India"}
+//                               </span>
+//                             </div>
+//                           </div>
+//                         </div>
+//                       </div>
+//                     ))}
+//                   </div>
+//                 )}
+//               </>
+//             )}
+
+//             {/* Pagination */}
+//             {!isPending && serverData && lastPage > 1 && (
+//               <div className="flex justify-center items-center gap-2 mt-4">
+//                 <Button
+//                   variant="outline"
+//                   size="sm"
+//                   className="h-8 px-3 text-xs border-gray-300 hover:bg-gray-50"
+//                   disabled={currentPage <= 1}
+//                   onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+//                   aria-label="Previous Page"
+//                 >
+//                   <ChevronLeft className="w-4 h-4" />
+//                 </Button>
+
+//                 {pageNumbers.map((p) => (
+//                   <Button
+//                     key={p}
+//                     variant={currentPage === p ? "default" : "outline"}
+//                     size="sm"
+//                     className={
+//                       currentPage === p
+//                         ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
+//                         : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200"
+//                     }
+//                     onClick={() => handlePageChange(p)}
+//                     aria-label={`Page ${p}`}
+//                   >
+//                     {p}
+//                   </Button>
+//                 ))}
+
+//                 {lastPage > 5 && (
+//                   <>
+//                     <span className="px-1 text-gray-400 text-xs">…</span>
+//                     <Button
+//                       variant={currentPage === lastPage ? "default" : "outline"}
+//                       size="sm"
+//                       className={
+//                         currentPage === lastPage
+//                           ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
+//                           : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200"
+//                       }
+//                       onClick={() => handlePageChange(lastPage)}
+//                       aria-label={`Page ${lastPage}`}
+//                     >
+//                       {lastPage}
+//                     </Button>
+//                   </>
+//                 )}
+
+//                 <Button
+//                   variant="outline"
+//                   size="sm"
+//                   className="h-8 px-3 text-xs border-gray-300 hover:bg-gray-50"
+//                   disabled={currentPage >= lastPage}
+//                   onClick={() =>
+//                     handlePageChange(Math.min(lastPage, currentPage + 1))
+//                   }
+//                   aria-label="Next Page"
+//                 >
+//                   <ChevronRight className="w-4 h-4" />
+//                 </Button>
+//               </div>
+//             )}
+//           </div>
+
+//           {/* ---- Sidebar ---- */}
+//           <div className="min-w-0">
+//             <div className="sticky top-24">
+//               <div className="rounded-lg border bg-white shadow-sm">
+//                 <div className="p-4">
+//                   <PopularSearch className="mb-0" />
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
 export default function ActsPageClient({
   initialData,
   initialPage,
@@ -2334,9 +2617,9 @@ export default function ActsPageClient({
   const [isPending, startTransition] = useTransition();
 
   // State
-  const [states, setStates] = useState<{ id: number; name: string }[]>([]);
-  const [stateFilter, setStateFilter] = useState<string>(""); // "" => placeholder will show
-  const [q, setQ] = useState<string>("");
+  const [states, setStates] = useState<{ id: number; name: string }[]>([]);  // State for holding all states
+  const [stateFilter, setStateFilter] = useState<string>("");  // Filter state
+  const [q, setQ] = useState<string>("");  // Search query
 
   // Server data
   const serverData = initialData;
@@ -2404,12 +2687,8 @@ export default function ActsPageClient({
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* ---- Full-width wrapper: NO max-width, NO container ---- */}
-      {/* For absolutely zero side padding, replace px-2 sm:px-4 md:px-6 lg:px-8 with px-0 */}
       <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8 py-6">
-        {/* 1 col on mobile; from md: [main flexible, sidebar fixed] */}
         <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_360px]">
-          {/* ---- Main ---- */}
           <div className="min-w-0">
             <div className="mb-6">
               <h1 className="font-bold text-slate-800 text-base sm:text-xl mb-1">
@@ -2422,43 +2701,15 @@ export default function ActsPageClient({
               </p>
             </div>
 
-            {/* Filters */}
-            <div className="grid gap-3 mb-4 p-2 sm:grid-cols-[minmax(0,1fr)_220px] lg:grid-cols-[minmax(0,1fr)_240px]">
-              {/* Search */}
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 2xl:w-5 2xl:h-5" />
-                <Input
-                  value={q}
-                  onChange={(e) => handleSearchChange(e.target.value)}
-                  placeholder="Search by title..."
-                  className="pl-10 h-8 2xl:h-10 text-xs lg:text-sm focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                  disabled={isPending}
-                />
-              </div>
-
-              {/* Select with scrollable list */}
-              <Select
-                value={stateFilter || undefined}
-                onValueChange={handleStateChange}
-                disabled={isPending}
-              >
-                <SelectTrigger className="h-8 2xl:h-10 text-xs lg:text-sm bg-gray-100">
-                  <SelectValue placeholder="Select State" />
-                </SelectTrigger>
-                <SelectContent
-                  position="popper"
-                  sideOffset={6}
-                  className="z-[60] w-[var(--radix-select-trigger-width)] max-h-60 overflow-y-auto p-0 rounded-md border bg-white shadow-md"
-                >
-                  <SelectItem value="All States">All States</SelectItem>
-                  {states.map((s) => (
-                    <SelectItem key={s.id} value={s.name}>
-                      {s.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            {/* Use the SearchAndStateFilter component */}
+            <SearchAndStateFilter
+              states={states}  // Pass states to the filter component
+              onSearchChange={handleSearchChange}  // Handle search change
+              onStateChange={handleStateChange}  // Handle state filter change
+              searchValue={q}  // Pass search value to the component
+              stateValue={stateFilter}  // Pass selected state filter value
+              isPending={isPending}  // Pass loading state
+            />
 
             {/* Loader */}
             {isPending && (
@@ -2468,7 +2719,7 @@ export default function ActsPageClient({
               </div>
             )}
 
-            {/* ONE CARD PER ROW, FULL WIDTH OF MAIN COLUMN */}
+            {/* Render filtered data */}
             {!isPending && (
               <>
                 {filtered.length === 0 ? (
@@ -2483,9 +2734,7 @@ export default function ActsPageClient({
                         className="w-full bg-orange-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border-l-4 border-l-orange-500 overflow-hidden"
                       >
                         <div className="p-3">
-                          {/* LEFT content + RIGHT state (top-right) */}
                           <div className="grid grid-cols-[1fr_auto] gap-3">
-                            {/* LEFT */}
                             <div className="min-w-0">
                               <h4 className="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-2">
                                 {act.title}
@@ -2509,7 +2758,6 @@ export default function ActsPageClient({
                               </div>
                             </div>
 
-                            {/* RIGHT (state badge) */}
                             <div className="pl-3 self-start justify-self-end">
                               <span className="inline-flex items-center bg-blue-50 text-blue-700 border border-blue-200 text-[11px] lg:text-[12px] px-1.5 py-0.5 font-medium rounded">
                                 {act.state || "All India"}
@@ -2543,11 +2791,7 @@ export default function ActsPageClient({
                     key={p}
                     variant={currentPage === p ? "default" : "outline"}
                     size="sm"
-                    className={
-                      currentPage === p
-                        ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
-                        : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200"
-                    }
+                    className={currentPage === p ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400" : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200"}
                     onClick={() => handlePageChange(p)}
                     aria-label={`Page ${p}`}
                   >
@@ -2561,11 +2805,7 @@ export default function ActsPageClient({
                     <Button
                       variant={currentPage === lastPage ? "default" : "outline"}
                       size="sm"
-                      className={
-                        currentPage === lastPage
-                          ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
-                          : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200"
-                      }
+                      className={currentPage === lastPage ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400" : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200"}
                       onClick={() => handlePageChange(lastPage)}
                       aria-label={`Page ${lastPage}`}
                     >
@@ -2579,9 +2819,7 @@ export default function ActsPageClient({
                   size="sm"
                   className="h-8 px-3 text-xs border-gray-300 hover:bg-gray-50"
                   disabled={currentPage >= lastPage}
-                  onClick={() =>
-                    handlePageChange(Math.min(lastPage, currentPage + 1))
-                  }
+                  onClick={() => handlePageChange(Math.min(lastPage, currentPage + 1))}
                   aria-label="Next Page"
                 >
                   <ChevronRight className="w-4 h-4" />
