@@ -516,136 +516,203 @@
 
 
 
+// import { Metadata } from "next";
+// import GazetteNotificationsClient from "@/app/_component/gazette/page";
+
+// // ---------- Types from API ----------
+// type GazetteItem = {
+//   id: number;
+//   title: string;
+//   slug: string;
+//   short_description: string | null;
+//   description: string | null;
+//   state_slug: string | null;
+//   state_name: string | null;
+//   updated_date: string | null;
+//   effective_date: string | null;
+//   pdf_path?: string | null;
+//   pdf_url?: string | null;
+//   created_at?: string;
+//   updated_at?: string;
+// };
+
+// type ApiResponse = {
+//   data: GazetteItem[];
+//   links: { first: string | null; last: string | null; prev: string | null; next: string | null };
+//   meta: {
+//     current_page: number;
+//     from: number | null;
+//     last_page: number;
+//     path: string;
+//     per_page: number;
+//     to: number | null;
+//     total: number;
+//   };
+// };
+
+// // Use environment variables for API base URLs
+// const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") || "http://100.110.147.101:8000";
+
+// // Fetch Gazette Data with ISR
+// async function getGazetteData(page: number = 1): Promise<ApiResponse> {
+//   try {
+//     const res = await fetch(`${API_BASE}/api/gazettes?page=${page}`, { 
+//       next: { 
+//         revalidate: 1800, // ISR: revalidate every 30 minutes
+//         tags: ['gazette-notifications'] 
+//       } 
+//     });
+    
+//     if (!res.ok) {
+//       throw new Error(`HTTP ${res.status}: Failed to fetch gazette data`);
+//     }
+    
+//     return await res.json();
+//   } catch (error) {
+//     console.error("Error fetching gazette data:", error);
+//     return {
+//       data: [],
+//       links: { first: null, last: null, prev: null, next: null },
+//       meta: {
+//         current_page: 1,
+//         from: null,
+//         last_page: 1,
+//         path: "",
+//         per_page: 10,
+//         to: null,
+//         total: 0
+//       }
+//     };
+//   }
+// }
+
+// // Fetch States Data (for filters)
+// async function getStatesFromGazettes(): Promise<string[]> {
+//   try {
+//     const res = await fetch(`${API_BASE}/api//states`, { 
+//       next: { 
+//         revalidate: 3600, // Cache states for 1 hour
+//         tags: ['states'] 
+//       } 
+//     });
+    
+//     if (!res.ok) {
+//       console.warn("Failed to fetch states from API, will use client-side derivation");
+//       return [];
+//     }
+    
+//     const data = await res.json();
+//     return data.states || [];
+//   } catch (error) {
+//     console.error("Error fetching states:", error);
+//     return [];
+//   }
+// }
+
+// // Server-side metadata
+// export const metadata: Metadata = {
+//   title: "Gazette Notifications | Official Government Publications",
+//   description:
+//     "Gazette Notification is an authorized legal document issued by the Ministries of Government of India, published in the official gazette containing significant Statutory Orders (S.O) and General Statutory Rules (G.S.R).",
+//   keywords: [
+//     "Gazette Notifications",
+//     "Government Gazette",
+//     "Official Publications",
+//     "Statutory Orders",
+//     "Legal Documents",
+//     "Government Notifications",
+//     "Indian Government",
+//     "S.O",
+//     "G.S.R"
+//   ],
+// };
+
+// // Main server component with ISR
+// export default async function GazetteNotificationsPage({ 
+//   searchParams 
+// }: { 
+//   searchParams: { page?: string } 
+// }) {
+//   const currentPage = Number(searchParams.page) || 1;
+
+//   // Fetch gazette data and states data in parallel
+//   const [initialData, availableStates] = await Promise.all([
+//     getGazetteData(currentPage),
+//     getStatesFromGazettes()
+//   ]);
+// console.log("states"+availableStates)
+//   return (
+//     <GazetteNotificationsClient 
+//       initialData={initialData} 
+//       initialPage={currentPage}
+//       availableStates={availableStates}
+//     />
+//   );
+// }
+
+
+
+
+
+
+
 import { Metadata } from "next";
-import GazetteNotificationsClient from "@/app/_component/gazette/page";
-
-// ---------- Types from API ----------
-type GazetteItem = {
-  id: number;
-  title: string;
-  slug: string;
-  short_description: string | null;
-  description: string | null;
-  state_slug: string | null;
-  state_name: string | null;
-  updated_date: string | null;
-  effective_date: string | null;
-  pdf_path?: string | null;
-  pdf_url?: string | null;
-  created_at?: string;
-  updated_at?: string;
-};
-
-type ApiResponse = {
-  data: GazetteItem[];
-  links: { first: string | null; last: string | null; prev: string | null; next: string | null };
-  meta: {
-    current_page: number;
-    from: number | null;
-    last_page: number;
-    path: string;
-    per_page: number;
-    to: number | null;
-    total: number;
-  };
-};
+import GazetteNotificationsClient from "../_component/gazette/page"; // Your client-side component
 
 // Use environment variables for API base URLs
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") || "http://100.110.147.101:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "https://prns.prisminfoways.com";
+const STATES_API_BASE = process.env.NEXT_PUBLIC_STATES_API_BASE || "https://prns.prisminfoways.com";
 
-// Fetch Gazette Data with ISR
-async function getGazetteData(page: number = 1): Promise<ApiResponse> {
+// Fetch Gazette Data
+async function getGazetteData(page: number = 1) {
   try {
-    const res = await fetch(`${API_BASE}/api/gazettes?page=${page}`, { 
-      next: { 
-        revalidate: 1800, // ISR: revalidate every 30 minutes
-        tags: ['gazette-notifications'] 
-      } 
-    });
-    
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status}: Failed to fetch gazette data`);
-    }
-    
+    const res = await fetch(`${API_BASE}/api/gazettes?page=${page}`, { next: { revalidate: 1800 } });
+    if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch gazette data`);
     return await res.json();
   } catch (error) {
     console.error("Error fetching gazette data:", error);
     return {
       data: [],
       links: { first: null, last: null, prev: null, next: null },
-      meta: {
-        current_page: 1,
-        from: null,
-        last_page: 1,
-        path: "",
-        per_page: 10,
-        to: null,
-        total: 0
-      }
+      meta: { current_page: 1, from: null, last_page: 1, path: "", per_page: 10, to: null, total: 0 },
     };
   }
 }
 
-// Fetch States Data (for filters)
-async function getStatesFromGazettes(): Promise<string[]> {
+// Fetch States Data
+async function getStatesData() {
   try {
-    const res = await fetch(`${API_BASE}/api/gazettes/states`, { 
-      next: { 
-        revalidate: 3600, // Cache states for 1 hour
-        tags: ['gazette-states'] 
-      } 
-    });
-    
-    if (!res.ok) {
-      console.warn("Failed to fetch states from API, will use client-side derivation");
-      return [];
-    }
-    
-    const data = await res.json();
-    return data.states || [];
+    const res = await fetch(STATES_API_BASE + "/api/states");
+    if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch states data`);
+    return await res.json();
   } catch (error) {
-    console.error("Error fetching states:", error);
-    return [];
+    console.error("Error fetching states data:", error);
+    return { states: [] };  // Return empty states if there's an error
   }
 }
 
 // Server-side metadata
 export const metadata: Metadata = {
-  title: "Gazette Notifications | Official Government Publications",
+  title: "Gazette Notifications | Government Legal Publications",
   description:
-    "Gazette Notification is an authorized legal document issued by the Ministries of Government of India, published in the official gazette containing significant Statutory Orders (S.O) and General Statutory Rules (G.S.R).",
+    "Find and read official government gazette notifications, statutory orders, and rules published in the official gazette by the Indian government.",
   keywords: [
     "Gazette Notifications",
+    "Legal Publications",
     "Government Gazette",
-    "Official Publications",
     "Statutory Orders",
-    "Legal Documents",
-    "Government Notifications",
-    "Indian Government",
-    "S.O",
-    "G.S.R"
+    "Official Government Documents",
+    "Indian Laws",
   ],
 };
 
-// Main server component with ISR
-export default async function GazetteNotificationsPage({ 
-  searchParams 
-}: { 
-  searchParams: { page?: string } 
-}) {
+// Main server component
+export default async function GazetteNotificationsPage({ searchParams }: { searchParams: { page?: string } }) {
   const currentPage = Number(searchParams.page) || 1;
 
-  // Fetch gazette data and states data in parallel
-  const [initialData, availableStates] = await Promise.all([
-    getGazetteData(currentPage),
-    getStatesFromGazettes()
-  ]);
+  // Fetch Gazette data and States data concurrently
+  const [initialData, statesData] = await Promise.all([getGazetteData(currentPage), getStatesData()]);
 
-  return (
-    <GazetteNotificationsClient 
-      initialData={initialData} 
-      initialPage={currentPage}
-      availableStates={availableStates}
-    />
-  );
+  // Pass both initialData (gazette) and statesData (states) to the client-side component
+  return <GazetteNotificationsClient initialData={initialData} initialPage={currentPage} availableStates={statesData.states} />;
 }
