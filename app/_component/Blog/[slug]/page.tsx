@@ -69,7 +69,7 @@ function formatDate(iso?: string | null): string {
   });
 }
 
-export default function BlogSlug({ post }: { post: ApiPost }) {
+export default function BlogDetails({ post }: { post: ApiPost }) {
   const hero = normalizeImageUrl(post);
   const published = formatDate(post.published_date);
   const safeHtml = DOMPurify.sanitize(post.content || "", {
