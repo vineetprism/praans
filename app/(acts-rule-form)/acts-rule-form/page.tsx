@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import ActsPageClient from "../_component/ActRuleForm/ActsPageClient";
+import ActsPageClient from "../../_component/ActRuleForm/ActsPageClient";
 
 // Use environment variables for API base URLs
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "https://prns.prisminfoways.com";
