@@ -86,7 +86,6 @@
 
 
 
-
 "use client"
 
 import { useState, useEffect } from "react";
@@ -99,17 +98,23 @@ const SearchAndStateFilter = ({
   onStateChange,
   searchValue,
   stateValue,
-  isPending
+  isPending,
+  availableStates
 }: {
   onSearchChange: (value: string) => void;
   onStateChange: (value: string) => void;
   searchValue: string;
   stateValue: string;
   isPending: boolean;
+  availableStates?: string[];
 }) => {
   const [states, setStates] = useState<{ id: number; name: string }[]>([]);
 
   useEffect(() => {
+    // If availableStates are provided by parent, skip fetching
+    if (availableStates && availableStates.length > 0) {
+      return;
+    }
     const fetchStates = async () => {
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/states`);
@@ -120,7 +125,7 @@ const SearchAndStateFilter = ({
       }
     };
     fetchStates();
-  }, []);
+  }, [availableStates]);
 
   return (
     // MAIN CHANGE: Grid ko Flex se replace kiya
@@ -153,11 +158,17 @@ const SearchAndStateFilter = ({
             className="z-[60] w-[var(--radix-select-trigger-width)] max-h-60 overflow-y-auto p-0 rounded-md border bg-white shadow-md"
           >
             <SelectItem value="All States">All States</SelectItem>
-            {states.map((s) => (
-              <SelectItem key={s.id} value={s.name}>
-                {s.name}
-              </SelectItem>
-            ))}
+            {(availableStates && availableStates.length > 0)
+              ? availableStates.map((name, idx) => (
+                  <SelectItem key={idx} value={name}>
+                    {name}
+                  </SelectItem>
+                ))
+              : states.map((s) => (
+                  <SelectItem key={s.id} value={s.name}>
+                    {s.name}
+                  </SelectItem>
+                ))}
           </SelectContent>
         </Select>
       </div>

@@ -7,7 +7,6 @@ import PopularSearch from "../PopularSearch/PopularSearch";
 import { useEffect, useState } from "react";
 
 
-
 export default function HolidaysPage() {
   const [year, setYear] = useState("2025"); // Default year is 2025
   const [holidays, setHolidays] = useState([]);
