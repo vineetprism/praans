@@ -1,13 +1,13 @@
 import Link from "next/link";
-import BlogSlug from "@/app/_component/Blog/[slug]/page";
+import BlogSlug from "@/app/_component/Blog/BlogDetails/BlogDetails";
 
 type ApiPost = {
   id: number;
   title: string;
   slug: string;
-  author: string;
-  name: string | null;
-  category: string;
+  author?: { name: string };
+  name?: string;
+  category?: { name: string };
   content?: string | null;
   short_description?: string | null;
   published_date?: string | null;
@@ -51,6 +51,40 @@ function normalizeImageUrlForMeta(post?: Partial<ApiPost> | null): string | unde
   }
 }
 
+/* ---------- normalize API response shape ---------- */
+function normalizePost(data: any): ApiPost {
+  if (!data || typeof data !== "object") return data as ApiPost;
+  const author = data.author
+    ? typeof data.author === "string"
+      ? { name: data.author }
+      : data.author
+    : undefined;
+  const category = data.category
+    ? typeof data.category === "string"
+      ? { name: data.category }
+      : data.category
+    : undefined;
+  return {
+    id: data.id,
+    title: data.title,
+    slug: data.slug,
+    author,
+    name: data.name ?? undefined,
+    category,
+    content: data.content ?? null,
+    short_description: data.short_description ?? null,
+    published_date: data.published_date ?? null,
+    image_url: data.image_url ?? null,
+    image_path: data.image_path ?? null,
+    meta_image_url: data.meta_image_url ?? null,
+    meta_image_path: data.meta_image_path ?? null,
+    meta_title: data.meta_title ?? null,
+    meta_description: data.meta_description ?? null,
+    meta_keywords: data.meta_keywords ?? null,
+    tags: Array.isArray(data.tags) ? data.tags : null,
+  };
+}
+
 /* ---------- SEO metadata ---------- */
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   // ✅ Await `params` to access the `slug`
@@ -60,9 +94,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!res || !res.ok) return { title: "Blog | Prism" };
 
   const json = await res.json();
-  const data: ApiPost =
+  const dataRaw =
     json && json.data && !Array.isArray(json.data) ? json.data :
     Array.isArray(json?.data) ? json.data[0] : json;
+  const data: ApiPost = normalizePost(dataRaw);
 
   const title = data?.meta_title || data?.title || "Blog | Prism";
   const description = data?.meta_description || data?.short_description || "";
@@ -99,9 +134,10 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   }
 
   const json = await res.json();
-  const post: ApiPost =
+  const postRaw =
     json && json.data && !Array.isArray(json.data) ? json.data :
     Array.isArray(json?.data) ? json.data[0] : json;
+  const post: ApiPost = normalizePost(postRaw);
 
   if (!post) {
     return (

@@ -1,5 +1,4 @@
 "use client";
-
 import { useMemo, useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -49,11 +48,9 @@ interface GazetteNotificationsClientProps {
   availableStates: string[]; // this is the prop for available states
 }
 
-// ---------- Env bases ----------
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") || "http://100.110.147.101:8000";
 const FILE_HOST = process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") || API_BASE;
 
-// ---------- Helper functions ----------
 function normalizeFileUrl(url?: string | null, path?: string | null): string | null {
   if (url) {
     try {
@@ -64,7 +61,7 @@ function normalizeFileUrl(url?: string | null, path?: string | null): string | n
       const cleanPath = encodeURI(decodeURI(u.pathname));
       return `${origin}${cleanPath}${u.search}${u.hash}`;
     } catch {
-      /* fallthrough to path */
+      return null;
     }
   }
   if (path) {
@@ -168,10 +165,9 @@ export default function GazetteNotificationsClient({
     return list;
   }, [rows, q, stateFilter, effDate, updDate]);
 
-  // Simple paginator window (1..5 + last)
   const pageNumbers = useMemo(() => {
     const max = Math.min(lastPage, 5);
-    return Array.from({ length: max }, (_, i) => i + 1);
+    return Array?.from({ length: max }, (_, i) => i + 1);
   }, [lastPage]);
 
   const handleSearchChange = (value: string) => {
@@ -198,10 +194,11 @@ export default function GazetteNotificationsClient({
                     variant="outline"
                     className="w-full justify-start text-left font-normal bg-white hover:bg-gray-50 border-gray-300 h-8 sm:h-9 lg:h-10 px-3 text-xs sm:text-sm"
                     disabled={isPending}
+                    aria-label="Effective Date"
                   >
                     <CalendarIcon className="mr-2 w-4 h-4 flex-shrink-0" />
                     <span className="truncate">
-                      {effDate ? effDate.toLocaleDateString() : "Effective Date"}
+                      {effDate ? effDate?.toLocaleDateString() : "Effective Date"}
                     </span>
                   </Button>
                 </PopoverTrigger>
@@ -225,10 +222,11 @@ export default function GazetteNotificationsClient({
                     variant="outline"
                     className="w-full justify-start text-left font-normal bg-white hover:bg-gray-50 border-gray-300 h-8 sm:h-9 lg:h-10 px-3 text-xs sm:text-sm"
                     disabled={isPending}
+                    aria-label="Updated Date"
                   >
                     <CalendarIcon className="mr-2 w-4 h-4 flex-shrink-0" />
                     <span className="truncate">
-                      {updDate ? updDate.toLocaleDateString() : "Updated Date"}
+                      {updDate ? updDate?.toLocaleDateString() : "Updated Date"}
                     </span>
                   </Button>
                 </PopoverTrigger>
@@ -247,7 +245,6 @@ export default function GazetteNotificationsClient({
         </div>
 
         <div className="grid gap-3 sm:gap-4 lg:grid-cols-5">
-          {/* Sidebar */}
           <div className="lg:col-span-1 lg:order-2 order-1">
             <div className="sticky top-24 z-10">
               <Card className="p-2 md:p-3 xl:p-0.5 2xl:p-6">
@@ -258,9 +255,7 @@ export default function GazetteNotificationsClient({
             </div>
           </div>
 
-          {/* Main */}
           <div className="lg:col-span-4 lg:order-1 order-2">
-            {/* Header */}
             <div className="mb-3 sm:mb-4">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 mb-2">
                 <div>
@@ -278,7 +273,6 @@ export default function GazetteNotificationsClient({
               </div>
             </div>
 
-            {/* Loader */}
             {isPending && (
               <div className="flex items-center justify-center p-4">
                 <Loader2 className="w-6 h-6 animate-spin text-orange-500" />
@@ -286,32 +280,30 @@ export default function GazetteNotificationsClient({
               </div>
             )}
 
-            {/* Cards */}
             {!isPending && (
               <>
-                {filtered.length === 0 ? (
+                {filtered?.length === 0 ? (
                   <p className="text-sm text-gray-600">No notifications found.</p>
                 ) : (
                   <div className="lg:space-y-2">
-                    {filtered.map((n) => {
-                      const updated = formatPrettyDate(n.updated_date);
-                      const effective = formatPrettyDate(n.effective_date);
-                      const file = normalizeFileUrl(n.pdf_url, n.pdf_path);
+                    {filtered?.map((n) => {
+                      const updated = formatPrettyDate(n?.updated_date);
+                      const effective = formatPrettyDate(n?.effective_date);
+                      const file = normalizeFileUrl(n?.pdf_url, n?.pdf_path);
 
                       return (
                         <div
-                          key={n.id}
+                          key={n?.id}
                           className="group bg-orange-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border-l-4 border-l-orange-500 overflow-hidden"
                         >
                           <div className="p-2 sm:p-3 lg:p-1">
                             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-start gap-2.5 md:gap-3">
-                              {/* LEFT */}
                               <div className="min-w-0">
                                 <h4 className="text-[12px] min-[375px]:text-xs sm:text-sm font-semibold text-gray-900 line-clamp-2">
-                                  {n.title}
+                                  {n?.title}
                                 </h4>
                                 <p className="text-gray-700 leading-snug mt-3 text-[11px] min-[375px]:text-[10px] sm:text-[0.8rem] lg:text-xs line-clamp-2">
-                                  {n.short_description || ""}
+                                  {n?.short_description || ""}
                                 </p>
                                 <div className="mt-2 md:mt-4">
                                   <Button
@@ -320,7 +312,7 @@ export default function GazetteNotificationsClient({
                                     asChild
                                     aria-label="Read More"
                                   >
-                                    <Link href={`/gazette/gazette-details/${n.slug}`}>
+                                    <Link href={`/gazette/gazette-details/${n?.slug}`}>
                                       <Eye className="w-3 h-3 2xl:w-4 2xl:h-4" />
                                       <span className="whitespace-nowrap">Read More</span>
                                     </Link>
@@ -328,13 +320,12 @@ export default function GazetteNotificationsClient({
                                 </div>
                               </div>
 
-                              {/* RIGHT */}
                               <div className="md:pl-3 flex flex-col items-end justify-between gap-2">
                                 <Badge
                                   variant="outline"
                                   className="bg-blue-50 text-blue-700 border-blue-200 text-[12px] sm:text-[9px] lg:text-[12px] px-1.5 py-0.5 font-medium"
                                 >
-                                  {n.state_name || "Central"}
+                                  {n?.state_name || "Central"}
                                 </Badge>
 
                                 <div className="space-y-1 text-[11px] sm:text-[9px] lg:text-[12px] 2xl:text-[0.8rem]">
@@ -356,12 +347,11 @@ export default function GazetteNotificationsClient({
                                   )}
                                 </div>
 
-                                {/* Download Button - Only show if file exists */}
                                 {(() => {
-                                  const hasValidFile = (n.pdf_url && n.pdf_url.trim() !== "") || 
-                                                      (n.pdf_path && n.pdf_path.trim() !== "");
-                                  const downloadUrl = normalizeFileUrl(n.pdf_url, n.pdf_path);
-                                  
+                                  const hasValidFile = (n?.pdf_url && n?.pdf_url.trim() !== "") ||
+                                    (n?.pdf_path && n?.pdf_path.trim() !== "");
+                                  const downloadUrl = normalizeFileUrl(n?.pdf_url, n?.pdf_path);
+
                                   return hasValidFile && downloadUrl ? (
                                     <Button
                                       size="sm"
@@ -399,16 +389,15 @@ export default function GazetteNotificationsClient({
                   <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Button>
 
-                {pageNumbers.map((p) => (
+                {pageNumbers?.map((p) => (
                   <Button
                     key={p}
                     variant={currentPage === p ? "default" : "outline"}
                     size="sm"
-                    className={`h-7 sm:h-8 px-2.5 sm:px-3.5 text-[10px] sm:text-xs ${
-                      currentPage === p
+                    className={`h-7 sm:h-8 px-2.5 sm:px-3.5 text-[10px] sm:text-xs ${currentPage === p
                         ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
                         : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
-                    }`}
+                      }`}
                     aria-label={`Page ${p}`}
                     onClick={() => handlePageChange(p)}
                   >
@@ -422,11 +411,10 @@ export default function GazetteNotificationsClient({
                   <Button
                     variant={currentPage === lastPage ? "default" : "outline"}
                     size="sm"
-                    className={`h-7 sm:h-8 px-2.5 sm:px-3.5 text-[10px] sm:text-xs ${
-                      currentPage === lastPage
+                    className={`h-7 sm:h-8 px-2.5 sm:px-3.5 text-[10px] sm:text-xs ${currentPage === lastPage
                         ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
                         : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
-                    }`}
+                      }`}
                     aria-label={`Page ${lastPage}`}
                     onClick={() => handlePageChange(lastPage)}
                   >

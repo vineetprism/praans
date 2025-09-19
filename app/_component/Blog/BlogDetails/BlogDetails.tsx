@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
+import Image from "next/image";
 
 type ApiPost = {
   id: number;
@@ -90,23 +91,23 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
           <div className="col-span-1 lg:col-span-3">
             <div className="mb-6 sm:mb-8">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight break-words">
-                {post.title}
+                {post?.title}
               </h1>
               <div className="flex flex-wrap items-center text-xs sm:text-sm text-gray-600 gap-2 sm:gap-4">
                 <div className="flex items-center gap-1">
                   <User size={14} className="sm:w-4 sm:h-4" />
-                  <span className="truncate">{post.author?.name || "Unknown Author"}</span>
+                  <span className="truncate">{post?.author?.name || "Unknown Author"}</span>
                 </div>
                 {published && (
                   <div className="flex items-center gap-1">
                     <Calendar size={14} className="sm:w-4 sm:h-4" />
-                    <time dateTime={post.published_date || undefined}>{published}</time>
+                    <time dateTime={post?.published_date || undefined}>{published}</time>
                   </div>
                 )}
 
                 <div className="flex items-center gap-1">
                   <MessageCircle size={14} className="sm:w-4 sm:h-4" />
-                  <span className="hidden sm:inline">{post.category?.name || "Uncategorized"}</span>
+                  <span className="hidden sm:inline">{post?.category?.name || "Uncategorized"}</span>
                 </div>
               </div>
             </div>
@@ -115,8 +116,8 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
               <div className="relative w-full mb-6 sm:mb-8 rounded-lg overflow-hidden">
                 <img
                   src={hero}
-                  alt={post.title}
-                  className="w-full h-auto object-contain bg-gray-100 max-w-full"
+                  alt={post?.title}
+                  className="object-contain bg-gray-100 max-w-full"
                 />
               </div>
             )}
@@ -126,22 +127,25 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
               <div className="flex gap-2 flex-wrap">
                 <Link
                   className="bg-blue-600 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0"
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${SITE_URL}/blog/${post.slug}`)}`}
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${SITE_URL}/blog/${post?.slug}`)}`}
                   target="_blank"
+                  aria-label="Share on Facebook"
                 >
                   <Facebook size={16} className="sm:w-5 sm:h-5" />
                 </Link>
                 <Link
                   className="bg-gray-800 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-gray-900 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0"
-                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`${SITE_URL}/blog/${post.slug}`)}&text=${encodeURIComponent(post.title)}`}
+                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(`${SITE_URL}/blog/${post?.slug}`)}&text=${encodeURIComponent(post?.title)}`}
                   target="_blank"
+                  aria-label="Share on Twitter"
                 >
                   <Twitter size={16} className="sm:w-5 sm:h-5" />
                 </Link>
                 <Link
                   className="bg-blue-700 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-blue-800 transition-colors flex items-center justify-center cursor-pointer flex-shrink-0"
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${SITE_URL}/blog/${post.slug}`)}`}
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${SITE_URL}/blog/${post?.slug}`)}`}
                   target="_blank"
+                  aria-label="Share on LinkedIn"
                 >
                   <Linkedin size={16} className="sm:w-5 sm:h-5" />
                 </Link>

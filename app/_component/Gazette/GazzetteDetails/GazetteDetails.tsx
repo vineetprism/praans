@@ -1,10 +1,10 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Download } from "lucide-react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
-import SanitizedHtmlContent from "@/app/SanitizedHtmlContent/page"; // Import here
+import SanitizedHtmlContent from "@/app/SanitizedHtmlContent/page";
+import Link from "next/link";
 
 export type GazetteVM = {
   title: string;
@@ -12,7 +12,7 @@ export type GazetteVM = {
   shortDescription: string;
   updatedLabel: string;
   effectiveLabel: string;
-  safeHtml: string;   
+  safeHtml: string;
   downloadUrl: string | null;
 };
 
@@ -38,19 +38,19 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
               <div className="flex items-start justify-between gap-4 mb-2">
                 <div className="flex-1 min-w-0">
                   <h1 className="font-bold text-gray-900 leading-tight mb-1 text-base sm:text-lg lg:text-sm xl:text-lg">
-                    {vm.title}
+                    {vm?.title}
                   </h1>
                   <div className="text-xs sm:text-sm text-gray-500 mb-2 space-y-1">
-                    {(vm.updatedLabel || vm.effectiveLabel) && (
+                    {(vm?.updatedLabel || vm?.effectiveLabel) && (
                       <div>
-                        {vm.updatedLabel && (
+                        {vm?.updatedLabel && (
                           <>
-                            <span className="font-medium text-gray-700">Updated Date:</span> {vm.updatedLabel}{" "}
+                            <span className="font-medium text-gray-700">Updated Date:</span> {vm?.updatedLabel}{" "}
                           </>
                         )}
-                        {vm.effectiveLabel && (
+                        {vm?.effectiveLabel && (
                           <>
-                            <span className="font-medium text-gray-700">/ Effective Date:</span> {vm.effectiveLabel}
+                            <span className="font-medium text-gray-700">/ Effective Date:</span> {vm?.effectiveLabel}
                           </>
                         )}
                       </div>
@@ -58,30 +58,22 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
                   </div>
                 </div>
                 <Badge className="bg-orange-100 text-orange-700 border-orange-200 text-xs sm:text-sm px-2 py-1 flex-shrink-0">
-                  {vm.stateName}
+                  {vm?.stateName}
                 </Badge>
               </div>
 
-              {/* Short description */}
-              {/* {vm.shortDescription && (
-                <p className="text-gray-700 leading-relaxed text-sm sm:text-base text-justify lg:text-sm mb-3">
-                  {vm.shortDescription}
-                </p>
-              )} */}
-
-              {/* Sanitized and styled HTML content */}
-              {vm.safeHtml && <SanitizedHtmlContent html={vm.safeHtml} />}
-              {/* Download */}
+              {vm?.safeHtml && <SanitizedHtmlContent html={vm?.safeHtml} />}
               <div className="flex justify-start mt-3">
-                {vm.downloadUrl ? (
+                {vm?.downloadUrl ? (
                   <Button
                     className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 sm:px-5 sm:py-2 text-sm sm:text-base rounded-md font-medium inline-flex items-center gap-2 hover:cursor-pointer"
                     asChild
+                    aria-label="Download Gazette"
                   >
-                    <a href={vm.downloadUrl} target="_blank" rel="noopener noreferrer" >
+                    <Link href={vm?.downloadUrl} target="_blank" rel="noopener noreferrer" aria-label="Download Gazette" >
                       <Download className="w-4 h-4" />
                       Download
-                    </a>
+                    </Link>
                   </Button>
                 ) : null}
               </div>

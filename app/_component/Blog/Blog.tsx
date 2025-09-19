@@ -78,7 +78,7 @@ function TagsInline({
   return (
     <div className="flex items-center gap-1">
       <MessageCircle size={14} className="sm:w-5 sm:h-5" />
-      {visible.map((t, i) => (
+      {visible?.map((t, i) => (
         <span
           key={`${t}-${i}`}
           className="px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-200 text-xs"
@@ -87,15 +87,15 @@ function TagsInline({
         </span>
       ))}
 
-      {remaining.length > 0 && (
+      {remaining?.length > 0 && (
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <button
               type="button"
               className="px-2 py-0.5 rounded-full bg-orange-100 text-orange-700 text-xs hover:bg-orange-200"
-              aria-label={`Show ${remaining.length} more comments`}
+              aria-label={`Show ${remaining?.length} more comments`}
             >
-              +{remaining.length}
+              +{remaining?.length}
             </button>
           </PopoverTrigger>
           <PopoverContent
@@ -163,9 +163,9 @@ export default function Blog({
         <p className="text-gray-600">No posts available right now.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post, index) => {
+          {posts?.map((post, index) => {
             const img = normalizeImageUrl(post);
-            const href = `/blog/${post.slug}`;
+            const href = `/blog/blog-details/${post.slug}`;
             const dateLabel = formatDate(post.published_date);
             const short_description =
               post?.short_description ||
@@ -174,7 +174,7 @@ export default function Blog({
 
             return (
               <article
-                key={post.id}
+                key={post?.id}
                 className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
                 {/* Image */}
@@ -183,7 +183,7 @@ export default function Blog({
                     {img ? (
                       <Image
                         src={img}
-                        alt={post.title}
+                        alt={post?.title}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover hover:scale-105 transition-transform duration-300"
@@ -198,7 +198,7 @@ export default function Blog({
                 <div className="p-6">
                   <Link href={href}>
                     <h2 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2 leading-tight">
-                      {post.title}
+                      {post?.title}
                     </h2>
                   </Link>
 
@@ -206,7 +206,7 @@ export default function Blog({
                   <div className="text-gray-500 text-sm mb-3 flex items-center gap-2 flex-wrap">
                     <Calendar size={14} className="sm:w-4 sm:h-4" />
                     {dateLabel && (
-                      <time dateTime={post.published_date || undefined}>{dateLabel}</time>
+                      <time dateTime={post?.published_date || undefined}>{dateLabel}</time>
                     )}
                     <span>•</span>
                     <TagsInline tags={tags} max={2} label="All Comments" />
