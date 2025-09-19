@@ -20,7 +20,6 @@ import {
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import SanitizedHtmlContent from "@/app/SanitizedHtmlContent/page"; // Your new component
 
-// ---------- Types matching API ----------
 type FormAPI = {
   id: number;
   form_no: string;
