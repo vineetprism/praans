@@ -320,7 +320,7 @@ export default function GazetteNotificationsClient({
                                     asChild
                                     aria-label="Read More"
                                   >
-                                    <Link href={`/gazette/${n.slug}`}>
+                                    <Link href={`/gazette/gazette-details/${n.slug}`}>
                                       <Eye className="w-3 h-3 2xl:w-4 2xl:h-4" />
                                       <span className="whitespace-nowrap">Read More</span>
                                     </Link>
