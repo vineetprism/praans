@@ -2229,27 +2229,19 @@
 
 "use client";
 
-import { useMemo, useState, useEffect, useTransition } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
+import PopularSearch from "@/app/PopularSearch/PopularSearch";
+import SearchAndStateFilter from "@/app/SearchAndStateFilter/page"; // Import the new component
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Search, Eye, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
-import PopularSearch from "@/app/PopularSearch/PopularSearch";
-import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";  // Import the new component
+import { ChevronLeft, ChevronRight, Eye, Loader2 } from "lucide-react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useState, useTransition } from "react";
 
 // ---------- Types ----------
 type ActItem = {
@@ -2702,14 +2694,17 @@ export default function ActsPageClient({
             </div>
 
             {/* Use the SearchAndStateFilter component */}
-            <SearchAndStateFilter
+           <div className="my-6">
+             <SearchAndStateFilter
               states={states}  // Pass states to the filter component
               onSearchChange={handleSearchChange}  // Handle search change
               onStateChange={handleStateChange}  // Handle state filter change
               searchValue={q}  // Pass search value to the component
               stateValue={stateFilter}  // Pass selected state filter value
               isPending={isPending}  // Pass loading state
+               
             />
+           </div>
 
             {/* Loader */}
             {isPending && (

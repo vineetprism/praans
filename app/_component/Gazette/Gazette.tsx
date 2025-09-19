@@ -4,27 +4,34 @@ import * as React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-type Props = {
+type FilterProps = {
+  /** Optional list to populate the State dropdown */
   availableStates?: string[];
+  /** Controlled search input value */
   searchValue: string;
+  /** Controlled state dropdown value */
   stateValue: string;
+  /** Disable inputs during transitions */
   isPending?: boolean;
+  /** Invoked on search text change */
   onSearchChange: (value: string) => void;
+  /** Invoked on state change */
   onStateChange: (value: string) => void;
 };
 
 const DEFAULT_STATES = ["All States", "Andhra Pradesh", "Delhi", "Karnataka", "Maharashtra", "Tamil Nadu"];
 
-export default function SearchAndStateFilter({
+function SearchAndStateFilter({
   availableStates,
   searchValue,
   stateValue,
   isPending = false,
   onSearchChange,
   onStateChange,
-}: Props) {
+}: FilterProps) {
   const states = React.useMemo(() => {
     const base = (availableStates?.length ? availableStates : DEFAULT_STATES).slice();
+    // Ensure "All States" exists & is first
     if (!base.map((s) => s.toLowerCase()).includes("all states")) base.unshift("All States");
     return Array.from(new Set(base));
   }, [availableStates]);
@@ -69,6 +76,43 @@ export default function SearchAndStateFilter({
           Clear
         </Button>
       ) : null}
+    </div>
+  );
+}
+
+// Default export expected by app/gazette/page.tsx
+export default function GazetteNotificationsClient({
+  initialData,
+  initialPage,
+  availableStates,
+}: {
+  initialData: any;
+  initialPage: number;
+  availableStates?: string[];
+}) {
+  const [searchValue, setSearchValue] = React.useState("");
+  const [stateValue, setStateValue] = React.useState(
+    availableStates && availableStates.length ? availableStates[0] : "All States"
+  );
+  const [isPending] = React.useState(false);
+
+  const initialCount = Array.isArray((initialData as any)?.data)
+    ? (initialData as any).data.length
+    : 0;
+
+  return (
+    <div className="w-full space-y-3">
+      <SearchAndStateFilter
+        availableStates={availableStates}
+        searchValue={searchValue}
+        stateValue={stateValue}
+        isPending={isPending}
+        onSearchChange={setSearchValue}
+        onStateChange={setStateValue}
+      />
+      <div className="text-xs text-gray-500">
+        Page {initialPage} • {initialCount} item(s)
+      </div>
     </div>
   );
 }
