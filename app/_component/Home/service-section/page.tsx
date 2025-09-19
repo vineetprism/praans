@@ -97,8 +97,8 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
       className="
         relative bg-white/90 backdrop-blur-sm border border-gray-100
         rounded-lg p-4 sm:p-5 shadow-sm
-        hover:shadow-lg transition-all duration-300 cursor-pointer transform hover:-translate-y-1
-        2xl:rounded-2xl 2xl:p-8 2xl:hover:-translate-y-1.5 2xl:hover:shadow-xl
+        cursor-pointer
+        2xl:rounded-2xl 2xl:p-8
         h-full flex flex-col
       "
       style={{
@@ -111,7 +111,7 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
         <div
           className={`w-8 h-8 2xl:w-12 2xl:h-12 bg-gradient-to-br ${offering.color}
                       rounded-lg 2xl:rounded-xl flex items-center justify-center shadow-lg
-                      group-hover:scale-110 transition-transform duration-300`}
+                      `}
         >
           <offering.icon className="w-4 h-4 2xl:w-6 2xl:h-6 text-white" />
         </div>
