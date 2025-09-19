@@ -1,16 +1,16 @@
 import DOMPurify from "isomorphic-dompurify";
-import GazetteView, { GazetteVM } from "@/app/_component/Gazette/GazzetteDetails/GazetteDetails";
+import GazetteView, { GazetteVM } from "@/app/_component/gazette/GazzetteDetails/GazetteDetails";
 
 type GazetteItem = {
   id: number;
   title: string;
   slug: string;
   short_description: string | null;
-  description: string | null;      // HTML from editor
+  description: string | null;     
   state_slug: string | null;
   state_name: string | null;
-  updated_date: string | null;     // "2025-09-10"
-  effective_date: string | null;   // "2025-09-11"
+  updated_date: string | null;     
+  effective_date: string | null;  
   pdf_path?: string | null;
   pdf_url?: string | null;
 };
