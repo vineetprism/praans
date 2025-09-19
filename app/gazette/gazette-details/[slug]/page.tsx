@@ -1,5 +1,5 @@
 import DOMPurify from "isomorphic-dompurify";
-import GazetteView, { GazetteVM } from "@/app/_component/gazette/GazzetteDetails/GazetteDetails";
+import GazetteView, { GazetteVM } from "@/app/_component/Gazette/GazzetteDetails/GazetteDetails";
 
 type GazetteItem = {
   id: number;
