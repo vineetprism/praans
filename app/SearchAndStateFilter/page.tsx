@@ -82,98 +82,92 @@
 
 
 
-
-
-
-
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
+type Props = {
+  onSearchChange: (value: string) => void;
+  onStateChange: (value: string) => void;
+  searchValue: string;
+  stateValue: string;
+  isPending: boolean;
+  /** Optional: parent se spacing/override dene ke liye */
+  className?: string;
+};
+
+// Filter component for Search and State dropdown
 const SearchAndStateFilter = ({
   onSearchChange,
   onStateChange,
   searchValue,
   stateValue,
   isPending,
-  availableStates
-}: {
-  onSearchChange: (value: string) => void;
-  onStateChange: (value: string) => void;
-  searchValue: string;
-  stateValue: string;
-  isPending: boolean;
-  availableStates?: string[];
-}) => {
+  className = "",
+}: Props) => {
   const [states, setStates] = useState<{ id: number; name: string }[]>([]);
 
   useEffect(() => {
-    // If availableStates are provided by parent, skip fetching
-    if (availableStates && availableStates.length > 0) {
-      return;
-    }
     const fetchStates = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/states`);
-        const data = await response.json();
-        setStates(data.states);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/states`);
+        const data = await res.json();
+        setStates(data.states ?? []);
       } catch (error) {
         console.error("Error fetching states:", error);
       }
     };
     fetchStates();
-  }, [availableStates]);
+  }, []);
 
   return (
-    // MAIN CHANGE: Grid ko Flex se replace kiya
-    <div className="flex items-center gap-2 sm:gap-3">
+    <div
+      className={[
+        // No default margin/padding; parent will decide
+        "grid gap-0",
+        "sm:grid-cols-[minmax(0,1fr)_220px]",
+        "lg:grid-cols-[minmax(0,1fr)_240px]",
+        className,
+      ].join(" ")}
+    >
       {/* Search */}
-      <div className="relative flex-1 min-w-0">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 2xl:w-5 2xl:h-5" />
         <Input
           value={searchValue}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Search by title..."
-          className="pl-10 h-8 sm:h-9 lg:h-10 text-xs sm:text-sm focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+          className="pl-10 h-8 2xl:h-10 text-xs lg:text-sm focus:ring-2 focus:ring-orange-500 focus:border-transparent"
           disabled={isPending}
         />
       </div>
 
-      {/* State Select */}
-      <div className="flex-shrink-0 w-32 sm:w-36 lg:w-70">
-        <Select
-          value={stateValue || undefined}
-          onValueChange={onStateChange}
-          disabled={isPending}
+      {/* States */}
+      <Select value={stateValue || undefined} onValueChange={onStateChange} disabled={isPending}>
+        <SelectTrigger className="h-8 2xl:h-10 text-xs lg:text-sm bg-gray-100 ml-3">
+          <SelectValue placeholder="Select State" />
+        </SelectTrigger>
+        <SelectContent
+          position="popper"
+          sideOffset={6}
+          className="z-[60] w-[var(--radix-select-trigger-width)] max-h-60 overflow-y-auto p-0 rounded-md border bg-white shadow-md"
         >
-          <SelectTrigger className="h-8 sm:h-9 lg:h-10 text-xs sm:text-sm bg-gray-100">
-            <SelectValue placeholder="Select State" />
-          </SelectTrigger>
-          <SelectContent
-            position="popper"
-            sideOffset={6}
-            className="z-[60] w-[var(--radix-select-trigger-width)] max-h-60 overflow-y-auto p-0 rounded-md border bg-white shadow-md"
-          >
-            <SelectItem value="All States">All States</SelectItem>
-            {(availableStates && availableStates.length > 0)
-              ? availableStates.map((name, idx) => (
-                  <SelectItem key={idx} value={name}>
-                    {name}
-                  </SelectItem>
-                ))
-              : states.map((s) => (
-                  <SelectItem key={s.id} value={s.name}>
-                    {s.name}
-                  </SelectItem>
-                ))}
-          </SelectContent>
-        </Select>
-      </div>
+          <SelectItem value="All States">All States</SelectItem>
+          {states.map((s) => (
+            <SelectItem key={s.id} value={s.name}>
+              {s.name}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 };
 
 export default SearchAndStateFilter;
+
+
+
