@@ -39,13 +39,13 @@ export default function SiteFooter() {
           <div>
             <h3 className="font-bold text-xl mb-6 text-white">Quick Links</h3>
             <ul className="space-y-3 text-gray-400">
-              <li>
+            <li>
                 <Link
-                  href="/services"
-                  aria-label="Services"
+                  href="/about"
+                  aria-label="About Us"
                   className="hover:text-orange-400 transition-colors duration-300 text-lg"
                 >
-                  Services
+                  About Us
                 </Link>
               </li>
               <li>
@@ -59,11 +59,11 @@ export default function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/about"
-                  aria-label="About Us"
+                  href="/blog"
+                  aria-label="Contact Us"
                   className="hover:text-orange-400 transition-colors duration-300 text-lg"
                 >
-                  About Us
+                  Blog
                 </Link>
               </li>
               <li>

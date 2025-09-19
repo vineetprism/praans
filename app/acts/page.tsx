@@ -1,5 +1,3 @@
-
-
 import { Metadata } from "next";
 import ActsPageClient from "../_component/ActRuleForm/ActsPageClient";
 

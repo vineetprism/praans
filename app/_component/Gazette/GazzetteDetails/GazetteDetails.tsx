@@ -105,3 +105,4 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
     </div>
   );
 }
+
