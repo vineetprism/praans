@@ -165,7 +165,7 @@ export default function Blog({
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts?.map((post, index) => {
             const img = normalizeImageUrl(post);
-            const href = `/blog/blog-details/${post.slug}`;
+            const href = `/blog-details/${post.slug}`;
             const dateLabel = formatDate(post.published_date);
             const short_description =
               post?.short_description ||

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import GazetteNotificationsClient from "../_component/Gazette/Gazette"; // Client-side component
+import GazetteNotificationsClient from "../../_component/Gazette/Gazette"; // Client-side component
 
 // Use environment variables for API base URLs
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "https://prns.prisminfoways.com";

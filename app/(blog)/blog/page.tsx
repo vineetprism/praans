@@ -1,4 +1,4 @@
-import Blog from "../_component/Blog/Blog";
+import Blog from "../../_component/Blog/Blog";
 
 type ApiPost = {
   id: number;

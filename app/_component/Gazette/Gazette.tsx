@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2, ChevronLeft, ChevronRight, Download, Eye, CalendarIcon } from "lucide-react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import { Calendar } from "@/components/ui/calendar";
-import SearchAndStateFilter from "@/app/SearchAndStateFilter/page"; // Import your component
+import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";
 import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
 
 // ---------- Types from API ----------
@@ -312,7 +312,7 @@ export default function GazetteNotificationsClient({
                                     asChild
                                     aria-label="Read More"
                                   >
-                                    <Link href={`/gazette/gazette-details/${n?.slug}`}>
+                                    <Link href={`/gazette-details/${n?.slug}`}>
                                       <Eye className="w-3 h-3 2xl:w-4 2xl:h-4" />
                                       <span className="whitespace-nowrap">Read More</span>
                                     </Link>
