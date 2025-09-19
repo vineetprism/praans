@@ -65,11 +65,11 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
               </div>
 
               {/* Short description */}
-              {vm.shortDescription && (
+              {/* {vm.shortDescription && (
                 <p className="text-gray-700 leading-relaxed text-sm sm:text-base text-justify lg:text-sm mb-3">
                   {vm.shortDescription}
                 </p>
-              )}
+              )} */}
 
               {/* Sanitized and styled HTML content */}
               {vm.safeHtml && <SanitizedHtmlContent html={vm.safeHtml} />}
