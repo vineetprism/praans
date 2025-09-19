@@ -43,7 +43,7 @@ const NAV = [
     dropdown: [
       { label: "Shop & Establishment Registration", href: "/shop-establishment-registration" },
       { label: "Contract Labour License", href: "/contract-labour-licence" },
-      { label: "Professional Tax Registration", href: "/professional-tax" },
+      { label: "Professional Tax Registration", href: "/professional-tax-registration" },
       { label: "Trade Licence Registration", href: "/trade-licence" },
       { label: "Labour Welfare Fund Registration", href: "/labour-welfare-fund" },
       { label: "FSSAI Registration", href: "/fssai" },
