@@ -2639,7 +2639,7 @@ export default function ActsPageClient({
       if (newPage === 1) params.delete("page");
       else params.set("page", String(newPage));
       const newUrl = params.toString() ? `?${params.toString()}` : "";
-      router.push(`/acts${newUrl}`);
+      router.push(`/acts-rule-form${newUrl}`);
     });
   };
 
@@ -2717,26 +2717,26 @@ export default function ActsPageClient({
             {/* Render filtered data */}
             {!isPending && (
               <>
-                {filtered.length === 0 ? (
+                {filtered?.length === 0 ? (
                   <div className="text-sm text-gray-600 p-3 bg-gray-50 rounded-lg border border-gray-200">
                     No results found for your filters.
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 gap-3">
-                    {filtered.map((act) => (
+                    {filtered?.map((act) => (
                       <div
-                        key={act.id}
+                        key={act?.id}
                         className="w-full bg-orange-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border-l-4 border-l-orange-500 overflow-hidden"
                       >
                         <div className="p-3">
                           <div className="grid grid-cols-[1fr_auto] gap-3">
                             <div className="min-w-0">
                               <h4 className="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-2">
-                                {act.title}
+                                {act?.title}
                               </h4>
 
                               <ExpandableDescription
-                                description={act.short_description}
+                                description={act?.short_description}
                               />
 
                               <div className="mt-2">
@@ -2745,7 +2745,7 @@ export default function ActsPageClient({
                                   className="bg-orange-400 text-white hover:bg-orange-500 h-8 px-3 text-xs font-medium rounded-sm inline-flex items-center gap-1"
                                   asChild
                                 >
-                                  <Link href={`/acts/${act.slug || act.id}`}>
+                                  <Link href={`/acts-rule-form-details/${act?.slug || act?.id}`}>
                                     <Eye className="w-4 h-4" />
                                     <span>Read More</span>
                                   </Link>
@@ -2755,7 +2755,7 @@ export default function ActsPageClient({
 
                             <div className="pl-3 self-start justify-self-end">
                               <span className="inline-flex items-center bg-blue-50 text-blue-700 border border-blue-200 text-[11px] lg:text-[12px] px-1.5 py-0.5 font-medium rounded">
-                                {act.state || "All India"}
+                                {act?.state || "All India"}
                               </span>
                             </div>
                           </div>
@@ -2781,7 +2781,7 @@ export default function ActsPageClient({
                   <ChevronLeft className="w-4 h-4" />
                 </Button>
 
-                {pageNumbers.map((p) => (
+                {pageNumbers?.map((p) => (
                   <Button
                     key={p}
                     variant={currentPage === p ? "default" : "outline"}

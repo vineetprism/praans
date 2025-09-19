@@ -18,7 +18,7 @@ const categories = [
     description: "Comprehensive collection of labor acts and regulations",
     icon: Scale,
     color: "bg-blue-500",
-    href: "/acts",
+    href: "/acts-rule-form",
   },
   {
     title: "Gazette Notifications",

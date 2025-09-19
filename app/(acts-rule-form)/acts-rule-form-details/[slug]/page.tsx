@@ -1227,7 +1227,7 @@
 // app/acts/[slug]/page.tsx (Server Component)
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import ActDetailClient from "@/app/_component/ActRuleForm/[slug]/page";
+import ActDetailClient from "@/app/_component/ActRuleForm/ActRuleFormDetails/ActRuleFormDetails";
 
 // API base ko environment variable se connect karo
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
