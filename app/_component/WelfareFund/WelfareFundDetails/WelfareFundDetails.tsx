@@ -501,10 +501,10 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
                 <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl font-bold text-slate-800">
                   Labour Welfare Fund :
                 </h1>
-                <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                {/* <p className="text-xs sm:text-sm text-gray-600 mt-1">
                   Updated: <span className="font-medium">{fmt(data.updated_date)}</span> •{" "}
                   Effective: <span className="font-medium">{fmt(data.effective_date)}</span>
-                </p>
+                </p> */}
               </div>
               <h2 className="text-lg sm:text-xl md:text-2xl lg:text-lg xl:text-xl text-orange-600 font-semibold">
                 {data.state.name}
