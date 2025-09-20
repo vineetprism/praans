@@ -11,7 +11,7 @@ import {
 } from "lucide-react"
 
 const POPULAR_SEARCHES = [
-  { label: "Act,Rules And Forms", href: "/acts", Icon: ScrollText },
+  { label: "Act,Rules And Forms", href: "/acts-rule-form", Icon: ScrollText },
   { label: "Gazette Notifications", href: "/gazette", Icon: Megaphone },
   { label: "Holiday List", href: "/holidays", Icon: CalendarDays },
   { label: "Labour welfare funds", href: "/welfare-fund", Icon: HandCoins },
