@@ -105,7 +105,7 @@ export default function ProfessionalTax({
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h1 className="text-3xl font-bold text-slate-800 mb-2">
+                  <h1 className="text-base sm:text-lg font-semibold text-slate-800 mb-2 2xl:text-2xl">
                     Professional Tax :
                   </h1>
                   <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed">

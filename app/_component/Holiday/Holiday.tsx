@@ -88,7 +88,7 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
             <div className="mb-4">
               <div className="mb-4">
                 <div className="flex justify-between">
-                  <h2 className="text-base sm:text-lg font-semibold text-slate-800 mb-2">Holiday Lists :</h2>
+                  <h2 className="text-base sm:text-lg font-semibold text-slate-800 mb-2 2xl:text-2xl">Holiday Lists :</h2>
 
                   {/* Year Selector */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-1">

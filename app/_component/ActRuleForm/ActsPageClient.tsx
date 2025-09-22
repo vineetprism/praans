@@ -168,9 +168,9 @@ export default function ActsPageClient({
         <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_360px]">
           <div className="min-w-0">
             <div className="mb-6">
-              <h1 className="font-bold text-slate-800 text-base sm:text-xl mb-1">
+              <h2 className="text-base sm:text-lg font-semibold text-slate-800 mb-2 2xl:text-2xl">
                 Labour Acts &amp; Regulations :
-              </h1>
+              </h2>
               <p className="text-gray-600 leading-relaxed text-[10px] sm:text-sm text-justify">
                 Comprehensive collection of central and state labour acts with
                 latest amendments and updates. Data is automatically updated

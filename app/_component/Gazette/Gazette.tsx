@@ -260,7 +260,7 @@ export default function GazetteNotificationsClient({
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 mb-2">
                 <div>
                   <div className="flex justify-between">
-                    <h1 className="font-bold text-slate-800 text-base min-[375px]:text-lg sm:text-xl mb-1">
+                    <h1 className="text-base sm:text-lg font-semibold text-slate-800 mb-2 2xl:text-2xl">
                       Gazette Notifications :
                     </h1>
                   </div>
