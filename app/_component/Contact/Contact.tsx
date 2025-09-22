@@ -8,7 +8,7 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Building, X } from "lucide-react";
 import Link from "next/link";
 
-const API_URL = "http://100.110.147.101:8000/api/contact/";
+const API_URL = process.env.NEXT_PUBLIC_API_BASE || "https://prns.prisminfoways.com";
 
 import {
     Dialog,
@@ -83,7 +83,7 @@ export default function Contact() {
             setLoading(true);
             setBanner(null);
 
-            const res = await fetch(API_URL, {
+            const res = await fetch(API_URL + "/api/contact/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
