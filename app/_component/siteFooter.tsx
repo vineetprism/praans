@@ -89,7 +89,7 @@ export default function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/acts" aria-label="Resources" className="hover:text-orange-400 transition-colors duration-300 text-lg">
+                <Link href="/acts-rule-form" aria-label="Resources" className="hover:text-orange-400 transition-colors duration-300 text-lg">
                   Resources
                 </Link>
               </li>
