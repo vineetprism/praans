@@ -2,7 +2,7 @@
 
 // app/minimum-wages/page.tsx
 import { Metadata } from "next";
-import MinimumWages from "../_component/MinimumWages/MinimumWages";
+import MinimumWages from "@/app/_component/MinimumWages/MinimumWages";
 
 export const revalidate = 600; // ✅ ISR window (10 min)
 

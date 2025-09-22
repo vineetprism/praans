@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -89,13 +88,12 @@ export default function MinimumWageDetails({
     formTitle !== "—"
       ? `Download ${formTitle}`
       : formUrlNorm
-      ? fileNameFromUrl(formUrlNorm)
-      : "Download";
+        ? fileNameFromUrl(formUrlNorm)
+        : "Download";
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className=" mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
-        {/* Popular Search (mobile) */}
         <div className="lg:hidden mb-3 sm:mb-4">
           <Card className="shadow-sm">
             <CardContent className="p-2 sm:p-3">
@@ -105,30 +103,22 @@ export default function MinimumWageDetails({
         </div>
 
         <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5">
-          {/* Main */}
           <div className="lg:col-span-3">
-            {/* Header */}
             <div className="mb-4 sm:mb-5 lg:mb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-3">
               <div>
                 <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl font-bold text-slate-800">
                   Minimum Wages :
                 </h1>
-                {/* <p className="text-xs sm:text-sm text-gray-600 mt-1">
-                  Updated: <span className="font-medium">{fmt(data.updated_date)}</span> •{" "}
-                  Effective: <span className="font-medium">{fmt(data.effective_date)}</span>
-                </p> */}
               </div>
               <h2 className="text-lg sm:text-xl md:text-2xl lg:text-lg xl:text-xl text-orange-600 font-semibold">
-                {data.state.name}
+                {data?.state?.name}
               </h2>
             </div>
 
-            {/* --------- Table 1: Minimum Wage Rates --------- */}
-            {/* Desktop */}
             <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
-                  {mw.title || "Minimum Wage Rates (Daily in ₹)"}
+                  {mw?.title || "Minimum Wage Rates (Daily in ₹)"}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">
@@ -136,7 +126,7 @@ export default function MinimumWageDetails({
                   <table className="w-full">
                     <thead>
                       <tr className="bg-orange-500">
-                        {mw.headers.map((h, index) => (
+                        {mw?.headers?.map((h, index) => (
                           <th
                             key={h}
                             className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center"
@@ -147,24 +137,23 @@ export default function MinimumWageDetails({
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      {mw.rows.map((r, idx) => (
+                      {mw?.rows?.map((r, idx) => (
                         <tr key={idx} className="hover:bg-orange-50 transition-colors">
-                          {mw.headers.map((h, index) => (
+                          {mw?.headers?.map((h, index) => (
                             <td
                               key={h}
-                              className={`px-3 py-4 text-sm text-gray-900 break-words text-center ${
-                                isSkilledCol(h) ? "text-green-600 font-semibold" : ""
-                              }`}
+                              className={`px-3 py-4 text-sm text-gray-900 break-words text-center ${isSkilledCol(h) ? "text-green-600 font-semibold" : ""
+                                }`}
                             >
                               {fmt(cell(r, h))}
                             </td>
                           ))}
                         </tr>
                       ))}
-                      {mw.rows.length === 0 && (
+                      {mw?.rows?.length === 0 && (
                         <tr>
                           <td
-                            colSpan={mw.headers.length || 1}
+                            colSpan={mw?.headers?.length || 1}
                             className="px-4 py-6 text-center text-sm text-gray-500"
                           >
                             No data available.
@@ -182,15 +171,15 @@ export default function MinimumWageDetails({
               <Card className="shadow-sm border-l-4 border-l-orange-500">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base font-bold">
-                    {mw.title || "Minimum Wage Rates (Daily in ₹)"}
+                    {mw?.title || "Minimum Wage Rates (Daily in ₹)"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-3 space-y-3">
-                  {mw.rows.map((r, idx) => (
+                  {mw?.rows?.map((r, idx) => (
                     <div key={idx} className="bg-gray-50 rounded-lg p-3 border text-xs space-y-2">
-                      {mw.headers.map((h, index) => (
-                        <div 
-                          key={h} 
+                      {mw?.headers?.map((h) => (
+                        <div
+                          key={h}
                           className="flex gap-2 justify-between p-2 rounded"
                         >
                           <span className="font-medium text-gray-600">{h}:</span>
@@ -201,14 +190,13 @@ export default function MinimumWageDetails({
                       ))}
                     </div>
                   ))}
-                  {mw.rows.length === 0 && (
+                  {mw?.rows?.length === 0 && (
                     <div className="text-center text-sm text-gray-500">No data available.</div>
                   )}
                 </CardContent>
               </Card>
             </div>
 
-            {/* --------- Table 2: Employment Categories & Benefits --------- */}
             {/* Desktop */}
             <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500">
               <CardHeader className="pb-1 lg:pb-2">
@@ -221,7 +209,7 @@ export default function MinimumWageDetails({
                   <table className="w-full">
                     <thead>
                       <tr className="bg-orange-500">
-                        {cat.headers.map((h, index) => (
+                        {cat?.headers?.map((h) => (
                           <th
                             key={h}
                             className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center"
@@ -232,24 +220,23 @@ export default function MinimumWageDetails({
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      {cat.rows.map((r, idx) => (
+                      {cat?.rows?.map((r, idx) => (
                         <tr key={idx} className="hover:bg-orange-50 transition-colors">
-                          {cat.headers.map((h, index) => (
+                          {cat?.headers?.map((h) => (
                             <td
                               key={h}
-                              className={`px-3 py-4 text-sm text-gray-900 break-words text-center ${
-                                isSkilledCol(h) ? "text-green-600 font-semibold" : ""
-                              }`}
+                              className={`px-3 py-4 text-sm text-gray-900 break-words text-center ${isSkilledCol(h) ? "text-green-600 font-semibold" : ""
+                                }`}
                             >
                               {fmt(cell(r, h))}
                             </td>
                           ))}
                         </tr>
                       ))}
-                      {cat.rows.length === 0 && (
+                      {cat?.rows?.length === 0 && (
                         <tr>
                           <td
-                            colSpan={cat.headers.length || 1}
+                            colSpan={cat?.headers?.length || 1}
                             className="px-4 py-6 text-center text-sm text-gray-500"
                           >
                             No data available.
@@ -271,11 +258,11 @@ export default function MinimumWageDetails({
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-3 space-y-3">
-                  {cat.rows.map((r, idx) => (
+                  {cat?.rows?.map((r, idx) => (
                     <div key={idx} className="bg-gray-50 rounded-lg p-3 border text-xs space-y-2">
-                      {cat.headers.map((h, index) => (
-                        <div 
-                          key={h} 
+                      {cat?.headers?.map((h) => (
+                        <div
+                          key={h}
                           className="flex gap-2 justify-between p-2 rounded"
                         >
                           <span className="font-medium text-gray-600">{h}:</span>
@@ -286,7 +273,7 @@ export default function MinimumWageDetails({
                       ))}
                     </div>
                   ))}
-                  {cat.rows.length === 0 && (
+                  {cat?.rows?.length === 0 && (
                     <div className="text-center text-sm text-gray-500">No data available.</div>
                   )}
                 </CardContent>
@@ -295,7 +282,6 @@ export default function MinimumWageDetails({
 
             {/* --------- Quick Actions (same visual) --------- */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4 mb-4 lg:mb-3">
-              {/* Download Notifications / Forms */}
               <Card className="group hover:shadow-lg transition-all duration-300 text-center border-l-4 border-l-orange-500 shadow-sm">
                 <CardContent className="p-3 lg:p-4">
                   <Download className="h-6 w-6 lg:h-7 lg:w-7 text-orange-500 mx-auto mb-2 lg:mb-3" />
@@ -307,13 +293,14 @@ export default function MinimumWageDetails({
                       asChild
                       size="sm"
                       className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs lg:text-sm h-7 lg:h-8"
+                      aria-label={formBtnLabel}
                     >
-                      <Link href={formUrlNorm} target="_blank" rel="noopener noreferrer">
+                      <Link href={formUrlNorm} target="_blank" rel="noopener noreferrer" aria-label={formBtnLabel}>
                         {formBtnLabel}
                       </Link>
                     </Button>
                   ) : (
-                    <Button size="sm" disabled className="w-full text-xs lg:text-sm h-7 lg:h-8">
+                    <Button size="sm" disabled className="w-full text-xs lg:text-sm h-7 lg:h-8" aria-label={formBtnLabel}>
                       No Form Available
                     </Button>
                   )}
@@ -331,13 +318,14 @@ export default function MinimumWageDetails({
                       size="sm"
                       variant="outline"
                       className="w-full hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 text-xs lg:text-sm h-7 lg:h-8"
+                      aria-label="Open Calculator"
                     >
-                      <Link href={calcUrlNorm} target="_blank" rel="noopener noreferrer">
+                      <Link href={calcUrlNorm} target="_blank" rel="noopener noreferrer" aria-label="Open Calculator">
                         Open Calculator
                       </Link>
                     </Button>
                   ) : (
-                    <Button size="sm" variant="outline" disabled className="w-full text-xs lg:text-sm h-7 lg:h-8">
+                    <Button size="sm" variant="outline" disabled className="w-full text-xs lg:text-sm h-7 lg:h-8" aria-label="Open Calculator">
                       Not Available
                     </Button>
                   )}
@@ -355,13 +343,14 @@ export default function MinimumWageDetails({
                       size="sm"
                       variant="outline"
                       className="w-full hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 text-xs lg:text-sm h-7 lg:h-8"
+                      aria-label="Visit Website"
                     >
-                      <Link href={websiteUrlNorm} target="_blank" rel="noopener noreferrer">
+                      <Link href={websiteUrlNorm} target="_blank" rel="noopener noreferrer" aria-label="Visit Website">
                         Visit Website
                       </Link>
                     </Button>
                   ) : (
-                    <Button size="sm" variant="outline" disabled className="w-full text-xs lg:text-sm h-7 lg:h-8">
+                    <Button size="sm" variant="outline" disabled className="w-full text-xs lg:text-sm h-7 lg:h-8" aria-label="Visit Website">
                       Not Available
                     </Button>
                   )}

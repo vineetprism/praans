@@ -1,18 +1,12 @@
-
-
 "use client";
-
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-// ⬇️ Removed Input/Select/Search icon imports (ab reusable filter use hoga)
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 
-// ✅ Import your reusable filter (path adjust if needed)
 import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";
 
-/* ------------ Types ------------ */
 type MinimumWageItem = {
   state: string;
   state_slug: string;
@@ -26,7 +20,6 @@ export default function MinimumWages({ items }: Props) {
   const [query, setQuery] = useState("");
   const [selectedState, setSelectedState] = useState<string>("All States");
 
-  // Dropdown options
   const states = useMemo(() => {
     const s = Array.from(new Set(items.map((x) => x.state))).sort((a, b) =>
       a.localeCompare(b)
@@ -34,7 +27,6 @@ export default function MinimumWages({ items }: Props) {
     return ["All States", ...s];
   }, [items]);
 
-  // Filtered list
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return items.filter((x) => {
@@ -46,11 +38,8 @@ export default function MinimumWages({ items }: Props) {
   }, [items, query, selectedState]);
 
   return (
-    // 🔥 FULL-BLEED WRAP: kills any parent "container" clamp
     <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-      {/* Global horizontal padding so content doesn’t kiss edges */}
       <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
-        {/* Popular Search - Top for Mobile/Tablet (full width now) */}
         <div className="lg:hidden mb-4 sm:mb-5 md:mb-6">
           <Card className="shadow-sm w-full">
             <CardContent className="p-3 sm:p-4">
@@ -59,11 +48,8 @@ export default function MinimumWages({ items }: Props) {
           </Card>
         </div>
 
-        {/* Full-width grid (no container cap) */}
         <div className="grid gap-4 sm:gap-5 md:gap-6 lg:grid-cols-4 xl:gap-8 w-full">
-          {/* Main Content */}
           <div className="lg:col-span-3 2xl:col-span-3 w-full">
-            {/* Page Header */}
             <div className="mb-6 sm:mb-7 md:mb-8">
               <div className="flex items-start justify-between mb-4 sm:mb-5">
                 <div className="flex-1">
@@ -78,7 +64,6 @@ export default function MinimumWages({ items }: Props) {
               </div>
             </div>
 
-            {/* ⬇️ Filters (Search + State) via reusable component */}
             <div className="mb-6 sm:mb-8 md:mb-10 w-full">
               <SearchAndStateFilter
                 stateOptions={states}
@@ -89,21 +74,20 @@ export default function MinimumWages({ items }: Props) {
               />
             </div>
 
-            {/* Mobile Card View (full width) */}
             <div className="block sm:hidden space-y-3 mb-6 w-full">
               <h2 className="text-lg font-bold text-gray-900 mb-4">State-wise Wages :</h2>
 
-              {filtered.map((w, idx) => (
+              {filtered?.map((w, idx) => (
                 <div
-                  key={`${w.state_slug}-${idx}`}
+                  key={`${w?.state_slug}-${idx}`}
                   className="bg-orange-300 rounded-lg border border-gray-200 p-4 shadow-sm w-full"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
-                      <h3 className="font-semibold text-sm text-gray-900 mb-2">{w.state}</h3>
+                      <h3 className="font-semibold text-sm text-gray-900 mb-2">{w?.state}</h3>
                       <div className="text-xs text-black space-y-1">
-                        <div>Updated Date: {w.updated_date}</div>
-                        <div>Effective Date: {w.effective_date}</div>
+                        <div>Updated Date: {w?.updated_date}</div>
+                        <div>Effective Date: {w?.effective_date}</div>
                       </div>
                     </div>
                     <div className="flex-shrink-0 ml-2">
@@ -114,7 +98,7 @@ export default function MinimumWages({ items }: Props) {
                         asChild
                         aria-label="view details"
                       >
-                        <Link href={`/minimum-wages/${w.state_slug}`}>View</Link>
+                        <Link href={`/minimum-wages-details/${w?.state_slug}`} aria-label="view details">View</Link>
                       </Button>
                     </div>
                   </div>
@@ -126,18 +110,18 @@ export default function MinimumWages({ items }: Props) {
             <div className="hidden sm:block md:hidden space-y-1 mb-2 w-full">
               <h2 className="text-xl font-bold text-gray-900 mb-4">State-wise Wages :</h2>
 
-              {filtered.map((w, idx) => (
+              {filtered?.map((w, idx) => (
                 <div
-                  key={`${w.state_slug}-${idx}`}
+                  key={`${w?.state_slug}-${idx}`}
                   className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm w-full"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4 flex-1">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-base text-gray-900 mb-1">{w.state}</h3>
+                        <h3 className="font-semibold text-base text-gray-900 mb-1">{w?.state}</h3>
                         <div className="text-sm text-gray-600 flex flex-wrap gap-4">
-                          <span>Updated Date: {w.updated_date}</span>
-                          <span>Effective Date: {w.effective_date}</span>
+                          <span>Updated Date: {w?.updated_date}</span>
+                          <span>Effective Date: {w?.effective_date}</span>
                         </div>
                       </div>
                     </div>
@@ -149,7 +133,7 @@ export default function MinimumWages({ items }: Props) {
                         asChild
                         aria-label="view details"
                       >
-                        <Link href={`/minimum-wages/${w.state_slug}`}>View Details</Link>
+                        <Link href={`/minimum-wages-details/${w?.state_slug}`} aria-label="view details">View Details</Link>
                       </Button>
                     </div>
                   </div>
@@ -182,21 +166,21 @@ export default function MinimumWages({ items }: Props) {
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      {filtered.map((w, idx) => (
-                        <tr key={`${w.state_slug}-${idx}`} className="hover:bg-orange-50">
+                      {filtered?.map((w, idx) => (
+                        <tr key={`${w?.state_slug}-${idx}`} className="hover:bg-orange-50">
                           <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap">
                             <div className="text-xs md:text-xs lg:text-sm font-medium text-gray-900">
-                              {w.state}
+                              {w?.state}
                             </div>
                           </td>
                           <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap">
                             <div className="text-xs md:text-xs lg:text-sm text-gray-700">
-                              {w.updated_date}
+                              {w?.updated_date}
                             </div>
                           </td>
                           <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap">
                             <div className="text-xs md:text-xs lg:text-sm text-gray-700">
-                              {w.effective_date}
+                              {w?.effective_date}
                             </div>
                           </td>
                           <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap text-xs md:text-xs lg:text-sm font-medium">
@@ -207,13 +191,13 @@ export default function MinimumWages({ items }: Props) {
                               className="text-white bg-orange-400 hover:text-orange-600 text-xs px-2 py-1 h-7"
                               asChild
                             >
-                              <Link href={`/minimum-wages/${w.state_slug}`}>View Details</Link>
+                              <Link href={`/minimum-wages-details/${w?.state_slug}`} aria-label="view details">View Details</Link>
                             </Button>
                           </td>
                         </tr>
                       ))}
 
-                      {filtered.length === 0 && (
+                      {filtered?.length === 0 && (
                         <tr>
                           <td colSpan={4} className="px-4 py-6 text-center text-sm text-gray-500">
                             No results found.
