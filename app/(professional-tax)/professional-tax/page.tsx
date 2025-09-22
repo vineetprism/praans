@@ -1,5 +1,3 @@
-
-
 import { Metadata } from "next";
 import ProfessionalTax from "@/app/_component/ProfessionalTax/ProfessionalTax";
 

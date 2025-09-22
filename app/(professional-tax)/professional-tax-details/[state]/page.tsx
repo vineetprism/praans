@@ -1,11 +1,7 @@
-
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProfessionalTaxDetails from "@/app/_component/ProfessionalTax/ProfessionalTaxDetails/ProfessionalTaxDetails";
 
-/* =========================
-   Types — match your API
-   ========================= */
 type ActRow = {
   Act: string;
   Rule: string;

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useMemo, useState } from "react";
@@ -9,12 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 
-// ✅ Use YOUR existing SearchAndStateFilter component.
-//    Path adjust karo agar alag jagah hai.
 import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";
 
-// Reuse types from server page if you prefer:
-// import type { PTApi, ApplicableState } from "./page";
 type ApplicableState = {
   state_name: string;
   state_slug: string;
@@ -106,9 +101,7 @@ export default function ProfessionalTax({
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-4 gap-8">
-          {/* Main */}
           <div className="lg:col-span-3">
-            {/* Header */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <div>
@@ -160,18 +153,18 @@ export default function ProfessionalTax({
                 </CardContent>
               </Card>
 
-              {quickActionCards.map((card, index) => (
+              {quickActionCards?.map((card, index) => (
                 <Card key={index} className="border-l-4 border-l-orange-500 lg:h-40">
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-3">
                       <div>
                         <p className="font-bold text-lg text-gray-900 group-hover:text-orange-600 transition-colors">
-                          {card.title}
+                          {card?.title}
                         </p>
                       </div>
                       <card.icon className="shrink-0 w-6 h-6 md:w-7 md:h-7 text-orange-600" />
                     </div>
-                    <Link href={card.link} aria-label="View Calculator">
+                    <Link href={card?.link} aria-label="View Calculator">
                       <Button
                         size="sm"
                         variant="outline"
@@ -179,7 +172,7 @@ export default function ProfessionalTax({
                         aria-label="View Calculator"
                       >
                         <Eye className="w-4 h-4 mr-2" />
-                        {card.action}
+                        {card?.action}
                       </Button>
                     </Link>
                   </CardContent>
@@ -212,7 +205,6 @@ export default function ProfessionalTax({
               </div>
             )}
 
-            {/* State-wise Applicability */}
             {!hasError && !isEmpty && (
               <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
                 <CardHeader>
@@ -220,29 +212,28 @@ export default function ProfessionalTax({
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                    {/* Applicable States */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">
                         Applicable States
                       </h3>
                       <div className="space-y-3">
-                        {filteredApplicable.length === 0 && (
+                        {filteredApplicable?.length === 0 && (
                           <div className="text-sm text-gray-600">No states found.</div>
                         )}
-                        {filteredApplicable.map((state, index) => (
+                        {filteredApplicable?.map((state, index) => (
                           <Link
-                            key={state.state_slug}
-                            href={`/professional-tax/${state.state_slug}`}
-                            aria-label={`View ${state.state_name}`}
+                            key={state?.state_slug}
+                            href={`/professional-tax-details/${state?.state_slug}`}
+                            aria-label={`View ${state?.state_name}`}
                           >
                             <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-orange-50 hover:border-orange-200 transition-colors cursor-pointer group">
                               <div>
                                 <span className="font-medium text-blue-600 group-hover:text-orange-600 transition-colors">
-                                  {index + 1}. {state.state_name}
+                                  {index + 1}. {state?.state_name}
                                 </span>
                                 <div className="text-sm text-gray-700">
-                                  Max Rate: ₹{(state.max_rate ?? 0).toLocaleString("en-IN")} |{" "}
-                                  {state.slabs ?? 0} Slabs
+                                  Max Rate: ₹{(state?.max_rate ?? 0).toLocaleString("en-IN")} |{" "}
+                                  {state?.slabs ?? 0} Slabs
                                 </div>
                               </div>
                               <Badge variant="secondary" className="bg-green-100 text-green-800">
@@ -260,10 +251,10 @@ export default function ProfessionalTax({
                         Non-Applicable States
                       </h3>
                       <div className="space-y-3">
-                        {filteredNonApplicable.length === 0 && (
+                        {filteredNonApplicable?.length === 0 && (
                           <div className="text-sm text-gray-600">No states found.</div>
                         )}
-                        {filteredNonApplicable.map((name, index) => (
+                        {filteredNonApplicable?.map((name, index) => (
                           <div
                             key={name}
                             className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border"

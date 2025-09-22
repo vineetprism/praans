@@ -1,6 +1,3 @@
-
-
-
 "use client";
 
 import {
@@ -27,6 +24,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
+import Link from "next/link";
 
 
 type ActRow = {
@@ -90,8 +88,6 @@ type Props = {
 export default function ProfessionalTaxDetails({ payload }: Props) {
   const {
     state,
-    // updated_date,
-    // effective_date,
     act_information,
     professional_tax_slabs,
     employment_categories,
@@ -103,7 +99,6 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
-        {/* Popular Search - Top for Mobile/Tablet */}
         <div className="xl:hidden mb-3 sm:mb-4">
           <Card className="shadow-sm">
             <CardContent className="p-2 sm:p-3">
@@ -113,9 +108,7 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
         </div>
 
         <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:grid-cols-5 xl:gap-5">
-          {/* Main Content */}
           <div className="lg:col-span-3 xl:col-span-4 relative z-10">
-            {/* Header */}
             <div className="mb-3 sm:mb-4 lg:mb-3 flex justify-between">
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">
                 Professional Tax :
@@ -124,14 +117,9 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-lg xl:text-xl text-orange-600 font-semibold">
                   {state.name}
                 </h2>
-                {/* Dates optional UI
-                <p className="text-[11px] sm:text-xs text-gray-500">
-                  Updated: {updated_date} • Effective: {effective_date}
-                </p> */}
               </div>
             </div>
 
-            {/* Quick Actions */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-3 mb-4 lg:mb-3">
               <Card className="hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-orange-200">
                 <CardContent className="p-2 lg:p-3 text-center">
@@ -162,15 +150,16 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                     size="sm"
                     aria-label="Download Forms"
                     className="text-xs lg:text-sm h-6 lg:h-7 px-2 lg:px-3 hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
-                    disabled={!downloads.form_url}
+                    disabled={!downloads?.form_url}
                   >
-                    <a
-                      href={downloads.form_url ?? "#"}
+                    <Link
+                      href={downloads?.form_url ?? "#"}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="Download Forms"
                     >
-                      {downloads.form_title?.trim() || "Download"}
-                    </a>
+                      {downloads?.form_title?.trim() || "Download"}
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -187,15 +176,16 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                     size="sm"
                     aria-label="Visit Official Portal"
                     className="text-xs lg:text-sm h-6 lg:h-7 px-2 lg:px-3 hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
-                    disabled={!downloads.website_url}
+                    disabled={!downloads?.website_url}
                   >
-                    <a
-                      href={downloads.website_url ?? "#"}
+                    <Link
+                      href={downloads?.website_url ?? "#"}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="Visit Official Portal"
                     >
                       Visit
-                    </a>
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -247,14 +237,14 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                         <div>
                           <span className="font-medium text-orange-600">Form:</span>{" "}
                           {actRow?.Form ? (
-                            <a
-                              href={actRow.Form}
+                            <Link
+                              href={actRow?.Form}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="underline text-orange-600"
                             >
                               Download
-                            </a>
+                            </Link>
                           ) : (
                             "-"
                           )}
@@ -262,14 +252,14 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                         <div>
                           <span className="font-medium text-orange-600">Website:</span>{" "}
                           {actRow?.Website ? (
-                            <a
-                              href={actRow.Website}
+                            <Link
+                              href={actRow?.Website}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="underline text-orange-600"
                             >
                               Official Site
-                            </a>
+                            </Link>
                           ) : (
                             "-"
                           )}
@@ -292,7 +282,7 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                     <Table>
                       <TableHeader className="sticky top-0 z-30">
                         <TableRow className="bg-orange-500">
-                          {act_information.headers.map((h) => (
+                          {act_information?.headers?.map((h) => (
                             <TableHead
                               key={h}
                               className="text-white text-xs lg:text-sm font-semibold bg-orange-500 sticky top-0 z-30"
@@ -325,10 +315,10 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                                 className="p-0 h-auto text-orange-600 text-xs lg:text-sm whitespace-normal hover:text-orange-700"
                                 aria-label="Download Form"
                               >
-                                <a href={actRow.Form} target="_blank" rel="noopener noreferrer">
+                                <Link href={actRow?.Form} target="_blank" rel="noopener noreferrer" aria-label="Download Form">
                                   <Download className="w-3 h-3 lg:w-4 lg:h-4 mr-1 inline" />
                                   <span className="break-words">Form</span>
-                                </a>
+                                </Link>
                               </Button>
                             ) : (
                               <span className="text-xs text-gray-500">-</span>
@@ -343,10 +333,10 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                                 className="p-0 h-auto text-orange-600 text-xs lg:text-sm whitespace-normal hover:text-orange-700"
                                 aria-label="Visit Official Site"
                               >
-                                <a href={actRow.Website} target="_blank" rel="noopener noreferrer">
+                                <Link href={actRow?.Website} target="_blank" rel="noopener noreferrer" aria-label="Visit Official Site">
                                   <ExternalLink className="w-3 h-3 lg:w-4 lg:h-4 mr-1 inline" />
                                   <span className="break-words">Official Site</span>
-                                </a>
+                                </Link>
                               </Button>
                             ) : (
                               <span className="text-xs text-gray-500">-</span>
@@ -368,7 +358,7 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                 </CardHeader>
                 <CardContent className="p-3">
                   <div className="space-y-3">
-                    {professional_tax_slabs.rows.map((slab, idx) => (
+                    {professional_tax_slabs?.rows?.map((slab, idx) => (
                       <div key={idx} className="bg-gray-50 rounded-lg p-3 border">
                         <h3 className="font-semibold text-sm text-orange-600 mb-2">
                           {slab["Income Range (Monthly)"]}
@@ -403,7 +393,7 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                   <Table>
                     <TableHeader className="sticky top-0 z-30">
                       <TableRow className="bg-orange-500 hover:bg-orange-500">
-                        {professional_tax_slabs.headers.map((h) => (
+                        {professional_tax_slabs?.headers?.map((h) => (
                           <TableHead
                             key={h}
                             className="text-white text-xs lg:text-sm font-semibold bg-orange-500 sticky top-0 z-30"
@@ -414,7 +404,7 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                       </TableRow>
                     </TableHeader>
                     <TableBody className="relative z-10">
-                      {professional_tax_slabs.rows.map((slab, idx) => (
+                      {professional_tax_slabs?.rows?.map((slab, idx) => (
                         <TableRow key={idx} className="hover:bg-gray-50">
                           <TableCell className="font-medium text-xs lg:text-sm p-2 lg:p-3">
                             {slab["Income Range (Monthly)"]}
@@ -444,7 +434,7 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                 </CardHeader>
                 <CardContent className="p-3">
                   <div className="space-y-3">
-                    {employment_categories.rows.map((row, idx) => (
+                    {employment_categories?.rows?.map((row, idx) => (
                       <div key={idx} className="bg-gray-50 rounded-lg p-3 border">
                         <h3 className="font-semibold text-sm text-orange-600 mb-2">
                           {row["Category"]}
@@ -479,7 +469,7 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                   <Table>
                     <TableHeader className="sticky top-0 z-30">
                       <TableRow className="bg-orange-500 hover:bg-orange-500">
-                        {employment_categories.headers.map((h) => (
+                        {employment_categories?.headers?.map((h) => (
                           <TableHead
                             key={h}
                             className="text-white text-xs lg:text-sm font-semibold bg-orange-500 sticky top-0 z-30"
@@ -490,7 +480,7 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
                       </TableRow>
                     </TableHeader>
                     <TableBody className="relative z-10">
-                      {employment_categories.rows.map((row, idx) => (
+                      {employment_categories?.rows?.map((row, idx) => (
                         <TableRow key={idx} className="hover:bg-gray-50">
                           <TableCell className="font-medium text-xs lg:text-sm p-2 lg:p-3 text-orange-600">
                             {row["Category"]}
