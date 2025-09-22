@@ -360,11 +360,11 @@ export default function MinimumWageDetails({
           </div>
 
           {/* Sidebar */}
-          <div className="2xl:w-xs hidden lg:block lg:col-span-1">
+          <div className=" hidden lg:block lg:col-span-1">
             <div className="sticky top-2 lg:top-3">
               <Card className="shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-2 lg:p-3 xl:p-4">
-                  <PopularSearch className="mb-0" />
+                <CardContent className="lg:p-3 xl:p-4">
+                  <PopularSearch className="mb-0 " />
                 </CardContent>
               </Card>
             </div>

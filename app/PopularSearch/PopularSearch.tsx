@@ -14,6 +14,7 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect } from "react"
 
+
 const POPULAR_SEARCHES = [
   { label: "Act,Rules And Forms", href: "/acts-rule-form", Icon: ScrollText },
   { label: "Gazette Notifications", href: "/gazette", Icon: Megaphone },
@@ -26,6 +27,7 @@ const POPULAR_SEARCHES = [
   { label: "National Festival Holidays", href: "/national-festival-holidays", Icon: CalendarClock },
   { label: "Applicability S&E Act", href: "/applicability-se-act", Icon: CalendarClock },
 ] as const
+
 
 export default function PopularSearch({
   title = "Quick Access",
@@ -57,7 +59,7 @@ export default function PopularSearch({
               aria-current={isActive ? "page" : undefined}
               className={[
                 " inline-flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors group hover:shadow-md duration-300 border-l-2 border-l-orange-500 ",
-                isActive ? "bg-orange-100 text-orange-600 w-xs" : "hover:bg-orange-100 hover:text-orange-600 ",
+                isActive ? "bg-orange-100 text-orange-600" : "hover:bg-orange-100 hover:text-orange-600",
               ].join(" ")}
             >
               <Icon className="w-4 h-4 flex-shrink-0 " />
