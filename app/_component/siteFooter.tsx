@@ -70,13 +70,14 @@ export default function SiteFooter() {
             <p className="text-gray-400 leading-relaxed text-lg">
               Your trusted partner for compliance and labor law resources.
             </p>
-            <a
+            <Link
               href="mailto:info@praansconsultech.com"
               className="mt-6 inline-flex items-center gap-3 text-orange-400 hover:text-orange-300 transition-colors duration-300 text-lg"
+              aria-label="Email Us"
             >
               <Mail className="w-5 h-5" />
               info@praansconsultech.com
-            </a>
+            </Link>
           </div>
 
           <div>
@@ -135,8 +136,8 @@ export default function SiteFooter() {
               <div
                 role="alert"
                 className={`mb-3 rounded-md border px-3 py-2 text-sm ${banner.type === "success"
-                    ? "border-green-300 bg-green-50 text-green-800"
-                    : "border-red-300 bg-red-50 text-red-800"
+                  ? "border-green-300 bg-green-50 text-green-800"
+                  : "border-red-300 bg-red-50 text-red-800"
                   }`}
               >
                 {banner.msg}
