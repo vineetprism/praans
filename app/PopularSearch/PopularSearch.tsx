@@ -14,7 +14,7 @@ const POPULAR_SEARCHES = [
   { label: "Act,Rules And Forms", href: "/acts-rule-form", Icon: ScrollText },
   { label: "Gazette Notifications", href: "/gazette", Icon: Megaphone },
   { label: "Holiday List", href: "/holidays", Icon: CalendarDays },
-  { label: "Labour welfare funds", href: "/welfare-fund", Icon: HandCoins },
+  { label: "Labour welfare funds", href: "/labour-welfare-fund", Icon: HandCoins },
   { label: "Minimum wages", href: "/minimum-wages", Icon: Banknote },
   { label: "Professional tax", href: "/professional-tax", Icon: Receipt },
   { label: "Calculators", href: "/calculators/bonus", Icon: Calculator },
