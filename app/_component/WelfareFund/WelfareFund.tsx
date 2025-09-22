@@ -1,6 +1,4 @@
-// app/welfare-fund/WelfareFundClient.tsx
 "use client";
-
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -67,9 +65,7 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
           </div>
         ) : (
           <div className="grid lg:grid-cols-4 gap-8">
-            {/* Main Content */}
             <div className="lg:col-span-3">
-              {/* Header */}
               <div className="mb-8">
                 <div className="flex items-center justify-between mb-4">
                   <div>
@@ -83,7 +79,6 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
                 </div>
               </div>
 
-              {/* Shared Search + State filter */}
               <div className="mb-6 sm:mb-8 md:mb-10">
                 <SearchAndStateFilter
                   searchValue={q}
@@ -101,7 +96,7 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm font-medium text-gray-600">Applicable States</p>
-                        <p className="text-2xl font-bold text-gray-900">{data.applicable_count}</p>
+                        <p className="text-2xl font-bold text-gray-900">{data?.applicable_count}</p>
                       </div>
                       <CheckCircle className="w-8 h-8 text-blue-600" />
                     </div>
@@ -113,7 +108,7 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm font-medium text-gray-600">Non-Applicable</p>
-                        <p className="text-2xl font-bold text-gray-900">{data.non_applicable_count}</p>
+                        <p className="text-2xl font-bold text-gray-900">{data?.non_applicable_count}</p>
                       </div>
                       <XCircle className="w-8 h-8 text-red-600" />
                     </div>
@@ -133,6 +128,7 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
                         size="sm"
                         variant="outline"
                         className="bg-orange-500 text-white hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 hover:cursor-pointer"
+                        aria-label="View LWF Calculator"
                       >
                         <Eye className="w-4 h-4 mr-2" />
                         View
@@ -154,6 +150,7 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
                         size="sm"
                         variant="outline"
                         className="bg-orange-500 text-white hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 hover:cursor-pointer"
+                        aria-label="View Interest & Penalty Calculator"
                       >
                         <Eye className="w-4 h-4 mr-2" />
                         View
@@ -173,16 +170,16 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
                     {/* Applicable */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Applicable States</h3>
-                      {filteredApplicable.length === 0 ? (
+                      {filteredApplicable?.length === 0 ? (
                         <p className="text-sm text-gray-500">No matching states.</p>
                       ) : (
                         <div className="space-y-3">
-                          {filteredApplicable.map((s, idx) => (
-                            <Link key={s.state_slug} href={`/welfare-fund/${s.state_slug}`} aria-label="View State-wise Applicability">
+                          {filteredApplicable?.map((s, idx) => (
+                            <Link key={s?.state_slug} href={`/labour-welfare-fund-details/${s?.state_slug}`} aria-label="View State-wise Applicability">
                               <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-orange-50 hover:border-orange-200 transition-colors cursor-pointer group mb-3">
                                 <div>
                                   <span className="font-medium text-blue-600 group-hover:text-orange-600 transition-colors">
-                                    {idx + 1}. {s.state_name}
+                                    {idx + 1}. {s?.state_name}
                                   </span>
                                 </div>
                                 <div className="flex items-center gap-2">
@@ -201,18 +198,20 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
                     {/* Non-Applicable */}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Non-Applicable States</h3>
-                      {filteredNonApplicable.length === 0 ? (
+                      {filteredNonApplicable?.length === 0 ? (
                         <p className="text-sm text-gray-500">No matching states.</p>
                       ) : (
                         <div className="space-y-3">
-                          {filteredNonApplicable.map((s, idx) => (
-                            <div key={s.state_slug || idx} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
-                              <span className="text-gray-700">{idx + 1}. {s.state_name}</span>
-                              <div className="flex items-center gap-2">
-                                <MapPin className="w-4 h-4 text-gray-400" />
-                                <Badge variant="secondary" className="bg-gray-100 text-gray-600">Not Applicable</Badge>
+                          {filteredNonApplicable?.map((s, idx) => (
+                            <Link key={s?.state_slug} href={`/labour-welfare-fund-details/${s?.state_slug}`} aria-label="View State-wise Applicability">
+                              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
+                                <span className="text-gray-700">{idx + 1}. {s?.state_name}</span>
+                                <div className="flex items-center gap-2">
+                                  <MapPin className="w-4 h-4 text-gray-400" />
+                                  <Badge variant="secondary" className="bg-gray-100 text-gray-600">Not Applicable</Badge>
+                                </div>
                               </div>
-                            </div>
+                            </Link>
                           ))}
                         </div>
                       )}

@@ -45,7 +45,7 @@ const NAV = [
       { label: "Contract Labour License", href: "/contract-labour-licence" },
       { label: "Professional Tax Registration", href: "/professional-tax-registration" },
       { label: "Trade Licence Registration", href: "/trade-licence" },
-      { label: "Labour Welfare Fund Registration", href: "/labour-welfare-fund" },
+      { label: "Labour Welfare Fund Registration", href: "/labour-welfare-fund-registration" },
       { label: "FSSAI Registration", href: "/fssai" },
       { label: "GST Registration", href: "/gst" },
       { label: "MSME Registration", href: "/msme" },

@@ -26,7 +26,6 @@ import {
 } from "@/components/ui/table";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 
-// ... existing interfaces and data remain same
 
 interface StateData {
   name: string;

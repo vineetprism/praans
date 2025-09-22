@@ -40,7 +40,7 @@ const categories = [
     description: "Welfare fund contributions and benefits",
     icon: Wallet,
     color: "bg-indigo-500",
-    href: "/welfare-fund",
+    href: "/labour-welfare-fund",
   },
   {
     title: "Minimum Wages",

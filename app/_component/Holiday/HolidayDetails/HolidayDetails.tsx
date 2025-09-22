@@ -12,7 +12,7 @@ import {
 import { Calendar, Download, Loader2 } from "lucide-react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import { useEffect, useMemo, useState } from "react";
-import type { HolidayStateData } from "@/app/holidays/[slug]/page";
+import type { HolidayStateData } from "@/app/(holidays)/holidays-details/[slug]/page";
 
 type HolidayDetail = HolidayStateData["holiday_details"][number];
 
@@ -98,9 +98,8 @@ export default function HolidayDetails({
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
-  // CSR fetch only if server failed / first load without data
   useEffect(() => {
-    if (initialData) return; // already hydrated via ISR
+    if (initialData) return;
     let ac = new AbortController();
 
     const run = async () => {
@@ -130,7 +129,6 @@ export default function HolidayDetails({
     return () => ac.abort();
   }, [slug, initialData]);
 
-  // derived: filtered list
   const filteredHolidays = useMemo(() => {
     return holidayDetails.filter((h) => {
       const monthOk =
@@ -154,7 +152,6 @@ export default function HolidayDetails({
     setEndDate(null);
   };
 
-  // --- Loading ---
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -201,8 +198,8 @@ export default function HolidayDetails({
                   <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between flex-1 gap-2 sm:gap-3">
                       <h1 className="font-bold text-slate-800 text-sm min-[375px]:text-base sm:text-lg md:text-xl lg:text-2xl leading-tight">
-                        {formatStateName(apiData.title)} Holidays (
-                        {apiData.year}) :
+                        {formatStateName(apiData?.title)} Holidays (
+                        {apiData?.year}) :
                       </h1>
 
                       <div className="flex flex-col min-[480px]:flex-row gap-2 min-[480px]:gap-1 sm:gap-2">
@@ -220,7 +217,7 @@ export default function HolidayDetails({
                             >
                               All Months
                             </SelectItem>
-                            {months.map((m) => (
+                            {months?.map((m) => (
                               <SelectItem
                                 key={m}
                                 value={m}
@@ -235,8 +232,8 @@ export default function HolidayDetails({
                         <Button
                           className="h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 hover:bg-orange-600 text-white text-xs min-[375px]:text-xs sm:text-sm transition-colors px-2 sm:px-3 md:px-4"
                           onClick={() => {
-                            if (apiData.holiday_pdf_url)
-                              window.open(apiData.holiday_pdf_url, "_blank");
+                            if (apiData?.holiday_pdf_url)
+                              window.open(apiData?.holiday_pdf_url, "_blank");
                             else alert("PDF not available");
                           }}
                         >
@@ -251,8 +248,8 @@ export default function HolidayDetails({
 
               <div className="mb-3 sm:mb-4 2xl:-mb-6">
                 <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base text-justify">
-                  {apiData.short_desc
-                    ? cleanDescription(apiData.short_desc)
+                  {apiData?.short_desc
+                    ? cleanDescription(apiData?.short_desc)
                     : "This holidays are driven to enable Simple, Beautiful and Effective compliance for you always. You now have access to the most accurate state-wise holiday lists released by the Government gazettes."}
                 </p>
               </div>
@@ -289,31 +286,30 @@ export default function HolidayDetails({
 
             {/* Mobile Cards */}
             <div className="block sm:hidden space-y-2 min-[375px]:space-y-3 mt-5">
-              {filteredHolidays.map((h, i) => (
+              {filteredHolidays?.map((h, i) => (
                 <div
-                  key={`${h.holiday_name}-${i}`}
+                  key={`${h?.holiday_name}-${i}`}
                   className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm hover:border-orange-200 transition-colors"
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex-1 pr-2">
                       <h3 className="font-semibold text-xs sm:text-sm text-gray-900 line-clamp-2 mb-1">
-                        {h.holiday_name}
+                        {h?.holiday_name}
                       </h3>
                       <div className="text-xs text-gray-600">
-                        {formatDisplayDate(h.date)} • {h.day}
+                        {formatDisplayDate(h?.date)} • {h?.day}
                       </div>
                     </div>
                     <div className="flex-shrink-0">
                       <span
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          h.type === "National"
-                            ? "bg-green-100 text-green-800"
-                            : h.type === "Regional"
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${h?.type === "National"
+                          ? "bg-green-100 text-green-800"
+                          : h?.type === "Regional"
                             ? "bg-blue-100 text-blue-800"
                             : "bg-gray-100 text-gray-800"
-                        }`}
+                          }`}
                       >
-                        {h.type}
+                        {h?.type}
                       </span>
                     </div>
                   </div>
@@ -321,7 +317,7 @@ export default function HolidayDetails({
                     <span className="w-5 h-5 bg-orange-400 rounded-full text-white text-xs font-medium flex items-center justify-center">
                       {i + 1}
                     </span>
-                    <span>{h.month.slice(0, 3)}</span>
+                    <span>{h?.month.slice(0, 3)}</span>
                   </div>
                 </div>
               ))}
@@ -331,7 +327,7 @@ export default function HolidayDetails({
             <div className="hidden sm:block md:hidden space-y-3 mt-2">
               {filteredHolidays.map((h, i) => (
                 <div
-                  key={`${h.holiday_name}-${i}`}
+                  key={`${h?.holiday_name}-${i}`}
                   className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm hover:border-orange-200 transition-colors"
                 >
                   <div className="flex items-center justify-between">
@@ -341,25 +337,24 @@ export default function HolidayDetails({
                       </span>
                       <div className="flex-1">
                         <h3 className="font-semibold text-sm text-gray-900 mb-1">
-                          {h.holiday_name}
+                          {h?.holiday_name}
                         </h3>
                         <div className="text-sm text-gray-600">
-                          {formatDisplayDate(h.date)} • {h.day} •{" "}
-                          {h.month.slice(0, 3)}
+                          {formatDisplayDate(h?.date)} • {h?.day} •{" "}
+                          {h?.month.slice(0, 3)}
                         </div>
                       </div>
                     </div>
                     <div className="flex-shrink-0">
                       <span
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${
-                          h.type === "National"
-                            ? "bg-green-100 text-green-800"
-                            : h.type === "Regional"
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${h?.type === "National"
+                          ? "bg-green-100 text-green-800"
+                          : h?.type === "Regional"
                             ? "bg-blue-100 text-blue-800"
                             : "bg-gray-100 text-gray-800"
-                        }`}
+                          }`}
                       >
-                        {h.type}
+                        {h?.type}
                       </span>
                     </div>
                   </div>
@@ -380,7 +375,7 @@ export default function HolidayDetails({
                         "Date",
                         "Day",
                         "Type",
-                      ].map((h) => (
+                      ]?.map((h) => (
                         <th
                           key={h}
                           className="text-left font-semibold text-white whitespace-nowrap p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base"
@@ -391,37 +386,36 @@ export default function HolidayDetails({
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredHolidays.map((h, i) => (
+                    {filteredHolidays?.map((h, i) => (
                       <tr
-                        key={`${h.holiday_name}-${i}`}
+                        key={`${h?.holiday_name}-${i}`}
                         className="border-b border-gray-100 hover:bg-orange-50 transition-colors"
                       >
                         <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
                           {i + 1}
                         </td>
                         <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base truncate">
-                          {h.holiday_name}
+                          {h?.holiday_name}
                         </td>
                         <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
-                          {h.month.slice(0, 3)}
+                          {h?.month.slice(0, 3)}
                         </td>
                         <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
-                          {formatDisplayDate(h.date)}
+                          {formatDisplayDate(h?.date)}
                         </td>
                         <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
-                          {h.day}
+                          {h?.day}
                         </td>
                         <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4">
                           <span
-                            className={`rounded-full font-medium px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5 text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px] ${
-                              h.type === "National"
-                                ? "bg-green-100 text-green-800"
-                                : h.type === "Regional"
+                            className={`rounded-full font-medium px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5 text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px] ${h?.type === "National"
+                              ? "bg-green-100 text-green-800"
+                              : h?.type === "Regional"
                                 ? "bg-blue-100 text-blue-800"
                                 : "bg-gray-100 text-gray-800"
-                            }`}
+                              }`}
                           >
-                            {h.type}
+                            {h?.type}
                           </span>
                         </td>
                       </tr>
@@ -432,7 +426,7 @@ export default function HolidayDetails({
             </div>
 
             {/* No results */}
-            {filteredHolidays.length === 0 && (
+            {filteredHolidays?.length === 0 && (
               <Card className="text-center py-8 border-l-4 border-l-orange-500">
                 <CardContent>
                   <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
@@ -451,6 +445,7 @@ export default function HolidayDetails({
                       setEndDate(null);
                     }}
                     className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
+                    aria-label="Clear All Filters"
                   >
                     Clear All Filters
                   </Button>
