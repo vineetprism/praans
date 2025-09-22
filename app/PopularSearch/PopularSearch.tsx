@@ -34,8 +34,11 @@ export default function PopularSearch({
   const pathname = usePathname()
   const router = useRouter()
   
+<<<<<<< HEAD
 
   // Warm the cache once the component mounts
+=======
+>>>>>>> 63b0b789a1a7282def25fd0a0089971b0653799d
   useEffect(() => {
     POPULAR_SEARCHES.forEach(i => router.prefetch(i.href))
   }, [router])
