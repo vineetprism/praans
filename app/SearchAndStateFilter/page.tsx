@@ -62,7 +62,7 @@ const SearchAndStateFilter = ({
 
       {/* States */}
       <Select value={stateValue || undefined} onValueChange={onStateChange} disabled={isPending}>
-        <SelectTrigger className="h-8 2xl:h-10 text-xs lg:text-sm bg-gray-100 ml-3" aria-label={stateValue ? `State: ${stateValue}` : "Select state"}>
+        <SelectTrigger className="p-[1.1rem] h-9 2xl:h-12 2xl:w-[170px] text-xs lg:text-sm bg-gray-100 ml-3" aria-label={stateValue ? `State: ${stateValue}` : "Select state"}>
           <SelectValue placeholder="Select State" />
         </SelectTrigger>
         <SelectContent
