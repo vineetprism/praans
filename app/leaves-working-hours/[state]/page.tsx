@@ -1,59 +1,54 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import { notFound } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import {
-  Download,
-  ExternalLink,
-  Clock,
-  Eye,
-  Check,
-  Building2,
-} from "lucide-react"
-import PopularSearch from "@/app/PopularSearch/PopularSearch"
+import PopularSearch from "@/app/PopularSearch/PopularSearch";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Calculator, Download, ExternalLink, FileText } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
 
 interface StateData {
-  name: string
-  slug: string
-  lastUpdated: string
+  name: string;
+  slug: string;
+  updated_date: string;
+  effective_date: string;
   act: {
-    name: string
-    year: string
-    rule: string
-    ruleYear: string
-    applicability: string
-    frequency: string
-    formName: string
-    formLink: string
-    websiteLink: string
-  }
+    name: string;
+    year: string;
+    rule: string;
+    ruleYear: string;
+    applicability: string;
+    frequency: string;
+    formName: string;
+    formLink: string;
+    websiteLink: string;
+  };
   leaveEntitlements: {
-    category: string
-    annualLeave: string
-    sickLeave: string
-    casualLeave: string
-    maternityLeave: string
-    paternityLeave: string
-    remarks: string
-  }[]
+    category: string;
+    annualLeave: string;
+    sickLeave: string;
+    casualLeave: string;
+    maternityLeave: string;
+    paternityLeave: string;
+    remarks: string;
+  }[];
   workingHours: {
-    category: string
-    dailyHours: string
-    weeklyHours: string
-    overtimeRate: string
-    nightShiftAllowance: string
-    weeklyOff: string
-    remarks: string
-  }[]
+    category: string;
+    dailyHours: string;
+    weeklyHours: string;
+    overtimeRate: string;
+    nightShiftAllowance: string;
+    weeklyOff: string;
+    remarks: string;
+  }[];
 }
 
 const statesData: Record<string, StateData> = {
   "andhra-pradesh": {
     name: "Andhra Pradesh",
     slug: "andhra-pradesh",
-    lastUpdated: "3rd Oct, 2024",
+    updated_date: "19-09-2025",
+    effective_date: "20-09-2025",
     act: {
       name: "Andhra Pradesh Shops and Commercial Establishments Act",
       year: "1988",
@@ -90,332 +85,297 @@ const statesData: Record<string, StateData> = {
       },
     ],
   },
-  maharashtra: {
-    name: "Maharashtra",
-    slug: "maharashtra",
-    lastUpdated: "15th Sep, 2024",
-    act: {
-      name: "Maharashtra Shops and Establishments Act",
-      year: "2017",
-      rule: "The Maharashtra Shops and Establishments Rules",
-      ruleYear: "2018",
-      applicability:
-        "Any Employer/Establishment employing one or more employees/persons",
-      frequency: "Yearly",
-      formName: "FORM 1.xlsx",
-      formLink: "#",
-      websiteLink: "http://mahakamgar.gov.in",
-    },
-    leaveEntitlements: [
-      {
-        category:
-          "All employees except those employed mainly in a managerial capacity",
-        annualLeave: "15 days",
-        sickLeave: "7 days",
-        casualLeave: "7 days",
-        maternityLeave: "26 weeks",
-        paternityLeave: "15 days",
-        remarks: "As per Maharashtra Shops & Establishments Act",
-      },
-    ],
-    workingHours: [
-      {
-        category: "General employees",
-        dailyHours: "9 hours",
-        weeklyHours: "48 hours",
-        overtimeRate: "2x basic wage",
-        nightShiftAllowance: "15% of basic wage",
-        weeklyOff: "1.5 days per week",
-        remarks: "Flexible working hours allowed",
-      },
-    ],
-  },
-  karnataka: {
-    name: "Karnataka",
-    slug: "karnataka",
-    lastUpdated: "20th Aug, 2024",
-    act: {
-      name: "Karnataka Shops and Commercial Establishments Act",
-      year: "1961",
-      rule: "The Karnataka Shops and Commercial Establishments Rules",
-      ruleYear: "1963",
-      applicability:
-        "Any Employer/Establishment employing one or more employees/persons",
-      frequency: "Yearly",
-      formName: "FORM I.xlsx",
-      formLink: "#",
-      websiteLink: "http://labour.kar.nic.in",
-    },
-    leaveEntitlements: [
-      {
-        category:
-          "All employees except those employed mainly in a managerial capacity",
-        annualLeave: "12 days",
-        sickLeave: "12 days",
-        casualLeave: "12 days",
-        maternityLeave: "12 weeks",
-        paternityLeave: "15 days",
-        remarks: "As per Karnataka Shops & Establishments Act",
-      },
-    ],
-    workingHours: [
-      {
-        category: "General employees",
-        dailyHours: "9 hours",
-        weeklyHours: "48 hours",
-        overtimeRate: "2x basic wage",
-        nightShiftAllowance: "12% of basic wage",
-        weeklyOff: "1 day per week",
-        remarks: "Special provisions for IT employees",
-      },
-    ],
-  },
-}
+};
+
+const fmt = (s?: string | null) => (s && s.trim().length ? s : "—");
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ state: string }>
+  params: { state: string };
 }): Promise<Metadata> {
-  const { state } = await params
-  const stateData = statesData[state]
-
+  const stateData = statesData[params.state];
   if (!stateData) {
-    return { title: "State Not Found - Leave & Working Hours | E-Library" }
+    return { title: "State Not Found - Leave & Working Hours | E-Library" };
   }
-
   return {
     title: `${stateData.name} - Leave & Working Hours Regulations | E-Library`,
     description: `Comprehensive guide to leave policies and working hours regulations in ${stateData.name}. Find leave entitlements, working hour limits, and compliance requirements.`,
     keywords: `${stateData.name} leave policy, working hours, shops and establishments act, annual leave, sick leave, overtime rules`,
-  }
+  };
 }
 
 export default async function StateLeavesWorkingHoursPage({
   params,
 }: {
-  params: Promise<{ state: string }>
+  params: { state: string };
 }) {
-  const { state } = await params
-  const stateData = statesData[state]
-  if (!stateData) notFound()
-
-  const availableStates = Object.values(statesData)
+  const { state } = params;
+  const stateData = statesData[state];
+  if (!stateData) notFound();
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-4 gap-8">
+      <div className="mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
+        {/* Popular Search (mobile) */}
+        <div className="lg:hidden mb-3 sm:mb-4">
+          <Card className="shadow-sm">
+            <CardContent className="p-2 sm:p-3">
+              <PopularSearch className="mb-0" />
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5">
           {/* Main Content */}
           <div className="lg:col-span-3">
-            {/* Page Header */}
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h1 className="text-3xl font-bold text-slate-800 mb-2">
-                    Leave & Working Hours
-                  </h1>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Badge variant="secondary" className="px-3 py-1">
-                    Updated: {stateData.lastUpdated}
-                  </Badge>
-                </div>
+            {/* Header */}
+            <div className="mb-4 sm:mb-5 lg:mb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-3">
+              <div>
+                <h2 className="text-base sm:text-lg font-semibold text-slate-800 mb-2 2xl:text-2xl">
+                  Leave & Working Hours :
+                </h2>
               </div>
+              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-lg xl:text-xl text-orange-600 font-semibold">
+                {stateData.name}
+              </h2>
+            </div>
 
-              {/* Info Card */}
-              <Card className="bg-blue-50 border-blue-200">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-3">
-                    <Building2 className="w-5 h-5 text-blue-600 mt-0.5" />
-                    <div>
-                      <h3 className="font-semibold text-blue-900 mb-1">
-                        {stateData.name} Regulations
-                      </h3>
-                      <p className="text-blue-800 text-sm leading-relaxed">
-                        State-specific leave policies and working hours as per{" "}
-                        {stateData.act.name}, {stateData.act.year}. This
-                        information is updated as of {stateData.lastUpdated}.
-                      </p>
+            {/* ============== Act Information ============== */}
+            {/* Desktop */}
+            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500">
+              <CardHeader className="pb-1 lg:pb-2">
+                <CardTitle className="text-base lg:text-lg font-bold">
+                  Act Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <div className="w-full overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="bg-orange-500">
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Act
+                        </th>
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Rule
+                        </th>
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Applicability
+                        </th>
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Frequency
+                        </th>
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Form
+                        </th>
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Website
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      <tr className="hover:bg-orange-50 transition-colors">
+                        <td className="px-3 py-4 text-sm text-gray-900 text-center break-words">
+                          <div className="font-medium">
+                            {stateData.act.name}
+                          </div>
+                          <div className="text-gray-600 text-xs">
+                            ({stateData.act.year})
+                          </div>
+                        </td>
+                        <td className="px-3 py-4 text-sm text-gray-900 text-center break-words">
+                          <div className="font-medium">
+                            {stateData.act.rule}
+                          </div>
+                          <div className="text-gray-600 text-xs">
+                            ({stateData.act.ruleYear})
+                          </div>
+                        </td>
+                        <td className="px-3 py-4 text-sm text-gray-900 text-center break-words">
+                          {stateData.act.applicability}
+                        </td>
+                        <td className="px-3 py-4 text-sm text-center">
+                          {stateData.act.frequency}
+                        </td>
+                        <td className="px-3 py-4 text-sm text-center">
+                          {stateData.act.formLink &&
+                          stateData.act.formLink !== "#" ? (
+                            <Button
+                              asChild
+                              variant="link"
+                              size="sm"
+                              className="text-orange-600 p-0"
+                            >
+                              <a
+                                href={stateData.act.formLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <FileText className="h-4 w-4 mr-1" />
+                                {stateData.act.formName}
+                              </a>
+                            </Button>
+                          ) : (
+                            "—"
+                          )}
+                        </td>
+                        <td className="px-3 py-4 text-sm text-center">
+                          {stateData.act.websiteLink ? (
+                            <Link
+                              href={stateData.act.websiteLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-orange-600 hover:underline inline-flex items-center"
+                            >
+                              <ExternalLink className="h-4 w-4 mr-1" />
+                              Official Site
+                            </Link>
+                          ) : (
+                            "—"
+                          )}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Mobile */}
+            <div className="block md:hidden mb-4">
+              <Card className="shadow-sm border-l-4 border-l-orange-500">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base font-bold">
+                    Act Information
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-3 space-y-3">
+                  <div className="bg-gray-50 rounded-lg p-3 border text-xs space-y-2">
+                    <div className="flex gap-2 justify-between">
+                      <span className="font-medium text-gray-600">Act:</span>
+                      <span>
+                        {stateData.act.name} ({stateData.act.year})
+                      </span>
+                    </div>
+                    <div className="flex gap-2 justify-between">
+                      <span className="font-medium text-gray-600">Rule:</span>
+                      <span>
+                        {stateData.act.rule} ({stateData.act.ruleYear})
+                      </span>
+                    </div>
+                    <div className="flex gap-2 justify-between">
+                      <span className="font-medium text-gray-600">
+                        Applicability:
+                      </span>
+                      <span>{stateData.act.applicability}</span>
+                    </div>
+                    <div className="flex gap-2 justify-between">
+                      <span className="font-medium text-gray-600">
+                        Frequency:
+                      </span>
+                      <span>{stateData.act.frequency}</span>
+                    </div>
+                    <div className="flex gap-2 justify-between">
+                      <span className="font-medium text-gray-600">Form:</span>
+                      {stateData.act.formLink &&
+                      stateData.act.formLink !== "#" ? (
+                        <a
+                          href={stateData.act.formLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-orange-600 underline"
+                        >
+                          {stateData.act.formName}
+                        </a>
+                      ) : (
+                        stateData.act.formName
+                      )}
+                    </div>
+                    <div className="flex gap-2 justify-between">
+                      <span className="font-medium text-gray-600">
+                        Website:
+                      </span>
+                      {stateData.act.websiteLink ? (
+                        <a
+                          href={stateData.act.websiteLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-orange-600 underline"
+                        >
+                          Official Site
+                        </a>
+                      ) : (
+                        "—"
+                      )}
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
-            {/* Act Information */}
-            <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-r-4 border-r-orange-500">
-              <CardHeader>
-                <CardTitle className="group-hover:text-orange-600 transition-colors">
-                  Act Information
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr className="bg-gradient-to-r from-orange-50 to-orange-100">
-                        <th className="border border-orange-200 px-4 py-3 text-left font-semibold text-orange-800">
-                          ACT
-                        </th>
-                        <th className="border border-orange-200 px-4 py-3 text-left font-semibold text-orange-800">
-                          RULE
-                        </th>
-                        <th className="border border-orange-200 px-4 py-3 text-left font-semibold text-orange-800">
-                          APPLICABILITY
-                        </th>
-                        <th className="border border-orange-200 px-4 py-3 text-left font-semibold text-orange-800">
-                          FREQUENCY
-                        </th>
-                        <th className="border border-orange-200 px-4 py-3 text-left font-semibold text-orange-800">
-                          FORM
-                        </th>
-                        <th className="border border-orange-200 px-4 py-3 text-left font-semibold text-orange-800">
-                          WEBSITE
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="hover:bg-orange-25 transition-colors">
-                        <td className="border border-gray-200 px-4 py-3 bg-white">
-                          <div className="font-medium text-gray-900">
-                            {stateData.act.name}
-                          </div>
-                          <div className="text-sm text-gray-600">
-                            {stateData.act.year}
-                          </div>
-                        </td>
-                        <td className="border border-gray-200 px-4 py-3 bg-white">
-                          <div className="font-medium text-gray-900">
-                            {stateData.act.rule}
-                          </div>
-                          <div className="text-sm text-gray-600">
-                            {stateData.act.ruleYear}
-                          </div>
-                        </td>
-                        <td className="border border-gray-200 px-4 py-3 bg-white text-sm">
-                          {stateData.act.applicability}
-                        </td>
-                        <td className="border border-gray-200 px-4 py-3 bg-white">
-                          <Badge
-                            variant="secondary"
-                            className="bg-blue-100 text-blue-800"
-                          >
-                            {stateData.act.frequency}
-                          </Badge>
-                        </td>
-                        <td className="border border-gray-200 px-4 py-3 bg-white">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            aria-label="Download form"
-                            className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
-                          >
-                            <Download className="h-4 w-4 mr-1" />
-                            {stateData.act.formName}
-                          </Button>
-                        </td>
-                        <td className="border border-gray-200 px-4 py-3 bg-white">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            aria-label="Visit official site"
-                            className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
-                          >
-                            <ExternalLink className="h-4 w-4 mr-1" />
-                            Official Site
-                          </Button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Leave Entitlements */}
-            <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-r-4 border-r-orange-500">
-              <CardHeader>
-                <CardTitle className="text-center group-hover:text-orange-600 transition-colors">
+            {/* ============== Leave Entitlements ============== */}
+            {/* Desktop */}
+            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500">
+              <CardHeader className="pb-1 lg:pb-2">
+                <CardTitle className="text-base lg:text-lg font-bold">
                   Leave Entitlements
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
+              <CardContent className="p-0">
+                <div className="w-full overflow-x-auto">
+                  <table className="w-full">
                     <thead>
-                      <tr className="bg-gradient-to-r from-blue-50 to-blue-100">
-                        <th className="border border-blue-200 px-4 py-3 text-left font-semibold text-blue-800">
-                          CATEGORY
+                      <tr className="bg-orange-500">
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center w-48 max-w-48">
+                          Category
                         </th>
-                        <th className="border border-blue-200 px-4 py-3 text-center font-semibold text-blue-800">
-                          ANNUAL LEAVE
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Annual Leave
                         </th>
-                        <th className="border border-blue-200 px-4 py-3 text-center font-semibold text-blue-800">
-                          SICK LEAVE
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Sick Leave
                         </th>
-                        <th className="border border-blue-200 px-4 py-3 text-center font-semibold text-blue-800">
-                          CASUAL LEAVE
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Casual Leave
                         </th>
-                        <th className="border border-blue-200 px-4 py-3 text-center font-semibold text-blue-800">
-                          MATERNITY LEAVE
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Maternity Leave
                         </th>
-                        <th className="border border-blue-200 px-4 py-3 text-center font-semibold text-blue-800">
-                          PATERNITY LEAVE
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Paternity Leave
                         </th>
-                        <th className="border border-blue-200 px-4 py-3 text-center font-semibold text-blue-800">
-                          REMARKS
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Remarks
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {stateData.leaveEntitlements.map((leave, index) => (
-                        <tr key={index} className="hover:bg-blue-25 transition-colors">
-                          <td className="border border-gray-200 px-4 py-3 bg-white text-sm">
-                            {leave.category}
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {stateData.leaveEntitlements.map((row, idx) => (
+                        <tr
+                          key={idx}
+                          className="hover:bg-orange-50 transition-colors"
+                        >
+                          <td className="px-3 py-4 text-sm text-gray-900 break-words w-48 max-w-48 text-justify">
+                            {row.category}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white">
-                            <Badge
-                              variant="secondary"
-                              className="bg-green-100 text-green-800 font-semibold"
-                            >
-                              {leave.annualLeave}
-                            </Badge>
+                          <td className="px-3 py-4 text-sm text-center">
+                            {row.annualLeave}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white">
-                            <Badge
-                              variant="secondary"
-                              className="bg-red-100 text-red-800 font-semibold"
-                            >
-                              {leave.sickLeave}
-                            </Badge>
+                          <td className="px-3 py-4 text-sm text-center">
+                            {row.sickLeave}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white">
-                            <Badge
-                              variant="secondary"
-                              className="bg-yellow-100 text-yellow-800 font-semibold"
-                            >
-                              {leave.casualLeave}
-                            </Badge>
+                          <td className="px-3 py-4 text-sm text-center">
+                            {row.casualLeave}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white">
-                            <Badge
-                              variant="secondary"
-                              className="bg-purple-100 text-purple-800 font-semibold"
-                            >
-                              {leave.maternityLeave}
-                            </Badge>
+                          <td className="px-3 py-4 text-sm text-center">
+                            {row.maternityLeave}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white">
-                            <Badge
-                              variant="secondary"
-                              className="bg-indigo-100 text-indigo-800 font-semibold"
-                            >
-                              {leave.paternityLeave}
-                            </Badge>
+                          <td className="px-3 py-4 text-sm text-center">
+                            {row.paternityLeave}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white text-sm">
-                            {leave.remarks}
+                          <td className="px-3 py-4 text-sm text-gray-900 text-center">
+                            {row.remarks}
                           </td>
                         </tr>
                       ))}
@@ -425,89 +385,127 @@ export default async function StateLeavesWorkingHoursPage({
               </CardContent>
             </Card>
 
-            {/* Working Hours */}
-            <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-r-4 border-r-orange-500">
-              <CardHeader>
-                <CardTitle className="text-center group-hover:text-orange-600 transition-colors">
+            {/* Mobile */}
+            <div className="block md:hidden mb-4">
+              <Card className="shadow-sm border-l-4 border-l-orange-500">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base font-bold">
+                    Leave Entitlements
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-3 space-y-3">
+                  {stateData.leaveEntitlements.map((row, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-gray-50 rounded-lg p-3 border text-xs space-y-2"
+                    >
+                      <div className="font-semibold text-orange-600 mb-2">
+                        {row.category}
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          Annual Leave:
+                        </span>
+                        <span>{row.annualLeave}</span>
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          Sick Leave:
+                        </span>
+                        <span>{row.sickLeave}</span>
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          Casual Leave:
+                        </span>
+                        <span>{row.casualLeave}</span>
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          Maternity Leave:
+                        </span>
+                        <span>{row.maternityLeave}</span>
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          Paternity Leave:
+                        </span>
+                        <span>{row.paternityLeave}</span>
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          Remarks:
+                        </span>
+                        <span>{row.remarks}</span>
+                      </div>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* ============== Working Hours & OT ============== */}
+            {/* Desktop */}
+            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500">
+              <CardHeader className="pb-1 lg:pb-2">
+                <CardTitle className="text-base lg:text-lg font-bold">
                   Working Hours & Overtime
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
+              <CardContent className="p-0">
+                <div className="w-full overflow-x-auto">
+                  <table className="w-full">
                     <thead>
-                      <tr className="bg-gradient-to-r from-green-50 to-green-100">
-                        <th className="border border-green-200 px-4 py-3 text-left font-semibold text-green-800">
-                          CATEGORY
+                      <tr className="bg-orange-500">
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center w-48 max-w-48">
+                          Category
                         </th>
-                        <th className="border border-green-200 px-4 py-3 text-center font-semibold text-green-800">
-                          DAILY HOURS
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Daily Hours
                         </th>
-                        <th className="border border-green-200 px-4 py-3 text-center font-semibold text-green-800">
-                          WEEKLY HOURS
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Weekly Hours
                         </th>
-                        <th className="border border-green-200 px-4 py-3 text-center font-semibold text-green-800">
-                          OVERTIME RATE
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          OT Rate
                         </th>
-                        <th className="border border-green-200 px-4 py-3 text-center font-semibold text-green-800">
-                          NIGHT SHIFT ALLOWANCE
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Night Shift Allowance
                         </th>
-                        <th className="border border-green-200 px-4 py-3 text-center font-semibold text-green-800">
-                          WEEKLY OFF
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Weekly Off
                         </th>
-                        <th className="border border-green-200 px-4 py-3 text-center font-semibold text-green-800">
-                          REMARKS
+                        <th className="px-3 py-3 text-sm font-bold text-white uppercase tracking-wide text-center">
+                          Remarks
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {stateData.workingHours.map((hours, index) => (
-                        <tr key={index} className="hover:bg-green-25 transition-colors">
-                          <td className="border border-gray-200 px-4 py-3 bg-white text-sm">
-                            {hours.category}
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {stateData.workingHours.map((row, idx) => (
+                        <tr
+                          key={idx}
+                          className="hover:bg-orange-50 transition-colors"
+                        >
+                          <td className="px-3 py-4 text-sm text-gray-900 break-words w-48 max-w-48 text-justify">
+                            {row.category}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white">
-                            <Badge
-                              variant="secondary"
-                              className="bg-blue-100 text-blue-800 font-semibold"
-                            >
-                              {hours.dailyHours}
-                            </Badge>
+                          <td className="px-3 py-4 text-sm text-center">
+                            {row.dailyHours}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white">
-                            <Badge
-                              variant="secondary"
-                              className="bg-indigo-100 text-indigo-800 font-semibold"
-                            >
-                              {hours.weeklyHours}
-                            </Badge>
+                          <td className="px-3 py-4 text-sm text-center">
+                            {row.weeklyHours}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white">
-                            <Badge
-                              variant="secondary"
-                              className="bg-orange-100 text-orange-800 font-semibold"
-                            >
-                              {hours.overtimeRate}
-                            </Badge>
+                          <td className="px-3 py-4 text-sm text-center">
+                            {row.overtimeRate}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white">
-                            <Badge
-                              variant="secondary"
-                              className="bg-purple-100 text-purple-800 font-semibold"
-                            >
-                              {hours.nightShiftAllowance}
-                            </Badge>
+                          <td className="px-3 py-4 text-sm text-center">
+                            {row.nightShiftAllowance}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white">
-                            <Badge
-                              variant="secondary"
-                              className="bg-emerald-100 text-emerald-800 font-semibold"
-                            >
-                              {hours.weeklyOff}
-                            </Badge>
+                          <td className="px-3 py-4 text-sm text-center">
+                            {row.weeklyOff}
                           </td>
-                          <td className="border border-gray-200 px-4 py-3 text-center bg-white text-sm">
-                            {hours.remarks}
+                          <td className="px-3 py-4 text-sm text-gray-900 text-center">
+                            {row.remarks}
                           </td>
                         </tr>
                       ))}
@@ -517,159 +515,139 @@ export default async function StateLeavesWorkingHoursPage({
               </CardContent>
             </Card>
 
-            {/* Quick Actions */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <Card className="group hover:shadow-lg transition-all duration-300 border-r-4 border-r-orange-500">
-                <CardContent className="p-6 text-center">
-                  <Download className="h-8 w-8 text-blue-600 mx-auto mb-3" />
-                  <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
+            {/* Mobile */}
+            <div className="block md:hidden mb-4">
+              <Card className="shadow-sm border-l-4 border-l-orange-500">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base font-bold">
+                    Working Hours & Overtime
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-3 space-y-3">
+                  {stateData.workingHours.map((row, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-gray-50 rounded-lg p-3 border text-xs space-y-2"
+                    >
+                      <div className="font-semibold text-orange-600 mb-2">
+                        {row.category}
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          Daily Hours:
+                        </span>
+                        <span>{row.dailyHours}</span>
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          Weekly Hours:
+                        </span>
+                        <span>{row.weeklyHours}</span>
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          OT Rate:
+                        </span>
+                        <span>{row.overtimeRate}</span>
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          Night Shift:
+                        </span>
+                        <span>{row.nightShiftAllowance}</span>
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          Weekly Off:
+                        </span>
+                        <span>{row.weeklyOff}</span>
+                      </div>
+                      <div className="flex gap-2 justify-between">
+                        <span className="font-medium text-gray-600">
+                          Remarks:
+                        </span>
+                        <span>{row.remarks}</span>
+                      </div>
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* --------- Quick Actions --------- */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4 mb-4 lg:mb-3">
+              {/* Download Forms */}
+              <Card className="group hover:shadow-lg transition-all duration-300 text-center border-l-4 border-l-orange-500 shadow-sm">
+                <CardContent className="p-3 lg:p-4">
+                  <Download className="h-6 w-6 lg:h-7 lg:w-7 text-orange-500 mx-auto mb-2 lg:mb-3" />
+                  <h3 className="font-medium mb-2 text-sm lg:text-base">
                     Download Forms
                   </h3>
-                  <p className="text-sm text-gray-600 mb-3">
-                    Get registration and compliance forms
-                  </p>
-                  <Button className="bg-orange-500 hover:bg-orange-600" aria-label="Download forms">
-                    <Eye className="w-4 h-4 mr-2" />
-                    Download
+                  <Button
+                    asChild
+                    size="sm"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs lg:text-sm h-7 lg:h-8"
+                  >
+                    <a
+                      href={stateData.act.formLink || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Download
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
 
-              <Card className="group hover:shadow-lg transition-all duration-300 border-r-4 border-r-orange-500">
-                <CardContent className="p-6 text-center">
-                  <Clock className="h-8 w-8 text-green-600 mx-auto mb-3" />
-                  <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
+              {/* Leave Calculator */}
+              <Card className="group hover:shadow-lg transition-all duration-300 text-center border-l-4 border-l-orange-500 shadow-sm">
+                <CardContent className="p-3 lg:p-4">
+                  <Calculator className="h-6 w-6 lg:h-7 lg:w-7 text-orange-500 mx-auto mb-2 lg:mb-3" />
+                  <h3 className="font-medium mb-2 text-sm lg:text-base">
                     Leave Calculator
                   </h3>
-                  <p className="text-sm text-gray-600 mb-3">
-                    Calculate leave entitlements
-                  </p>
                   <Button
+                    size="sm"
                     variant="outline"
-                    className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
-                    aria-label="Calculate leave entitlements"
+                    className="w-full hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 text-xs lg:text-sm h-7 lg:h-8"
                   >
-                    <Eye className="w-4 h-4 mr-2" />
                     Calculate
                   </Button>
                 </CardContent>
               </Card>
 
-              <Card className="group hover:shadow-lg transition-all duration-300 border-r-4 border-r-orange-500">
-                <CardContent className="p-6 text-center">
-                  <ExternalLink className="h-8 w-8 text-purple-600 mx-auto mb-3" />
-                  <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
+              {/* Official Website */}
+              <Card className="group hover:shadow-lg transition-all duration-300 text-center border-l-4 border-l-orange-500 shadow-sm">
+                <CardContent className="p-3 lg:p-4">
+                  <ExternalLink className="h-6 w-6 lg:h-7 lg:w-7 text-orange-500 mx-auto mb-2 lg:mb-3" />
+                  <h3 className="font-medium mb-2 text-sm lg:text-base">
                     Official Website
                   </h3>
-                  <p className="text-sm text-gray-600 mb-3">
-                    Visit state labour department
-                  </p>
                   <Button
+                    asChild
+                    size="sm"
                     variant="outline"
-                    aria-label="Visit official site"
-                    className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
+                    className="w-full hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 text-xs lg:text-sm h-7 lg:h-8"
                   >
-                    <Eye className="w-4 h-4 mr-2" />
-                    Visit Site
+                    <a
+                      href={stateData.act.websiteLink || "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit Site
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
             </div>
-
-            {/* Important Notes */}
-            <Card className="group hover:shadow-lg transition-all duration-300 border-r-4 border-r-orange-500">
-              <CardHeader>
-                <CardTitle className="group-hover:text-orange-600 transition-colors">
-                  Important Notes
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-lg">
-                    <h4 className="font-semibold text-yellow-800 mb-2">
-                      Leave Policy Compliance
-                    </h4>
-                    <p className="text-sm text-yellow-700">
-                      Employers must ensure their leave policy is at least as
-                      beneficial as the minimum requirements specified in the
-                      state's Shops and Establishments Act.
-                    </p>
-                  </div>
-                  <div className="p-4 bg-blue-50 border-l-4 border-blue-400 rounded-lg">
-                    <h4 className="font-semibold text-blue-800 mb-2">
-                      Working Hours Regulations
-                    </h4>
-                    <p className="text-sm text-blue-700">
-                      Any work beyond the specified daily or weekly hours must
-                      be compensated as overtime at the prescribed rates. Night
-                      shift workers are entitled to additional allowances.
-                    </p>
-                  </div>
-                  <div className="p-4 bg-green-50 border-l-4 border-green-400 rounded-lg">
-                    <h4 className="font-semibold text-green-800 mb-2">
-                      Record Maintenance
-                    </h4>
-                    <p className="text-sm text-green-700">
-                      Employers must maintain proper records of leave taken,
-                      working hours, overtime payments, and other statutory
-                      requirements as per the Act.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
 
-          {/* Right Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-6">
-              <Card>
-                <CardContent>
-                  <PopularSearch />
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg border-b-4 border-orange-500 pb-2">
-                    Select State
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {availableStates.map((s) => (
-                      <Link
-                        key={s.slug}
-                        href={`/leaves-working-hours/${s.slug}`}
-                        aria-label={`Go to ${s.name} leaves and working hours`}
-                        className={`block p-3 rounded-lg border transition-colors group ${s.slug === state
-                            ? "bg-orange-50 border-orange-200 text-orange-700"
-                            : "hover:bg-orange-50 hover:border-orange-200 border-gray-200"
-                          }`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <span
-                            className={`font-medium transition-colors ${s.slug === state
-                                ? "text-orange-700"
-                                : "text-gray-700 group-hover:text-orange-600"
-                              }`}
-                          >
-                            {s.name}
-                          </span>
-                          {s.slug === state && (
-                            <Check className="h-4 w-4 text-orange-600" />
-                          )}
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                  <div className="mt-4 pt-4 border-t">
-                    <p className="text-sm text-gray-600">
-                      <strong>Updated As On:</strong>
-                      <br />
-                      {stateData.lastUpdated}
-                    </p>
-                  </div>
+          {/* Sidebar */}
+          <div className="2xl:w-xs hidden lg:block lg:col-span-1">
+            <div className="sticky top-2 lg:top-3">
+              <Card className="shadow-sm hover:shadow-md transition-shadow">
+                <CardContent className="p-2 lg:p-3 xl:p-4">
+                  <PopularSearch className="mb-0" />
                 </CardContent>
               </Card>
             </div>
@@ -677,5 +655,5 @@ export default async function StateLeavesWorkingHoursPage({
         </div>
       </div>
     </div>
-  )
+  );
 }
