@@ -96,7 +96,7 @@ export default function LeavesWorkingHours({
                     onSearchChange={setQ}
                     onStateChange={setStateFilter}
                     isPending={false}
-                    states={allStates.map((n) => ({ label: n, value: n }))} // if your component needs options
+                    states={allStates?.map((n) => ({ label: n, value: n }))} // if your component needs options
                   />
                 </div>
               </div>
@@ -115,24 +115,24 @@ export default function LeavesWorkingHours({
                     <div>
                       <div className="flex items-center justify-between mb-4">
                         <h3 className="text-lg font-semibold text-gray-900">Applicable States</h3>
-                        <span className="text-xs text-gray-500">{filteredApplicable.length} results</span>
+                        <span className="text-xs text-gray-500">{filteredApplicable?.length} results</span>
                       </div>
 
-                      {filteredApplicable.length === 0 ? (
+                      {filteredApplicable?.length === 0 ? (
                         <div className="p-3 rounded-lg border bg-amber-50 text-amber-800 text-sm">
                           No applicable states found right now.
                         </div>
                       ) : (
                         <div className="space-y-2">
-                          {filteredApplicable.map((s, index) => (
+                          {filteredApplicable?.map((s, index) => (
                             <Link
-                              key={s.id}
-                              href={`/leaves-working-hours/${s.state_slug}`}
-                              aria-label={`Go to ${s.state_name} leaves and working hours`}
+                              key={s?.id}
+                              href={`/leaves-working-hours-details/${s?.state_slug}`}
+                              aria-label={`Go to ${s?.state_name} leaves and working hours`}
                               className="block p-3 rounded-lg border hover:bg-orange-100 transition-colors"
                             >
                               <span className="text-blue-600 hover:text-orange-600 transition-colors">
-                                {index + 1}. {s.state_name}
+                                {index + 1}. {s?.state_name}
                               </span>
                             </Link>
                           ))}
@@ -144,19 +144,19 @@ export default function LeavesWorkingHours({
                     <div>
                       <div className="flex items-center justify-between mb-4">
                         <h3 className="text-lg font-semibold text-gray-900">Non-Applicable States</h3>
-                        <span className="text-xs text-gray-500">{filteredNonApplicable.length} results</span>
+                        <span className="text-xs text-gray-500">{filteredNonApplicable?.length} results</span>
                       </div>
 
-                      {filteredNonApplicable.length === 0 ? (
+                      {filteredNonApplicable?.length === 0 ? (
                         <div className="p-3 rounded-lg border bg-gray-50 text-gray-600 text-sm">
                           No non-applicable states listed.
                         </div>
                       ) : (
                         <div className="space-y-2">
-                          {filteredNonApplicable.map((s, index) => (
-                            <div key={s.id} className="p-3 rounded-lg border bg-gray-50">
+                          {filteredNonApplicable?.map((s, index) => (
+                            <div key={s?.id} className="p-3 rounded-lg border bg-gray-50">
                               <span className="text-gray-600">
-                                {index + 1}. {s.state_name}
+                                {index + 1}. {s?.state_name}
                               </span>
                             </div>
                           ))}

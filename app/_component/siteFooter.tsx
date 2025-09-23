@@ -84,12 +84,12 @@ export default function SiteFooter() {
             <h3 className="font-bold text-xl mb-6 text-white">Quick Links</h3>
             <ul className="space-y-3 text-gray-400">
               <li>
-                <Link href="/about" aria-label="About Us" className="hover:text-orange-400 transition-colors duration-300 text-lg">
+                <Link href="/our-company" aria-label="About Us" className="hover:text-orange-400 transition-colors duration-300 text-lg">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/acts-rule-form" aria-label="Resources" className="hover:text-orange-400 transition-colors duration-300 text-lg">
+                <Link href="/library" aria-label="Resources" className="hover:text-orange-400 transition-colors duration-300 text-lg">
                   Resources
                 </Link>
               </li>
