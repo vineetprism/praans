@@ -72,7 +72,7 @@ function PriceHighlight({ children }: { children: React.ReactNode }) {
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 const ENQUIRY_ENDPOINT = new URL("/api/enquiry", API_BASE).toString(); // <-- /api/enquiry
 
-const HARDCODED_TITLE = "CLRA Registration Lead";
+const HARDCODED_TITLE = "CLRA Registration Consultant";
 
 type FieldErrors = Partial<Record<"name" | "phone" | "email" | "state" | "message" | "title", string[]>>;
 
