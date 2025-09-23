@@ -30,8 +30,8 @@ type PTApi = {
 
 type Props = {
   initialData: PTApi | null; // ISR server se aaya payload
-  apiBase: string;           // future use (links, images etc.)
-  enableFilters?: boolean;   // feature flag
+  apiBase: string; // future use (links, images etc.)
+  enableFilters?: boolean; // feature flag
 };
 
 export default function ProfessionalTax({
@@ -69,8 +69,7 @@ export default function ProfessionalTax({
     const term = query.trim().toLowerCase();
     return nonApplicableStates.filter((name) => {
       const byText = name.toLowerCase().includes(term);
-      const byPick =
-        selectedState === "All States" || name === selectedState;
+      const byPick = selectedState === "All States" || name === selectedState;
       return byText && byPick;
     });
   }, [nonApplicableStates, query, selectedState]);
@@ -154,7 +153,10 @@ export default function ProfessionalTax({
               </Card>
 
               {quickActionCards?.map((card, index) => (
-                <Card key={index} className="border-l-4 border-l-orange-500 lg:h-40">
+                <Card
+                  key={index}
+                  className="border-l-4 border-l-orange-500 lg:h-40"
+                >
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-3">
                       <div>
@@ -218,7 +220,9 @@ export default function ProfessionalTax({
                       </h3>
                       <div className="space-y-3">
                         {filteredApplicable?.length === 0 && (
-                          <div className="text-sm text-gray-600">No states found.</div>
+                          <div className="text-sm text-gray-600">
+                            No states found.
+                          </div>
                         )}
                         {filteredApplicable?.map((state, index) => (
                           <Link
@@ -232,11 +236,17 @@ export default function ProfessionalTax({
                                   {index + 1}. {state?.state_name}
                                 </span>
                                 <div className="text-sm text-gray-700">
-                                  Max Rate: ₹{(state?.max_rate ?? 0).toLocaleString("en-IN")} |{" "}
-                                  {state?.slabs ?? 0} Slabs
+                                  Max Rate: ₹
+                                  {(state?.max_rate ?? 0).toLocaleString(
+                                    "en-IN"
+                                  )}{" "}
+                                  | {state?.slabs ?? 0} Slabs
                                 </div>
                               </div>
-                              <Badge variant="secondary" className="bg-green-100 text-green-800">
+                              <Badge
+                                variant="secondary"
+                                className="bg-green-100 text-green-800"
+                              >
                                 Applicable
                               </Badge>
                             </div>
@@ -252,7 +262,9 @@ export default function ProfessionalTax({
                       </h3>
                       <div className="space-y-3">
                         {filteredNonApplicable?.length === 0 && (
-                          <div className="text-sm text-gray-600">No states found.</div>
+                          <div className="text-sm text-gray-600">
+                            No states found.
+                          </div>
                         )}
                         {filteredNonApplicable?.map((name, index) => (
                           <div
@@ -262,7 +274,10 @@ export default function ProfessionalTax({
                             <span className="text-gray-700">
                               {index + 1}. {name}
                             </span>
-                            <Badge variant="secondary" className="bg-gray-100 text-gray-600">
+                            <Badge
+                              variant="secondary"
+                              className="bg-gray-100 text-gray-600"
+                            >
                               Not Applicable
                             </Badge>
                           </div>
@@ -276,15 +291,15 @@ export default function ProfessionalTax({
           </div>
 
           {/* Sidebar */}
-               <div className="min-w-0">
-                  <div className="sticky top-24">
-                    <div className="rounded-lg border bg-white shadow-sm">
-                      <div className="p-4">
-                        <PopularSearch className="mb-0" />
-                      </div>
-                    </div>
-                  </div>
+          <div className="min-w-0">
+            <div className="sticky top-24">
+              <div className="rounded-lg border bg-white shadow-sm">
+                <div className="p-4">
+                  <PopularSearch className="mb-0" />
                 </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
