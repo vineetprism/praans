@@ -81,7 +81,7 @@ const SERVICES = [
     title: "LWF",
     desc:
       "The Labour Welfare Fund (LWF) registration process in India ensures that employers contribute towards the welfare of their employees.",
-    href: "/labour-welfare-fund",
+    href: "/labour-welfare-fund-registration",
   },
   {
     title: "Trade Licence",
