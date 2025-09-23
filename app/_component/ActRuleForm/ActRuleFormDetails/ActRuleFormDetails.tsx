@@ -1142,7 +1142,8 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
 
                                       {/* Title + Tooltip */}
                                       <TableCell className="py-2 max-w-64">
-                                        <Tooltip>
+                                        <p>{form?.title}</p>
+                                        {/* <Tooltip>
                                           <TooltipTrigger asChild>
                                             <div className="font-medium text-[11px] sm:text-xs 2xl:text-sm truncate cursor-help">
                                               {form?.title}
@@ -1154,7 +1155,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                                           >
                                             <p>{form?.title}</p>
                                           </TooltipContent>
-                                        </Tooltip>
+                                        </Tooltip> */}
                                       </TableCell>
 
                                       <TableCell className="py-2">
