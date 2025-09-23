@@ -276,15 +276,15 @@ export default function ProfessionalTax({
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1 2xl:w-sm">
-            <div className="sticky top-24 ">
-              <Card>
-                <CardContent>
-                  <PopularSearch className="mb-6 " />
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+               <div className="min-w-0">
+                  <div className="sticky top-24">
+                    <div className="rounded-lg border bg-white shadow-sm">
+                      <div className="p-4">
+                        <PopularSearch className="mb-0" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
         </div>
       </div>
     </div>

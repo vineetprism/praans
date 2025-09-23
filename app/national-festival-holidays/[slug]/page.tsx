@@ -74,31 +74,7 @@ export default function StateDetailPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Search Bar */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" aria-label="Search" />
-            <Input
-              type="text"
-              placeholder="Search holiday details, states..."
-              className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              aria-label="Search holiday details, states..."
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
-          <Home className="w-4 h-4" />
-          <Link href="/" className="hover:text-orange-500" aria-label="Home">Home</Link>
-          <ChevronRight className="w-4 h-4" />
-          <Link href="/national-festival-holidays" className="hover:text-orange-500" aria-label="National Festival Holidays">National Festival Holidays</Link>
-          <ChevronRight className="w-4 h-4" />
-          <span className="text-orange-500 font-medium">{data.name}</span>
-        </nav>
+      <div className="max-w-auto mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         {/* Grid Layout with Sidebar */}
         <div className="grid lg:grid-cols-4 gap-8">
@@ -108,19 +84,16 @@ export default function StateDetailPage() {
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">NFH Details</h1>
-                  <p className="text-lg text-gray-600">
-                    National and Festival Holiday details for {data.name}
-                  </p>
+                 <h2 className="text-base sm:text-lg font-semibold text-slate-800 mb-2 2xl:text-2xl">NFH Details :</h2>
                 </div>
-                <Badge variant="secondary" className="px-3 py-1 bg-blue-100 text-blue-800">
-                  {data.totalHolidays} Total Holidays
-                </Badge>
+                <p className="px-3 py-1 text-orange-600 text-lg">
+                  {data.name}
+                </p>
               </div>
             </div>
 
             {/* Statistics Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <Card>
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
@@ -154,7 +127,7 @@ export default function StateDetailPage() {
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </div> */}
 
             {/* Main Detail Card */}
             <Card className="border-l-4 border-l-orange-500">
@@ -285,7 +258,7 @@ export default function StateDetailPage() {
             </Card>
 
             {/* Back Button */}
-            <div className="mt-8">
+            {/* <div className="mt-8">
               <Button
                 asChild
                 variant="outline"
@@ -294,7 +267,7 @@ export default function StateDetailPage() {
               >
                 <Link href="/national-festival-holidays" aria-label="Back to Holidays Matrix">← Back to Holidays Matrix</Link>
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/* Sidebar with Quick Access */}
