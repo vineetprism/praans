@@ -1224,13 +1224,193 @@
 
 
 
+// // app/acts/[slug]/page.tsx (Server Component)
+// import { notFound } from "next/navigation";
+// import { Metadata } from "next";
+// import ActDetailClient from "@/app/_component/ActRuleForm/ActRuleFormDetails/ActRuleFormDetails";
+
+// // API base ko environment variable se connect karo
+// const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
+
+// // Types based on actual API response
+// type FormAPI = {
+//   id: number;
+//   form_no: string;
+//   title: string;
+//   short_desc: string;
+//   pdf_url: string | null;
+//   created_at: string;
+// };
+
+// type ActDetailAPI = {
+//   data: {
+//     id: number;
+//     title: string;
+//     slug: string;
+//     state: string;
+//     short_description: string;
+//     act_desc: string;      
+//     rule_desc: string;           
+//     act_doc_path?: string | null;
+//     act_doc_url?: string | null;
+//     rule_doc_path?: string | null;
+//     rule_doc_url?: string | null;
+//     forms: FormAPI[];
+//     created_at: string;
+//   };
+// };
+
+// // Server-side data fetching with ISR
+// async function getActDetail(slug: string): Promise<ActDetailAPI | null> {
+//   try {
+//     const res = await fetch(`${API_BASE}/api/act-rule-forms/${slug}`, {
+//       next: { 
+//         revalidate: 1800  // 30 minutes ISR cache
+//       },
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json',
+//       }
+//     });
+    
+//     if (!res.ok) {
+//       console.error(`Failed to fetch act detail for slug: ${slug}, Status: ${res.status}`);
+//       return null;
+//     }
+    
+//     const data = await res.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching act detail:", error);
+//     return null;
+//   }
+// }
+
+// // Dynamic metadata generation from API
+// export async function generateMetadata({ 
+//   params 
+// }: { 
+//   params: { slug: string } 
+// }): Promise<Metadata> {
+//   const payload = await getActDetail(params.slug);
+//   const act = payload?.data;
+  
+//   if (!act) {
+//     return {
+//       title: "Act Not Found | Labour Acts Database",
+//       description: "The requested labour act could not be found.",
+//       robots: {
+//         index: false,
+//         follow: false,
+//       }
+//     };
+//   }
+
+//   return {
+//     title: `${act.title} | Labour Acts Database`,
+//     description: act.short_description,
+//     keywords: [
+//       act.title,
+//       "Labour Act",
+//       "Legal Database", 
+//       act.state,
+//       "Employment Law",
+//       "Indian Labour Laws",
+//       "Rules and Forms",
+//       act.slug
+//     ],
+//     openGraph: {
+//       title: act.title,
+//       description: act.short_description,
+//       type: "article",
+//       url: `/acts/${act.slug}`,
+//       siteName: "Labour Acts Database"
+//     },
+//     twitter: {
+//       card: "summary",
+//       title: act.title,
+//       description: act.short_description,
+//     },
+//     robots: {
+//       index: true,
+//       follow: true,
+//       googleBot: {
+//         index: true,
+//         follow: true,
+//         'max-video-preview': -1,
+//         'max-image-preview': 'large',
+//         'max-snippet': -1,
+//       },
+//     },
+//     alternates: {
+//       canonical: `/acts/${act.slug}`,
+//     }
+//   };
+// }
+
+// // Main server component
+// export default async function ActDetailPage({ 
+//   params 
+// }: { 
+//   params: { slug: string } 
+// }) {
+//   const payload = await getActDetail(params.slug);
+//   const act = payload?.data;
+  
+//   if (!act) {
+//     notFound();
+//   }
+
+//   return (
+//     <>
+//       {/* JSON-LD Structured Data */}
+//       <script
+//         type="application/ld+json"
+//         dangerouslySetInnerHTML={{
+//           __html: JSON.stringify({
+//             "@context": "https://schema.org",
+//             "@type": "GovernmentOrganization",
+//             "name": act.title,
+//             "description": act.short_description,
+//             "url": `/acts/${act.slug}`,
+//             "areaServed": act.state,
+//             "dateCreated": act.created_at,
+//             "governmentType": "Legal Database"
+//           }),
+//         }}
+//       />
+      
+//       <ActDetailClient act={act} />
+//     </>
+//   );
+// }
+
+// // Generate static params for ISR (optional)
+// export async function generateStaticParams() {
+//   try {
+//     return [
+//       { slug: 'maharashtra-shops-and-establishments-act-2017' },
+//       // Add more popular slugs here
+//     ];
+//   } catch (error) {
+//     console.error('Error generating static params:', error);
+//     return [];
+//   }
+// }
+
+
+
+
+
+
 // app/acts/[slug]/page.tsx (Server Component)
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
 import ActDetailClient from "@/app/_component/ActRuleForm/ActRuleFormDetails/ActRuleFormDetails";
 
-// API base ko environment variable se connect karo
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
+// API base ko environment variable se connect karo (safe fallback + trim)
+const API_BASE =
+  (process.env.NEXT_PUBLIC_API_BASE || "https://prns.prisminfoways.com").replace(/\/+$/, "");
 
 // Types based on actual API response
 type FormAPI = {
@@ -1249,8 +1429,8 @@ type ActDetailAPI = {
     slug: string;
     state: string;
     short_description: string;
-    act_desc: string;      
-    rule_desc: string;           
+    act_desc: string;
+    rule_desc: string;
     act_doc_path?: string | null;
     act_doc_url?: string | null;
     rule_doc_path?: string | null;
@@ -1264,21 +1444,18 @@ type ActDetailAPI = {
 async function getActDetail(slug: string): Promise<ActDetailAPI | null> {
   try {
     const res = await fetch(`${API_BASE}/api/act-rule-forms/${slug}`, {
-      next: { 
-        revalidate: 1800  // 30 minutes ISR cache
-      },
+      next: { revalidate: 1800 }, // 30 minutes ISR cache
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      }
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
     });
-    
     if (!res.ok) {
       console.error(`Failed to fetch act detail for slug: ${slug}, Status: ${res.status}`);
       return null;
     }
-    
-    const data = await res.json();
+    const data = (await res.json()) as ActDetailAPI;
+    if (!data?.data?.title) return null;
     return data;
   } catch (error) {
     console.error("Error fetching act detail:", error);
@@ -1286,23 +1463,21 @@ async function getActDetail(slug: string): Promise<ActDetailAPI | null> {
   }
 }
 
-// Dynamic metadata generation from API
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: { slug: string } 
-}): Promise<Metadata> {
-  const payload = await getActDetail(params.slug);
+/* =========================
+   Dynamic metadata — await params
+   ========================= */
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params;            // ✅ await params
+  const payload = await getActDetail(slug);
   const act = payload?.data;
-  
+
   if (!act) {
     return {
       title: "Act Not Found | Labour Acts Database",
       description: "The requested labour act could not be found.",
-      robots: {
-        index: false,
-        follow: false,
-      }
+      robots: { index: false, follow: false },
     };
   }
 
@@ -1312,19 +1487,19 @@ export async function generateMetadata({
     keywords: [
       act.title,
       "Labour Act",
-      "Legal Database", 
+      "Legal Database",
       act.state,
       "Employment Law",
       "Indian Labour Laws",
       "Rules and Forms",
-      act.slug
+      act.slug,
     ],
     openGraph: {
       title: act.title,
       description: act.short_description,
       type: "article",
       url: `/acts/${act.slug}`,
-      siteName: "Labour Acts Database"
+      siteName: "Labour Acts Database",
     },
     twitter: {
       card: "summary",
@@ -1337,29 +1512,26 @@ export async function generateMetadata({
       googleBot: {
         index: true,
         follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
     },
-    alternates: {
-      canonical: `/acts/${act.slug}`,
-    }
+    alternates: { canonical: `/acts/${act.slug}` },
   };
 }
 
-// Main server component
-export default async function ActDetailPage({ 
-  params 
-}: { 
-  params: { slug: string } 
-}) {
-  const payload = await getActDetail(params.slug);
+/* =========================
+   Page — await params
+   ========================= */
+export default async function ActDetailPage(
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await params;            // ✅ await params
+  const payload = await getActDetail(slug);
   const act = payload?.data;
-  
-  if (!act) {
-    notFound();
-  }
+
+  if (!act) notFound();
 
   return (
     <>
@@ -1370,30 +1542,28 @@ export default async function ActDetailPage({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "GovernmentOrganization",
-            "name": act.title,
-            "description": act.short_description,
-            "url": `/acts/${act.slug}`,
-            "areaServed": act.state,
-            "dateCreated": act.created_at,
-            "governmentType": "Legal Database"
+            name: act.title,
+            description: act.short_description,
+            url: `/acts/${act.slug}`, // absolute URL chahiye ho to SITE_URL env se prefix kar lo
+            areaServed: act.state,
+            dateCreated: act.created_at,
+            governmentType: "Legal Database",
           }),
         }}
       />
-      
       <ActDetailClient act={act} />
     </>
   );
 }
 
-// Generate static params for ISR (optional)
+/* =========================
+   Static params (optional)
+   ========================= */
 export async function generateStaticParams() {
   try {
-    return [
-      { slug: 'maharashtra-shops-and-establishments-act-2017' },
-      // Add more popular slugs here
-    ];
+    return [{ slug: "maharashtra-shops-and-establishments-act-2017" }];
   } catch (error) {
-    console.error('Error generating static params:', error);
+    console.error("Error generating static params:", error);
     return [];
   }
 }

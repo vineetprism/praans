@@ -1296,6 +1296,86 @@
 
 
 
+// // app/welfare-fund/[state]/page.tsx
+// import type { Metadata } from "next";
+// import { notFound } from "next/navigation";
+// import WelfareFundDetails from "@/app/_component/WelfareFund/WelfareFundDetails/WelfareFundDetails";
+
+// export const revalidate = 1800; // ISR 30min
+
+// // ---------- Types from API ----------
+// type Row = Record<string, string | null>;
+// type WFSlugData = {
+//   state: { name: string; slug: string };
+//   updated_date?: string | null;
+//   effective_date?: string | null;
+//   act_information: { headers: string[]; rows: Row[] };
+//   labour_welfare_fund_contribution: { headers: string[]; rows: Row[] };
+//   downloads: { form_title?: string | null; form_url?: string | null; website_url?: string | null };
+// };
+// type WFSlugResponse = { data: WFSlugData };
+// type WFListResponse = {
+//   applicable_states: { state_slug: string }[];
+//   non_applicable_states: { state_slug: string }[];
+// };
+
+// // const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://100.110.147.101:8000";
+// const API_BASE ="http://100.110.147.101:8000";
+
+// // ---------- Fetchers ----------
+// async function getWFState(slug: string): Promise<WFSlugData | null> {
+//   try {
+//     const res = await fetch(`${API_BASE}/api/welfare-funds/${slug}`, { next: { revalidate } });
+//     if (res.status === 404) return null;
+//     if (!res.ok) throw new Error(`HTTP ${res.status}`);
+//     const json = (await res.json()) as WFSlugResponse;
+//     return json?.data ?? null;
+//   } catch {
+//     return null;
+//   }
+// }
+
+// async function getAllSlugs(): Promise<string[]> {
+//   try {
+//     const res = await fetch(`${API_BASE}/api/welfare-funds`, { next: { revalidate } });
+//     if (!res.ok) throw new Error(`HTTP ${res.status}`);
+//     const json = (await res.json()) as WFListResponse;
+//     return [
+//       ...(json.applicable_states || []).map((s) => s.state_slug),
+//       ...(json.non_applicable_states || []).map((s) => s.state_slug),
+//     ];
+//   } catch {
+//     return [];
+//   }
+// }
+
+// // ---------- Metadata ----------
+// export async function generateMetadata({ params }: { params: { state: string } }): Promise<Metadata> {
+//   const data = await getWFState(params.state);
+//   if (!data) return { title: "Labour Welfare Fund | Not Found" };
+//   return {
+//     title: `${data.state.name} Labour Welfare Fund | Contribution, Forms & Rules`,
+//     description: `Official ${data.state.name} LWF details – act & rules, contribution table, frequency, forms & website.`,
+//   };
+// }
+
+// export async function generateStaticParams() {
+//   const slugs = await getAllSlugs();
+//   return slugs.map((state) => ({ state }));
+// }
+
+// // ---------- Page ----------
+// export default async function StateWelfareFundPage({ params }: { params: { state: string } }) {
+//   const data = await getWFState(params.state);
+//   if (!data) notFound();
+//   return <WelfareFundDetails data={data} apiBase={API_BASE} />;
+// }
+
+
+
+
+
+
 // app/welfare-fund/[state]/page.tsx
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -1319,8 +1399,8 @@ type WFListResponse = {
   non_applicable_states: { state_slug: string }[];
 };
 
-// const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://100.110.147.101:8000";
-const API_BASE ="http://100.110.147.101:8000";
+// const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/$/, "") || "http://100.110.147.101:8000";
+const API_BASE = "http://100.110.147.101:8000";
 
 // ---------- Fetchers ----------
 async function getWFState(slug: string): Promise<WFSlugData | null> {
@@ -1349,9 +1429,12 @@ async function getAllSlugs(): Promise<string[]> {
   }
 }
 
-// ---------- Metadata ----------
-export async function generateMetadata({ params }: { params: { state: string } }): Promise<Metadata> {
-  const data = await getWFState(params.state);
+// ---------- Metadata (await params) ----------
+export async function generateMetadata(
+  { params }: { params: Promise<{ state: string }> }
+): Promise<Metadata> {
+  const { state } = await params; // ✅ await
+  const data = await getWFState(state);
   if (!data) return { title: "Labour Welfare Fund | Not Found" };
   return {
     title: `${data.state.name} Labour Welfare Fund | Contribution, Forms & Rules`,
@@ -1359,14 +1442,18 @@ export async function generateMetadata({ params }: { params: { state: string } }
   };
 }
 
+// ---------- Static Params (ISR prebuild) ----------
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
   return slugs.map((state) => ({ state }));
 }
 
-// ---------- Page ----------
-export default async function StateWelfareFundPage({ params }: { params: { state: string } }) {
-  const data = await getWFState(params.state);
+// ---------- Page (await params) ----------
+export default async function StateWelfareFundPage(
+  { params }: { params: Promise<{ state: string }> }
+) {
+  const { state } = await params; // ✅ await
+  const data = await getWFState(state);
   if (!data) notFound();
   return <WelfareFundDetails data={data} apiBase={API_BASE} />;
 }

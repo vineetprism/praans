@@ -97,7 +97,7 @@ function sameDay(a?: Date | null, iso?: string | null) {
   );
 }
 
-export default function GazetteNotificationsClient({
+export default function Gazette({
   initialData,
   initialPage,
   availableStates, // This is your availableStates prop

@@ -8,7 +8,7 @@ import { CheckCircle, XCircle, Calculator, CalculatorIcon, Eye, MapPin } from "l
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";
 
-// ---- Types (same as server file) ----
+
 type WFState = {
   state_name: string;
   state_slug: string;
@@ -16,7 +16,7 @@ type WFState = {
   updated_date?: string | null;
   effective_date?: string | null;
 };
-
+    
 type WFResponse = {
   applicable_count: number;
   non_applicable_count: number;
@@ -161,7 +161,7 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
               </div>
 
               {/* State-wise Applicability */}
-              <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
+              <Card className="mb-8 border-l-4 border-l-orange-500">
                 <CardHeader>
                   <CardTitle>State-wise Applicability :</CardTitle>
                 </CardHeader>
@@ -204,7 +204,7 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
                         <div className="space-y-3">
                           {filteredNonApplicable?.map((s, idx) => (
                             <Link key={s?.state_slug} href={`/labour-welfare-fund-details/${s?.state_slug}`} aria-label="View State-wise Applicability">
-                              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
+                              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border mb-3">
                                 <span className="text-gray-700">{idx + 1}. {s?.state_name}</span>
                                 <div className="flex items-center gap-2">
                                   <MapPin className="w-4 h-4 text-gray-400" />
