@@ -63,37 +63,37 @@ const SERVICES = [
     title: "MSME Registration",
     desc:
       "Micro, Small, and Medium Enterprises (MSMEs) play a crucial role in India’s economic growth, providing employment, fostering innovation, and driving exports.",
-    href: "/registration/msme",
+    href: "/msme",
   },
   {
     title: "FSSAI",
     desc:
       "FSSAI (Food Safety and Standards Authority of India) registration is a compulsory requirement for all individuals or businesses engaged in food activities.",
-    href: "/registration/fssai",
+    href: "/fssai",
   },
   {
     title: "GST Registration",
     desc:
       "Goods and Services Tax is a transformative tax reform that streamlines the taxation process by consolidating multiple indirect taxes into a single, unified tax framework.",
-    href: "/registration/gst",
+    href: "/gst",
   },
   {
     title: "LWF",
     desc:
       "The Labour Welfare Fund (LWF) registration process in India ensures that employers contribute towards the welfare of their employees.",
-    href: "/registration/labour-welfare-fund",
+    href: "/labour-welfare-fund",
   },
   {
     title: "Trade Licence",
     desc:
       "A Trade License is a legal permit issued by the local municipal authority that allows businesses to operate in a specific area.",
-    href: "/registration/trade-licence",
+    href: "/trade-licence",
   },
   {
     title: "CLRA",
     desc:
       "The Contract Labour is a central law designed to regulate the employment of contract labour in India, ensuring their rights and welfare.",
-    href: "/registration/clra",
+    href: "/contract-labour-licence",
   },
 ];
 
