@@ -146,16 +146,14 @@ export default function Header() {
 
           <div className="ml-auto flex items-center gap-4">
             <nav className="hidden lg:flex items-center">
-              {NAV.map((item, index) => {
-                // ✅ active logic: parents with empty href are active only if a child matches
-                const active = item.href
+              {NAV?.map((item, index) => {
+                const active = item?.href
                   ? !!pathname && pathname.startsWith(item.href)
-                  : !!item.dropdown?.some(
+                  : !!item?.dropdown?.some(
                       (d) => pathname === d.href || (!!pathname && pathname.startsWith(d.href))
                     );
-                const hasDropdown = !!item.dropdown?.length;
-                // ✅ unique key even when href is ""
-                const navKey = item.href?.trim() || item.label?.trim() || `nav-${index}`;
+                const hasDropdown = !!item?.dropdown?.length;
+                const navKey = item?.href?.trim() || item?.label?.trim() || `nav-${index}`;
 
                 return (
                   <div
@@ -165,7 +163,7 @@ export default function Header() {
                     onMouseLeave={() => hasDropdown && scheduleClose()}
                   >
                     <Link
-                      href={item.href || "#"}
+                      href={item?.href || "#"}
                       aria-current={active ? "page" : undefined}
                       aria-haspopup={hasDropdown ? "menu" : undefined}
                       aria-expanded={hasDropdown ? dropdownOpen === index : undefined}
@@ -188,9 +186,9 @@ export default function Header() {
                       }}
                       onFocus={() => hasDropdown && openMenu(index)}
                       onBlur={() => hasDropdown && scheduleClose()}
-                      aria-label={`Go to ${item.label}`}
+                      aria-label={`Go to ${item?.label}`}
                     >
-                      {item.label}
+                      {item?.label}
                       {hasDropdown && (
                         <ChevronDown
                           className={`w-4 h-4 transition-transform duration-200 ${
@@ -207,26 +205,26 @@ export default function Header() {
                         onMouseLeave={scheduleClose}
                       >
                         <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 rotate-45" />
-                        {item.dropdown?.map((dropdownItem) => {
-                          const dropdownActive = pathname === dropdownItem.href;
+                        {item?.dropdown?.map((dropdownItem) => {
+                          const dropdownActive = pathname === dropdownItem?.href;
                           return (
                             <Link
-                              key={dropdownItem.href}
-                              href={dropdownItem.href}
+                              key={dropdownItem?.href}
+                              href={dropdownItem?.href}
                               className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg text-sm font-medium transition-all duration-150 group ${
                                 dropdownActive
                                   ? "text-orange-600 bg-orange-50 shadow-sm"
                                   : "text-gray-700 hover:text-orange-600 hover:bg-orange-50/70"
                               }`}
                               onClick={() => setDropdownOpen(null)}
-                              aria-label={`Go to ${dropdownItem.label}`}
+                              aria-label={`Go to ${dropdownItem?.label}`}
                             >
                               <div
                                 className={`w-2 h-2 rounded-full transition-colors ${
                                   dropdownActive ? "bg-orange-500" : "bg-gray-300 group-hover:bg-orange-400"
                                 }`}
                               />
-                              <span className="flex-1">{dropdownItem.label}</span>
+                              <span className="flex-1">{dropdownItem?.label}</span>
                               <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                             </Link>
                           );
@@ -284,20 +282,20 @@ export default function Header() {
                   </SheetHeader>
 
                   <div className="mt-6 space-y-2">
-                    {NAV.map((item, index) => {
-                      const active = item.href
+                    {NAV?.map((item, index) => {
+                      const active = item?.href
                         ? !!pathname && pathname.startsWith(item.href)
-                        : !!item.dropdown?.some(
+                        : !!item?.dropdown?.some(
                             (d) => pathname === d.href || (!!pathname && pathname.startsWith(d.href))
                           );
-                      const hasDropdown = !!item.dropdown?.length;
-                      const navKey = item.href?.trim() || item.label?.trim() || `mnav-${index}`;
+                      const hasDropdown = !!item?.dropdown?.length;
+                      const navKey = item?.href?.trim() || item?.label?.trim() || `mnav-${index}`;
 
                       if (!hasDropdown) {
                         return (
                           <SheetClose asChild key={navKey}>
                             <Link
-                              href={item.href}
+                              href={item?.href}
                               className={`flex items-center gap-3 rounded-xl px-4 py-3 font-medium transition-all ${
                                 active
                                   ? "bg-orange-100 text-orange-700 shadow-sm"
@@ -306,7 +304,7 @@ export default function Header() {
                               aria-current={active ? "page" : undefined}
                             >
                               <div className={`w-2 h-2 rounded-full ${active ? "bg-orange-500" : "bg-gray-300"}`} />
-                              {item.label}
+                              {item?.label}
                             </Link>
                           </SheetClose>
                         );
@@ -323,11 +321,11 @@ export default function Header() {
                             className={`w-full flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-all ${
                               active ? "bg-orange-100 text-orange-700" : "text-gray-700 hover:bg-orange-50"
                             }`}
-                            aria-label={`Toggle dropdown for ${item.label}`}
+                            aria-label={`Toggle dropdown for ${item?.label}`}
                           >
                             <div className="flex items-center gap-3">
                               <div className={`w-2 h-2 rounded-full ${active ? "bg-orange-500" : "bg-gray-300"}`} />
-                              <span>{item.label}</span>
+                              <span>{item?.label}</span>
                             </div>
                             <ChevronDown
                               className={`w-4 h-4 transition-transform duration-200 ${
@@ -338,18 +336,18 @@ export default function Header() {
 
                           {isOpen && (
                             <div id={`mobile-submenu-${index}`} className="ml-6 mt-2 space-y-1">
-                              {item.dropdown?.map((dropdownItem) => {
-                                const dropdownActive = pathname === dropdownItem.href;
+                              {item?.dropdown?.map((dropdownItem) => {
+                                const dropdownActive = pathname === dropdownItem?.href;
                                 return (
-                                  <SheetClose asChild key={dropdownItem.href}>
+                                  <SheetClose asChild key={dropdownItem?.href}>
                                     <Link
-                                      href={dropdownItem.href}
+                                      href={dropdownItem?.href}
                                       className={`flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium transition-all ${
                                         dropdownActive
                                           ? "bg-orange-100 text-orange-700"
                                           : "text-gray-600 hover:bg-orange-50 hover:text-orange-600"
                                       }`}
-                                      aria-label={`Go to ${dropdownItem.label}`}
+                                      aria-label={`Go to ${dropdownItem?.label}`}
                                     >
                                       <div
                                         className={`w-1.5 h-1.5 rounded-full ${
