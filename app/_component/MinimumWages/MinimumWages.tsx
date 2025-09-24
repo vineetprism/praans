@@ -37,6 +37,13 @@ export default function MinimumWages({ items }: Props) {
     });
   }, [items, query, selectedState]);
 
+  const stateOptions = useMemo(() => {
+  const uniq = Array.from(new Set(items.map((x) => x.state))).sort((a, b) => a.localeCompare(b));
+  const list = ["All States", ...uniq];
+  return list.map(s => ({ label: s, value: s }));
+}, [items]);
+
+
   return (
     <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
@@ -65,13 +72,15 @@ export default function MinimumWages({ items }: Props) {
             </div>
 
             <div className="mb-6 sm:mb-8 md:mb-10 w-full">
-              <SearchAndStateFilter
-                stateOptions={states}
-                placeholder="Search by state..."
-                defaultState="All States"
-                onSearchChange={setQuery}
-                onStateChange={setSelectedState}
-              />
+<SearchAndStateFilter
+  searchValue={query}
+  stateValue={selectedState}
+  onSearchChange={setQuery}
+  onStateChange={setSelectedState}
+  isPending={false}
+  states={stateOptions}
+/>
+
             </div>
 
             <div className="block sm:hidden space-y-3 mb-6 w-full">

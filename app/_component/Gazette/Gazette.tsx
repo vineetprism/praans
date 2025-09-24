@@ -9,7 +9,9 @@ import { Loader2, ChevronLeft, ChevronRight, Download, Eye, CalendarIcon } from 
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import { Calendar } from "@/components/ui/calendar";
 import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";
-import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
+// import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
+// ✅ right (ShadCN)
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 // ---------- Types from API ----------
 type GazetteItem = {
@@ -175,6 +177,14 @@ export default function Gazette({
     if (currentPage !== 1) handlePageChange(1);
   };
 
+  const stateOptions = useMemo(
+  () => (Array.isArray(availableStates) ? ["All States", ...availableStates] : ["All States"])
+          .filter(Boolean)
+          .map((s) => ({ label: s, value: s })),
+  [availableStates]
+);
+
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto px-2 py-2 min-[375px]:px-3 min-[375px]:py-3 sm:px-4 sm:py-4 lg:px-5 lg:py-5 xl:px-6">
@@ -182,10 +192,14 @@ export default function Gazette({
         <div className="mb-3 sm:mb-4 lg:-ml-3 lg:-mt-6">
           <div className="flex flex-col gap-2 lg:flex-row lg:items-end lg:gap-1 p-2 sm:p-3">
             <SearchAndStateFilter
-              availableStates={availableStates}
-              onSearchChange={handleSearchChange}
-              onStateChange={handleStateChange}
-            />
+  searchValue={q}
+  stateValue={stateFilter}
+  onSearchChange={handleSearchChange}
+  onStateChange={handleStateChange}
+  isPending={isPending}
+  states={stateOptions}
+/>
+
             {/* Effective Date (From Date) */}
             <div className="flex-shrink-0 sm:w-36 lg:w-48">
               <Popover>

@@ -49,10 +49,15 @@ export default function ProfessionalTax({
   const maximumRate = initialData?.maximum_rate ?? 0;
 
   // Dropdown options from API
-  const stateOptions = useMemo(
-    () => ["All States", ...applicableStates.map((s) => s.state_name)],
-    [applicableStates]
-  );
+ 
+const stateOptions = useMemo(() => {
+  const all = new Set<string>(["All States"]);
+  applicableStates.forEach(s => s?.state_name && all.add(s.state_name));
+  nonApplicableStates.forEach(n => n && all.add(n));
+  return Array.from(all).sort((a, b) => a.localeCompare(b)).map(s => ({ label: s, value: s }));
+}, [applicableStates, nonApplicableStates]);
+
+
 
   // filtering
   const filteredApplicable = useMemo(() => {
@@ -95,6 +100,7 @@ export default function ProfessionalTax({
     !hasError &&
     applicableStates.length === 0 &&
     nonApplicableStates.length === 0;
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -184,16 +190,17 @@ export default function ProfessionalTax({
 
             {/* Filters via reusable component */}
             {enableFilters && (
-              <div className="mb-6 sm:mb-8 md:mb-10">
-                <SearchAndStateFilter
-                  stateOptions={stateOptions}
-                  placeholder="Search by state..."
-                  defaultState="All States"
-                  onSearchChange={setQuery}
-                  onStateChange={setSelectedState}
-                />
-              </div>
-            )}
+  <div className="mb-6 sm:mb-8 md:mb-10">
+    <SearchAndStateFilter
+      searchValue={query}
+      stateValue={selectedState}
+      onSearchChange={setQuery}
+      onStateChange={setSelectedState}
+      isPending={false}
+      states={stateOptions}
+    />
+  </div>
+)}
 
             {/* Error / Empty */}
             {hasError && (
