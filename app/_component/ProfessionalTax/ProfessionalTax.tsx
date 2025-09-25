@@ -30,8 +30,8 @@ type PTApi = {
 
 type Props = {
   initialData: PTApi | null; // ISR server se aaya payload
-  apiBase: string; // future use (links, images etc.)
-  enableFilters?: boolean; // feature flag
+  apiBase: string; 
+  enableFilters?: boolean; 
 };
 
 export default function ProfessionalTax({

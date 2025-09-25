@@ -18,6 +18,7 @@ type ApiPost = {
   meta_title?: string | null;
   meta_description?: string | null;
   meta_keywords?: string | null;
+  meta_url?: string | null;
   tags?: string[] | null;
 };
 
@@ -114,18 +115,19 @@ export async function generateMetadata({
 
   const title = data?.meta_title || data?.title || "Blog | Prism";
   const description = data?.meta_description || data?.short_description || "";
+  const keywords = data?.meta_keywords || "" ;
+  const url = data.meta_url;
   const img = normalizeImageUrlForMeta(data);
+
 
   return {
     title,
-    description,
-    openGraph: { title, description, images: img ? [{ url: img }] : [] },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: img ? [img] : [],
-    },
+    description,   
+    keywords,
+    url,
+    img
+    // openGraph: { title, description, images: img ? [{ url: img }] : [] },
+    // twitter: { card: "summary_large_image", title, description, images: img ? [img] : [] },
   };
 }
 
