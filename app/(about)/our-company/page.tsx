@@ -1,18 +1,17 @@
-import React from 'react'
-import Hero from "@/app/_component/AboutSection/Company/Hero"
-import OurStory from '@/app/_component/AboutSection/Company/OurStory'
-import OurJourney from '@/app/_component/AboutSection/Company/OurJourney'
-import Services from '@/app/_component/AboutSection/Company/Services'
-import Choose from '@/app/_component/AboutSection/Company/Choose'
-import Team from '@/app/_component/AboutSection/Company/Team'
-import VisionMission from '@/app/_component/AboutSection/Company/VisionMission'
-import Certification from '@/app/_component/AboutSection/Company/Certification'
-import LabourLaw from '@/app/_component/AboutSection/Company/LabourLaw'
-import OurPromise from '@/app/_component/AboutSection/Company/OurPromise'
-import Serve from '@/app/_component/AboutSection/Company/Serve'
-import Media from '@/app/_component/AboutSection/Company/Media'
-import { Metadata } from 'next'
-
+import React from "react";
+import Hero from "@/app/_component/AboutSection/Company/Hero";
+import OurStory from "@/app/_component/AboutSection/Company/OurStory";
+import OurJourney from "@/app/_component/AboutSection/Company/OurJourney";
+import Services from "@/app/_component/AboutSection/Company/Services";
+import Choose from "@/app/_component/AboutSection/Company/Choose";
+import Team from "@/app/_component/AboutSection/Company/Team";
+import VisionMission from "@/app/_component/AboutSection/Company/VisionMission";
+import Certification from "@/app/_component/AboutSection/Company/Certification";
+import LabourLaw from "@/app/_component/AboutSection/Company/LabourLaw";
+import OurPromise from "@/app/_component/AboutSection/Company/OurPromise";
+import Serve from "@/app/_component/AboutSection/Company/Serve";
+import Media from "@/app/_component/AboutSection/Company/Media";
+import { Metadata } from "next";
 
 type ApiPost = {
   meta_title?: string | null;
@@ -113,7 +112,6 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-
 export default function Page() {
   return (
     <>
@@ -130,5 +128,5 @@ export default function Page() {
       <Serve />
       <Media />
     </>
-  )
+  );
 }
