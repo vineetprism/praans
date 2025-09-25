@@ -521,16 +521,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -553,9 +543,11 @@ interface Chat {
 }
 
 /* --------------- Config ---------------- */
+// const SOCKET_URL =
+//   process.env.NEXT_PUBLIC_SOCKET_URL?.replace(/\/+$/, "") ||
+//   "https://100.120.107.80:8000"; // <-- localhost replaced
 const SOCKET_URL =
-  process.env.NEXT_PUBLIC_SOCKET_URL?.replace(/\/+$/, "") ||
-  "http://100.120.107.80:8000"; // <-- localhost replaced
+  "https://100.120.107.80:3000"; // <-- localhost replaced
 
 // helpful: create a stable client id for this tab/session
 function getClientId(): string {
@@ -588,7 +580,7 @@ export default function AIAssistantPage() {
       isActive: true,
     },
   ]);
-  const [currentChatId, setCurrentChatId] = useState("1");
+  const [currentChatId, setCurrentChatId] = useState("1");     
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
