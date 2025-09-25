@@ -20,9 +20,9 @@ const NAV = [
     href: "",
     dropdown: [
       { label: "Our Company", href: "/our-company" },
-      { label: "Our Clients", href: "/our-clients" },
-      { label: "Our Founders", href: "/our-founders" },
-      { label: "Our Locations", href: "/our-locations" },
+      { label: "Our Clients", href: "/clients" },
+      { label: "Our Founders", href: "/founders" },
+      { label: "Our Locations", href: "/locations" },
     ],
   },
   {
