@@ -46,7 +46,6 @@ export async function generateMetadata(): Promise<Metadata> {
     const res = await fetch(`${API_BASE}/api/about/company`, {
       next: { revalidate },
     });
-    console.log(res);
 
     if (!res.ok) {
       return {
