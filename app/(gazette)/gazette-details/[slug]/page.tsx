@@ -1,5 +1,6 @@
 import DOMPurify from "isomorphic-dompurify";
 import GazetteView, { GazetteVM } from "@/app/_component/Gazette/GazzetteDetails/GazetteDetails";
+import { title } from "process";
 
 type GazetteItem = {
   id: number;
@@ -13,6 +14,11 @@ type GazetteItem = {
   effective_date: string | null;  
   pdf_path?: string | null;
   pdf_url?: string | null;
+ meta_description: string | null;
+ meta_keywords: string | null;
+ seo_title: string | null;
+ meta_url: string | null;
+  
 };
 type ApiResponse = { data: GazetteItem };
 
@@ -68,11 +74,15 @@ export async function generateMetadata({
     if (!r.ok) return { title: "Gazette Notification" };
     const { data }: ApiResponse = await r.json();
     return {
-      title: data?.title || "Gazette Notification",
-      description: data?.short_description || "",
-      openGraph: { title: data?.title || "", description: data?.short_description || "" },
-      twitter: { card: "summary", title: data?.title || "", description: data?.short_description || "" },
+      title: data?.seo_title || "Gazette Notification",
+      description: data?.meta_description || "",
+      keywords:data.meta_keywords,
+      url: data.meta_url
+      // openGraph: { title: data?.title || "", description: data?.short_description || "" },
+      // twitter: { card: "summary", title: data?.title || "", description: data?.short_description || "" },
+     
     };
+  
   } catch {
     return { title: "Gazette Notification" };
   }
