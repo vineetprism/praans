@@ -29,7 +29,9 @@ const FILE_HOST =
   process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") || API_BASE;
 
 /* ---------- tiny helper for metadata image ---------- */
-function normalizeImageUrlForMeta(post?: Partial<ApiPost> | null): string | undefined {
+function normalizeImageUrlForMeta(
+  post?: Partial<ApiPost> | null
+): string | undefined {
   if (!post) return undefined;
   const raw =
     post.image_url ||
@@ -41,7 +43,9 @@ function normalizeImageUrlForMeta(post?: Partial<ApiPost> | null): string | unde
   try {
     const u = new URL(raw as string, FILE_HOST);
     const base = new URL(FILE_HOST);
-    const isLocal = ["127.0.0.1", "127.1.1.0", "localhost"].includes(u.hostname);
+    const isLocal = ["127.0.0.1", "127.1.1.0", "localhost"].includes(
+      u.hostname
+    );
     const origin = isLocal ? base.origin : u.origin;
     const cleanPath = encodeURI(decodeURI(u.pathname));
     return `${origin}${cleanPath}${u.search}${u.hash}`;
@@ -86,17 +90,26 @@ function normalizePost(data: any): ApiPost {
 }
 
 /* ---------- SEO metadata ---------- */
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   // ✅ Await `params` to access the `slug`
   const { slug } = await params;
 
-  const res = await fetch(`${API_BASE}/api/posts/${slug}`, { cache: "no-store" }).catch(() => null);
+  const res = await fetch(`${API_BASE}/api/posts/${slug}`, {
+    cache: "no-store",
+  }).catch(() => null);
   if (!res || !res.ok) return { title: "Blog | Prism" };
 
   const json = await res.json();
   const dataRaw =
-    json && json.data && !Array.isArray(json.data) ? json.data :
-    Array.isArray(json?.data) ? json.data[0] : json;
+    json && json.data && !Array.isArray(json.data)
+      ? json.data
+      : Array.isArray(json?.data)
+      ? json.data[0]
+      : json;
   const data: ApiPost = normalizePost(dataRaw);
 
   const title = data?.meta_title || data?.title || "Blog | Prism";
@@ -107,12 +120,21 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title,
     description,
     openGraph: { title, description, images: img ? [{ url: img }] : [] },
-    twitter: { card: "summary_large_image", title, description, images: img ? [img] : [] },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: img ? [img] : [],
+    },
   };
 }
 
 /* ---------- Page (ISR fetch -> render-only component) ---------- */
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   // ✅ Await `params` to access the `slug`
   const { slug } = await params;
 
@@ -125,9 +147,18 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     return (
       <div className="bg-gray-50 min-h-screen">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 max-w-7xl">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Post not found</h1>
-          <p className="text-gray-600">We couldn’t fetch this article right now.</p>
-          <Link href="/blog" className="text-orange-600 font-semibold mt-3 inline-block">← Back to Blog</Link>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            Post not found
+          </h1>
+          <p className="text-gray-600">
+            We couldn’t fetch this article right now.
+          </p>
+          <Link
+            href="/blog"
+            className="text-orange-600 font-semibold mt-3 inline-block"
+          >
+            ← Back to Blog
+          </Link>
         </div>
       </div>
     );
@@ -135,8 +166,11 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
   const json = await res.json();
   const postRaw =
-    json && json.data && !Array.isArray(json.data) ? json.data :
-    Array.isArray(json?.data) ? json.data[0] : json;
+    json && json.data && !Array.isArray(json.data)
+      ? json.data
+      : Array.isArray(json?.data)
+      ? json.data[0]
+      : json;
   const post: ApiPost = normalizePost(postRaw);
 
   if (!post) {
@@ -145,7 +179,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 max-w-7xl">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">No data</h1>
           <p className="text-gray-600">This slug didn’t return any content.</p>
-          <Link href="/blog" className="text-orange-600 font-semibold mt-3 inline-block">← Back to Blog</Link>
+          <Link
+            href="/blog"
+            className="text-orange-600 font-semibold mt-3 inline-block"
+          >
+            ← Back to Blog
+          </Link>
         </div>
       </div>
     );
