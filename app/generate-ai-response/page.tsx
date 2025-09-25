@@ -1,982 +1,489 @@
 
-// "use client"
-
-// import { useState, useRef, useEffect } from "react"
-
-// // ---------- Types ----------
-// type Role = "user" | "assistant"
-
-// interface Message {
-//   id: string
-//   content: string
-//   role: Role
-//   // Store as ISO string to avoid hydration mismatches
-//   timestamp: string
-// }
-
-// interface Chat {
-//   id: string
-//   title: string
-//   messages: Message[]
-//   createdAt: string
-//   isActive: boolean
-// }
-
-// // ---------- Component ----------
-// export default function AIAssistantPage() {
-//   // Initial state with fixed timestamps (strings)
-//   const [chatHistory, setChatHistory] = useState<Chat[]>([
-//     {
-//       id: "1",
-//       title: "Current Chat",
-//       messages: [
-//         {
-//           id: "1",
-//           content:
-//             "Hello! I'm your Labour Law Compliance AI Assistant. How can I help you today?",
-//           role: "assistant",
-//           timestamp: "2025-01-01T10:00:00.000Z",
-//         },
-//       ],
-//       createdAt: "2025-01-01T10:00:00.000Z",
-//       isActive: true,
-//     },
-//   ])
-
-//   const [currentChatId, setCurrentChatId] = useState("1")
-//   const [input, setInput] = useState("")
-//   const [isLoading, setIsLoading] = useState(false)
-//   const [sidebarOpen, setSidebarOpen] = useState(true)
-
-//   const messagesEndRef = useRef<HTMLDivElement>(null)
-//   const messagesContainerRef = useRef<HTMLDivElement>(null)
-
-//   const currentChat = chatHistory.find((chat) => chat.id === currentChatId)
-//   const messages = currentChat?.messages ?? []
-
-//   // ---------- Scroll management ----------
-//   const scrollToBottom = () => {
-//     const end = messagesEndRef.current
-//     const container = messagesContainerRef.current
-//     if (!end || !container) return
-
-//     const isNearBottom =
-//       container.scrollHeight - container.scrollTop - container.clientHeight < 100
-
-//     if (isNearBottom || messages.length === 1) {
-//       end.scrollIntoView({ behavior: "smooth", block: "nearest" })
-//     }
-//   }
-
-//   useEffect(() => {
-//     const timer = setTimeout(scrollToBottom, 100)
-//     return () => clearTimeout(timer)
-//   }, [messages])
-
-//   // ---------- AI Response Logic (stubbed) ----------
-//   const generateResponse = (userInput: string): string => {
-//     const lower = userInput.toLowerCase()
-
-//     if (lower.includes("wage") || lower.includes("salary")) {
-//       return (
-//         "Current minimum wage rates for 2025:\n\n" +
-//         "• Maharashtra: ₹395 per day for unskilled\n" +
-//         "• Karnataka: ₹458 per day for skilled\n" +
-//         "• Delhi: ₹692 per day for skilled\n\n" +
-//         "Would you like rates for other states?"
-//       )
-//     }
-
-//     if (lower.includes("gratuity")) {
-//       return (
-//         "Gratuity calculation formula:\n\n" +
-//         "(Last salary × 15 × Years of service) ÷ 26\n\n" +
-//         "Eligibility: 5+ years service\n" +
-//         "Maximum: ₹20 lakhs\n\n" +
-//         "Need help with calculation?"
-//       )
-//     }
-
-//     if (lower.includes("pf") || lower.includes("provident")) {
-//       return (
-//         "PF contribution rates 2025:\n\n" +
-//         "• Employee: 12% of basic\n" +
-//         "• Employer: 12% of basic\n" +
-//         "• Maximum ceiling: ₹15,000\n\n" +
-//         "Want specific calculation help?"
-//       )
-//     }
-
-//     if (lower.includes("esi")) {
-//       return (
-//         "ESI registration requirements:\n\n" +
-//         "• Establishments with 10+ employees\n" +
-//         "• Salary limit: ₹25,000 per month\n" +
-//         "• Documents: Form 01, PAN, Address proof\n" +
-//         "• Online at esic.nic.in\n\n" +
-//         "Need registration steps?"
-//       )
-//     }
-
-//     return (
-//       `I can help with labour law queries about "${userInput}":\n\n` +
-//       "• Minimum wage rates\n" +
-//       "• Gratuity calculations\n" +
-//       "• PF/ESI compliance\n" +
-//       "• Leave policies\n" +
-//       "• Documentation requirements\n\n" +
-//       "What specific information do you need?"
-//     )
-//   }
-
-//   // ---------- Actions ----------
-//   const handleSend = () => {
-//     if (!input.trim() || isLoading) return
-
-//     const userMessage: Message = {
-//       id: Date.now().toString(),
-//       content: input.trim(),
-//       role: "user",
-//       timestamp: new Date().toISOString(),
-//     }
-
-//     setChatHistory((prev) =>
-//       prev.map((chat) =>
-//         chat.id === currentChatId
-//           ? { ...chat, messages: [...chat.messages, userMessage] }
-//           : chat
-//       )
-//     )
-
-//     const currentInput = input.trim()
-//     setInput("")
-//     setIsLoading(true)
-//     setTimeout(scrollToBottom, 50)
-
-//     setTimeout(() => {
-//       const aiMessage: Message = {
-//         id: (Date.now() + 1).toString(),
-//         content: generateResponse(currentInput),
-//         role: "assistant",
-//         timestamp: new Date().toISOString(),
-//       }
-
-//       setChatHistory((prev) =>
-//         prev.map((chat) =>
-//           chat.id === currentChatId
-//             ? { ...chat, messages: [...chat.messages, aiMessage] }
-//             : chat
-//         )
-//       )
-
-//       setIsLoading(false)
-//     }, 1200 + Math.random() * 800)
-//   }
-
-//   const createNewChat = () => {
-//     const newChatId = Date.now().toString()
-//     const newChat: Chat = {
-//       id: newChatId,
-//       title: "New Chat",
-//       messages: [
-//         {
-//           id: "1",
-//           content:
-//             "Hello! I'm your Labour Law Compliance AI Assistant. How can I help you today?",
-//           role: "assistant",
-//           timestamp: new Date().toISOString(),
-//         },
-//       ],
-//       createdAt: new Date().toISOString(),
-//       isActive: false,
-//     }
-
-//     setChatHistory((prev) => [
-//       newChat,
-//       ...prev.map((chat) => ({ ...chat, isActive: false })),
-//     ])
-//     setCurrentChatId(newChatId)
-//   }
-
-//   const switchChat = (chatId: string) => {
-//     setCurrentChatId(chatId)
-//     setChatHistory((prev) =>
-//       prev.map((chat) => ({ ...chat, isActive: chat.id === chatId }))
-//     )
-//   }
-
-//   const deleteChat = (chatId: string) => {
-//     if (chatHistory.length === 1) return // Don't delete last chat
-
-//     setChatHistory((prev) => {
-//       const filtered = prev.filter((chat) => chat.id !== chatId)
-//       if (chatId === currentChatId && filtered.length > 0) {
-//         setCurrentChatId(filtered[0].id)
-//         filtered[0].isActive = true
-//       }
-//       return filtered
-//     })
-//   }
-
-//   const quickActions = [
-//     { icon: "💰", text: "Minimum Wage Rates", query: "What are minimum wage rates in Maharashtra?" },
-//     { icon: "🎁", text: "Gratuity Calculator", query: "How to calculate gratuity for 10 years service?" },
-//     { icon: "🏦", text: "PF Contribution", query: "PF contribution rates for 2025?" },
-//     { icon: "🏥", text: "ESI Registration", query: "ESI registration process and documents?" },
-//     { icon: "📋", text: "Leave Policies", query: "Leave entitlement under Shops Act?" },
-//     { icon: "💳", text: "Professional Tax", query: "Professional Tax rates in Karnataka?" },
-//   ]
-
-//   // ---------- UI ----------
-//   return (
-//     <div className="w-full bg-gray-100 flex overflow-hidden" style={{ height: "calc(100vh - 140px)" }}>
-//       {/* Sidebar */}
-//       <div
-//         className={`bg-white border-r border-gray-200 transition-all duration-300 ${
-//           sidebarOpen ? "w-80" : "w-0"
-//         } overflow-hidden flex flex-col`}
-//       >
-//         {/* Sidebar Header */}
-//         <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-orange-50 to-orange-100">
-//           <div className="flex items-center justify-between mb-4">
-//             <div className="flex items-center gap-2">
-//               <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shadow-md">
-//                 <span className="text-white text-lg">🤖</span>
-//               </div>
-//               <div>
-//                 <h2 className="font-bold text-gray-900 text-base">Labour Law AI</h2>
-//                 <p className="text-xs text-gray-600">Compliance Assistant</p>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* New Chat Button */}
-//           <button
-//             onClick={createNewChat}
-//             className="w-full flex items-center justify-center gap-2 p-1 bg-orange-500 hover:bg-orange-600 text-white rounded-xl transition-all duration-200 shadow-md hover:shadow-lg font-medium"
-//           >
-//             <span className="text-lg">➕</span>
-//             <span>New Chat</span>
-//           </button>
-//         </div>
-
-//         {/* Chat History */}
-//         <div className="flex-1 overflow-y-auto p-3">
-//           <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-2 mb-3">
-//             Recent Chats
-//           </h3>
-//           <div className="space-y-2">
-//             {chatHistory.map((chat) => {
-//               const preview =
-//                 chat.messages[1]?.content?.slice(0, 35) ||
-//                 chat.messages[0]?.content?.slice(0, 35) ||
-//                 chat.title
-
-//               return (
-//                 <div
-//                   key={chat.id}
-//                   className={`group flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-200 ${
-//                     chat.id === currentChatId
-//                       ? "bg-orange-100 border border-orange-200 shadow-sm"
-//                       : "hover:bg-gray-50 hover:shadow-sm"
-//                   }`}
-//                   onClick={() => switchChat(chat.id)}
-//                 >
-//                   <div className="flex-1 min-w-0">
-//                     <p className="text-sm font-medium text-gray-900 truncate">
-//                       {preview}...
-//                     </p>
-//                     <p className="text-xs text-gray-500 mt-1">
-//                       {new Date(chat.createdAt).toLocaleDateString()}
-//                     </p>
-//                   </div>
-//                   {chatHistory.length > 1 && (
-//                     <button
-//                       onClick={(e) => {
-//                         e.stopPropagation()
-//                         deleteChat(chat.id)
-//                       }}
-//                       className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-100 text-red-500 rounded-lg transition-all"
-//                       title="Delete chat"
-//                     >
-//                       🗑️
-//                     </button>
-//                   )}
-//                 </div>
-//               )
-//             })}
-//           </div>
-//         </div>
-
-//         {/* Quick Actions */}
-//         <div className="p-4 border-t border-gray-200 bg-gray-50">
-//           <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
-//             Quick Actions
-//           </h3>
-//           <div className="grid grid-cols-2 gap-2">
-//             {quickActions.slice(0, 4).map((action, index) => (
-//               <button
-//                 key={index}
-//                 onClick={() => setInput(action.query)}
-//                 className="flex flex-col items-center gap-1 p-3 bg-white hover:bg-orange-50 rounded-xl transition-all duration-200 text-center shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-200"
-//               >
-//                 <span className="text-xl mb-1">{action.icon}</span>
-//                 <span className="text-xs text-gray-700 leading-tight font-medium">
-//                   {action.text}
-//                 </span>
-//               </button>
-//             ))}
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Main Chat Area */}
-//       <div className="flex-1 flex flex-col">
-//         {/* Top Header */}
-//         <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center gap-4 shadow-sm">
-//           <button
-//             onClick={() => setSidebarOpen((s) => !s)}
-//             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-//             aria-label={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
-//           >
-//             <svg
-//               width="20"
-//               height="20"
-//               viewBox="0 0 24 24"
-//               fill="none"
-//               stroke="currentColor"
-//               strokeWidth="2"
-//               strokeLinecap="round"
-//               strokeLinejoin="round"
-//               className="text-gray-600"
-//             >
-//               {sidebarOpen ? (
-//                 <>
-//                   <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-//                   <line x1="9" y1="3" x2="9" y2="21" />
-//                   <line x1="14" y1="8" x2="18" y2="12" />
-//                   <line x1="18" y1="12" x2="14" y2="16" />
-//                 </>
-//               ) : (
-//                 <>
-//                   <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-//                   <line x1="9" y1="3" x2="9" y2="21" />
-//                   <line x1="6" y1="8" x2="10" y2="12" />
-//                   <line x1="10" y1="12" x2="6" y2="16" />
-//                 </>
-//               )}
-//             </svg>
-//           </button>
-
-//           <div className="flex-1">
-//             <div className="flex items-center gap-3">
-//               <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-md">
-//                 <span className="text-white">🤖</span>
-//               </div>
-//               <div>
-//                 <h1 className="text-lg font-bold text-gray-900">AI Compliance Assistant</h1>
-//                 <p className="text-sm text-gray-600">Specialized in Indian Labour Laws</p>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Messages Area */}
-//         <div
-//           ref={messagesContainerRef}
-//           className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50"
-//         >
-//           {messages.map((message) => (
-//             <div
-//               key={message.id}
-//               className={`flex gap-3 ${
-//                 message.role === "user" ? "justify-end" : "justify-start"
-//               }`}
-//             >
-//               {message.role === "assistant" && (
-//                 <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center flex-shrink-0">
-//                   <span className="text-white text-xs">🤖</span>
-//                 </div>
-//               )}
-
-//               <div className={`max-w-[70%] ${message.role === "user" ? "order-first" : ""}`}>
-//                 <div
-//                   className={`p-2 rounded-2xl shadow-sm ${
-//                     message.role === "user"
-//                       ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white ml-auto"
-//                       : "bg-white text-gray-900 border border-gray-100"
-//                   }`}
-//                 >
-//                   <div className="text-sm leading-relaxed whitespace-pre-line">
-//                     {message.content}
-//                   </div>
-//                 </div>
-
-//                 <div
-//                   className={`flex items-center gap-2 mt-2 text-xs text-gray-500 ${
-//                     message.role === "user" ? "justify-end" : "justify-start"
-//                   }`}
-//                 >
-//                   <span>
-//                     {new Date(message.timestamp).toLocaleTimeString([], {
-//                       hour: "2-digit",
-//                       minute: "2-digit",
-//                     })}
-//                   </span>
-//                   {message.role === "assistant" && (
-//                     <div className="flex items-center gap-1">
-//                       <button
-//                         className="p-1 hover:bg-gray-200 rounded transition-colors"
-//                         onClick={() => {
-//                           if (navigator.clipboard?.writeText) {
-//                             navigator.clipboard.writeText(message.content).catch(() => {})
-//                           }
-//                         }}
-//                         title="Copy message"
-//                       >
-//                         📋
-//                       </button>
-//                       <button className="p-1 hover:bg-gray-200 rounded transition-colors" title="Like">
-//                         👍
-//                       </button>
-//                       <button className="p-1 hover:bg-gray-200 rounded transition-colors" title="Dislike">
-//                         👎
-//                       </button>
-//                     </div>
-//                   )}
-//                 </div>
-//               </div>
-
-//               {message.role === "user" && (
-//                 <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
-//                   <span className="text-white text-xs">👤</span>
-//                 </div>
-//               )}
-//             </div>
-//           ))}
-
-//           {isLoading && (
-//             <div className="flex gap-3 justify-start">
-//               <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
-//                 <span className="text-white text-xs">🤖</span>
-//               </div>
-//               <div className="bg-white border border-gray-100 p-4 rounded-2xl shadow-sm">
-//                 <div className="flex items-center gap-1">
-//                   <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" />
-//                   <div
-//                     className="w-2 h-2 bg-orange-400 rounded-full animate-bounce"
-//                     style={{ animationDelay: "0.1s" }}
-//                   />
-//                   <div
-//                     className="w-2 h-2 bg-orange-400 rounded-full animate-bounce"
-//                     style={{ animationDelay: "0.2s" }}
-//                   />
-//                 </div>
-//               </div>
-//             </div>
-//           )}
-
-//           <div ref={messagesEndRef} className="h-1" />
-//         </div>
-
-//         {/* Input Area */}
-//         <div className="bg-white border-t border-gray-200 p-6 shadow-lg">
-//           <div className="max-w-4xl mx-auto">
-//             <div className="flex gap-3">
-//               <input
-//                 value={input}
-//                 onChange={(e) => setInput(e.target.value)}
-//                 onKeyDown={(e) => {
-//                   if (e.key === "Enter" && !e.shiftKey) {
-//                     e.preventDefault()
-//                     handleSend()
-//                   }
-//                 }}
-//                 placeholder="Ask me anything about labour law compliance..."
-//                 className="flex-1 px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-white shadow-sm transition-all duration-200"
-//                 disabled={isLoading}
-//               />
-//               <button
-//                 onClick={handleSend}
-//                 disabled={!input.trim() || isLoading}
-//                 className="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-2xl hover:from-orange-600 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-md hover:shadow-lg font-medium"
-//               >
-//                 {isLoading ? "..." : "Send"}
-//               </button>
-//             </div>
-//             <p className="text-xs text-gray-500 mt-3 text-center flex items-center justify-center gap-2">
-//               <span>⌨️</span>
-//               <span>Press Enter to send • Shift+Enter for new line</span>
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-
-
-
-
-
 
 "use client";
-
 import { useEffect, useMemo, useRef, useState } from "react";
-import { io, Socket } from "socket.io-client";
+import { marked } from "marked";
+marked.setOptions({ gfm: true, breaks: true });
 
-/* ---------------- Types ---------------- */
+// ---------------- Types ----------------
 type Role = "user" | "assistant" | "system";
-interface Message {
+type ServerMsgType =
+  | "conversation_started"
+  | "conversation_ended"
+  | "message_received"
+  | "progress_update"
+  | "assistant_stream_output"
+  | "response_complete"
+  | "agent_handoff"
+  | "tool_call"
+  | "error"
+  | "pong";
+type ServerMessage = { type: ServerMsgType; data: any };
+type ChatMsg = {
   id: string;
-  content: string;
   role: Role;
-  timestamp: string; // ISO
-}
-interface Chat {
-  id: string;
-  title: string;
-  messages: Message[];
-  createdAt: string;
-  isActive: boolean;
-}
-
-/* --------------- Config ---------------- */
-// const SOCKET_URL =
-//   process.env.NEXT_PUBLIC_SOCKET_URL?.replace(/\/+$/, "") ||
-//   "https://100.120.107.80:8000"; // <-- localhost replaced
-const SOCKET_URL =
-  "https://100.120.107.80:3000"; // <-- localhost replaced
-
-// helpful: create a stable client id for this tab/session
-function getClientId(): string {
-  if (typeof window === "undefined") return "client_server_" + Date.now();
-  const KEY = "__llc_client_id__";
-  let cid = sessionStorage.getItem(KEY);
-  if (!cid) {
-    cid = "client_" + Math.random().toString(36).slice(2) + "_" + Date.now();
-    sessionStorage.setItem(KEY, cid);
+  content: string;
+  ts: string;
+  agent?: string;
+  streaming?: boolean;
+};
+// ---------------- Constants ----------------
+const WS_FALLBACK_HOST = "100.120.107.80:8000";
+const HEARTBEAT_MS = 30_000;
+const isoNow = () => new Date().toISOString();
+const hhmm = (iso: string) => {
+  try {
+    return new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  } catch {
+    return "--:--";
   }
-  return cid;
+};
+function normalizeWsBase(raw?: string | null): string {
+  if (!raw) return "";
+  const v = raw.trim();
+  if (!v) return "";
+  try {
+    const u = new URL(v);
+    if (u.protocol === "http:") u.protocol = "ws:";
+    if (u.protocol === "https:") u.protocol = "wss:";
+    return `${u.protocol}//${u.host}`.replace(/\/+$/, "");
+  } catch {
+    if (/^wss?:\/\//i.test(v)) return v.replace(/\/+$/, "");
+    return `ws://${v.replace(/\/+$/, "")}`;
+  }
+}
+function buildWsUrl(clientId: string) {
+  const fromEnv = normalizeWsBase(process.env.NEXT_PUBLIC_WS_BASE as string);
+  if (fromEnv) return `${fromEnv}/ws/${clientId}`;
+  if (typeof window === "undefined") return `ws://${WS_FALLBACK_HOST}/ws/${clientId}`;
+  const isHttps = window.location.protocol === "https:";
+  const proto = isHttps ? "wss:" : "ws:";
+  const host = window.location.hostname || WS_FALLBACK_HOST.split(":")[0];
+  const port = window.location.port === "3000" ? "8000" : window.location.port || (isHttps ? "443" : "80");
+  return `${proto}//${host}:${port}/ws/${clientId}`;
 }
 
-/* ------------- Component --------------- */
-export default function AIAssistantPage() {
-  const [chatHistory, setChatHistory] = useState<Chat[]>([
-    {
-      id: "1",
-      title: "Current Chat",
-      messages: [
-        {
-          id: "1",
-          content:
-            "Hello! I'm your Labour Law Compliance AI Assistant. How can I help you today?",
-          role: "assistant",
-          timestamp: "2025-01-01T10:00:00.000Z",
-        },
-      ],
-      createdAt: "2025-01-01T10:00:00.000Z",
-      isActive: true,
-    },
-  ]);
-  const [currentChatId, setCurrentChatId] = useState("1");     
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-
-  // connection state
+// ---------------- Component ----------------
+export default function SocketAssistantPage() {
+  // Connection/session
+  const [ws, setWs] = useState<WebSocket | null>(null);
   const [connected, setConnected] = useState(false);
   const [conversationActive, setConversationActive] = useState(false);
-  const [currentAgent, setCurrentAgent] = useState<string>("System");
-  const [isStreaming, setIsStreaming] = useState(false);
+  const [currentAgent, setCurrentAgent] = useState("System");
+  const [isTyping, setIsTyping] = useState(false);
 
-  // streaming buffer
-  const streamingMsgIdRef = useRef<string | null>(null);
+  // UI/Chat state
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [input, setInput] = useState("");
+  const [chatHistory, setChatHistory] = useState<ChatMsg[][]>([]);
+  const [currentSessionIndex, setCurrentSessionIndex] = useState(-1);
+  const [messages, setMessages] = useState<ChatMsg[]>([
+    {
+      id: "sys-welcome",
+      role: "system",
+      content: marked.parse("Welcome! Click **Start Conversation** to begin chatting with the Labour Code Compliance Advisor."),
+      ts: isoNow(),
+    },
+  ]);
+  const clientIdRef = useRef(`client_${Math.random().toString(36).slice(2)}_${Date.now()}`);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const endRef = useRef<HTMLDivElement>(null);
   const streamingBufferRef = useRef<string>("");
+  const streamingMsgIdRef = useRef<string | null>(null);
+  const lastErrorAtRef = useRef<number>(0);
+  const [shouldAutoScroll, setShouldAutoScroll] = useState(true);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const messagesContainerRef = useRef<HTMLDivElement>(null);
-  const socketRef = useRef<Socket | null>(null);
+  // ============ STORAGE LOGIC =============
 
-  const clientId = useMemo(() => getClientId(), []);
+  // 1. Load chat history from localStorage on mount
+  useEffect(() => {
+    const savedHistory = localStorage.getItem('labourlaw_chat_history');
+    if (savedHistory) {
+      setChatHistory(JSON.parse(savedHistory));
+    }
+  }, []);
+  // 2. Save chat history to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('labourlaw_chat_history', JSON.stringify(chatHistory));
+  }, [chatHistory]);
+  // 3. Clear history from localStorage when page/tab closes
+  useEffect(() => {
+    const handleUnload = () => {
+      localStorage.removeItem('labourlaw_chat_history');
+    };
+    window.addEventListener('beforeunload', handleUnload);
+    return () => window.removeEventListener('beforeunload', handleUnload);
+  }, []);
 
-  const currentChat = chatHistory.find((c) => c.id === currentChatId);
-  const messages = currentChat?.messages ?? [];
-
-  /* ------------- Scroll mgmt ------------- */
-  const scrollToBottom = () => {
-    const end = messagesEndRef.current;
-    const container = messagesContainerRef.current;
-    if (!end || !container) return;
-    const isNearBottom =
-      container.scrollHeight - container.scrollTop - container.clientHeight < 100;
-    if (isNearBottom || messages.length === 1) {
+  // --------- scrolling ---------
+  const scrollToBottom = (force = false) => {
+    const end = endRef.current;
+    const cont = containerRef.current;
+    if (!end || !cont) return;
+    if (force || shouldAutoScroll) {
       end.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   };
+  const handleScroll = () => {
+    const cont = containerRef.current;
+    if (!cont) return;
+    const { scrollTop, scrollHeight, clientHeight } = cont;
+    const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
+    setShouldAutoScroll(distanceFromBottom < 50);
+  };
   useEffect(() => {
-    const t = setTimeout(scrollToBottom, 100);
+    const cont = containerRef.current;
+    if (cont) {
+      cont.addEventListener('scroll', handleScroll);
+      return () => cont.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
+  useEffect(() => {
+    const t = setTimeout(() => scrollToBottom(), 100);
     return () => clearTimeout(t);
-  }, [messages, isStreaming]);
-
-  /* ------------- Socket.IO setup ------------- */
-  useEffect(() => {
-    const s = io(SOCKET_URL, {
-      transports: ["websocket"], // force ws
-      path: "/socket.io",
-      query: { clientId },
-      reconnectionAttempts: Infinity,
-      reconnectionDelayMax: 3000,
-    });
-    socketRef.current = s;
-
-    s.on("connect", () => {
-      setConnected(true);
-    });
-
-    s.on("disconnect", () => {
+  }, [messages, isTyping, shouldAutoScroll]);
+  // ------------- Connect WS -------------
+  const connect = () => {
+    const url = buildWsUrl(clientIdRef.current);
+    const sock = new WebSocket(url);
+    sock.onopen = () => setConnected(true);
+    sock.onmessage = (e) => {
+      try {
+        const msg: ServerMessage = JSON.parse(e.data);
+        handleServerMessage(msg);
+      } catch {
+        pushError("Failed to parse server message");
+      }
+    };
+    sock.onclose = () => {
       setConnected(false);
       setConversationActive(false);
-      setIsLoading(false);
-      setIsStreaming(false);
-      streamingMsgIdRef.current = null;
-      streamingBufferRef.current = "";
-    });
-
-    /* ------- SERVER → CLIENT events ------- */
-    // These event names mirror your raw WS types. If server uses different
-    // names, update only these bindings.
-
-    s.on("conversation_started", (data: { message: string; agent?: string }) => {
-      setConversationActive(true);
-      if (data?.agent) setCurrentAgent(data.agent);
-      pushMessage("system", data?.message || "Conversation started.");
-    });
-
-    s.on("conversation_ended", (data: { message: string; agent?: string }) => {
-      setConversationActive(false);
-      if (data?.agent) setCurrentAgent(data.agent);
-      pushMessage("system", data?.message || "Conversation ended.");
-    });
-
-    s.on("message_received", (data: { message: string; agent?: string }) => {
-      if (data?.agent) setCurrentAgent(data.agent);
-      pushMessage("system", data.message);
-    });
-
-    s.on("progress_update", (data: { agent?: string }) => {
-      if (data?.agent) setCurrentAgent(data.agent);
-      // Optional: show typing indicator (we toggle isLoading to show dots)
-      setIsLoading(true);
-    });
-
-    s.on(
-      "assistant_stream_output",
-      (data: { message: string; agent?: string }) => {
-        setIsLoading(false);
-        if (data?.agent) setCurrentAgent(data.agent);
-        handleStreamChunk(data.message);
+      if (streamingMsgIdRef.current) {
+        const id = streamingMsgIdRef.current;
+        streamingMsgIdRef.current = null;
+        streamingBufferRef.current = "";
+        setMessages((prev) => prev.map((m) => (m.id === id ? { ...m, streaming: false } : m)));
       }
-    );
-
-    s.on("response_complete", () => {
-      setIsStreaming(false);
-      streamingMsgIdRef.current = null;
-      streamingBufferRef.current = "";
-    });
-
-    s.on(
-      "agent_handoff",
-      (data: { message?: string; agent: string }) => {
-        setCurrentAgent(data.agent);
-        if (data?.message) pushMessage("system", data.message);
+      setTimeout(connect, 3000);
+    };
+    sock.onerror = () => {
+      const now = Date.now();
+      if (now - lastErrorAtRef.current > 4000) {
+        pushError("Connection error");
+        lastErrorAtRef.current = now;
       }
-    );
-
-    s.on("tool_call", (data: { message: string; agent?: string }) => {
-      pushMessage("system", `Tool call: ${data.message}`);
-    });
-
-    s.on("error_event", (data: { message: string }) => {
-      pushMessage("system", `Error: ${data.message}`);
-      setIsLoading(false);
-    });
-
-    // Keep-alive if your server expects it (Socket.IO already pings internally)
-    const pingInt = setInterval(() => {
-      if (s.connected) s.emit("ping_event", { ts: Date.now() });
-    }, 30000);
-
-    return () => {
-      clearInterval(pingInt);
-      s.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clientId]);
-
-  /* ---------- Helpers: push/update messages ---------- */
-  function pushMessage(role: Role, content: string) {
-    const msg: Message = {
-      id: String(Date.now() + Math.random()),
-      role,
-      content,
-      timestamp: new Date().toISOString(),
-    };
-    setChatHistory((prev) =>
-      prev.map((c) =>
-        c.id === currentChatId ? { ...c, messages: [...c.messages, msg] } : c
-      )
-    );
-  }
-
-  function updateMessageContent(messageId: string, content: string) {
-    setChatHistory((prev) =>
-      prev.map((c) => {
-        if (c.id !== currentChatId) return c;
-        return {
-          ...c,
-          messages: c.messages.map((m) =>
-            m.id === messageId ? { ...m, content } : m
-          ),
-        };
-      })
-    );
-  }
-
-  // streaming handler: creates/updates last assistant message
-  function handleStreamChunk(chunk: string) {
-    if (!isStreaming || !streamingMsgIdRef.current) {
-      // start new streaming message
-      const id = String(Date.now() + Math.random());
-      streamingMsgIdRef.current = id;
-      streamingBufferRef.current = "";
-      setIsStreaming(true);
-      const msg: Message = {
-        id,
-        role: "assistant",
-        content: "",
-        timestamp: new Date().toISOString(),
-      };
-      setChatHistory((prev) =>
-        prev.map((c) =>
-          c.id === currentChatId ? { ...c, messages: [...c.messages, msg] } : c
-        )
-      );
-    }
-    streamingBufferRef.current += chunk;
-    updateMessageContent(streamingMsgIdRef.current, streamingBufferRef.current);
-  }
-
-  /* ---------------- Actions ---------------- */
-  const handleSend = () => {
-    if (!input.trim() || isLoading) return;
-
-    // Immediately render user message
-    pushMessage("user", input.trim());
-
-    // Emit to server
-    socketRef.current?.emit("user_message", {
-      message: input.trim(),
-      clientId,
-    });
-
-    setInput("");
-    setIsLoading(true);
-    setTimeout(scrollToBottom, 50);
+    setWs(sock);
   };
-
-  const createNewChat = () => {
-    const newChatId = Date.now().toString();
-    const newChat: Chat = {
-      id: newChatId,
-      title: "New Chat",
-      messages: [
-        {
-          id: "1",
-          content:
-            "Hello! I'm your Labour Law Compliance AI Assistant. How can I help you today?",
-          role: "assistant",
-          timestamp: new Date().toISOString(),
-        },
-      ],
-      createdAt: new Date().toISOString(),
-      isActive: false,
-    };
-    setChatHistory((prev) => [
-      newChat,
-      ...prev.map((c) => ({ ...c, isActive: false })),
+  useEffect(() => {
+    connect();
+    const hb = setInterval(() => {
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: "ping", data: {} }));
+      }
+    }, HEARTBEAT_MS);
+    return () => clearInterval(hb);
+  }, []);
+  // ------------- Send helpers -------------
+  const send = (type: string, data: any) => {
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+      pushError("Not connected to server");
+      return;
+    }
+    ws.send(JSON.stringify({ type, data }));
+  };
+  // ------------- Message helpers -------------
+  const pushMsg = (
+    role: Role,
+    htmlOrMd: string,
+    opts?: { agent?: string; streaming?: boolean; isMarkdown?: boolean; id?: string }
+  ) => {
+    const content = opts?.isMarkdown ? marked.parse(htmlOrMd) : htmlOrMd;
+    const id = opts?.id ?? `${role}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
+    setMessages((prev) => [
+      ...prev,
+      { id, role, content, ts: isoNow(), agent: opts?.agent, streaming: !!opts?.streaming },
     ]);
-    setCurrentChatId(newChatId);
+    return id;
   };
-
-  const switchChat = (chatId: string) => {
-    setCurrentChatId(chatId);
-    setChatHistory((prev) =>
-      prev.map((c) => ({ ...c, isActive: c.id === chatId }))
-    );
+  const pushError = (text: string) => {
+    pushMsg("system", `<div class="text-red-600">⚠️ ${text}</div>`);
   };
-
-  const deleteChat = (chatId: string) => {
-    if (chatHistory.length === 1) return;
-    setChatHistory((prev) => {
-      const filtered = prev.filter((c) => c.id !== chatId);
-      if (chatId === currentChatId && filtered.length > 0) {
-        setCurrentChatId(filtered[0].id);
-        filtered[0].isActive = true;
+  const finalizeStreamingNow = () => {
+    const targetId = streamingMsgIdRef.current;
+    streamingBufferRef.current = "";
+    if (targetId) {
+      setMessages((prev) => prev.map((m) => (m.id === targetId ? { ...m, streaming: false } : m)));
+    }
+    streamingMsgIdRef.current = null;
+  };
+  // ----------- Server event handler -----------
+  const handleServerMessage = (msg: ServerMessage) => {
+    const { type, data } = msg;
+    switch (type) {
+      case "conversation_started":
+        setConversationActive(true);
+        setCurrentAgent(data?.agent ?? "Assistant");
+        break;
+      case "conversation_ended":
+        setConversationActive(false);
+        pushMsg("system", data?.message ?? "Conversation ended.", { agent: data?.agent });
+        finalizeStreamingNow();
+        break;
+      case "message_received":
+        break;
+      case "progress_update":
+        setIsTyping(true);
+        if (data?.agent) setCurrentAgent(data.agent);
+        break;
+      case "assistant_stream_output": {
+        setIsTyping(false);
+        const chunk = (data?.message ?? "").replace(/\r\n/g, "\n");
+        if (!streamingMsgIdRef.current) {
+          const newId = pushMsg("assistant", "", {
+            agent: data?.agent,
+            streaming: true,
+            id: `stream-${Date.now()}`,
+          });
+          streamingMsgIdRef.current = newId;
+          streamingBufferRef.current = "";
+        }
+        streamingBufferRef.current += chunk;
+        const html = marked.parse(streamingBufferRef.current);
+        const targetId = streamingMsgIdRef.current;
+        if (targetId) {
+          setMessages((prev) => {
+            const idx = prev.findIndex((m) => m.id === targetId);
+            if (idx === -1) return prev;
+            const clone = [...prev];
+            clone[idx] = { ...clone[idx], content: html, agent: data?.agent };
+            return clone;
+          });
+        }
+        break;
       }
-      return filtered;
-    });
+      case "response_complete":
+        setIsTyping(false);
+        finalizeStreamingNow();
+        break;
+      case "agent_handoff":
+        if (data?.agent) setCurrentAgent(data.agent);
+        finalizeStreamingNow();
+        if (data?.agent && data.agent !== currentAgent) {
+          pushMsg("system", `Switched to: ${data.agent}`, { agent: data?.agent });
+        }
+        break;
+      case "tool_call":
+        if (data?.message && !data.message.includes("routine") && !data.message.includes("processing")) {
+          pushMsg("system", `🔧 ${data?.message}`, { agent: data?.agent });
+        }
+        break;
+      case "error":
+        setIsTyping(false);
+        finalizeStreamingNow();
+        pushError(data?.message ?? "Server error");
+        break;
+      case "pong":
+      default:
+        break;
+    }
   };
-
-  const startConversation = () => {
-    if (!connected) {
-      pushMessage("system", "Not connected to server.");
+  // ------------- Actions -------------
+  const onStart = () => {
+    if (!connected) return pushError("Not connected to server");
+    const newSession: ChatMsg[] = [{
+      id: "sys-start",
+      role: "system",
+      content: marked.parse("**New conversation started** - Ask me anything about Indian Labour Laws!"),
+      ts: isoNow()
+    }];
+    setMessages(newSession);
+    setShouldAutoScroll(true);
+    send("start_conversation", {});
+  };
+  const onEnd = () => {
+    if (!connected) return pushError("Not connected to server");
+    const meaningfulMessages = messages.filter(m =>
+      (m.role === "user") ||
+      (m.role === "assistant" && !m.content.includes("Welcome!"))
+    );
+    if (meaningfulMessages.length > 0) {
+      setChatHistory(prev => [messages, ...prev].slice(0, 10));
+      setCurrentSessionIndex(-1);
+    }
+    send("end_conversation", {});
+  };
+  const onClear = () => {
+    setMessages([
+      {
+        id: "sys-cleared",
+        role: "system",
+        content: marked.parse("Chat cleared. Click **Start Conversation** to begin a new session."),
+        ts: isoNow(),
+      },
+    ]);
+    finalizeStreamingNow();
+    setShouldAutoScroll(true);
+  };
+  const loadChatSession = (sessionIndex: number) => {
+    if (sessionIndex >= 0 && sessionIndex < chatHistory.length) {
+      setMessages(chatHistory[sessionIndex]);
+      setCurrentSessionIndex(sessionIndex);
+      setShouldAutoScroll(true);
+      scrollToBottom(true);
+    }
+  };
+  const startNewChat = () => {
+    setCurrentSessionIndex(-1);
+    onStart();
+  };
+  const onSend = () => {
+    const val = input.trim();
+    if (!val) return;
+    if (!connected || !conversationActive) return;
+    const newUserMsg: ChatMsg = { id: `user-${Date.now()}`, role: "user", content: val, ts: isoNow() };
+    setMessages((prev) => [...prev, newUserMsg]);
+    setInput("");
+    setShouldAutoScroll(true);
+    if (currentSessionIndex >= 0) {
+      setChatHistory(prev => {
+        const updated = [...prev];
+        updated[currentSessionIndex] = [...updated[currentSessionIndex], newUserMsg];
+        return updated;
+      });
+    }
+    send("user_message", { message: val });
+  };
+  const quickActions = useMemo(
+    () => [
+      { icon: "💰", text: "Minimum Wage", query: "What are minimum wage rates in Maharashtra?" },
+      { icon: "🎁", text: "Gratuity Calc", query: "How to calculate gratuity for 10 years service?" },
+      { icon: "🏦", text: "PF Rates", query: "PF contribution rates for 2025?" },
+      { icon: "🏥", text: "ESI Process", query: "ESI registration process and documents?" },
+    ],
+    []
+  );
+  const handleQuickAction = (query: string) => {
+    if (!connected || !conversationActive) {
+      pushError("Start conversation first");
       return;
     }
-    socketRef.current?.emit("start_conversation", { clientId });
+    setInput(query);
+    setTimeout(() => {
+      setMessages((prev) => [...prev, { id: `user-${Date.now()}`, role: "user", content: query, ts: isoNow() }]);
+      setShouldAutoScroll(true);
+      send("user_message", { message: query });
+    }, 100);
   };
 
-  const endConversation = () => {
-    if (!connected) {
-      pushMessage("system", "Not connected to server.");
-      return;
-    }
-    socketRef.current?.emit("end_conversation", { clientId });
-  };
-
-  const quickActions = [
-    { icon: "💰", text: "Minimum Wage Rates", query: "What are minimum wage rates in Maharashtra?" },
-    { icon: "🎁", text: "Gratuity Calculator", query: "How to calculate gratuity for 10 years service?" },
-    { icon: "🏦", text: "PF Contribution", query: "PF contribution rates for 2025?" },
-    { icon: "🏥", text: "ESI Registration", query: "ESI registration process and documents?" },
-    { icon: "📋", text: "Leave Policies", query: "Leave entitlement under Shops Act?" },
-    { icon: "💳", text: "Professional Tax", query: "Professional Tax rates in Karnataka?" },
-  ];
-
-  /* ---------------- UI ---------------- */
+  // ---------------- UI ----------------
   return (
-    <div
-      className="w-full bg-gray-100 flex overflow-hidden"
-      style={{ height: "calc(100vh - 140px)" }}
-    >
+    <div className="w-full bg-gray-50 flex overflow-hidden" style={{ height: "calc(100vh - 140px)" }}>
       {/* Sidebar */}
-      <div
-        className={`bg-white border-r border-gray-200 transition-all duration-300 ${
-          sidebarOpen ? "w-80" : "w-0"
-        } overflow-hidden flex flex-col`}
-      >
+      <div className={`bg-white border-r border-gray-200 transition-all duration-300 ${sidebarOpen ? "w-80" : "w-0"} overflow-hidden flex flex-col`}>
+        {/* Header Section */}
         <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-orange-50 to-orange-100">
           <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shadow-md">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md">
                 <span className="text-white text-lg">🤖</span>
               </div>
               <div>
                 <h2 className="font-bold text-gray-900 text-base">Labour Law AI</h2>
-                <p className="text-xs text-gray-600">
-                  Compliance Assistant
-                </p>
+                <p className="text-xs text-gray-600">WebSocket Assistant</p>
               </div>
             </div>
           </div>
-
           <button
-            onClick={createNewChat}
-            className="w-full flex items-center justify-center gap-2 p-1 bg-orange-500 hover:bg-orange-600 text-white rounded-xl transition-all duration-200 shadow-md hover:shadow-lg font-medium"
+            onClick={startNewChat}
+            disabled={!connected}
+            className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-orange-500 to-orange-600 disabled:from-gray-300 disabled:to-gray-400 hover:from-orange-600 hover:to-orange-700 text-white rounded-xl transition-all duration-200 shadow-md hover:shadow-lg font-medium"
           >
-            <span className="text-lg">➕</span>
-            <span>New Chat</span>
+            <span className="text-lg">💬</span>
+            <span>New Conversation</span>
           </button>
-        </div>
-
-        <div className="flex-1 overflow-y-auto p-3">
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-2 mb-3">
-            Recent Chats
-          </h3>
-          <div className="space-y-2">
-            {chatHistory.map((chat) => {
-              const preview =
-                chat.messages[1]?.content?.slice(0, 35) ||
-                chat.messages[0]?.content?.slice(0, 35) ||
-                chat.title;
-              return (
-                <div
-                  key={chat.id}
-                  className={`group flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-200 ${
-                    chat.id === currentChatId
-                      ? "bg-orange-100 border border-orange-200 shadow-sm"
-                      : "hover:bg-gray-50 hover:shadow-sm"
-                  }`}
-                  onClick={() => switchChat(chat.id)}
-                >
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
-                      {preview}...
-                    </p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {new Date(chat.createdAt).toLocaleDateString()}
-                    </p>
-                  </div>
-                  {chatHistory.length > 1 && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        deleteChat(chat.id);
-                      }}
-                      className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-red-100 text-red-500 rounded-lg transition-all"
-                      title="Delete chat"
-                    >
-                      🗑️
-                    </button>
-                  )}
-                </div>
-              );
-            })}
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <button
+              onClick={onEnd}
+              disabled={!connected || !conversationActive}
+              className="py-2 px-3 rounded-xl bg-gray-700 hover:bg-gray-800 text-white disabled:bg-gray-300 disabled:text-gray-500 text-sm font-medium transition-colors"
+            >
+              End Chat
+            </button>
+            <button
+              onClick={onClear}
+              className="py-2 px-3 rounded-xl bg-gray-100 hover:bg-orange-50 border border-gray-200 hover:border-orange-300 text-gray-700 text-sm font-medium transition-colors"
+            >
+              Clear
+            </button>
+          </div>
+          <div className="mt-3 flex items-center justify-between text-xs">
+            <div className="flex items-center gap-2">
+              <div className={`w-2.5 h-2.5 rounded-full ${connected ? "bg-green-500" : "bg-red-500"}`} />
+              <span>{connected ? "Connected" : "Disconnected"}</span>
+            </div>
+            <div className={`px-2 py-1 rounded-full text-xs font-medium ${conversationActive ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}`}>
+              {conversationActive ? "Active" : "Idle"}
+            </div>
           </div>
         </div>
-
-        <div className="p-4 border-t border-gray-200 bg-gray-50">
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
-            Quick Actions
-          </h3>
+        {/* Chat History */}
+        <div className="flex-1 overflow-y-auto p-4">
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Recent Chats</h3>
+          <div className="space-y-2">
+            {chatHistory.length === 0 ? (
+              <p className="text-xs text-gray-400 italic text-center py-4">No chat history yet</p>
+            ) : (
+              chatHistory.map((session, index) => {
+                const firstUserMsg = session.find(m => m.role === "user");
+                const preview = firstUserMsg?.content.slice(0, 50) + (firstUserMsg?.content.length > 50 ? "..." : "") || "New conversation";
+                const sessionDate = session[0]?.ts ? new Date(session[0].ts).toLocaleDateString() : "";
+                const isActive = currentSessionIndex === index;
+                return (
+                  <button
+                    key={`session-${index}`}
+                    onClick={() => loadChatSession(index)}
+                    className={`w-full p-3 text-left rounded-lg transition-all duration-200 border ${isActive
+                        ? "bg-orange-50 border-orange-200 text-orange-800"
+                        : "bg-gray-50 hover:bg-gray-100 border-gray-200 hover:border-gray-300 text-gray-700"
+                      }`}
+                  >
+                    <div className="text-xs font-medium truncate">{preview}</div>
+                    <div className="text-xs text-gray-500 mt-1">{sessionDate}</div>
+                    <div className="text-xs text-gray-400 mt-1">{session.length} messages</div>
+                  </button>
+                );
+              })
+            )}
+          </div>
+        </div>
+        {/* Quick Actions */}
+        <div className="p-4 border-t border-gray-200 bg-white">
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Quick Actions</h3>
           <div className="grid grid-cols-2 gap-2">
-            {quickActions.slice(0, 4).map((action, index) => (
+            {quickActions.map((action, i) => (
               <button
-                key={index}
-                onClick={() => setInput(action.query)}
-                className="flex flex-col items-center gap-1 p-3 bg-white hover:bg-orange-50 rounded-xl transition-all duration-200 text-center shadow-sm hover:shadow-md border border-gray-100 hover:border-orange-200"
+                key={i}
+                onClick={() => handleQuickAction(action.query)}
+                disabled={!connected || !conversationActive}
+                className="flex flex-col items-center gap-2 p-3 bg-gradient-to-br from-gray-50 to-gray-100 hover:from-orange-50 hover:to-orange-100 disabled:from-gray-100 disabled:to-gray-200 rounded-xl transition-all duration-200 text-center shadow-sm hover:shadow-md border border-gray-150 hover:border-orange-200 disabled:border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed group"
               >
-                <span className="text-xl mb-1">{action.icon}</span>
-                <span className="text-xs text-gray-700 leading-tight font-medium">
-                  {action.text}
-                </span>
+                <span className="text-lg group-hover:scale-110 transition-transform duration-200">{action.icon}</span>
+                <span className="text-xs text-gray-700 group-hover:text-orange-700 leading-tight font-medium">{action.text}</span>
               </button>
             ))}
           </div>
         </div>
       </div>
-
-      {/* Main */}
-      <div className="flex-1 flex flex-col">
-        {/* Top Header */}
+      {/* Main Chat Area */}
+      <div className="flex-1 flex flex-col bg-white">
         <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center gap-4 shadow-sm">
           <button
             onClick={() => setSidebarOpen((s) => !s)}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
             aria-label={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gray-600"
-            >
+            <svg width="20" height="20" viewBox="0 0 24 24" className="text-gray-600" fill="none" stroke="currentColor" strokeWidth="2">
               {sidebarOpen ? (
                 <>
                   <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -994,172 +501,127 @@ export default function AIAssistantPage() {
               )}
             </svg>
           </button>
-
-          <div className="flex-1">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-md">
-                <span className="text-white">🤖</span>
-              </div>
-              <div>
-                <h1 className="text-lg font-bold text-gray-900">AI Compliance Assistant</h1>
-                <p className="text-sm text-gray-600">
-                  {connected ? "Connected" : "Disconnected"} • Agent: {currentAgent}
-                </p>
-              </div>
-              <div
-                className={`ml-auto h-2 w-2 rounded-full ${
-                  connected ? "bg-green-500" : "bg-red-500"
-                }`}
-                title={connected ? "Connected" : "Disconnected"}
-              />
-            </div>
-          </div>
-
-          <div className="flex gap-2">
+          {!shouldAutoScroll && (
             <button
-              onClick={startConversation}
-              disabled={!connected || conversationActive}
-              className="px-3 py-2 text-sm rounded-lg bg-gray-900 text-white disabled:opacity-50"
+              onClick={() => scrollToBottom(true)}
+              className="p-2 bg-orange-100 hover:bg-orange-200 text-orange-600 rounded-full transition-colors shadow-sm"
+              title="Scroll to bottom"
             >
-              Start
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="7,13 12,18 17,13" />
+                <polyline points="7,6 12,11 17,6" />
+              </svg>
             </button>
-            <button
-              onClick={endConversation}
-              disabled={!connected || !conversationActive}
-              className="px-3 py-2 text-sm rounded-lg bg-gray-200 disabled:opacity-50"
-            >
-              End
-            </button>
-          </div>
+          )}
         </div>
-
         {/* Messages */}
         <div
-          ref={messagesContainerRef}
-          className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50"
+          ref={containerRef}
+          className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"
+          style={{ scrollBehavior: 'smooth' }}
         >
-          {messages.map((m) => (
-            <div
-              key={m.id}
-              className={`flex gap-3 ${m.role === "user" ? "justify-end" : "justify-start"}`}
-            >
-              {m.role !== "user" && (
-                <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-xs">🤖</span>
-                </div>
-              )}
-
-              <div className={`max-w-[70%] ${m.role === "user" ? "order-first" : ""}`}>
-                <div
-                  className={`p-2 rounded-2xl shadow-sm ${
-                    m.role === "user"
+          {messages.map((m) => {
+            const isUser = m.role === "user";
+            const isSystem = m.role === "system";
+            return (
+              <div key={m.id} className={`flex gap-3 ${isUser ? "justify-end" : "justify-start"}`}>
+                {!isUser && (
+                  <div className={`w-8 h-8 ${isSystem ? "bg-gray-500" : "bg-gradient-to-br from-orange-500 to-orange-600"} rounded-full flex items-center justify-center flex-shrink-0 shadow-sm`}>
+                    <span className="text-white text-xs">{isSystem ? "ℹ️" : "🤖"}</span>
+                  </div>
+                )}
+                <div className={`max-w-[80%] ${isUser ? "order-first" : ""}`}>
+                  <div className={`px-4 py-3 rounded-2xl shadow-sm ${
+                    isUser
                       ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white ml-auto"
-                      : m.role === "system"
-                      ? "bg-yellow-50 text-yellow-900 border border-yellow-200"
-                      : "bg-white text-gray-900 border border-gray-100"
-                  }`}
-                >
-                  <div className="text-sm leading-relaxed whitespace-pre-line">
-                    {m.content}
+                      : isSystem
+                        ? "bg-gray-100 border border-gray-200 text-gray-700"
+                        : "bg-white text-gray-900 border border-gray-100"
+                  }`}>
+                    {isUser ? (
+                      <div className="text-sm leading-relaxed whitespace-pre-line break-words">{m.content}</div>
+                    ) : (
+                      <div className="text-sm leading-relaxed prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1" dangerouslySetInnerHTML={{ __html: m.content }} />
+                    )}
+                  </div>
+                  <div className={`flex items-center gap-2 mt-2 text-xs text-gray-500 ${isUser ? "justify-end" : "justify-start"}`}>
+                    <span>{hhmm(m.ts)}</span>
+                    {!isUser && m.agent && !isSystem && <span>• {m.agent}</span>}
+                    {m.streaming && <span className="text-orange-500 animate-pulse">• typing…</span>}
                   </div>
                 </div>
-
-                <div
-                  className={`flex items-center gap-2 mt-2 text-xs text-gray-500 ${
-                    m.role === "user" ? "justify-end" : "justify-start"
-                  }`}
-                >
-                  <span>
-                    {new Date(m.timestamp).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </span>
-                  {m.role === "assistant" && (
-                    <div className="flex items-center gap-1">
-                      <button
-                        className="p-1 hover:bg-gray-200 rounded transition-colors"
-                        onClick={() => {
-                          if (navigator.clipboard?.writeText) {
-                            navigator.clipboard.writeText(m.content).catch(() => {});
-                          }
-                        }}
-                        title="Copy message"
-                      >
-                        📋
-                      </button>
-                      <button className="p-1 hover:bg-gray-200 rounded transition-colors" title="Like">
-                        👍
-                      </button>
-                      <button className="p-1 hover:bg-gray-200 rounded transition-colors" title="Dislike">
-                        👎
-                      </button>
-                    </div>
-                  )}
-                </div>
+                {isUser && (
+                  <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <span className="text-white text-xs">👤</span>
+                  </div>
+                )}
               </div>
-
-              {m.role === "user" && (
-                <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-white text-xs">👤</span>
-                </div>
-              )}
-            </div>
-          ))}
-
-          {(isLoading || isStreaming) && (
+            );
+          })}
+          {isTyping && (
             <div className="flex gap-3 justify-start">
-              <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-sm">
                 <span className="text-white text-xs">🤖</span>
               </div>
-              <div className="bg-white border border-gray-100 p-4 rounded-2xl shadow-sm">
+              <div className="bg-white border border-gray-100 px-4 py-3 rounded-2xl shadow-sm">
                 <div className="flex items-center gap-1">
-                  <div className="w-2 h-2 rounded-full animate-bounce bg-orange-400" />
-                  <div className="w-2 h-2 rounded-full animate-bounce bg-orange-400" style={{ animationDelay: "0.1s" }} />
-                  <div className="w-2 h-2 rounded-full animate-bounce bg-orange-400" style={{ animationDelay: "0.2s" }} />
+                  <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" />
+                  <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
+                  <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
                 </div>
               </div>
             </div>
           )}
-
-          <div ref={messagesEndRef} className="h-1" />
+          <div ref={endRef} className="h-1" />
         </div>
-
         {/* Input */}
-        <div className="bg-white border-t border-gray-200 p-6 shadow-lg">
+        <div className="bg-white border-t border-gray-200 p-4 shadow-lg">
           <div className="max-w-4xl mx-auto">
             <div className="flex gap-3">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    handleSend();
+              <div className="flex-1 relative">
+                <input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      onSend();
+                    }
+                  }}
+                  placeholder={
+                    connected
+                      ? conversationActive
+                        ? "Type your labour law question…"
+                        : "Click Start Conversation to begin…"
+                      : "Connecting to server…"
                   }
-                }}
-                placeholder={
-                  conversationActive
-                    ? "Ask me anything about labour law compliance..."
-                    : connected
-                    ? "Click Start to begin the conversation..."
-                    : "Connecting..."
-                }
-                className="flex-1 px-5 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-white shadow-sm transition-all duration-200"
-                disabled={isLoading || !connected || !conversationActive}
-              />
+                  className="w-full px-5 py-4 pr-12 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 bg-white shadow-sm transition-all duration-200 placeholder-gray-500"
+                  disabled={!connected || !conversationActive}
+                />
+                {input && (
+                  <button
+                    onClick={() => setInput("")}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </button>
+                )}
+              </div>
               <button
-                onClick={handleSend}
-                disabled={!input.trim() || isLoading || !connected || !conversationActive}
-                className="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-2xl hover:from-orange-600 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-md hover:shadow-lg font-medium"
+                onClick={onSend}
+                disabled={!input.trim() || !connected || !conversationActive}
+                className="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-2xl hover:from-orange-600 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-md hover:shadow-lg font-medium flex items-center gap-2"
               >
-                {isLoading ? "..." : "Send"}
+                <span>Send</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22,2 15,22 11,13 2,9 22,2" />
+                </svg>
               </button>
             </div>
-            <p className="text-xs text-gray-500 mt-3 text-center flex items-center justify-center gap-2">
-              <span>⌨️</span>
-              <span>Press Enter to send • Shift+Enter for new line</span>
-            </p>
           </div>
         </div>
       </div>
