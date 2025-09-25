@@ -6,20 +6,129 @@ import HeroSection from "./_component/Home/hero-section/page";
 import CTASection from "./_component/Home/cta-section/page";
 import { ServiceSection } from "./_component/Home/service-section/page";
 
-export const metadata: Metadata = {
-  title: "Praans Consultech | Labour Law Compliance Solutions in India",
-  description:
-    "Praans Consultech is a trusted partner for labour law compliance in India. Explore our services, resource library, compliance updates, and expert guidance to streamline statutory compliance for your business.",
-  keywords: [
-    "labour welfare fund",
-    "Shop & Establishment Registration",
-    "FSSAI",
-    "Professional Tax",
-    "MSME Registration",
-    "GST Registration",
-    "Trade Licence"
-  ]
+// export const metadata: Metadata = {
+//   title: "Praans Consultech | Labour Law Compliance Solutions in India",
+//   description:
+//     "Praans Consultech is a trusted partner for labour law compliance in India. Explore our services, resource library, compliance updates, and expert guidance to streamline statutory compliance for your business.",
+//   keywords: [
+//     "labour welfare fund",
+//     "Shop & Establishment Registration",
+//     "FSSAI",
+//     "Professional Tax",
+//     "MSME Registration",
+//     "GST Registration",
+//     "Trade Licence"
+//   ]
+// };
+
+type ApiPost = {
+  meta_title?: string | null;
+  meta_description?: string | null;
+  meta_keywords?: string | null;
+  meta_url?: string | null;
 };
+
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
+  "http://100.110.147.101:8000";
+
+export const revalidate = 1800;
+
+function normalizeKeywords(v?: string | null): string[] | undefined {
+  if (!v) return undefined;
+  return v
+    .split(",")
+    .map((k) => k.trim())
+    .filter(Boolean);
+}
+
+function resolveCanonical(metaUrl?: string | null): string {
+  if (!metaUrl) return `${API_BASE}/home`;
+  if (/^https?:\/\//i.test(metaUrl)) return metaUrl;
+  return `${API_BASE}${metaUrl.startsWith("/") ? "" : "/"}${metaUrl}`;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const res = await fetch(`${API_BASE}/api/home`, {
+      next: { revalidate },
+    });
+
+    if (!res.ok) {
+      return {
+        title: "Praans Consultech | Labour Law Compliance Solutions in India",
+        description:
+          "Praans Consultech is a trusted partner for labour law compliance in India. Explore our services, resource library, compliance updates, and expert guidance to streamline statutory compliance for your business.",
+        keywords: [
+          "labour welfare fund",
+          "Shop & Establishment Registration",
+          "FSSAI",
+          "Professional Tax",
+          "MSME Registration",
+          "GST Registration",
+          "Trade Licence",
+          "business sectors",
+          "India",
+          "corporate compliance",
+          "compliance outsourcing",
+          "industry leaders",
+        ],
+        alternates: { canonical: `${API_BASE}/home` },
+      };
+    }
+
+    const json = await res.json();
+
+    const raw =
+      json && json.data && !Array.isArray(json.data)
+        ? json.data
+        : Array.isArray(json?.data)
+        ? json.data[0]
+        : json;
+
+    const data = raw as Partial<ApiPost>;
+
+    const title =
+      data.meta_title ||
+      "Praans Consultech | Labour Law Compliance Solutions in India";
+
+    const description =
+      data.meta_description ||
+      "Praans Consultech is a trusted partner for labour law compliance in India. Explore our services, resource library, compliance updates, and expert guidance to streamline statutory compliance for your business.";
+
+    const keywords = normalizeKeywords(data.meta_keywords);
+
+    const canonical = resolveCanonical(data.meta_url);
+
+    return {
+      title,
+      description,
+      keywords,
+      alternates: { canonical },
+    };
+  } catch {
+    return {
+      title: "Praans Consultech | Labour Law Compliance Solutions in India",
+      description:
+        "Praans Consultech is a trusted partner for labour law compliance in India. Explore our services, resource library, compliance updates, and expert guidance to streamline statutory compliance for your business.",
+      keywords: [
+        "labour welfare fund",
+        "Shop & Establishment Registration",
+        "FSSAI",
+        "Professional Tax",
+        "MSME Registration",
+        "GST Registration",
+        "Trade Licence",
+        "business sectors",
+        "India",
+        "corporate compliance",
+        "compliance outsourcing",
+        "industry leaders",
+      ],
+      alternates: { canonical: `${API_BASE}/home` },
+    };
+  }
+}
 
 export default function HomePage() {
   return (
@@ -32,4 +141,3 @@ export default function HomePage() {
     </div>
   );
 }
-
