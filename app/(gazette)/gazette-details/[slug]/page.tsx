@@ -22,9 +22,7 @@ type GazetteItem = {
 };
 type ApiResponse = { data: GazetteItem };
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE!
 
 const FILE_HOST =
   process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") || API_BASE;

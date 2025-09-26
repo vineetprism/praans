@@ -281,7 +281,6 @@ export default function Gazette({
                   <p className="text-gray-600 leading-relaxed text-[10px] min-[375px]:text-xs sm:text-sm text-justify pb-2">
                     Gazette Notification is an authorized legal document issued by the Ministries of Government of India,
                     published in the official gazette containing significant Statutory Orders (S.O) and General Statutory Rules (G.S.R).
-                    Data is automatically updated every 30 minutes using ISR for optimal performance.
                   </p>
                 </div>
               </div>

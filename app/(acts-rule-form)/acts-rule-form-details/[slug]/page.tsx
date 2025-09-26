@@ -4,8 +4,7 @@ import ActDetailClient from "@/app/_component/ActRuleForm/ActRuleFormDetails/Act
 import { notFound } from "next/navigation";
 
 // API base ko environment variable se connect karo (safe fallback + trim)
-const API_BASE =
-  (process.env.NEXT_PUBLIC_API_BASE || "https://prns.prisminfoways.com").replace(/\/+$/, "");
+const API_BASE=process.env.NEXT_PUBLIC_API_BASE!
 
 // Types based on actual API response
 type FormAPI = {
