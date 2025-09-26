@@ -129,25 +129,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const title = data?.meta_title || data?.title || "ACT-RULE-FORMS | Labour Acts & Regulations";
   const description = data?.meta_description || data?.short_description || "";
   const keywords = data?.meta_keywords || "" ;
-  console.log(title,description)
 
   return {
     title,
     description,
     keywords,
     
-    // openGraph: { title, description, images: img ? [{ url: img }] : [] },
-    // twitter: { card: "summary_large_image", title, description, images: img ? [img] : [] },
   };
 }
-
-
-
-
-
-
-
-
 
 
 
