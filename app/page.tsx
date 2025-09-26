@@ -6,21 +6,6 @@ import HeroSection from "./_component/Home/hero-section/page";
 import CTASection from "./_component/Home/cta-section/page";
 import { ServiceSection } from "./_component/Home/service-section/page";
 
-// export const metadata: Metadata = {
-//   title: "Praans Consultech | Labour Law Compliance Solutions in India",
-//   description:
-//     "Praans Consultech is a trusted partner for labour law compliance in India. Explore our services, resource library, compliance updates, and expert guidance to streamline statutory compliance for your business.",
-//   keywords: [
-//     "labour welfare fund",
-//     "Shop & Establishment Registration",
-//     "FSSAI",
-//     "Professional Tax",
-//     "MSME Registration",
-//     "GST Registration",
-//     "Trade Licence"
-//   ]
-// };
-
 type ApiPost = {
   meta_title?: string | null;
   meta_description?: string | null;
@@ -53,10 +38,11 @@ export async function generateMetadata(): Promise<Metadata> {
     const res = await fetch(`${API_BASE}/api/home`, {
       next: { revalidate },
     });
+    console.log(res);
 
     if (!res.ok) {
       return {
-        title: "Praans Consultech | Labour Law Compliance Solutions in India",
+        title: "Praans | Labour Law Compliance Solutions in India",
         description:
           "Praans Consultech is a trusted partner for labour law compliance in India. Explore our services, resource library, compliance updates, and expert guidance to streamline statutory compliance for your business.",
         keywords: [
@@ -90,7 +76,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     const title =
       data.meta_title ||
-      "Praans Consultech | Labour Law Compliance Solutions in India";
+      "Praans | Labour Law Compliance Solutions in India";
 
     const description =
       data.meta_description ||
@@ -108,7 +94,7 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   } catch {
     return {
-      title: "Praans Consultech | Labour Law Compliance Solutions in India",
+      title: "Praans | Labour Law Compliance Solutions in India",
       description:
         "Praans Consultech is a trusted partner for labour law compliance in India. Explore our services, resource library, compliance updates, and expert guidance to streamline statutory compliance for your business.",
       keywords: [

@@ -35,7 +35,7 @@ const keyOfferings = [
       "Precise and automated management of Labour laws.",
     color: "from-blue-500 to-blue-600",
     bgColor: "from-blue-50 to-blue-100",
-    href: "/services/smart-compliance-software",
+    href: "/smart-compliance-software",
   },
   {
     icon: Briefcase,
@@ -44,7 +44,7 @@ const keyOfferings = [
       " Easing of workload.",
     color: "from-orange-500 to-orange-600",
     bgColor: "from-orange-50 to-orange-100",
-    href: "/services/compliance-outsourcing",
+    href: "/compliance-outsourcing",
   },
   {
     icon: ClipboardCheck,
@@ -53,7 +53,7 @@ const keyOfferings = [
       "National wide and smooth filing processes.",
     color: "from-green-500 to-green-600",
     bgColor: "from-green-50 to-green-100",
-    href: "/services/pan-india-registrations",
+    href: "/pan-india-registrations",
   },
   {
     icon: ClipboardList,
@@ -62,7 +62,7 @@ const keyOfferings = [
       "Provide Help and supports for the auditing and inspections.",
     color: "from-indigo-500 to-indigo-600",
     bgColor: "from-indigo-50 to-indigo-100",
-    href: "/services/audit-and-inspection",
+    href: "/audit-and-inspection",
   },
   {
     icon: Gavel,
@@ -71,7 +71,7 @@ const keyOfferings = [
       "Provide professional support and help for complex labour regulations.",
     color: "from-purple-500 to-purple-600",
     bgColor: "from-purple-50 to-purple-100",
-    href: "/services/legal-advisory-hr-policies",
+    href: "/legal-advisory-hr-policies",
   },
 
   {
@@ -80,7 +80,7 @@ const keyOfferings = [
     description: " Dispute resolutions and Support for legal defence.",
     color: "from-red-500 to-red-600",
     bgColor: "from-red-50 to-red-100",
-    href: "/services/litigation-support",
+    href: "/litigation-support",
   },
 
 
