@@ -1,12 +1,13 @@
-import DOMPurify from "isomorphic-dompurify";
+// import DOMPurify from "isomorphic-dompurify";
 import GazetteView, { GazetteVM } from "@/app/_component/Gazette/GazzetteDetails/GazetteDetails";
-import { title } from "process";
+
 
 type GazetteItem = {
   id: number;
   title: string;
   slug: string;
   short_description: string | null;
+  safeHtml: string | null;
   description: string | null;     
   state_slug: string | null;
   state_name: string | null;
@@ -18,14 +19,12 @@ type GazetteItem = {
  meta_keywords: string | null;
  seo_title: string | null;
  meta_url: string | null;
-  
 };
 type ApiResponse = { data: GazetteItem };
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!
 
-const FILE_HOST =
-  process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") || API_BASE;
+const FILE_HOST = API_BASE;
 
 function normalizeFileUrl(url?: string | null, path?: string | null) {
   if (url) {
@@ -76,9 +75,6 @@ export async function generateMetadata({
       description: data?.meta_description || "",
       keywords:data.meta_keywords,
       url: data.meta_url
-      // openGraph: { title: data?.title || "", description: data?.short_description || "" },
-      // twitter: { card: "summary", title: data?.title || "", description: data?.short_description || "" },
-     
     };
   
   } catch {
@@ -111,25 +107,13 @@ export default async function Page({
 
   const { data }: ApiResponse = await res.json();
 
-  // ✅ sanitize editor HTML (keep list & headings)
-  const safeHtml = DOMPurify.sanitize(data.description || "", {
-    ALLOWED_TAGS: [
-      "p","br","strong","em","u","b","i",
-      "h1","h2","h3","h4","h5","h6",
-      "ul","ol","li","blockquote","div","span","a",
-      "pre","code","mark","strike"
-    ],
-    ALLOWED_ATTR: ["href","target","class","id","style","type","start","reversed"],
-    KEEP_CONTENT: true,
-  });
-
   const vm: GazetteVM = {
     title: data.title,
-    stateName: data.state_name || "Central",
+    stateName: data.state_name || "",
     shortDescription: data.short_description || "",
+    safeHtml : data.description || "",
     updatedLabel: prettyDate(data.updated_date),
     effectiveLabel: prettyDate(data.effective_date),
-    safeHtml, // 👈 editor output
     downloadUrl: normalizeFileUrl(data.pdf_url, data.pdf_path),
   };
 

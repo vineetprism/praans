@@ -1,3 +1,5 @@
+
+
 "use client";
 import { useMemo, useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -50,8 +52,30 @@ interface GazetteNotificationsClientProps {
   availableStates: string[]; // this is the prop for available states
 }
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") || "http://100.110.147.101:8000";
-const FILE_HOST = process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") || API_BASE;
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
+const FILE_HOST = API_BASE;
+
+// ExpandableDescription Component for consistent truncation
+const ExpandableDescription = ({ description }: { description: string | null }) => {
+  if (!description || description.trim() === '') {
+    return null;
+  }
+
+  // Clean the description and split into words
+  const cleanedDescription = description.trim();
+  const words = cleanedDescription.split(/\s+/).filter(word => word.length > 0);
+  
+  const shouldTruncate = words.length > 50; 
+  const displayText = shouldTruncate 
+    ? words.slice(0, 50).join(' ') + '...'
+    : cleanedDescription;
+
+  return (
+    <p className="text-gray-700 leading-snug mt-3 text-[11px] min-[375px]:text-[10px] sm:text-[0.8rem] lg:text-xs line-clamp-2">
+      {displayText}
+    </p>
+  );
+};
 
 function normalizeFileUrl(url?: string | null, path?: string | null): string | null {
   if (url) {
@@ -315,9 +339,9 @@ export default function Gazette({
                                 <h4 className="text-[12px] min-[375px]:text-xs sm:text-sm font-semibold text-gray-900 line-clamp-2">
                                   {n?.title}
                                 </h4>
-                                <p className="text-gray-700 leading-snug mt-3 text-[11px] min-[375px]:text-[10px] sm:text-[0.8rem] lg:text-xs line-clamp-2">
-                                  {n?.short_description || ""}
-                                </p>
+                                
+                                <ExpandableDescription description={n?.short_description} />
+                                
                                 <div className="mt-2 md:mt-4">
                                   <Button
                                     size="sm"

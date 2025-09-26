@@ -1,14 +1,11 @@
+
+
+
 "use client";
 
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";
 import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { ChevronLeft, ChevronRight, Eye, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -54,37 +51,26 @@ interface ActsPageClientProps {
 }
 
 const ExpandableDescription = ({ description }: { description: string }) => {
-  const shouldTruncate = description.length > 120;
-
-  if (!shouldTruncate) {
-    return (
-      <p className="text-gray-700 leading-snug mt-2 text-[11px] sm:text-[0.8rem] lg:text-xs break-words">
-        {description}
-      </p>
-    );
+  if (!description || description.trim() === '') {
+    return null;
   }
 
+  // Clean the description and split into words
+  const cleanedDescription = description.trim();
+  const words = cleanedDescription.split(/\s+/).filter(word => word.length > 0);
+  
+ 
+  const shouldTruncate = words.length > 50;
+  const displayText = shouldTruncate 
+    ? words.slice(0, 50).join(' ') + '...'
+    : cleanedDescription;
+
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div className="relative mt-2">
-            <p className="text-gray-700 leading-snug text-[11px] sm:text-[0.8rem] lg:text-xs break-words cursor-help line-clamp-2 pr-12">
-              {description}
-              <span className=" text-orange-500 text-[12px] font-medium whitespace-nowrap">
-                ...more
-              </span>
-            </p>
-          </div>
-        </TooltipTrigger>
-        <TooltipContent
-          side="top"
-          className="max-w-md p-3 bg-orange-400 text-white text-xs leading-relaxed"
-        >
-          <p>{description}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <div className="relative mt-2">
+      <p className="text-gray-700 leading-snug text-[11px] sm:text-[0.8rem] lg:text-xs break-words line-clamp-2">
+        {displayText}
+      </p>
+    </div>
   );
 };
 
@@ -186,7 +172,6 @@ export default function ActsPageClient({
                 searchValue={q}
                 stateValue={stateFilter}
                 isPending={isPending}
-
               />
             </div>
 
