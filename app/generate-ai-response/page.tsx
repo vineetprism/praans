@@ -1,8 +1,40 @@
 
-
 "use client";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import { marked } from "marked";
+
+
+// ---- Deterministic formatters ----
+const TIME_FMT = new Intl.DateTimeFormat("en-GB", {
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+  timeZone: "Asia/Kolkata",
+});
+
+const DATE_FMT = new Intl.DateTimeFormat("en-GB", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  timeZone: "Asia/Kolkata",
+});
+
+// ---- Client-only text renderers to avoid hydration diff ----
+function TimeText({ iso }: { iso: string }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return <span suppressHydrationWarning>{mounted ? TIME_FMT.format(new Date(iso)) : ""}</span>;
+}
+
+function DateText({ iso }: { iso: string }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return <span suppressHydrationWarning>{mounted ? DATE_FMT.format(new Date(iso)) : ""}</span>;
+}
+
+
+
 marked.setOptions({ gfm: true, breaks: true });
 
 // ---------------- Types ----------------
@@ -12,25 +44,31 @@ type ServerMsgType =
   | "conversation_ended"
   | "message_received"
   | "progress_update"
-  | "assistant_stream_output"
+  | "assistant_stream_output" 
   | "response_complete"
   | "agent_handoff"
   | "tool_call"
   | "error"
   | "pong";
+
 type ServerMessage = { type: ServerMsgType; data: any };
+
 type ChatMsg = {
   id: string;
   role: Role;
-  content: string;
-  ts: string;
+  content: string; // assistant/system stored as HTML (markdown parsed)
+  ts: string;      // ISO string
   agent?: string;
   streaming?: boolean;
 };
+
 // ---------------- Constants ----------------
-const WS_FALLBACK_HOST = "100.120.107.80:8000";
+const WS_FALLBACK_HOST = "100.120.107.80:8000"; // change if needed
 const HEARTBEAT_MS = 30_000;
+
+// ---------------- Utils ----------------
 const isoNow = () => new Date().toISOString();
+
 const hhmm = (iso: string) => {
   try {
     return new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -38,6 +76,8 @@ const hhmm = (iso: string) => {
     return "--:--";
   }
 };
+
+// Accept http/https/wss/ws or host:port and normalize to ws(s)://host
 function normalizeWsBase(raw?: string | null): string {
   if (!raw) return "";
   const v = raw.trim();
@@ -52,10 +92,16 @@ function normalizeWsBase(raw?: string | null): string {
     return `ws://${v.replace(/\/+$/, "")}`;
   }
 }
+
 function buildWsUrl(clientId: string) {
+  // Prefer env var
   const fromEnv = normalizeWsBase(process.env.NEXT_PUBLIC_WS_BASE as string);
   if (fromEnv) return `${fromEnv}/ws/${clientId}`;
+
+  // SSR fallback
   if (typeof window === "undefined") return `ws://${WS_FALLBACK_HOST}/ws/${clientId}`;
+
+  // Dev default: same host, port heuristic
   const isHttps = window.location.protocol === "https:";
   const proto = isHttps ? "wss:" : "ws:";
   const host = window.location.hostname || WS_FALLBACK_HOST.split(":")[0];
@@ -85,52 +131,41 @@ export default function SocketAssistantPage() {
       ts: isoNow(),
     },
   ]);
+
+  // Refs (for reliable streaming)
   const clientIdRef = useRef(`client_${Math.random().toString(36).slice(2)}_${Date.now()}`);
   const containerRef = useRef<HTMLDivElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const streamingBufferRef = useRef<string>("");
-  const streamingMsgIdRef = useRef<string | null>(null);
+  const streamingMsgIdRef = useRef<string | null>(null); // single ongoing assistant bubble
   const lastErrorAtRef = useRef<number>(0);
+
+  // Auto scroll state - Claude-like behavior
   const [shouldAutoScroll, setShouldAutoScroll] = useState(true);
 
-  // ============ STORAGE LOGIC =============
-
-  // 1. Load chat history from localStorage on mount
-  useEffect(() => {
-    const savedHistory = localStorage.getItem('labourlaw_chat_history');
-    if (savedHistory) {
-      setChatHistory(JSON.parse(savedHistory));
-    }
-  }, []);
-  // 2. Save chat history to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('labourlaw_chat_history', JSON.stringify(chatHistory));
-  }, [chatHistory]);
-  // 3. Clear history from localStorage when page/tab closes
-  useEffect(() => {
-    const handleUnload = () => {
-      localStorage.removeItem('labourlaw_chat_history');
-    };
-    window.addEventListener('beforeunload', handleUnload);
-    return () => window.removeEventListener('beforeunload', handleUnload);
-  }, []);
-
-  // --------- scrolling ---------
+  // ------------- Scroll mgmt - Improved Claude-like -------------
   const scrollToBottom = (force = false) => {
     const end = endRef.current;
     const cont = containerRef.current;
     if (!end || !cont) return;
+    
     if (force || shouldAutoScroll) {
       end.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   };
+
+  // Handle scroll detection for auto-scroll behavior
   const handleScroll = () => {
     const cont = containerRef.current;
     if (!cont) return;
+    
     const { scrollTop, scrollHeight, clientHeight } = cont;
     const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
+    
+
     setShouldAutoScroll(distanceFromBottom < 50);
   };
+
   useEffect(() => {
     const cont = containerRef.current;
     if (cont) {
@@ -138,15 +173,19 @@ export default function SocketAssistantPage() {
       return () => cont.removeEventListener('scroll', handleScroll);
     }
   }, []);
+
   useEffect(() => {
     const t = setTimeout(() => scrollToBottom(), 100);
     return () => clearTimeout(t);
   }, [messages, isTyping, shouldAutoScroll]);
+
   // ------------- Connect WS -------------
   const connect = () => {
     const url = buildWsUrl(clientIdRef.current);
     const sock = new WebSocket(url);
+
     sock.onopen = () => setConnected(true);
+
     sock.onmessage = (e) => {
       try {
         const msg: ServerMessage = JSON.parse(e.data);
@@ -155,9 +194,11 @@ export default function SocketAssistantPage() {
         pushError("Failed to parse server message");
       }
     };
+
     sock.onclose = () => {
       setConnected(false);
       setConversationActive(false);
+      // finalize any partial stream
       if (streamingMsgIdRef.current) {
         const id = streamingMsgIdRef.current;
         streamingMsgIdRef.current = null;
@@ -166,15 +207,19 @@ export default function SocketAssistantPage() {
       }
       setTimeout(connect, 3000);
     };
+
     sock.onerror = () => {
       const now = Date.now();
       if (now - lastErrorAtRef.current > 4000) {
         pushError("Connection error");
         lastErrorAtRef.current = now;
       }
+      // let onclose handle reconnect
     };
+
     setWs(sock);
   };
+
   useEffect(() => {
     connect();
     const hb = setInterval(() => {
@@ -183,7 +228,9 @@ export default function SocketAssistantPage() {
       }
     }, HEARTBEAT_MS);
     return () => clearInterval(hb);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   // ------------- Send helpers -------------
   const send = (type: string, data: any) => {
     if (!ws || ws.readyState !== WebSocket.OPEN) {
@@ -192,6 +239,7 @@ export default function SocketAssistantPage() {
     }
     ws.send(JSON.stringify({ type, data }));
   };
+
   // ------------- Message helpers -------------
   const pushMsg = (
     role: Role,
@@ -206,9 +254,11 @@ export default function SocketAssistantPage() {
     ]);
     return id;
   };
+
   const pushError = (text: string) => {
     pushMsg("system", `<div class="text-red-600">⚠️ ${text}</div>`);
   };
+
   const finalizeStreamingNow = () => {
     const targetId = streamingMsgIdRef.current;
     streamingBufferRef.current = "";
@@ -217,28 +267,39 @@ export default function SocketAssistantPage() {
     }
     streamingMsgIdRef.current = null;
   };
-  // ----------- Server event handler -----------
+
+  // ------------- Server event handler - Improved to reduce noise -------------
   const handleServerMessage = (msg: ServerMessage) => {
     const { type, data } = msg;
+
     switch (type) {
       case "conversation_started":
         setConversationActive(true);
         setCurrentAgent(data?.agent ?? "Assistant");
+        // Only show a simple ready message, not the full "conversation started" message
         break;
+
       case "conversation_ended":
         setConversationActive(false);
         pushMsg("system", data?.message ?? "Conversation ended.", { agent: data?.agent });
         finalizeStreamingNow();
         break;
+
       case "message_received":
+        // Skip showing "message received" notifications
         break;
+
       case "progress_update":
         setIsTyping(true);
         if (data?.agent) setCurrentAgent(data.agent);
+        // Don't show progress updates as messages
         break;
+
       case "assistant_stream_output": {
         setIsTyping(false);
         const chunk = (data?.message ?? "").replace(/\r\n/g, "\n");
+
+        // FIRST CHUNK => create one streaming message and store its id
         if (!streamingMsgIdRef.current) {
           const newId = pushMsg("assistant", "", {
             agent: data?.agent,
@@ -248,8 +309,12 @@ export default function SocketAssistantPage() {
           streamingMsgIdRef.current = newId;
           streamingBufferRef.current = "";
         }
+
+        // Append + render markdown
         streamingBufferRef.current += chunk;
         const html = marked.parse(streamingBufferRef.current);
+
+        // Update the SAME message by id
         const targetId = streamingMsgIdRef.current;
         if (targetId) {
           setMessages((prev) => {
@@ -262,38 +327,48 @@ export default function SocketAssistantPage() {
         }
         break;
       }
+
       case "response_complete":
         setIsTyping(false);
         finalizeStreamingNow();
         break;
+
       case "agent_handoff":
         if (data?.agent) setCurrentAgent(data.agent);
+        // finalize ongoing bubble on handoff
         finalizeStreamingNow();
+        // Only show agent handoff if it's a significant change
         if (data?.agent && data.agent !== currentAgent) {
           pushMsg("system", `Switched to: ${data.agent}`, { agent: data?.agent });
         }
         break;
+
       case "tool_call":
+        // Only show important tool calls, not routine ones
         if (data?.message && !data.message.includes("routine") && !data.message.includes("processing")) {
           pushMsg("system", `🔧 ${data?.message}`, { agent: data?.agent });
         }
         break;
+
       case "error":
         setIsTyping(false);
         finalizeStreamingNow();
         pushError(data?.message ?? "Server error");
         break;
+
       case "pong":
       default:
         break;
     }
   };
+
   // ------------- Actions -------------
   const onStart = () => {
     if (!connected) return pushError("Not connected to server");
+    // Create new chat session
     const newSession: ChatMsg[] = [{
       id: "sys-start",
-      role: "system",
+      role: "system", 
       content: marked.parse("**New conversation started** - Ask me anything about Indian Labour Laws!"),
       ts: isoNow()
     }];
@@ -301,18 +376,24 @@ export default function SocketAssistantPage() {
     setShouldAutoScroll(true);
     send("start_conversation", {});
   };
+
   const onEnd = () => {
     if (!connected) return pushError("Not connected to server");
-    const meaningfulMessages = messages.filter(m =>
-      (m.role === "user") ||
+    
+    // Save current session to history if it has meaningful content
+    const meaningfulMessages = messages.filter(m => 
+      (m.role === "user") || 
       (m.role === "assistant" && !m.content.includes("Welcome!"))
     );
+    
     if (meaningfulMessages.length > 0) {
-      setChatHistory(prev => [messages, ...prev].slice(0, 10));
+      setChatHistory(prev => [messages, ...prev].slice(0, 10)); // Keep last 10 sessions
       setCurrentSessionIndex(-1);
     }
+    
     send("end_conversation", {});
   };
+
   const onClear = () => {
     setMessages([
       {
@@ -325,6 +406,7 @@ export default function SocketAssistantPage() {
     finalizeStreamingNow();
     setShouldAutoScroll(true);
   };
+
   const loadChatSession = (sessionIndex: number) => {
     if (sessionIndex >= 0 && sessionIndex < chatHistory.length) {
       setMessages(chatHistory[sessionIndex]);
@@ -333,18 +415,24 @@ export default function SocketAssistantPage() {
       scrollToBottom(true);
     }
   };
+
   const startNewChat = () => {
     setCurrentSessionIndex(-1);
     onStart();
   };
+
   const onSend = () => {
     const val = input.trim();
     if (!val) return;
     if (!connected || !conversationActive) return;
+
+    // User bubble (plain text)
     const newUserMsg: ChatMsg = { id: `user-${Date.now()}`, role: "user", content: val, ts: isoNow() };
     setMessages((prev) => [...prev, newUserMsg]);
     setInput("");
-    setShouldAutoScroll(true);
+    setShouldAutoScroll(true); // Enable auto-scroll when sending message
+    
+    // Update current session in history if we're viewing an old chat
     if (currentSessionIndex >= 0) {
       setChatHistory(prev => {
         const updated = [...prev];
@@ -352,8 +440,11 @@ export default function SocketAssistantPage() {
         return updated;
       });
     }
+    
     send("user_message", { message: val });
   };
+
+  // ------------- Quick actions - Moved to bottom -------------
   const quickActions = useMemo(
     () => [
       { icon: "💰", text: "Minimum Wage", query: "What are minimum wage rates in Maharashtra?" },
@@ -363,12 +454,14 @@ export default function SocketAssistantPage() {
     ],
     []
   );
+
   const handleQuickAction = (query: string) => {
     if (!connected || !conversationActive) {
       pushError("Start conversation first");
       return;
     }
     setInput(query);
+    // Auto-send the query
     setTimeout(() => {
       setMessages((prev) => [...prev, { id: `user-${Date.now()}`, role: "user", content: query, ts: isoNow() }]);
       setShouldAutoScroll(true);
@@ -394,6 +487,7 @@ export default function SocketAssistantPage() {
               </div>
             </div>
           </div>
+
           <button
             onClick={startNewChat}
             disabled={!connected}
@@ -402,21 +496,23 @@ export default function SocketAssistantPage() {
             <span className="text-lg">💬</span>
             <span>New Conversation</span>
           </button>
+
           <div className="mt-3 grid grid-cols-2 gap-2">
-            <button
-              onClick={onEnd}
-              disabled={!connected || !conversationActive}
+            <button 
+              onClick={onEnd} 
+              disabled={!connected || !conversationActive} 
               className="py-2 px-3 rounded-xl bg-gray-700 hover:bg-gray-800 text-white disabled:bg-gray-300 disabled:text-gray-500 text-sm font-medium transition-colors"
             >
               End Chat
             </button>
-            <button
-              onClick={onClear}
+            <button 
+              onClick={onClear} 
               className="py-2 px-3 rounded-xl bg-gray-100 hover:bg-orange-50 border border-gray-200 hover:border-orange-300 text-gray-700 text-sm font-medium transition-colors"
             >
               Clear
             </button>
           </div>
+
           <div className="mt-3 flex items-center justify-between text-xs">
             <div className="flex items-center gap-2">
               <div className={`w-2.5 h-2.5 rounded-full ${connected ? "bg-green-500" : "bg-red-500"}`} />
@@ -427,6 +523,7 @@ export default function SocketAssistantPage() {
             </div>
           </div>
         </div>
+
         {/* Chat History */}
         <div className="flex-1 overflow-y-auto p-4">
           <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Recent Chats</h3>
@@ -439,14 +536,16 @@ export default function SocketAssistantPage() {
                 const preview = firstUserMsg?.content.slice(0, 50) + (firstUserMsg?.content.length > 50 ? "..." : "") || "New conversation";
                 const sessionDate = session[0]?.ts ? new Date(session[0].ts).toLocaleDateString() : "";
                 const isActive = currentSessionIndex === index;
+                
                 return (
                   <button
                     key={`session-${index}`}
                     onClick={() => loadChatSession(index)}
-                    className={`w-full p-3 text-left rounded-lg transition-all duration-200 border ${isActive
-                        ? "bg-orange-50 border-orange-200 text-orange-800"
+                    className={`w-full p-3 text-left rounded-lg transition-all duration-200 border ${
+                      isActive 
+                        ? "bg-orange-50 border-orange-200 text-orange-800" 
                         : "bg-gray-50 hover:bg-gray-100 border-gray-200 hover:border-gray-300 text-gray-700"
-                      }`}
+                    }`}
                   >
                     <div className="text-xs font-medium truncate">{preview}</div>
                     <div className="text-xs text-gray-500 mt-1">{sessionDate}</div>
@@ -457,7 +556,8 @@ export default function SocketAssistantPage() {
             )}
           </div>
         </div>
-        {/* Quick Actions */}
+
+        {/* Quick Actions - Moved to bottom */}
         <div className="p-4 border-t border-gray-200 bg-white">
           <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Quick Actions</h3>
           <div className="grid grid-cols-2 gap-2">
@@ -475,12 +575,14 @@ export default function SocketAssistantPage() {
           </div>
         </div>
       </div>
+
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col bg-white">
+        {/* Header */}
         <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center gap-4 shadow-sm">
-          <button
-            onClick={() => setSidebarOpen((s) => !s)}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          <button 
+            onClick={() => setSidebarOpen((s) => !s)} 
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors" 
             aria-label={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" className="text-gray-600" fill="none" stroke="currentColor" strokeWidth="2">
@@ -501,6 +603,7 @@ export default function SocketAssistantPage() {
               )}
             </svg>
           </button>
+          {/* Scroll indicator */}
           {!shouldAutoScroll && (
             <button
               onClick={() => scrollToBottom(true)}
@@ -514,15 +617,17 @@ export default function SocketAssistantPage() {
             </button>
           )}
         </div>
-        {/* Messages */}
-        <div
-          ref={containerRef}
+
+        {/* Messages - Improved styling */}
+        <div 
+          ref={containerRef} 
           className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"
           style={{ scrollBehavior: 'smooth' }}
         >
           {messages.map((m) => {
             const isUser = m.role === "user";
             const isSystem = m.role === "system";
+            
             return (
               <div key={m.id} className={`flex gap-3 ${isUser ? "justify-end" : "justify-start"}`}>
                 {!isUser && (
@@ -530,10 +635,11 @@ export default function SocketAssistantPage() {
                     <span className="text-white text-xs">{isSystem ? "ℹ️" : "🤖"}</span>
                   </div>
                 )}
+                
                 <div className={`max-w-[80%] ${isUser ? "order-first" : ""}`}>
                   <div className={`px-4 py-3 rounded-2xl shadow-sm ${
-                    isUser
-                      ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white ml-auto"
+                    isUser 
+                      ? "bg-gradient-to-br from-orange-500 to-orange-600 text-white ml-auto" 
                       : isSystem
                         ? "bg-gray-100 border border-gray-200 text-gray-700"
                         : "bg-white text-gray-900 border border-gray-100"
@@ -544,12 +650,16 @@ export default function SocketAssistantPage() {
                       <div className="text-sm leading-relaxed prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1" dangerouslySetInnerHTML={{ __html: m.content }} />
                     )}
                   </div>
+                  
                   <div className={`flex items-center gap-2 mt-2 text-xs text-gray-500 ${isUser ? "justify-end" : "justify-start"}`}>
-                    <span>{hhmm(m.ts)}</span>
+                    {/* <span>{hhmm(m.ts)}</span> */}
+                    <TimeText iso={m.ts} />
+
                     {!isUser && m.agent && !isSystem && <span>• {m.agent}</span>}
                     {m.streaming && <span className="text-orange-500 animate-pulse">• typing…</span>}
                   </div>
                 </div>
+                
                 {isUser && (
                   <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
                     <span className="text-white text-xs">👤</span>
@@ -558,6 +668,7 @@ export default function SocketAssistantPage() {
               </div>
             );
           })}
+
           {isTyping && (
             <div className="flex gap-3 justify-start">
               <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-sm">
@@ -572,9 +683,11 @@ export default function SocketAssistantPage() {
               </div>
             </div>
           )}
+
           <div ref={endRef} className="h-1" />
         </div>
-        {/* Input */}
+
+        {/* Input - Improved */}
         <div className="bg-white border-t border-gray-200 p-4 shadow-lg">
           <div className="max-w-4xl mx-auto">
             <div className="flex gap-3">
@@ -621,10 +734,12 @@ export default function SocketAssistantPage() {
                   <polygon points="22,2 15,22 11,13 2,9 22,2" />
                 </svg>
               </button>
-            </div>
+            </div>  
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+
