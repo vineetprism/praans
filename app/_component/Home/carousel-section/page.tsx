@@ -1,12 +1,9 @@
 "use client";
-
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -14,92 +11,133 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-/* Tighter bullets + brand color */
+type GazetteItem = {
+  id: number | string;
+  title: string;
+  slug?: string | null;
+  effective_date?: string | null;
+  short_description?: string | null;
+  state_name?: string | null;
+  state_slug?: string | null;
+};
+
+type GazetteApiResponse = {
+  data: GazetteItem[];
+  links: {
+    first: string | null;
+    last: string | null;
+    prev: string | null;
+    next: string | null;
+  };
+  meta: {
+    current_page: number;
+    from: number | null;
+    last_page: number;
+    path: string;
+    per_page: number;
+    to: number | null;
+    total: number;
+  };
+};
+
+type CarouselCard = {
+  id: string;
+  title: string;
+  slug?: string;
+  effective_date?: string;
+  isNew: boolean;
+  hasLink: boolean;
+};
+
+function isWithinDays(dateStr?: string | null, days = 7): boolean {
+  if (!dateStr) return false;
+  const d = new Date(dateStr);
+  if (Number.isNaN(d.getTime())) return false;
+  const diff = Date.now() - d.getTime();
+  return diff <= days * 24 * 60 * 60 * 1000 && diff >= 0;
+}
+
+function mapApiToCarousel(items?: GazetteItem[]): CarouselCard[] {
+  if (!items?.length) return [];
+  return items.map((it, idx) => {
+    const slug = (it.slug ?? undefined) as string | undefined;
+    const title = it.title ?? "Update";
+    const effective_date = it.effective_date ?? undefined;
+
+    return {
+      id: String(it.id ?? idx),
+      title,
+      slug,
+      effective_date,
+      isNew: isWithinDays(effective_date, 7),
+      hasLink: Boolean(slug),
+    };
+  });
+}
+
+/** Format to DD-MM-YYYY without breaking odd inputs */
+function toDDMMYYYY(input?: string | null): string {
+  if (!input) return "";
+
+  // Already DD-MM-YYYY or DD/MM/YYYY -> normalize to hyphen
+  const ddmmyyyy = input.match(/^(\d{2})[/-](\d{2})[/-](\d{4})$/);
+  if (ddmmyyyy) return `${ddmmyyyy[1]}-${ddmmyyyy[2]}-${ddmmyyyy[3]}`;
+
+  // ISO or ISO-like: YYYY-MM-DD or YYYY-MM-DDTHH:mm:ss...
+  const iso = input.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (iso) return `${iso[3]}-${iso[2]}-${iso[1]}`;
+
+  // Fallback: try Date()
+  const d = new Date(input);
+  if (!Number.isNaN(d.getTime())) {
+    const dd = String(d.getDate()).padStart(2, "0");
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const yyyy = d.getFullYear();
+    return `${dd}-${mm}-${yyyy}`;
+  }
+
+  // If nothing worked, return original string
+  return input;
+}
+
 const paginationStyles = `
   .swiper-pagination-bullet{background-color:#f97316!important;opacity:.4}
   .swiper-pagination-bullet-active{background-color:#ea580c!important;opacity:1}
   .swiper-pagination-bullets{bottom:6px!important}
   @media(min-width:768px){.swiper-pagination-bullets{bottom:10px!important}}
-  
 `;
 
-const newsUpdates = [
-  {
-    title: "New GDPR Guidelines Released for Data Processing",
-    date: "2024-03-15",
-    isNew: true,
-    href: "/updates/gdpr-guidelines",
-  },
-  {
-    title: "Updated Compliance Framework for Financial Services",
-    date: "2024-03-10",
-    isNew: true,
-    href: "/updates/financial-compliance",
-  },
-  {
-    title: "SOX Compliance Requirements Updated for 2024",
-    date: "2024-03-08",
-    isNew: false,
-    href: "/updates/sox-2024",
-  },
-  {
-    title: "Critical Security Patch Available",
-    date: "2024-03-05",
-    isNew: true,
-    href: "/updates/security-patch",
-  },
-  {
-    title: "New Compliance Training Modules Released",
-    date: "2024-03-01",
-    isNew: false,
-    href: "/updates/training-modules",
-  },
-  {
-    title: "Platform Maintenance Scheduled",
-    date: "2024-02-28",
-    isNew: false,
-    href: "/updates/maintenance",
-  },
-  {
-    title: "Enhanced Reporting Dashboard Now Available",
-    date: "2024-02-25",
-    isNew: true,
-    href: "/updates/reporting-dashboard",
-  },
-  {
-    title: "ISO 27001 Certification Requirements Updated",
-    date: "2024-02-20",
-    isNew: false,
-    href: "/updates/iso-27001",
-  },
-];
-
-export default function NewsCarouselSection() {
+export default function NewsCarouselSection({
+  initialData,
+  slug,
+}: {
+  initialData: GazetteApiResponse;
+  slug?: string;
+}) {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [isBeginning, setIsBeginning] = useState(true);
-  const [isEnd, setIsEnd] = useState(false);
+
+  const cards = useMemo(
+    () => mapApiToCarousel(initialData?.data),
+    [initialData]
+  );
+  const loopEnabled = cards.length > 4;
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: paginationStyles }} />
       <section className="w-full pt-6 pb-2 md:pt-8 md:pb-3 lg:pt-10 lg:pb-4">
         <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-9xl">
-          {/* Header */}
-          {/* Header Section */}
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 md:mb-6 lg:mb-8 gap-4">
-            {/* Title */}
             <div className="flex-1 min-w-0">
               <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold mb-1 text-slate-900 leading-tight">
-                Latest Updates
+                Latest Updates{slug ? ` · ${slug}` : ""}
               </h2>
               <p className="text-sm md:text-base 2xl:text-lg text-gray-700">
                 Stay informed with the most recent compliance news
               </p>
             </div>
 
-            {/* RIGHT SIDE: vertical stack on md+ */}
             <div className="w-full md:w-auto md:flex md:flex-col md:items-end md:gap-2 lg:gap-3">
-              {/* Search */}
               <form
                 action="/updates"
                 method="GET"
@@ -114,6 +152,7 @@ export default function NewsCarouselSection() {
                    text-sm md:text-xs lg:text-sm 
                    focus:outline-none focus:ring-2 focus:ring-orange-500"
                   aria-label="Search query"
+                  defaultValue={slug ?? ""}
                 />
                 <Button
                   type="submit"
@@ -126,53 +165,19 @@ export default function NewsCarouselSection() {
                   <ArrowRight className="ml-1 h-3 w-3 lg:h-4 lg:w-4" />
                 </Button>
               </form>
-
-              {/* Newsletter */}
-              
-              {/* <form
-      action="/newsletter-subscribe"
-      method="POST"
-      className="flex items-center gap-2 w-full md:w-64 lg:w-72"
-      aria-label="Newsletter subscription"
-    >
-      <input
-        type="email"
-        name="email"
-        placeholder="Your email..."
-        required
-        className="w-full px-3 py-2 md:py-1.5 border rounded-lg
-                   text-sm md:text-xs lg:text-sm
-                   focus:outline-none focus:ring-2 focus:ring-orange-500"
-        aria-label="Email for newsletter"
-      />
-      <Button
-        type="submit"
-        className="bg-orange-500 hover:bg-orange-600 text-white
-                   px-4 py-2 md:px-3 md:py-1.5 lg:px-4 lg:py-2
-                   text-sm md:text-xs lg:text-sm rounded-lg font-semibold whitespace-nowrap cursor-pointer shrink-0"
-        aria-label="Subscribe to newsletter"
-      >
-        Subscribe
-      </Button>
-    </form> */}
             </div>
           </div>
 
-          {/* Carousel */}
           <div className="relative">
             <Swiper
               modules={[Navigation, Pagination, Autoplay]}
               onSwiper={(s) => (swiperRef.current = s)}
-              onSlideChange={(s) => {
-                setIsBeginning(s.isBeginning);
-                setIsEnd(s.isEnd);
-              }}
               autoplay={{
                 delay: 5000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
               }}
-              loop={newsUpdates.length > 4}
+              loop={loopEnabled}
               speed={600}
               spaceBetween={16}
               slidesPerView={1}
@@ -185,43 +190,40 @@ export default function NewsCarouselSection() {
                 1536: { slidesPerView: 7, spaceBetween: 24 },
               }}
               pagination={{ clickable: true, dynamicBullets: true }}
-              /* tighter bottom padding for bullets */
               className="!pb-6 md:!pb-8 lg:!pb-10"
             >
-              {newsUpdates.map((news, i) => (
-                <SwiperSlide key={i}>
+              {cards?.map((news) => (
+                <SwiperSlide key={news?.id}>
                   <Card className="border-l-4 bg-gradient-to-br from-orange-50 to-orange-100 border-l-orange-500 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 h-[140px] sm:h-[130px] md:h-[120px] lg:h-[125px] xl:h-[130px] flex flex-col">
                     <CardHeader className="p-3 pb-1 flex-shrink-0">
                       <div className="flex items-start justify-between gap-2">
-                        <CardTitle className="text-xs sm:text-sm md:text-xs lg:text-sm leading-tight line-clamp-2 flex-1">
-                          {news.href ? (
+                        <CardTitle className="text-xs sm:text-sm md:text-xs lg:text-sm leading-tight line-clamp-2 flex-1 cursor-pointer">
+                          {news?.hasLink ? (
                             <Link
-                              href={news.href}
+                              href={`/gazette-details/${news?.slug}`}
                               className="hover:text-orange-600 transition-colors"
                             >
-                              {news.title}
+                              {news?.title}
                             </Link>
                           ) : (
-                            news.title
+                            news?.title
                           )}
                         </CardTitle>
-                        {news.isNew && (
+                        {/* {news?.isNew && (
                           <span className="bg-orange-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-semibold">
                             New
                           </span>
-                        )}
+                        )} */}
                       </div>
                     </CardHeader>
+
                     <CardContent className="flex flex-col justify-end flex-grow">
                       <div className="flex items-center justify-between gap-2">
                         <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">
-                          {new Date(news.date).toLocaleDateString("en-GB", {
-                            day: "2-digit",
-                            month: "2-digit",
-                            year: "numeric",
-                          })}
+                          {toDDMMYYYY(news?.effective_date)}
                         </span>
-                        {news.href && (
+
+                        {news?.hasLink && (
                           <Button
                             size="sm"
                             variant="ghost"
@@ -229,7 +231,7 @@ export default function NewsCarouselSection() {
                             asChild
                             aria-label="Read more"
                           >
-                            <Link href={news.href}>
+                            <Link href={`/gazette-details/${news?.slug}`}>
                               Read
                               <ArrowRight className="ml-0.5 w-2.5 h-2.5" />
                             </Link>
@@ -242,18 +244,13 @@ export default function NewsCarouselSection() {
               ))}
             </Swiper>
 
-            {/* Nav buttons – smaller top margin */}
-            <div className="flex items-center justify-center gap-3 mt-4 lg:mt-6 ">
+            {/* Nav buttons */}
+            <div className="flex items-center justify-center gap-3 mt-4 lg:mt-6">
               <Button
                 onClick={() => swiperRef.current?.slidePrev()}
-                disabled={isBeginning}
                 variant="outline"
                 size="icon"
-                className={`rounded-full h-10 w-10 lg:h-12 lg:w-12 border-2 transition-all hover:cursor-pointer ${
-                  isBeginning
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:bg-orange-50 hover:border-orange-300 hover:scale-105"
-                }`}
+                className={`rounded-full h-10 w-10 lg:h-12 lg:w-12 border-2 hover:bg-orange-50 hover:border-orange-300 hover:scale-105 transition-all cursor-pointer`}
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="h-5 w-5 lg:h-6 lg:w-6" />
@@ -261,14 +258,9 @@ export default function NewsCarouselSection() {
 
               <Button
                 onClick={() => swiperRef.current?.slideNext()}
-                disabled={isEnd}
                 variant="outline"
                 size="icon"
-                className={`rounded-full h-10 w-10 lg:h-12 lg:w-12 border-2 transition-all hover:cursor-pointer ${
-                  isEnd
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:bg-orange-50 hover:border-orange-300 hover:scale-105"
-                }`}
+                className={`rounded-full h-10 w-10 lg:h-12 lg:w-12 border-2 hover:bg-orange-50 hover:border-orange-300 hover:scale-105 transition-all cursor-pointer`}
                 aria-label="Next slide"
               >
                 <ChevronRight className="h-5 w-5 lg:h-6 lg:w-6" />

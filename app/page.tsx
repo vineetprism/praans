@@ -1,16 +1,35 @@
 import type { Metadata } from "next";
-import React from "react";
 import ResourceLibrary from "@/app/_component/Home/resource-library/page";
 import NewsCarouselSection from "@/app/_component/Home/carousel-section/page";
 import HeroSection from "./_component/Home/hero-section/page";
 import CTASection from "./_component/Home/cta-section/page";
 import { ServiceSection } from "./_component/Home/service-section/page";
+import { cache } from "react";
 
 type ApiPost = {
   meta_title?: string | null;
   meta_description?: string | null;
   meta_keywords?: string | null;
   meta_url?: string | null;
+};
+
+type GazetteResponse = {
+  data: any[];
+  links: {
+    first: string | null;
+    last: string | null;
+    prev: string | null;
+    next: string | null;
+  };
+  meta: {
+    current_page: number;
+    from: number | null;
+    last_page: number;
+    path: string;
+    per_page: number;
+    to: number | null;
+    total: number;
+  };
 };
 
 const API_BASE =
@@ -35,9 +54,7 @@ function resolveCanonical(metaUrl?: string | null): string {
 
 export async function generateMetadata(): Promise<Metadata> {
   try {
-    const res = await fetch(`${API_BASE}/api/home`, {
-      next: { revalidate },
-    });
+    const res = await fetch(`${API_BASE}/api/home`, { next: { revalidate } });
 
     if (!res.ok) {
       return {
@@ -63,7 +80,6 @@ export async function generateMetadata(): Promise<Metadata> {
     }
 
     const json = await res.json();
-
     const raw =
       json && json.data && !Array.isArray(json.data)
         ? json.data
@@ -72,25 +88,15 @@ export async function generateMetadata(): Promise<Metadata> {
         : json;
 
     const data = raw as Partial<ApiPost>;
-
     const title =
-      data.meta_title ||
-      "Praans | Labour Law Compliance Solutions in India";
-
+      data.meta_title || "Praans | Labour Law Compliance Solutions in India";
     const description =
       data.meta_description ||
       "Praans Consultech is a trusted partner for labour law compliance in India. Explore our services, resource library, compliance updates, and expert guidance to streamline statutory compliance for your business.";
-
     const keywords = normalizeKeywords(data.meta_keywords);
-
     const canonical = resolveCanonical(data.meta_url);
 
-    return {
-      title,
-      description,
-      keywords,
-      alternates: { canonical },
-    };
+    return { title, description, keywords, alternates: { canonical } };
   } catch {
     return {
       title: "Praans | Labour Law Compliance Solutions in India",
@@ -115,11 +121,54 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function HomePage() {
+const getGazetteData = cache(
+  async (opts?: {
+    page?: number;
+    slug?: string | null;
+  }): Promise<GazetteResponse> => {
+    const page = opts?.page ?? 1;
+    const slug = (opts?.slug ?? "").trim();
+
+    const url = new URL(`${API_BASE}/api/gazettes`);
+    url.searchParams.set("page", String(page));
+    if (slug) url.searchParams.set("slug", slug);
+
+    try {
+      const res = await fetch(url.toString(), { next: { revalidate: 1800 } });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return (await res.json()) as GazetteResponse;
+    } catch {
+      return {
+        data: [],
+        links: { first: null, last: null, prev: null, next: null },
+        meta: {
+          current_page: 1,
+          from: null,
+          last_page: 1,
+          path: "",
+          per_page: 10,
+          to: null,
+          total: 0,
+        },
+      };
+    }
+  }
+);
+
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ slug?: string | string[] }>;
+}) {
+  const sp = await searchParams;
+  const slug = Array.isArray(sp?.slug) ? sp.slug[0] ?? "" : sp?.slug ?? "";
+
+  const initialData = await getGazetteData({ page: 1, slug });
+
   return (
     <div className="min-h-screen">
       <HeroSection />
-      <NewsCarouselSection />
+      <NewsCarouselSection initialData={initialData} slug={slug} />
       <ServiceSection />
       <ResourceLibrary />
       <CTASection />

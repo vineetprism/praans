@@ -71,7 +71,7 @@
 
 // app/(e-library)/gazette/page.tsx
 import type { Metadata } from "next";
-import Gazette from "@/app/_component/gazette/Gazette"; // Client-side component
+import Gazette from "@/app/_component/Gazette/Gazette"; // Client-side component
 
 // Use environment variables for API base URLs (safe fallback + trim trailing slash)
 const API_BASE =
