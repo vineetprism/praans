@@ -14,7 +14,7 @@ type StateHoliday = {
   state_slug: string;
   is_applicable: boolean;
   updated_date: string;
-  effective_date: string;
+//   effective_date: string;
   notes: string;
 };
 
@@ -53,15 +53,15 @@ export default function NationalFestivalHolidays({
   const transformedApplicableStates = applicableStates.map(state => ({
     name: state.state,
     slug: state.state_slug,
-    updated_date: state.updated_date,
-    effective_date: state.effective_date
+    // updated_date: state.updated_date,
+    // effective_date: state.effective_date
   }));
 
   const transformedNonApplicableStates = nonApplicableStates.map(state => ({
     name: state.state,
     slug: state.state_slug,
-    updated_date: state.updated_date,
-    effective_date: state.effective_date
+    // updated_date: state.updated_date,
+    // effective_date: state.effective_date
   }));
 
   // Dropdown options from API
@@ -116,40 +116,6 @@ export default function NationalFestivalHolidays({
               </div>
             </div>
 
-            {/* Stats Cards */}
-            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500 lg:h-40">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">
-                        Applicable States
-                      </p>
-                      <p className="text-2xl font-bold text-gray-900">
-                        {applicableCount}
-                      </p>
-                    </div>
-                    <MapPin className="w-8 h-8 text-blue-600" />
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500 lg:h-40">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-600">
-                        Non-Applicable States
-                      </p>
-                      <p className="text-2xl font-bold text-gray-900">
-                        {nonApplicableCount}
-                      </p>
-                    </div>
-                    <Building2 className="w-8 h-8 text-gray-600" />
-                  </div>
-                </CardContent>
-              </Card>
-            </div> */}
 
             {/* Filters */}
             {enableFilters && (
@@ -213,14 +179,9 @@ export default function NationalFestivalHolidays({
                                 <span className="font-medium text-blue-600 group-hover:text-orange-600 transition-colors">
                                   {index + 1}. {state.name}
                                 </span>
-                                {state.effective_date && (
-                                  <span className="text-xs text-gray-500">
-                                    Effective: {new Date(state.effective_date).toLocaleDateString('en-IN')}
-                                  </span>
-                                )}
                               </div>
                               <Badge className="bg-green-100 text-green-800">
-                                Available
+                                Applicable
                               </Badge>
                             </div>
                           </Link>
@@ -252,11 +213,11 @@ export default function NationalFestivalHolidays({
                               <span className="text-gray-600 font-medium">
                                 {index + 1}. {state.name}
                               </span>
-                              {state.updated_date && (
+                              {/* {state.updated_date && (
                                 <span className="text-xs text-gray-500">
                                   Updated: {new Date(state.updated_date).toLocaleDateString('en-IN')}
                                 </span>
-                              )}
+                              )} */}
                             </div>
                             <Badge className="bg-gray-100 text-gray-600">
                               Not Applicable
