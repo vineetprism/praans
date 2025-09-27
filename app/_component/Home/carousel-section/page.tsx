@@ -1,6 +1,7 @@
 "use client";
-import React, { useRef, useState, useMemo } from "react";
+import React, { useRef, useState, useMemo, useCallback } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -77,13 +78,10 @@ function mapApiToCarousel(items?: GazetteItem[]): CarouselCard[] {
 
 function toDDMMYYYY(input?: string | null): string {
   if (!input) return "";
-
   const ddmmyyyy = input.match(/^(\d{2})[/-](\d{2})[/-](\d{4})$/);
   if (ddmmyyyy) return `${ddmmyyyy[1]}-${ddmmyyyy[2]}-${ddmmyyyy[3]}`;
-
   const iso = input.match(/^(\d{4})-(\d{2})-(\d{2})/);
   if (iso) return `${iso[3]}-${iso[2]}-${iso[1]}`;
-
   const d = new Date(input);
   if (!Number.isNaN(d.getTime())) {
     const dd = String(d.getDate()).padStart(2, "0");
@@ -91,7 +89,6 @@ function toDDMMYYYY(input?: string | null): string {
     const yyyy = d.getFullYear();
     return `${dd}-${mm}-${yyyy}`;
   }
-
   return input;
 }
 
@@ -109,13 +106,41 @@ export default function NewsCarouselSection({
   initialData: GazetteApiResponse;
   slug?: string;
 }) {
+  const router = useRouter();
   const swiperRef = useRef<SwiperType | null>(null);
 
-  const cards = useMemo(
+  // --- Search state (mirrors Gazette) ---
+  const [q, setQ] = useState<string>(slug ?? "");
+
+  // Map API -> cards
+  const allCards = useMemo(
     () => mapApiToCarousel(initialData?.data),
     [initialData]
   );
+
+  // Client-side filter like Gazette
+  const cards = useMemo(() => {
+    const needle = q.trim().toLowerCase();
+    if (!needle) return allCards;
+    return allCards.filter(
+      (c) =>
+        c.title.toLowerCase().includes(needle) ||
+        toDDMMYYYY(c.effective_date)?.toLowerCase().includes(needle)
+    );
+  }, [allCards, q]);
+
   const loopEnabled = cards.length > 4;
+
+  // On submit, deep-link to Gazette listing with same ?q
+  const onSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const term = q.trim();
+      const url = term ? `/gazette?q=${encodeURIComponent(term)}` : `/gazette`;
+      router.push(url);
+    },
+    [q, router]
+  );
 
   return (
     <>
@@ -134,8 +159,7 @@ export default function NewsCarouselSection({
 
             <div className="w-full md:w-auto md:flex md:flex-col md:items-end md:gap-2 lg:gap-3">
               <form
-                action="/updates"
-                method="GET"
+                onSubmit={onSubmit}
                 className="flex items-center gap-2 w-full md:w-64 lg:w-72 2xl:w-[25rem]"
                 aria-label="Search updates"
               >
@@ -147,7 +171,8 @@ export default function NewsCarouselSection({
                    text-sm md:text-xs lg:text-sm 
                    focus:outline-none focus:ring-2 focus:ring-orange-500"
                   aria-label="Search query"
-                  defaultValue={slug ?? ""}
+                  value={q}
+                  onChange={(e) => setQ(e.target.value)}
                 />
                 <Button
                   type="submit"
@@ -204,11 +229,6 @@ export default function NewsCarouselSection({
                             news?.title
                           )}
                         </CardTitle>
-                        {/* {news?.isNew && (
-                          <span className="bg-orange-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-semibold">
-                            New
-                          </span>
-                        )} */}
                       </div>
                     </CardHeader>
 
@@ -243,7 +263,7 @@ export default function NewsCarouselSection({
                 onClick={() => swiperRef.current?.slidePrev()}
                 variant="outline"
                 size="icon"
-                className={`rounded-full h-10 w-10 lg:h-12 lg:w-12 border-2 hover:bg-orange-50 hover:border-orange-300 hover:scale-105 transition-all cursor-pointer`}
+                className="rounded-full h-10 w-10 lg:h-12 lg:w-12 border-2 hover:bg-orange-50 hover:border-orange-300 hover:scale-105 transition-all cursor-pointer"
                 aria-label="Previous slide"
               >
                 <ChevronLeft className="h-5 w-5 lg:h-6 lg:w-6" />
@@ -253,7 +273,7 @@ export default function NewsCarouselSection({
                 onClick={() => swiperRef.current?.slideNext()}
                 variant="outline"
                 size="icon"
-                className={`rounded-full h-10 w-10 lg:h-12 lg:w-12 border-2 hover:bg-orange-50 hover:border-orange-300 hover:scale-105 transition-all cursor-pointer`}
+                className="rounded-full h-10 w-10 lg:h-12 lg:w-12 border-2 hover:bg-orange-50 hover:border-orange-300 hover:scale-105 transition-all cursor-pointer"
                 aria-label="Next slide"
               >
                 <ChevronRight className="h-5 w-5 lg:h-6 lg:w-6" />
