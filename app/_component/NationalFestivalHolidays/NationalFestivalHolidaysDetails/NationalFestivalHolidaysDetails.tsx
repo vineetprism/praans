@@ -121,9 +121,9 @@ export default function NationalFestivalHolidaysDetails({
       const count = holidays?.length;
       return (
         <div className="flex items-start gap-3 sm:gap-4 flex-wrap">
-          <Badge className="font-semibold bg-blue-100 text-blue-800">
+          {/* <Badge className="font-semibold bg-blue-100 text-blue-800">
             {count}
-          </Badge>
+          </Badge> */}
           <ul className="list-disc list-inside space-y-1 text-gray-700 w-full sm:w-auto">
             {holidays?.length ? (
               holidays.map((h, i) => <li key={i}>{h}</li>)
