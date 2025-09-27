@@ -75,19 +75,15 @@ function mapApiToCarousel(items?: GazetteItem[]): CarouselCard[] {
   });
 }
 
-/** Format to DD-MM-YYYY without breaking odd inputs */
 function toDDMMYYYY(input?: string | null): string {
   if (!input) return "";
 
-  // Already DD-MM-YYYY or DD/MM/YYYY -> normalize to hyphen
   const ddmmyyyy = input.match(/^(\d{2})[/-](\d{2})[/-](\d{4})$/);
   if (ddmmyyyy) return `${ddmmyyyy[1]}-${ddmmyyyy[2]}-${ddmmyyyy[3]}`;
 
-  // ISO or ISO-like: YYYY-MM-DD or YYYY-MM-DDTHH:mm:ss...
   const iso = input.match(/^(\d{4})-(\d{2})-(\d{2})/);
   if (iso) return `${iso[3]}-${iso[2]}-${iso[1]}`;
 
-  // Fallback: try Date()
   const d = new Date(input);
   if (!Number.isNaN(d.getTime())) {
     const dd = String(d.getDate()).padStart(2, "0");
@@ -96,7 +92,6 @@ function toDDMMYYYY(input?: string | null): string {
     return `${dd}-${mm}-${yyyy}`;
   }
 
-  // If nothing worked, return original string
   return input;
 }
 
@@ -222,7 +217,6 @@ export default function NewsCarouselSection({
                         <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">
                           {toDDMMYYYY(news?.effective_date)}
                         </span>
-
                         {news?.hasLink && (
                           <Button
                             size="sm"
@@ -244,7 +238,6 @@ export default function NewsCarouselSection({
               ))}
             </Swiper>
 
-            {/* Nav buttons */}
             <div className="flex items-center justify-center gap-3 mt-4 lg:mt-6">
               <Button
                 onClick={() => swiperRef.current?.slidePrev()}
