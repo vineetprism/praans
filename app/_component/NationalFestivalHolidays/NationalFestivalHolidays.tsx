@@ -1,5 +1,4 @@
 "use client";
-
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, MapPin } from "lucide-react";
@@ -14,7 +13,6 @@ type StateHoliday = {
   state_slug: string;
   is_applicable: boolean;
   updated_date: string;
-//   effective_date: string;
   notes: string;
 };
 
@@ -26,45 +24,34 @@ type NFHApi = {
 };
 
 type Props = {
-  initialData: NFHApi | null; // ISR server se aaya payload
+  initialData: NFHApi | null; 
   apiBase: string;
   enableFilters?: boolean;
 };
 
 export default function NationalFestivalHolidays({
   initialData,
-  apiBase,
   enableFilters = true,
 }: Props) {
-  // UI state
   const [q, setQ] = useState<string>("");
   const [stateFilter, setStateFilter] = useState<string>("All States");
 
   const applicableStates = initialData?.applicable_states ?? [];
   const nonApplicableStates = initialData?.non_applicable_states ?? [];
-  const applicableCount = initialData?.applicable_states_count ?? 0;
-  const nonApplicableCount = initialData?.non_applicable_states_count ?? 0;
 
-  // Page description from API notes
   const pageDescription = applicableStates?.[0]?.notes || 
     "National festivals are celebrations that reflect India's rich cultural diversity, religious traditions, and historical significance. They bring communities together and are officially recognized as public holidays across different states and regions.";
 
-  // Transform data for consistent structure
   const transformedApplicableStates = applicableStates.map(state => ({
     name: state.state,
     slug: state.state_slug,
-    // updated_date: state.updated_date,
-    // effective_date: state.effective_date
   }));
 
   const transformedNonApplicableStates = nonApplicableStates.map(state => ({
     name: state.state,
     slug: state.state_slug,
-    // updated_date: state.updated_date,
-    // effective_date: state.effective_date
   }));
 
-  // Dropdown options from API
   const stateOptions = useMemo(() => {
     const all = new Set<string>(["All States"]);
     transformedApplicableStates.forEach(s => s?.name && all.add(s.name));
@@ -72,7 +59,6 @@ export default function NationalFestivalHolidays({
     return Array.from(all).sort((a, b) => a.localeCompare(b)).map(s => ({ label: s, value: s }));
   }, [transformedApplicableStates, transformedNonApplicableStates]);
 
-  // Filtering
   const filteredApplicableStates = useMemo(() => {
     const term = q.trim().toLowerCase();
     return transformedApplicableStates.filter((s) => {
@@ -91,7 +77,6 @@ export default function NationalFestivalHolidays({
     });
   }, [transformedNonApplicableStates, q, stateFilter]);
 
-  // Empty/error states (props-based)
   const hasError = initialData === null;
   const isEmpty = !hasError && 
     transformedApplicableStates.length === 0 && 
@@ -102,7 +87,6 @@ export default function NationalFestivalHolidays({
       <div className="mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-4 gap-8">
           <div className="lg:col-span-3">
-            {/* Page Header */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <div>
@@ -117,7 +101,6 @@ export default function NationalFestivalHolidays({
             </div>
 
 
-            {/* Filters */}
             {enableFilters && (
               <div className="mb-6 sm:mb-8 md:mb-10">
                 <SearchAndStateFilter
@@ -131,7 +114,6 @@ export default function NationalFestivalHolidays({
               </div>
             )}
 
-            {/* Error / Empty States */}
             {hasError && (
               <div className="mb-6 text-sm text-red-600">
                 Couldn&apos;t load holiday data. Please try again later.
@@ -143,7 +125,6 @@ export default function NationalFestivalHolidays({
               </div>
             )}
 
-            {/* States Grid */}
             {!hasError && !isEmpty && (
               <Card className="mb-8 group hover:shadow-lg transition-all duration-300 border-l-4 border-l-orange-500">
                 <CardHeader>
@@ -153,31 +134,30 @@ export default function NationalFestivalHolidays({
                 </CardHeader>
                 <CardContent>
                   <div className="grid lg:grid-cols-2 gap-8">
-                    {/* Applicable States */}
                     <div>
                       <div className="flex items-center gap-2 mb-4">
                         <MapPin className="h-5 w-5 text-blue-600" />
                         <h3 className="text-lg font-semibold text-gray-900">
-                          Applicable States ({filteredApplicableStates.length})
+                          Applicable States ({filteredApplicableStates?.length})
                         </h3>
                       </div>
 
                       <div className="space-y-3">
-                        {filteredApplicableStates.length === 0 && (
+                        {filteredApplicableStates?.length === 0 && (
                           <div className="text-sm text-gray-600">
                             No applicable states found.
                           </div>
                         )}
-                        {filteredApplicableStates.map((state, index) => (
+                        {filteredApplicableStates?.map((state, index) => (
                           <Link
-                            key={state.slug}
-                            href={`/national-festival-holidays/${state.slug}`}
-                            aria-label={`View ${state.name} details`}
+                            key={state?.slug}
+                            href={`/national-festival-holidays-details/${state?.slug}`}
+                            aria-label={`View ${state?.name} details`}
                           >
                             <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-orange-50 hover:border-orange-200 transition-colors cursor-pointer group">
                               <div className="flex flex-col">
                                 <span className="font-medium text-blue-600 group-hover:text-orange-600 transition-colors">
-                                  {index + 1}. {state.name}
+                                  {index + 1}. {state?.name}
                                 </span>
                               </div>
                               <Badge className="bg-green-100 text-green-800">
@@ -189,35 +169,29 @@ export default function NationalFestivalHolidays({
                       </div>
                     </div>
 
-                    {/* Non-Applicable States */}
                     <div>
                       <div className="flex items-center gap-2 mb-4">
                         <Building2 className="h-5 w-5 text-gray-600" />
                         <h3 className="text-lg font-semibold text-gray-900">
-                          Non-Applicable States ({filteredNonApplicableStates.length})
+                          Non-Applicable States ({filteredNonApplicableStates?.length})
                         </h3>
                       </div>
 
                       <div className="space-y-3">
-                        {filteredNonApplicableStates.length === 0 && (
+                        {filteredNonApplicableStates?.length === 0 && (
                           <div className="text-sm text-gray-600">
                             No non-applicable states found.
                           </div>
                         )}
-                        {filteredNonApplicableStates.map((state, index) => (
+                        {filteredNonApplicableStates?.map((state, index) => (
                           <div
-                            key={state.slug}
+                            key={state?.slug}
                             className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border"
                           >
                             <div className="flex flex-col">
                               <span className="text-gray-600 font-medium">
-                                {index + 1}. {state.name}
+                                {index + 1}. {state?.name}
                               </span>
-                              {/* {state.updated_date && (
-                                <span className="text-xs text-gray-500">
-                                  Updated: {new Date(state.updated_date).toLocaleDateString('en-IN')}
-                                </span>
-                              )} */}
                             </div>
                             <Badge className="bg-gray-100 text-gray-600">
                               Not Applicable
@@ -232,7 +206,6 @@ export default function NationalFestivalHolidays({
             )}
           </div>
 
-          {/* Sidebar */}
           <div className="min-w-0">
             <div className="sticky top-24">
               <div className="rounded-lg border bg-white shadow-sm">
