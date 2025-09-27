@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import NationalFestivalHolidays from "@/app/_component/NationalFestivalHolidays/NationalFestivalHolidays";
 
 export const metadata: Metadata = {
-  title: "National & Festival Holidays - State-wise Holiday Matrix | E-Library",
+  title: "National & Festival Holidays - State-wise Holiday Matrix | Praans",
   description:
     "Complete guide to National & Festival Holidays across all Indian states. Get latest holiday lists, state-wise applicability, and compliance requirements.",
   keywords: [

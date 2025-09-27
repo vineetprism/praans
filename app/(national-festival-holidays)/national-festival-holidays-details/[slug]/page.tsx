@@ -37,14 +37,17 @@ export type NFHDetailApi = {
   data: StateNFHData;
 };
 
-export const revalidate = 1800; // ISR: 30 min
+export const revalidate = 1800;
 const API_BASE = "http://100.110.147.101:8000";
 
 async function getStateNFHData(slug: string): Promise<NFHDetailApi | null> {
   try {
-    const res = await fetch(`${API_BASE}/api/national-festival-holidays/${slug}`, {
-      next: { revalidate },
-    });
+    const res = await fetch(
+      `${API_BASE}/api/national-festival-holidays/${slug}`,
+      {
+        next: { revalidate },
+      }
+    );
     if (!res.ok) {
       if (res.status === 404) return null;
       throw new Error(`HTTP ${res.status}`);
@@ -67,14 +70,15 @@ export async function generateMetadata({
   if (!stateData) {
     return {
       title: "State Not Found | NFH Details",
-      description: "The requested state's National Festival Holiday details could not be found.",
+      description:
+        "The requested state's National Festival Holiday details could not be found.",
     };
   }
 
   const stateName = stateData.data.state.name;
-  
+
   return {
-    title: `${stateName} - National Festival Holiday Details | E-Library`,
+    title: `${stateName} - National Festival Holiday Details | Praans`,
     description: `Complete National & Festival Holiday matrix for ${stateName}. View holiday lists, applicability, compensation details, and compliance requirements.`,
     keywords: [
       `${stateName} holidays`,
@@ -90,19 +94,19 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   try {
     const res = await fetch(`${API_BASE}/api/national-festival-holidays`, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
+      next: { revalidate: 3600 },
     });
-    
+
     if (!res.ok) return [];
-    
+
     const data = await res.json();
     const allStates = [
-      ...(data.applicable_states || []),
-      ...(data.non_applicable_states || [])
+      ...(data?.applicable_states || []),
+      ...(data?.non_applicable_states || []),
     ];
-    
-    return allStates.map((state: any) => ({
-      slug: state.state_slug,
+
+    return allStates?.map((state: any) => ({
+      slug: state?.state_slug,
     }));
   } catch (error) {
     console.error("Generate static params error:", error);
@@ -130,4 +134,3 @@ export default async function StateDetailPage({
     />
   );
 }
-
