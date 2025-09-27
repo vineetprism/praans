@@ -76,7 +76,7 @@ import MinimumWageDetails, { MWSlugData } from "@/app/_component/MinimumWages/Mi
 
 export const revalidate = 600; // ✅ 10 min ISR
 
-const API_BASE = "http://100.110.147.101:8000/api/minimum-wages";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 
 type ApiResp = { data: MWSlugData };
 
@@ -120,6 +120,5 @@ export default async function StateMinimumWagesPage(
   const { state } = await params; // ✅ await params
   const data = await getDetail(state);
   if (!data) notFound();
-
   return <MinimumWageDetails data={data} apiBase={API_BASE} />;
 }

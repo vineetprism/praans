@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import HolidaysPageClient from "@/app/_component/Holiday/Holiday";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 
 type HolidayListItem = { slug: string; state: string };
 

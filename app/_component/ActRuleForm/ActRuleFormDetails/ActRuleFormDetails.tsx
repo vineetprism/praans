@@ -1,18 +1,17 @@
 
 "use client";
 
+import PopularSearch from "@/app/PopularSearch/PopularSearch";
+import SanitizedHtmlContent from "@/app/SanitizedHtmlContent/page"; // Your new component
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Scale, Download, FileText, AlertCircle } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -21,14 +20,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
+  TooltipProvider
 } from "@/components/ui/tooltip";
-import PopularSearch from "@/app/PopularSearch/PopularSearch";
-import SanitizedHtmlContent from "@/app/SanitizedHtmlContent/page"; // Your new component
+import { AlertCircle, Download, FileText, Scale } from "lucide-react";
 
 type FormAPI = {
   id: number;
@@ -78,9 +74,7 @@ interface ActDetailClientProps {
   act: ActDetail;
 }
 
-const FILE_HOST =
-  process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
+const FILE_HOST =process.env.NEXT_PUBLIC_API_BASE!
 
 const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "127.1.1.0"]);
 

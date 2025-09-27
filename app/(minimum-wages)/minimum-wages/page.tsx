@@ -88,10 +88,7 @@ export type MinimumWageItem = {
 type ApiResponse = { data: MinimumWageItem[] };
 
 // ---- Config (ENV first, fallback second, no trailing slash) ----
-const API_BASE = (
-"http://100.110.147.101:8000"
-  // process.env.NEXT_PUBLIC_API_BASE || "http://100.110.147.101:8000"
-).replace(/\/+$/, "");
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE!
 const API_URL = `${API_BASE}/api/minimum-wages`;
 
 // Server fetch with ISR + defensive parsing

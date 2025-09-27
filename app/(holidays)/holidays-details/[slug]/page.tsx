@@ -1,9 +1,8 @@
 
 
-import { Metadata } from "next";
 import HolidayDetails from "@/app/_component/Holiday/HolidayDetails/HolidayDetails";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 export const revalidate = 1800;
 
 type HolidayDetail = {
@@ -37,6 +36,7 @@ export type HolidayStateData = {
   holiday_details: HolidayDetail[];
 };
 
+
 type ApiResponse = { data: HolidayStateData };
 
 async function getHolidayState(slug: string): Promise<HolidayStateData | null> {
@@ -59,7 +59,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params; // ✅ must await
+  const { slug } = await params; 
   try {
    const r = await fetch(`${API_BASE}/api/holidaysdetail/${slug}`, {
       next: { revalidate },

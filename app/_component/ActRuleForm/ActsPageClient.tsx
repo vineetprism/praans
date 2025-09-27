@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Eye, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState, useTransition } from "react";
+import { useMemo, useState, useTransition } from "react";
 
 // ---------- Types ----------
 type ActItem = {
@@ -87,19 +87,6 @@ export default function ActsPageClient({
   const [q, setQ] = useState<string>("");
 
   const serverData = initialData;
-
-  useEffect(() => {
-    const fetchStates = async () => {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/states`);
-        const data: StateApiResponse = await response.json();
-        setStates(data.states);
-      } catch (error) {
-        console.error("Error fetching states:", error);
-      }
-    };
-    fetchStates();
-  }, []);
 
   const currentPage = serverData?.meta?.current_page ?? initialPage;
   const lastPage = serverData?.meta?.last_page ?? 1;

@@ -37,8 +37,8 @@ type WFListResponse = {
   non_applicable_states: { state_slug: string }[];
 };
 
-// const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://100.110.147.101:8000";
-const API_BASE = "http://100.110.147.101:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
+// const API_BASE = "http://100.110.147.101:8000";
 
 // ---------- Helpers ----------
 function normalizeKeywords(v: WelfareFundStateMeta["meta_keywords"]): string[] | undefined {
