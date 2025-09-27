@@ -109,16 +109,12 @@ export default function NewsCarouselSection({
   const router = useRouter();
   const swiperRef = useRef<SwiperType | null>(null);
 
-  // --- Search state (mirrors Gazette) ---
   const [q, setQ] = useState<string>(slug ?? "");
 
-  // Map API -> cards
   const allCards = useMemo(
     () => mapApiToCarousel(initialData?.data),
     [initialData]
   );
-
-  // Client-side filter like Gazette
   const cards = useMemo(() => {
     const needle = q.trim().toLowerCase();
     if (!needle) return allCards;
@@ -131,7 +127,6 @@ export default function NewsCarouselSection({
 
   const loopEnabled = cards.length > 4;
 
-  // On submit, deep-link to Gazette listing with same ?q
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
