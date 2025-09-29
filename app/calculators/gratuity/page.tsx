@@ -1,839 +1,335 @@
+// app/gratuity-calculator/page.tsx
 "use client";
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Label } from "@/components/ui/label";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Calculator,
-  IndianRupee,
-  FileText,
-  CheckCircle,
-  AlertCircle,
-  CalendarIcon,
-  Upload,
-  Sparkles,
-  FileImage,
-  Loader2,
-} from "lucide-react";
-import Link from "next/link";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
-import PopularSearch from "@/app/PopularSearch/PopularSearch";
 
-type CalculationMethod = "manual" | "dates" | "document";
+import { useMemo, useState } from "react";
+
+/**
+ * Gratuity Basics (Non-seasonal):
+ *  - Formula: Gratuity = (Last Drawn Monthly Wages / 26) * 15 * YearsCounted
+ *  - YearsCounted = completed years + (months >= 6 ? 1 : 0)
+ *  - Eligibility: >= 5 years continuous service (except death/disablement)
+ *  - Wage = Basic + DA (exclude HRA/allowances)
+ *  - Statutory ceiling (configurable): default ₹20,00,000
+ *
+ * Seasonal (optional):
+ *  - 7 days wages per season year (use 7 instead of 15)
+ */
+
+type Rounding = "none" | "nearest" | "ceil";
+type CaseType = "normal" | "death_disable";
+type EmployeeType = "non_seasonal" | "seasonal";
+
+const INR = (v: number) =>
+  new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(Math.max(0, Math.round(v || 0)));
+
+function roundBy(v: number, mode: Rounding) {
+  switch (mode) {
+    case "nearest":
+      return Math.round(v);
+    case "ceil":
+      return Math.ceil(v);
+    default:
+      return v;
+  }
+}
 
 export default function GratuityCalculatorPage() {
-  const [salary, setSalary] = useState<number>(50000);
-  const [calculationMethod, setCalculationMethod] =
-    useState<CalculationMethod>("manual");
-
-  // Manual input states
+  // Inputs
+  const [monthlyWage, setMonthlyWage] = useState<number>(30000); // Basic + DA
   const [years, setYears] = useState<number>(5);
   const [months, setMonths] = useState<number>(0);
-  const [days, setDays] = useState<number>(0);
 
-  // Date-based calculation states
-  const [joiningDate, setJoiningDate] = useState<Date>();
-  const [leavingDate, setLeavingDate] = useState<Date>(new Date());
+  const [employeeType, setEmployeeType] = useState<EmployeeType>("non_seasonal");
+  const [caseType, setCaseType] = useState<CaseType>("normal"); // normal or death/disablement (waives 5y rule)
 
-  // Document upload states
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [extractedData, setExtractedData] = useState<{
-    joiningDate?: Date;
-    employeeName?: string;
-    designation?: string;
-    confidence?: number;
-  } | null>(null);
+  // Act parameters (editable knobs)
+  const [daysPerMonthDivisor, setDaysPerMonthDivisor] = useState<number>(26); // usually 26
+  const [daysPerYearMultiplier, setDaysPerYearMultiplier] = useState<number>(15); // 15 for non-seasonal
+  const [seasonalDaysMultiplier, setSeasonalDaysMultiplier] = useState<number>(7); // 7 for seasonal
+  const [applyActRounding, setApplyActRounding] = useState<boolean>(true); // months >=6 -> +1 year
+  const [statutoryCeiling, setStatutoryCeiling] = useState<number>(2000000); // ₹20,00,000 default
+  const [rounding, setRounding] = useState<Rounding>("nearest"); // payroll hygiene
 
-  // Calculation results
-  const [totalServiceDays, setTotalServiceDays] = useState<number>(0);
-  const [gratuityAmount, setGratuityAmount] = useState<number>(0);
-  const [isEligible, setIsEligible] = useState<boolean>(false);
+  // Derived: counted years
+  const countedYears = useMemo(() => {
+    const y = Math.max(0, Math.floor(years || 0));
+    const m = Math.max(0, Math.floor(months || 0));
+    if (!applyActRounding) return Math.max(0, y + Math.min(11, m) / 12);
+    return y + (m >= 6 ? 1 : 0);
+  }, [years, months, applyActRounding]);
 
-  // Calculate service period based on method
-  useEffect(() => {
-    let serviceDays = 0;
-
-    switch (calculationMethod) {
-      case "manual":
-        serviceDays = years * 365 + months * 30 + days;
-        break;
-      case "dates":
-        if (joiningDate && leavingDate) {
-          const diffTime = Math.abs(
-            leavingDate.getTime() - joiningDate.getTime()
-          );
-          serviceDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        }
-        break;
-      case "document":
-        if (extractedData?.joiningDate) {
-          const diffTime = Math.abs(
-            leavingDate.getTime() - extractedData.joiningDate.getTime()
-          );
-          serviceDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        }
-        break;
+  // Eligibility (5-year rule for non-seasonal; waived on death/disablement)
+  const eligible = useMemo(() => {
+    if (caseType === "death_disable") return true;
+    if (employeeType === "seasonal") {
+      // Seasonal has different computation; still require continuous service notion,
+      // but we allow calculation even if <5 years (common interpretation varies by state/estab).
+      return true;
     }
+    // Non-seasonal normal case
+    return countedYears >= 5;
+  }, [caseType, employeeType, countedYears]);
 
-    setTotalServiceDays(serviceDays);
+  // Core computation
+  const rawGratuity = useMemo(() => {
+    const divisor = Math.max(1, daysPerMonthDivisor);
+    const perDay = Math.max(0, monthlyWage) / divisor;
 
-    // Calculate gratuity
-    const serviceYears = serviceDays / 365;
-    if (serviceYears >= 5) {
-      const calculatedGratuity = (salary * 15 * serviceYears) / 26;
-      setGratuityAmount(Math.round(calculatedGratuity));
-      setIsEligible(true);
-    } else {
-      setGratuityAmount(0);
-      setIsEligible(false);
-    }
+    const multiplier =
+      employeeType === "seasonal"
+        ? Math.max(0, seasonalDaysMultiplier)
+        : Math.max(0, daysPerYearMultiplier);
+
+    const yearsFactor = Math.max(0, countedYears);
+
+    return perDay * multiplier * yearsFactor;
   }, [
-    salary,
-    calculationMethod,
-    years,
-    months,
-    days,
-    joiningDate,
-    leavingDate,
-    extractedData,
+    monthlyWage,
+    daysPerMonthDivisor,
+    daysPerYearMultiplier,
+    seasonalDaysMultiplier,
+    employeeType,
+    countedYears,
   ]);
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "INR",
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
+  // Apply statutory ceiling and rounding
+  const payable = useMemo(() => {
+    const capped = Math.min(rawGratuity, Math.max(0, statutoryCeiling));
+    return roundBy(capped, rounding);
+  }, [rawGratuity, statutoryCeiling, rounding]);
 
-  const formatServicePeriod = (days: number) => {
-    const years = Math.floor(days / 365);
-    const remainingDays = days % 365;
-    const months = Math.floor(remainingDays / 30);
-    const finalDays = remainingDays % 30;
-
-    const parts = [];
-    if (years > 0) parts.push(`${years} year${years > 1 ? "s" : ""}`);
-    if (months > 0) parts.push(`${months} month${months > 1 ? "s" : ""}`);
-    if (finalDays > 0)
-      parts.push(`${finalDays} day${finalDays > 1 ? "s" : ""}`);
-
-    return parts.join(", ") || "0 days";
-  };
-
-  const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    setUploadedFile(file);
-    setIsProcessing(true);
-
-    setTimeout(() => {
-      const mockExtractedData = {
-        joiningDate: new Date("2019-03-15"),
-        employeeName: "John Doe",
-        designation: "Software Engineer",
-        confidence: 0.95,
-      };
-
-      setExtractedData(mockExtractedData);
-      setIsProcessing(false);
-    }, 3000);
-  };
-
-  const serviceYears = totalServiceDays / 365;
+  // Insights
+  const perDayWage = useMemo(
+    () => (daysPerMonthDivisor > 0 ? monthlyWage / daysPerMonthDivisor : 0),
+    [monthlyWage, daysPerMonthDivisor]
+  );
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        {/* Page Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-4xl font-bold text-slate-800 mb-2 flex items-center gap-3">
-              <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center">
-                <Calculator className="w-6 h-6 text-white" />
-              </div>
-              Advanced Gratuity Calculator
-            </h1>
-            <p className="text-xl text-gray-600">
-              Calculate gratuity with precise dates, manual input, or AI-powered
-              document analysis
-            </p>
-          </div>
+    <div className="mx-auto max-w-6xl px-4 py-8">
+      <header className="mb-6 flex items-end justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">
+            <span className="text-[#eb8535]">Gratuity</span> Calculator
+          </h1>
+          <p className="text-sm text-neutral-600">
+            Payment of Gratuity Act style: 15/26 rule, 6-month rounding, ceiling, and seasonal logic.
+          </p>
         </div>
+      </header>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <IndianRupee className="w-5 h-5 text-orange-500" />
-                  Calculate Your Gratuity
-                </CardTitle>
-                <CardDescription>
-                  Choose your preferred method to calculate gratuity amount
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-8">
-                <div className="space-y-3">
-                  <Label className="text-sm font-medium">
-                    Monthly Salary (Basic Pay + Dearness Allowance)
-                  </Label>
-                  <div className="relative">
-                    <IndianRupee className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <Input
-                      type="number"
-                      value={salary}
-                      onChange={(e) => setSalary(Number(e.target.value))}
-                      className="pl-12 text-lg h-14 border-2 focus:border-orange-500"
-                      placeholder="Enter your monthly salary"
-                      min="0"
-                    />
-                  </div>
-                  <p className="text-sm text-gray-500">
-                    Include basic pay and dearness allowance only. Exclude other
-                    allowances.
-                  </p>
-                </div>
+      <div className="grid gap-6 md:grid-cols-5">
+        {/* Calculator */}
+        <section className="md:col-span-3 rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+          <h2 className="text-lg font-semibold">Inputs</h2>
 
-                {/* Calculation Method Tabs */}
-                <Tabs
-                  value={calculationMethod}
-                  onValueChange={(value) =>
-                    setCalculationMethod(value as CalculationMethod)
-                  }
-                >
-                  <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger
-                      value="manual"
-                      className="flex items-center gap-2"
-                    >
-                      <Calculator className="w-4 h-4" />
-                      Manual Entry
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="dates"
-                      className="flex items-center gap-2"
-                    >
-                      <CalendarIcon className="w-4 h-4" />
-                      Date Range
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="document"
-                      className="flex items-center gap-2"
-                    >
-                      <Sparkles className="w-4 h-4" />
-                      AI Document
-                    </TabsTrigger>
-                  </TabsList>
-
-                  {/* Manual Entry Tab */}
-                  <TabsContent value="manual" className="space-y-6">
-                    <div className="grid md:grid-cols-3 gap-4">
-                      <div className="space-y-2">
-                        <Label>Years</Label>
-                        <Input
-                          type="number"
-                          value={years}
-                          onChange={(e) => setYears(Number(e.target.value))}
-                          min="0"
-                          max="50"
-                          className="text-center"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label>Months</Label>
-                        <Input
-                          type="number"
-                          value={months}
-                          onChange={(e) => setMonths(Number(e.target.value))}
-                          min="0"
-                          max="11"
-                          className="text-center"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label>Days</Label>
-                        <Input
-                          type="number"
-                          value={days}
-                          onChange={(e) => setDays(Number(e.target.value))}
-                          min="0"
-                          max="30"
-                          className="text-center"
-                        />
-                      </div>
-                    </div>
-                    <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                      <div className="text-sm text-blue-800">
-                        <strong>Total Service Period:</strong>{" "}
-                        {formatServicePeriod(totalServiceDays)}
-                      </div>
-                    </div>
-                  </TabsContent>
-
-                  {/* Date Range Tab */}
-                  <TabsContent value="dates" className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <Label>Joining Date</Label>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <Button
-                              variant="outline"
-                              className={cn(
-                                "w-full justify-start text-left font-normal h-12",
-                                !joiningDate && "text-muted-foreground"
-                              )}
-                            >
-                              <CalendarIcon className="mr-2 h-4 w-4" />
-                              {joiningDate
-                                ? format(joiningDate, "PPP")
-                                : "Select joining date"}
-                            </Button>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0">
-                            <Calendar
-                              mode="single"
-                              selected={joiningDate}
-                              onSelect={setJoiningDate}
-                              initialFocus
-                            />
-                          </PopoverContent>
-                        </Popover>
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label>Leaving Date</Label>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <Button
-                              variant="outline"
-                              className="w-full justify-start text-left font-normal h-12"
-                            >
-                              <CalendarIcon className="mr-2 h-4 w-4" />
-                              {format(leavingDate, "PPP")}
-                            </Button>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0">
-                            <Calendar
-                              mode="single"
-                              selected={leavingDate}
-                              onSelect={(date) => date && setLeavingDate(date)}
-                              initialFocus
-                            />
-                          </PopoverContent>
-                        </Popover>
-                      </div>
-                    </div>
-
-                    {joiningDate && (
-                      <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                        <div className="text-sm text-green-800">
-                          <strong>Calculated Service Period:</strong>{" "}
-                          {formatServicePeriod(totalServiceDays)}
-                        </div>
-                      </div>
-                    )}
-                  </TabsContent>
-
-                  {/* AI Document Tab */}
-                  <TabsContent value="document" className="space-y-6">
-                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                      <div className="space-y-4">
-                        <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
-                          <Upload className="w-8 h-8 text-orange-500" />
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-semibold mb-2">
-                            Upload Joining Letter
-                          </h3>
-                          <p className="text-gray-600 mb-4">
-                            Upload your joining letter, appointment letter, or
-                            employment contract. Our AI will extract the joining
-                            date automatically.
-                          </p>
-                          <input
-                            type="file"
-                            accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
-                            onChange={handleFileUpload}
-                            className="hidden"
-                            id="document-upload"
-                          />
-                          <Label htmlFor="document-upload">
-                            <Button
-                              asChild
-                              className="bg-orange-500 hover:bg-orange-600"
-                            >
-                              <span>
-                                <FileImage className="w-4 h-4 mr-2" />
-                                Choose File
-                              </span>
-                            </Button>
-                          </Label>
-                        </div>
-                        <p className="text-xs text-gray-500">
-                          Supported formats: PDF, JPG, PNG, DOC, DOCX (Max 10MB)
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Processing State */}
-                    {isProcessing && (
-                      <div className="p-6 bg-blue-50 rounded-lg border border-blue-200">
-                        <div className="flex items-center justify-center space-x-3">
-                          <Loader2 className="w-6 h-6 animate-spin text-blue-600" />
-                          <div className="text-blue-800">
-                            <div className="font-semibold">
-                              Processing Document...
-                            </div>
-                            <div className="text-sm">
-                              AI is analyzing your document to extract joining
-                              date
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Extracted Data */}
-                    {extractedData && !isProcessing && (
-                      <div className="p-6 bg-green-50 rounded-lg border border-green-200">
-                        <div className="flex items-start space-x-3">
-                          <CheckCircle className="w-6 h-6 text-green-600 mt-0.5" />
-                          <div className="flex-1">
-                            <h4 className="font-semibold text-green-800 mb-3">
-                              Document Processed Successfully!
-                            </h4>
-                            <div className="grid md:grid-cols-2 gap-4 text-sm">
-                              <div>
-                                <span className="font-medium">
-                                  Employee Name:
-                                </span>
-                                <div className="text-green-700">
-                                  {extractedData.employeeName}
-                                </div>
-                              </div>
-                              <div>
-                                <span className="font-medium">
-                                  Designation:
-                                </span>
-                                <div className="text-green-700">
-                                  {extractedData.designation}
-                                </div>
-                              </div>
-                              <div>
-                                <span className="font-medium">
-                                  Joining Date:
-                                </span>
-                                <div className="text-green-700">
-                                  {extractedData.joiningDate
-                                    ? format(extractedData.joiningDate, "PPP")
-                                    : "Not found"}
-                                </div>
-                              </div>
-                              <div>
-                                <span className="font-medium">Confidence:</span>
-                                <div className="text-green-700">
-                                  {(
-                                    (extractedData.confidence || 0) * 100
-                                  ).toFixed(1)}
-                                  %
-                                </div>
-                              </div>
-                            </div>
-                            <div className="mt-4 p-3 bg-white rounded border">
-                              <div className="text-sm">
-                                <strong>Calculated Service Period:</strong>{" "}
-                                {formatServicePeriod(totalServiceDays)}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </TabsContent>
-                </Tabs>
-
-                {/* Eligibility Check */}
-                {serviceYears >= 5 ? (
-                  <Alert className="border-green-200 bg-green-50">
-                    <CheckCircle className="h-4 w-4 text-green-600" />
-                    <AlertDescription className="text-green-800">
-                      <strong>Eligible for Gratuity:</strong> You meet the
-                      minimum service requirement of 5 years.
-                      <br />
-                      <span className="text-sm">
-                        Service Period: {formatServicePeriod(totalServiceDays)}{" "}
-                        ({serviceYears.toFixed(2)} years)
-                      </span>
-                    </AlertDescription>
-                  </Alert>
-                ) : (
-                  <Alert className="border-red-200 bg-red-50">
-                    <AlertCircle className="h-4 w-4 text-red-600" />
-                    <AlertDescription className="text-red-800">
-                      <strong>Not Eligible:</strong> Minimum 5 years of
-                      continuous service is required for gratuity eligibility.
-                      <br />
-                      <span className="text-sm">
-                        Current Service: {formatServicePeriod(totalServiceDays)}{" "}
-                        ({serviceYears.toFixed(2)} years)
-                      </span>
-                    </AlertDescription>
-                  </Alert>
-                )}
-              </CardContent>
-            </Card>
-
-            {/* Calculation Breakdown */}
-            {isEligible && (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-orange-500" />
-                    Detailed Calculation Breakdown
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="grid md:grid-cols-3 gap-4">
-                      <div className="p-4 bg-gray-50 rounded-lg">
-                        <div className="text-sm text-gray-600">
-                          Monthly Salary
-                        </div>
-                        <div className="text-lg font-semibold">
-                          {formatCurrency(salary)}
-                        </div>
-                      </div>
-                      <div className="p-4 bg-gray-50 rounded-lg">
-                        <div className="text-sm text-gray-600">
-                          Service Period
-                        </div>
-                        <div className="text-lg font-semibold">
-                          {formatServicePeriod(totalServiceDays)}
-                        </div>
-                      </div>
-                      <div className="p-4 bg-gray-50 rounded-lg">
-                        <div className="text-sm text-gray-600">
-                          Service Years
-                        </div>
-                        <div className="text-lg font-semibold">
-                          {serviceYears.toFixed(2)} Years
-                        </div>
-                      </div>
-                    </div>
-
-                    <Separator />
-
-                    <div className="space-y-2">
-                      <h4 className="font-semibold">Calculation Formula:</h4>
-                      <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                        <div className="text-sm text-blue-800 mb-2">
-                          <strong>
-                            Gratuity = (Last Drawn Salary × 15 × Years of
-                            Service) ÷ 26
-                          </strong>
-                        </div>
-                        <div className="text-blue-700">
-                          ({formatCurrency(salary)} × 15 ×{" "}
-                          {serviceYears.toFixed(2)}) ÷ 26 ={" "}
-                          <strong>{formatCurrency(gratuityAmount)}</strong>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="text-xs text-gray-500 space-y-1">
-                      <p>
-                        • Formula is based on the Payment of Gratuity Act, 1972
-                      </p>
-                      <p>• 15 days salary for each completed year of service</p>
-                      <p>• 26 working days per month is considered</p>
-                      <p>• Fractional years are calculated proportionally</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-          </div>
-
-          {/* Results Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="space-y-6">
-              {/* Quick Info */}
-              <Card>
-                <CardHeader></CardHeader>
-                <CardContent className="space-y-4">
-                  <PopularSearch />
-                </CardContent>
-              </Card>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            {/* Monthly Wage */}
+            <div>
+              <label className="mb-1 block text-sm font-medium">Last Drawn Monthly Wage (Basic + DA) ₹</label>
+              <input
+                type="number"
+                min={0}
+                className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
+                value={monthlyWage}
+                onChange={(e) => setMonthlyWage(Number(e.target.value))}
+              />
+              <p className="mt-1 text-[11px] text-neutral-500">Excludes HRA and allowances.</p>
             </div>
 
-            {/* Result Card */}
-            <Card className="border-l-4 border-l-orange-500 mt-3 ">
-              <CardHeader className="text-center">
-                <CardTitle className="text-lg text-gray-700">
-                  Total Gratuity Payable
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="text-4xl font-bold text-orange-500 mb-2">
-                  {isEligible ? formatCurrency(gratuityAmount) : "₹ 0"}
-                </div>
-                <div className="text-sm text-gray-600">
-                  {isEligible
-                    ? `Based on ${serviceYears.toFixed(2)} years of service`
-                    : "Not eligible (< 5 years)"}
-                </div>
-                {isEligible && (
-                  <div className="mt-4 p-3 bg-orange-50 rounded-lg">
-                    <div className="text-xs text-orange-800">
-                      <div>
-                        <strong>Service Period:</strong>
-                      </div>
-                      <div>{formatServicePeriod(totalServiceDays)}</div>
-                    </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+            {/* Service Tenure */}
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="mb-1 block text-sm font-medium">Years</label>
+                <input
+                  type="number"
+                  min={0}
+                  className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
+                  value={years}
+                  onChange={(e) => setYears(Number(e.target.value))}
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-sm font-medium">Months</label>
+                <input
+                  type="number"
+                  min={0}
+                  max={11}
+                  className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
+                  value={months}
+                  onChange={(e) => setMonths(Number(e.target.value))}
+                />
+              </div>
+            </div>
 
-            {/* Related Tools */}
-            <Card className="mt-4">
-              <CardHeader>
-                <CardTitle className="text-lg">Related Calculators</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <Link
-                  href="/calculators/pf"
-                  aria-label="provident fund calculator"
-                  className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <div className="font-medium text-sm">PF Calculator</div>
-                  <div className="text-xs text-gray-600">
-                    Calculate Provident Fund
-                  </div>
-                </Link>
-                <Link
-                  href="/calculators/esi"
-                  aria-label="esi calculator"
-                  className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <div className="font-medium text-sm">ESI Calculator</div>
-                  <div className="text-xs text-gray-600">
-                    Calculate ESI contributions
-                  </div>
-                </Link>
-                <Link
-                  href="/calculators/bonus"
-                  aria-label="bonus calculator"
-                  className="block p-3 border rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <div className="font-medium text-sm">Bonus Calculator</div>
-                  <div className="text-xs text-gray-600">
-                    Calculate annual bonus
-                  </div>
-                </Link>
-              </CardContent>
-            </Card>
+            {/* Employee Type */}
+            <div>
+              <label className="mb-1 block text-sm font-medium">Employee Type</label>
+              <select
+                className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
+                value={employeeType}
+                onChange={(e) => setEmployeeType(e.target.value as EmployeeType)}
+              >
+                <option value="non_seasonal">Non-seasonal (15 days rule)</option>
+                <option value="seasonal">Seasonal (7 days rule)</option>
+              </select>
+            </div>
+
+            {/* Case Type */}
+            <div>
+              <label className="mb-1 block text-sm font-medium">Case</label>
+              <select
+                className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
+                value={caseType}
+                onChange={(e) => setCaseType(e.target.value as CaseType)}
+              >
+                <option value="normal">Normal (resignation/retirement)</option>
+                <option value="death_disable">Death / Disablement (5-year rule waived)</option>
+              </select>
+            </div>
+
+            {/* Act knobs */}
+            <div>
+              <label className="mb-1 block text-sm font-medium">Days per Month Divisor</label>
+              <input
+                type="number"
+                min={1}
+                className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
+                value={daysPerMonthDivisor}
+                onChange={(e) => setDaysPerMonthDivisor(Number(e.target.value))}
+              />
+              <p className="mt-1 text-[11px] text-neutral-500">Default 26 as per Act practice.</p>
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                Days Multiplier / Year ({employeeType === "seasonal" ? "Seasonal" : "Non-seasonal"})
+              </label>
+              <input
+                type="number"
+                min={0}
+                className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
+                value={employeeType === "seasonal" ? seasonalDaysMultiplier : daysPerYearMultiplier}
+                onChange={(e) =>
+                  employeeType === "seasonal"
+                    ? setSeasonalDaysMultiplier(Number(e.target.value))
+                    : setDaysPerYearMultiplier(Number(e.target.value))
+                }
+              />
+              <p className="mt-1 text-[11px] text-neutral-500">
+                Defaults: 15 (non-seasonal), 7 (seasonal).
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                className="size-4 rounded border-neutral-300"
+                checked={applyActRounding}
+                onChange={(e) => setApplyActRounding(e.target.checked)}
+              />
+              <span className="text-sm">Apply 6-month rounding (months ≥ 6 ⇒ +1 year)</span>
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">Statutory Ceiling (₹)</label>
+              <input
+                type="number"
+                min={0}
+                className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
+                value={statutoryCeiling}
+                onChange={(e) => setStatutoryCeiling(Number(e.target.value))}
+              />
+              <p className="mt-1 text-[11px] text-neutral-500">Default ₹20,00,000 (editable).</p>
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">Rounding</label>
+              <select
+                className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
+                value={rounding}
+                onChange={(e) => setRounding(e.target.value as Rounding)}
+              >
+                <option value="nearest">Nearest Rupee</option>
+                <option value="ceil">Round Up</option>
+                <option value="none">None</option>
+              </select>
+            </div>
           </div>
-        </div>
 
-        {/* Information Section */}
-        <div className="mt-12">
-          <Tabs defaultValue="about" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-4 max-w-lg">
-              <TabsTrigger value="about">About</TabsTrigger>
-              <TabsTrigger value="eligibility">Eligibility</TabsTrigger>
-              <TabsTrigger value="calculation">Formula</TabsTrigger>
-              <TabsTrigger value="ai-features">AI Features</TabsTrigger>
-            </TabsList>
+          {/* Results */}
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
+              <div className="text-xs text-neutral-500">Eligibility</div>
+              <div className="mt-1 text-base font-medium">
+                {eligible ? "Eligible" : "Not Eligible (5-year rule)"}
+              </div>
+              <div className="mt-1 text-[11px] text-neutral-500">
+                Counted Years: {countedYears}
+                {applyActRounding ? " (6-month rounding ON)" : " (exact years)"}
+              </div>
+            </div>
 
-            <TabsContent value="about" className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>What is Gratuity?</CardTitle>
-                </CardHeader>
-                <CardContent className="prose max-w-none">
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    <strong>Gratuity</strong> is a monetary benefit paid by an
-                    employer to an employee as a token of appreciation for
-                    services rendered to the company. It is governed by the{" "}
-                    <strong>Payment of Gratuity Act, 1972</strong>
-                    and is applicable to establishments with 10 or more
-                    employees.
-                  </p>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    Our advanced calculator allows you to calculate gratuity
-                    using multiple methods - manual entry of service period,
-                    precise date calculations, or AI-powered document analysis
-                    for maximum accuracy.
-                  </p>
-                </CardContent>
-              </Card>
-            </TabsContent>
+            <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
+              <div className="text-xs text-neutral-500">Per-day Wage</div>
+              <div className="mt-1 text-2xl font-semibold">{INR(perDayWage)}</div>
+              <div className="mt-1 text-[11px] text-neutral-500">Divisor {daysPerMonthDivisor}</div>
+            </div>
 
-            <TabsContent value="ai-features" className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-orange-500" />
-                    AI-Powered Document Analysis
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="font-semibold mb-3">
-                        Supported Documents:
-                      </h4>
-                      <ul className="space-y-2 text-gray-700">
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span>Joining Letters & Appointment Letters</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span>Employment Contracts</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span>Offer Letters with joining dates</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span>Service certificates</span>
-                        </li>
-                      </ul>
-                    </div>
+            <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
+              <div className="text-xs text-neutral-500">
+                Days Multiplier / Year ({employeeType === "seasonal" ? "Seasonal" : "Non-seasonal"})
+              </div>
+              <div className="mt-1 text-2xl font-semibold">
+                {employeeType === "seasonal" ? seasonalDaysMultiplier : daysPerYearMultiplier}
+              </div>
+            </div>
+          </div>
 
-                    <Separator />
+          <div className="mt-3 rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-green-50 p-4">
+            <div className="mb-1 text-xs text-neutral-600">Gratuity Payable</div>
+            <div className="text-3xl font-bold">
+              {eligible ? INR(payable) : INR(0)}
+            </div>
+            <div className="mt-1 text-xs text-neutral-500">
+              Raw {INR(rawGratuity)} • Ceiling {INR(statutoryCeiling)} • Rounding {rounding}
+            </div>
+            {!eligible && caseType === "normal" && (
+              <p className="mt-2 text-[11px] text-neutral-500">
+                Note: Minimum 5 years of continuous service is typically required for non-seasonal cases (except death/disablement).
+              </p>
+            )}
+          </div>
+        </section>
 
-                    <div>
-                      <h4 className="font-semibold mb-3">AI Capabilities:</h4>
-                      <ul className="space-y-2 text-gray-700">
-                        <li className="flex items-start gap-2">
-                          <Sparkles className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                          <span>Automatic date extraction from documents</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Sparkles className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                          <span>Employee name and designation recognition</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Sparkles className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                          <span>Confidence scoring for accuracy</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Sparkles className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                          <span>Support for multiple file formats</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            {/* Other tabs remain the same */}
-            <TabsContent value="eligibility" className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Eligibility Criteria</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="font-semibold mb-3">For Employees:</h4>
-                      <ul className="space-y-2 text-gray-700">
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span>Minimum 5 years of continuous service</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span>
-                            Applicable on retirement, resignation, death, or
-                            disablement
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span>
-                            Must be employed in a covered establishment
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="calculation" className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>How Gratuity is Calculated</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-6">
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                      <h4 className="font-semibold text-blue-800 mb-2">
-                        Standard Formula:
-                      </h4>
-                      <div className="text-blue-700 font-mono text-lg">
-                        Gratuity = (Last Drawn Salary × 15 × Years of Service) ÷
-                        26
-                      </div>
-                    </div>
-
-                    <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                      <h4 className="font-semibold text-orange-800 mb-2">
-                        Enhanced Precision:
-                      </h4>
-                      <ul className="text-orange-700 text-sm space-y-1">
-                        <li>
-                          • Our calculator considers exact days, months, and
-                          years
-                        </li>
-                        <li>
-                          • Fractional years are calculated proportionally
-                        </li>
-                        <li>
-                          • AI extraction ensures accurate service period
-                          calculation
-                        </li>
-                        <li>
-                          • Multiple input methods for maximum flexibility
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </div>
+        {/* Help / Notes */}
+        <aside className="md:col-span-2 rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+          <h2 className="text-lg font-semibold">How it works</h2>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-neutral-600">
+            <li>
+              <b>Formula:</b> <code>(Monthly Wage / {daysPerMonthDivisor}) × {employeeType === "seasonal" ? seasonalDaysMultiplier : daysPerYearMultiplier} × Years</code>
+              &nbsp;with 6-month rounding if enabled.
+            </li>
+            <li>
+              <b>Wage:</b> Basic + DA only. HRA and other allowances excluded.
+            </li>
+            <li>
+              <b>Ceiling:</b> Capped at your configured statutory ceiling (default ₹20 lakh).
+            </li>
+            <li>
+              <b>Eligibility:</b> 5-year rule for non-seasonal (waived for death/disablement).
+            </li>
+            <li>
+              <b>Seasonal:</b> 7-days rule per year (editable).
+            </li>
+            <li>
+              <b>Tax:</b> Govt employees—fully exempt; others—exemption as per Income-tax rules (configure in payslip logic).
+            </li>
+          </ul>
+        </aside>
       </div>
     </div>
   );

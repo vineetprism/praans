@@ -84,13 +84,13 @@ const stateOptions = useMemo(() => {
       title: "PT Calculator",
       icon: Calculator,
       action: "View Calculator",
-      link: "/calculators/professional-tax",
+      link: "/professional-tax-calculator",
     },
     {
       title: "Intrest & Penality Calculator",
       icon: Calculator,
       action: "View AI Tool",
-      link: "/ai-tools/pt-calculator",
+      link: "/interest&penalitycalculator",
     },
   ];
 
