@@ -38,7 +38,7 @@ export type NFHDetailApi = {
 };
 
 export const revalidate = 1800;
-const API_BASE = "http://100.110.147.101:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 
 async function getStateNFHData(slug: string): Promise<NFHDetailApi | null> {
   try {
@@ -129,8 +129,6 @@ export default async function StateDetailPage({
   return (
     <NationalFestivalHolidaysDetails
       initialData={initialData}
-      apiBase={API_BASE}
-      slug={slug}
     />
   );
 }

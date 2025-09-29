@@ -32,8 +32,6 @@ type NFHDetailApi = { data: StateNFHData };
 
 type Props = {
   initialData: NFHDetailApi;
-  apiBase: string;
-  slug: string;
 };
 
 const toStr = (v: unknown) => (v ?? "").toString();
@@ -67,9 +65,7 @@ const parseApplicability = (value: string) => {
   return categories;
 };
 
-export default function NationalFestivalHolidaysDetails({
-  initialData,
-}: Props) {
+export default function NationalFestivalHolidaysDetails({ initialData }: Props) {
   const stateData = initialData.data;
   const headers = stateData.nfh_table.header || [];
   const rows = stateData.nfh_table.rows || [];

@@ -33,7 +33,7 @@ export type NFHApi = {
 };
 
 export const revalidate = 1800;
-const API_BASE = "http://100.110.147.101:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 
 async function getNFHData(): Promise<NFHApi | null> {
   try {
