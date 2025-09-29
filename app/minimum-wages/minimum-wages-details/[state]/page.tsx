@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import MinimumWagesDetails, { MWSlugData } from "@/app/_component/MinimumWages/MinimumWagesDetails/MinimumWagesDetails";
- 
+import MinimumWagesDetails,{ MWSlugData } from "@/app/_component/MinimumWages/MinimumWagesDetails/MinimumWagesDetails";
+
 export const revalidate = 1800; // ✅ 10 min ISR
- 
+
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
- 
+
 type ApiResp = { data: MWSlugData };
- 
+
 async function getDetail(slug: string): Promise<MWSlugData | null> {
   try {
     const res = await fetch(`${API_BASE}/${encodeURIComponent(slug)}`, {
@@ -21,7 +21,7 @@ async function getDetail(slug: string): Promise<MWSlugData | null> {
     return null;
   }
 }
- 
+
 // ---------- Metadata (await params) ----------
 export async function generateMetadata(
   { params }: { params: Promise<{ state: string }> }
@@ -40,8 +40,7 @@ export async function generateMetadata(
     keywords: `${d.state.name} minimum wages, wage rates, labour compliance, ${d.state.name} labour laws`,
   };
 }
- 
-// ---------- Page (await params) ----------
+
 export default async function Page(
   { params }: { params: Promise<{ state: string }> }
 ) {

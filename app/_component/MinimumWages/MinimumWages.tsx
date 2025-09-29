@@ -92,7 +92,7 @@ export default function MinimumWages({ items }: Props) {
 
               {filtered?.map((w, idx) => (
                 <div
-                  key={`${w?.state_slug}-${idx}`}
+                  key={`${w?.state}-${idx}`}
                   className="bg-orange-300 rounded-lg border border-gray-200 p-4 shadow-sm w-full"
                 >
                   <div className="flex items-start justify-between mb-3">
@@ -114,8 +114,7 @@ export default function MinimumWages({ items }: Props) {
                         aria-label="view details"
                       >
                         <Link
-                          key={w?.state_slug}
-                          href={`/minimum-wages/minimum-wages-details/${w?.state_slug}`}
+                          href={`/minimum-wages/minimum-wages-details/${w?.state}`}
                           aria-label="view details"
                         >
                           View
@@ -135,7 +134,7 @@ export default function MinimumWages({ items }: Props) {
 
               {filtered?.map((w, idx) => (
                 <div
-                  key={`${w?.state_slug}-${idx}`}
+                  key={`${w?.state}-${idx}`}
                   className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm w-full"
                 >
                   <div className="flex items-center justify-between">
@@ -159,7 +158,7 @@ export default function MinimumWages({ items }: Props) {
                         aria-label="view details"
                       >
                         <Link
-                          href={`/minimum-wages/minimum-wages-details/${w?.state_slug}`}
+                          href={`/minimum-wages/minimum-wages-details/${w?.state}`}
                           aria-label="view details"
                         >
                           View Details
@@ -198,7 +197,7 @@ export default function MinimumWages({ items }: Props) {
                     <tbody className="bg-white divide-y divide-gray-200">
                       {filtered?.map((w, idx) => (
                         <tr
-                          key={`${w?.state_slug}-${idx}`}
+                          key={`${w?.state}-${idx}`}
                           className="hover:bg-orange-50"
                         >
                           <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap">
@@ -225,7 +224,7 @@ export default function MinimumWages({ items }: Props) {
                               asChild
                             >
                               <Link
-                                href={`/minimum-wages/minimum-wages-details/${w?.state_slug}`}
+                                href={`/minimum-wages/minimum-wages-details/${w?.state}`}
                                 aria-label="view details"
                               >
                                 View Details

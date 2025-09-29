@@ -1,22 +1,16 @@
-
-
 "use client";
 
-/* ================== Imports ================== */
 import * as React from "react";
 import Link from "next/link";
 
-/* ShadCN UI */
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, Globe, IndianRupee, Check, ChevronsUpDown, Calendar } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 
-/* Your component */
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 
-/* ================== Types ================== */
 type Row = Record<string, string | null>;
 export type TableBlock = {
   title?: string | null;
