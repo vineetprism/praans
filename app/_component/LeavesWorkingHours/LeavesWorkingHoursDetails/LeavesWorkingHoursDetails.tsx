@@ -8,7 +8,7 @@ import Link from "next/link";
 
 type TableBlock = {
   headers: string[];
-  rows: Record<string, string>[]; // string is fine; we format safely
+  rows: Record<string, string>[];
 };
 
 type Tiles = {
