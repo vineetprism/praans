@@ -81,7 +81,6 @@ export default async function Page(
   const result = await getDetailFlexible(params.state);
   if (!result) notFound();
 
-  // Hard-redirect to canonical slug URL if user typed a name (e.g., /Assam → /soi)
   const canonicalPath = `/minimum-wages/minimum-wages-details/${result.slug}`;
   if (params.state !== result.slug) {
     redirect(canonicalPath);
