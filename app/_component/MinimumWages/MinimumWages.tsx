@@ -114,7 +114,8 @@ export default function MinimumWages({ items }: Props) {
                         aria-label="view details"
                       >
                         <Link
-                          href={`/minimum-wages-details/${w?.state_slug}`}
+                          key={w?.state_slug}
+                          href={`/minimum-wages/minimum-wages-details/${w?.state_slug}`}
                           aria-label="view details"
                         >
                           View
@@ -158,7 +159,7 @@ export default function MinimumWages({ items }: Props) {
                         aria-label="view details"
                       >
                         <Link
-                          href={`/minimum-wages-details/${w?.state_slug}`}
+                          href={`/minimum-wages/minimum-wages-details/${w?.state_slug}`}
                           aria-label="view details"
                         >
                           View Details
@@ -224,7 +225,7 @@ export default function MinimumWages({ items }: Props) {
                               asChild
                             >
                               <Link
-                                href={`/minimum-wages-details/${w?.state_slug}`}
+                                href={`/minimum-wages/minimum-wages-details/${w?.state_slug}`}
                                 aria-label="view details"
                               >
                                 View Details
