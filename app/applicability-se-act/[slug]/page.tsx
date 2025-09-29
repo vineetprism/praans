@@ -1,21 +1,20 @@
 
 "use client";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  ArrowLeft,
-  Building2,
-  FileText,
-  Download,
-  Calendar,
-  Users,
-  Clock,
-  AlertTriangle,
-  CheckCircle,
-  XCircle,
-} from "lucide-react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  AlertTriangle,
+  Building2,
+  Calendar,
+  CheckCircle,
+  Clock,
+  Download,
+  FileText,
+  Users,
+XCircle
+} from "lucide-react";
 
 // Sample data for state details
 const getStateDetails = (slug: string) => {

@@ -36,11 +36,8 @@ export type PTApi = {
 };
 
 // ---------- Config ----------
-export const revalidate = 1800; // ISR: 30 min
-const API_BASE =
-  // process.env.NEXT_PUBLIC_API_BASE?.trim() || "http://100.110.147.101:8000";
- "http://100.110.147.101:8000";
-
+export const revalidate = 1800; 
+const API_BASE=process.env.NEXT_PUBLIC_API_BASE!
 async function getPTData(): Promise<PTApi | null> {
   try {
     const res = await fetch(`${API_BASE}/api/professional-tax`, {
@@ -57,12 +54,10 @@ async function getPTData(): Promise<PTApi | null> {
 export default async function ProfessionalTaxPage() {
   const initialData = await getPTData();
 
-  // Props-only render; koi client fetch nahi yahan.
   return (
     <ProfessionalTax
       initialData={initialData}
       apiBase={API_BASE}
-      // Optional flags for future (e.g. feature toggles)
       enableFilters
     />
   );
