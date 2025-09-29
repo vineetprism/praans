@@ -3,7 +3,7 @@ import LeavesWorkingHours from "@/app/_component/LeavesWorkingHours/LeavesWorkin
 
 export const revalidate = 900; // ISR: 15 minutes
 
-// ---- Types to match the API ----
+
 type StateItem = {
   id: number;
   state_name: string;
@@ -15,9 +15,7 @@ type LeavesWorkingHoursAPI = {
   non_applicable: StateItem[];
 };
 
-// const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/$/, "") || "http://100.110.147.101:8000";
-const API_BASE = "http://100.110.147.101:8000";
-
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE
 // (optional) SEO
 export const metadata: Metadata = {
   title: "Leave & Working Hours - Labour Laws & Regulations | E-Library",

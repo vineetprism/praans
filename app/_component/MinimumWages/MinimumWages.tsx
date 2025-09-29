@@ -30,7 +30,8 @@ export default function MinimumWages({ items }: Props) {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return items.filter((x) => {
-      const matchState = selectedState === "All States" || x.state === selectedState;
+      const matchState =
+        selectedState === "All States" || x.state === selectedState;
       const matchQuery =
         !q || x.state.toLowerCase().includes(q) || x.state_slug.includes(q);
       return matchState && matchQuery;
@@ -38,11 +39,12 @@ export default function MinimumWages({ items }: Props) {
   }, [items, query, selectedState]);
 
   const stateOptions = useMemo(() => {
-  const uniq = Array.from(new Set(items.map((x) => x.state))).sort((a, b) => a.localeCompare(b));
-  const list = ["All States", ...uniq];
-  return list.map(s => ({ label: s, value: s }));
-}, [items]);
-
+    const uniq = Array.from(new Set(items.map((x) => x.state))).sort((a, b) =>
+      a.localeCompare(b)
+    );
+    const list = ["All States", ...uniq];
+    return list.map((s) => ({ label: s, value: s }));
+  }, [items]);
 
   return (
     <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
@@ -64,27 +66,29 @@ export default function MinimumWages({ items }: Props) {
                     Minimum Wages :
                   </h2>
                   <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed">
-                    Minimum wages wo lowest remuneration hoti hai jo employer ko legally deni hoti hai.
-                    Central/State Governments scheduled employments ke liye rates notify karti rehti hain.
+                    Minimum wages wo lowest remuneration hoti hai jo employer ko
+                    legally deni hoti hai. Central/State Governments scheduled
+                    employments ke liye rates notify karti rehti hain.
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="mb-6 sm:mb-8 md:mb-10 w-full">
-<SearchAndStateFilter
-  searchValue={query}
-  stateValue={selectedState}
-  onSearchChange={setQuery}
-  onStateChange={setSelectedState}
-  isPending={false}
-  states={stateOptions}
-/>
-
+              <SearchAndStateFilter
+                searchValue={query}
+                stateValue={selectedState}
+                onSearchChange={setQuery}
+                onStateChange={setSelectedState}
+                isPending={false}
+                states={stateOptions}
+              />
             </div>
 
             <div className="block sm:hidden space-y-3 mb-6 w-full">
-              <h2 className="text-lg font-bold text-gray-900 mb-4">State-wise Wages :</h2>
+              <h2 className="text-lg font-bold text-gray-900 mb-4">
+                State-wise Wages :
+              </h2>
 
               {filtered?.map((w, idx) => (
                 <div
@@ -93,7 +97,9 @@ export default function MinimumWages({ items }: Props) {
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
-                      <h3 className="font-semibold text-sm text-gray-900 mb-2">{w?.state}</h3>
+                      <h3 className="font-semibold text-sm text-gray-900 mb-2">
+                        {w?.state}
+                      </h3>
                       <div className="text-xs text-black space-y-1">
                         <div>Updated Date: {w?.updated_date}</div>
                         <div>Effective Date: {w?.effective_date}</div>
@@ -107,7 +113,12 @@ export default function MinimumWages({ items }: Props) {
                         asChild
                         aria-label="view details"
                       >
-                        <Link href={`/minimum-wages-details/${w?.state_slug}`} aria-label="view details">View</Link>
+                        <Link
+                          href={`/minimum-wages-details/${w?.state_slug}`}
+                          aria-label="view details"
+                        >
+                          View
+                        </Link>
                       </Button>
                     </div>
                   </div>
@@ -117,7 +128,9 @@ export default function MinimumWages({ items }: Props) {
 
             {/* Tablet Card View (full width) */}
             <div className="hidden sm:block md:hidden space-y-1 mb-2 w-full">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">State-wise Wages :</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">
+                State-wise Wages :
+              </h2>
 
               {filtered?.map((w, idx) => (
                 <div
@@ -127,7 +140,9 @@ export default function MinimumWages({ items }: Props) {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4 flex-1">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-base text-gray-900 mb-1">{w?.state}</h3>
+                        <h3 className="font-semibold text-base text-gray-900 mb-1">
+                          {w?.state}
+                        </h3>
                         <div className="text-sm text-gray-600 flex flex-wrap gap-4">
                           <span>Updated Date: {w?.updated_date}</span>
                           <span>Effective Date: {w?.effective_date}</span>
@@ -142,7 +157,12 @@ export default function MinimumWages({ items }: Props) {
                         asChild
                         aria-label="view details"
                       >
-                        <Link href={`/minimum-wages-details/${w?.state_slug}`} aria-label="view details">View Details</Link>
+                        <Link
+                          href={`/minimum-wages-details/${w?.state_slug}`}
+                          aria-label="view details"
+                        >
+                          View Details
+                        </Link>
                       </Button>
                     </div>
                   </div>
@@ -176,7 +196,10 @@ export default function MinimumWages({ items }: Props) {
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
                       {filtered?.map((w, idx) => (
-                        <tr key={`${w?.state_slug}-${idx}`} className="hover:bg-orange-50">
+                        <tr
+                          key={`${w?.state_slug}-${idx}`}
+                          className="hover:bg-orange-50"
+                        >
                           <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap">
                             <div className="text-xs md:text-xs lg:text-sm font-medium text-gray-900">
                               {w?.state}
@@ -200,7 +223,12 @@ export default function MinimumWages({ items }: Props) {
                               className="text-white bg-orange-400 hover:text-orange-600 text-xs px-2 py-1 h-7"
                               asChild
                             >
-                              <Link href={`/minimum-wages-details/${w?.state_slug}`} aria-label="view details">View Details</Link>
+                              <Link
+                                href={`/minimum-wages-details/${w?.state_slug}`}
+                                aria-label="view details"
+                              >
+                                View Details
+                              </Link>
                             </Button>
                           </td>
                         </tr>
@@ -208,7 +236,10 @@ export default function MinimumWages({ items }: Props) {
 
                       {filtered?.length === 0 && (
                         <tr>
-                          <td colSpan={4} className="px-4 py-6 text-center text-sm text-gray-500">
+                          <td
+                            colSpan={4}
+                            className="px-4 py-6 text-center text-sm text-gray-500"
+                          >
                             No results found.
                           </td>
                         </tr>
