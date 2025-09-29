@@ -97,7 +97,7 @@ export default function LeavesWorkingHoursDetails({
 
                   const base = "px-3 py-4 text-sm break-words";
                   const textFor = /^category$/i.test(c.label)
-                    ? "text-left align-top whitespace-normal"
+                    ? "text-center align-top whitespace-normal"
                     : "text-center";
 
                   if (c.type === "file") {
