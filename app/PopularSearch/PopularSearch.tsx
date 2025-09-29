@@ -20,7 +20,7 @@ const POPULAR_SEARCHES = [
   { label: "Gazette Notifications", href: "/gazette", Icon: Megaphone },
   { label: "Holiday List", href: "/holidays", Icon: CalendarDays },
   { label: "Labour welfare funds", href: "/labour-welfare-fund", Icon: HandCoins },
-  { label: "Minimum wages", href: "/minimum-wages", Icon: Banknote },
+  { label: "Minimum wages", href: "/minimum-wages/minimum-wages", Icon: Banknote },
   { label: "Professional tax", href: "/professional-tax", Icon: Receipt },
   { label: "Calculators", href: "/calculators/bonus", Icon: Calculator },
   { label: "Leaves Working Hours", href: "/leaves-working-hours", Icon: CalendarClock },
