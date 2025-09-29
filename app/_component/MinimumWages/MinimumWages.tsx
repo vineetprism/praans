@@ -66,9 +66,6 @@ export default function MinimumWages({ items }: Props) {
                     Minimum Wages :
                   </h2>
                   <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed">
-                    Minimum wages wo lowest remuneration hoti hai jo employer ko
-                    legally deni hoti hai. Central/State Governments scheduled
-                    employments ke liye rates notify karti rehti hain.
                   </p>
                 </div>
               </div>
@@ -92,7 +89,7 @@ export default function MinimumWages({ items }: Props) {
 
               {filtered?.map((w, idx) => (
                 <div
-                  key={`${w?.state}-${idx}`}
+                  key={`${w?.state_slug}-${idx}`}
                   className="bg-orange-300 rounded-lg border border-gray-200 p-4 shadow-sm w-full"
                 >
                   <div className="flex items-start justify-between mb-3">
@@ -114,7 +111,7 @@ export default function MinimumWages({ items }: Props) {
                         aria-label="view details"
                       >
                         <Link
-                          href={`/minimum-wages/minimum-wages-details/${w?.state}`}
+                          href={`/minimum-wages/minimum-wages-details/${w?.state_slug}`}
                           aria-label="view details"
                         >
                           View
@@ -134,7 +131,7 @@ export default function MinimumWages({ items }: Props) {
 
               {filtered?.map((w, idx) => (
                 <div
-                  key={`${w?.state}-${idx}`}
+                  key={`${w?.state_slug}-${idx}`}
                   className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm w-full"
                 >
                   <div className="flex items-center justify-between">
@@ -158,7 +155,7 @@ export default function MinimumWages({ items }: Props) {
                         aria-label="view details"
                       >
                         <Link
-                          href={`/minimum-wages/minimum-wages-details/${w?.state}`}
+                          href={`/minimum-wages/minimum-wages-details/${w?.state_slug}`}
                           aria-label="view details"
                         >
                           View Details
@@ -197,7 +194,7 @@ export default function MinimumWages({ items }: Props) {
                     <tbody className="bg-white divide-y divide-gray-200">
                       {filtered?.map((w, idx) => (
                         <tr
-                          key={`${w?.state}-${idx}`}
+                          key={`${w?.state_slug}-${idx}`}
                           className="hover:bg-orange-50"
                         >
                           <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap">
@@ -224,7 +221,7 @@ export default function MinimumWages({ items }: Props) {
                               asChild
                             >
                               <Link
-                                href={`/minimum-wages/minimum-wages-details/${w?.state}`}
+                                href={`/minimum-wages/minimum-wages-details/${w?.state_slug}`}
                                 aria-label="view details"
                               >
                                 View Details
@@ -251,7 +248,6 @@ export default function MinimumWages({ items }: Props) {
             </section>
           </div>
 
-          {/* Right Sidebar - Popular Search (Desktop Only) */}
           <div className="hidden lg:block lg:col-span-1 w-full">
             <div className="sticky top-2 lg:top-3">
               <Card className="shadow-sm hover:shadow-md transition-shadow w-full">
