@@ -210,7 +210,7 @@ export default function NewsCarouselSection({
               {cards?.map((news) => (
                 <SwiperSlide key={news?.id}>
                   <Card className="border-l-4 bg-gradient-to-br from-orange-50 to-orange-100 border-l-orange-500 hover:shadow-lg hover:scale-[1.02] transition-all duration-300 h-[140px] sm:h-[130px] md:h-[120px] lg:h-[125px] xl:h-[130px] flex flex-col">
-                    <CardHeader className="p-3 pb-1 flex-shrink-0">
+                    <CardHeader className="p-2 pb-1 flex-shrink-0">
                       <div className="flex items-start justify-between gap-2">
                         <CardTitle className="text-xs sm:text-sm md:text-xs lg:text-sm leading-tight line-clamp-2 flex-1 cursor-pointer">
                           {news?.hasLink ? (
