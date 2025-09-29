@@ -94,7 +94,7 @@ export default function ProfessionalTaxDetails({ payload }: Props) {
     downloads,
   } = payload.data;
 
-  const actRow = act_information.rows?.[0];
+  const actRow = act_information.rows?.[1];
 
   return (
     <div className="min-h-screen bg-gray-50">
