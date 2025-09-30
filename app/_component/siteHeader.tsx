@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,11 +29,17 @@ const NAV = [
     label: "Services",
     href: "",
     dropdown: [
-      { label: "Smart Compliance Software", href: "/smart-compliance-software" },
+      {
+        label: "Smart Compliance Software",
+        href: "/smart-compliance-software",
+      },
       { label: "Compliance Outsourcing", href: "/compliance-outsourcing" },
       { label: "Pan India Registration", href: "/pan-india-registrations" },
       { label: "Audit & Inspection", href: "/audit-and-inspection" },
-      { label: "Legal Advisory & HR Policies", href: "/legal-advisory-hr-policies" },
+      {
+        label: "Legal Advisory & HR Policies",
+        href: "/legal-advisory-hr-policies",
+      },
       { label: "Litigation Support", href: "/litigation-support" },
     ],
   },
@@ -41,11 +47,20 @@ const NAV = [
     label: "Registration",
     href: "",
     dropdown: [
-      { label: "Shop & Establishment Registration", href: "/shop-establishment-registration" },
+      {
+        label: "Shop & Establishment Registration",
+        href: "/shop-establishment-registration",
+      },
       { label: "Contract Labour License", href: "/contract-labour-licence" },
-      { label: "Professional Tax Registration", href: "/professional-tax-registration" },
+      {
+        label: "Professional Tax Registration",
+        href: "/professional-tax-registration",
+      },
       { label: "Trade Licence Registration", href: "/trade-licence" },
-      { label: "Labour Welfare Fund Registration", href: "/labour-welfare-fund-registration" },
+      {
+        label: "Labour Welfare Fund Registration",
+        href: "/labour-welfare-fund-registration",
+      },
       { label: "FSSAI Registration", href: "/fssai" },
       { label: "GST Registration", href: "/gst" },
       { label: "MSME Registration", href: "/msme" },
@@ -61,6 +76,8 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [hideTopBar, setHideTopBar] = useState(false);
   const lastScrollY = useRef(0);
+
+  const router = useRouter();
 
   useEffect(() => {
     const threshold = 100;
@@ -123,15 +140,25 @@ export default function Header() {
     setMobileOpen((prev) => (prev === index ? null : index));
   };
 
+  const handleLogin = () => {
+    router.push("/login");
+  };
+
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-xl shadow-lg" : "bg-white/90 backdrop-blur-md"
+        scrolled
+          ? "bg-white/95 backdrop-blur-xl shadow-lg"
+          : "bg-white/90 backdrop-blur-md"
       }`}
     >
       <div className=" mx-auto border-b lg:px-4 border-gray-200">
         <div className="h-12 lg:h-16 flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-3 group shrink-0" aria-label="Go to homepage">
+          <Link
+            href="/"
+            className="flex items-center gap-3 group shrink-0"
+            aria-label="Go to homepage"
+          >
             <div className="relative">
               <Image
                 src="/logo.webp"
@@ -150,10 +177,13 @@ export default function Header() {
                 const active = item?.href
                   ? !!pathname && pathname.startsWith(item.href)
                   : !!item?.dropdown?.some(
-                      (d) => pathname === d.href || (!!pathname && pathname.startsWith(d.href))
+                      (d) =>
+                        pathname === d.href ||
+                        (!!pathname && pathname.startsWith(d.href))
                     );
                 const hasDropdown = !!item?.dropdown?.length;
-                const navKey = item?.href?.trim() || item?.label?.trim() || `nav-${index}`;
+                const navKey =
+                  item?.href?.trim() || item?.label?.trim() || `nav-${index}`;
 
                 return (
                   <div
@@ -166,7 +196,9 @@ export default function Header() {
                       href={item?.href || "#"}
                       aria-current={active ? "page" : undefined}
                       aria-haspopup={hasDropdown ? "menu" : undefined}
-                      aria-expanded={hasDropdown ? dropdownOpen === index : undefined}
+                      aria-expanded={
+                        hasDropdown ? dropdownOpen === index : undefined
+                      }
                       className={`relative flex items-center gap-2 px-3 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 group ${
                         active
                           ? "text-orange-600"
@@ -179,7 +211,10 @@ export default function Header() {
                         }
                       }}
                       onKeyDown={(e) => {
-                        if (hasDropdown && (e.key === "Enter" || e.key === " ")) {
+                        if (
+                          hasDropdown &&
+                          (e.key === "Enter" || e.key === " ")
+                        ) {
                           e.preventDefault();
                           toggleMenu(index);
                         }
@@ -206,7 +241,8 @@ export default function Header() {
                       >
                         <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-gray-100 rotate-45" />
                         {item?.dropdown?.map((dropdownItem) => {
-                          const dropdownActive = pathname === dropdownItem?.href;
+                          const dropdownActive =
+                            pathname === dropdownItem?.href;
                           return (
                             <Link
                               key={dropdownItem?.href}
@@ -221,10 +257,14 @@ export default function Header() {
                             >
                               <div
                                 className={`w-2 h-2 rounded-full transition-colors ${
-                                  dropdownActive ? "bg-orange-500" : "bg-gray-300 group-hover:bg-orange-400"
+                                  dropdownActive
+                                    ? "bg-orange-500"
+                                    : "bg-gray-300 group-hover:bg-orange-400"
                                 }`}
                               />
-                              <span className="flex-1">{dropdownItem?.label}</span>
+                              <span className="flex-1">
+                                {dropdownItem?.label}
+                              </span>
                               <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                             </Link>
                           );
@@ -238,6 +278,7 @@ export default function Header() {
 
             <div className="hidden lg:flex items-center gap-2">
               <Button
+                onClick={handleLogin}
                 variant="ghost"
                 className="rounded-xl hover:bg-orange-50 hover:text-orange-600 font-semibold px-6 transition-all cursor-pointer"
                 aria-label="Sign in"
@@ -267,7 +308,10 @@ export default function Header() {
                     <Menu className="h-5 w-5" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-80 bg-gradient-to-b from-white to-orange-50/30">
+                <SheetContent
+                  side="right"
+                  className="w-80 bg-gradient-to-b from-white to-orange-50/30"
+                >
                   <SheetHeader className="border-b border-orange-100 pb-4">
                     <Link href="/" className="flex items-center gap-2">
                       <Image
@@ -286,10 +330,15 @@ export default function Header() {
                       const active = item?.href
                         ? !!pathname && pathname.startsWith(item.href)
                         : !!item?.dropdown?.some(
-                            (d) => pathname === d.href || (!!pathname && pathname.startsWith(d.href))
+                            (d) =>
+                              pathname === d.href ||
+                              (!!pathname && pathname.startsWith(d.href))
                           );
                       const hasDropdown = !!item?.dropdown?.length;
-                      const navKey = item?.href?.trim() || item?.label?.trim() || `mnav-${index}`;
+                      const navKey =
+                        item?.href?.trim() ||
+                        item?.label?.trim() ||
+                        `mnav-${index}`;
 
                       if (!hasDropdown) {
                         return (
@@ -303,7 +352,11 @@ export default function Header() {
                               }`}
                               aria-current={active ? "page" : undefined}
                             >
-                              <div className={`w-2 h-2 rounded-full ${active ? "bg-orange-500" : "bg-gray-300"}`} />
+                              <div
+                                className={`w-2 h-2 rounded-full ${
+                                  active ? "bg-orange-500" : "bg-gray-300"
+                                }`}
+                              />
                               {item?.label}
                             </Link>
                           </SheetClose>
@@ -312,19 +365,28 @@ export default function Header() {
 
                       const isOpen = mobileOpen === index;
                       return (
-                        <div key={navKey} className="rounded-xl overflow-hidden">
+                        <div
+                          key={navKey}
+                          className="rounded-xl overflow-hidden"
+                        >
                           <button
                             type="button"
                             onClick={() => toggleMobile(index)}
                             aria-expanded={isOpen}
                             aria-controls={`mobile-submenu-${index}`}
                             className={`w-full flex items-center justify-between px-4 py-3 font-medium rounded-xl transition-all ${
-                              active ? "bg-orange-100 text-orange-700" : "text-gray-700 hover:bg-orange-50"
+                              active
+                                ? "bg-orange-100 text-orange-700"
+                                : "text-gray-700 hover:bg-orange-50"
                             }`}
                             aria-label={`Toggle dropdown for ${item?.label}`}
                           >
                             <div className="flex items-center gap-3">
-                              <div className={`w-2 h-2 rounded-full ${active ? "bg-orange-500" : "bg-gray-300"}`} />
+                              <div
+                                className={`w-2 h-2 rounded-full ${
+                                  active ? "bg-orange-500" : "bg-gray-300"
+                                }`}
+                              />
                               <span>{item?.label}</span>
                             </div>
                             <ChevronDown
@@ -335,9 +397,13 @@ export default function Header() {
                           </button>
 
                           {isOpen && (
-                            <div id={`mobile-submenu-${index}`} className="ml-6 mt-2 space-y-1">
+                            <div
+                              id={`mobile-submenu-${index}`}
+                              className="ml-6 mt-2 space-y-1"
+                            >
                               {item?.dropdown?.map((dropdownItem) => {
-                                const dropdownActive = pathname === dropdownItem?.href;
+                                const dropdownActive =
+                                  pathname === dropdownItem?.href;
                                 return (
                                   <SheetClose asChild key={dropdownItem?.href}>
                                     <Link
@@ -351,7 +417,9 @@ export default function Header() {
                                     >
                                       <div
                                         className={`w-1.5 h-1.5 rounded-full ${
-                                          dropdownActive ? "bg-orange-500" : "bg-gray-300"
+                                          dropdownActive
+                                            ? "bg-orange-500"
+                                            : "bg-gray-300"
                                         }`}
                                       />
                                       {dropdownItem.label}
@@ -368,6 +436,7 @@ export default function Header() {
 
                   <div className="mt-8 space-y-3 pt-6 border-t border-orange-100">
                     <Button
+                      onClick={handleLogin}
                       variant="ghost"
                       size="lg"
                       className="w-full justify-center rounded-xl hover:bg-orange-50 hover:text-orange-600 font-semibold"
