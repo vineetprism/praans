@@ -140,8 +140,8 @@ export default function NewsCarouselSection({
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: paginationStyles }} />
-      <section className="w-full pt-6 pb-2 md:pt-8 md:pb-3 lg:pt-10 lg:pb-4">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-9xl">
+      <section className="w-full pt-6 pb-2 md:pt-8 md:pb-3 lg:pt-10 lg:pb-4 ">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-9xl ">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 md:mb-6 lg:mb-8 gap-4">
             <div className="flex-1 min-w-0">
               <h2 className="text-2xl md:text-3xl 2xl:text-4xl font-bold mb-1 text-slate-900 leading-tight">
@@ -152,7 +152,7 @@ export default function NewsCarouselSection({
               </p>
             </div>
 
-            <div className="w-full md:w-auto md:flex md:flex-col md:items-end md:gap-2 lg:gap-3">
+            <div className="w-full md:w-auto md:flex md:flex-col md:items-end md:gap-2 lg:gap-3 ">
               <form
                 onSubmit={onSubmit}
                 className="flex items-center gap-2 w-full md:w-64 lg:w-72 2xl:w-[25rem]"
@@ -205,7 +205,7 @@ export default function NewsCarouselSection({
                 1536: { slidesPerView: 7, spaceBetween: 24 },
               }}
               pagination={{ clickable: true, dynamicBullets: true }}
-              className="!pb-6 md:!pb-8 lg:!pb-10"
+              className="!pb-6 md:!pb-8 lg:!pb-10 "
             >
               {cards?.map((news) => (
                 <SwiperSlide key={news?.id}>
@@ -229,14 +229,14 @@ export default function NewsCarouselSection({
 
                     <CardContent className="flex flex-col justify-end flex-grow">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">
+                        <span className=" text-[10px] sm:text-xs font-semibold 2xl:text-[11px] ">
                           {toDDMMYYYY(news?.effective_date)}
                         </span>
                         {news?.hasLink && (
                           <Button
                             size="sm"
                             variant="ghost"
-                            className="text-[10px] sm:text-xs px-2 py-0.5 h-5 sm:h-6 hover:bg-orange-100 hover:text-orange-700"
+                            className="text-[10px] sm:text-xs px-1 py-0.5 h-5 sm:h-6 hover:bg-orange-100 hover:text-orange-700 2xl:text-[11px]"
                             asChild
                             aria-label="Read more"
                           >
