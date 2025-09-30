@@ -811,7 +811,7 @@ export default function MinimumWageDetails({
             {/* Header + Combobox */}
             <div className="mb-4 sm:mb-5 lg:mb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-3">
               <div>
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl font-bold text-slate-800">
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl font-bold text-slate-800 ">
                   Minimum Wages of {data?.state?.name} :
                 </h1>
                 {/* {busy && (
@@ -891,17 +891,17 @@ export default function MinimumWageDetails({
                 {/* Mobile */}
                 <div className="block md:hidden mb-4">
                   <Card className="shadow-sm border-l-4 border-l-orange-500">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-base font-bold">
+                    <CardHeader className="pb-2 bg-orange-500">
+                      <CardTitle className="text-base font-bold bg-orange-500 text-white text-center">
                         {mwTable?.title || "Minimum Wage Rates (Daily in ₹)"}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-3 space-y-3">
                       {mwTable?.rows?.map((r, idx) => (
-                        <div key={idx} className="bg-gray-50 rounded-lg p-3 border text-xs space-y-2">
+                        <div key={idx} className="rounded-lg p-3 border text-xs space-y-2">
                           {mwTable?.headers?.map((h) => (
                             <div key={h} className="flex gap-2 justify-between p-2 rounded">
-                              <span className="font-medium text-gray-600">{h}:</span>
+                              <span className="font-medium text-orange-600">{h}:</span>
                               <span className={cn(isSkilledCol(h) && "text-green-600 font-semibold")}>
                                 {fmt(cell(r, h))}
                               </span>
@@ -972,17 +972,17 @@ export default function MinimumWageDetails({
                 {/* Mobile */}
                 <div className="block md:hidden mb-4">
                   <Card className="shadow-sm border-l-4 border-l-orange-500">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-base font-bold">
+                    <CardHeader className="pb-2 bg-orange-500">
+                      <CardTitle className="text-base font-bold  text-white text-center">
                         Employment Categories &amp; Additional Benefits
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-3 space-y-3">
                       {cat?.rows?.map((r, idx) => (
-                        <div key={idx} className="bg-gray-50 rounded-lg p-3 border text-xs space-y-2">
+                        <div key={idx} className="rounded-lg p-3 border text-xs space-y-2">
                           {cat?.headers?.map((h) => (
                             <div key={h} className="flex gap-2 justify-between p-2 rounded">
-                              <span className="font-medium text-gray-600">{h}:</span>
+                              <span className="font-medium text-orange-600">{h}:</span>
                               <span>{fmt(cell(r, h))}</span>
                             </div>
                           ))}
@@ -1051,17 +1051,17 @@ export default function MinimumWageDetails({
                 {/* Mobile */}
                 <div className="block md:hidden mb-4">
                   <Card className="shadow-sm border-l-4 border-l-orange-500">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-base font-bold">
+                    <CardHeader className="pb-2 bg-orange-500">
+                      <CardTitle className="text-base font-bold text-white text-center">
                         {ip?.title || "Interest & Penalty"}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-3 space-y-3">
                       {ip?.rows?.map((r, idx) => (
-                        <div key={idx} className="bg-gray-50 rounded-lg p-3 border text-xs space-y-2">
+                        <div key={idx} className="rounded-lg p-3 border text-xs space-y-2">
                           {ip?.headers?.map((h) => (
                             <div key={h} className="flex gap-2 justify-between p-2 rounded">
-                              <span className="font-medium text-gray-600">{h}:</span>
+                              <span className="font-medium text-orange-600">{h}:</span>
                               <span>{fmt(cell(r, h))}</span>
                             </div>
                           ))}

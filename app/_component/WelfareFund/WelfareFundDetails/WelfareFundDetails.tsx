@@ -185,9 +185,9 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
 
             {/* Mobile */}
             <div className="block md:hidden mb-4">
-              <Card className="shadow-sm border-l-4 border-l-orange-500">
+              <Card className="shadow-sm border-l-4 border-l-orange-500 ">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-base font-bold">Act Information</CardTitle>
+                  <CardTitle className="text-base font-bold bg-orange-500 text-white text-center">Act Information</CardTitle>
                 </CardHeader>
                 <CardContent className="p-3 space-y-3">
                   {actRows?.map((r, idx) => (
@@ -324,7 +324,7 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
             <div className="block md:hidden mb-4">
               <Card className="shadow-sm border-l-4 border-l-orange-500">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-base font-bold">
+                  <CardTitle className="text-base font-bold bg-orange-500 text-white text-center">
                     Labour Welfare Fund Contribution
                   </CardTitle>
                 </CardHeader>

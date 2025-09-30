@@ -1104,8 +1104,8 @@ function GenericMobileBlock({
 
   return (
     <Card className="shadow-sm">
-      <CardContent className="p-3">
-        <h3 className="text-base font-bold mb-2">{title}</h3>
+      <CardContent className="p-3 ">
+        <h3 className="text-base font-bold mb-2 bg-orange-500 text-white text-center">{title}</h3>
         <div className="space-y-3">
           {(block.rows ?? []).map((row, idx) => (
             <div key={idx} className=" rounded-lg p-3 border">
@@ -1235,7 +1235,7 @@ export default function ProfessionalTaxDetails({
               />
             </div>
             <Card className="hidden lg:block mb-3 shadow-sm">
-              <CardHeader className="pb-1 lg:pb-2">
+              <CardHeader className="pb-1 lg:pb-2 ">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Professional Tax Slabs
                 </CardTitle>
@@ -1256,7 +1256,7 @@ export default function ProfessionalTaxDetails({
               />
             </div>
             <Card className="hidden lg:block mb-3 shadow-sm">
-              <CardHeader className="pb-1 lg:pb-2">
+              <CardHeader className="pb-1 lg:pb-2 ">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Employment Categories
                 </CardTitle>
