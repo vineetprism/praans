@@ -1182,13 +1182,13 @@ export default function ProfessionalTaxDetails({
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
         {/* Search (mobile) */}
-        <div className="xl:hidden mb-3 sm:mb-4">
+        {/* <div className="xl:hidden md:hidden lg:hidden mb-3 sm:mb-4">
           <Card className="shadow-sm">
             <CardContent className="p-2 sm:p-3">
               <PopularSearch className="mb-0" />
             </CardContent>
           </Card>
-        </div>
+        </div> */}
 
         <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:grid-cols-5 xl:gap-5">
           {/* Left content */}

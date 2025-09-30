@@ -99,7 +99,7 @@ export const revalidate = 1800; // 30 min ISR
 type ApiResponse = { data: MWSlugData };
 
 const BASE_ROOT = (process.env.NEXT_PUBLIC_API_BASE || "").replace(/\/+$/, "");
-// MUST be like: https://prns.prisminfoways.com  (no trailing slash)
+
 const MW_BASE = `${BASE_ROOT}/api/minimum-wages`; // final prefix for all calls
 
 const ensureConfig = () => {
