@@ -276,6 +276,7 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
     value: state
   }));
 
+  
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto px-2 py-2 min-[375px]:px-3 min-[375px]:py-3 sm:px-4 sm:py-4 lg:px-5 lg:py-5 xl:px-6">
