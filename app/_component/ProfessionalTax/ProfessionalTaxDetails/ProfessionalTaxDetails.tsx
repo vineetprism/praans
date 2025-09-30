@@ -1275,7 +1275,7 @@ export default function ProfessionalTaxDetails({
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-orange-200">
+              {/* <Card className="hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-orange-200">
                 <CardContent className="p-2 lg:p-3 text-center">
                   <Bell className="w-6 h-6 lg:w-8 lg:h-8 text-orange-500 mx-auto mb-1 lg:mb-2" />
                   <h3 className="font-medium text-xs lg:text-sm text-gray-900 mb-1">
@@ -1290,7 +1290,7 @@ export default function ProfessionalTaxDetails({
                     View
                   </Button>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
 
             {/* Act Information */}
