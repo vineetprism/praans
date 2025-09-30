@@ -1,46 +1,33 @@
-// app/pt-calculator/page.tsx
 "use client";
+import { useState, useCallback } from "react";
+import { ArrowRight } from "lucide-react";
 
-import { useMemo, useState } from "react";
-
-/** ===================== Types ===================== */
 type StateCode = "MH" | "KA" | "WB" | "GJ" | "DL";
-type Gender = "male" | "female" | "other";
 
 type SlabRule = {
-  min: number;               // inclusive lower bound (monthly gross)
-  max: number | null;        // inclusive upper bound (null => ∞)
-  monthly: number;           // default monthly PT
-  februaryMonthly?: number;  // optional Feb bump
+  min: number;
+  max: number | null;
+  monthly: number;
+  februaryMonthly?: number;
 };
-
 type StateConfig = {
   name: string;
   slabs: SlabRule[];
-  noTax?: boolean; // e.g. Delhi
-  // simple exemption flags (expand later if needed)
-  exempts: {
-    seniors?: boolean;        // age >= 65
-    disability?: boolean;
-    armedForces?: boolean;
-  };
+  noTax?: boolean;
+  exempts: { seniors?: boolean; disability?: boolean; armedForces?: boolean };
   notes?: string[];
 };
 
-/** ===================== STATIC CONFIG (demo only) ===================== */
-// ⚠️ Demo slabs. Verify with latest state notifications before payroll.
 const STATES: Record<StateCode, StateConfig> = {
   MH: {
     name: "Maharashtra",
     slabs: [
       { min: 0, max: 7500, monthly: 0 },
       { min: 7501, max: 10000, monthly: 175 },
-      { min: 10001, max: null, monthly: 200, februaryMonthly: 300 }, // sample Feb bump
+      { min: 10001, max: null, monthly: 200, februaryMonthly: 300 },
     ],
     exempts: { seniors: true, disability: true, armedForces: true },
-    notes: [
-      "Demo only. Historically some slabs apply a higher deduction in February to meet annual cap.",
-    ],
+    notes: ["Demo only. Feb may have higher deduction to meet annual cap."],
   },
   KA: {
     name: "Karnataka",
@@ -49,7 +36,7 @@ const STATES: Record<StateCode, StateConfig> = {
       { min: 15000, max: null, monthly: 200 },
     ],
     exempts: { seniors: false, disability: true, armedForces: true },
-    notes: ["Demo slabs. Cross-check with current Karnataka notification."],
+    notes: ["Demo slabs. Cross-check with current notification."],
   },
   WB: {
     name: "West Bengal",
@@ -79,11 +66,10 @@ const STATES: Record<StateCode, StateConfig> = {
     slabs: [],
     noTax: true,
     exempts: { seniors: false, disability: false, armedForces: false },
-    notes: ["Delhi currently does not levy Professional Tax (confirm before payroll)."],
+    notes: ["Delhi currently does not levy Professional Tax (reconfirm)."],
   },
 };
 
-/** ===================== Utils ===================== */
 const INR = (v: number) =>
   new Intl.NumberFormat("en-IN", {
     style: "currency",
@@ -91,86 +77,79 @@ const INR = (v: number) =>
     maximumFractionDigits: 0,
   }).format(Math.max(0, Math.round(v || 0)));
 
-function findMonthlyPT(stateCfg: StateConfig, salary: number, monthIndex0: number) {
+function findMonthlyPT(
+  stateCfg: StateConfig,
+  salary: number,
+  monthIndex0: number
+) {
   if (stateCfg.noTax) return 0;
   const rule = stateCfg.slabs.find(
     (s) => salary >= s.min && (s.max === null || salary <= s.max)
   );
   if (!rule) return 0;
-  // Feb = index 1
   return monthIndex0 === 1 && rule.februaryMonthly != null
     ? rule.februaryMonthly
     : rule.monthly;
 }
-
-function isExempt(
-  stateCfg: StateConfig,
-  age: number,
-  disabled: boolean,
-  isArmedForces: boolean
-) {
+function isExempt(stateCfg: StateConfig) {
   const e = stateCfg.exempts || {};
   if (stateCfg.noTax) return true;
-  if (e.seniors && age >= 65) return true;
-  if (e.disability && disabled) return true;
-  if (e.armedForces && isArmedForces) return true;
   return false;
 }
 
-/** ===================== Page ===================== */
 export default function ProfessionalTaxCalculatorPage() {
   const [state, setState] = useState<StateCode>("MH");
-  const [month, setMonth] = useState<number>(new Date().getMonth()); // 0..11
+  const [month, setMonth] = useState<number>(new Date().getMonth());
   const [salary, setSalary] = useState<number>(30000);
 
-  const [age, setAge] = useState<number>(28);
-  const [gender, setGender] = useState<Gender>("male");
-  const [disabled, setDisabled] = useState<boolean>(false);
-  const [isArmedForces, setIsArmedForces] = useState<boolean>(false);
-
   const cfg = STATES[state];
-  const exempt = useMemo(
-    () => isExempt(cfg, age, disabled, isArmedForces),
-    [cfg, age, disabled, isArmedForces]
+
+  const [calculated, setCalculated] = useState(false);
+  const [outExempt, setOutExempt] = useState(false);
+  const [outMonthlyPT, setOutMonthlyPT] = useState(0);
+  const [outMonths, setOutMonths] = useState<number[]>(Array(12).fill(0));
+  const [outTotal, setOutTotal] = useState(0);
+
+  const onCalculate = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+
+      const exempt = isExempt(cfg);
+      const monthsArr = Array.from({ length: 12 }, (_, m) =>
+        exempt ? 0 : findMonthlyPT(cfg, salary, m)
+      );
+      const monthly = exempt ? 0 : findMonthlyPT(cfg, salary, month);
+      const total = monthsArr.reduce((a, b) => a + b, 0);
+
+      setOutExempt(exempt);
+      setOutMonths(monthsArr);
+      setOutMonthlyPT(monthly);
+      setOutTotal(total);
+      setCalculated(true);
+    },
+    [cfg, salary, month]
   );
 
-  const monthlyPT = useMemo(() => {
-    if (exempt) return 0;
-    return findMonthlyPT(cfg, salary, month);
-  }, [cfg, salary, month, exempt]);
-
-  const projection = useMemo(() => {
-    const months = Array.from({ length: 12 }, (_, m) =>
-      exempt ? 0 : findMonthlyPT(cfg, salary, m)
-    );
-    const total = months.reduce((a, b) => a + b, 0);
-    return { months, total };
-  }, [cfg, salary, exempt]);
-
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
-      <header className="mb-6 flex items-end justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">
-            <span className="text-[#eb8535]">Professional Tax</span> Calculator
+    <div className="mx-auto max-w-5xl px-3 sm:px-4 md:px-6 py-6 sm:py-8">
+      <form
+        onSubmit={onCalculate}
+        className="rounded-md shadow-sm overflow-hidden border border-orange-200 bg-white"
+      >
+        <div className="bg-orange-500 text-white">
+          <h1 className="text-center text-xl sm:text-2xl font-semibold py-4">
+            Professional Tax Calculator
           </h1>
-          <p className="text-sm text-neutral-600">
-            Pure static config. No API calls. Monthly & annual projections.
-          </p>
         </div>
-      </header>
 
-      <div className="grid gap-6 md:grid-cols-5">
-        {/* Form */}
-        <section className="md:col-span-3 rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
-          <h2 className="text-lg font-semibold">Calculator</h2>
-
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            {/* State */}
-            <div>
-              <label className="mb-1 block text-sm font-medium">State</label>
+        <div className="divide-y">
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 md:col-span-4 flex items-center justify-center md:justify-end bg-gradient-to-b from-neutral-100 to-neutral-50 text-sm sm:text-base text-neutral-800 px-4 py-4">
+              <span className="font-medium">Select State :</span>
+            </div>
+            <div className="col-span-12 md:col-span-8 px-4 py-4">
               <select
-                className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
+                className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={state}
                 onChange={(e) => setState(e.target.value as StateCode)}
               >
@@ -181,12 +160,30 @@ export default function ProfessionalTaxCalculatorPage() {
                 ))}
               </select>
             </div>
+          </div>
 
-            {/* Month */}
-            <div>
-              <label className="mb-1 block text-sm font-medium">Month</label>
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 md:col-span-4 flex items-center justify-center md:justify-end bg-gradient-to-b from-neutral-100 to-neutral-50 text-sm sm:text-base text-neutral-800 px-4 py-4">
+              <span className="font-medium">Enter Monthly Salary/Wages :</span>
+            </div>
+            <div className="col-span-12 md:col-span-8 px-4 py-4">
+              <input
+                type="number"
+                min={0}
+                className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                value={salary}
+                onChange={(e) => setSalary(Number(e.target.value))}
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-12">
+            <div className="col-span-12 md:col-span-4 flex items-center justify-center md:justify-end bg-gradient-to-b from-neutral-100 to-neutral-50 text-sm sm:text-base text-neutral-800 px-4 py-4">
+              <span className="font-medium">Month :</span>
+            </div>
+            <div className="col-span-12 md:col-span-8 px-4 py-4">
               <select
-                className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
+                className="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 value={month}
                 onChange={(e) => setMonth(Number(e.target.value))}
               >
@@ -210,152 +207,80 @@ export default function ProfessionalTaxCalculatorPage() {
                 ))}
               </select>
             </div>
-
-            {/* Salary */}
-            <div>
-              <label className="mb-1 block text-sm font-medium">
-                Monthly Gross Salary (₹)
-              </label>
-              <input
-                type="number"
-                min={0}
-                className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
-                value={salary}
-                onChange={(e) => setSalary(Number(e.target.value))}
-              />
-            </div>
-
-            {/* Age / Gender */}
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="mb-1 block text-sm font-medium">Age</label>
-                <input
-                  type="number"
-                  min={0}
-                  className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
-                  value={age}
-                  onChange={(e) => setAge(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <label className="mb-1 block text-sm font-medium">Gender</label>
-                <select
-                  className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm"
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value as Gender)}
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Exemption flags */}
-            <div className="grid grid-cols-2 gap-3">
-              <label className="flex items-center gap-2 text-sm">
-                <input
-                  type="checkbox"
-                  className="size-4 rounded border-neutral-300"
-                  checked={disabled}
-                  onChange={(e) => setDisabled(e.target.checked)}
-                  disabled={STATES[state]?.noTax}
-                />
-                Person with Disability
-              </label>
-              <label className="flex items-center gap-2 text-sm">
-                <input
-                  type="checkbox"
-                  className="size-4 rounded border-neutral-300"
-                  checked={isArmedForces}
-                  onChange={(e) => setIsArmedForces(e.target.checked)}
-                  disabled={STATES[state]?.noTax}
-                />
-                Armed Forces
-              </label>
-            </div>
           </div>
 
-          {/* Results */}
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
-              <div className="text-xs text-neutral-500">Monthly PT</div>
-              <div className="text-2xl font-semibold">
-                {INR(exempt ? 0 : monthlyPT)}
-              </div>
-            </div>
-            <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
-              <div className="text-xs text-neutral-500">Annual PT (Projected)</div>
-              <div className="text-2xl font-semibold">
-                {INR(exempt ? 0 : projection.total)}
-              </div>
-            </div>
-            <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
-              <div className="text-xs text-neutral-500">Exemption Status</div>
-              <div className="text-base font-medium">
-                {STATES[state]?.noTax
-                  ? "No PT in this state"
-                  : exempt
-                  ? "Exempt"
-                  : "Not Exempt"}
-              </div>
-            </div>
+          <div className="flex items-center justify-center py-6">
+            <button
+              type="submit"
+              className="inline-flex items-center gap-2 rounded-md bg-orange-500 px-6 py-2.5 text-white font-semibold shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 cursor-pointer"
+            >
+              Calculate
+              <ArrowRight className="h-4 w-4" />
+            </button>
           </div>
+        </div>
+      </form>
 
-          {/* Month-wise table */}
-          <div className="mt-4 overflow-auto rounded-xl border border-neutral-200">
-            <table className="w-full text-sm">
-              <thead className="bg-neutral-50">
-                <tr>
-                  <th className="px-3 py-2 text-left font-medium">Month</th>
-                  <th className="px-3 py-2 text-right font-medium">PT (₹)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {projection.months.map((amt, i) => (
-                  <tr key={i} className="border-t">
-                    <td className="px-3 py-2">
-                      {new Date(2000, i, 1).toLocaleString("en-GB", {
-                        month: "long",
-                      })}
-                    </td>
-                    <td className="px-3 py-2 text-right">
-                      {INR(exempt ? 0 : amt)}
-                    </td>
-                  </tr>
-                ))}
-                <tr className="border-t bg-neutral-50">
-                  <td className="px-3 py-2 font-semibold">Total</td>
-                  <td className="px-3 py-2 text-right font-semibold">
-                    {INR(exempt ? 0 : projection.total)}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+      <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        <div className="rounded-md border border-orange-200 bg-white p-4 shadow-sm">
+          <div className="text-xs text-neutral-600">Monthly PT</div>
+          <div className="mt-1 text-2xl font-semibold text-orange-600">
+            {calculated ? INR(outMonthlyPT) : "—"}
           </div>
-
-          {/* Notes */}
-          <div className="mt-3 rounded-2xl border border-amber-200 bg-gradient-to-br from-orange-50 to-amber-50 p-4">
-            <div className="mb-1 text-xs text-neutral-600">Notes</div>
-            <ul className="list-disc pl-5 text-xs text-neutral-700 space-y-1">
-              {(cfg.notes ?? []).map((n, idx) => (
-                <li key={idx}>{n}</li>
-              ))}
-              <li>Static demo. Update slabs here as states revise schedules.</li>
-            </ul>
+        </div>
+        <div className="rounded-md border border-orange-200 bg-white p-4 shadow-sm">
+          <div className="text-xs text-neutral-600">Annual PT (Projected)</div>
+          <div className="mt-1 text-2xl font-semibold text-orange-600">
+            {calculated ? INR(outTotal) : "—"}
           </div>
-        </section>
+        </div>
+        <div className="rounded-md border border-orange-200 bg-white p-4 shadow-sm">
+          <div className="text-xs text-neutral-600">Exemption Status</div>
+          <div className="mt-1 text-base font-medium">
+            {calculated
+              ? STATES[state]?.noTax
+                ? "No PT in this state"
+                : outExempt
+                ? "Exempt"
+                : "Not Exempt"
+              : "—"}
+          </div>
+        </div>
+      </div>
 
-        {/* How it works */}
-        <aside className="md:col-span-2 rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
-          <h2 className="text-lg font-semibold">How this works</h2>
-          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-neutral-600">
-            <li>Pick State, Month, and enter Monthly Gross Salary.</li>
-            <li>Calculator matches salary to static slabs, with optional Feb bump.</li>
-            <li>Exemption flags: Senior (65+), Disability, Armed Forces (as per state config).</li>
-            <li>No external calls. Everything is hardcoded in the component.</li>
-          </ul>
-        </aside>
+      <div className="mt-5 overflow-auto rounded-md border border-orange-200 bg-white shadow-sm">
+        <table className="w-full text-sm">
+          <thead className="bg-orange-50 border-b border-orange-200">
+            <tr>
+              <th className="px-3 py-2 text-left font-medium text-orange-900">
+                Month
+              </th>
+              <th className="px-3 py-2 text-right font-medium text-orange-900">
+                PT (₹)
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {outMonths.map((amt, i) => (
+              <tr key={i} className="border-t last:border-b-0">
+                <td className="px-3 py-2">
+                  {new Date(2000, i, 1).toLocaleString("en-GB", {
+                    month: "long",
+                  })}
+                </td>
+                <td className="px-3 py-2 text-right">
+                  {calculated ? INR(amt) : "—"}
+                </td>
+              </tr>
+            ))}
+            <tr className="border-t bg-orange-50">
+              <td className="px-3 py-2 font-semibold">Total</td>
+              <td className="px-3 py-2 text-right font-semibold">
+                {calculated ? INR(outTotal) : "—"}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );

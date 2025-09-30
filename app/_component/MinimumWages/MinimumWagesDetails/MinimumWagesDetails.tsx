@@ -605,8 +605,7 @@ function fileNameFromUrl(u: string): string {
     return "Download";
   }
 }
-
-/* ================== Dynamic Period Combobox ================== */
+//
 function PeriodCombobox({
   apiBase,
   stateSlug,
