@@ -62,7 +62,7 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
     formTitle !== "—" ? `Download ${formTitle}` : formUrlNorm ? fileNameFromUrl(formUrlNorm) : "Download";
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <div className=" mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
         {/* Popular Search (mobile) */}
         <div className="lg:hidden mb-3 sm:mb-4">
@@ -191,7 +191,7 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
                 </CardHeader>
                 <CardContent className="p-3 space-y-3">
                   {actRows?.map((r, idx) => (
-                    <div key={idx} className="bg-gray-50 rounded-lg p-3 border text-xs space-y-2">
+                    <div key={idx} className=" rounded-lg p-3 border text-xs space-y-2">
                       {actH?.map((h) => {
                         const raw = cell(r, h);
                         const low = h.toLowerCase();
@@ -254,7 +254,7 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
 
                         return (
                           <div key={h} className="flex gap-2 justify-between">
-                            <span className="font-medium text-gray-600">{h}:</span>
+                            <span className="font-medium text-orange-500">{h}:</span>
                             <span>{fmt(raw)}</span>
                           </div>
                         );
@@ -330,10 +330,10 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
                 </CardHeader>
                 <CardContent className="p-3 space-y-3">
                   {contribRows?.map((r, idx) => (
-                    <div key={idx} className="bg-gray-50 rounded-lg p-3 border text-xs space-y-2">
+                    <div key={idx} className="bg-white rounded-lg p-3 border text-xs space-y-2c">
                       {contribH?.map((h) => (
                         <div key={h} className="flex gap-2 justify-between">
-                          <span className="font-medium text-gray-600">{h}:</span>
+                          <span className="font-medium text-orange-500">{h}:</span>
                           <span
                             className={`${["Employee", "Employer", "Total"].includes(h) ? "text-green-600 font-semibold" : ""
                               }`}
@@ -420,15 +420,15 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
           </div>
 
           {/* Sidebar */}
-          <div className="2xl:w-xs hidden lg:block lg:col-span-1">
-            <div className="sticky top-2 lg:top-3">
-              <Card className="shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-2 lg:p-3 xl:p-4">
-                  <PopularSearch className="mb-0" />
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+          <div className="lg:col-span-1 2xl:w-sm">
+                      <div className="sticky top-24">
+                        <Card>
+                          <CardContent>
+                            <PopularSearch className="mb-6" />
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </div>
         </div>
       </div>
     </div>

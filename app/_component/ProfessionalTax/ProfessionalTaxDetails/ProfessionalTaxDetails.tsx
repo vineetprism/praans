@@ -961,14 +961,7 @@
 
 "use client";
 
-import {
-  Download,
-  ExternalLink,
-  FileText,
-  Calculator,
-  Globe,
-  Bell,
-} from "lucide-react";
+import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -984,7 +977,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import PopularSearch from "@/app/PopularSearch/PopularSearch";
+import {
+  Calculator,
+  FileText,
+  Globe
+} from "lucide-react";
 import Link from "next/link";
 
 /* =========================
@@ -1049,7 +1046,7 @@ function GenericTable({
         </TableHeader>
         <TableBody className="relative z-10">
           {(block.rows ?? []).map((row, rIdx) => (
-            <TableRow key={rIdx} className="hover:bg-gray-50">
+            <TableRow key={rIdx} className="">
               {block.headers.map((h) => {
                 const raw = getCell(row, h);
                 const emph = emSet.has(h.toLowerCase());
@@ -1111,7 +1108,7 @@ function GenericMobileBlock({
         <h3 className="text-base font-bold mb-2">{title}</h3>
         <div className="space-y-3">
           {(block.rows ?? []).map((row, idx) => (
-            <div key={idx} className="bg-gray-50 rounded-lg p-3 border">
+            <div key={idx} className=" rounded-lg p-3 border">
               <div className="grid grid-cols-1 gap-2 text-xs">
                 {block.headers.map((h) => {
                   const v = getCell(row, h);
@@ -1180,7 +1177,7 @@ export default function ProfessionalTaxDetails({
   } = payload.data;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <div className="mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
         {/* Search (mobile) */}
         {/* <div className="xl:hidden md:hidden lg:hidden mb-3 sm:mb-4">
@@ -1206,7 +1203,70 @@ export default function ProfessionalTaxDetails({
             </div>
 
             {/* Quick cards */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-3 mb-4 lg:mb-3">
+         
+
+            {/* Act Information */}
+            <div className="block lg:hidden mb-4">
+              <GenericMobileBlock
+                title="Act Information"
+                block={act_information}
+                linkifyCols={["Form", "Website"]}
+              />
+            </div>
+            <Card className="hidden lg:block mb-3 shadow-sm">
+              <CardHeader className="pb-1 lg:pb-2">
+                <CardTitle className="text-base lg:text-lg font-bold">
+                  Act Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <GenericTable
+                  block={act_information}
+                  linkifyCols={["Form", "Website"]}
+                />
+              </CardContent>
+            </Card>
+
+            {/* Professional Tax Slabs */}
+            <div className="block lg:hidden mb-4">
+              <GenericMobileBlock
+                title="Professional Tax Slabs"
+                block={professional_tax_slabs}
+              />
+            </div>
+            <Card className="hidden lg:block mb-3 shadow-sm">
+              <CardHeader className="pb-1 lg:pb-2">
+                <CardTitle className="text-base lg:text-lg font-bold">
+                  Professional Tax Slabs
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <GenericTable
+                  block={professional_tax_slabs}
+                  emphasizeCols={["Monthly Tax", "Annual Tax"]}
+                />
+              </CardContent>
+            </Card>
+
+            {/* Employment Categories */}
+            <div className="block lg:hidden mb-4">
+              <GenericMobileBlock
+                title="Employment Categories"
+                block={employment_categories}
+              />
+            </div>
+            <Card className="hidden lg:block mb-3 shadow-sm">
+              <CardHeader className="pb-1 lg:pb-2">
+                <CardTitle className="text-base lg:text-lg font-bold">
+                  Employment Categories
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <GenericTable block={employment_categories} />
+              </CardContent>
+            </Card>
+
+               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-3 mb-4 lg:mb-3 2xl:grid-cols-3">
               <Card className="hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-orange-200">
                 <CardContent className="p-2 lg:p-3 text-center">
                   <Calculator className="w-6 h-6 lg:w-8 lg:h-8 text-orange-500 mx-auto mb-1 lg:mb-2" />
@@ -1293,67 +1353,6 @@ export default function ProfessionalTaxDetails({
                 </CardContent>
               </Card> */}
             </div>
-
-            {/* Act Information */}
-            <div className="block lg:hidden mb-4">
-              <GenericMobileBlock
-                title="Act Information"
-                block={act_information}
-                linkifyCols={["Form", "Website"]}
-              />
-            </div>
-            <Card className="hidden lg:block mb-3 shadow-sm">
-              <CardHeader className="pb-1 lg:pb-2">
-                <CardTitle className="text-base lg:text-lg font-bold">
-                  Act Information
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <GenericTable
-                  block={act_information}
-                  linkifyCols={["Form", "Website"]}
-                />
-              </CardContent>
-            </Card>
-
-            {/* Professional Tax Slabs */}
-            <div className="block lg:hidden mb-4">
-              <GenericMobileBlock
-                title="Professional Tax Slabs"
-                block={professional_tax_slabs}
-              />
-            </div>
-            <Card className="hidden lg:block mb-3 shadow-sm">
-              <CardHeader className="pb-1 lg:pb-2">
-                <CardTitle className="text-base lg:text-lg font-bold">
-                  Professional Tax Slabs
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <GenericTable
-                  block={professional_tax_slabs}
-                  emphasizeCols={["Monthly Tax", "Annual Tax"]}
-                />
-              </CardContent>
-            </Card>
-
-            {/* Employment Categories */}
-            <div className="block lg:hidden mb-4">
-              <GenericMobileBlock
-                title="Employment Categories"
-                block={employment_categories}
-              />
-            </div>
-            <Card className="hidden lg:block mb-3 shadow-sm">
-              <CardHeader className="pb-1 lg:pb-2">
-                <CardTitle className="text-base lg:text-lg font-bold">
-                  Employment Categories
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <GenericTable block={employment_categories} />
-              </CardContent>
-            </Card>
           </div>
 
           {/* Right Sidebar */}
@@ -1371,3 +1370,4 @@ export default function ProfessionalTaxDetails({
     </div>
   );
 }
+  
