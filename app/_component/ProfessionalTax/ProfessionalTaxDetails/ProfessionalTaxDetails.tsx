@@ -985,6 +985,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
+import Link from "next/link";
 
 /* =========================
    Helpers: dynamic table map
@@ -1055,14 +1056,14 @@ function GenericTable({
                 const linky = linkSet.has(h.toLowerCase());
                 const content =
                   linky && isUrl(raw) ? (
-                    <a
+                    <Link
                       href={String(raw)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="underline text-orange-600 hover:text-orange-700"
                     >
                       {h.toLowerCase().includes("form") ? "Download" : "Open"}
-                    </a>
+                    </Link>
                   ) : (
                     String(raw || "-")
                   );
@@ -1120,14 +1121,14 @@ function GenericMobileBlock({
                       <span className="font-medium text-orange-600">{h}:</span>
                       <span className="break-words">
                         {linky && isUrl(v) ? (
-                          <a
+                          <Link
                             href={String(v)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="underline text-orange-600"
                           >
                             {h.toLowerCase().includes("form") ? "Download" : "Open"}
-                          </a>
+                          </Link>
                         ) : (
                           String(v || "-")
                         )}
@@ -1237,14 +1238,14 @@ export default function ProfessionalTaxDetails({
                     className="text-xs lg:text-sm h-6 lg:h-7 px-2 lg:px-3 hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
                     disabled={!downloads?.form_url}
                   >
-                    <a
+                    <Link
                       href={downloads?.form_url ?? "#"}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Download Forms"
                     >
                       {downloads?.form_title?.trim() || "Download"}
-                    </a>
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -1263,14 +1264,14 @@ export default function ProfessionalTaxDetails({
                     className="text-xs lg:text-sm h-6 lg:h-7 px-2 lg:px-3 hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
                     disabled={!downloads?.website_url}
                   >
-                    <a
+                    <Link
                       href={downloads?.website_url ?? "#"}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Visit Official Portal"
                     >
                       Visit
-                    </a>
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
