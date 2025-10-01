@@ -400,7 +400,7 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
                 </CardContent>
               </Card>
 
-              <Card className="group hover:shadow-lg transition-all duration-300 text-center border-l-4 border-l-orange-500 shadow-sm">
+              {/* <Card className="group hover:shadow-lg transition-all duration-300 text-center border-l-4 border-l-orange-500 shadow-sm">
                 <CardContent className="p-3 lg:p-4">
                   <CalIcon className="h-6 w-6 lg:h-7 lg:w-7 text-orange-500 mx-auto mb-2 lg:mb-3" />
                   <h3 className="font-medium mb-2 text-sm lg:text-base">Due Dates</h3>
@@ -415,7 +415,7 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
                     </Button>
                   </Link>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </div>
 

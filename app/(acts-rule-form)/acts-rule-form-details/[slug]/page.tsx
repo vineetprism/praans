@@ -137,9 +137,6 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-
-
-
 /* =========================
    Page — await params
    ========================= */
