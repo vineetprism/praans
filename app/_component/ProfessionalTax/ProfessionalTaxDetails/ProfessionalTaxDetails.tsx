@@ -2,12 +2,7 @@
 
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -16,11 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Calculator,
-  FileText,
-  Globe
-} from "lucide-react";
+import { Calculator, FileText, Globe } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -135,15 +126,14 @@ function GenericTable({
 
                 return (
                   <TableCell
-  key={h}
-  className={[
-    "text-center text-xs lg:text-sm p-2 lg:p-3 align-top whitespace-normal break-words",
-    emph ? "font-semibold text-orange-600" : "",
-  ].join(" ")}
->
-  {content}
-</TableCell>
-
+                    key={h}
+                    className={[
+                      "text-center text-xs lg:text-sm p-2 lg:p-3 align-top whitespace-normal break-words max-w-[150px]",
+                      emph ? "font-semibold text-orange-600 " : "",
+                    ].join(" ")}
+                  >
+                    {content}
+                  </TableCell>
                 );
               })}
             </TableRow>
@@ -155,7 +145,7 @@ function GenericTable({
 }
 
 /* =========================
-   Generic mobile block (left as-is for readability)
+   Generic mobile block 
    ========================= */
 
 function GenericMobileBlock({
@@ -174,56 +164,56 @@ function GenericMobileBlock({
 
   return (
     <Card className="shadow-sm">
-      <CardContent className="p-3 ">
-        <h3 className="text-base font-bold mb-2 bg-orange-500 text-white text-center  ">{title}</h3>
-        <div className="space-y-3">
-          {(block.rows ?? []).map((row, idx) => (
-            <div key={idx} className=" rounded-lg p-3 border">
-              <div className="grid grid-cols-1 gap-2 text-xs">
-                {block.headers.map((h) => {
-                  const v = getCell(row, h);
-                  const linky = linkSet.has(h.toLowerCase());
-                  const isFormHeader = h.toLowerCase().includes("form");
+  <CardContent className="p-3 ">
+    <h3 className="text-base font-bold mb-2 bg-orange-500 text-white text-center">
+      {title}
+    </h3>
+    <div className="space-y-3">
+      {(block.rows ?? []).map((row, idx) => (
+        <div key={idx} className="rounded-lg p-3 border">
+          <div className="space-y-2 text-xs">
+            {block.headers.map((h) => {
+              const v = getCell(row, h);
+              const linky = linkSet.has(h.toLowerCase());
+              const isFormHeader = h.toLowerCase().includes("form");
 
-                  return (
-                    <div key={h} className="flex gap-1">
-                      <span className="font-medium text-orange-600">{h}:</span>
-                      <span className="break-words">
-                        {linky && isUrl(v) ? (
-                          isFormHeader ? (
-                            // 🔐 Gate “Form” downloads
-                            <button
-                              className="underline text-orange-600 cursor-pointer hover:cursor-pointer"
-                              onClick={() => openProtectedDownload(router, String(v))}
-                              aria-label="Download"
-                              type="button"
-                            >
-                              Download
-                            </button>
-                          ) : (
-                            // Public links (e.g., Website)
-                            <Link
-                              href={String(v)}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="underline text-orange-600"
-                            >
-                              {h.toLowerCase().includes("form") ? "Download" : "Open"}
-                            </Link>
-                          )
-                        ) : (
-                          String(v || "-")
-                        )}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+              return (
+                <div key={h} className="flex justify-between">
+                  <span className="font-medium text-orange-600">{h}:</span>
+                  <span className="break-words text-gray-800 text-right max-w-xs">
+                    {linky && isUrl(v) ? (
+                      isFormHeader ? (
+                        <button
+                          className="underline text-orange-600 cursor-pointer hover:cursor-pointer"
+                          onClick={() => openProtectedDownload(router, String(v))}
+                          aria-label="Download"
+                          type="button"
+                        >
+                          Download
+                        </button>
+                      ) : (
+                        <Link
+                          href={String(v)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline text-orange-600"
+                        >
+                          {h.toLowerCase().includes("form") ? "Download" : "Open"}
+                        </Link>
+                      )
+                    ) : (
+                      String(v || "-")
+                    )}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </CardContent>
-    </Card>
+      ))}
+    </div>
+  </CardContent>
+</Card>
   );
 }
 
@@ -244,7 +234,11 @@ type Payload = {
       form_url: string | null;
       website_url: string | null;
     };
-    meta: { applicable: boolean; max_annual_rate: number | null; slab_count: number | null };
+    meta: {
+      applicable: boolean;
+      max_annual_rate: number | null;
+      slab_count: number | null;
+    };
   };
 };
 
@@ -378,7 +372,9 @@ export default function ProfessionalTaxDetails({
                       size="sm"
                       aria-label="Download Forms"
                       className="text-xs lg:text-sm h-6 lg:h-7 px-2 lg:px-3 hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 cursor-pointer hover:cursor-pointer"
-                      onClick={() => openProtectedDownload(router, downloads.form_url!)}
+                      onClick={() =>
+                        openProtectedDownload(router, downloads.form_url!)
+                      }
                     >
                       {downloads?.form_title?.trim() || "Download"}
                     </Button>
