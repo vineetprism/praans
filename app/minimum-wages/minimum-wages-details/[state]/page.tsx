@@ -27,7 +27,7 @@
 //     const res = await fetch(url, { next: { revalidate }, headers: { Accept: "application/json" } });
 //     if (res.status === 404) return null;
 //     if (!res.ok) throw new Error(`[MW] HTTP ${res.status} @ ${url}`);
-//     const json = (await res.json()) as ApiResponse;
+//     const json = (await res.json()) as ApiResponse; 
 //     return json?.data ?? null;
 //   } catch (e) {
 //     console.error("[MW] fetch failed:", e);
@@ -123,7 +123,7 @@ function pickMeta(data: unknown) {
 }
 
 
-// ---------- Metadata (Gazette-style: direct fetch + no-store) ----------
+
 export async function generateMetadata({
   params,
 }: {
@@ -150,7 +150,7 @@ export async function generateMetadata({
   }
 }
 
-// ---------- Fetcher for page (ISR hint same as Gazette page) ----------
+
 async function getMinimumWageState(stateParam: string): Promise<MWSlugData | null> {
   const slug = normSlug(stateParam);
   const url = `${MW_BASE}/${encodeURIComponent(slug)}`;

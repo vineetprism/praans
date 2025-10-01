@@ -1,10 +1,15 @@
 "use client";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Download, ExternalLink, FileText, Calendar as CalIcon } from "lucide-react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
+
+// 🔐 Auth-gated download helpers (shared util)
+import { openProtectedDownload, handleAutoDownloadOnReturn } from "@/lib/download-auth";
 
 type Row = Record<string, string | null>;
 type WFSlugData = {
@@ -31,7 +36,7 @@ function normalizeUrl(input?: string | null, apiBase?: string): string | null {
     if (!apiBase) return null;
     if (val.startsWith("/")) return API_ORIGIN + val;
     if (val.startsWith("storage/") || val.startsWith("/storage/")) {
-      return API_ORIGIN + (val.startsWith("/") ? "" : "/") + val;
+      return API_ORIGIN + (val.startsWith("/") ? "" : "/") + val; 
     }
     return null;
   }
@@ -50,6 +55,16 @@ const fmt = (s?: string | null) => (s && s.trim().length ? s : "—");
 
 // ---------- Component ----------
 export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData; apiBase: string }) {
+  const router = useRouter();
+
+  // Auto-download if user just returned from login (?dl=...)
+  useEffect(() => {
+    const path = typeof window !== "undefined" ? window.location.pathname : "/";
+    const search = typeof window !== "undefined" ? window.location.search : "";
+    handleAutoDownloadOnReturn(router, path, search);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const actH = data.act_information.headers;
   const actRows = data.act_information.rows;
   const contribH = data.labour_welfare_fund_contribution.headers;
@@ -124,8 +139,23 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
                               return (
                                 <td key={h} className="px-3 py-4 text-sm text-center">
                                   {href ? (
-                                    <Button asChild variant="link" size="sm" className="text-orange-600 p-0" aria-label={`Download ${fileNameFromUrl(href)}`}>
-                                      <Link href={href} target="_blank" rel="noopener noreferrer">
+                                    <Button
+                                      asChild
+                                      variant="link"
+                                      size="sm"
+                                      className="text-orange-600 p-0"
+                                      aria-label={`Download ${fileNameFromUrl(href)}`}
+                                    >
+                                      {/* Intercept click -> gated download */}
+                                      <Link
+                                        href={href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          openProtectedDownload(router, href);
+                                        }}
+                                      >
                                         <FileText className="h-4 w-4 mr-1" />
                                         {fileNameFromUrl(href)}
                                       </Link>
@@ -219,6 +249,10 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
                                   rel="noopener noreferrer"
                                   className="text-orange-600 underline"
                                   aria-label={`Download ${fileNameFromUrl(href)}`}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    openProtectedDownload(router, href);
+                                  }}
                                 >
                                   {fileNameFromUrl(href)}
                                 </Link>
@@ -359,14 +393,12 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
                   <h3 className="font-medium mb-2 text-sm lg:text-base">Download Form</h3>
                   {formUrlNorm ? (
                     <Button
-                      asChild
                       size="sm"
-                      className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs lg:text-sm h-7 lg:h-8"
+                      className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs lg:text-sm h-7 lg:h-8 cursor-pointer"
                       aria-label={formButtonLabel}
+                      onClick={() => openProtectedDownload(router, formUrlNorm)}
                     >
-                      <Link href={formUrlNorm} target="_blank" rel="noopener noreferrer">
-                        {formButtonLabel}
-                      </Link>
+                      {formButtonLabel}
                     </Button>
                   ) : (
                     <Button size="sm" disabled className="w-full text-xs lg:text-sm h-7 lg:h-8">
@@ -408,7 +440,7 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
                     <Button
                       size="sm"
                       variant="outline"
-                      className="w-full hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 text-xs lg:text-sm h-7 lg:h-8"
+                      className="w-full hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600 text-xs lg:text-sm h-7 lg:h-8 cursor-pointer"
                       aria-label="View Calendar"
                     >
                       View Calendar
@@ -421,14 +453,14 @@ export default function WelfareFundDetails({ data, apiBase }: { data: WFSlugData
 
           {/* Sidebar */}
           <div className="lg:col-span-1 2xl:w-sm">
-                      <div className="sticky top-24">
-                        <Card>
-                          <CardContent>
-                            <PopularSearch className="mb-6" />
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </div>
+            <div className="sticky top-24">
+              <Card>
+                <CardContent>
+                  <PopularSearch className="mb-6" />
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </div>
     </div>

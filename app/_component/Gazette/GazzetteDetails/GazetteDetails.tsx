@@ -1,10 +1,17 @@
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Download } from "lucide-react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import SanitizedHtmlContent from "@/app/SanitizedHtmlContent/page";
-import Link from "next/link";
+import {
+  openProtectedDownload,
+  handleAutoDownloadOnReturn,
+} from "@/lib/download-auth";
 
 export type GazetteVM = {
   title: string;
@@ -17,11 +24,22 @@ export type GazetteVM = {
 };
 
 export default function GazetteView({ vm }: { vm: GazetteVM }) {
+  const router = useRouter();
+
+  // Auto-download after returning from login with ?dl=...
+  useEffect(() => {
+    const path =
+      typeof window !== "undefined" ? window.location.pathname : "/gazette-details";
+    const search =
+      typeof window !== "undefined" ? window.location.search : "";
+    handleAutoDownloadOnReturn(router, path, search);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="w-full px-0 py-3 sm:py-4 lg:py-5">
         <div className="grid gap-4 lg:gap-6 md:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_360px]">
-
           {/* PopularSearch on small screens */}
           <div className="md:hidden px-3 sm:px-4 lg:px-6">
             <Card>
@@ -45,12 +63,18 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
                       <div>
                         {vm?.updatedLabel && (
                           <>
-                            <span className="font-medium text-gray-700">Updated Date:</span> {vm?.updatedLabel}{" "}
+                            <span className="font-medium text-gray-700">
+                              Updated Date:
+                            </span>{" "}
+                            {vm?.updatedLabel}{" "}
                           </>
                         )}
                         {vm?.effectiveLabel && (
                           <>
-                            <span className="font-medium text-gray-700">/ Effective Date:</span> {vm?.effectiveLabel}
+                            <span className="font-medium text-gray-700">
+                              / Effective Date:
+                            </span>{" "}
+                            {vm?.effectiveLabel}
                           </>
                         )}
                       </div>
@@ -63,17 +87,16 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
               </div>
 
               {vm?.safeHtml && <SanitizedHtmlContent html={vm?.safeHtml} />}
+
               <div className="flex justify-start mt-3">
                 {vm?.downloadUrl ? (
                   <Button
                     className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 sm:px-5 sm:py-2 text-sm sm:text-base rounded-md font-medium inline-flex items-center gap-2 hover:cursor-pointer"
-                    asChild
                     aria-label="Download Gazette"
+                    onClick={() => openProtectedDownload(router, vm.downloadUrl!)}
                   >
-                    <Link href={vm?.downloadUrl} target="_blank" rel="noopener noreferrer" aria-label="Download Gazette" >
-                      <Download className="w-4 h-4" />
-                      Download
-                    </Link>
+                    <Download className="w-4 h-4" />
+                    Download
                   </Button>
                 ) : null}
               </div>
@@ -95,4 +118,3 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
     </div>
   );
 }
-

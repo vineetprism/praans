@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,7 @@ import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import { Calendar } from "@/components/ui/calendar";
 import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { isAuthenticated } from "@/lib/auth";
+import { openProtectedDownload, handleAutoDownloadOnReturn } from "@/lib/download-auth";
 
 // ---------- Types from API ----------
 type GazetteItem = {
@@ -125,6 +125,16 @@ export default function Gazette({ initialData, initialPage, availableStates }: G
   const lastPage = serverData?.meta?.last_page ?? 1;
   const rows = serverData?.data ?? [];
 
+  // Auto-download when returning from login with ?dl=...
+  useEffect(() => {
+    handleAutoDownloadOnReturn(
+      { replace: (url: string) => router.replace(url) },
+      "/gazette",
+      typeof window !== "undefined" ? window.location.search : ""
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // URL pagination
   const handlePageChange = (newPage: number) => {
     startTransition(() => {
@@ -180,17 +190,6 @@ export default function Gazette({ initialData, initialPage, availableStates }: G
         .map((s) => ({ label: s, value: s })),
     [availableStates]
   );
-
-  // Auth-gated download
-  const handleDownload = (downloadUrl: string | null) => {
-    if (!downloadUrl) return;
-    if (isAuthenticated()) {
-      window.open(downloadUrl, "_blank", "noopener,noreferrer");
-      return;
-    }
-    const current = typeof window !== "undefined" ? window.location.pathname + window.location.search : "/gazette";
-    router.push(`/login?next=${encodeURIComponent(current)}`);
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -305,7 +304,7 @@ export default function Gazette({ initialData, initialPage, availableStates }: G
                     {filtered?.map((n) => {
                       const updated = formatPrettyDate(n?.updated_date);
                       const effective = formatPrettyDate(n?.effective_date);
-                      const file = normalizeFileUrl(n?.pdf_url, n?.pdf_path);
+                      const downloadUrl = normalizeFileUrl(n?.pdf_url, n?.pdf_path);
 
                       return (
                         <div
@@ -357,31 +356,23 @@ export default function Gazette({ initialData, initialPage, availableStates }: G
                                     <div>
                                       <span className="text-slate-500 font-semibold">Effective Date:&nbsp;</span>
                                       <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-rose-600 tabular-nums underline decoration-orange-300/60">
-                                        {effective}
+                                        {formatPrettyDate(n?.effective_date)}
                                       </span>
                                     </div>
                                   )}
                                 </div>
 
-                                {/* Download (Auth-gated) */}
-                                {(() => {
-                                  const hasValidFile =
-                                    (n?.pdf_url && n?.pdf_url.trim() !== "") ||
-                                    (n?.pdf_path && n?.pdf_path.trim() !== "");
-                                  const downloadUrl = normalizeFileUrl(n?.pdf_url, n?.pdf_path);
-
-                                  return hasValidFile && downloadUrl ? (
-                                    <Button
-                                      size="sm"
-                                      className="mt-1 md:mt-2 bg-orange-500 text-white hover:bg-orange-600 h-6 sm:h-6 lg:h-8 px-2 sm:px-2.5 lg:px-3 text-[9px] sm:text-[10px] lg:text-xs font-medium rounded-sm inline-flex items-center gap-1 shrink-0 w-auto max-w-full hover:cursor-pointer"
-                                      aria-label="Download"
-                                      onClick={() => handleDownload(downloadUrl)}
-                                    >
-                                      <Download className="w-3 h-3 2xl:w-4 2xl:h-4" />
-                                      <span className="whitespace-nowrap">Download</span>
-                                    </Button>
-                                  ) : null;
-                                })()}
+                                {(downloadUrl && downloadUrl.trim() !== "") && (
+                                  <Button
+                                    size="sm"
+                                    className="mt-1 md:mt-2 bg-orange-500 text-white hover:bg-orange-600 h-6 sm:h-6 lg:h-8 px-2 sm:px-2.5 lg:px-3 text-[9px] sm:text-[10px] lg:text-xs font-medium rounded-sm inline-flex items-center gap-1 shrink-0 w-auto max-w-full hover:cursor-pointer"
+                                    aria-label="Download"
+                                    onClick={() => openProtectedDownload(router, downloadUrl)}
+                                  >
+                                    <Download className="w-3 h-3 2xl:w-4 2xl:h-4" />
+                                    <span className="whitespace-nowrap">Download</span>
+                                  </Button>
+                                )}
                               </div>
                             </div>
                           </div>

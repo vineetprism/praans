@@ -1,8 +1,8 @@
 export interface DownloadItem {
-  url: string
-  filename: string
-  fileSize?: string
-  format?: string
+  url: string;
+  filename: string;
+  fileSize?: string;
+  format?: string;
 }
 
 export const downloadFile = async (item: DownloadItem): Promise<void> => {
@@ -16,36 +16,36 @@ export const downloadFile = async (item: DownloadItem): Promise<void> => {
           "Content-Type": getMimeType(item.format || "pdf"),
           "Content-Disposition": `attachment; filename="${item.filename}"`,
         },
-      })
-    })
+      });
+    });
 
     if (!response.ok) {
-      throw new Error("Download failed")
+      throw new Error("Download failed");
     }
 
-    const blob = await response.blob()
-    const url = window.URL.createObjectURL(blob)
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
 
-    const link = document.createElement("a")
-    link.href = url
-    link.download = item.filename
-    document.body.appendChild(link)
-    link.click()
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = item.filename;
+    document.body.appendChild(link);
+    link.click();
 
     // Cleanup
-    document.body.removeChild(link)
-    window.URL.revokeObjectURL(url)
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
 
     // Show success notification
-    showDownloadNotification(item.filename, "success")
+    showDownloadNotification(item.filename, "success");
   } catch (error) {
-    console.error("Download error:", error)
-    showDownloadNotification(item.filename, "error")
+    console.error("Download error:", error);
+    showDownloadNotification(item.filename, "error");
   }
-}
+};
 
 const createMockFileContent = (item: DownloadItem): string => {
-  const format = item.format?.toLowerCase() || "pdf"
+  const format = item.format?.toLowerCase() || "pdf";
 
   if (format === "pdf") {
     return `%PDF-1.4
@@ -100,14 +100,14 @@ trailer
 >>
 startxref
 299
-%%EOF`
+%%EOF`;
   } else if (format === "excel") {
     return `Form Name,Description,Status
-${item.filename},Sample form content,Active`
+${item.filename},Sample form content,Active`;
   } else {
-    return `This is a sample ${format.toUpperCase()} file for ${item.filename}`
+    return `This is a sample ${format.toUpperCase()} file for ${item.filename}`;
   }
-}
+};
 
 const getMimeType = (format: string): string => {
   const mimeTypes: { [key: string]: string } = {
@@ -117,18 +117,21 @@ const getMimeType = (format: string): string => {
     word: "application/msword",
     docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     txt: "text/plain",
-  }
-  return mimeTypes[format.toLowerCase()] || "application/octet-stream"
-}
+  };
+  return mimeTypes[format.toLowerCase()] || "application/octet-stream";
+};
 
-const showDownloadNotification = (filename: string, type: "success" | "error"): void => {
+const showDownloadNotification = (
+  filename: string,
+  type: "success" | "error"
+): void => {
   // Create a simple notification
-  const notification = document.createElement("div")
+  const notification = document.createElement("div");
   notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 transition-all duration-300 ${
     type === "success"
       ? "bg-green-100 border border-green-200 text-green-800"
       : "bg-red-100 border border-red-200 text-red-800"
-  }`
+  }`;
 
   notification.innerHTML = `
     <div class="flex items-center gap-2">
@@ -144,30 +147,36 @@ const showDownloadNotification = (filename: string, type: "success" | "error"): 
           ${type === "success" ? "Download Started" : "Download Failed"}
         </div>
         <div class="text-sm opacity-75">
-          ${type === "success" ? `${filename} is downloading...` : `Failed to download ${filename}`}
+          ${
+            type === "success"
+              ? `${filename} is downloading...`
+              : `Failed to download ${filename}`
+          }
         </div>
       </div>
     </div>
-  `
+  `;
 
-  document.body.appendChild(notification)
+  document.body.appendChild(notification);
 
   // Auto remove after 3 seconds
   setTimeout(() => {
-    notification.style.opacity = "0"
-    notification.style.transform = "translateX(100%)"
+    notification.style.opacity = "0";
+    notification.style.transform = "translateX(100%)";
     setTimeout(() => {
       if (document.body.contains(notification)) {
-        document.body.removeChild(notification)
+        document.body.removeChild(notification);
       }
-    }, 300)
-  }, 3000)
-}
+    }, 300);
+  }, 3000);
+};
 
-export const downloadMultipleFiles = async (items: DownloadItem[]): Promise<void> => {
+export const downloadMultipleFiles = async (
+  items: DownloadItem[]
+): Promise<void> => {
   for (const item of items) {
-    await downloadFile(item)
+    await downloadFile(item);
     // Add small delay between downloads
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    await new Promise((resolve) => setTimeout(resolve, 500));
   }
-}
+};
