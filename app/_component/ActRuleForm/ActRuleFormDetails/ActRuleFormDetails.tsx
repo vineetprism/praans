@@ -1,8 +1,7 @@
-
 "use client";
 
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
-import SanitizedHtmlContent from "@/app/SanitizedHtmlContent/page"; // Your new component
+import SanitizedHtmlContent from "@/app/SanitizedHtmlContent/page";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,10 +20,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  TooltipProvider
-} from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { AlertCircle, Download, FileText, Scale } from "lucide-react";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import {
+  openProtectedDownload,
+  handleAutoDownloadOnReturn,
+} from "@/lib/download-auth";
 
 type FormAPI = {
   id: number;
@@ -55,8 +59,8 @@ type ActDetail = {
   state: string;
   short_description: string;
   form_quote: string;
-  act_desc: string; // HTML content from API
-  rule_desc: string; // HTML content from API
+  act_desc: string;
+  rule_desc: string;
   section_count: number;
   rule_count: number;
   form_count: number;
@@ -74,8 +78,7 @@ interface ActDetailClientProps {
   act: ActDetail;
 }
 
-const FILE_HOST =process.env.NEXT_PUBLIC_API_BASE!
-
+const FILE_HOST = process.env.NEXT_PUBLIC_API_BASE!;
 const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "127.1.1.0"]);
 
 export function normalizeUrl(
@@ -105,7 +108,18 @@ export function normalizeUrl(
 }
 
 export default function ActDetailClient({ act }: ActDetailClientProps) {
+  const router = useRouter();
   const forms = act.forms || [];
+
+  // Auto-download after returning from login (respects ?dl=… on the URL)
+  useEffect(() => {
+    const path =
+      typeof window !== "undefined" ? window.location.pathname : "/acts";
+    const search =
+      typeof window !== "undefined" ? window.location.search : "";
+    handleAutoDownloadOnReturn(router, path, search);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const formatDate = (dateString: string) => {
     try {
@@ -119,35 +133,31 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
     }
   };
 
+  // === Auth-gated download handlers ===
   const handleActDownload = () => {
     const finalUrl = normalizeUrl(act?.act_doc_url, act?.act_doc_path || null);
     if (!finalUrl) return alert("Act document not available");
-    window.open(finalUrl, "_blank");
+    openProtectedDownload(router, finalUrl);
   };
 
   const handleRulesDownload = () => {
-    const finalUrl = normalizeUrl(
-      act?.rule_doc_url,
-      act?.rule_doc_path || null
-    );
+    const finalUrl = normalizeUrl(act?.rule_doc_url, act?.rule_doc_path || null);
     if (!finalUrl) return alert("Rules document not available");
-    window.open(finalUrl, "_blank");
+    openProtectedDownload(router, finalUrl);
   };
 
   const handleFormDownload = (form: FormAPI) => {
     const finalUrl = normalizeUrl(form?.pdf_url, null);
     if (!finalUrl) return alert("Form document not available");
-    window.open(finalUrl, "_blank");
+    openProtectedDownload(router, finalUrl);
   };
 
   const handleAmendmentDownload = (amendment: AmendmentEntry) => {
-    const finalUrl = normalizeUrl(
-      amendment?.doc_url,
-      amendment?.doc_path || null
-    );
+    const finalUrl = normalizeUrl(amendment?.doc_url, amendment?.doc_path || null);
     if (!finalUrl) return alert("Amendment document not available");
-    window.open(finalUrl, "_blank");
+    openProtectedDownload(router, finalUrl);
   };
+  // ====================================
 
   return (
     <TooltipProvider>
@@ -202,10 +212,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                 </CardHeader>
               </Card>
 
-              <Tabs
-                defaultValue="overview"
-                className="space-y-2 sm:space-y-3 lg:space-y-4"
-              >
+              <Tabs defaultValue="overview" className="space-y-2 sm:space-y-3 lg:space-y-4">
                 <TabsList className="grid grid-cols-3 w-full mx-auto h-auto gap-1 sm:gap-2">
                   <TabsTrigger
                     value="overview"
@@ -227,10 +234,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                   </TabsTrigger>
                 </TabsList>
 
-                <TabsContent
-                  value="overview"
-                  className="space-y-2 sm:space-y-3 lg:space-y-4"
-                >
+                <TabsContent value="overview" className="space-y-2 sm:space-y-3 lg:space-y-4">
                   <Card className="shadow-sm border-gray-200">
                     <CardHeader className="pb-2 sm:pb-3 lg:pb-4">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
@@ -270,52 +274,46 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                           <div className="space-y-1 rounded-lg p-4">
                             {act?.amendments?.map((yearGroup, yearIndex) => (
                               <div key={yearIndex}>
-                                {yearGroup?.entries?.map(
-                                  (amendment, amendmentIndex) => (
-                                    <div
-                                      key={`${yearIndex}-${amendmentIndex}`}
-                                      className="flex items-start gap-4 py-3 last:border-b-0"
-                                    >
-                                      <div className="flex-shrink-0 mt-1">
-                                        <div className="w-10 h-6 bg-orange-50 border border-orange-200 rounded flex items-center justify-center">
-                                          <span className="text-orange-600 font-bold text-xs">
-                                            {yearGroup?.year}
-                                          </span>
-                                        </div>
-                                      </div>
-                                      <div className="flex-1 min-w-0">
-                                        <p className="text-sm font-medium leading-relaxed mb-1">
-                                          {amendment?.short_desc}
-                                        </p>
-                                        <p className="text-xs">
-                                          Date: {amendment?.date}
-                                        </p>
-                                      </div>
-                                      <div className="flex-shrink-0">
-                                        {normalizeUrl(
-                                          amendment?.doc_url,
-                                          amendment?.doc_path || null
-                                        ) ? (
-                                          <Button
-                                            size="sm"
-                                            className="h-7 px-2 bg-orange-400 text-white hover:bg-orange-500 hover:cursor-pointer text-xs"
-                                            onClick={() =>
-                                              handleAmendmentDownload(amendment)
-                                            }
-                                            aria-label="Download Amendment"
-                                          >
-                                            <Download className="w-3 h-3 mr-1" />
-                                            Download
-                                          </Button>
-                                        ) : (
-                                          <span className="text-xs text-gray-400">
-                                            No PDF
-                                          </span>
-                                        )}
+                                {yearGroup?.entries?.map((amendment, amendmentIndex) => (
+                                  <div
+                                    key={`${yearIndex}-${amendmentIndex}`}
+                                    className="flex items-start gap-4 py-3 last:border-b-0"
+                                  >
+                                    <div className="flex-shrink-0 mt-1">
+                                      <div className="w-10 h-6 bg-orange-50 border border-orange-200 rounded flex items-center justify-center">
+                                        <span className="text-orange-600 font-bold text-xs">
+                                          {yearGroup?.year}
+                                        </span>
                                       </div>
                                     </div>
-                                  )
-                                )}
+                                    <div className="flex-1 min-w-0">
+                                      <p className="text-sm font-medium leading-relaxed mb-1">
+                                        {amendment?.short_desc}
+                                      </p>
+                                      <p className="text-xs">
+                                        Date: {amendment?.date}
+                                      </p>
+                                    </div>
+                                    <div className="flex-shrink-0">
+                                      {normalizeUrl(
+                                        amendment?.doc_url,
+                                        amendment?.doc_path || null
+                                      ) ? (
+                                        <Button
+                                          size="sm"
+                                          className="h-7 px-2 bg-orange-400 text-white hover:bg-orange-500 hover:cursor-pointer text-xs"
+                                          onClick={() => handleAmendmentDownload(amendment)}
+                                          aria-label="Download Amendment"
+                                        >
+                                          <Download className="w-3 h-3 mr-1" />
+                                          Download
+                                        </Button>
+                                      ) : (
+                                        <span className="text-xs text-gray-400">No PDF</span>
+                                      )}
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
                             ))}
                           </div>
@@ -326,10 +324,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                 </TabsContent>
 
                 {/* Rules */}
-                <TabsContent
-                  value="rules"
-                  className="space-y-2 sm:space-y-3 lg:space-y-4"
-                >
+                <TabsContent value="rules" className="space-y-2 sm:space-y-3 lg:space-y-4">
                   <Card className="shadow-sm border-gray-200">
                     <CardHeader className="pb-2 sm:pb-3 lg:pb-4">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
@@ -337,10 +332,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                           <Scale className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-orange-500 flex-shrink-0" />
                           <span>Rules Overview :</span>
                         </CardTitle>
-                        {normalizeUrl(
-                          act?.rule_doc_url,
-                          act?.rule_doc_path
-                        ) && (
+                        {normalizeUrl(act?.rule_doc_url, act?.rule_doc_path) && (
                           <Button
                             onClick={handleRulesDownload}
                             className="bg-orange-500 hover:bg-orange-600 hover:cursor-pointer text-white px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 text-[10px] sm:text-xs lg:text-sm rounded-md h-auto"
@@ -372,94 +364,8 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                   </Card>
                 </TabsContent>
 
-                {/* Amendments */}
-                <TabsContent
-                  value="amendments"
-                  className="space-y-2 sm:space-y-3 lg:space-y-4"
-                >
-                  <Card className="shadow-sm border-gray-200">
-                    <CardHeader className="pb-2 sm:pb-3 lg:pb-4">
-                      <CardTitle className="flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base lg:text-lg">
-                        <Scale className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-orange-500 flex-shrink-0" />
-                        <span>Recent Amendments</span>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pt-0 -mt-6">
-                      {act?.amendments && act?.amendments?.length > 0 ? (
-                        <div className="space-y-1">
-                          {act?.amendments?.map((yearGroup, yearIndex) => (
-                            <div key={yearIndex}>
-                              {yearGroup?.entries?.map(
-                                (amendment, amendmentIndex) => (
-                                  <div
-                                    key={`${yearIndex}-${amendmentIndex}`}
-                                    className="flex items-start gap-4 py-3 last:border-b-0"
-                                  >
-                                    <div className="flex-shrink-0 mt-1">
-                                      <div className="w-10 h-6 bg-orange-50 border border-orange-200 rounded flex items-center justify-center">
-                                        <span className="text-orange-600 font-bold text-xs">
-                                          {yearGroup?.year}
-                                        </span>
-                                      </div>
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                      <p className="text-sm sm:text-base text-gray-800 font-medium leading-relaxed mb-1">
-                                        {amendment?.short_desc}
-                                      </p>
-                                      <p className="text-xs text-gray-500">
-                                        Date: {amendment?.date}
-                                      </p>
-                                    </div>
-                                    <div className="flex-shrink-0">
-                                      {normalizeUrl(
-                                        amendment?.doc_url,
-                                        amendment?.doc_path || null
-                                      ) ? (
-                                        <Button
-                                          size="sm"
-                                          className="h-7 px-2 bg-orange-400 text-white hover:bg-orange-500 hover:cursor-pointer text-xs"
-                                          onClick={() =>
-                                            handleAmendmentDownload(amendment)
-                                          }
-                                          aria-label="Download Amendment"
-                                        >
-                                          <Download className="w-3 h-3 mr-1" />
-                                          Download
-                                        </Button>
-                                      ) : (
-                                        <span className="text-xs text-gray-400">
-                                          No PDF
-                                        </span>
-                                      )}
-                                    </div>
-                                  </div>
-                                )
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="text-center py-6 sm:py-8 rounded-lg">
-                          <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 rounded-full flex items-center justify-center">
-                            <Scale className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400" />
-                          </div>
-                          <p className="text-gray-500 text-xs sm:text-sm font-medium mb-1">
-                            No amendments available
-                          </p>
-                          <p className="text-gray-400 text-[10px] sm:text-xs">
-                            Amendments will be added when available
-                          </p>
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-                </TabsContent>
-
                 {/* Forms */}
-                <TabsContent
-                  value="forms"
-                  className="space-y-2 sm:space-y-3 lg:space-y-4"
-                >
+                <TabsContent value="forms" className="space-y-2 sm:space-y-3 lg:space-y-4">
                   <Card className="shadow-sm border-gray-200">
                     <CardHeader className="pb-2 sm:pb-3 lg:pb-4">
                       <div className="flex items-center gap-1.5 sm:gap-2">
@@ -532,9 +438,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                                           <Button
                                             size="sm"
                                             className="text-[9px] sm:text-[10px] h-6 sm:h-7 bg-orange-400 text-white hover:bg-orange-500 hover:cursor-pointer"
-                                            onClick={() =>
-                                              handleFormDownload(form)
-                                            }
+                                            onClick={() => handleFormDownload(form)}
                                             aria-label="Download Form"
                                           >
                                             <Download className="w-2.5 h-2.5 sm:w-3 sm:h-3 mr-1" />
@@ -571,10 +475,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                               </TableHeader>
                               <TableBody>
                                 {forms?.map((form) => {
-                                  const href = normalizeUrl(
-                                    form?.pdf_url,
-                                    null
-                                  );
+                                  const href = normalizeUrl(form?.pdf_url, null);
                                   return (
                                     <TableRow
                                       key={form.id}
@@ -589,22 +490,8 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                                         </Badge>
                                       </TableCell>
 
-                                      {/* Title + Tooltip */}
                                       <TableCell className="py-2 max-w-64">
                                         <p>{form?.title}</p>
-                                        {/* <Tooltip>
-                                          <TooltipTrigger asChild>
-                                            <div className="font-medium text-[11px] sm:text-xs 2xl:text-sm truncate cursor-help">
-                                              {form?.title}
-                                            </div>
-                                          </TooltipTrigger>
-                                          <TooltipContent
-                                            side="top"
-                                            className="max-w-sm p-2 text-xs bg-orange-400 text-white rounded-md shadow-lg"
-                                          >
-                                            <p>{form?.title}</p>
-                                          </TooltipContent>
-                                        </Tooltip> */}
                                       </TableCell>
 
                                       <TableCell className="py-2">
@@ -612,9 +499,7 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
                                           <Button
                                             size="lg"
                                             className="h-7 px-2 bg-orange-400 text-white hover:bg-orange-500 2xl:text-sm hover:cursor-pointer"
-                                            onClick={() =>
-                                              handleFormDownload(form)
-                                            }
+                                            onClick={() => handleFormDownload(form)}
                                             aria-label="Download Form"
                                           >
                                             <Download className="w-3 h-3 mr-1" />

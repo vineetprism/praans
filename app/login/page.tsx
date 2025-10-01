@@ -130,10 +130,20 @@ export default function LoginPage() {
                 </button>
               </div>
 
+              {/* 👇 New: Forgot Password link */}
+              <div className="flex justify-end -mt-2">
+                <Link
+                  href={`/forget-password?next=${encodeURIComponent(nextUrl)}`}
+                  className="text-sm font-medium text-orange-600 hover:text-orange-700 hover:underline transition-all duration-200"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className={`relative inline-flex w-full items-center justify-center gap-3 rounded-xl px-8 py-3.5 text-sm font-bold text-white shadow-lg transition-all duration-300 overflow-hidden
+                className={`relative inline-flex w-full items-center justify-center gap-3 rounded-xl px-8 py-3.5 text-sm font-bold text-white shadow-lg transition-all duration-300 overflow-hidden cursor-pointer
                   ${
                     !loading
                       ? "bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 hover:shadow-xl hover:shadow-orange-300/50 hover:scale-105"

@@ -5,6 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calculator, Download, ExternalLink, FileText } from "lucide-react";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+/* 🔐 Auth-gated download helpers */
+import {
+  openProtectedDownload,
+  handleAutoDownloadOnReturn,
+} from "@/lib/download-auth";
 
 type TableBlock = {
   headers: string[];
@@ -36,6 +44,15 @@ export default function LeavesWorkingHoursDetails({
   apiBase: string;
   initialData: StateData;
 }) {
+  const router = useRouter();
+
+  // ▶ Auto-download if coming back from /login?next=...&dl=...
+  useEffect(() => {
+    const path = typeof window !== "undefined" ? window.location.pathname : "/";
+    const search = typeof window !== "undefined" ? window.location.search : "";
+    handleAutoDownloadOnReturn(router, path, search);
+  }, [router]);
+
   const name = initialData.state?.name ?? "—";
 
   const isHttp = (v?: string | null) => (v ?? "").startsWith("http");
@@ -106,16 +123,14 @@ export default function LeavesWorkingHoursDetails({
                       <td key={ci} className={`${base} ${textFor}`}>
                         {href ? (
                           <Button
-                            asChild
                             variant="link"
                             size="sm"
-                            className="text-orange-600 p-0"
+                            className="text-orange-600 p-0 cursor-pointer hover:cursor-pointer"
                             aria-label="Download file"
+                            onClick={() => openProtectedDownload(router, href)}
                           >
-                            <Link href={href} target="_blank" rel="noopener noreferrer">
-                              <FileText className="h-4 w-4 mr-1" />
-                              Download
-                            </Link>
+                            <FileText className="h-4 w-4 mr-1" />
+                            Download
                           </Button>
                         ) : (
                           "—"
@@ -173,27 +188,28 @@ export default function LeavesWorkingHoursDetails({
               {cols?.map((c) => {
                 const label = c.label.replace(/:(file|url)$/i, "");
                 const raw = row[c.key] ?? row[c.label] ?? "";
+
                 if (c.type === "file") {
                   const href = resolveFile(raw);
                   return (
                     <div key={c.key} className="flex gap-2 justify-between">
                       <span className="font-medium text-gray-600">{label}:</span>
                       {href ? (
-                        <Link
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-orange-600 underline"
+                        <button
+                          type="button"
+                          className="text-orange-600 underline cursor-pointer hover:cursor-pointer"
+                          onClick={() => openProtectedDownload(router, href)}
                           aria-label="Download file"
                         >
                           Download
-                        </Link>
+                        </button>
                       ) : (
                         "—"
                       )}
                     </div>
                   );
                 }
+
                 if (c.type === "url") {
                   const href = typeof raw === "string" ? raw : "";
                   return (
@@ -215,6 +231,7 @@ export default function LeavesWorkingHoursDetails({
                     </div>
                   );
                 }
+
                 return (
                   <div key={c.key} className="flex gap-2 justify-between">
                     <span className="font-medium text-gray-600">{label}:</span>
@@ -315,15 +332,13 @@ export default function LeavesWorkingHoursDetails({
                     {tiles?.form_title ?? "Download Forms"}
                   </h3>
                   <Button
-                    asChild
                     size="sm"
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs lg:text-sm h-7 lg:h-8"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs lg:text-sm h-7 lg:h-8 cursor-pointer hover:cursor-pointer"
                     disabled={!tileFormUrl}
                     aria-label="Download forms"
+                    onClick={() => tileFormUrl && openProtectedDownload(router, tileFormUrl)}
                   >
-                    <Link href={tileFormUrl || "#"} target="_blank" rel="noopener noreferrer">
-                      Download
-                    </Link>
+                    Download
                   </Button>
                 </CardContent>
               </Card>
@@ -336,7 +351,7 @@ export default function LeavesWorkingHoursDetails({
                   <Button
                     size="sm"
                     variant="outline"
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs lg:text-sm h-7 lg:h-8"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs lg:text-sm h-7 lg:h-8 cursor-pointer hover:cursor-pointer"
                     aria-label="Leave Calculator"
                   >
                     Calculate
@@ -355,7 +370,7 @@ export default function LeavesWorkingHoursDetails({
                     asChild
                     size="sm"
                     variant="outline"
-                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs lg:text-sm h-7 lg:h-8"
+                    className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs lg:text-sm h-7 lg:h-8 cursor-pointer hover:cursor-pointer"
                     disabled={!tileWebsiteUrl}
                     aria-label="Visit Website"
                   >

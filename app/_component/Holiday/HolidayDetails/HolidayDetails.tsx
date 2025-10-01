@@ -14,6 +14,13 @@ import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import { useEffect, useMemo, useState } from "react";
 import type { HolidayStateData } from "@/app/(holidays)/holidays-details/[slug]/page";
 
+// 🔐 NEW: shared download guard + auto-return
+import {
+  openProtectedDownload,
+  handleAutoDownloadOnReturn,
+} from "@/lib/download-auth";
+import { useRouter } from "next/navigation";
+
 type HolidayDetail = HolidayStateData["holiday_details"][number];
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
@@ -83,6 +90,8 @@ export default function HolidayDetails({
   initialData: HolidayStateData | null;
   slug: string;
 }) {
+  const router = useRouter();
+
   // data state
   const [apiData, setApiData] = useState<HolidayStateData | null>(initialData);
   const [holidayDetails, setHolidayDetails] = useState<HolidayDetail[]>(
@@ -97,6 +106,16 @@ export default function HolidayDetails({
   const [selectedType, setSelectedType] = useState<string>("all");
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
+
+  // 🔁 NEW: auto-download if returning from login with ?dl=...
+  useEffect(() => {
+    const path =
+      typeof window !== "undefined" ? window.location.pathname : "/holidays";
+    const search =
+      typeof window !== "undefined" ? window.location.search : "";
+    handleAutoDownloadOnReturn(router, path, search);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (initialData) return;
@@ -202,18 +221,18 @@ export default function HolidayDetails({
                         {apiData?.year}) :
                       </h1>
 
-                      <div className="flex flex-col min-[480px]:flex-row gap-2 min-[480px]:gap-1 sm:gap-2">
+                      <div className="flex flex-col min-[480px]:flex-row gap-2 min-[480px]:gap-1 sm:gap-2 ">
                         <Select
                           value={selectedMonth}
                           onValueChange={setSelectedMonth}
                         >
-                          <SelectTrigger className="flex justify-center p-[1.2rem] w-full min-[480px]:w-auto h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 text-white text-xs min-[375px]:text-xs sm:text-sm hover:bg-orange-600 px-2 focus-visible:ring-orange-500 focus-visible:border-orange-500">
+                          <SelectTrigger className="flex justify-center p-[1.2rem] w/full min-[480px]:w-auto h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 text-white text-xs min-[375px]:text-xs sm:text-sm hover:bg-orange-600 px-2 focus-visible:ring-orange-500 focus-visible:border-orange-500 cursor-pointer">
                             <SelectValue placeholder="Months" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem
                               value="all"
-                              className="text-xs sm:text-sm"
+                              className="text-xs sm:text-sm cursor-pointer"
                             >
                               All Months
                             </SelectItem>
@@ -221,7 +240,7 @@ export default function HolidayDetails({
                               <SelectItem
                                 key={m}
                                 value={m}
-                                className="text-xs sm:text-sm"
+                                className="text-xs sm:text-sm cursor-pointer"
                               >
                                 {m}
                               </SelectItem>
@@ -229,12 +248,16 @@ export default function HolidayDetails({
                           </SelectContent>
                         </Select>
 
+                        {/* 🔐 Gated Download */}
                         <Button
-                          className="h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 hover:bg-orange-600 text-white text-xs min-[375px]:text-xs sm:text-sm transition-colors px-2 sm:px-3 md:px-4"
+                          className="h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 hover:bg-orange-600 text-white text-xs min-[375px]:text-xs sm:text-sm transition-colors px-2 sm:px-3 md:px-4 cursor-pointer"
                           onClick={() => {
-                            if (apiData?.holiday_pdf_url)
-                              window.open(apiData?.holiday_pdf_url, "_blank");
-                            else alert("PDF not available");
+                            const url = apiData?.holiday_pdf_url?.trim();
+                            if (!url) {
+                              alert("PDF not available");
+                              return;
+                            }
+                            openProtectedDownload(router, url);
                           }}
                         >
                           <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
@@ -261,8 +284,8 @@ export default function HolidayDetails({
                 className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4
                   max-w-fit mx-12 place-items-center"
               >
-                <div className="flex items-center gap-2">
-                  <label className="text-xs sm:text-sm font-medium text-gray-700">
+                <div className="flex items-center gap-2 ">
+                  <label className="text-xs sm:text-sm font-medium text-gray-700 ">
                     From Date:
                   </label>
                   <DatePicker
@@ -302,12 +325,13 @@ export default function HolidayDetails({
                     </div>
                     <div className="flex-shrink-0">
                       <span
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${h?.type === "National"
-                          ? "bg-green-100 text-green-800"
-                          : h?.type === "Regional"
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          h?.type === "National"
+                            ? "bg-green-100 text-green-800"
+                            : h?.type === "Regional"
                             ? "bg-blue-100 text-blue-800"
                             : "bg-gray-100 text-gray-800"
-                          }`}
+                        }`}
                       >
                         {h?.type}
                       </span>
@@ -347,12 +371,13 @@ export default function HolidayDetails({
                     </div>
                     <div className="flex-shrink-0">
                       <span
-                        className={`px-3 py-1 rounded-full text-sm font-medium ${h?.type === "National"
-                          ? "bg-green-100 text-green-800"
-                          : h?.type === "Regional"
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${
+                          h?.type === "National"
+                            ? "bg-green-100 text-green-800"
+                            : h?.type === "Regional"
                             ? "bg-blue-100 text-blue-800"
                             : "bg-gray-100 text-gray-800"
-                          }`}
+                        }`}
                       >
                         {h?.type}
                       </span>
@@ -408,12 +433,13 @@ export default function HolidayDetails({
                         </td>
                         <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4">
                           <span
-                            className={`rounded-full font-medium px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5 text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px] ${h?.type === "National"
-                              ? "bg-green-100 text-green-800"
-                              : h?.type === "Regional"
+                            className={`rounded-full font-medium px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5 text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px] ${
+                              h?.type === "National"
+                                ? "bg-green-100 text-green-800"
+                                : h?.type === "Regional"
                                 ? "bg-blue-100 text-blue-800"
                                 : "bg-gray-100 text-gray-800"
-                              }`}
+                            }`}
                           >
                             {h?.type}
                           </span>
