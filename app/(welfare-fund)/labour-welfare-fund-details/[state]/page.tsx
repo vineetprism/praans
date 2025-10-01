@@ -123,3 +123,4 @@ export default async function StateWelfareFundPage({
   if (!data) notFound();
   return <WelfareFundDetails data={data} apiBase={API_BASE} />;
 }
+

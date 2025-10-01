@@ -113,4 +113,4 @@ export default async function StateProfessionalTaxPage(
   if (!payload) notFound();
 
   return <ProfessionalTaxDetails payload={payload} />;
-}
+} 
