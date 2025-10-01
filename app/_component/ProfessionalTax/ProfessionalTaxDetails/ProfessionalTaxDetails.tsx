@@ -135,14 +135,15 @@ function GenericTable({
 
                 return (
                   <TableCell
-                    key={h}
-                    className={[
-                      "text-center text-xs lg:text-sm p-2 lg:p-3 align-top",
-                      emph ? "font-semibold text-orange-600" : "",
-                    ].join(" ")}
-                  >
-                    {content}
-                  </TableCell>
+  key={h}
+  className={[
+    "text-center text-xs lg:text-sm p-2 lg:p-3 align-top whitespace-normal break-words",
+    emph ? "font-semibold text-orange-600" : "",
+  ].join(" ")}
+>
+  {content}
+</TableCell>
+
                 );
               })}
             </TableRow>
