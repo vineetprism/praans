@@ -5,18 +5,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Loader2,
-  ChevronLeft,
-  ChevronRight,
-  Download,
-  Eye,
-  CalendarIcon,
-} from "lucide-react";
+import { Loader2, ChevronLeft, ChevronRight, Download, Eye, CalendarIcon } from "lucide-react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import { Calendar } from "@/components/ui/calendar";
 import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { isAuthenticated } from "@/lib/auth";
 
 // ---------- Types from API ----------
 type GazetteItem = {
@@ -37,12 +31,7 @@ type GazetteItem = {
 
 type ApiResponse = {
   data: GazetteItem[];
-  links: {
-    first: string | null;
-    last: string | null;
-    prev: string | null;
-    next: string | null;
-  };
+  links: { first: string | null; last: string | null; prev: string | null; next: string | null };
   meta: {
     current_page: number;
     from: number | null;
@@ -63,38 +52,7 @@ interface GazetteNotificationsClientProps {
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 const FILE_HOST = API_BASE;
 
-/* =========================
-   Auth helpers
-   ========================= */
-function getCookie(name: string): string | null {
-  try {
-    const m = document.cookie.match(
-      new RegExp(`(?:^|; )${name.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")}=([^;]*)`)
-    );
-    return m ? decodeURIComponent(m[1]) : null;
-  } catch {
-    return null;
-  }
-}
-
-function getAuthToken(): string | null {
-  // keep both, we set either in your login flow
-  try {
-    const ls = typeof window !== "undefined" ? localStorage.getItem("auth_token") : null;
-    if (ls && ls.trim()) return ls;
-  } catch {}
-  const ck = typeof document !== "undefined" ? getCookie("auth_token") : null;
-  if (ck && ck.trim()) return ck;
-  return null;
-}
-
-function isAuthenticated(): boolean {
-  return !!getAuthToken();
-}
-
-/* =========================
-   Utils
-   ========================= */
+// Utils
 const ExpandableDescription = ({ description }: { description: string | null }) => {
   if (!description || description.trim() === "") return null;
   const cleanedDescription = description.trim();
@@ -150,11 +108,7 @@ function sameDay(a?: Date | null, iso?: string | null) {
   return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 }
 
-export default function Gazette({
-  initialData,
-  initialPage,
-  availableStates,
-}: GazetteNotificationsClientProps) {
+export default function Gazette({ initialData, initialPage, availableStates }: GazetteNotificationsClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
@@ -200,9 +154,7 @@ export default function Gazette({
     }
 
     if (stateFilter && stateFilter !== "All States") {
-      list = list.filter(
-        (r) => (r.state_name || "").toLowerCase() === stateFilter.toLowerCase()
-      );
+      list = list.filter((r) => (r.state_name || "").toLowerCase() === stateFilter.toLowerCase());
     }
 
     if (effDate) list = list.filter((r) => sameDay(effDate, r.effective_date));
@@ -229,19 +181,16 @@ export default function Gazette({
     [availableStates]
   );
 
-  // =============== NEW: gated download ===============
+  // Auth-gated download
   const handleDownload = (downloadUrl: string | null) => {
     if (!downloadUrl) return;
     if (isAuthenticated()) {
       window.open(downloadUrl, "_blank", "noopener,noreferrer");
       return;
     }
-    // not logged in → go to login, preserve return route
     const current = typeof window !== "undefined" ? window.location.pathname + window.location.search : "/gazette";
-    const nextParam = encodeURIComponent(current);
-    router.push(`/login?next=${nextParam}`);
+    router.push(`/login?next=${encodeURIComponent(current)}`);
   };
-  // ===================================================
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -258,7 +207,7 @@ export default function Gazette({
               states={stateOptions}
             />
 
-            {/* Effective Date (From Date) */}
+            {/* Effective Date */}
             <div className="flex-shrink-0 sm:w-36 lg:w-48">
               <Popover>
                 <PopoverTrigger asChild>
@@ -269,9 +218,7 @@ export default function Gazette({
                     aria-label="Effective Date"
                   >
                     <CalendarIcon className="mr-2 w-4 h-4 flex-shrink-0" />
-                    <span className="truncate">
-                      {effDate ? effDate?.toLocaleDateString() : "Effective Date"}
-                    </span>
+                    <span className="truncate">{effDate ? effDate?.toLocaleDateString() : "Effective Date"}</span>
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
@@ -286,7 +233,7 @@ export default function Gazette({
               </Popover>
             </div>
 
-            {/* Updated Date (To Date) */}
+            {/* Updated Date */}
             <div className="flex-shrink-0 sm:w-36 lg:w-48">
               <Popover>
                 <PopoverTrigger asChild>
@@ -297,9 +244,7 @@ export default function Gazette({
                     aria-label="Updated Date"
                   >
                     <CalendarIcon className="mr-2 w-4 h-4 flex-shrink-0" />
-                    <span className="truncate">
-                      {updDate ? updDate?.toLocaleDateString() : "Updated Date"}
-                    </span>
+                    <span className="truncate">{updDate ? updDate?.toLocaleDateString() : "Updated Date"}</span>
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
@@ -479,9 +424,7 @@ export default function Gazette({
                   </Button>
                 ))}
 
-                {lastPage > 5 && (
-                  <span className="px-1 text-gray-400 text-[10px] sm:text-xs">…</span>
-                )}
+                {lastPage > 5 && <span className="px-1 text-gray-400 text-[10px] sm:text-xs">…</span>}
 
                 {lastPage > 5 && (
                   <Button
