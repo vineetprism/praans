@@ -38,7 +38,7 @@ type WFListResponse = {
 };
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
-// const API_BASE = "http://100.110.147.101:8000";
+
 
 // ---------- Helpers ----------
 function normalizeKeywords(v: WelfareFundStateMeta["meta_keywords"]): string[] | undefined {
@@ -46,6 +46,7 @@ function normalizeKeywords(v: WelfareFundStateMeta["meta_keywords"]): string[] |
   if (Array.isArray(v)) return v.filter(Boolean);
   return v.split(",").map(s => s.trim()).filter(Boolean);
 }
+
 
 // ---------- Fetchers ----------
 async function getWFState(slug: string): Promise<WFSlugData | null> {
@@ -89,10 +90,9 @@ export async function generateMetadata({
     const { data }: WFSlugResponse = await res.json();
 
     return {
-      title: data?.meta?.seo_title || `${data.state.name} Labour Welfare Fund`,
+      title: data?.meta?.seo_title,
       description:
-        data?.meta?.meta_description ||
-        `Official ${data.state.name} LWF details – act & rules, contribution table, frequency, forms & website.`,
+        data?.meta?.meta_description,
       ...(normalizeKeywords(data?.meta?.meta_keywords) && {
         keywords: normalizeKeywords(data?.meta?.meta_keywords),
       }),
