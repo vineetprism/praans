@@ -16,13 +16,7 @@ import {
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import { Calendar } from "@/components/ui/calendar";
 import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";
-// import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover";
-// ✅ right (ShadCN)
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 // ---------- Types from API ----------
 type GazetteItem = {
@@ -63,33 +57,50 @@ type ApiResponse = {
 interface GazetteNotificationsClientProps {
   initialData: ApiResponse;
   initialPage: number;
-  availableStates: string[]; // this is the prop for available states
+  availableStates: string[];
 }
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 const FILE_HOST = API_BASE;
 
-// ExpandableDescription Component for consistent truncation
-const ExpandableDescription = ({
-  description,
-}: {
-  description: string | null;
-}) => {
-  if (!description || description.trim() === "") {
+/* =========================
+   Auth helpers
+   ========================= */
+function getCookie(name: string): string | null {
+  try {
+    const m = document.cookie.match(
+      new RegExp(`(?:^|; )${name.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")}=([^;]*)`)
+    );
+    return m ? decodeURIComponent(m[1]) : null;
+  } catch {
     return null;
   }
+}
 
-  // Clean the description and split into words
+function getAuthToken(): string | null {
+  // keep both, we set either in your login flow
+  try {
+    const ls = typeof window !== "undefined" ? localStorage.getItem("auth_token") : null;
+    if (ls && ls.trim()) return ls;
+  } catch {}
+  const ck = typeof document !== "undefined" ? getCookie("auth_token") : null;
+  if (ck && ck.trim()) return ck;
+  return null;
+}
+
+function isAuthenticated(): boolean {
+  return !!getAuthToken();
+}
+
+/* =========================
+   Utils
+   ========================= */
+const ExpandableDescription = ({ description }: { description: string | null }) => {
+  if (!description || description.trim() === "") return null;
   const cleanedDescription = description.trim();
-  const words = cleanedDescription
-    .split(/\s+/)
-    .filter((word) => word.length > 0);
-
+  const words = cleanedDescription.split(/\s+/).filter((w) => w.length > 0);
   const shouldTruncate = words.length > 50;
-  const displayText = shouldTruncate
-    ? words.slice(0, 50).join(" ") + "..."
-    : cleanedDescription;
-
+  const displayText = shouldTruncate ? words.slice(0, 50).join(" ") + "..." : cleanedDescription;
   return (
     <p className="text-gray-700 leading-snug mt-3 text-[11px] min-[375px]:text-[10px] sm:text-[0.8rem] lg:text-xs line-clamp-2">
       {displayText}
@@ -97,17 +108,12 @@ const ExpandableDescription = ({
   );
 };
 
-function normalizeFileUrl(
-  url?: string | null,
-  path?: string | null
-): string | null {
+function normalizeFileUrl(url?: string | null, path?: string | null): string | null {
   if (url) {
     try {
       const u = new URL(url, FILE_HOST);
       const base = new URL(FILE_HOST);
-      const isLocal = ["127.0.0.1", "127.1.1.0", "localhost"].includes(
-        u.hostname
-      );
+      const isLocal = ["127.0.0.1", "127.1.1.0", "localhost"].includes(u.hostname);
       const origin = isLocal ? base.origin : u.origin;
       const cleanPath = encodeURI(decodeURI(u.pathname));
       return `${origin}${cleanPath}${u.search}${u.hash}`;
@@ -135,25 +141,19 @@ function formatPrettyDate(iso?: string | null) {
   if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "";
-  return `${formatOrdinal(d.getDate())} ${d.toLocaleString("en-US", {
-    month: "short",
-  })}, ${d.getFullYear()}`;
+  return `${formatOrdinal(d.getDate())} ${d.toLocaleString("en-US", { month: "short" })}, ${d.getFullYear()}`;
 }
 
 function sameDay(a?: Date | null, iso?: string | null) {
   if (!a || !iso) return true;
   const b = new Date(iso);
-  return (
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate()
-  );
+  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 }
 
 export default function Gazette({
   initialData,
   initialPage,
-  availableStates, // This is your availableStates prop
+  availableStates,
 }: GazetteNotificationsClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -161,9 +161,9 @@ export default function Gazette({
 
   // UI state
   const [q, setQ] = useState("");
-  const [stateFilter, setStateFilter] = useState<string>("All States"); // Initial filter is "All States"
-  const [effDate, setEffDate] = useState<Date | null>(null); // From Date
-  const [updDate, setUpdDate] = useState<Date | null>(null); // To Date
+  const [stateFilter, setStateFilter] = useState<string>("All States");
+  const [effDate, setEffDate] = useState<Date | null>(null);
+  const [updDate, setUpdDate] = useState<Date | null>(null);
 
   // Server data
   const serverData = initialData;
@@ -171,27 +171,22 @@ export default function Gazette({
   const lastPage = serverData?.meta?.last_page ?? 1;
   const rows = serverData?.data ?? [];
 
-  // Handle page change with URL updates
+  // URL pagination
   const handlePageChange = (newPage: number) => {
     startTransition(() => {
       const params = new URLSearchParams(searchParams);
-      if (newPage === 1) {
-        params.delete("page");
-      } else {
-        params.set("page", String(newPage));
-      }
+      if (newPage === 1) params.delete("page");
+      else params.set("page", String(newPage));
       const newUrl = params.toString() ? `?${params.toString()}` : "";
       router.push(`/gazette${newUrl}`);
     });
   };
 
-  // Handle state filter change
   const handleStateChange = (value: string) => {
     setStateFilter(value);
     if (currentPage !== 1) handlePageChange(1);
   };
 
-  // Client-side filters on current page
   const filtered = useMemo(() => {
     let list = rows;
 
@@ -210,20 +205,15 @@ export default function Gazette({
       );
     }
 
-    if (effDate) {
-      list = list.filter((r) => sameDay(effDate, r.effective_date));
-    }
-
-    if (updDate) {
-      list = list.filter((r) => sameDay(updDate, r.updated_date));
-    }
+    if (effDate) list = list.filter((r) => sameDay(effDate, r.effective_date));
+    if (updDate) list = list.filter((r) => sameDay(updDate, r.updated_date));
 
     return list;
   }, [rows, q, stateFilter, effDate, updDate]);
 
   const pageNumbers = useMemo(() => {
     const max = Math.min(lastPage, 5);
-    return Array?.from({ length: max }, (_, i) => i + 1);
+    return Array.from({ length: max }, (_, i) => i + 1);
   }, [lastPage]);
 
   const handleSearchChange = (value: string) => {
@@ -233,14 +223,25 @@ export default function Gazette({
 
   const stateOptions = useMemo(
     () =>
-      (Array.isArray(availableStates)
-        ? ["All States", ...availableStates]
-        : ["All States"]
-      )
+      (Array.isArray(availableStates) ? ["All States", ...availableStates] : ["All States"])
         .filter(Boolean)
         .map((s) => ({ label: s, value: s })),
     [availableStates]
   );
+
+  // =============== NEW: gated download ===============
+  const handleDownload = (downloadUrl: string | null) => {
+    if (!downloadUrl) return;
+    if (isAuthenticated()) {
+      window.open(downloadUrl, "_blank", "noopener,noreferrer");
+      return;
+    }
+    // not logged in → go to login, preserve return route
+    const current = typeof window !== "undefined" ? window.location.pathname + window.location.search : "/gazette";
+    const nextParam = encodeURIComponent(current);
+    router.push(`/login?next=${nextParam}`);
+  };
+  // ===================================================
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -269,9 +270,7 @@ export default function Gazette({
                   >
                     <CalendarIcon className="mr-2 w-4 h-4 flex-shrink-0" />
                     <span className="truncate">
-                      {effDate
-                        ? effDate?.toLocaleDateString()
-                        : "Effective Date"}
+                      {effDate ? effDate?.toLocaleDateString() : "Effective Date"}
                     </span>
                   </Button>
                 </PopoverTrigger>
@@ -338,10 +337,8 @@ export default function Gazette({
                     </h1>
                   </div>
                   <p className="text-gray-600 leading-relaxed text-[10px] min-[375px]:text-xs sm:text-sm text-justify pb-2">
-                    Gazette Notification is an authorized legal document issued
-                    by the Ministries of Government of India, published in the
-                    official gazette containing significant Statutory Orders
-                    (S.O) and General Statutory Rules (G.S.R).
+                    Gazette Notification is an authorized legal document issued by the Ministries of Government of India,
+                    published in the official gazette containing significant Statutory Orders (S.O) and General Statutory Rules (G.S.R).
                   </p>
                 </div>
               </div>
@@ -357,9 +354,7 @@ export default function Gazette({
             {!isPending && (
               <>
                 {filtered?.length === 0 ? (
-                  <p className="text-sm text-gray-600">
-                    No notifications found.
-                  </p>
+                  <p className="text-sm text-gray-600">No notifications found.</p>
                 ) : (
                   <div className="lg:space-y-2">
                     {filtered?.map((n) => {
@@ -379,9 +374,7 @@ export default function Gazette({
                                   {n?.title}
                                 </h4>
 
-                                <ExpandableDescription
-                                  description={n?.short_description}
-                                />
+                                <ExpandableDescription description={n?.short_description} />
 
                                 <div className="mt-2 md:mt-4">
                                   <Button
@@ -392,9 +385,7 @@ export default function Gazette({
                                   >
                                     <Link href={`/gazette-details/${n?.slug}`}>
                                       <Eye className="w-3 h-3 2xl:w-4 2xl:h-4" />
-                                      <span className="whitespace-nowrap">
-                                        Read More
-                                      </span>
+                                      <span className="whitespace-nowrap">Read More</span>
                                     </Link>
                                   </Button>
                                 </div>
@@ -411,9 +402,7 @@ export default function Gazette({
                                 <div className="space-y-1 text-[11px] sm:text-[9px] lg:text-[12px] 2xl:text-[0.8rem]">
                                   {updated && (
                                     <div>
-                                      <span className="text-slate-500 font-semibold">
-                                        Updated Date:&nbsp;
-                                      </span>
+                                      <span className="text-slate-500 font-semibold">Updated Date:&nbsp;</span>
                                       <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-rose-600 tabular-nums underline decoration-orange-300/60">
                                         {updated}
                                       </span>
@@ -421,9 +410,7 @@ export default function Gazette({
                                   )}
                                   {effective && (
                                     <div>
-                                      <span className="text-slate-500 font-semibold">
-                                        Effective Date:&nbsp;
-                                      </span>
+                                      <span className="text-slate-500 font-semibold">Effective Date:&nbsp;</span>
                                       <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 to-rose-600 tabular-nums underline decoration-orange-300/60">
                                         {effective}
                                       </span>
@@ -431,28 +418,22 @@ export default function Gazette({
                                   )}
                                 </div>
 
+                                {/* Download (Auth-gated) */}
                                 {(() => {
                                   const hasValidFile =
                                     (n?.pdf_url && n?.pdf_url.trim() !== "") ||
                                     (n?.pdf_path && n?.pdf_path.trim() !== "");
-                                  const downloadUrl = normalizeFileUrl(
-                                    n?.pdf_url,
-                                    n?.pdf_path
-                                  );
+                                  const downloadUrl = normalizeFileUrl(n?.pdf_url, n?.pdf_path);
 
                                   return hasValidFile && downloadUrl ? (
                                     <Button
                                       size="sm"
                                       className="mt-1 md:mt-2 bg-orange-500 text-white hover:bg-orange-600 h-6 sm:h-6 lg:h-8 px-2 sm:px-2.5 lg:px-3 text-[9px] sm:text-[10px] lg:text-xs font-medium rounded-sm inline-flex items-center gap-1 shrink-0 w-auto max-w-full hover:cursor-pointer"
                                       aria-label="Download"
-                                      onClick={() =>
-                                        window.open(downloadUrl, "_blank")
-                                      }
+                                      onClick={() => handleDownload(downloadUrl)}
                                     >
                                       <Download className="w-3 h-3 2xl:w-4 2xl:h-4" />
-                                      <span className="whitespace-nowrap">
-                                        Download
-                                      </span>
+                                      <span className="whitespace-nowrap">Download</span>
                                     </Button>
                                   ) : null;
                                 })()}
@@ -499,9 +480,7 @@ export default function Gazette({
                 ))}
 
                 {lastPage > 5 && (
-                  <span className="px-1 text-gray-400 text-[10px] sm:text-xs">
-                    …
-                  </span>
+                  <span className="px-1 text-gray-400 text-[10px] sm:text-xs">…</span>
                 )}
 
                 {lastPage > 5 && (
@@ -526,9 +505,7 @@ export default function Gazette({
                   className="h-7 sm:h-8 px-2 sm:px-3 text-[10px] sm:text-xs border-gray-300 hover:bg-gray-50"
                   aria-label="Next"
                   disabled={currentPage === lastPage}
-                  onClick={() =>
-                    handlePageChange(Math.min(lastPage, currentPage + 1))
-                  }
+                  onClick={() => handlePageChange(Math.min(lastPage, currentPage + 1))}
                 >
                   <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Button>
