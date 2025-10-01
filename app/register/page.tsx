@@ -16,8 +16,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const API_BASE = "http://100.110.147.101:8000";
-  // process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  // "http://100.110.147.101:8000";
+// process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
+// "http://100.110.147.101:8000";
 
 type ApiErrorBag = Record<string, string[]>;
 
@@ -44,8 +44,7 @@ export default function RegistrationPage() {
   const router = useRouter();
 
   const onChange =
-    (key: keyof typeof form) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setForm((s) => ({ ...s, [key]: e.target.value }));
       setFieldErrors((errs) => ({ ...errs, [key]: [] }));
     };
@@ -54,10 +53,7 @@ export default function RegistrationPage() {
     const errs: ApiErrorBag = {};
     if (!form.name.trim()) errs.name = ["Name is required"];
     if (!form.email.trim()) errs.email = ["Email is required"];
-    if (
-      form.email &&
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())
-    ) {
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
       errs.email = ["Enter a valid email"];
     }
     if (!form.designation.trim())
@@ -135,7 +131,7 @@ export default function RegistrationPage() {
     fieldErrors?.[k]?.length ? fieldErrors[k][0] : "";
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center px-4 bg-gradient-to-br from-orange-50 via-amber-50 to-rose-50 relative overflow-hidden">
+    <div className="min-h-screen w-full flex items-center justify-center px-4 py-4 bg-gradient-to-br from-orange-50 via-amber-50 to-rose-50 relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-orange-300/20 rounded-full blur-3xl animate-pulse"></div>
         <div
@@ -192,9 +188,7 @@ export default function RegistrationPage() {
                         onFocus={() => setFocusedField("name")}
                         onBlur={() => setFocusedField("")}
                         className={`w-full rounded-xl border-2 ${
-                          fe("name")
-                            ? "border-red-300"
-                            : "border-orange-200/50"
+                          fe("name") ? "border-red-300" : "border-orange-200/50"
                         } bg-white/80 backdrop-blur-sm px-4 py-4 pr-12 text-sm outline-none placeholder:text-slate-400 focus:border-orange-400 focus:bg-white transition-all duration-300`}
                       />
                       <User className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-orange-500 transition-transform group-hover:scale-110" />

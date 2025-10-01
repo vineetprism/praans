@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Mail, Eye, EyeOff, Sparkles, LogIn } from "lucide-react";
@@ -10,7 +10,16 @@ const DEFAULT_LOGIN_URL = "http://100.110.147.101:8000/api/auth/login";
 const LOGIN_URL =
   process.env.NEXT_PUBLIC_LOGIN_URL?.replace(/\/+$/, "") || DEFAULT_LOGIN_URL;
 
+/** Wrapper required by Next.js when using useSearchParams */
 export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="p-6 text-center text-slate-600">Loading…</div>}>
+      <LoginPageInner />
+    </Suspense>
+  );
+}
+
+function LoginPageInner() {
   const router = useRouter();
   const params = useSearchParams();
   const justRegistered = params.get("registered") === "1";
@@ -130,7 +139,7 @@ export default function LoginPage() {
                 </button>
               </div>
 
-              {/* 👇 New: Forgot Password link */}
+              {/* Forgot Password link (kept as you wrote) */}
               <div className="flex justify-end -mt-2">
                 <Link
                   href={`/forget-password?next=${encodeURIComponent(nextUrl)}`}
