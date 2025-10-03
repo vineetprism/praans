@@ -111,8 +111,7 @@ export default function HolidayDetails({
   useEffect(() => {
     const path =
       typeof window !== "undefined" ? window.location.pathname : "/holidays";
-    const search =
-      typeof window !== "undefined" ? window.location.search : "";
+    const search = typeof window !== "undefined" ? window.location.search : "";
     handleAutoDownloadOnReturn(router, path, search);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
