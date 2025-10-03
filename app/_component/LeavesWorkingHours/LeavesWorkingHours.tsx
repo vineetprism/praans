@@ -81,9 +81,7 @@ export default function LeavesWorkingHours({
                       Leave &amp; Working Hours :
                     </h2>
                     <p className="text-gray-700 leading-relaxed text-xs sm:text-sm text-justify mb-3">
-                      "Statutory Leave" ensures a healthy work-life balance and boosts employee motivation levels.
-                      "Working Hours" regulations define the laboring time an employee is expected to work in exchange
-                      for pay as enumerated by Labour Codes.
+                      Learn in detail about Leave & Working Hours rules covering weekly offs, paid leaves, overtime, rest breaks, and duty limits. Employers can create fair work policies while employees benefit from proper work-life balance and legal protection.
                     </p>
                   </div>
                 </div>

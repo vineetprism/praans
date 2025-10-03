@@ -281,8 +281,7 @@ export default function Gazette({ initialData, initialPage, availableStates }: G
                     </h1>
                   </div>
                   <p className="text-gray-600 leading-relaxed text-[10px] min-[375px]:text-xs sm:text-sm text-justify pb-2">
-                    Gazette Notification is an authorized legal document issued by the Ministries of Government of India,
-                    published in the official gazette containing significant Statutory Orders (S.O) and General Statutory Rules (G.S.R).
+                    Explore the latest Gazette Notifications for timely updates on government decisions, legal changes, and compliance requirements. Stay well-informed with official publications that guide businesses, employers, and professionals effectively.
                   </p>
                 </div>
               </div>
@@ -403,11 +402,10 @@ export default function Gazette({ initialData, initialPage, availableStates }: G
                     key={p}
                     variant={currentPage === p ? "default" : "outline"}
                     size="sm"
-                    className={`h-7 sm:h-8 px-2.5 sm:px-3.5 text-[10px] sm:text-xs ${
-                      currentPage === p
+                    className={`h-7 sm:h-8 px-2.5 sm:px-3.5 text-[10px] sm:text-xs ${currentPage === p
                         ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
                         : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
-                    }`}
+                      }`}
                     aria-label={`Page ${p}`}
                     onClick={() => handlePageChange(p)}
                   >
@@ -421,11 +419,10 @@ export default function Gazette({ initialData, initialPage, availableStates }: G
                   <Button
                     variant={currentPage === lastPage ? "default" : "outline"}
                     size="sm"
-                    className={`h-7 sm:h-8 px-2.5 sm:px-3.5 text-[10px] sm:text-xs ${
-                      currentPage === lastPage
+                    className={`h-7 sm:h-8 px-2.5 sm:px-3.5 text-[10px] sm:text-xs ${currentPage === lastPage
                         ? "bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
                         : "border-gray-300 hover:bg-orange-50 hover:border-orange-200"
-                    }`}
+                      }`}
                     aria-label={`Page ${lastPage}`}
                     onClick={() => handlePageChange(lastPage)}
                   >

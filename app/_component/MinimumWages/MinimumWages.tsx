@@ -66,6 +66,7 @@ export default function MinimumWages({ items }: Props) {
                     Minimum Wages :
                   </h2>
                   <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed">
+                  Get detailed insights on Minimum Wages and their industry-specific applicability. Ensure fair employee pay as per state rules, stay updated with official revisions, and help employers remain compliant while supporting workers’ financial security.
                   </p>
                 </div>
               </div>

@@ -1,6 +1,3 @@
-
-
-
 "use client";
 
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
@@ -51,18 +48,19 @@ interface ActsPageClientProps {
 }
 
 const ExpandableDescription = ({ description }: { description: string }) => {
-  if (!description || description.trim() === '') {
+  if (!description || description.trim() === "") {
     return null;
   }
 
   // Clean the description and split into words
   const cleanedDescription = description.trim();
-  const words = cleanedDescription.split(/\s+/).filter(word => word.length > 0);
-  
- 
+  const words = cleanedDescription
+    .split(/\s+/)
+    .filter((word) => word.length > 0);
+
   const shouldTruncate = words.length > 50;
-  const displayText = shouldTruncate 
-    ? words.slice(0, 50).join(' ') + '...'
+  const displayText = shouldTruncate
+    ? words.slice(0, 50).join(" ") + "..."
     : cleanedDescription;
 
   return (
@@ -145,9 +143,11 @@ export default function ActsPageClient({
                 Labour Acts &amp; Regulations :
               </h2>
               <p className="text-gray-600 leading-relaxed text-[10px] sm:text-sm text-justify">
-                Comprehensive collection of central and state labour acts with
-                latest amendments and updates. Data is automatically updated
-                every 30 minutes using ISR for optimal performance.
+                Stay updated with Labour Acts & Regulations that define
+                compliance standards, employee rights, and workplace
+                obligations. This ensures businesses avoid penalties, stay
+                legally safe, and maintain smooth and lawful working
+                environments.
               </p>
             </div>
 
@@ -199,7 +199,11 @@ export default function ActsPageClient({
                                   className="bg-orange-400 text-white hover:bg-orange-500 h-8 px-3 text-xs font-medium rounded-sm inline-flex items-center gap-1"
                                   asChild
                                 >
-                                  <Link href={`/acts-rule-form-details/${act?.slug || act?.id}`}>
+                                  <Link
+                                    href={`/acts-rule-form-details/${
+                                      act?.slug || act?.id
+                                    }`}
+                                  >
                                     <Eye className="w-4 h-4" />
                                     <span>Read More</span>
                                   </Link>
@@ -240,7 +244,11 @@ export default function ActsPageClient({
                     key={p}
                     variant={currentPage === p ? "default" : "outline"}
                     size="sm"
-                    className={currentPage === p ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400" : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200"}
+                    className={
+                      currentPage === p
+                        ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
+                        : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200"
+                    }
                     onClick={() => handlePageChange(p)}
                     aria-label={`Page ${p}`}
                   >
@@ -254,7 +262,11 @@ export default function ActsPageClient({
                     <Button
                       variant={currentPage === lastPage ? "default" : "outline"}
                       size="sm"
-                      className={currentPage === lastPage ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400" : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200"}
+                      className={
+                        currentPage === lastPage
+                          ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
+                          : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200"
+                      }
                       onClick={() => handlePageChange(lastPage)}
                       aria-label={`Page ${lastPage}`}
                     >
@@ -268,7 +280,9 @@ export default function ActsPageClient({
                   size="sm"
                   className="h-8 px-3 text-xs border-gray-300 hover:bg-gray-50"
                   disabled={currentPage >= lastPage}
-                  onClick={() => handlePageChange(Math.min(lastPage, currentPage + 1))}
+                  onClick={() =>
+                    handlePageChange(Math.min(lastPage, currentPage + 1))
+                  }
                   aria-label="Next Page"
                 >
                   <ChevronRight className="w-4 h-4" />

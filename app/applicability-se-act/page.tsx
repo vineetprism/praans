@@ -841,11 +841,7 @@ export default function ApplicabilitySEActPage() {
                   Applicability of Shops & Establishments Act :
                 </h2>
                 <p className="text-gray-700 leading-relaxed text-xs sm:text-sm text-justify mb-3">
-                  The Shops and Establishments Act regulates the working
-                  conditions of employees in commercial establishments, shops,
-                  and other business premises. It covers aspects like working
-                  hours, holidays, leave entitlements, and other terms of
-                  employment across different states and union territories.
+                  Explore the Applicability of Shops & Establishments Act covering registration, employee conditions, leave policies, and compliance needs. Understand its impact on shops, offices, and businesses to stay aligned with state labour regulations.
                 </p>
               </div>
             </div>
@@ -865,9 +861,9 @@ export default function ApplicabilitySEActPage() {
             {/* States Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3">
               {filteredStates.map((state) => (
-                <Link 
-                  key={state.slug} 
-                  href={`/applicability-se-act/${state.slug}`} 
+                <Link
+                  key={state.slug}
+                  href={`/applicability-se-act/${state.slug}`}
                   aria-label={state.name}
                 >
                   <div className="bg-gradient-to-r from-orange-50 to-orange-100 border border-orange-200 rounded-lg cursor-pointer overflow-hidden hover:shadow-md transition-shadow">

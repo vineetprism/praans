@@ -49,7 +49,7 @@
 //   const maximumRate = initialData?.maximum_rate ?? 0;
 
 //   // Dropdown options from API
- 
+
 // const stateOptions = useMemo(() => {
 //   const all = new Set<string>(["All States"]);
 //   applicableStates.forEach(s => s?.state_name && all.add(s.state_name));
@@ -786,11 +786,7 @@ export default function ProfessionalTax({
                     Professional Tax :
                   </h1>
                   <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed">
-                    Professional Tax is a state-level tax levied on all persons
-                    earning income through employment, profession, or calling.
-                    It is governed by individual state legislation and varies
-                    across states in terms of rates, slabs, and compliance
-                    requirements.
+                    Gain complete clarity on Professional Tax, its applicability, calculation, and payment methods. Know who should pay, how to comply with state-specific rules, and avoid penalties while ensuring hassle-free and accurate statutory compliance.
                   </p>
                 </div>
               </div>

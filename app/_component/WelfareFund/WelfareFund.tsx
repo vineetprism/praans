@@ -16,7 +16,7 @@ type WFState = {
   updated_date?: string | null;
   effective_date?: string | null;
 };
-    
+
 type WFResponse = {
   applicable_count: number;
   non_applicable_count: number;
@@ -71,9 +71,7 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
                   <div>
                     <h1 className="text-3xl font-bold text-slate-800 mb-2">Labour Welfare Fund :</h1>
                     <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed">
-                      Labour welfare provides facilities to workers to improve their working conditions, social security,
-                      and standard of living. Many states have enacted a Labour Welfare Fund Act governing contributions
-                      and benefits.
+                      Understand the Labour Welfare Fund and how it safeguards employees’ well-being. Learn about its benefits, contributions, and the role it plays in providing financial security, better facilities, and overall welfare for workers and their families.
                     </p>
                   </div>
                 </div>

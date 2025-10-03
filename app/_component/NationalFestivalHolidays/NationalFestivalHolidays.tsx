@@ -24,7 +24,7 @@ type NFHApi = {
 };
 
 type Props = {
-  initialData: NFHApi | null; 
+  initialData: NFHApi | null;
   apiBase: string;
   enableFilters?: boolean;
 };
@@ -39,7 +39,7 @@ export default function NationalFestivalHolidays({
   const applicableStates = initialData?.applicable_states ?? [];
   const nonApplicableStates = initialData?.non_applicable_states ?? [];
 
-  const pageDescription = applicableStates?.[0]?.notes || 
+  const pageDescription = applicableStates?.[0]?.notes ||
     "National festivals are celebrations that reflect India's rich cultural diversity, religious traditions, and historical significance. They bring communities together and are officially recognized as public holidays across different states and regions.";
 
   const transformedApplicableStates = applicableStates.map(state => ({
@@ -78,8 +78,8 @@ export default function NationalFestivalHolidays({
   }, [transformedNonApplicableStates, q, stateFilter]);
 
   const hasError = initialData === null;
-  const isEmpty = !hasError && 
-    transformedApplicableStates.length === 0 && 
+  const isEmpty = !hasError &&
+    transformedApplicableStates.length === 0 &&
     transformedNonApplicableStates.length === 0;
 
   return (
@@ -94,7 +94,7 @@ export default function NationalFestivalHolidays({
                     National & Festival Holidays :
                   </h1>
                   <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed">
-                    {pageDescription}
+                    Discover the importance of National & Festival Holidays and their legal requirements for businesses. Ensure compliance with labour laws while giving employees their entitled holidays, fostering harmony, productivity, and workplace balance.
                   </p>
                 </div>
               </div>
