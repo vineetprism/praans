@@ -159,24 +159,16 @@
 //   );
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import Link from "next/link";
 import { Calendar, ChevronRight } from "lucide-react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
@@ -192,7 +184,11 @@ const buildYears = (start: number, end: number) =>
 
 function parseHolidayPayload(payload: unknown): HolidayListItem[] {
   if (Array.isArray(payload)) return payload as HolidayListItem[];
-  if (payload && typeof payload === "object" && Array.isArray((payload as any).data)) {
+  if (
+    payload &&
+    typeof payload === "object" &&
+    Array.isArray((payload as any).data)
+  ) {
     return (payload as any).data as HolidayListItem[];
   }
   return [];
@@ -209,7 +205,7 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
   const [holidays, setHolidays] = useState<HolidayListItem[]>(initialHolidays);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Search and filter states
   const [searchQuery, setSearchQuery] = useState("");
   const [stateFilter, setStateFilter] = useState("All States");
@@ -231,7 +227,9 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`${API_BASE}/api/holidays/${year}`, { signal: ac.signal });
+        const res = await fetch(`${API_BASE}/api/holidays/${year}`, {
+          signal: ac.signal,
+        });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         setHolidays(parseHolidayPayload(data));
@@ -251,14 +249,15 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
   // Filter holidays based on search and state
   const filteredHolidays = useMemo(() => {
     if (!holidays) return [];
-    
+
     return holidays.filter((holiday) => {
-      const matchesSearch = !searchQuery || 
+      const matchesSearch =
+        !searchQuery ||
         holiday.state.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesState = stateFilter === "All States" || 
-        holiday.state === stateFilter;
-      
+
+      const matchesState =
+        stateFilter === "All States" || holiday.state === stateFilter;
+
       return matchesSearch && matchesState;
     });
   }, [holidays, searchQuery, stateFilter]);
@@ -266,17 +265,16 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
   // Generate unique state list for dropdown
   const availableStates = useMemo(() => {
     if (!holidays) return ["All States"];
-    
-    const uniqueStates = [...new Set(holidays.map(h => h.state))];
+
+    const uniqueStates = [...new Set(holidays.map((h) => h.state))];
     return ["All States", ...uniqueStates.sort()];
   }, [holidays]);
 
-  const stateOptions = availableStates.map(state => ({
+  const stateOptions = availableStates.map((state) => ({
     label: state,
-    value: state
+    value: state,
   }));
 
-  
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="mx-auto px-2 py-2 min-[375px]:px-3 min-[375px]:py-3 sm:px-4 sm:py-4 lg:px-5 lg:py-5 xl:px-6">
@@ -297,7 +295,9 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
             <div className="mb-4">
               <div className="mb-4">
                 <div className="flex justify-between">
-                  <h2 className="text-base sm:text-lg font-semibold text-slate-800 mb-2 2xl:text-2xl">Holiday Lists :</h2>
+                  <h2 className="text-base sm:text-lg font-semibold text-slate-800 mb-2 2xl:text-2xl">
+                    Holiday Lists :
+                  </h2>
 
                   {/* Year Selector */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-1">
@@ -319,9 +319,11 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
                 </div>
 
                 <p className="text-gray-700 leading-relaxed text-xs sm:text-sm text-justify mb-3">
-                  "Statutory Holidays" are public or legal holidays designated by government authorities based on cultural,
-                  religious, historical, or national significance within a particular country or region as mandated by law.
-                  Every employee is entitled to a day off with pay or premium pay if they work on such occasions.
+                  Get access to comprehensive Holiday Lists that outline
+                  official national, state, and festival holidays applicable to
+                  businesses. Ensure compliance with labour laws while offering
+                  employees a structured schedule of leaves and mandatory
+                  holidays.
                 </p>
               </div>
             </div>
@@ -346,14 +348,17 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
                 <p className="text-red-600">{error}</p>
               ) : filteredHolidays?.length === 0 ? (
                 <p className="text-gray-600 text-sm">
-                  {searchQuery || stateFilter !== "All States" 
-                    ? "No holidays match your search criteria." 
-                    : `No holiday lists found for ${year}.`
-                  }
+                  {searchQuery || stateFilter !== "All States"
+                    ? "No holidays match your search criteria."
+                    : `No holiday lists found for ${year}.`}
                 </p>
               ) : (
                 filteredHolidays?.map((holiday) => (
-                  <Link key={holiday?.slug} href={`/holidays-details/${holiday?.slug}`} aria-label={holiday?.state}>
+                  <Link
+                    key={holiday?.slug}
+                    href={`/holidays-details/${holiday?.slug}`}
+                    aria-label={holiday?.state}
+                  >
                     <div className="bg-gradient-to-r from-orange-50 to-orange-100 border border-orange-200 rounded-lg cursor-pointer overflow-hidden hover:shadow-md transition-shadow">
                       <div className="p-2 sm:p-3">
                         <div className="flex items-center justify-between">
