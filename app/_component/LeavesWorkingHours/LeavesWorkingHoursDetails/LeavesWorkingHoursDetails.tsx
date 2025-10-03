@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-/* 🔐 Auth-gated download helpers */
+
 import {
   openProtectedDownload,
   handleAutoDownloadOnReturn,
@@ -184,7 +184,7 @@ export default function LeavesWorkingHoursDetails({
         </CardHeader>
         <CardContent className="p-3 space-y-3">
           {(block?.rows ?? [])?.map((row, idx) => (
-            <div key={idx} className="bg-gray-50 rounded-lg p-3 border text-xs space-y-2">
+            <div key={idx} className="rounded-lg p-3 border text-xs space-y-2">
               {cols?.map((c) => {
                 const label = c.label.replace(/:(file|url)$/i, "");
                 const raw = row[c.key] ?? row[c.label] ?? "";
@@ -192,8 +192,8 @@ export default function LeavesWorkingHoursDetails({
                 if (c.type === "file") {
                   const href = resolveFile(raw);
                   return (
-                    <div key={c.key} className="flex gap-2 justify-between">
-                      <span className="font-medium text-gray-600">{label}:</span>
+                    <div key={c.key} className="flex gap-2 justify-between ">
+                      <span className="font-medium text-gray-600 ">{label}:</span>
                       {href ? (
                         <button
                           type="button"
@@ -255,7 +255,7 @@ export default function LeavesWorkingHoursDetails({
   const tileWebsiteUrl = tiles?.website_url ?? "";
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <div className="mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
         <div className="lg:hidden mb-3 sm:mb-4">
           <Card className="shadow-sm">
@@ -288,7 +288,7 @@ export default function LeavesWorkingHoursDetails({
               </CardContent>
             </Card>
 
-            <div className="block md:hidden mb-4">
+            <div className="block md:hidden mb-4 ">
               <MobileCards block={initialData?.act_information} title="Act Information" />
             </div>
 
@@ -302,7 +302,7 @@ export default function LeavesWorkingHoursDetails({
               </CardContent>
             </Card>
 
-            <div className="block md:hidden mb-4">
+            <div className="block md:hidden mb-4 ">
               <MobileCards block={initialData?.leave_entitlements} title="Leave Entitlements" />
             </div>
 
