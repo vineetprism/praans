@@ -2105,3 +2105,243 @@ export default function ProfessionalTaxDetails({
     </div>
   );
 }
+
+
+
+
+
+// import React from 'react';
+// import { ExternalLink } from 'lucide-react';
+
+// const ActInformation = () => {
+//   const actData = {
+//     act: "Andhra Pradesh Labour Welfare Fund Act, 1987",
+//     rule: "The Andhra Pradesh Labour Welfare Fund Rules, 1988",
+//     applicability: "It is applicable to any commercial establishment and shops employing more than 1 or more employees fall under this. Its enforcement is overseen by the Labour Commissioner.",
+//     frequency: "Annual",
+//     form: "Form-F",
+//     website: "www.praansconsultech.com",
+//     websiteUrl: "https://www.praansconsultech.com",
+//     exemption: "Supervisor and Manager",
+//     authority: "Labour Welfare Fund Commissioner",
+//     interest: "10% on every late payment",
+//     penalty: "13% per annum on every late payment",
+//     notification: "Download",
+//     remarks: "—",
+//     // Contribution Details
+//     contributions: [
+//       {
+//         category: "All Employees",
+//         employeeContribution: "10",
+//         employerContribution: "80",
+//         total: "100",
+//         dateOfLWFDeduction: "31st Dec'2025",
+//         returnSubmission: "31st Jan'25",
+//         form: "Form-F"
+//       }
+//     ]
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-white py-10 px-4 sm:px-6 lg:px-8">
+//       <div className=" mx-auto">
+//         <div className="bg-white shadow-2xl rounded-3xl overflow-hidden flex flex-col lg:flex-row">
+          
+//           {/* Left Sidebar - Orange */}
+//           <div className="bg-gradient-to-b from-orange-500 to-orange-600 lg:w-80 p-8 text-white flex flex-col justify-start">
+//             <div className="mb-10">
+//               <h1 className="text-4xl font-bold leading-tight mb-1">Act</h1>
+//               <h1 className="text-4xl font-bold leading-tight">Information</h1>
+//             </div>
+
+//             <div className="space-y-5">
+//               {/* Frequency Box */}
+//               <div className="bg-orange-400 bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 text-center">
+//                 <div className="text-white text-xl font-bold mb-1">{actData.frequency}</div>
+//                 <div className="text-white text-sm opacity-90">Frequency</div>
+//               </div>
+
+//               {/* Form Box */}
+//               <div className="bg-orange-400 bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 text-center">
+//                 <div className="text-white text-xl font-bold mb-1">{actData.form}</div>
+//                 <div className="text-white text-sm opacity-90">Form</div>
+//               </div>
+
+//               {/* Official Site Box */}
+//               <a 
+//                 href={actData.websiteUrl} 
+//                 target="_blank" 
+//                 rel="noopener noreferrer"
+//                 className="bg-orange-400 bg-opacity-40 backdrop-blur-sm rounded-2xl p-6 text-center block hover:bg-opacity-50 transition-all"
+//               >
+//                 <div className="flex items-center justify-center mb-1">
+//                   <ExternalLink className="text-white" size={20} />
+//                 </div>
+//                 <div className="text-white text-sm">Official Site</div>
+//               </a>
+//             </div>
+//           </div>
+
+//           {/* Main Content - Right Side */}
+//           <div className="flex-1 p-10 lg:p-12 bg-white">
+            
+//             {/* Act Section */}
+//             <div className="mb-8">
+//               <div className="text-orange-500 text-sm font-bold uppercase tracking-wider mb-3">
+//                 ACT
+//               </div>
+//               <h2 className="text-2xl lg:text-3xl font-semibold text-gray-800">
+//                 {actData.act}
+//               </h2>
+//             </div>
+
+//             <div className="border-t border-gray-200 my-8"></div>
+
+//             {/* Rule Section */}
+//             <div className="mb-8">
+//               <div className="text-orange-500 text-sm font-bold uppercase tracking-wider mb-3">
+//                 RULE
+//               </div>
+//               <h2 className="text-2xl lg:text-3xl font-semibold text-gray-800">
+//                 {actData.rule}
+//               </h2>
+//             </div>
+
+//             <div className="border-t border-gray-200 my-8"></div>
+
+//             {/* Applicability Section */}
+//             <div className="mb-10">
+//               <div className="text-orange-500 text-sm font-bold uppercase tracking-wider mb-3">
+//                 APPLICABILITY
+//               </div>
+//               <p className="text-gray-600 text-base leading-relaxed">
+//                 {actData.applicability}
+//               </p>
+//             </div>
+
+//             <div className="border-t border-gray-300 my-10"></div>
+
+//             {/* Additional Information Grid */}
+//             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              
+//               {/* Exemption */}
+//               <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+//                 <div className="text-orange-500 text-xs font-bold uppercase mb-3 tracking-wider">
+//                   EXEMPTION
+//                 </div>
+//                 <div className="text-gray-800 text-base font-medium">
+//                   {actData.exemption}
+//                 </div>
+//               </div>
+
+//               {/* Authority */}
+//               <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+//                 <div className="text-orange-500 text-xs font-bold uppercase mb-3 tracking-wider">
+//                   AUTHORITY
+//                 </div>
+//                 <div className="text-gray-800 text-base font-medium">
+//                   {actData.authority}
+//                 </div>
+//               </div>
+
+//               {/* Website */}
+//               <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+//                 <div className="text-orange-500 text-xs font-bold uppercase mb-3 tracking-wider">
+//                   WEBSITE
+//                 </div>
+//                 <a 
+//                   href={actData.websiteUrl} 
+//                   target="_blank" 
+//                   rel="noopener noreferrer"
+//                   className="text-orange-500 text-base font-medium hover:text-orange-600 inline-flex items-center gap-2"
+//                 >
+//                   {actData.website}
+//                   <ExternalLink size={16} />
+//                 </a>
+//               </div>
+
+//               {/* Interest */}
+//               <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+//                 <div className="text-orange-500 text-xs font-bold uppercase mb-3 tracking-wider">
+//                   INTEREST
+//                 </div>
+//                 <div className="text-gray-800 text-base font-medium">
+//                   {actData.interest}
+//                 </div>
+//               </div>
+
+//               {/* Penalty */}
+//               <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+//                 <div className="text-orange-500 text-xs font-bold uppercase mb-3 tracking-wider">
+//                   PENALTY
+//                 </div>
+//                 <div className="text-gray-800 text-base font-medium">
+//                   {actData.penalty}
+//                 </div>
+//               </div>
+
+//               {/* Notification */}
+//               <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+//                 <div className="text-orange-500 text-xs font-bold uppercase mb-3 tracking-wider">
+//                   NOTIFICATION
+//                 </div>
+//                 <div className="text-gray-800 text-base font-medium">
+//                   {actData.notification}
+//                 </div>
+//               </div>
+
+//               {/* Remarks - Full Width */}
+//               <div className="lg:col-span-2 bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+//                 <div className="text-orange-500 text-xs font-bold uppercase mb-3 tracking-wider">
+//                   REMARKS
+//                 </div>
+//                 <div className="text-gray-800 text-base font-medium">
+//                   {actData.remarks}
+//                 </div>
+//               </div>
+
+//             </div>
+
+//             {/* Contribution Details Table */}
+//             <div className="mt-12">
+//               <h3 className="text-2xl font-bold text-gray-800 mb-6">Contribution Details</h3>
+              
+//               <div className="overflow-x-auto -mx-6 px-6">
+//                 <div className="inline-block min-w-full align-middle">
+//                   <table className="min-w-full border-collapse bg-white shadow-md rounded-xl overflow-hidden">
+//                     <thead>
+//                       <tr className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+//                         <th className="px-4 py-4 text-left text-xs font-bold uppercase tracking-wider">Category</th>
+//                         <th className="px-4 py-4 text-center text-xs font-bold uppercase tracking-wider">Employee Contribution</th>
+//                         <th className="px-4 py-4 text-center text-xs font-bold uppercase tracking-wider">Employer Contribution</th>
+//                         <th className="px-4 py-4 text-center text-xs font-bold uppercase tracking-wider">Total</th>
+//                         <th className="px-4 py-4 text-left text-xs font-bold uppercase tracking-wider">Date of LWF Deduction</th>
+//                         <th className="px-4 py-4 text-left text-xs font-bold uppercase tracking-wider">Return Submission</th>
+//                         <th className="px-4 py-4 text-center text-xs font-bold uppercase tracking-wider">Form</th>
+//                       </tr>
+//                     </thead>
+//                     <tbody>
+//                       {actData.contributions.map((item, index) => (
+//                         <tr key={index} className="border-b border-gray-200 hover:bg-orange-50 transition-colors">
+//                           <td className="px-4 py-4 text-gray-800 font-medium">{item.category}</td>
+//                           <td className="px-4 py-4 text-gray-800 text-center">{item.employeeContribution}</td>
+//                           <td className="px-4 py-4 text-gray-800 text-center">{item.employerContribution}</td>
+//                           <td className="px-4 py-4 text-gray-800 font-semibold text-center">{item.total}</td>
+//                           <td className="px-4 py-4 text-gray-800">{item.dateOfLWFDeduction}</td>
+//                           <td className="px-4 py-4 text-gray-800">{item.returnSubmission}</td>
+//                           <td className="px-4 py-4 text-orange-600 font-semibold text-center">{item.form}</td>
+//                         </tr>
+//                       ))}
+//                     </tbody>
+//                   </table>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ActInformation;

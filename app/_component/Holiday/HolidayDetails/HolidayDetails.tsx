@@ -221,7 +221,7 @@ export default function HolidayDetails({
                       </h1>
 
                       <div className="flex flex-col min-[480px]:flex-row gap-2 min-[480px]:gap-1 sm:gap-2 ">
-                        <Select
+                        {/* <Select
                           value={selectedMonth}
                           onValueChange={setSelectedMonth}
                         >
@@ -233,7 +233,7 @@ export default function HolidayDetails({
                               value="all"
                               className="text-xs sm:text-sm cursor-pointer"
                             >
-                              All Months
+                              Select Months
                             </SelectItem>
                             {months?.map((m) => (
                               <SelectItem
@@ -245,7 +245,7 @@ export default function HolidayDetails({
                               </SelectItem>
                             ))}
                           </SelectContent>
-                        </Select>
+                        </Select> */}
 
                         {/* 🔐 Gated Download */}
                         <Button
@@ -279,7 +279,7 @@ export default function HolidayDetails({
 
             {/* Filters */}
             <div className="pt-7">
-              <div
+              {/* <div
                 className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4
                   max-w-fit mx-12 place-items-center"
               >
@@ -303,7 +303,29 @@ export default function HolidayDetails({
                     placeholder="End date"
                   />
                 </div>
-              </div>
+              </div> */}
+              <Select value={selectedMonth} onValueChange={setSelectedMonth}>
+                <SelectTrigger className="flex justify-center p-[1.2rem] w/full min-[480px]:w-auto h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 text-white text-xs min-[375px]:text-xs sm:text-sm hover:bg-orange-600 px-2 focus-visible:ring-orange-500 focus-visible:border-orange-500 cursor-pointer">
+                  <SelectValue placeholder="Months" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem
+                    value="all"
+                    className="text-xs sm:text-sm cursor-pointer"
+                  >
+                    Select Months
+                  </SelectItem>
+                  {months?.map((m) => (
+                    <SelectItem
+                      key={m}
+                      value={m}
+                      className="text-xs sm:text-sm cursor-pointer"
+                    >
+                      {m}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
             {/* Mobile Cards */}
@@ -387,66 +409,95 @@ export default function HolidayDetails({
             </div>
 
             {/* Desktop Table */}
-            <div className="hidden md:block bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] min-[1600px]:max-w-[1560px] min-[1800px]:max-w-[1720px] min-[1920px]:max-w-[1880px] lg:mx-auto mt-7">
+            {/* Desktop Table – ORANGE GRID */}
+            <div className="hidden md:block mt-7">
               <div className="overflow-x-auto">
-                <table className="w-full table-fixed">
-                  <thead>
-                    <tr className="bg-orange-500 border-b border-gray-200">
-                      {[
-                        "S.No",
-                        "Holiday Name",
-                        "Month",
-                        "Date",
-                        "Day",
-                        "Type",
-                      ]?.map((h) => (
-                        <th
-                          key={h}
-                          className="text-left font-semibold text-white whitespace-nowrap p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base"
-                        >
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredHolidays?.map((h, i) => (
-                      <tr
-                        key={`${h?.holiday_name}-${i}`}
-                        className="border-b border-gray-100 hover:bg-orange-50 transition-colors"
-                      >
-                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
-                          {i + 1}
-                        </td>
-                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base truncate">
-                          {h?.holiday_name}
-                        </td>
-                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
-                          {h?.month.slice(0, 3)}
-                        </td>
-                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
-                          {formatDisplayDate(h?.date)}
-                        </td>
-                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
-                          {h?.day}
-                        </td>
-                        <td className="p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4">
-                          <span
-                            className={`rounded-full font-medium px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5 text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px] ${
-                              h?.type === "National"
-                                ? "bg-green-100 text-green-800"
-                                : h?.type === "Regional"
-                                ? "bg-blue-100 text-blue-800"
-                                : "bg-gray-100 text-gray-800"
-                            }`}
+                {/* Outer rounded frame with single orange outline */}
+                <div className="rounded-xl overflow-hidden border border-orange-500 lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] min-[1600px]:max-w-[1560px] min-[1800px]:max-w-[1720px] min-[1920px]:max-w-[1880px] lg:mx-auto bg-white">
+                  <table className="w-full table-fixed border-collapse">
+                    <colgroup>
+                      {/* thoda better layout ke liye: S.No thoda chhota, Type thoda bada */}
+                      <col style={{ width: "70px" }} />
+                      <col />
+                      <col style={{ width: "120px" }} />
+                      <col style={{ width: "140px" }} />
+                      <col style={{ width: "140px" }} />
+                      <col style={{ width: "120px" }} />
+                    </colgroup>
+
+                    <thead>
+                      <tr className="bg-orange-500">
+                        {[
+                          "S.No",
+                          "Holiday Name",
+                          "Month",
+                          "Date",
+                          "Day",
+                          "Type",
+                        ].map((h, i, arr) => (
+                          <th
+                            key={h}
+                            className={[
+                              "text-left font-semibold text-white uppercase tracking-wide",
+                              "text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base",
+                              "p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4",
+                              // header bhi grid ke saath:
+                              "border border-orange-500",
+                            ].join(" ")}
                           >
-                            {h?.type}
-                          </span>
-                        </td>
+                            {h}
+                          </th>
+                        ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+
+                    <tbody>
+                      {filteredHolidays?.map((h, i) => (
+                        <tr
+                          key={`${h?.holiday_name}-${i}`}
+                          className="bg-white"
+                        >
+                          <td className="border border-orange-500 p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+                            {i + 1}
+                          </td>
+
+                          <td className="border border-orange-500 p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-800 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base truncate">
+                            {h?.holiday_name}
+                          </td>
+
+                          <td className="border border-orange-500 p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+                            {h?.month.slice(0, 3)}
+                          </td>
+
+                          <td className="border border-orange-500 p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+                            {formatDisplayDate(h?.date)}
+                          </td>
+
+                          <td className="border border-orange-500 p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
+                            {h?.day}
+                          </td>
+
+                          <td className="border border-orange-500 p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4">
+                            <span
+                              className={[
+                                "rounded-full font-medium",
+                                "px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5",
+                                "text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px]",
+                                h?.type === "National"
+                                  ? "bg-green-100 text-green-800"
+                                  : h?.type === "Regional"
+                                  ? "bg-blue-100 text-blue-800"
+                                  : "bg-gray-100 text-gray-800",
+                              ].join(" ")}
+                            >
+                              {h?.type}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
 
