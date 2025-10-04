@@ -591,7 +591,7 @@ export default function WelfareFundDetails({
     undefined;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-[80vh]">
       <div className=" mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
         {/* Popular Search (mobile) */}
         <div className="lg:hidden mb-3 sm:mb-4">

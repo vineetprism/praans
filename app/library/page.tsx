@@ -193,7 +193,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className=" bg-gray-50">
       <ResourceLibrary />
     </div>
   );

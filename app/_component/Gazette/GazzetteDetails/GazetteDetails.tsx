@@ -37,7 +37,7 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="">
       <div className="w-full px-0 py-3 sm:py-4 lg:py-5">
         <div className="grid gap-4 lg:gap-6 md:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_360px]">
           {/* PopularSearch on small screens */}

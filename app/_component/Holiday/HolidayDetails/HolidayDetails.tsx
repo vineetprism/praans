@@ -172,7 +172,7 @@ export default function HolidayDetails({
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className=" bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-8 h-8 animate-spin text-orange-500 mx-auto mb-4" />
           <p className="text-gray-600">Loading holiday data...</p>
@@ -183,7 +183,7 @@ export default function HolidayDetails({
 
   if (error || !apiData) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className=" flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-600 mb-4">Error: {error || "No data found"}</p>
           <Button onClick={() => location.reload()}>Try Again</Button>
@@ -193,7 +193,7 @@ export default function HolidayDetails({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="">
       <div className="mx-auto px-2 py-2 min-[320px]:px-3 min-[320px]:py-3 sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-6 lg:py-6 xl:px-8">
         <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-5 xl:gap-6">
           {/* Sidebar */}

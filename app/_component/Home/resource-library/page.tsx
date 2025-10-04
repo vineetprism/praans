@@ -115,7 +115,7 @@ const CategoryCard = React.memo(
 
 export default function ResourceLibrary() {
   return (
-    <section className="bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden min-h-screen">
+    <section className="bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-orange-100/10 via-transparent to-blue-100/10" />
       <div className="mx-auto w-full max-w-7xl 2xl:max-w-[120rem] px-3 sm:px-4 md:px-6 2xl:px-8 relative z-10 py-4 2xl:py-6">
         <div className="text-center mb-6 sm:mb-5 md:mb-6 lg:mb-8 xl:mb-8 2xl:mb-30">

@@ -56,7 +56,7 @@ export default async function MinimumWagesPage() {
   const items = await getMinimumWages();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className=" bg-white">
       <div className="container mx-auto px-3 py-3 sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-6 lg:py-6 xl:px-8 xl:py-8">
         <MinimumWages items={items} />
       </div>
