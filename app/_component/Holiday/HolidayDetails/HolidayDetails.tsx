@@ -14,7 +14,6 @@ import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import { useEffect, useMemo, useState } from "react";
 import type { HolidayStateData } from "@/app/(holidays)/holidays-details/[slug]/page";
 
-// 🔐 NEW: shared download guard + auto-return
 import {
   openProtectedDownload,
   handleAutoDownloadOnReturn,
@@ -25,7 +24,6 @@ type HolidayDetail = HolidayStateData["holiday_details"][number];
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
 
-// ---------- Months ----------
 const months = [
   "January",
   "February",
@@ -41,7 +39,6 @@ const months = [
   "December",
 ] as const;
 
-// ---------- Small inputs ----------
 function DatePicker({
   selected,
   onChange,
@@ -64,7 +61,6 @@ function DatePicker({
   );
 }
 
-// ---------- Utils ----------
 const cleanDescription = (htmlString: string) =>
   (htmlString || "").replace(/<[^>]*>/g, "").trim();
 
@@ -82,7 +78,6 @@ const formatDisplayDate = (iso: string) => {
   return `${dd}-${mm}-${yy}`;
 };
 
-// ---------- Props ----------
 export default function HolidayDetails({
   initialData,
   slug,
@@ -92,13 +87,10 @@ export default function HolidayDetails({
 }) {
   const router = useRouter();
 
-  // data state
   const [apiData, setApiData] = useState<HolidayStateData | null>(initialData);
   const [holidayDetails, setHolidayDetails] = useState<HolidayDetail[]>(
     initialData?.holiday_details ?? []
   );
-
-  // ui state
   const [isLoading, setIsLoading] = useState<boolean>(!initialData);
   const [error, setError] = useState<string | null>(null);
 
@@ -107,13 +99,11 @@ export default function HolidayDetails({
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
-  // 🔁 NEW: auto-download if returning from login with ?dl=...
   useEffect(() => {
     const path =
       typeof window !== "undefined" ? window.location.pathname : "/holidays";
     const search = typeof window !== "undefined" ? window.location.search : "";
     handleAutoDownloadOnReturn(router, path, search);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -196,7 +186,6 @@ export default function HolidayDetails({
     <div className="">
       <div className="mx-auto px-2 py-2 min-[320px]:px-3 min-[320px]:py-3 sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-6 lg:py-6 xl:px-8">
         <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-5 xl:gap-6">
-          {/* Sidebar */}
           <div className="lg:col-span-1 lg:order-2 order-1">
             <div className="sticky top-2 sm:top-4 z-10">
               <Card>
@@ -207,9 +196,7 @@ export default function HolidayDetails({
             </div>
           </div>
 
-          {/* Main */}
           <div className="lg:col-span-4 lg:order-1 order-2 ">
-            {/* Header */}
             <div className="mb-3 sm:mb-4">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <div className="flex-1">
@@ -247,7 +234,6 @@ export default function HolidayDetails({
                           </SelectContent>
                         </Select> */}
 
-                        {/* 🔐 Gated Download */}
                         <Button
                           className="h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 hover:bg-orange-600 text-white text-xs min-[375px]:text-xs sm:text-sm transition-colors px-2 sm:px-3 md:px-4 cursor-pointer"
                           onClick={() => {
@@ -277,7 +263,6 @@ export default function HolidayDetails({
               </div>
             </div>
 
-            {/* Filters */}
             <div className="pt-7">
               {/* <div
                 className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4
@@ -328,7 +313,6 @@ export default function HolidayDetails({
               </Select>
             </div>
 
-            {/* Mobile Cards */}
             <div className="block sm:hidden space-y-2 min-[375px]:space-y-3 mt-5">
               {filteredHolidays?.map((h, i) => (
                 <div
@@ -368,7 +352,6 @@ export default function HolidayDetails({
               ))}
             </div>
 
-            {/* Tablet Cards */}
             <div className="hidden sm:block md:hidden space-y-3 mt-2">
               {filteredHolidays.map((h, i) => (
                 <div
@@ -408,9 +391,7 @@ export default function HolidayDetails({
               ))}
             </div>
 
-            {/* Desktop Table */}
-            {/* Desktop Table – ORANGE GRID */}
-            <div className="hidden md:block mt-7">
+            <div className="hidden md:block bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] min-[1600px]:max-w-[1560px] min-[1800px]:max-w-[1720px] min-[1920px]:max-w-[1880px] lg:mx-auto mt-7">
               <div className="overflow-x-auto">
                 {/* Outer rounded frame with single orange outline */}
                 <div className="rounded-xl overflow-hidden border border-orange-500 lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] min-[1600px]:max-w-[1560px] min-[1800px]:max-w-[1720px] min-[1920px]:max-w-[1880px] lg:mx-auto bg-white">
@@ -501,7 +482,6 @@ export default function HolidayDetails({
               </div>
             </div>
 
-            {/* No results */}
             {filteredHolidays?.length === 0 && (
               <Card className="text-center py-8 border-l-4 border-l-orange-500">
                 <CardContent>
