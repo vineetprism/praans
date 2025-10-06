@@ -296,7 +296,7 @@ export default function WelfareFund({ initialData }: { initialData: WFResponse |
   );
 
   return (
-    <div className="min-h-[80vh] bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
       <div className="mx-auto px-4 py-8">
         {!initialData ? (
           <div className="text-center text-red-600">Failed to load Labour Welfare Fund data.</div>
