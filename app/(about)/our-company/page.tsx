@@ -12,6 +12,7 @@ import OurPromise from "@/app/_component/AboutSection/Company/OurPromise";
 import Serve from "@/app/_component/AboutSection/Company/Serve";
 import Media from "@/app/_component/AboutSection/Company/Media";
 import { Metadata } from "next";
+import AboutFaq from "@/app/_component/AboutSection/Company/AboutFaq";
 
 type ApiPost = {
   meta_title?: string | null;
@@ -127,6 +128,7 @@ export default function Page() {
       <OurPromise />
       <Serve />
       <Media />
+      <AboutFaq/>
     </>
   );
 }
