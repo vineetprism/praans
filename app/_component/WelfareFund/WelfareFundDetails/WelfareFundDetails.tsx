@@ -1051,7 +1051,7 @@ export default function WelfareFundDetails({
             </div>
           </div>
 
-          {/* Sidebar */}
+          
           <div className="lg:col-span-1 2xl:w-sm">
             <div className="sticky top-24">
               <Card>
