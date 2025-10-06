@@ -208,31 +208,6 @@ export default function HolidayDetails({
                       </h1>
 
                       <div className="flex flex-col min-[480px]:flex-row gap-2 min-[480px]:gap-1 sm:gap-2 ">
-                        {/* <Select
-                          value={selectedMonth}
-                          onValueChange={setSelectedMonth}
-                        >
-                          <SelectTrigger className="flex justify-center p-[1.2rem] w/full min-[480px]:w-auto h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 text-white text-xs min-[375px]:text-xs sm:text-sm hover:bg-orange-600 px-2 focus-visible:ring-orange-500 focus-visible:border-orange-500 cursor-pointer">
-                            <SelectValue placeholder="Months" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem
-                              value="all"
-                              className="text-xs sm:text-sm cursor-pointer"
-                            >
-                              Select Months
-                            </SelectItem>
-                            {months?.map((m) => (
-                              <SelectItem
-                                key={m}
-                                value={m}
-                                className="text-xs sm:text-sm cursor-pointer"
-                              >
-                                {m}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select> */}
 
                         <Button
                           className="h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 hover:bg-orange-600 text-white text-xs min-[375px]:text-xs sm:text-sm transition-colors px-2 sm:px-3 md:px-4 cursor-pointer"
@@ -264,31 +239,6 @@ export default function HolidayDetails({
             </div>
 
             <div className="pt-7">
-              {/* <div
-                className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4
-                  max-w-fit mx-12 place-items-center"
-              >
-                <div className="flex items-center gap-2 ">
-                  <label className="text-xs sm:text-sm font-medium text-gray-700 ">
-                    From Date:
-                  </label>
-                  <DatePicker
-                    selected={startDate}
-                    onChange={setStartDate}
-                    placeholder="Start date"
-                  />
-                </div>
-                <div className="flex items-center gap-2">
-                  <label className="text-xs sm:text-sm font-medium text-gray-700">
-                    To Date:
-                  </label>
-                  <DatePicker
-                    selected={endDate}
-                    onChange={setEndDate}
-                    placeholder="End date"
-                  />
-                </div>
-              </div> */}
               <Select value={selectedMonth} onValueChange={setSelectedMonth}>
                 <SelectTrigger className="flex justify-center p-[1.2rem] w/full min-[480px]:w-auto h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 text-white text-xs min-[375px]:text-xs sm:text-sm hover:bg-orange-600 px-2 focus-visible:ring-orange-500 focus-visible:border-orange-500 cursor-pointer">
                   <SelectValue placeholder="Months" />
