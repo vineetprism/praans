@@ -47,7 +47,7 @@ const categories = [
     description: "State-wise minimum wage rates given by the government",
     icon: DollarSign,
     color: "bg-yellow-500",
-    href: "/minimum-wages/minimum-wages",
+    href: "/minimum-wages",
   },
   {
     title: "Professional Tax",

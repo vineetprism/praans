@@ -22,7 +22,7 @@ export default function Confidental() {
                 </p>
                 <p className="text-lg text-gray-700 text-justify">
                     Whether you’re an education institution, a fast-growing restaurant chain,
-                    or a multinational with operations in multiple states, we provide tailored
+                    or a multinational with operations in multiple states, we provide tailored 
                     support and scalable solutions to help your business grow—securely and
                     compliantly.
                 </p>
