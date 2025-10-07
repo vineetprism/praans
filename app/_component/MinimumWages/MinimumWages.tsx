@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 
 import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";
+import FaqMinimumWages from "./FaqMinimumWages";
 
 type MinimumWageItem = {
   state: string;
@@ -66,7 +67,20 @@ export default function MinimumWages({ items }: Props) {
                     Minimum Wages :
                   </h2>
                   <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed">
-                  Get detailed insights on Minimum Wages and their industry-specific applicability. Ensure fair employee pay as per state rules, stay updated with official revisions, and help employers remain compliant while supporting workers’ financial security.
+                    Get detailed insights on Minimum Wages and their
+                    industry-specific applicability. Ensure fair employee pay as
+                    per state rules, stay updated with official revisions, and
+                    help employers remain compliant while supporting workers’
+                    financial security.
+                  </p>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed">
+                    In India, it is legally mandated for an employer to pay
+                    minimum remuneration to its employee. Each state has its own
+                    minimum wage, as it will ensure the protection of employees
+                    against exploitation and ensure basic living standards. It
+                    is governed by the minimum wages act, 1948; it covers both
+                    organized and unorganized sectors. It included skilled,
+                    unskilled, and semi-skilled labourers.{" "}
                   </p>
                 </div>
               </div>
@@ -256,6 +270,174 @@ export default function MinimumWages({ items }: Props) {
                   <PopularSearch className="mb-0" />
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </div>
+        <div className="mb-8 max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between mb-4">
+            <div className="w-full">
+              <h1 className="text-center text-2xl sm:text-3xl font-bold text-[#1b2851] mb-4 mt-8">
+                Minimum Wages in India
+              </h1>
+              <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed mb-8">
+                In India, it is legally mandated for an employer to pay minimum
+                remuneration to its employees. Each state has its own minimum
+                wage, ensuring protection of employees against exploitation and
+                guaranteeing basic living standards. It is governed by the
+                <strong> Minimum Wages Act, 1948</strong>, covering both
+                organized and unorganized sectors, including skilled, unskilled,
+                and semi-skilled labourers.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#1b2851] mb-3">
+                    Key Features of Minimum Wages in India
+                  </h2>
+                  <ul className="list-disc list-inside text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] ml-4 space-y-2">
+                    <li>
+                      Provides <strong>legal protection</strong> against
+                      exploitation and non-payment; violations lead to penalties
+                      under the law.
+                    </li>
+                    <li>
+                      <strong>Revised periodically</strong> by both state and
+                      central governments to align with inflation, cost of
+                      living, and economic conditions.
+                    </li>
+                    <li>
+                      <strong>Sector-specific wages</strong> — they differ based
+                      on sector, skill level, region, and job type.
+                    </li>
+                    <li>
+                      The <strong>state government</strong> fixes wages for
+                      local establishments, and the{" "}
+                      <strong>central government</strong> handles industries
+                      under its jurisdiction.
+                    </li>
+                    <li>
+                      Payments must be made via{" "}
+                      <strong>cash or bank transfer</strong> at regular
+                      intervals, usually monthly.
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#1b2851] mb-3">
+                    Importance of Minimum Wages
+                  </h2>
+                  <ul className="list-disc list-inside text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] ml-4 space-y-2">
+                    <li>
+                      Prevents <strong>exploitation</strong> by ensuring fair
+                      pay for all workers.
+                    </li>
+                    <li>
+                      Encourages <strong>social justice</strong> and reduces
+                      inequality among workers.
+                    </li>
+                    <li>
+                      Boosts <strong>productivity</strong> and motivation among
+                      employees.
+                    </li>
+                    <li>
+                      Supports <strong>economic stability</strong> by ensuring
+                      fair distribution of income.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#1b2851] mb-3">
+                    Minimum Wage Determination
+                  </h2>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed mb-2">
+                    Determination of minimum wages involves several critical
+                    factors:
+                  </p>
+                  <ul className="list-disc list-inside text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] ml-4 space-y-2">
+                    <li>
+                      Based on the <strong>cost of living</strong> to cover
+                      basic needs of workers.
+                    </li>
+                    <li>
+                      Depends on the <strong>skill level</strong> of the worker.
+                    </li>
+                    <li>
+                      Varies depending on the <strong>type of industry</strong>;
+                      riskier jobs often have higher wages.
+                    </li>
+                    <li>
+                      It is <strong>state-specific</strong> — fixed based on
+                      recommendations by respective states.
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#1b2851] mb-3">
+                    Components of Minimum Wages
+                  </h2>
+                  <ul className="list-disc list-inside text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] ml-4 space-y-2">
+                    <li>
+                      <strong>Basic Pay:</strong> Core wage forming the
+                      foundation for all allowances.
+                    </li>
+                    <li>
+                      <strong>Dearness Allowance (DA):</strong> Adjusted to
+                      match inflation and cost of living.
+                    </li>
+                  </ul>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] mt-3">
+                    <strong>Formula:</strong> Minimum Wage = Basic Pay +
+                    Dearness Allowance (DA)
+                  </p>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] mt-2 italic">
+                    Note: Other allowances like HRA or conveyance are optional
+                    and not part of minimum wages.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#1b2851] mb-3">
+                    Minimum Wage Revision (2025)
+                  </h2>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed mb-2">
+                    The revision of wages is state-specific and ensures
+                    alignment with inflation and living costs under the{" "}
+                    <strong>Minimum Wages Act, 1948</strong>. Most states revise
+                    wages half-yearly, adjusting dearness allowance biannually
+                    and basic wages every 3–5 years.
+                  </p>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#1b2851] mb-3">
+                    Compliance and Penalties
+                  </h2>
+                  <ul className="list-disc list-inside text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] ml-4 space-y-2">
+                    <li>Every employer must comply with minimum wage laws.</li>
+                    <li>
+                      Non-compliance can lead to <strong>imprisonment</strong>{" "}
+                      in severe cases.
+                    </li>
+                    <li>
+                      Employees can <strong>legally claim recovery</strong> of
+                      unpaid wages.
+                    </li>
+                    <li>
+                      Initial violations may attract fines from{" "}
+                      <strong>₹5,000 to ₹10,000</strong>.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <FaqMinimumWages />
             </div>
           </div>
         </div>
