@@ -645,7 +645,7 @@ export default function WelfareFundDetails({
                       <Button
                         asChild
                         size="sm"
-                        className="w-[80%] h-9 bg-orange-100 hover:bg-orange-200 font-bold text-orange-700  text-sm truncate rounded-md"
+                        className="w-[80%] h-9 bg-orange-100 hover:bg-orange-200 font-bold text-orange-700 text-sm truncate rounded-md"
                         aria-label="Visit Website"
                         title="Visit Website"
                       >

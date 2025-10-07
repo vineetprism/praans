@@ -110,7 +110,7 @@ export default function LeavesWorkingHoursDetails({
                 {actH?.length ? (
                   <div className="w-full overflow-hidden">
                     <div className="w-full overflow-x-auto">
-                      <div className="min-w-[500px] rounded-xl overflow-hidden border border-orange-400">
+                      <div className="min-w-[500px] rounded-xl overflow-hidden border border-orange-500">
                         <table className="w-full table-fixed border-collapse">
                           <colgroup>
                             <col style={{ width: "180px", minWidth: "150px" }} />
@@ -123,7 +123,7 @@ export default function LeavesWorkingHoursDetails({
                                 {/* left header col */}
                                 <th
                                   scope="row"
-                                  className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm bg-orange-500 text-white font-semibold uppercase tracking-wide text-left border-y border-orange-300 border-r-2 border-r-orange-300 align-top whitespace-normal break-words"
+                                  className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm bg-orange-50 text-orange-700 font-bold uppercase tracking-wide text-left border-y border-orange-300 border-r-2 border-r-orange-300 align-top whitespace-normal break-words"
                                 >
                                   {h}
                                 </th>
@@ -135,7 +135,7 @@ export default function LeavesWorkingHoursDetails({
                                   return (
                                     <td
                                       key={`${h}-${cIdx}`}
-                                      className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm text-gray-900 text-left align-top border border-orange-300 break-words"
+                                      className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm text-gray-900 text-left align-top border border-orange-500 break-words"
                                     >
                                       <span className="break-words whitespace-normal">
                                         {fmt(raw)}
@@ -194,12 +194,12 @@ export default function LeavesWorkingHoursDetails({
               <CardContent className="p-0">
                 <div className="w-full overflow-x-auto">
                   <table className="min-w-[600px] w-full border border-collapse">
-                    <thead className="bg-orange-500 text-white">
+                    <thead className="bg-orange-50 text-orange-700 font-bold">
                       <tr>
                         {initialData.leave_entitlements.headers.map((h, i) => (
                           <th
                             key={i}
-                            className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold uppercase tracking-wide border border-orange-300 break-words"
+                            className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold uppercase tracking-wide border border-orange-600 break-words"
                           >
                             {h}
                           </th>
@@ -212,7 +212,7 @@ export default function LeavesWorkingHoursDetails({
                           {initialData.leave_entitlements.headers.map((h) => (
                             <td
                               key={h}
-                              className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 border border-orange-300 text-xs sm:text-sm text-gray-800 break-words"
+                              className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 border border-orange-600 text-xs sm:text-sm text-gray-800 break-words"
                             >
                               {r[h] ?? "—"}
                             </td>
@@ -260,13 +260,13 @@ export default function LeavesWorkingHoursDetails({
               </CardHeader>
               <CardContent className="p-0">
                 <div className="w-full overflow-x-auto">
-                  <table className="min-w-[600px] w-full border border-orange-500 border-collapse">
-                    <thead className="bg-orange-500 text-white">
+                  <table className="min-w-[600px] w-full border border-orange-600 border-collapse">
+                    <thead className="bg-orange-50 text-orange-700 font-bold">
                       <tr>
                         {initialData.working_hours.headers.map((h, i) => (
                           <th
                             key={i}
-                            className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold uppercase tracking-wide border border-orange-300 break-words"
+                            className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold uppercase tracking-wide border border-orange-600 break-words"
                           >
                             {h}
                           </th>
@@ -279,7 +279,7 @@ export default function LeavesWorkingHoursDetails({
                           {initialData.working_hours.headers.map((h) => (
                             <td
                               key={h}
-                              className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 border border-orange-300 text-xs sm:text-sm text-gray-800 break-words"
+                              className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 border border-orange-600 text-xs sm:text-sm text-gray-800 break-words"
                             >
                               {r[h] ?? "—"}
                             </td>
@@ -411,7 +411,7 @@ export default function LeavesWorkingHoursDetails({
                     {tileFormUrl ? (
                       <Button
                         size="sm"
-                        className="w-[80%] h-9 bg-orange-500 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
+                        className="w-[80%] h-9  text-sm truncate cursor-pointer rounded-md"
                         onClick={() => openProtectedDownload(router, tileFormUrl)}
                       >
                         Download
@@ -455,7 +455,7 @@ export default function LeavesWorkingHoursDetails({
                       <Button
                         asChild
                         size="sm"
-                        className="w-[80%] h-9 bg-orange-500 hover:bg-[#d14e0b] text-white text-sm truncate rounded-md"
+                        className="w-[80%] h-9 bg-orange-100 hover:bg-orange-200 font-bold text-orange-700 text-md truncate rounded-md"
                       >
                         <Link
                           href={tileWebsiteUrl}
