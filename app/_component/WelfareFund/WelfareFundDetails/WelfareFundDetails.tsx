@@ -467,12 +467,6 @@
 //   );
 // }
 
-
-
-
-
-
-
 // "use client";
 // import Link from "next/link";
 // import { useEffect } from "react";
@@ -1056,7 +1050,6 @@
 //             </div>
 //           </div>
 
-          
 //           <div className="lg:col-span-1 2xl:w-sm">
 //             <div className="sticky top-24">
 //               <Card>
@@ -1071,15 +1064,6 @@
 //     </div>
 //   );
 // }
-
-
-
-
-
-
-
-
-
 
 "use client";
 import Link from "next/link";
@@ -1111,6 +1095,7 @@ type WFSlugData = {
     form_title?: string | null;
     form_url?: string | null;
     website_url?: string | null;
+    noti_url?: string | null;
   };
 };
 
@@ -1248,7 +1233,9 @@ export default function WelfareFundDetails({
                         <table className="w-full table-fixed border-collapse">
                           {/* lock first col width (fixed header col) */}
                           <colgroup>
-                            <col style={{ width: "180px", minWidth: "150px" }} />
+                            <col
+                              style={{ width: "180px", minWidth: "150px" }}
+                            />
                             <col />
                           </colgroup>
 
@@ -1285,7 +1272,8 @@ export default function WelfareFundDetails({
                                       key={`${h}-${cIdx}`}
                                       className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm text-gray-900 text-left align-top border border-orange-500 break-words"
                                     >
-                                      {looksLikeWebsite && (href || isHttpUrl) ? (
+                                      {looksLikeWebsite &&
+                                      (href || isHttpUrl) ? (
                                         <Link
                                           href={href || String(raw)}
                                           target="_blank"
@@ -1294,7 +1282,8 @@ export default function WelfareFundDetails({
                                         >
                                           {String(raw)}
                                         </Link>
-                                      ) : looksLikeForm && (href || isHttpUrl) ? (
+                                      ) : looksLikeForm &&
+                                        (href || isHttpUrl) ? (
                                         <button
                                           type="button"
                                           onClick={() =>
@@ -1350,7 +1339,10 @@ export default function WelfareFundDetails({
 
                         if (low === "frequency") {
                           return (
-                            <div key={h} className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between sm:items-center">
+                            <div
+                              key={h}
+                              className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between sm:items-center"
+                            >
                               <span className="font-medium text-gray-600 break-words">
                                 {h}:
                               </span>
@@ -1370,7 +1362,10 @@ export default function WelfareFundDetails({
                             apiBase
                           );
                           return (
-                            <div key={h} className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between">
+                            <div
+                              key={h}
+                              className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between"
+                            >
                               <span className="font-medium text-gray-600 break-words">
                                 {h}:
                               </span>
@@ -1391,7 +1386,9 @@ export default function WelfareFundDetails({
                                   {fileNameFromUrl(href)}
                                 </Link>
                               ) : (
-                                <span className="text-right sm:text-left">—</span>
+                                <span className="text-right sm:text-left">
+                                  —
+                                </span>
                               )}
                             </div>
                           );
@@ -1406,7 +1403,10 @@ export default function WelfareFundDetails({
                             websiteUrlNorm ||
                             "";
                           return (
-                            <div key={h} className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between">
+                            <div
+                              key={h}
+                              className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between"
+                            >
                               <span className="font-medium text-gray-600 break-words">
                                 {h}:
                               </span>
@@ -1421,14 +1421,19 @@ export default function WelfareFundDetails({
                                   Official Site
                                 </Link>
                               ) : (
-                                <span className="text-right sm:text-left">—</span>
+                                <span className="text-right sm:text-left">
+                                  —
+                                </span>
                               )}
                             </div>
                           );
                         }
 
                         return (
-                          <div key={h} className="flex flex-col sm:table-row gap-1 sm:gap-0">
+                          <div
+                            key={h}
+                            className="flex flex-col sm:table-row gap-1 sm:gap-0"
+                          >
                             {/* Left label */}
                             <span className="sm:table-cell sm:align-top font-medium text-orange-500 sm:w-[38%] sm:pr-2 break-words">
                               {h}:
@@ -1462,9 +1467,7 @@ export default function WelfareFundDetails({
 
               <CardContent className="p-0">
                 <div className="w-full overflow-x-auto">
-                  {/* Outer rounded frame exactly like reference */}
-                  <div className="min-w-[600px] rounded-xl overflow-hidden border border-orange-500">
-                    {/* 🔸 NO GAP: use border-collapse, not border-separate */}
+                  <div className="min-w-[600px] rounded-3xl overflow-hidden border border-orange-500">
                     <table className="w-full border-collapse table-fixed">
                       <thead>
                         <tr className="bg-orange-700 text-white">
@@ -1473,13 +1476,10 @@ export default function WelfareFundDetails({
                               key={h}
                               className={[
                                 "px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold uppercase tracking-wide",
-                                // tight grid on header itself (no spacer row)
                                 "border border-orange-500",
-                                // first column a bit wider + left aligned like ref
                                 h.toLowerCase() === "category"
                                   ? "w-48 sm:w-64 text-left"
                                   : "text-center",
-                                // rounded top corners like the card
                                 i === 0 ? "rounded-tl-xl" : "",
                                 i === contribH.length - 1
                                   ? "rounded-tr-xl"
@@ -1510,7 +1510,9 @@ export default function WelfareFundDetails({
                                     : "",
                                 ].join(" ")}
                               >
-                                <span className="break-words">{fmt(cell(r, h))}</span>
+                                <span className="break-words">
+                                  {fmt(cell(r, h))}
+                                </span>
                               </td>
                             ))}
                           </tr>
@@ -1548,7 +1550,10 @@ export default function WelfareFundDetails({
                       className="bg-white rounded-lg p-2 sm:p-3 border text-xs sm:text-sm space-y-1 sm:space-y-2 w-full"
                     >
                       {contribH?.map((h) => (
-                        <div key={h} className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between">
+                        <div
+                          key={h}
+                          className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between"
+                        >
                           <span className="font-medium text-orange-500 break-words">
                             {h}:
                           </span>
@@ -1591,7 +1596,9 @@ export default function WelfareFundDetails({
                         className="w-[80%] h-9 bg-orange-700 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
                         title={formButtonLabel}
                         aria-label={formButtonLabel}
-                        onClick={() => openProtectedDownload(router, formUrlNorm)}
+                        onClick={() =>
+                          openProtectedDownload(router, formUrlNorm)
+                        }
                       >
                         {formButtonLabel}
                       </Button>
@@ -1674,7 +1681,9 @@ export default function WelfareFundDetails({
                         className="w-[80%] h-9 bg-orange-700 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
                         title={formButtonLabel}
                         aria-label={formButtonLabel}
-                        onClick={() => openProtectedDownload(router, formUrlNorm)}
+                        onClick={() =>
+                          openProtectedDownload(router, formUrlNorm)
+                        }
                       >
                         {formButtonLabel}
                       </Button>
@@ -1725,19 +1734,38 @@ export default function WelfareFundDetails({
                   </CardContent>
                 </Card>
 
-                {/* Static Download Notification */}
-                <Card className="h-[140px] w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
+                {/* Download Notification (Dynamic) */}
+                <Card className="h-[140px] w-full max-w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="h-full flex flex-col items-center justify-center px-2">
                     <Download className="h-7 w-7 text-[#E85C0D] mb-2" />
-                    <h3 className="font-bold mb-2 text-sm lg:text-base leading-tight text-[#222] px-2 break-words">
+                    <h3 className="font-bold mb-2 text-sm leading-tight text-[#222] px-2 break-words">
                       Download Notification
                     </h3>
-                    <Button
-                      size="sm"
-                      className="w-[80%] h-9 bg-orange-700 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
-                    >
-                      Statement regarding notification
-                    </Button>
+
+                    {data.downloads?.noti_url ? (
+                      <Button
+                        size="sm"
+                        className="w-[80%] h-9 bg-orange-700 hover:bg-[#d14e0b] cursor-pointer text-white text-sm truncate rounded-md "
+                        aria-label="Download Notification"
+                        title="Download Notification"
+                        onClick={() =>
+                          openProtectedDownload(
+                            router,
+                            normalizeUrl(data.downloads.noti_url, apiBase) || ""
+                          )
+                        }
+                      >
+                        View Notification
+                      </Button>
+                    ) : (
+                      <Button
+                        size="sm"
+                        disabled
+                        className="w-[80%] h-9 text-sm truncate"
+                      >
+                        Not Available
+                      </Button>
+                    )}
                   </CardContent>
                 </Card>
               </div>
