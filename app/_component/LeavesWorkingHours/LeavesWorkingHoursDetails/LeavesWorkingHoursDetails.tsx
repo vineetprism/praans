@@ -411,7 +411,7 @@ export default function LeavesWorkingHoursDetails({
                     {tileFormUrl ? (
                       <Button
                         size="sm"
-                        className="w-[80%] h-9  text-sm truncate cursor-pointer rounded-md"
+                        className="w-[80%] h-9 bg-orange-100 hover:bg-orange-200 font-bold text-orange-700 text-md text-sm truncate cursor-pointer rounded-md"
                         onClick={() => openProtectedDownload(router, tileFormUrl)}
                       >
                         Download
@@ -432,12 +432,12 @@ export default function LeavesWorkingHoursDetails({
                 <Card className="h-[140px] w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="h-full flex flex-col items-center justify-center">
                     <Calculator className="h-7 w-7 text-[#E85C0D] mb-2" />
-                    <h3 className="font-semibold mb-2 text-sm lg:text-base leading-tight text-[#222] px-2">
+                    <h3 className="font-semibold mb-2 text-sm lg:text-base leading-tight px-2">
                       Leave Calculator
                     </h3>
                     <Button
                       size="sm"
-                      className="w-[80%] h-9 bg-orange-500 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
+                      className="w-[80%] h-9 bg-orange-100 hover:bg-orange-200 font-bold  text-orange-700 cursor-pointer rounded-md"
                     >
                       Calculate
                     </Button>
