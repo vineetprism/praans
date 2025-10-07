@@ -436,11 +436,10 @@ export default function MinimumWages({ items }: Props) {
                   </ul>
                 </div>
               </div>
-
-              <FaqMinimumWages />
             </div>
           </div>
         </div>
+        <FaqMinimumWages />
       </div>
     </div>
   );

@@ -420,11 +420,10 @@ export default function WelfareFund({
                   </ul>
                 </div>
               </div>
-
-              <Faq />
             </div>
           </div>
         </div>
+        <Faq />
       </div>
     </div>
   );
