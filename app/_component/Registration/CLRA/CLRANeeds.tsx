@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-/* Orange circular bullet */
 const Bullet = () => (
   <svg
     viewBox="0 0 24 24"
@@ -14,13 +13,13 @@ const Bullet = () => (
     height={18}
     aria-hidden
     className="mt-1.5 shrink-0"
+    aria-label="Bullet point"
   >
     <circle cx="12" cy="12" r="8" fill="none" stroke="#f97316" strokeWidth="2" />
     <path d="M12 4 v4" stroke="#f97316" strokeWidth="2" />
   </svg>
 );
 
-/* --- Structured content, like screenshot --- */
 const WHO_NEEDS_CLRA = [
   {
     title: "Establishments",
@@ -61,7 +60,7 @@ function TestimonialCard({ quote, name, org }: { quote: string; name: string; or
       </div>
       <div className="mt-4">
         <div className="font-semibold text-slate-900">{name}</div>
-        <div className="text-sm text-slate-600">{org}</div>
+        <div className="text-sm text-slate-700">{org}</div>
       </div>
     </article>
   );
@@ -71,9 +70,7 @@ export default function CLRARegistration() {
   return (
     <main className="bg-[#f6f8fc]">
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        {/* Two-column, equal height */}
         <div className="grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* LEFT: rounded image */}
           <div className="self-stretch min-h-[1px]">
             <div className="relative h-full min-h-[360px] w-full overflow-hidden rounded-[28px] shadow-sm ring-1 ring-slate-200">
               <Image
@@ -107,7 +104,7 @@ export default function CLRARegistration() {
                       <p className="text-[15px] font-semibold text-[#1c2a63]">
                         {title}:
                       </p>
-                      <p className="mt-1 text-[14px] leading-7 text-slate-700">
+                      <p className="mt-1 text-[14px] leading-7 text-slate-800">
                         {desc}
                       </p>
                     </div>
@@ -156,7 +153,7 @@ export default function CLRARegistration() {
               className="!h-[260px] sm:!h-[280px] lg:!h-[180px]"
             >
               {TESTIMONIALS.map((t, i) => (
-                <SwiperSlide key={i} className="!h-full">
+                <SwiperSlide role="group" aria-roledescription="slide" aria-label={`Testimonial ${i + 1}`} key={i} className="!h-full">
                   <TestimonialCard {...t} />
                 </SwiperSlide>
               ))}

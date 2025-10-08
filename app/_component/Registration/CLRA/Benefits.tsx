@@ -43,7 +43,7 @@ function BenefitCard({ title, desc }: Benefit) {
                 <h3 className="text-lg font-semibold tracking-tight text-slate-800 transition-colors group-hover:text-white">
                     {title}
                 </h3>
-                <p className="mt-3 text-[15px] leading-7 text-slate-700 transition-colors group-hover:text-white/90">
+                <p className="mt-3 text-[15px] leading-7 text-slate-800 transition-colors group-hover:text-white/90">
                     {desc}
                 </p>
             </div>

@@ -3,7 +3,7 @@
 import React from "react";
 
 const Bullet = () => (
-  <svg viewBox="0 0 24 24" width={16} height={16} className="mt-1.5 shrink-0">
+  <svg viewBox="0 0 24 24" width={16} height={16} className="mt-1.5 shrink-0" aria-label="Bullet Point">
     <circle cx="12" cy="12" r="7" fill="none" stroke="#f97316" strokeWidth="2" />
     <circle cx="12" cy="12" r="2" fill="#f97316" />
   </svg>

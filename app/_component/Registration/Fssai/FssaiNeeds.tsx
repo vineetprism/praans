@@ -7,7 +7,7 @@ import "swiper/css";
 import Link from "next/link";
 
 const Bullet = () => (
-  <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0">
+  <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0" aria-label="Bullet">
     <circle cx="12" cy="12" r="8" fill="none" stroke="#f97316" strokeWidth="2" />
     <path d="M12 4 v4" stroke="#f97316" strokeWidth="2" />
   </svg>
@@ -247,7 +247,7 @@ export default function FssaiNeeds() {
               className="!h-[260px] sm:!h-[280px] lg:!h-[180px]"
             >
               {TESTIMONIALS?.map((t, i) => (
-                <SwiperSlide key={i} className="!h-full">
+                <SwiperSlide key={i} className="!h-full" role="group" aria-roledescription="slide" aria-label={`Testimonial ${i + 1}`}>
                   <TestimonialCard {...t} />
                 </SwiperSlide>
               ))}
