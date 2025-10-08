@@ -9,9 +9,25 @@ const NavyBullet = () => (
     height={18}
     aria-hidden
     className="mt-1.5 shrink-0"
+    aria-label="Play icon"
+    role="img"
   >
-    <circle cx="12" cy="12" r="9" fill="none" stroke="#ea8434" strokeWidth="2" />
-    <circle cx="12" cy="12" r="3" fill="none" stroke="#ea8434" strokeWidth="2" />
+    <circle
+      cx="12"
+      cy="12"
+      r="9"
+      fill="none"
+      stroke="#ea8434"
+      strokeWidth="2"
+    />
+    <circle
+      cx="12"
+      cy="12"
+      r="3"
+      fill="none"
+      stroke="#ea8434"
+      strokeWidth="2"
+    />
   </svg>
 );
 

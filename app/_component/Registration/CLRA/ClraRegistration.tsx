@@ -12,7 +12,7 @@ export default function ClraRegistration() {
                             CLRA Registration & Licence in India
                         </h1>
 
-                        <div className="mt-5 space-y-4 text-[15px] leading-7 text-slate-700 text-justify">
+                        <div className="mt-5 space-y-4 text-[15px] leading-7 text-slate-800 text-justify">
                             <p>
                                 <span className="font-bold">
                                     The Contract Labour (Regulation and Abolition) Act, 1970 (CLRA

@@ -25,7 +25,11 @@ function PriceHighlight({ children }: { children: React.ReactNode }) {
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 -translate-x-1/2"
         viewBox="0 0 100 20"
-        style={{ width: "calc(100% + var(--overTop))", height: 14, top: "calc(-1 * var(--gapTop))" }}
+        style={{
+          width: "calc(100% + var(--overTop))",
+          height: 14,
+          top: "calc(-1 * var(--gapTop))",
+        }}
       >
         <path
           d="M1,15 C34,10 66,10 99,15"
@@ -35,7 +39,11 @@ function PriceHighlight({ children }: { children: React.ReactNode }) {
           strokeLinecap="round"
           strokeLinejoin="round"
           pathLength={100}
-          style={{ strokeDasharray: 100, strokeDashoffset: 100, animation: "drawLoop 5s ease-in-out infinite" }}
+          style={{
+            strokeDasharray: 100,
+            strokeDashoffset: 100,
+            animation: "drawLoop 5s ease-in-out infinite",
+          }}
         />
       </svg>
 
@@ -43,7 +51,11 @@ function PriceHighlight({ children }: { children: React.ReactNode }) {
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 -translate-x-1/2"
         viewBox="0 0 100 20"
-        style={{ width: "calc(100% + var(--overBottom))", height: 16, bottom: "calc(-1 * var(--gapBottom))" }}
+        style={{
+          width: "calc(100% + var(--overBottom))",
+          height: 16,
+          bottom: "calc(-1 * var(--gapBottom))",
+        }}
       >
         <path
           d="M1,6 C34,10 66,10 99,6"
@@ -53,16 +65,32 @@ function PriceHighlight({ children }: { children: React.ReactNode }) {
           strokeLinecap="round"
           strokeLinejoin="round"
           pathLength={100}
-          style={{ strokeDasharray: 100, strokeDashoffset: 100, animation: "drawLoop 5s ease-in-out infinite 160ms" }}
+          style={{
+            strokeDasharray: 100,
+            strokeDashoffset: 100,
+            animation: "drawLoop 5s ease-in-out infinite 160ms",
+          }}
         />
       </svg>
 
       <style jsx>{`
         @keyframes drawLoop {
-          0% { stroke-dashoffset: 100; opacity: 0.98; }
-          14% { stroke-dashoffset: 0; opacity: 1; }
-          86% { stroke-dashoffset: 0; opacity: 1; }
-          100% { stroke-dashoffset: 100; opacity: 0.98; }
+          0% {
+            stroke-dashoffset: 100;
+            opacity: 0.98;
+          }
+          14% {
+            stroke-dashoffset: 0;
+            opacity: 1;
+          }
+          86% {
+            stroke-dashoffset: 0;
+            opacity: 1;
+          }
+          100% {
+            stroke-dashoffset: 100;
+            opacity: 0.98;
+          }
         }
       `}</style>
     </span>
@@ -74,7 +102,9 @@ const ENQUIRY_ENDPOINT = new URL("/api/enquiry", API_BASE).toString(); // <-- /a
 
 const HARDCODED_TITLE = "CLRA Registration Consultant";
 
-type FieldErrors = Partial<Record<"name" | "phone" | "email" | "state" | "message" | "title", string[]>>;
+type FieldErrors = Partial<
+  Record<"name" | "phone" | "email" | "state" | "message" | "title", string[]>
+>;
 
 export default function CLRAHero() {
   const [name, setName] = useState("");
@@ -84,11 +114,16 @@ export default function CLRAHero() {
   const [message, setMessage] = useState("Google");
 
   const [loading, setLoading] = useState(false);
-  const [banner, setBanner] = useState<{ type: "success" | "error"; msg: string } | null>(null);
+  const [banner, setBanner] = useState<{
+    type: "success" | "error";
+    msg: string;
+  } | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
   const whatsappNumber = "919050576838";
-  const waMsg = encodeURIComponent("Hi, I need expert advice on FSSAI registration.");
+  const waMsg = encodeURIComponent(
+    "Hi, I need expert advice on FSSAI registration."
+  );
   const waLink = `https://wa.me/${whatsappNumber}?text=${waMsg}`;
 
   const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
@@ -118,7 +153,14 @@ export default function CLRAHero() {
       setLoading(true);
 
       // Send JSON payload that Laravel can validate
-      const payload = { name, phone, email, state, message, title: HARDCODED_TITLE };
+      const payload = {
+        name,
+        phone,
+        email,
+        state,
+        message,
+        title: HARDCODED_TITLE,
+      };
 
       const res = await fetch(ENQUIRY_ENDPOINT, {
         method: "POST",
@@ -128,34 +170,59 @@ export default function CLRAHero() {
 
       const raw = await res.text();
       let data: any = null;
-      try { data = raw ? JSON.parse(raw) : null; } catch { }
+      try {
+        data = raw ? JSON.parse(raw) : null;
+      } catch {}
 
       if (!res.ok) {
         if (res.status === 404) {
-          setBanner({ type: "error", msg: data?.message || "The route /api/enquiry could not be found." });
+          setBanner({
+            type: "error",
+            msg: data?.message || "The route /api/enquiry could not be found.",
+          });
           return;
         }
         if (res.status === 422 && data?.errors) {
           setFieldErrors(data.errors as FieldErrors);
-          setBanner({ type: "error", msg: data.message || "Validation failed. Fix the highlighted fields." });
+          setBanner({
+            type: "error",
+            msg:
+              data.message || "Validation failed. Fix the highlighted fields.",
+          });
           return;
         }
-        const details = (data?.errors || data?.error || data?.message || raw || `Failed with ${res.status}`);
-        const msg = typeof details === "object" ? (Object.values(details) as any).flat().join(" ") : String(details);
+        const details =
+          data?.errors ||
+          data?.error ||
+          data?.message ||
+          raw ||
+          `Failed with ${res.status}`;
+        const msg =
+          typeof details === "object"
+            ? (Object.values(details) as any).flat().join(" ")
+            : String(details);
         setBanner({ type: "error", msg });
         return;
       }
 
       setBanner({
         type: "success",
-        msg: data?.message ?? "Thanks! Your request has been submitted. Our team will reach out ASAP.",
+        msg:
+          data?.message ??
+          "Thanks! Your request has been submitted. Our team will reach out ASAP.",
       });
       setTimeout(() => setBanner(null), 5000);
 
-      setName(""); setPhone(""); setEmail("");
-      setState("Andhra Pradesh"); setMessage("");
+      setName("");
+      setPhone("");
+      setEmail("");
+      setState("Andhra Pradesh");
+      setMessage("");
     } catch (err: any) {
-      setBanner({ type: "error", msg: err?.message || "Something went wrong. Please try again." });
+      setBanner({
+        type: "error",
+        msg: err?.message || "Something went wrong. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
@@ -163,7 +230,9 @@ export default function CLRAHero() {
 
   const FieldError = ({ name }: { name: keyof FieldErrors }) =>
     fieldErrors?.[name]?.length ? (
-      <p className="mt-1 text-xs font-medium text-red-600">{fieldErrors[name]!.join(" ")}</p>
+      <p className="mt-1 text-xs font-medium text-red-600">
+        {fieldErrors[name]!.join(" ")}
+      </p>
     ) : null;
 
   return (
@@ -172,15 +241,22 @@ export default function CLRAHero() {
         <div className="grid gap-4 lg:grid-cols-12 lg:items-start lg:gap-5">
           <div className="max-w-none lg:col-span-7 pl-3 sm:pl-6 md:pl-10 lg:pl-14 xl:pl-20 2xl:pl-24 break-words">
             <h1 className="w-full text-2xl font-extrabold tracking-tight text-[#1c284f] sm:text-3xl whitespace-normal lg:text-center">
-              India’s Trusted <span className="text-orange-500">CLRA Registration &amp; Licence</span>
-              <span className="text-orange-500 hidden lg:block">Consultant</span>
+              India’s Trusted{" "}
+              <span className="text-orange-500">
+                CLRA Registration &amp; Licence
+              </span>
+              <span className="text-orange-500 hidden lg:block">
+                Consultant
+              </span>
               <span className="text-orange-500 lg:hidden"> Consultant</span>
             </h1>
 
-            <p className="mt-1 text-center text-sm font-semibold text-slate-700">(An ISO Certified Company)</p>
+            <p className="mt-1 text-center text-sm font-semibold text-slate-800">
+              (An ISO Certified Company)
+            </p>
             <p className="mt-4 w-full text-[15px] leading-7 font-semibold text-slate-800 whitespace-normal">
-              Get Your CLRA Registration/Licence Done Quickly and Hassle-Free Starting from Just{" "}
-              <PriceHighlight>Rs.6999/-</PriceHighlight>
+              Get Your CLRA Registration/Licence Done Quickly and Hassle-Free
+              Starting from Just <PriceHighlight>Rs.6999/-</PriceHighlight>
             </p>
 
             <ul className="mt-6 space-y-2 text-[15px] leading-6 font-semibold text-slate-800">
@@ -207,7 +283,9 @@ export default function CLRAHero() {
             </ul>
 
             <div className="mt-5 flex w-full flex-wrap items-center gap-2 text-[15px] font-semibold text-slate-800">
-              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full">⭐</span>
+              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full">
+                ⭐
+              </span>
               15 Years experience in CLRA Registrations/Licences PAN India
             </div>
 
@@ -220,7 +298,13 @@ export default function CLRAHero() {
                 aria-label="Chat on WhatsApp for Expert Advice"
               >
                 <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/30">
-                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
                     <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.1 12.81 19.79 19.79 0 010 4.18 2 2 0 012 2h3a2 2 0 012 1.72c.12.9.3 1.78.57 2.63a2 2 0 01-.45 2.11L6.1 9.9a16 16 0 006 6l1.44-1.02a2 2 0 012.11-.45c.85.27 1.73.45 2.63.57A2 2 0 0122 16.92z" />
                   </svg>
                 </span>
@@ -241,10 +325,11 @@ export default function CLRAHero() {
               {banner && (
                 <div
                   role="alert"
-                  className={`mb-4 rounded-md border px-3 py-2 text-sm ${banner.type === "success"
-                    ? "border-green-300 bg-green-50 text-green-800"
-                    : "border-red-300 bg-red-50 text-red-800"
-                    }`}
+                  className={`mb-4 rounded-md border px-3 py-2 text-sm ${
+                    banner.type === "success"
+                      ? "border-green-300 bg-green-50 text-green-800"
+                      : "border-red-300 bg-red-50 text-red-800"
+                  }`}
                 >
                   {banner.msg}
                 </div>
@@ -252,10 +337,17 @@ export default function CLRAHero() {
 
               <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-600">Name</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-700">
+                    Name
+                  </label>
                   <input
                     value={name}
-                    onChange={(e) => { setName(e.target.value); setBanner(null); }}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      setBanner(null);
+                    }}
+                    aria-required="true"
+                    aria-invalid={!!fieldErrors?.name?.length}
                     className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2"
                     required
                   />
@@ -263,13 +355,20 @@ export default function CLRAHero() {
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-600">Phone Number</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-700">
+                    Phone Number
+                  </label>
                   <input
                     type="tel"
                     inputMode="numeric"
                     pattern="[0-9]{10}"
                     value={phone}
-                    onChange={(e) => { setPhone(e.target.value); setBanner(null); }}
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                      setBanner(null);
+                    }}
+                    aria-required="true"
+                    aria-invalid={!!fieldErrors?.phone?.length}
                     className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2"
                     required
                   />
@@ -277,11 +376,18 @@ export default function CLRAHero() {
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-600">E-mail Id</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-700">
+                    E-mail Id
+                  </label>
                   <input
                     type="email"
                     value={email}
-                    onChange={(e) => { setEmail(e.target.value); setBanner(null); }}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setBanner(null);
+                    }}
+                    aria-required="true"
+                    aria-invalid={!!fieldErrors?.email?.length}
                     className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2"
                     required
                   />
@@ -289,10 +395,15 @@ export default function CLRAHero() {
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-600">State</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-700">
+                    State
+                  </label>
                   <select
                     value={state}
-                    onChange={(e) => { setState(e.target.value); setBanner(null); }}
+                    onChange={(e) => {
+                      setState(e.target.value);
+                      setBanner(null);
+                    }}
                     className="w-full appearance-none rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2"
                   >
                     <optgroup label="States">
@@ -340,28 +451,41 @@ export default function CLRAHero() {
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">How did you hear about us?</label>
+                  <label className="mb-1 block text-sm font-medium text-slate-800">
+                    How did you hear about us?
+                  </label>
                   <div className="relative">
-                    <select value={message}
-                      onChange={(e) => { setMessage(e.target.value); setBanner(null); }} className="w-full appearance-none rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2">
+                    <select
+                      value={message}
+                      onChange={(e) => {
+                        setMessage(e.target.value);
+                        setBanner(null);
+                      }}
+                      className="w-full appearance-none rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none ring-orange-500 focus:border-orange-500 focus:ring-2"
+                    >
                       <option>Google</option>
                       <option>Facebook</option>
                       <option>Instagram</option>
                       <option>Word of Mouth</option>
                       <option>Others</option>
                     </select>
-                    <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">▾</span>
+                    <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">
+                      ▾
+                    </span>
                   </div>
                 </div>
 
                 {/* If backend returns error for title */}
                 {fieldErrors?.title?.length ? (
-                  <p className="mt-1 text-xs font-medium text-red-600">{fieldErrors.title.join(" ")}</p>
+                  <p className="mt-1 text-xs font-medium text-red-600">
+                    {fieldErrors.title.join(" ")}
+                  </p>
                 ) : null}
 
                 <button
                   type="submit"
                   disabled={loading}
+                  aria-label="Submit CLRA registration form"
                   className="mt-2 w-full rounded-md bg-orange-500 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:opacity-60 cursor-pointer"
                 >
                   {loading ? "Submitting…" : "Submit"}
@@ -377,19 +501,33 @@ export default function CLRAHero() {
           <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
             <span>
               Support:{" "}
-              <Link href="mailto:info@praansconsultech.com" className="hover:underline">
+              <Link
+                href="mailto:info@praansconsultech.com"
+                className="hover:underline"
+                aria-label="Send email to Praans Consultech"
+              >
                 info@praansconsultech.com
               </Link>
             </span>
             <span>
               Talk to us:{" "}
-              <Link href="tel:+919050576838" className="hover:underline">
+              <Link
+                href="tel:+919050576838"
+                className="hover:underline"
+                aria-label="Call Praans Consultech"
+              >
                 +91 9050576838
               </Link>
             </span>
             <span>
               Website:{" "}
-              <Link href="https://www.praansconsultech.com" target="_blank" rel="noreferrer" className="hover:underline">
+              <Link
+                href="https://www.praansconsultech.com"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:underline"
+                aria-label="Visit Praans Consultech website"
+              >
                 www.praansconsultech.com
               </Link>
             </span>

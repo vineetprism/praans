@@ -108,7 +108,7 @@ function Avatar({
     if (!src || errored) {
         return (
             <div
-                className="h-14 w-14 rounded-full bg-slate-100 text-slate-700 grid place-items-center font-semibold text-lg uppercase"
+                className="h-14 w-14 rounded-full bg-slate-100 text-slate-800 grid place-items-center font-semibold text-lg uppercase"
                 aria-label={name}
                 role="img"
             >
@@ -174,7 +174,7 @@ function ClampedText({
     return (
         <p
             ref={pRef}
-            className="text-center text-[14px] leading-6 text-slate-700"
+            className="text-center text-[14px] leading-6 text-slate-800"
             style={clampStyle}
         >
             {text}
@@ -226,7 +226,7 @@ function Card({ review }: { review: Review }) {
                 {needsClamp && (
                     <div className="mt-3 text-center">
                         <button
-                            className="text-sm font-medium text-slate-500 hover:text-slate-700"
+                            className="text-sm font-medium text-slate-500 hover:text-slate-800"
                             onClick={() => setExpanded((v) => !v)}
                         >
                             {expanded ? "Show less" : "Read more"}
@@ -249,7 +249,7 @@ function NavButtons({
         <>
             <button
                 ref={prevRef}
-                className="absolute left-2 md:left-4 top-1/2 z-20 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white text-slate-700 shadow-[0_4px_18px_rgba(2,6,23,0.15)] ring-1 ring-slate-200 hover:bg-slate-50"
+                className="absolute left-2 md:left-4 top-1/2 z-20 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white text-slate-800 shadow-[0_4px_18px_rgba(2,6,23,0.15)] ring-1 ring-slate-200 hover:bg-slate-50"
                 aria-label="Previous"
             >
                 <svg
@@ -258,13 +258,15 @@ function NavButtons({
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    aria-label="Previous"
+                    role="img"
                 >
                     <path d="M15 18l-6-6 6-6" />
                 </svg>
             </button>
             <button
                 ref={nextRef}
-                className="absolute right-2 md:right-4 top-1/2 z-20 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white text-slate-700 shadow-[0_4px_18px_rgba(2,6,23,0.15)] ring-1 ring-slate-200 hover:bg-slate-50"
+                className="absolute right-2 md:right-4 top-1/2 z-20 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white text-slate-800 shadow-[0_4px_18px_rgba(2,6,23,0.15)] ring-1 ring-slate-200 hover:bg-slate-50"
                 aria-label="Next"
             >
                 <svg
@@ -273,6 +275,8 @@ function NavButtons({
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    aria-label="Next"
+                    role="img"
                 >
                     <path d="M9 6l6 6-6 6" />
                 </svg>
@@ -392,7 +396,7 @@ export default function CLRAReviews() {
                         className="relative !pb-10"
                     >
                         {REVIEWS.map((r, idx) => (
-                            <SwiperSlide key={`rev-${idx}`}>
+                            <SwiperSlide role="group" aria-roledescription="slide" aria-label={`Testimonial ${idx + 1}`} key={`rev-${idx}`}>
                                 <Card review={r} />
                             </SwiperSlide>
                         ))}

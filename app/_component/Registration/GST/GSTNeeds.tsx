@@ -6,7 +6,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 const Bullet = () => (
-  <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0 mt-1.5">
+  <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0 mt-1.5" aria-label="Bullet">
     <circle cx="12" cy="12" r="8" fill="none" stroke="#f97316" strokeWidth="2" />
     <path d="M12 4 v4" stroke="#f97316" strokeWidth="2" />
   </svg>
@@ -126,7 +126,7 @@ export default function GSTNeeds() {
               className="!h-[260px] sm:!h-[280px] lg:!h-[180px]"
             >
               {TESTIMONIALS?.map((t, i) => (
-                <SwiperSlide key={i} className="!h-full">
+                <SwiperSlide key={i} className="!h-full" role="group" aria-roledescription="slide" aria-label={`Testimonial ${i + 1}`}>
                   <TestimonialCard {...t} />
                 </SwiperSlide>
               ))}

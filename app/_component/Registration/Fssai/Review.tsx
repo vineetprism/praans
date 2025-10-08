@@ -258,6 +258,7 @@ function NavButtons({
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    aria-label="Previous"
                 >
                     <path d="M15 18l-6-6 6-6" />
                 </svg>
@@ -273,6 +274,7 @@ function NavButtons({
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    aria-label="Next"
                 >
                     <path d="M9 6l6 6-6 6" />
                 </svg>
@@ -390,7 +392,7 @@ export default function Reviews() {
                         className="relative !pb-10"
                     >
                         {REVIEWS?.map((r, idx) => (
-                            <SwiperSlide key={`rev-${idx}`}>
+                            <SwiperSlide key={`rev-${idx}`} role="group" aria-roledescription="slide" aria-label={`Testimonial ${idx + 1}`}>
                                 <Card review={r} />
                             </SwiperSlide>
                         ))}

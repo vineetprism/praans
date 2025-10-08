@@ -10,6 +10,8 @@ const TargetBullet = ({ className = '', ...props }: TargetBulletProps) => (
         height={18}
         aria-hidden
         className={`mt-[2px] shrink-0 text-[#142a63] ${className}`}
+        aria-label="Target bullet"
+        role="img"
         {...props}
     >
         <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" strokeWidth="2" />
