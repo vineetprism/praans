@@ -687,6 +687,11 @@
 
 
 
+
+
+
+
+
 "use client";
 
 import * as React from "react";
@@ -1208,11 +1213,244 @@ function ResponsiveKV({ block, title }: { block: TableBlock | any; title?: strin
 }
 
 /* ---------- Period Combobox ---------- */
-function PeriodCombobox({ apiBase, stateSlug, onSelect, defaultLabel }: { apiBase: string; stateSlug?: string; onSelect: (opt: PeriodOption) => void; defaultLabel?: string; }) {
+// function PeriodCombobox({ apiBase, stateSlug, onSelect, defaultLabel }: { apiBase: string; stateSlug?: string; onSelect: (opt: PeriodOption) => void; defaultLabel?: string; }) {
+//   const [open, setOpen] = React.useState(false);
+//   const [loading, setLoading] = React.useState(true);
+//   const [options, setOptions] = React.useState<PeriodOption[]>([]);
+//   const [value, setValue] = React.useState<string>(defaultLabel || "Select period");
+
+//   React.useEffect(() => {
+//     let mounted = true;
+//     (async () => {
+//       try {
+//         setLoading(true);
+//         const url = new URL("/api/minimum-wages/periods/options", apiBase).toString();
+//         const res = await fetch(url, { cache: "no-store" });
+//         const json = await res.json();
+//         const all: PeriodOption[] = Array.isArray(json?.data) ? json.data : [];
+//         const filtered = all.filter((o) => (o.state?.slug || "").toLowerCase() === (stateSlug || "").toLowerCase());
+//         filtered.sort((a, b) => (b.updated_date_iso || "").localeCompare(a.updated_date_iso || ""));
+//         if (!mounted) return;
+//         setOptions(filtered);
+//         setValue((v) => v || filtered[0]?.label || "Select period");
+//       } catch (e) {
+//         console.error("[PeriodCombobox] options load failed:", e);
+//       } finally {
+//         mounted && setLoading(false);
+//       }
+//     })();
+//     return () => { mounted = false; };
+//   }, [apiBase, stateSlug, defaultLabel]);
+
+//   return (
+//     <div className="w-full sm:w-auto sm:min-w-[280px] md:min-w-[320px]">
+//       <Popover open={open} onOpenChange={setOpen}>
+//         <PopoverTrigger asChild>
+//           <Button
+//             variant="outline"
+//             role="combobox"
+//             aria-expanded={open}
+//             className={cn(
+//               "w-full justify-between h-9 sm:h-10 text-xs sm:text-sm",
+//               "border-orange-200 hover:bg-orange-50 hover:border-orange-300",
+//               "cursor-pointer"
+//             )}
+//             disabled={loading}
+//           >
+//             <span className="flex items-center gap-1.5 sm:gap-2 truncate">
+//               <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-500 flex-shrink-0" />
+//               <span className="text-slate-800 truncate">{loading ? "Loading…" : value}</span>
+//             </span>
+//             <ChevronsUpDown className="ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4 opacity-60 flex-shrink-0" />
+//           </Button>
+//         </PopoverTrigger>
+//         <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="end">
+//           <Command>
+//             <CommandInput placeholder="Search period…" className="text-xs sm:text-sm" />
+//             <CommandList>
+//               <CommandEmpty className="text-xs sm:text-sm">No period found.</CommandEmpty>
+//               <CommandGroup heading="Available Periods">
+//                 {options.map((opt) => (
+//                   <CommandItem 
+//                     key={opt.id} 
+//                     onSelect={() => { setValue(opt.label); setOpen(false); onSelect(opt); }} 
+//                     className="cursor-pointer text-xs sm:text-sm"
+//                   >
+//                     <Check className={cn("mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4", value === opt.label ? "opacity-100 text-orange-600" : "opacity-0")} />
+//                     <span className="truncate">{opt.label}</span>
+//                   </CommandItem>
+//                 ))}
+//               </CommandGroup>
+//             </CommandList>
+//           </Command>
+//         </PopoverContent>
+//       </Popover>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+/* ---------- Period Combobox (no search, show only Effective in list) ---------- */
+// function PeriodCombobox({
+//   apiBase,
+//   stateSlug,
+//   onSelect,
+//   defaultLabel,
+// }: {
+//   apiBase: string;
+//   stateSlug?: string;
+//   onSelect: (opt: PeriodOption) => void;
+//   defaultLabel?: string;
+// }) {
+//   const [open, setOpen] = React.useState(false);
+//   const [loading, setLoading] = React.useState(true);
+//   const [options, setOptions] = React.useState<PeriodOption[]>([]);
+//   const [selected, setSelected] = React.useState<PeriodOption | null>(null);
+
+//   // ⬇️ Button पर सिर्फ Effective
+//   const makeButtonLabel = (o?: PeriodOption | null) =>
+//     o ? `Effective Date-: ${o.effective_date}` : "Select period";
+
+//   const onlyEffective = (s?: string) => {
+//     if (!s) return undefined;
+//     const m = s.match(/Effective\s+\d{2}-\d{2}-\d{4}/i);
+//     return m ? m[0].replace(/\s+/g, " ").trim() : undefined;
+//   };
+
+//   const [value, setValue] = React.useState<string>(onlyEffective(defaultLabel) || "Select period");
+
+//   React.useEffect(() => {
+//     let mounted = true;
+//     (async () => {
+//       try {
+//         setLoading(true);
+//         const url = new URL("/api/minimum-wages/periods/options", apiBase).toString();
+//         const res = await fetch(url, { cache: "no-store" });
+//         const json = await res.json();
+//         const all: PeriodOption[] = Array.isArray(json?.data) ? json.data : [];
+//         const filtered = all.filter(
+//           (o) => (o.state?.slug || "").toLowerCase() === (stateSlug || "").toLowerCase()
+//         );
+//         filtered.sort((a, b) => (b.updated_date_iso || "").localeCompare(a.updated_date_iso || ""));
+
+//         if (!mounted) return;
+//         setOptions(filtered);
+
+//         const initial = filtered[0] ?? null;
+//         setSelected(initial);
+      
+//         setValue(onlyEffective(defaultLabel) || makeButtonLabel(initial));
+//       } catch (e) {
+//         console.error("[PeriodCombobox] options load failed:", e);
+//       } finally {
+//         mounted && setLoading(false);
+//       }
+//     })();
+//     return () => {
+//       mounted = false;
+//     };
+//   }, [apiBase, stateSlug, defaultLabel]);
+
+//   return (
+//     <div className="w-full sm:w-auto sm:min-w-[200px] md:min-w-[320px] 2xl:min-w-[200px]">
+//       <Popover open={open} onOpenChange={setOpen}>
+//         <PopoverTrigger asChild>
+//           <Button
+//             variant="outline"
+//             role="combobox"
+//             aria-expanded={open}
+//             className={cn(
+//               "w-full justify-between h-9 sm:h-10 text-xs sm:text-sm",
+//               "border-orange-200 hover:bg-orange-50 hover:border-orange-300",
+//               "cursor-pointer"
+//             )}
+//             disabled={loading}
+//           >
+//             <span className="flex items-center gap-1.5 sm:gap-2 truncate">
+//               <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-500 flex-shrink-0" />
+//               <span className="text-slate-800 truncate">{loading ? "Loading…" : value}</span>
+//             </span>
+//             <ChevronsUpDown className="ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4 opacity-60 flex-shrink-0" />
+//           </Button>
+//         </PopoverTrigger>
+
+//         <PopoverContent
+//           side="bottom"
+//           align="end"
+//           sideOffset={6}
+//           avoidCollisions={false}
+//           className="w-[--radix-popover-trigger-width] p-0 z-[60]"
+//         >
+//           <Command>
+           
+//             <CommandList>
+//               <CommandEmpty className="text-xs sm:text-sm">No period found.</CommandEmpty>
+//               <CommandGroup heading="Available Periods">
+//                 {options.map((opt) => {
+//                   const listLabel = `Effective Date-: ${opt.effective_date}`; // dropdown में भी केवल Effective
+//                   const active = selected?.id === opt.id;
+//                   return (
+//                     <CommandItem
+//                       key={opt.id}
+//                       onSelect={() => {
+//                         setSelected(opt);
+//                         setValue(makeButtonLabel(opt)); // trigger text अपडेट (Effective …)
+//                         setOpen(false);
+//                         onSelect(opt);
+//                       }}
+//                       className="cursor-pointer text-xs sm:text-sm"
+//                     >
+//                       <Check
+//                         className={cn(
+//                           "mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4",
+//                           active ? "opacity-100 text-orange-600" : "opacity-0"
+//                         )}
+//                       />
+//                       <span className="truncate">{listLabel}</span>
+//                     </CommandItem>
+//                   );
+//                 })}
+//               </CommandGroup>
+//             </CommandList>
+//           </Command>
+//         </PopoverContent>
+//       </Popover>
+//     </div>
+//   );
+// }
+
+
+function PeriodCombobox({
+  apiBase,
+  stateSlug,
+  onSelect,
+  defaultLabel,
+}: {
+  apiBase: string;
+  stateSlug?: string;
+  onSelect: (opt: PeriodOption) => void;
+  defaultLabel?: string;
+}) {
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   const [options, setOptions] = React.useState<PeriodOption[]>([]);
-  const [value, setValue] = React.useState<string>(defaultLabel || "Select period");
+  const [selected, setSelected] = React.useState<PeriodOption | null>(null);
+  const [value, setValue] = React.useState<string>("Select period");
+
+  // Button label: हमेशा "Effective Date-: DD-MM-YYYY"
+  const makeButtonLabel = (o?: PeriodOption | null) =>
+    o ? `Effective Date-: ${o.effective_date}` : "Select period";
+
+  // defaultLabel से fallback निकालें (और "Date-:" जोड़ें)
+  const parseEffectiveFromDefault = (s?: string) => {
+    if (!s) return undefined;
+    const m = s.match(/Effective\s+(\d{2}-\d{2}-\d{4})/i);
+    return m ? `Effective Date-: ${m[1]}` : undefined;
+  };
 
   React.useEffect(() => {
     let mounted = true;
@@ -1223,13 +1461,22 @@ function PeriodCombobox({ apiBase, stateSlug, onSelect, defaultLabel }: { apiBas
         const res = await fetch(url, { cache: "no-store" });
         const json = await res.json();
         const all: PeriodOption[] = Array.isArray(json?.data) ? json.data : [];
-        const filtered = all.filter((o) => (o.state?.slug || "").toLowerCase() === (stateSlug || "").toLowerCase());
-        filtered.sort((a, b) => (b.updated_date_iso || "").localeCompare(a.updated_date_iso || ""));
+        const filtered = all
+          .filter((o) => (o.state?.slug || "").toLowerCase() === (stateSlug || "").toLowerCase())
+          .sort((a, b) => (b.updated_date_iso || "").localeCompare(a.updated_date_iso || ""));
+
         if (!mounted) return;
+
         setOptions(filtered);
-        setValue((v) => v || filtered[0]?.label || "Select period");
+        const initial = filtered[0] ?? null;
+        setSelected(initial);
+
+        // ✅ हमेशा makeButtonLabel, नहीं तो defaultLabel का parsed fallback
+        setValue(initial ? makeButtonLabel(initial) : (parseEffectiveFromDefault(defaultLabel) || "Select period"));
       } catch (e) {
         console.error("[PeriodCombobox] options load failed:", e);
+        // error में भी defaultLabel से try करें
+        setValue(parseEffectiveFromDefault(defaultLabel) || "Select period");
       } finally {
         mounted && setLoading(false);
       }
@@ -1238,7 +1485,7 @@ function PeriodCombobox({ apiBase, stateSlug, onSelect, defaultLabel }: { apiBas
   }, [apiBase, stateSlug, defaultLabel]);
 
   return (
-    <div className="w-full sm:w-auto sm:min-w-[280px] md:min-w-[320px]">
+    <div className="w-full sm:w-auto sm:min-w-[200px] md:min-w-[320px] 2xl:min-w-[200px]">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -1259,22 +1506,40 @@ function PeriodCombobox({ apiBase, stateSlug, onSelect, defaultLabel }: { apiBas
             <ChevronsUpDown className="ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4 opacity-60 flex-shrink-0" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="end">
+
+        <PopoverContent
+          side="bottom"
+          align="end"
+          sideOffset={6}
+          avoidCollisions={false}
+          className="w-[--radix-popover-trigger-width] p-0 z-[60]"
+        >
           <Command>
-            <CommandInput placeholder="Search period…" className="text-xs sm:text-sm" />
             <CommandList>
               <CommandEmpty className="text-xs sm:text-sm">No period found.</CommandEmpty>
               <CommandGroup heading="Available Periods">
-                {options.map((opt) => (
-                  <CommandItem 
-                    key={opt.id} 
-                    onSelect={() => { setValue(opt.label); setOpen(false); onSelect(opt); }} 
-                    className="cursor-pointer text-xs sm:text-sm"
-                  >
-                    <Check className={cn("mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4", value === opt.label ? "opacity-100 text-orange-600" : "opacity-0")} />
-                    <span className="truncate">{opt.label}</span>
-                  </CommandItem>
-                ))}
+                {options.map((opt) => {
+                  const listLabel = `Effective Date-: ${opt.effective_date}`;
+                  const active = selected?.id === opt.id;
+                  return (
+                    <CommandItem
+                      key={opt.id}
+                      onSelect={() => {
+                        setSelected(opt);
+                        setValue(makeButtonLabel(opt)); 
+                        setOpen(false);
+                        onSelect(opt);
+                      }}
+                      className="cursor-pointer text-xs sm:text-sm"
+                    >
+                      <Check className={cn(
+                        "mr-2 h-3.5 w-3.5 sm:h-4 sm:w-4",
+                        active ? "opacity-100 text-orange-600" : "opacity-0"
+                      )}/>
+                      <span className="truncate">{listLabel}</span>
+                    </CommandItem>
+                  );
+                })}
               </CommandGroup>
             </CommandList>
           </Command>
@@ -1283,6 +1548,8 @@ function PeriodCombobox({ apiBase, stateSlug, onSelect, defaultLabel }: { apiBas
     </div>
   );
 }
+
+
 
 /* ---------- Quick Action Card ---------- */
 function QuickActionCard({ icon, title, cta, onClick, href, disabled }: { icon: React.ReactNode; title: string; cta: string; onClick?: () => void; href?: string; disabled?: boolean; }) {
