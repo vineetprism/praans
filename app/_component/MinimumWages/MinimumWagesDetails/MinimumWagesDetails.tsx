@@ -5336,7 +5336,7 @@ function normalizeMWRates(input: any, fallbackTitle?: string): TableBlock {
 
     const out: Row[] = [];
     for (const r of rawRows) {
-      const maxLen = headers.reduce((m, h) => {
+      const maxLen = headers.reduce((m: any, h: any) => {
         const v = (r as any)?.[h];
         return Array.isArray(v) ? Math.max(m, v.length) : m;
       }, 0);
