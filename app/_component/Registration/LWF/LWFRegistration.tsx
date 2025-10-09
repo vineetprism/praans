@@ -56,7 +56,6 @@ export default function LwfOverviewPage() {
                 </div>
             </section>
 
-            {/* ===== Below: Labour Welfare Fund Rates and Payment ===== */}
             <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 text-center">
                 <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1c284f]">
                     Labour Welfare Fund Rates and Payment
@@ -73,7 +72,9 @@ export default function LwfOverviewPage() {
                 <div className="mt-6">
                     <Link
                         href="#worker-benefits"
-                        className="inline-flex items-center justify-center rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        className="inline-flex items-center justify-center rounded-md bg-orange-500 px-5 py-3 
+                        text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                        aria-label="Worker Benefits: The Labour Welfare Fund Explained"
                     >
                         Worker Benefits: The Labour Welfare Fund Explained
                     </Link>

@@ -35,11 +35,8 @@ export default function TradeLicence() {
             </p>
           </div>
 
-          {/* RIGHT: Image — compact, centered, fully visible (no crop) */}
           <div className="h-full flex items-center justify-center">
-            {/* Add some padding around so it looks like the reference */}
             <div className="relative w-full max-w-[520px] rounded-2xl p-2">
-              {/* Use a fixed yet responsive height so the image stays compact like the screenshot */}
               <div className="relative w-full h-[260px] sm:h-[320px] lg:h-[360px]">
                 <Image
                   src="/register/trade.webp"

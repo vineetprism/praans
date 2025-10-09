@@ -7,8 +7,22 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 const Bullet = () => (
-  <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0 mt-1.5">
-    <circle cx="12" cy="12" r="8" fill="none" stroke="#f97316" strokeWidth="2" />
+  <svg
+    viewBox="0 0 24 24"
+    width={18}
+    height={18}
+    aria-hidden
+    className="shrink-0 mt-1.5"
+    aria-label="Bullet Point"
+  >
+    <circle
+      cx="12"
+      cy="12"
+      r="8"
+      fill="none"
+      stroke="#f97316"
+      strokeWidth="2"
+    />
     <path d="M12 4 v4" stroke="#f97316" strokeWidth="2" />
   </svg>
 );
@@ -62,7 +76,9 @@ function TestimonialCard({ quote, name, org }: Review) {
   return (
     <article className="flex h-full w-full flex-col justify-between rounded-xl border border-orange-200 bg-white p-6 text-center shadow-sm">
       <div className="flex grow items-center justify-center">
-        <p className="max-w-[56ch] text-[15px] leading-7 text-slate-800">{quote}</p>
+        <p className="max-w-[56ch] text-[15px] leading-7 text-slate-800">
+          {quote}
+        </p>
       </div>
       <div className="mt-4">
         <div className="font-semibold text-slate-900">{name}</div>
@@ -86,7 +102,7 @@ export default function TradeLicenceNeeds() {
           <div className="h-full">
             <div className="relative h-full min-h-[260px] w-full overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-200">
               <Image
-                src="/apply/trade.webp" 
+                src="/apply/trade.webp"
                 alt="Trade Licence"
                 fill
                 priority
@@ -103,9 +119,10 @@ export default function TradeLicenceNeeds() {
               </h1>
 
               <p className="mt-3 text-[15px] leading-7 text-slate-800">
-                Any business or individual engaged in commercial, industrial, or trading activities
-                within municipal limits is required to obtain a trade licence. This includes shops,
-                factories, restaurants, warehouses, salons, gyms, and other commercial establishments.
+                Any business or individual engaged in commercial, industrial, or
+                trading activities within municipal limits is required to obtain
+                a trade licence. This includes shops, factories, restaurants,
+                warehouses, salons, gyms, and other commercial establishments.
               </p>
 
               <h2 className="mt-6 text-2xl sm:text-3xl font-extrabold text-[#142a63]">
@@ -128,16 +145,36 @@ export default function TradeLicenceNeeds() {
           <div className="rounded-2xl border-2 border-orange-400 bg-white p-4 sm:p-6">
             <div className="mx-auto grid w-full max-w-7xl grid-cols-2 place-items-center gap-6 sm:grid-cols-4">
               <div className="relative h-14 w-40">
-                <Image src="/apply/iso.webp" alt="ISO Certified" fill className="object-contain" />
+                <Image
+                  src="/apply/iso.webp"
+                  alt="ISO Certified"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/mca.webp" alt="Ministry of Corporate Affairs" fill className="object-contain" />
+                <Image
+                  src="/apply/mca.webp"
+                  alt="Ministry of Corporate Affairs"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/startup.webp" alt="Startup India" fill className="object-contain" />
+                <Image
+                  src="/apply/startup.webp"
+                  alt="Startup India"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/msme1.webp" alt="MSME" fill className="object-contain" />
+                <Image
+                  src="/apply/msme1.webp"
+                  alt="MSME"
+                  fill
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>
@@ -155,7 +192,11 @@ export default function TradeLicenceNeeds() {
               modules={[Autoplay]}
               loop
               speed={600}
-              autoplay={{ delay: 2200, disableOnInteraction: false, pauseOnMouseEnter: true }}
+              autoplay={{
+                delay: 2200,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
               spaceBetween={24}
               breakpoints={{
                 0: { slidesPerView: 1 },
@@ -165,7 +206,13 @@ export default function TradeLicenceNeeds() {
               className="!h-[260px] sm:!h-[280px] lg:!h-[180px]"
             >
               {TESTIMONIALS.map((t, i) => (
-                <SwiperSlide key={i} className="!h-full">
+                <SwiperSlide
+                  key={i}
+                  className="!h-full"
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`Testimonial ${i + 1}`}
+                >
                   <TestimonialCard {...t} />
                 </SwiperSlide>
               ))}

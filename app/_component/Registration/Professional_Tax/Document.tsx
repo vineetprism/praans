@@ -3,7 +3,7 @@
 import React from "react";
 
 const NavyBullet = () => (
-  <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="mt-1.5 shrink-0">
+  <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="mt-1.5 shrink-0" aria-label="Bullet">
     <circle cx="12" cy="12" r="9" fill="none" stroke="#f57f28" strokeWidth="2" />
     <circle cx="12" cy="12" r="3" fill="none" stroke="#f57f28" strokeWidth="2" />
   </svg>

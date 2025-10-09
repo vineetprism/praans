@@ -1,6 +1,5 @@
 import React from "react";
 
-/* ---------- Data ---------- */
 type Item = { title: string; desc: string };
 
 const employmentBenefits: Item[] = [
@@ -16,11 +15,9 @@ const employmentBenefits: Item[] = [
   },
 ];
 
-/* ---------- Page ---------- */
 export default function EmploymentPage() {
   return (
     <main className="bg-white text-slate-900">
-      {/* Top band */}
       <section className="bg-[#f5f7fc]">
         <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8 py-4">
           <h1 className="text-center text-2xl sm:text-3xl font-extrabold text-[#142a63]">
@@ -66,7 +63,7 @@ function Section({
 function CardsGrid({ items, hoverColor }: { items: Item[]; hoverColor: string }) {
   return (
     <div className="mx-auto grid max-w-5xl items-stretch gap-6 px-5 sm:px-6 lg:px-8 md:grid-cols-2">
-      {items.map((it) => (
+      {items?.map((it) => (
         <Card key={it.title} title={it.title} desc={it.desc} hoverColor={hoverColor} />
       ))}
     </div>

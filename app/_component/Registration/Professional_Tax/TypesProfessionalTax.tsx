@@ -10,7 +10,9 @@ export default function ProfessionalTaxTypes() {
           Types of Professional Tax Registrations
         </h1>
         <p className="mx-auto mt-3 max-w-4xl text-center text-[14px] leading-7 text-slate-700">
-          <span className="font-semibold">There are two types of registrations under Professional Tax:</span>{" "}
+          <span className="font-semibold">
+            There are two types of registrations under Professional Tax:
+          </span>{" "}
           The Employer Certificate (EC) and the Registration Certificate (RC).
         </p>
 
@@ -22,26 +24,31 @@ export default function ProfessionalTaxTypes() {
 
             <div className="mt-4 space-y-4 text-[14px] leading-7 text-slate-800">
               <p>
-                <span className="font-semibold">Purpose:</span> The Employer Certificate, also known as the
-                Enrolment Certificate, is issued to individuals or entities liable to pay professional tax for
-                their own income. This certificate is primarily for businesses or professionals who are not
-                deducting professional tax on behalf of employees but are paying it for themselves.
+                <span className="font-semibold">Purpose:</span> The Employer
+                Certificate, also known as the Enrolment Certificate, is issued
+                to individuals or entities liable to pay professional tax for
+                their own income. This certificate is primarily for businesses
+                or professionals who are not deducting professional tax on
+                behalf of employees but are paying it for themselves.
               </p>
 
               <p>
-                <span className="font-semibold">Applicability:</span> Sole proprietors, self-employed
-                professionals, freelancers, or businesses without employees. Covers the professional tax
+                <span className="font-semibold">Applicability:</span> Sole
+                proprietors, self-employed professionals, freelancers, or
+                businesses without employees. Covers the professional tax
                 liability of the individual/business itself.
               </p>
 
               <p>
-                <span className="font-semibold">Obligation:</span> The holder of this certificate is required to
-                pay a fixed amount annually as professional tax, based on the rules of the respective state.
+                <span className="font-semibold">Obligation:</span> The holder of
+                this certificate is required to pay a fixed amount annually as
+                professional tax, based on the rules of the respective state.
               </p>
 
               <p>
-                <span className="font-semibold">Example:</span> A lawyer operating independently or a sole
-                proprietor running a small business.
+                <span className="font-semibold">Example:</span> A lawyer
+                operating independently or a sole proprietor running a small
+                business.
               </p>
             </div>
           </article>
@@ -53,27 +60,31 @@ export default function ProfessionalTaxTypes() {
 
             <div className="mt-4 space-y-4 text-[14px] leading-7 text-slate-800">
               <p>
-                <span className="font-semibold">Purpose:</span> The Registration Certificate is issued to
-                employers who are responsible for deducting and depositing professional tax on behalf of their
-                employees. This certificate enables employers to fulfill their statutory obligation of deducting
-                professional tax from employee salaries and remitting it to the government.
+                <span className="font-semibold">Purpose:</span> The Registration
+                Certificate is issued to employers who are responsible for
+                deducting and depositing professional tax on behalf of their
+                employees. This certificate enables employers to fulfill their
+                statutory obligation of deducting professional tax from employee
+                salaries and remitting it to the government.
               </p>
 
               <p>
-                <span className="font-semibold">Applicability:</span> Entities with employees, such as
-                companies, firms, and establishments. The employer is responsible for collecting professional
-                tax from employees’ salaries and ensuring compliance.
+                <span className="font-semibold">Applicability:</span> Entities
+                with employees, such as companies, firms, and establishments.
+                The employer is responsible for collecting professional tax from
+                employees’ salaries and ensuring compliance.
               </p>
 
               <p>
-                <span className="font-semibold">Obligation:</span> Deduct professional tax from employee
-                salaries as per the applicable state slab rates. Deposit the collected amount with the state
+                <span className="font-semibold">Obligation:</span> Deduct
+                professional tax from employee salaries as per the applicable
+                state slab rates. Deposit the collected amount with the state
                 government within the prescribed timeline.
               </p>
 
               <p>
-                <span className="font-semibold">Example:</span> A private company employing multiple staff
-                members.
+                <span className="font-semibold">Example:</span> A private
+                company employing multiple staff members.
               </p>
             </div>
           </article>

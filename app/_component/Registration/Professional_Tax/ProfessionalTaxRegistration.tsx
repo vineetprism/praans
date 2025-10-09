@@ -73,7 +73,9 @@ export default function ProfessionalTaxRegistration() {
           <div className="mt-7 flex justify-center">
             <Link
               href="#"
-              className="rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer"
+              className="rounded-md bg-orange-500 px-5 py-3 text-sm font-semibold text-white 
+              shadow hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer"
+              aria-label="Professional Tax Rates- PAN India"
             >
               Professional Tax Rates- PAN India
             </Link>

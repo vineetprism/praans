@@ -40,32 +40,28 @@ const REVIEWS: Review[] = [
   {
     name: "Nishita Jain",
     date: "2025-05-11",
-    text:
-      "We've had a great experience working with Praans Consultech. Their legal guidance has been clear, prompt, and always solution-oriented. They bring a strong understanding of both compliance and business practicality, which has been invaluable to us. Highly recommended for anyone seeking reliable and professional legal support.",
+    text: "We've had a great experience working with Praans Consultech. Their legal guidance has been clear, prompt, and always solution-oriented. They bring a strong understanding of both compliance and business practicality, which has been invaluable to us. Highly recommended for anyone seeking reliable and professional legal support.",
     avatar: "/testimonial/nishita.png",
     stars: 5,
   },
   {
     name: "Kavita Gupta",
     date: "2025-05-10",
-    text:
-      "I took GST and Shop registration services for my family business from the Praans and we are very much satisfied.",
+    text: "I took GST and Shop registration services for my family business from the Praans and we are very much satisfied.",
     avatar: "", // will show "K"
     stars: 4,
   },
   {
     name: "Sagar Malik",
     date: "2025-05-09",
-    text:
-      "Best labour law consultant in Haryana. I was in need of shop and establishment registration in Gurugram for my office, and Praans provided us within 2 days. Then I again approached for GST , PF , and ESI registration along with MSME. It was also provided within time.Very speedy process. The whole process was online. Now, Praaan Consultech is my all time labour law consultant.",
+    text: "Best labour law consultant in Haryana. I was in need of shop and establishment registration in Gurugram for my office, and Praans provided us within 2 days. Then I again approached for GST , PF , and ESI registration along with MSME. It was also provided within time.Very speedy process. The whole process was online. Now, Praaan Consultech is my all time labour law consultant.",
     avatar: "/testimonial/sagar.png",
     stars: 5,
   },
   {
     name: "Kunal Rana",
     date: "2025-05-09",
-    text:
-      "# Experienced staff # # Correct Advice # #Fast in process# # Best company in India for GST , FSSAI and Shop registration# # Highly recommended#",
+    text: "# Experienced staff # # Correct Advice # #Fast in process# # Best company in India for GST , FSSAI and Shop registration# # Highly recommended#",
     avatar: "/testimonial/kunal.png",
     stars: 5,
   },
@@ -126,12 +122,11 @@ function Avatar({
       height={size}
       className={className}
       onError={() => setErrored(true)}
-      unoptimized={src.startsWith("/")} 
+      unoptimized={src.startsWith("/")}
       priority={false}
     />
   );
 }
-
 
 function ClampedText({
   text,
@@ -166,11 +161,11 @@ function ClampedText({
   const clampStyle: React.CSSProperties = expanded
     ? {}
     : {
-      display: "-webkit-box",
-      WebkitLineClamp: 3,
-      WebkitBoxOrient: "vertical",
-      overflow: "hidden",
-    };
+        display: "-webkit-box",
+        WebkitLineClamp: 3,
+        WebkitBoxOrient: "vertical",
+        overflow: "hidden",
+      };
 
   return (
     <p
@@ -260,6 +255,7 @@ function NavButtons({
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
+          aria-label="Previous"
         >
           <path d="M15 18l-6-6 6-6" />
         </svg>
@@ -275,6 +271,7 @@ function NavButtons({
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
+          aria-label="Next"
         >
           <path d="M9 6l6 6-6 6" />
         </svg>
@@ -330,7 +327,6 @@ function BenefitsSection() {
   );
 }
 
-/* -------------------- Page -------------------- */
 export default function TestimonialsThreeExact() {
   const loopSlides = useMemo(() => Math.max(REVIEWS.length, 6), []);
   const prevRef = useRef<HTMLButtonElement>(null);
@@ -377,9 +373,7 @@ export default function TestimonialsThreeExact() {
               }
             }}
             onInit={(swiper) => {
-              // @ts-ignore
               swiper.navigation.init();
-              // @ts-ignore
               swiper.navigation.update();
             }}
             navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
@@ -395,7 +389,12 @@ export default function TestimonialsThreeExact() {
             className="relative !pb-10"
           >
             {REVIEWS.map((r, idx) => (
-              <SwiperSlide key={`rev-${idx}`}>
+              <SwiperSlide
+                key={`rev-${idx}`}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`Testimonial ${idx + 1}`}
+              >
                 <Card review={r} />
               </SwiperSlide>
             ))}

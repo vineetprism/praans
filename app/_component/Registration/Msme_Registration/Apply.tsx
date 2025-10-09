@@ -4,8 +4,22 @@ import Image from "next/image";
 import React from "react";
 
 const Bullet = () => (
-  <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0">
-    <circle cx="12" cy="12" r="8" fill="none" stroke="#f97316" strokeWidth="2" />
+  <svg
+    viewBox="0 0 24 24"
+    width={18}
+    height={18}
+    aria-hidden
+    className="shrink-0"
+    aria-label="Bullet"
+  >
+    <circle
+      cx="12"
+      cy="12"
+      r="8"
+      fill="none"
+      stroke="#f97316"
+      strokeWidth="2"
+    />
     <path d="M12 4 v4" stroke="#f97316" strokeWidth="2" />
   </svg>
 );
@@ -17,9 +31,24 @@ const CheckBadge = ({ className = "" }: { className?: string }) => (
     height={20}
     className={className}
     aria-hidden
+    aria-label="Check Badge"
   >
-    <circle cx="12" cy="12" r="9" fill="none" stroke="#f57f28" strokeWidth="2" />
-    <path d="M8.5 12.5l2.5 2.5 4.5-5" fill="none" stroke="#f57f28" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <circle
+      cx="12"
+      cy="12"
+      r="9"
+      fill="none"
+      stroke="#f57f28"
+      strokeWidth="2"
+    />
+    <path
+      d="M8.5 12.5l2.5 2.5 4.5-5"
+      fill="none"
+      stroke="#f57f28"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -78,33 +107,43 @@ export default function WhoCanApplyPage() {
               <div className="flex items-start gap-3">
                 <Bullet />
                 <p>
-                  <span className="font-semibold">MSME</span> registration is available for:
+                  <span className="font-semibold">MSME</span> registration is
+                  available for:
                 </p>
               </div>
 
               <div className="ml-7 space-y-2">
                 <p>
-                  <span className="font-semibold text-orange-500">Manufacturing Enterprises:</span>{" "}
+                  <span className="font-semibold text-orange-500">
+                    Manufacturing Enterprises:
+                  </span>{" "}
                   Businesses involved in the production of goods.
                 </p>
                 <p>
-                  <span className="font-semibold text-orange-500">Service Enterprises:</span>{" "}
+                  <span className="font-semibold text-orange-500">
+                    Service Enterprises:
+                  </span>{" "}
                   Businesses offering services in various sectors.
                 </p>
                 <p>
                   The eligibility is determined based on the{" "}
-                  <span className="font-semibold">investment in plant and machinery or equipment</span>{" "}
-                  and the <span className="font-semibold">annual turnover</span>.
+                  <span className="font-semibold">
+                    investment in plant and machinery or equipment
+                  </span>{" "}
+                  and the <span className="font-semibold">annual turnover</span>
+                  .
                 </p>
               </div>
 
               <div className="flex items-start gap-3">
                 <Bullet />
                 <div className="space-y-1">
-                  <p className="font-semibold leading-[1.45]">Micro Enterprises:</p>
+                  <p className="font-semibold leading-[1.45]">
+                    Micro Enterprises:
+                  </p>
                   <p>
-                    Businesses with an investment of up to ₹1 crore and an annual turnover not
-                    exceeding ₹5 crore.
+                    Businesses with an investment of up to ₹1 crore and an
+                    annual turnover not exceeding ₹5 crore.
                   </p>
                 </div>
               </div>
@@ -112,9 +151,12 @@ export default function WhoCanApplyPage() {
               <div className="flex items-start gap-3">
                 <Bullet />
                 <div className="space-y-1">
-                  <p className="font-semibold leading-[1.45]">Small Enterprises:</p>
+                  <p className="font-semibold leading-[1.45]">
+                    Small Enterprises:
+                  </p>
                   <p>
-                    Businesses with an investment limit of ₹10 crore and an annual turnover up to ₹50 crore.
+                    Businesses with an investment limit of ₹10 crore and an
+                    annual turnover up to ₹50 crore.
                   </p>
                 </div>
               </div>
@@ -122,9 +164,12 @@ export default function WhoCanApplyPage() {
               <div className="flex items-start gap-3">
                 <Bullet />
                 <div className="space-y-1">
-                  <p className="font-semibold leading-[1.45]">Medium Enterprises:</p>
+                  <p className="font-semibold leading-[1.45]">
+                    Medium Enterprises:
+                  </p>
                   <p>
-                    Businesses with an investment of up to ₹50 crore and an annual turnover capped at ₹250 crore.
+                    Businesses with an investment of up to ₹50 crore and an
+                    annual turnover capped at ₹250 crore.
                   </p>
                 </div>
               </div>
@@ -137,16 +182,36 @@ export default function WhoCanApplyPage() {
           <div className="rounded-2xl border-2 border-orange-400 bg-white p-4 sm:p-6">
             <div className="mx-auto max-w-7xl grid w-full grid-cols-2 gap-6 place-items-center sm:grid-cols-4">
               <div className="relative h-14 w-40">
-                <Image src="/apply/iso.webp" alt="ISO Certified" fill className="object-contain" />
+                <Image
+                  src="/apply/iso.webp"
+                  alt="ISO Certified"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/mca.webp" alt="Ministry of Corporate Affairs" fill className="object-contain" />
+                <Image
+                  src="/apply/mca.webp"
+                  alt="Ministry of Corporate Affairs"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/startup.webp" alt="Startup India" fill className="object-contain" />
+                <Image
+                  src="/apply/startup.webp"
+                  alt="Startup India"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/msme1.webp" alt="MSME" fill className="object-contain" />
+                <Image
+                  src="/apply/msme1.webp"
+                  alt="MSME"
+                  fill
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>
@@ -186,7 +251,10 @@ export default function WhoCanApplyPage() {
           <div className="mt-6 grid gap-8 md:grid-cols-2">
             <ul className="space-y-3">
               {DOCS_LEFT.map((item, idx) => (
-                <li key={`l-${idx}`} className="flex items-start gap-3 text-[15px] text-slate-800">
+                <li
+                  key={`l-${idx}`}
+                  className="flex items-start gap-3 text-[15px] text-slate-800"
+                >
                   <CheckBadge className="mt-0.5" />
                   <span>{item}</span>
                 </li>
@@ -195,7 +263,10 @@ export default function WhoCanApplyPage() {
 
             <ul className="space-y-3">
               {DOCS_RIGHT.map((item, idx) => (
-                <li key={`r-${idx}`} className="flex items-start gap-3 text-[15px] text-slate-800">
+                <li
+                  key={`r-${idx}`}
+                  className="flex items-start gap-3 text-[15px] text-slate-800"
+                >
                   <CheckBadge className="mt-0.5" />
                   <span>{item}</span>
                 </li>

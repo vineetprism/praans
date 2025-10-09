@@ -13,8 +13,16 @@ const Bullet = () => (
     height={18}
     aria-hidden
     className="shrink-0 mt-1.5"
+    aria-label="Bullet"
   >
-    <circle cx="12" cy="12" r="8" fill="none" stroke="#f97316" strokeWidth="2" />
+    <circle
+      cx="12"
+      cy="12"
+      r="8"
+      fill="none"
+      stroke="#f97316"
+      strokeWidth="2"
+    />
     <path d="M12 4 v4" stroke="#f97316" strokeWidth="2" />
   </svg>
 );
@@ -58,32 +66,26 @@ const TESTIMONIALS = [
   },
 ];
 
-
 const WHO_PROF_TAX = [
   {
     title: "Salaried Employees",
-    body:
-      "Employees earning above the state’s exemption limit are subject to professional tax, which employers must deduct from salaries.",
+    body: "Employees earning above the state’s exemption limit are subject to professional tax, which employers must deduct from salaries.",
   },
   {
     title: "Self-Employed Professionals",
-    body:
-      "Professionals such as freelancers, consultants, and professionals like doctors, lawyers, and chartered accountants are required to register for professional taxes.",
+    body: "Professionals such as freelancers, consultants, and professionals like doctors, lawyers, and chartered accountants are required to register for professional taxes.",
   },
   {
     title: "Business Owners",
-    body:
-      "Individuals owning businesses, including sole proprietors, partnerships, and companies, need registration if they have employees.",
+    body: "Individuals owning businesses, including sole proprietors, partnerships, and companies, need registration if they have employees.",
   },
   {
     title: "Employers",
-    body:
-      "Any employer with employees must ensure professional tax registration and deduction, as per state regulations.",
+    body: "Any employer with employees must ensure professional tax registration and deduction, as per state regulations.",
   },
   {
     title: "Traders and Merchants",
-    body:
-      "Business owners involved in trading, retail, or wholesale may need to register if their income meets the state’s criteria.",
+    body: "Business owners involved in trading, retail, or wholesale may need to register if their income meets the state’s criteria.",
   },
 ];
 
@@ -99,7 +101,9 @@ function TestimonialCard({
   return (
     <article className="flex h-full w-full flex-col justify-between rounded-xl border border-orange-200 bg-white p-6 text-center shadow-sm">
       <div className="flex grow items-center justify-center">
-        <p className="max-w-[56ch] text-[15px] leading-7 text-slate-800">{quote}</p>
+        <p className="max-w-[56ch] text-[15px] leading-7 text-slate-800">
+          {quote}
+        </p>
       </div>
       <div className="mt-4">
         <div className="font-semibold text-slate-900">{name}</div>
@@ -138,7 +142,8 @@ export default function ProfessionalTaxNeeds() {
                   <div key={item.title} className="flex gap-3">
                     <Bullet />
                     <p>
-                      <span className="font-semibold">{item?.title}:</span> {item?.body}
+                      <span className="font-semibold">{item?.title}:</span>{" "}
+                      {item?.body}
                     </p>
                   </div>
                 ))}
@@ -151,16 +156,36 @@ export default function ProfessionalTaxNeeds() {
           <div className="rounded-2xl border-2 border-orange-400 bg-white p-4 sm:p-6">
             <div className="mx-auto grid w-full max-w-7xl grid-cols-2 place-items-center gap-6 sm:grid-cols-4">
               <div className="relative h-14 w-40">
-                <Image src="/apply/iso.webp" alt="ISO Certified" fill className="object-contain" />
+                <Image
+                  src="/apply/iso.webp"
+                  alt="ISO Certified"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/mca.webp" alt="Ministry of Corporate Affairs" fill className="object-contain" />
+                <Image
+                  src="/apply/mca.webp"
+                  alt="Ministry of Corporate Affairs"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/startup.webp" alt="Startup India" fill className="object-contain" />
+                <Image
+                  src="/apply/startup.webp"
+                  alt="Startup India"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/msme1.webp" alt="MSME" fill className="object-contain" />
+                <Image
+                  src="/apply/msme1.webp"
+                  alt="MSME"
+                  fill
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>
@@ -178,7 +203,11 @@ export default function ProfessionalTaxNeeds() {
               modules={[Autoplay]}
               loop
               speed={600}
-              autoplay={{ delay: 2000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
               spaceBetween={24}
               breakpoints={{
                 0: { slidesPerView: 1 },
@@ -188,7 +217,13 @@ export default function ProfessionalTaxNeeds() {
               className="!h-[260px] sm:!h-[280px] lg:!h-[180px]"
             >
               {TESTIMONIALS?.map((t, i) => (
-                <SwiperSlide key={i} className="!h-full">
+                <SwiperSlide
+                  key={i}
+                  className="!h-full"
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`Testimonial ${i + 1}`}
+                >
                   <TestimonialCard {...t} />
                 </SwiperSlide>
               ))}

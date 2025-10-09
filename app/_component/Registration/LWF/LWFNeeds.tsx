@@ -8,8 +8,22 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 const Bullet = () => (
-  <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden className="shrink-0 mt-1.5">
-    <circle cx="12" cy="12" r="8" fill="none" stroke="#f97316" strokeWidth="2" />
+  <svg
+    viewBox="0 0 24 24"
+    width={18}
+    height={18}
+    aria-hidden
+    className="shrink-0 mt-1.5"
+    aria-label="Bullet Point"
+  >
+    <circle
+      cx="12"
+      cy="12"
+      r="8"
+      fill="none"
+      stroke="#f97316"
+      strokeWidth="2"
+    />
     <path d="M12 4 v4" stroke="#f97316" strokeWidth="2" />
   </svg>
 );
@@ -53,22 +67,18 @@ const TESTIMONIALS = [
   },
 ];
 
-
 const WHO_NEEDS_LWF = [
   {
     title: "Employers of establishments",
-    body:
-      "Factories, shops, and commercial enterprises employing workers.",
+    body: "Factories, shops, and commercial enterprises employing workers.",
   },
   {
     title: "Businesses covered by state LWF Act",
-    body:
-      "Entities falling under the applicable state’s Labour Welfare Fund Act.",
+    body: "Entities falling under the applicable state’s Labour Welfare Fund Act.",
   },
   {
     title: "Companies with eligible workers",
-    body:
-      "Employers with workers liable for LWF contributions as per state rules.",
+    body: "Employers with workers liable for LWF contributions as per state rules.",
   },
 ];
 
@@ -84,7 +94,9 @@ function TestimonialCard({
   return (
     <article className="flex h-full w-full flex-col justify-between rounded-xl border border-orange-200 bg-white p-6 text-center shadow-sm">
       <div className="flex grow items-center justify-center">
-        <p className="max-w-[56ch] text-[15px] leading-7 text-slate-800">{quote}</p>
+        <p className="max-w-[56ch] text-[15px] leading-7 text-slate-800">
+          {quote}
+        </p>
       </div>
       <div className="mt-4">
         <div className="font-semibold text-slate-900">{name}</div>
@@ -127,7 +139,8 @@ export default function LWFNeeds() {
                   <div key={item.title} className="flex gap-3">
                     <Bullet />
                     <p>
-                      <span className="font-semibold">{item.title}:</span> {item.body}
+                      <span className="font-semibold">{item.title}:</span>{" "}
+                      {item.body}
                     </p>
                   </div>
                 ))}
@@ -140,16 +153,36 @@ export default function LWFNeeds() {
           <div className="rounded-2xl border-2 border-orange-400 bg-white p-4 sm:p-6">
             <div className="mx-auto grid w-full max-w-7xl grid-cols-2 place-items-center gap-6 sm:grid-cols-4">
               <div className="relative h-14 w-40">
-                <Image src="/apply/iso.webp" alt="ISO Certified" fill className="object-contain" />
+                <Image
+                  src="/apply/iso.webp"
+                  alt="ISO Certified"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/mca.webp" alt="Ministry of Corporate Affairs" fill className="object-contain" />
+                <Image
+                  src="/apply/mca.webp"
+                  alt="Ministry of Corporate Affairs"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/startup.webp" alt="Startup India" fill className="object-contain" />
+                <Image
+                  src="/apply/startup.webp"
+                  alt="Startup India"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="relative h-14 w-40">
-                <Image src="/apply/msme1.webp" alt="MSME" fill className="object-contain" />
+                <Image
+                  src="/apply/msme1.webp"
+                  alt="MSME"
+                  fill
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>
@@ -167,14 +200,27 @@ export default function LWFNeeds() {
               modules={[Autoplay]}
               loop
               speed={600}
-              autoplay={{ delay: 2000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
               spaceBetween={24}
-              breakpoints={{ 0: { slidesPerView: 1 }, 768: { slidesPerView: 2 } }}
+              breakpoints={{
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+              }}
               allowTouchMove
               className="!h-[260px] sm:!h-[280px] lg:!h-[180px]"
             >
               {TESTIMONIALS.map((t, i) => (
-                <SwiperSlide key={i} className="!h-full">
+                <SwiperSlide
+                  key={i}
+                  className="!h-full"
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`Testimonial ${i + 1}`}
+                >
                   <TestimonialCard {...t} />
                 </SwiperSlide>
               ))}
@@ -185,4 +231,3 @@ export default function LWFNeeds() {
     </main>
   );
 }
-

@@ -50,7 +50,6 @@ const ArrowImg = ({ className = "", size = 28 }: { className?: string; size?: nu
     </div>
 );
 
-/* --------------------------------- Page ---------------------------------- */
 
 export default function LWFProcessPage() {
     return (

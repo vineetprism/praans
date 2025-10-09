@@ -258,6 +258,7 @@ function NavButtons({
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    aria-label="Previous"
                 >
                     <path d="M15 18l-6-6 6-6" />
                 </svg>
@@ -273,6 +274,7 @@ function NavButtons({
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
+                    aria-label="Next"
                 >
                     <path d="M9 6l6 6-6 6" />
                 </svg>
@@ -306,7 +308,7 @@ function BenefitsSection() {
                 </h2>
 
                 <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    {FEATURES.map(({ title, img }) => (
+                    {FEATURES?.map(({ title, img }) => (
                         <div
                             key={title}
                             className="rounded-2xl bg-[#f7f8ff] ring-1 ring-slate-200 shadow-[0_8px_28px_rgba(2,6,23,0.06)] p-4 flex flex-col items-center justify-center text-center"
@@ -375,9 +377,7 @@ export default function ShopEstablishmentReviews() {
                             }
                         }}
                         onInit={(swiper) => {
-                            // @ts-ignore
                             swiper.navigation.init();
-                            // @ts-ignore
                             swiper.navigation.update();
                         }}
                         navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
@@ -392,8 +392,8 @@ export default function ShopEstablishmentReviews() {
                         }}
                         className="relative !pb-10"
                     >
-                        {REVIEWS.map((r, idx) => (
-                            <SwiperSlide key={`rev-${idx}`}>
+                        {REVIEWS?.map((r, idx) => (
+                            <SwiperSlide key={`rev-${idx}`} role="group" aria-roledescription="slide" aria-label={`Testimonial ${idx + 1}`}>
                                 <Card review={r} />
                             </SwiperSlide>
                         ))}

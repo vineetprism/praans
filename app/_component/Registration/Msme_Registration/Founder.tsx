@@ -13,31 +13,43 @@ export default function FounderPage() {
           <div className="lg:col-span-7 h-full">
             <div className="space-y-4 text-[15px] leading-7 text-slate-800 text-justify h-full">
               <p>
-                With 15 years of rich experience in labour law, business registration, and startup
-                advisory,{" "}
-                <span className="font-semibold text-orange-500">Mr. Sandeep Kumar</span> serves as the guiding force shaping our
-                company’s vision and achievements. He is a proficient expert with a solid academic
-                background. He holds an <span className="font-semibold">LLB and LLM</span>, and is an alumnus of{" "}
-                <span className="font-semibold">XLRI</span>, one of India’s premier business schools. Currently, he is pursuing a{" "}
-                <span className="font-semibold">Ph.D</span> to further expand his knowledge and expertise in business and law.
+                With 15 years of rich experience in labour law, business
+                registration, and startup advisory,{" "}
+                <span className="font-semibold text-orange-500">
+                  Mr. Sandeep Kumar
+                </span>{" "}
+                serves as the guiding force shaping our company’s vision and
+                achievements. He is a proficient expert with a solid academic
+                background. He holds an{" "}
+                <span className="font-semibold">LLB and LLM</span>, and is an
+                alumnus of <span className="font-semibold">XLRI</span>, one of
+                India’s premier business schools. Currently, he is pursuing a{" "}
+                <span className="font-semibold">Ph.D</span> to further expand
+                his knowledge and expertise in business and law.
               </p>
 
               <p>
                 Before embarking on his entrepreneurial journey,{" "}
-                <span className="font-semibold text-orange-500">Mr. Sandeep Kumar</span> held the prestigious role of Director at a
-                renowned logistics company, where he led large teams and drove strategic initiatives
-                that contributed to the company’s success. Even with a successful career and a
-                lucrative job, he made the courageous choice to leave his corporate position and
-                pursue his passion—creating a business dedicated to assisting entrepreneurs in
-                navigating the complexities of labour law and business registrations.
+                <span className="font-semibold text-orange-500">
+                  Mr. Sandeep Kumar
+                </span>{" "}
+                held the prestigious role of Director at a renowned logistics
+                company, where he led large teams and drove strategic
+                initiatives that contributed to the company’s success. Even with
+                a successful career and a lucrative job, he made the courageous
+                choice to leave his corporate position and pursue his
+                passion—creating a business dedicated to assisting entrepreneurs
+                in navigating the complexities of labour law and business
+                registrations.
               </p>
 
               <p>
-                As an advisor to startups and a legal expert, he has worked with various businesses
-                to ensure they comply with industry regulations, streamline their registration
-                processes, and create strong foundations for long-term success. His work blends
-                legal expertise, strategic insight, and a passion for supporting businesses at every
-                stage of growth.
+                As an advisor to startups and a legal expert, he has worked with
+                various businesses to ensure they comply with industry
+                regulations, streamline their registration processes, and create
+                strong foundations for long-term success. His work blends legal
+                expertise, strategic insight, and a passion for supporting
+                businesses at every stage of growth.
               </p>
             </div>
           </div>
