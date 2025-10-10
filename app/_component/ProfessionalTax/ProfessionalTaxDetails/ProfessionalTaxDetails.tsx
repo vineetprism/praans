@@ -75,7 +75,8 @@ function GenericTable({
             {block.headers.map((h) => (
               <TableHead
                 key={h}
-                className="!text-center text-white text-xs lg:text-sm font-semibold bg-orange-500 sticky top-0 z-30 border border-orange-300"
+                className="!text-center text-xs lg:text-sm bg-orange-100 text-orange-700 font-bold hover:bg-orange-200
+            sticky top-0 z-30 border border-orange-300"
               >
                 {h}
               </TableHead>
@@ -174,7 +175,8 @@ function GenericMobileBlock({
   return (
     <Card className="shadow-sm mb-3">
       <CardContent className="p-3">
-        <h3 className="text-base font-bold mb-2 bg-orange-500 text-white text-center">
+        <h3 className="text-base mb-2 bg-orange-100 text-orange-700 font-bold hover:bg-orange-200
+    text-center">
           {title}
         </h3>
         <div className="space-y-3">
@@ -185,7 +187,7 @@ function GenericMobileBlock({
             return (
               <div
                 key={idx}
-                className="rounded-lg p-3 border border-orange-300"
+                className="rounded-lg p-3 border border-grey-300"
               >
                 <div className="space-y-2 text-xs">
                   {block.headers.map((h) => {
@@ -197,7 +199,7 @@ function GenericMobileBlock({
                     return (
                       <div
                         key={h}
-                        className="flex justify-between border-b border-orange-300 pb-1"
+                        className="flex justify-between  border-orange-300 pb-1"
                       >
                         <span
                           className={`font-medium ${
@@ -316,80 +318,6 @@ export default function ProfessionalTaxDetails({
               </h2>
             </div>
 
-            {/* 🔥 Three Cards Section */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-orange-200">
-                <CardContent className="p-3 text-center">
-                  <Calculator className="w-6 h-6 text-orange-500 mx-auto mb-1" />
-                  <h3 className="font-medium text-sm text-gray-900 mb-1 ">
-                    PT Calculator
-                  </h3>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    aria-label="PT Calculator"
-                    className="text-xs h-6 px-3 hover:bg-orange-50 hover:border-orange-200 cursor-pointer hover:text-orange-600"
-                  >
-                    Calculate
-                  </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-orange-200">
-                <CardContent className="p-3 text-center">
-                  <FileText className="w-6 h-6 text-orange-500 mx-auto mb-1" />
-                  <h3 className="font-medium text-sm text-gray-900 mb-1">
-                    Download Forms
-                  </h3>
-                  {downloads?.form_url ? (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() =>
-                        openProtectedDownload(router, downloads.form_url!)
-                      }
-                      className="text-xs h-6 px-3 hover:bg-orange-50 hover:border-orange-200 cursor-pointer hover:text-orange-600"
-                    >
-                      {downloads?.form_title?.trim() || "Download"}
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      disabled
-                      className="text-xs h-6 px-3"
-                    >
-                      Download
-                    </Button>
-                  )}
-                </CardContent>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer border border-gray-200 hover:border-orange-200">
-                <CardContent className="p-3 text-center">
-                  <Globe className="w-6 h-6 text-orange-500 mx-auto mb-1" />
-                  <h3 className="font-medium text-sm text-gray-900 mb-1">
-                    Official Portal
-                  </h3>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="sm"
-                    disabled={!downloads?.website_url}
-                    className="text-xs h-6 px-3 hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
-                  >
-                    <Link
-                      href={downloads?.website_url ?? "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Visit
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-
             {/* Act Information */}
             <div className="block lg:hidden mb-4">
               <GenericMobileBlock
@@ -447,7 +375,85 @@ export default function ProfessionalTaxDetails({
                 <GenericTable block={employment_categories} />
               </CardContent>
             </Card>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
+  {/* PT Calculator */}
+  <Card className="group text-center border-l-4 border-l-orange-500 shadow-sm hover:shadow-md transition-all rounded-xl cursor-pointer">
+    <CardContent className="p-4 flex flex-col items-center justify-center gap-2">
+      <Calculator className="w-6 h-6 text-orange-500 group-hover:scale-110 transition-transform duration-200" />
+      <h3 className="font-semibold text-sm text-slate-800 group-hover:text-orange-700 transition-colors">
+        PT Calculator
+      </h3>
+      <Button
+        size="sm"
+        className="w-full bg-orange-100 text-orange-700 font-bold hover:bg-orange-200 cursor-poiner transition-colors text-xs h-8"
+        aria-label="PT Calculator"
+      >
+        Calculate
+      </Button>
+    </CardContent>
+  </Card>
+
+  {/* Download Forms */}
+  <Card className="group text-center border-l-4 border-l-orange-500 shadow-sm hover:shadow-md transition-all rounded-xl cursor-pointer">
+    <CardContent className="p-4 flex flex-col items-center justify-center gap-2">
+      <FileText className="w-6 h-6 text-orange-500 group-hover:scale-110 transition-transform duration-200" />
+      <h3 className="font-semibold text-sm text-slate-800  group-hover:text-orange-700 transition-colors">
+        Download Forms
+      </h3>
+
+      {downloads?.form_url ? (
+        <Button
+          size="sm"
+          onClick={() => openProtectedDownload(router, downloads.form_url!)}
+          className="w-full bg-orange-100 text-orange-700 font-bold hover:bg-orange-200 transition-colors text-xs h-8 cursor-pointer"
+        >
+          {downloads?.form_title?.trim() || "Download"}
+        </Button>
+      ) : (
+        <Button
+          size="sm"
+          disabled
+          className="w-full bg-transparent text-slate-500 border border-slate-200 text-xs h-8 cursor-not-allowed"
+        >
+          Download
+        </Button>
+      )}
+    </CardContent>
+  </Card>
+
+  {/* Official Portal */}
+  <Card className="group text-center border-l-4 border-l-orange-500 shadow-sm hover:shadow-md transition-all rounded-xl cursor-pointer">
+    <CardContent className="p-4 flex flex-col items-center justify-center gap-2">
+      <Globe className="w-6 h-6 text-orange-500 group-hover:scale-110 transition-transform duration-200" />
+      <h3 className="font-semibold text-sm text-slate-800 group-hover:text-orange-700 transition-colors">
+        Official Portal
+      </h3>
+
+      <Button
+        asChild
+        size="sm"
+        disabled={!downloads?.website_url}
+        className={`w-full text-xs h-8 font-bold transition-colors ${
+          downloads?.website_url
+            ? "bg-orange-100 text-orange-700 hover:bg-orange-200"
+            : "bg-transparent text-slate-500 border border-slate-200 cursor-not-allowed"
+        }`}
+      >
+        <Link
+          href={downloads?.website_url ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit
+        </Link>
+      </Button>
+    </CardContent>
+  </Card>
+</div>
+
           </div>
+          
 
           {/* Right Sidebar */}
           <div className="lg:col-span-1 2xl:w-sm">

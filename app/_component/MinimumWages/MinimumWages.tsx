@@ -105,7 +105,7 @@ export default function MinimumWages({ items }: Props) {
               {filtered?.map((w, idx) => (
                 <div
                   key={`${w?.state_slug}-${idx}`}
-                  className="bg-orange-300 rounded-lg border border-gray-200 p-4 shadow-sm w-full"
+                  className=" rounded-lg border border-gray-200 p-4 shadow-sm w-full"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
@@ -121,7 +121,7 @@ export default function MinimumWages({ items }: Props) {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="text-xs text-orange-400"
+                        className="text-xs text-white bg-orange-400"
                         asChild
                         aria-label="view details"
                       >
