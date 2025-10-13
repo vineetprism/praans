@@ -162,11 +162,7 @@ export default function LeavesWorkingHoursDetails({
             <div className="block md:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="pb-2">
-<<<<<<< HEAD
-                  <CardTitle className="text-sm sm:text-base bg-orange-100 text-orange-700 font-bold text-center">
-=======
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-500 text-white text-center rounded-md">
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                     Act Information
                   </CardTitle>
                 </CardHeader>
@@ -233,11 +229,7 @@ export default function LeavesWorkingHoursDetails({
             <div className="block md:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="pb-2">
-<<<<<<< HEAD
-                  <CardTitle className="text-sm sm:text-base bg-orange-100 text-orange-700 font-bold text-center">
-=======
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-500 text-white text-center rounded-md">
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                     Leave Entitlements
                   </CardTitle>
                 </CardHeader>
@@ -304,11 +296,7 @@ export default function LeavesWorkingHoursDetails({
             <div className="block md:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="pb-2">
-<<<<<<< HEAD
-                  <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center">
-=======
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-500 text-white text-center rounded-md">
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                     Working Hours &amp; Overtime
                   </CardTitle>
                 </CardHeader>
@@ -344,11 +332,7 @@ export default function LeavesWorkingHoursDetails({
                     {tileFormUrl ? (
                       <Button
                         size="sm"
-<<<<<<< HEAD
-                        className="w-[80%] h-9 bg-orange-100 text-orange-700 font-bold text-sm truncate cursor-pointer rounded-md"
-=======
                         className="w-[80%] h-9 bg-orange-500 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                         onClick={() => openProtectedDownload(router, tileFormUrl)}
                       >
                         Download
@@ -374,11 +358,7 @@ export default function LeavesWorkingHoursDetails({
                     </h3>
                     <Button
                       size="sm"
-<<<<<<< HEAD
-                      className="w-[80%] h-9 bg-orange-100 text-orange-700 font-bold hover:bg-orange-400 text-sm truncate cursor-pointer rounded-md"
-=======
                       className="w-[80%] h-9 bg-orange-500 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                     >
                       Calculate
                     </Button>
@@ -396,11 +376,7 @@ export default function LeavesWorkingHoursDetails({
                       <Button
                         asChild
                         size="sm"
-<<<<<<< HEAD
-                        className="w-[80%] h-9 bg-orange-100 text-orange-700 font-bold hover:bg-orange-400 text-sm truncate rounded-md"
-=======
                         className="w-[80%] h-9 bg-orange-500 hover:bg-[#d14e0b] text-white text-sm truncate rounded-md"
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                       >
                         <Link
                           href={tileWebsiteUrl}
@@ -468,7 +444,7 @@ export default function LeavesWorkingHoursDetails({
                   </CardContent>
                 </Card>
 
-                {/* Official Website */}
+                {/* Official Website for this */}
                 <Card className="h-[140px] w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="h-full flex flex-col items-center justify-center">
                     <ExternalLink className="h-7 w-7 text-[#E85C0D] mb-2" />
