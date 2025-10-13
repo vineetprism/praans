@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
 "use client";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -260,7 +255,6 @@ export default function WelfareFundDetails({
             {/* Mobile Act Information — Responsive */}
             <div className="block md:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
-<<<<<<< HEAD
                 {/* Header */}
                 <CardHeader className="pb-0 px-3 pt-2">
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">
@@ -287,30 +281,6 @@ export default function WelfareFundDetails({
                               className="flex flex-col gap-1 border-b border-orange-100 pb-2 last:border-0 last:pb-0"
                             >
                               <span className="font-semibold text-orange-600">
-=======
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm sm:text-base font-bold bg-orange-500 text-white text-center">
-                    Act Information
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-2 sm:p-3 space-y-2 sm:space-y-3">
-                  {actRows?.map((r, idx) => (
-                    <div
-                      key={idx}
-                      className="rounded-lg p-2 sm:p-3 border text-xs sm:text-sm space-y-1 sm:space-y-2 w-full"
-                    >
-                      {actH?.map((h) => {
-                        const raw = cell(r, h);
-                        const low = h.toLowerCase();
-
-                        if (low === "frequency") {
-                          return (
-                            <div
-                              key={h}
-                              className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between sm:items-center"
-                            >
-                              <span className="font-medium text-gray-600 break-words">
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                                 {h}:
                               </span>
                               <Badge
@@ -323,10 +293,6 @@ export default function WelfareFundDetails({
                           );
                         }
 
-<<<<<<< HEAD
-                        // ✅ Form Field (Download link)
-=======
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                         if (low === "form") {
                           const href = normalizeUrl(
                             typeof raw === "string" ? raw : null,
@@ -334,17 +300,10 @@ export default function WelfareFundDetails({
                           );
                           return (
                             <div
-<<<<<<< HEAD
-                              key={`${h}-${i}`}
-                              className="flex flex-col gap-1 border-b border-orange-100 pb-2 last:border-0 last:pb-0"
-                            >
-                              <span className="font-semibold text-orange-600">
-=======
                               key={h}
                               className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between"
                             >
                               <span className="font-medium text-gray-600 break-words">
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                                 {h}:
                               </span>
                               {href ? (
@@ -352,11 +311,7 @@ export default function WelfareFundDetails({
                                   href={href}
                                   target="_blank"
                                   rel="noopener noreferrer"
-<<<<<<< HEAD
-                                  className="text-orange-600 underline break-words text-[13px]"
-=======
                                   className="text-orange-600 underline break-words text-right sm:text-left"
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                                   aria-label={`Download ${fileNameFromUrl(
                                     href
                                   )}`}
@@ -368,22 +323,14 @@ export default function WelfareFundDetails({
                                   {fileNameFromUrl(href)}
                                 </Link>
                               ) : (
-<<<<<<< HEAD
-                                <span className="text-gray-600">—</span>
-=======
                                 <span className="text-right sm:text-left">
                                   —
                                 </span>
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                               )}
                             </div>
                           );
                         }
 
-<<<<<<< HEAD
-                        // ✅ Website Field
-=======
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                         if (low === "website") {
                           const href =
                             normalizeUrl(
@@ -394,17 +341,10 @@ export default function WelfareFundDetails({
                             "";
                           return (
                             <div
-<<<<<<< HEAD
-                              key={`${h}-${i}`}
-                              className="flex flex-col gap-1 border-b border-orange-100 pb-2 last:border-0 last:pb-0"
-                            >
-                              <span className="font-semibold text-orange-600">
-=======
                               key={h}
                               className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between"
                             >
                               <span className="font-medium text-gray-600 break-words">
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                                 {h}:
                               </span>
                               {href ? (
@@ -412,40 +352,20 @@ export default function WelfareFundDetails({
                                   href={href}
                                   target="_blank"
                                   rel="noopener noreferrer"
-<<<<<<< HEAD
-                                  className="text-orange-600 underline break-words text-[13px]"
-=======
                                   className="text-orange-600 underline break-words text-right sm:text-left"
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                                   aria-label="Open Official Site"
                                 >
                                   Official Site
                                 </Link>
                               ) : (
-<<<<<<< HEAD
-                                <span className="text-gray-600">—</span>
-=======
                                 <span className="text-right sm:text-left">
                                   —
                                 </span>
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                               )}
                             </div>
                           );
                         }
 
-<<<<<<< HEAD
-                        // ✅ Default fields — label top, value below
-                        return (
-                          <div
-                            key={`${h}-${i}`}
-                            className="flex flex-col gap-1 border-b border-orange-100 pb-2 last:border-0 last:pb-0"
-                          >
-                            <span className="font-semibold text-orange-600 break-words">
-                              {h}:
-                            </span>
-                            <span className="text-gray-800 text-justify leading-relaxed break-words whitespace-pre-line">
-=======
                         return (
                           <div
                             key={h}
@@ -458,7 +378,6 @@ export default function WelfareFundDetails({
 
                             {/* Right value */}
                             <span className="sm:table-cell sm:align-top text-gray-800 break-words text-justify">
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                               {fmt(raw)}
                             </span>
                           </div>
@@ -466,12 +385,7 @@ export default function WelfareFundDetails({
                       })}
                     </div>
                   ))}
-<<<<<<< HEAD
-
-                  {(!actRows || actRows.length === 0) && (
-=======
                   {actRows?.length === 0 && (
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                     <div className="text-center text-sm text-gray-500">
                       No data available.
                     </div>
@@ -561,35 +475,6 @@ export default function WelfareFundDetails({
             {/* ===== Contribution (MOBILE) — Responsive ===== */}
             <div className="block md:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
-<<<<<<< HEAD
-                {/* Header */}
-                <CardHeader className="pb-0 px-3 pt-2">
-                  <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">
-                    Labour Welfare Fund Contribution
-                  </CardTitle>
-                </CardHeader>
-
-                {/* Content */}
-                <CardContent className="p-3 sm:p-4 mt-3 text-left">
-                  {contribRows?.map((r, idx) => (
-                    <div
-                      key={idx}
-                      className=" rounded-lg border border-orange-200 bg-white shadow-sm p-3 sm:p-4 text-xs sm:text-sm space-y-4"
-                    >
-                      {contribH?.map((h, i) => (
-                        <div
-                          key={`${h}-${i}`}
-                          className="flex flex-col gap-1 border-b border-orange-100 pb-2 last:border-0 last:pb-0"
-                        >
-                          {/* Label */}
-                          <span className="font-semibold text-orange-600 break-words">
-                            {h}:
-                          </span>
-
-                          {/* Value */}
-                          <span
-                            className={`text-gray-800 leading-relaxed break-words whitespace-pre-line ${
-=======
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-500 text-white text-center">
                     Labour Welfare Fund Contribution
@@ -611,7 +496,6 @@ export default function WelfareFundDetails({
                           </span>
                           <span
                             className={`break-words text-right sm:text-left ${
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                               ["Employee", "Employer", "Total"].includes(h)
                                 ? "text-green-600 font-semibold"
                                 : ""
@@ -623,12 +507,7 @@ export default function WelfareFundDetails({
                       ))}
                     </div>
                   ))}
-<<<<<<< HEAD
-
-                  {(!contribRows || contribRows.length === 0) && (
-=======
                   {contribRows?.length === 0 && (
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                     <div className="text-center text-sm text-gray-500">
                       No data available.
                     </div>
@@ -651,11 +530,7 @@ export default function WelfareFundDetails({
                     {formUrlNorm ? (
                       <Button
                         size="sm"
-<<<<<<< HEAD
-                        className="w-[80%] h-9 bg-orange-100 hover:bg-[#d14e0b] text-orange-700 text-sm truncate cursor-pointer rounded-md"
-=======
                         className="w-[80%] h-9 bg-orange-50 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                         title={formButtonLabel}
                         aria-label={formButtonLabel}
                         onClick={() =>
@@ -687,11 +562,7 @@ export default function WelfareFundDetails({
                       <Button
                         asChild
                         size="sm"
-<<<<<<< HEAD
-                        className="w-[80%] h-9 bg-orange-100 hover:bg-[#d14e0b] text-orange-700 text-sm truncate rounded-md"
-=======
                         className="w-[80%] h-9 bg-orange-700 hover:bg-[#d14e0b] text-white text-sm truncate rounded-md"
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                         aria-label="Visit Website"
                         title="Visit Website"
                       >
@@ -724,11 +595,7 @@ export default function WelfareFundDetails({
                     </h3>
                     <Button
                       size="sm"
-<<<<<<< HEAD
-                      className="w-[80%] h-9 bg-orange-100 hover:bg-[#d14e0b] text-orange-700 text-sm truncate cursor-pointer rounded-md"
-=======
                       className="w-[80%] h-9 bg-orange-50 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
->>>>>>> 1eef3543b58d8d167b3ac79fbf2711fd3f0809f5
                     >
                       Statement regarding notification
                     </Button>
@@ -842,7 +709,7 @@ export default function WelfareFundDetails({
             </div>
           </div>
 
-          {/* Sidebar - Responsive */}
+          {/* Sidebar*/}
           <div className="hidden lg:block w-full">
             <div className="sticky top-2 lg:top-3 w-full">
               <Card className="shadow-sm hover:shadow-md transition-shadow w-full">
