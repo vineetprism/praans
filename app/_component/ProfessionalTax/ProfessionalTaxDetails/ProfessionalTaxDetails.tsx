@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
