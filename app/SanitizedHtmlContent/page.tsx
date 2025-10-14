@@ -21,7 +21,8 @@ export default function SanitizedHtmlContent({ html }: SanitizedHtmlContentProps
           "p", "br", "strong", "em", "u", "b", "i",
           "h1", "h2", "h3", "h4", "h5", "h6",
           "ul", "ol", "li", "blockquote", "div", "span", "a",
-          "pre", "code", "mark", "strike","hr"
+          "pre", "code", "mark", "strike","hr",
+          "table", "thead", "tbody", "tr", "th", "td", "img"
         ],
         ALLOWED_ATTR: [
           "href", "target", "class", "id", "type", 
