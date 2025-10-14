@@ -648,7 +648,7 @@ export default function CsvTable() {
   const [data, setData] = useState<string[][]>([]);
 
   useEffect(() => {
-    fetch("/Book2.csv")
+    fetch("/Book5.csv")
       .then((res) => res.text())
       .then((csvText) => {
         Papa.parse<string[]>(csvText, {
@@ -887,7 +887,7 @@ export default function CsvTable() {
       {/* Popular Search Section on the Right - Hidden on Mobile when cards are shown */}
       <div className="hidden lg:block lg:w-1/4 ml-6">
         <div className="sticky top-3 lg:top-4 xl:top-5">
-          <Card className="shadow-lg hover:shadow-xl transition-shadow p-4 border-2 rounded-lg border-yellow-500">
+          <Card className="shadow-lg hover:shadow-xl transition-shadow p-4 border-2 rounded-lg">
             <CardContent className="p-4 bg-white rounded-md">
               <PopularSearch className="mb-0" />
             </CardContent>
