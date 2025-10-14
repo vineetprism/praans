@@ -99,8 +99,6 @@ export default function NationalFestivalHolidays({
                 </div>
               </div>
             </div>
-
-
             {enableFilters && (
               <div className="mb-6 sm:mb-8 md:mb-10">
                 <SearchAndStateFilter
@@ -154,7 +152,7 @@ export default function NationalFestivalHolidays({
                             href={`/national-festival-holidays-details/${state?.slug}`}
                             aria-label={`View ${state?.name} details`}
                           >
-                            <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-orange-50 hover:border-orange-200 transition-colors cursor-pointer group">
+                            <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-orange-50 hover:border-orange-200 transition-colors cursor-pointer group mt-2">
                               <div className="flex flex-col">
                                 <span className="font-medium text-blue-600 group-hover:text-orange-600 transition-colors">
                                   {index + 1}. {state?.name}
