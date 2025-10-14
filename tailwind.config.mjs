@@ -32,7 +32,7 @@ const config = {
       },
     },
     extend: {
-      // extra breakpoints
+    
       screens: {
         xs: "360px",
         "3xl": "1920px",
