@@ -1,30 +1,14 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Bot, Crown } from "lucide-react";
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
-  
-  
-    //   <section
-  //     className="
-    // relative flex items-center justify-center
-    // min-h-[clamp(22rem,62vh,78vh)]
-    // supports-[min-height:100dvh]:min-h-[clamp(22rem,62dvh,78dvh)]
-    // px-4 sm:px-6 lg:px-8 2xl:px-10
-    // pb-[max(env(safe-area-inset-bottom),_clamp(1rem,6vh,3rem))]
-    // landscape:pb-[clamp(.5rem,4vh,2rem)]
-    // bg-gradient-to-br from-orange-50 via-white to-blue-50
-    // overflow-hidden lg:pt-2
-  // "
-  //   >
-
-
-  <section
-  className="
+    <section
+      className="
   relative flex items-center justify-center
   min-h-[clamp(22rem,62vh,78vh)]
   supports-[min-height:100dvh]:min-h-[clamp(22rem,62dvh,78dvh)]
@@ -43,9 +27,7 @@ export default function HeroSection() {
   supports-[height:100dvh]:2xl:h-[95dvh]
 
 "
-
->
-
+    >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-orange-100/10  " />
       <div className="absolute inset-0 bg-gradient-to-bl from-orange-100/40 to-blue-100/20" />
@@ -76,7 +58,6 @@ export default function HeroSection() {
           className="text-[2rem] min-[360px]:text-[34px] min-[375px]:text-[37px] min-[390px]:text-[37px] min-[414px]:text-[37px] min-[430px]:text-[px] sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[6.2rem] 2xl:text-[6.5rem]
           font-black text-slate-900 tracking-tight"
         >
-
           Simplifying{" "}
           <span className="relative inline-block">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
@@ -123,44 +104,42 @@ export default function HeroSection() {
         </p>
 
         {/* AI ChatBot Badge */}
-
-        <div className="pt-3 sm:pt-8 md:pt-2 lg:pt-4 2xl:pt-4 ">
-
-          <div
+        <div className="pt-3 sm:pt-8 md:pt-2 lg:pt-4 2xl:pt-4">
+          <Link
+            href="/generate-ai-response"
+            aria-label="India's First Labour Law Compliance AI ChatBot"
             className="
-    relative inline-flex items-center
-    gap-2 sm:gap-2.5 lg:gap-3 2xl:gap-4
-    h-12 sm:h-9 md:h-10 lg:h-14 2xl:h-16
-    px-3 sm:px-4 lg:px-5 2xl:px-6
-    rounded-full ring-1 ring-orange-500/50
-    bg-gradient-to-r from-orange-600 to-red-600
-    text-white shadow-[0_12px_28px_rgba(234,88,12,0.25)] cursor-pointer
-  "
+      relative z-10 inline-flex items-center
+      gap-2 sm:gap-2.5 lg:gap-3 2xl:gap-4
+      h-12 sm:h-9 md:h-10 lg:h-14 2xl:h-16
+      px-3 sm:px-4 lg:px-5 2xl:px-6
+      rounded-full ring-1 ring-orange-500/50
+      bg-gradient-to-r from-orange-600 to-red-600
+      text-white shadow-[0_12px_28px_rgba(234,88,12,0.25)]
+    "
           >
             <Bot className="w-10 h-10 sm:w-6 sm:h-6 lg:w-7 lg:h-7 2xl:w-8 2xl:h-8" />
-            <Link href="/generate-ai-response" aria-label="India's First Labour Law Compliance AI ChatBot">
-              <span className="relative z-10 font-black tracking-tight text-[16px] sm:text-xs md:text-xl lg:text-2xl lg:py-30 2xl:text-3xl">
-                India&apos;s First Labour Law Compliance AI ChatBot
-              </span>
-            </Link>
-            <Crown className=" w-10 h-10 sm:w-5 sm:h-5 lg:w-6 lg:h-6 2xl:w-7 2xl:h-7 text-yellow-300" />
-          </div>
+            <span className="font-black tracking-tight text-[16px] sm:text-xs md:text-xl lg:text-2xl 2xl:text-3xl">
+              India&apos;s First Labour Law Compliance AI ChatBot
+            </span>
+            <Crown className="w-10 h-10 sm:w-5 sm:h-5 lg:w-6 lg:h-6 2xl:w-7 2xl:h-7 text-yellow-300" />
+          </Link>
         </div>
-
 
         {/* CTA Buttons */}
         <div
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 2xl:gap-6 
           justify-center max-w-lg sm:max-w-2xl 2xl:max-w-3xl mx-auto 
-          pt-6 sm:pt-8 lg:pt-2 2xl:-mt-4">
+          pt-6 sm:pt-8 lg:pt-2 2xl:-mt-4"
+        >
           <Button
             size="lg"
-            className="bg-gradient-to-r bg-blue-950 hover:bg-blue-900 
+            className="bg-gradient-to-r bg-blue-950 hover:bg-gray-950 
               text-white text-xs sm:text-sm lg:text-[1rem] 2xl:text-xl 
               px-4 sm:px-5 2xl:px-8 lg:h-11
               py-3 sm:py-2.5 2xl:py-6
-              shadow-md hover:shadow-orange-500/25 rounded-lg font-bold w-full sm:w-auto
-              " 
+              shadow-md hover:shadow-orange-500/25 rounded-lg font-bold w-full sm:w-auto cursor-pointer
+              "
             aria-label="Get a Free Demo Of Software"
           >
             Get a Free Demo Of Software
@@ -168,11 +147,12 @@ export default function HeroSection() {
           </Button>
           <Button
             size="lg"
-            className="text-white bg-blue-950 hover:bg-blue-900 
+            className="text-white bg-blue-950 hover:bg-gray-950 
               text-xs sm:text-sm lg:text-[1rem] 2xl:text-xl 
               px-4 sm:px-5 2xl:px-8 
               py-2 sm:py-2.5 2xl:py-6 
-              rounded-lg font-bold w-full sm:w-auto lg:h-11"
+              rounded-lg font-bold w-full sm:w-auto lg:h-11
+              cursor-pointer"
             aria-label="Talk to Our Compliance Experts"
           >
             Talk to Our Compliance Experts
@@ -182,8 +162,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
-
-
-
-  

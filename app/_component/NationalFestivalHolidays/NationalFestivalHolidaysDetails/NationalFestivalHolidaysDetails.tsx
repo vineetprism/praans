@@ -156,7 +156,7 @@ export default function NationalFestivalHolidaysDetails({ initialData }: Props) 
             <div className="sm:shrink-0">
               <Button
                 onClick={handleDownload}
-                className="bg-orange-500 hover:bg-orange-600 text-white w-full sm:w-auto"
+                className="bg-orange-500 hover:bg-orange-600 text-white w-full sm:w-auto cursor-pointer"
                 aria-label="Download NFH"
               >
                 <Download className="w-4 h-4 mr-2" /> Download NFH

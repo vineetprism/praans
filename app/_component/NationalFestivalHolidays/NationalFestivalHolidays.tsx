@@ -178,7 +178,7 @@ export default function NationalFestivalHolidays({
                       <div className="space-y-3">
                         {filteredNonApplicableStates?.length === 0 && (
                           <div className="text-sm text-gray-600">
-                            No non-applicable states found.
+                            No non-applicable states found.     
                           </div>
                         )}
                         {filteredNonApplicableStates?.map((state, index) => (
