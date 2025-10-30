@@ -22,6 +22,7 @@ import {
   handleAutoDownloadOnReturn,
 } from "@/lib/download-auth";
 
+
 /* =========================
    Helpers
    ========================= */
@@ -56,16 +57,44 @@ function GenericTable({
   block,
   emphasizeCols = [],
   linkifyCols = [],
+  vertical = false,
 }: {
   block: TableBlockType;
   emphasizeCols?: string[];
   linkifyCols?: string[];
+  vertical?: boolean;
+  
 }) {
   const router = useRouter();
   if (!block?.headers?.length) return null;
+  
 
   const emSet = new Set(emphasizeCols.map((h) => h.toLowerCase()));
   const linkSet = new Set(linkifyCols.map((h) => h.toLowerCase()));
+
+    // ✅ If vertical layout (for Act Information)
+  if (vertical) {
+    const row = block.rows?.[0] || {};
+    return (
+      <div className="overflow-x-auto">
+        <table className="border border-orange-300 border-collapse w-full">
+          <tbody>
+            {block.headers.map((header, idx) => (
+              <tr key={idx} className="border border-orange-300">
+                <td className="bg-orange-100 text-orange-700 font-bold text-sm p-2 w-[30%] border border-orange-300">
+                  {header}
+                </td>
+                <td className="text-gray-800 text-sm p-2 border border-orange-300">
+                  {String(getCell(row, header) || "-")}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
 
   return (
     <div className="overflow-x-auto">
@@ -200,7 +229,7 @@ function GenericMobileBlock({
                     return (
                       <div
                         key={h}
-                        className="flex justify-between  border-orange-300 pb-1"
+                        className="flex justify-between border-orange-300 pb-1"
                       >
                         <span
                           className={`font-medium ${
@@ -212,9 +241,9 @@ function GenericMobileBlock({
                           {h}:
                         </span>
                         <span
-                          className={`break-words text-right max-w-xs ${
+                          className={`break-words pl-10 text-justify max-w-xs  ${
                             numericRow && isCategoryCol
-                              ? " text-orange-500 font-bold px-1 rounded"
+                              ? " text-orange-500 font-bold px-1 rounded "
                               : "text-gray-800"
                           }`}
                         >
@@ -325,6 +354,7 @@ export default function ProfessionalTaxDetails({
                 linkifyCols={["Form", "Website"]}
               />
             </div>
+            
             <Card className="hidden lg:block mb-3 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-base lg:text-lg font-bold">
@@ -335,6 +365,7 @@ export default function ProfessionalTaxDetails({
                 <GenericTable
                   block={act_information}
                   linkifyCols={["Form", "Website"]}
+                  vertical
                 />
               </CardContent>
             </Card>

@@ -261,131 +261,31 @@ export default function WelfareFundDetails({
                     Act Information
                   </CardTitle>
                 </CardHeader>
-
-                {/* Content */}
                 <CardContent className="p-3 sm:p-4 mt-3 text-left">
-                  {actRows?.map((r, idx) => (
-                    <div
-                      key={idx}
-                      className="rounded-lg border border-orange-200 bg-white shadow-sm p-3 sm:p-4 text-xs sm:text-sm space-y-4"
-                    >
-                      {actH?.map((h, i) => {
-                        const raw = cell(r, h);
-                        const low = h.toLowerCase();
-
-                        // ✅ Frequency Field (with Badge)
-                        if (low === "frequency") {
-                          return (
-                            <div
-                              key={`${h}-${i}`}
-                              className="flex flex-col gap-1 border-b border-orange-100 pb-2 last:border-0 last:pb-0"
-                            >
-                              <span className="font-semibold text-orange-600">
-                                {h}:
-                              </span>
-                              <Badge
-                                variant="secondary"
-                                className="bg-green-100 text-green-800 text-xs w-fit"
-                              >
-                                {fmt(raw)}
-                              </Badge>
-                            </div>
-                          );
-                        }
-
-                        if (low === "form") {
-                          const href = normalizeUrl(
-                            typeof raw === "string" ? raw : null,
-                            apiBase
-                          );
-                          return (
-                            <div
-                              key={h}
-                              className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between"
-                            >
-                              <span className="font-medium text-gray-600 break-words">
-                                {h}:
-                              </span>
-                              {href ? (
-                                <Link
-                                  href={href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-orange-600 underline break-words text-right sm:text-left"
-                                  aria-label={`Download ${fileNameFromUrl(
-                                    href
-                                  )}`}
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    openProtectedDownload(router, href);
-                                  }}
-                                >
-                                  {fileNameFromUrl(href)}
-                                </Link>
-                              ) : (
-                                <span className="text-right sm:text-left">
-                                  —
-                                </span>
-                              )}
-                            </div>
-                          );
-                        }
-
-                        if (low === "website") {
-                          const href =
-                            normalizeUrl(
-                              typeof raw === "string" ? raw : null,
-                              apiBase
-                            ) ||
-                            websiteUrlNorm ||
-                            "";
-                          return (
-                            <div
-                              key={h}
-                              className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between"
-                            >
-                              <span className="font-medium text-gray-600 break-words">
-                                {h}:
-                              </span>
-                              {href ? (
-                                <Link
-                                  href={href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-orange-600 underline break-words text-right sm:text-left"
-                                  aria-label="Open Official Site"
-                                >
-                                  Official Site
-                                </Link>
-                              ) : (
-                                <span className="text-right sm:text-left">
-                                  —
-                                </span>
-                              )}
-                            </div>
-                          );
-                        }
-
-                        return (
+                  {actRows?.length ? (
+                    actRows.map((r, idx) => (
+                      <div
+                        key={idx}
+                        className="rounded-lg border border-orange-200 bg-white shadow-sm p-3 sm:p-4 text-xs sm:text-sm divide-y divide-orange-100"
+                      >
+                        {actH?.map((h, i) => (
                           <div
-                            key={h}
-                            className="flex flex-col sm:table-row gap-1 sm:gap-0"
+                            key={i}
+                            className="py-2 first:pt-0 last:pb-0 border-b border-orange-100 last:border-0"
                           >
-                            {/* Left label */}
-                            <span className="sm:table-cell sm:align-top font-medium text-orange-500 sm:w-[38%] sm:pr-2 break-words">
-                              {h}:
-                            </span>
-
-                            {/* Right value */}
-                            <span className="sm:table-cell sm:align-top text-gray-800 break-words text-justify">
-                              {fmt(raw)}
-                            </span>
+                            <div className="flex">
+                              <span className="font-semibold text-orange-600 min-w-[130px]">
+                                {h}:
+                              </span>
+                              <span className="text-gray-800 text-justify leading-relaxed break-words">
+                                {fmt(cell(r, h))}
+                              </span>
+                            </div>
                           </div>
-                        );
-                      })}
-                    </div>
-                  ))}
-                  {actRows?.length === 0 && (
+                        ))}
+                      </div>
+                    ))
+                  ) : (
                     <div className="text-center text-sm text-gray-500">
                       No data available.
                     </div>
@@ -432,20 +332,10 @@ export default function WelfareFundDetails({
                       <tbody>
                         {contribRows?.map((r, ridx) => (
                           <tr key={ridx} className="bg-white">
-                            {contribH?.map((h, cidx) => (
+                            {contribH?.map((h) => (
                               <td
                                 key={h}
-                                className={[
-                                  "px-2 sm:px-3 lg:px-4 py-2 sm:py-4 text-xs sm:text-sm text-gray-900 align-top",
-                                  // thin orange grid exactly like screenshot
-                                  "border border-orange-500",
-                                  // first column left, others center (matches ref)
-                                  cidx === 0 ? "text-left" : "text-center",
-                                  // green emphasis for numeric columns shown in ref
-                                  ["Employee", "Employer", "Total"].includes(h)
-                                    ? "text-green-700 font-semibold"
-                                    : "",
-                                ].join(" ")}
+                                className="px-2 sm:px-3 lg:px-4 py-2 sm:py-4 text-xs sm:text-sm text-gray-900 align-top border border-orange-500 text-center"
                               >
                                 <span className="break-words">
                                   {fmt(cell(r, h))}
@@ -476,38 +366,36 @@ export default function WelfareFundDetails({
             <div className="block md:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm sm:text-base font-bold bg-orange-500 text-white text-center">
+                  <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">
                     Labour Welfare Fund Contribution
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-2 sm:p-3 space-y-2 sm:space-y-3">
-                  {contribRows?.map((r, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-white rounded-lg p-2 sm:p-3 border text-xs sm:text-sm space-y-1 sm:space-y-2 w-full"
-                    >
-                      {contribH?.map((h) => (
-                        <div
-                          key={h}
-                          className="flex flex-col sm:flex-row gap-1 sm:gap-2 sm:justify-between"
-                        >
-                          <span className="font-medium text-orange-500 break-words">
-                            {h}:
-                          </span>
-                          <span
-                            className={`break-words text-right sm:text-left ${
-                              ["Employee", "Employer", "Total"].includes(h)
-                                ? "text-green-600 font-semibold"
-                                : ""
-                            }`}
+
+                <CardContent className="p-3 sm:p-4 space-y-3">
+                  {contribRows?.length ? (
+                    contribRows.map((r, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-white rounded-lg p-3 sm:p-4 border border-orange-200 shadow-sm text-xs sm:text-sm divide-y divide-orange-100"
+                      >
+                        {contribH?.map((h, i) => (
+                          <div
+                            key={i}
+                            className="py-2 first:pt-0 last:pb-0 border-b border-orange-100 last:border-0"
                           >
-                            {fmt(cell(r, h))}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                  {contribRows?.length === 0 && (
+                            <div className="flex">
+                              <span className="font-semibold text-orange-600 min-w-[130px]">
+                                {h}:
+                              </span>
+                              <span className="text-gray-800 leading-relaxed break-words text-justify">
+                                {fmt(cell(r, h))}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ))
+                  ) : (
                     <div className="text-center text-sm text-gray-500">
                       No data available.
                     </div>
@@ -517,20 +405,24 @@ export default function WelfareFundDetails({
             </div>
 
             {/* --------- Quick Actions - Fully Responsive --------- */}
-            <div className="w-full">
-              {/* Mobile: Single column, centered */}
-              <div className="flex flex-col sm:hidden gap-3 items-center w-full mb-4">
+
+            <div className="w-full mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 w-full">
                 {/* Download Form */}
-                <Card className="h-[140px] w-full max-w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
+                <Card className="h-[140px] w-full text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="h-full flex flex-col items-center justify-center px-2">
                     <Download className="h-7 w-7 text-[#E85C0D] mb-2" />
-                    <h3 className="font-semibold mb-2 text-sm leading-tight text-[#222] px-2 break-words">
+                    <h3 className="font-semibold mb-2 text-sm lg:text-base leading-tight text-[#222] px-2 break-words">
                       Download Form
                     </h3>
+
                     {formUrlNorm ? (
                       <Button
                         size="sm"
-                        className="w-[80%] h-9 bg-orange-50 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
+                        className="
+              w-[90%] h-9 truncate rounded-md font-semibold
+              bg-orange-100 text-orange-700 hover:bg-orange-200 hover:cursor-pointer
+            "
                         title={formButtonLabel}
                         aria-label={formButtonLabel}
                         onClick={() =>
@@ -552,17 +444,21 @@ export default function WelfareFundDetails({
                 </Card>
 
                 {/* Official Website */}
-                <Card className="h-[140px] w-full max-w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
+                <Card className="h-[140px] w-full text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="h-full flex flex-col items-center justify-center px-2">
                     <ExternalLink className="h-7 w-7 text-[#E85C0D] mb-2" />
-                    <h3 className="font-semibold mb-2 text-sm leading-tight text-[#222] px-2 break-words">
+                    <h3 className="font-semibold mb-2 text-sm lg:text-base leading-tight text-[#222] px-2 break-words">
                       Official Website
                     </h3>
+
                     {websiteUrlNorm ? (
                       <Button
                         asChild
                         size="sm"
-                        className="w-[80%] h-9 bg-orange-700 hover:bg-[#d14e0b] text-white text-sm truncate rounded-md"
+                        className="
+              w-[90%] h-9 truncate rounded-md font-semibold
+              bg-orange-100 text-orange-700 hover:bg-orange-200 hover:cursor-pointer
+            "
                         aria-label="Visit Website"
                         title="Visit Website"
                       >
@@ -586,93 +482,8 @@ export default function WelfareFundDetails({
                   </CardContent>
                 </Card>
 
-                {/* Static Download Notification */}
-                <Card className="h-[140px] w-full max-w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
-                  <CardContent className="h-full flex flex-col items-center justify-center px-2">
-                    <Download className="h-7 w-7 text-[#E85C0D] mb-2" />
-                    <h3 className="font-bold mb-2 text-sm leading-tight text-[#222] px-2 break-words">
-                      Download Notification
-                    </h3>
-                    <Button
-                      size="sm"
-                      className="w-[80%] h-9 bg-orange-50 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
-                    >
-                      Statement regarding notification
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Tablet & Desktop: Flex wrap layout */}
-              <div className="hidden sm:flex flex-wrap justify-center md:justify-start gap-3 lg:gap-4 mb-4 lg:mb-3 w-full">
-                {/* Download Form */}
-                <Card className="h-[140px] w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
-                  <CardContent className="h-full flex flex-col items-center justify-center px-2">
-                    <Download className="h-7 w-7 text-[#E85C0D] mb-2" />
-                    <h3 className="font-semibold mb-2 text-sm lg:text-base leading-tight text-[#222] px-2 break-words">
-                      Download Form
-                    </h3>
-                    {formUrlNorm ? (
-                      <Button
-                        size="sm"
-                        className="w-[80%] h-9 bg-orange-100 hover:bg-orange-200 font-bold text-orange-700 text-sm truncate cursor-pointer rounded-md"
-                        title={formButtonLabel}
-                        aria-label={formButtonLabel}
-                        onClick={() =>
-                          openProtectedDownload(router, formUrlNorm)
-                        }
-                      >
-                        {formButtonLabel}
-                      </Button>
-                    ) : (
-                      <Button
-                        size="sm"
-                        disabled
-                        className="w-[80%] h-9 text-sm truncate"
-                      >
-                        No Form Available
-                      </Button>
-                    )}
-                  </CardContent>
-                </Card>
-
-                {/* Official Website */}
-                <Card className="h-[140px] w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
-                  <CardContent className="h-full flex flex-col items-center justify-center px-2">
-                    <ExternalLink className="h-7 w-7 text-[#E85C0D] mb-2" />
-                    <h3 className="font-semibold mb-2 text-sm lg:text-base leading-tight text-[#222] px-2 break-words">
-                      Official Website
-                    </h3>
-                    {websiteUrlNorm ? (
-                      <Button
-                        asChild
-                        size="sm"
-                        className="w-[80%] h-9 bg-orange-100 hover:bg-orange-200 font-bold text-orange-700 text-sm truncate rounded-md"
-                        aria-label="Visit Website"
-                        title="Visit Website"
-                      >
-                        <Link
-                          href={websiteUrlNorm}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Visit Website
-                        </Link>
-                      </Button>
-                    ) : (
-                      <Button
-                        size="sm"
-                        disabled
-                        className="w-[80%] h-9 text-sm truncate"
-                      >
-                        Not Available
-                      </Button>
-                    )}
-                  </CardContent>
-                </Card>
-
-                {/* Download Notification (Dynamic) */}
-                <Card className="h-[140px] w-full max-w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
+                {/* Download Notification */}
+                <Card className="h-[140px] w-full text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="h-full flex flex-col items-center justify-center px-2">
                     <Download className="h-7 w-7 text-[#E85C0D] mb-2" />
                     <h3 className="font-bold mb-2 text-sm leading-tight text-[#222] px-2 break-words">
@@ -682,7 +493,10 @@ export default function WelfareFundDetails({
                     {data.downloads?.noti_url ? (
                       <Button
                         size="sm"
-                        className="w-[80%] h-9 bg-orange-100 hover:bg-orange-200 font-bold text-orange-700 cursor-pointer  text-sm truncate rounded-md "
+                        className="
+              w-[90%] h-9 truncate rounded-md font-semibold
+              bg-orange-100 text-orange-700 hover:bg-orange-200 hover:cursor-pointer
+            "
                         aria-label="Download Notification"
                         title="Download Notification"
                         onClick={() =>

@@ -1,7 +1,7 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Building2, MapPin } from "lucide-react";
+import { Building2, ChevronRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
@@ -39,24 +39,27 @@ export default function NationalFestivalHolidays({
   const applicableStates = initialData?.applicable_states ?? [];
   const nonApplicableStates = initialData?.non_applicable_states ?? [];
 
-  const pageDescription = applicableStates?.[0]?.notes ||
+  const pageDescription =
+    applicableStates?.[0]?.notes ||
     "National festivals are celebrations that reflect India's rich cultural diversity, religious traditions, and historical significance. They bring communities together and are officially recognized as public holidays across different states and regions.";
 
-  const transformedApplicableStates = applicableStates.map(state => ({
+  const transformedApplicableStates = applicableStates.map((state) => ({
     name: state.state,
     slug: state.state_slug,
   }));
 
-  const transformedNonApplicableStates = nonApplicableStates.map(state => ({
+  const transformedNonApplicableStates = nonApplicableStates.map((state) => ({
     name: state.state,
     slug: state.state_slug,
   }));
 
   const stateOptions = useMemo(() => {
     const all = new Set<string>(["All States"]);
-    transformedApplicableStates.forEach(s => s?.name && all.add(s.name));
-    transformedNonApplicableStates.forEach(s => s?.name && all.add(s.name));
-    return Array.from(all).sort((a, b) => a.localeCompare(b)).map(s => ({ label: s, value: s }));
+    transformedApplicableStates.forEach((s) => s?.name && all.add(s.name));
+    transformedNonApplicableStates.forEach((s) => s?.name && all.add(s.name));
+    return Array.from(all)
+      .sort((a, b) => a.localeCompare(b))
+      .map((s) => ({ label: s, value: s }));
   }, [transformedApplicableStates, transformedNonApplicableStates]);
 
   const filteredApplicableStates = useMemo(() => {
@@ -78,7 +81,8 @@ export default function NationalFestivalHolidays({
   }, [transformedNonApplicableStates, q, stateFilter]);
 
   const hasError = initialData === null;
-  const isEmpty = !hasError &&
+  const isEmpty =
+    !hasError &&
     transformedApplicableStates.length === 0 &&
     transformedNonApplicableStates.length === 0;
 
@@ -94,7 +98,11 @@ export default function NationalFestivalHolidays({
                     National & Festival Holidays :
                   </h1>
                   <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-[0.9rem] text-justify leading-relaxed">
-                    Discover the importance of National & Festival Holidays and their legal requirements for businesses. Ensure compliance with labour laws while giving employees their entitled holidays, fostering harmony, productivity, and workplace balance.
+                    Discover the importance of National & Festival Holidays and
+                    their legal requirements for businesses. Ensure compliance
+                    with labour laws while giving employees their entitled
+                    holidays, fostering harmony, productivity, and workplace
+                    balance.
                   </p>
                 </div>
               </div>
@@ -130,70 +138,78 @@ export default function NationalFestivalHolidays({
                     State-wise Holiday Matrix
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="grid lg:grid-cols-2 gap-8">
-                    <div>
-                      <div className="flex items-center gap-2 mb-4">
-                        <MapPin className="h-5 w-5 text-blue-600" />
-                        <h3 className="text-lg font-semibold text-gray-900">
-                          Applicable States ({filteredApplicableStates?.length})
-                        </h3>
-                      </div>
 
-                      <div className="space-y-3">
+                <CardContent>
+                  <div className="flex flex-col gap-10">
+                    {/* ✅ Applicable States */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                        Applicable States ({filteredApplicableStates?.length})
+                      </h3>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {filteredApplicableStates?.length === 0 && (
                           <div className="text-sm text-gray-600">
                             No applicable states found.
                           </div>
                         )}
+
                         {filteredApplicableStates?.map((state, index) => (
                           <Link
                             key={state?.slug}
                             href={`/national-festival-holidays-details/${state?.slug}`}
                             aria-label={`View ${state?.name} details`}
                           >
-                            <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-orange-50 hover:border-orange-200 transition-colors cursor-pointer group mt-2">
-                              <div className="flex flex-col">
-                                <span className="font-medium text-blue-600 group-hover:text-orange-600 transition-colors">
+                            <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 hover:border-orange-300 hover:shadow-md rounded-lg p-4 flex items-center justify-between ">
+                              {/* Left Section */}
+                              <div className="flex-1">
+                                <p className="font-semibold text-slate-800 text-sm mb-1">
                                   {index + 1}. {state?.name}
-                                </span>
+                                </p>
                               </div>
-                              <Badge className="bg-green-100 text-green-800">
-                                Applicable
-                              </Badge>
+
+                              {/* Right Arrow Icon */}
+                              <div className="flex-shrink-0 ml-3">
+                                <div className="w-7 h-7 sm:w-8 sm:h-8 bg-orange-500 rounded-full flex items-center justify-center ">
+                                  <ChevronRight className="w-4 h-4 text-white" />
+                                </div>
+                              </div>
                             </div>
                           </Link>
                         ))}
                       </div>
                     </div>
 
+                    {/* 🚫 Non-Applicable States */}
                     <div>
-                      <div className="flex items-center gap-2 mb-4">
-                        <Building2 className="h-5 w-5 text-gray-600" />
-                        <h3 className="text-lg font-semibold text-gray-900">
-                          Non-Applicable States ({filteredNonApplicableStates?.length})
-                        </h3>
-                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                        Non-Applicable States (
+                        {filteredNonApplicableStates?.length})
+                      </h3>
 
-                      <div className="space-y-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {filteredNonApplicableStates?.length === 0 && (
                           <div className="text-sm text-gray-600">
-                            No non-applicable states found.     
+                            No non-applicable states found.
                           </div>
                         )}
+
                         {filteredNonApplicableStates?.map((state, index) => (
                           <div
                             key={state?.slug}
-                            className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border"
+                            className="bg-gray-50 border border-gray-200 hover:border-gray-300 rounded-lg p-4 flex items-center justify-between hover:shadow-md"
                           >
-                            <div className="flex flex-col">
-                              <span className="text-gray-600 font-medium">
+                            <div className="flex-1">
+                              <p className="font-medium text-gray-800 text-sm mb-1">
                                 {index + 1}. {state?.name}
-                              </span>
+                              </p>
                             </div>
-                            <Badge className="bg-gray-100 text-gray-600">
-                              Not Applicable
-                            </Badge>
+
+                            <div className="flex-shrink-0 ml-3">
+                              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-orange-500 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:translate-x-1">
+                                <ChevronRight className="w-4 h-4 text-white" />
+                              </div>
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -218,3 +234,8 @@ export default function NationalFestivalHolidays({
     </div>
   );
 }
+
+
+
+
+

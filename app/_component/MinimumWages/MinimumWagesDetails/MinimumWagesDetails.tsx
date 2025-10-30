@@ -1242,8 +1242,6 @@ export default function MinimumWageDetails({
                   </div>
                 </div>
               )}
-
-              {/* <DesktopOrangeGrid block={{ ...mwTable, title: mwTable?.title || "Minimum Wage Rates" }} /> */}
               <DesktopOrangeGrid
                 block={{
                   ...mwTable,
@@ -1251,13 +1249,6 @@ export default function MinimumWageDetails({
                 }}
                 stateSlug={stateSlug}
               />
-
-              {/* <MobileCards
-                block={{
-                  ...mwTable,
-                  title: mwTable?.title || "Minimum Wage Rates",
-                }}
-              /> */}
               <MobileCards
                 block={normalizeMWRates(
                   mwTable,
@@ -1297,7 +1288,10 @@ export default function MinimumWageDetails({
                   data.interest_penality,
                   data.interest_penality?.title
                 )}
-                title={data.interest_penality?.title || "Interest & Penalty"}
+                title={
+                  data.interest_penality?.title ||
+                  "Penalty & Compensation for paying less than Minimum Wages"
+                }
               />
             )}
 
