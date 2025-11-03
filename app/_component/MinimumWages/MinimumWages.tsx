@@ -187,52 +187,48 @@ export default function MinimumWages({ items }: Props) {
               <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-3 md:mb-4">
                 State-wise Wages :
               </h3>
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden w-full">
+
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden w-full ">
                 <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-gray-200">
+                  <table className="min-w-full border-collapse">
                     <thead className="bg-orange-500">
                       <tr>
-                        <th className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 text-left text-xs md:text-xs lg:text-sm font-semibold text-white tracking-wide">
+                        <th className="px-4 py-3 text-center text-sm font-semibold text-white border-r border-orange-400 ">
                           State
                         </th>
-                        <th className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 text-left text-xs md:text-xs lg:text-sm font-semibold text-white tracking-wide">
+                        <th className="px-4 py-3 text-center text-sm font-semibold text-white border-r border-orange-400">
                           Updated Date
                         </th>
-                        <th className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 text-left text-xs md:text-xs lg:text-sm font-semibold text-white tracking-wide">
+                        <th className="px-4 py-3 text-center text-sm font-semibold text-white border-r border-orange-400">
                           Effective Date
                         </th>
-                        <th className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 text-left text-xs md:text-xs lg:text-sm font-semibold text-white tracking-wide">
+                        <th className="px-4 py-3 text-center text-sm font-semibold text-white">
                           Action
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+
+                    <tbody>
                       {filtered?.map((w, idx) => (
                         <tr
                           key={`${w?.state_slug}-${idx}`}
-                          className="hover:bg-orange-50"
+                          className="hover:bg-orange-50 transition-all border-b border-orange-500 text-center"
                         >
-                          <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap">
-                            <div className="text-xs md:text-xs lg:text-sm font-medium text-gray-900">
-                              {w?.state}
-                            </div>
+                          <td className="px-4 py-3 text-sm text-gray-900 font-medium border-r border-orange-500">
+                            {w?.state}
                           </td>
-                          <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap">
-                            <div className="text-xs md:text-xs lg:text-sm text-gray-700">
-                              {w?.updated_date}
-                            </div>
+                          <td className="px-4 py-3 text-sm text-gray-700 border-r border-orange-500">
+                            {w?.updated_date}
                           </td>
-                          <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap">
-                            <div className="text-xs md:text-xs lg:text-sm text-gray-700">
-                              {w?.effective_date}
-                            </div>
+                          <td className="px-4 py-3 text-sm text-gray-700 border-r border-orange-500">
+                            {w?.effective_date}
                           </td>
-                          <td className="px-2 md:px-3 lg:px-4 py-2 md:py-2.5 lg:py-3 whitespace-nowrap text-xs md:text-xs lg:text-sm font-medium">
+                          <td className="px-4 py-3 text-sm font-medium text-center">
                             <Button
                               variant="outline"
                               size="sm"
                               aria-label="view details"
-                              className="text-white bg-orange-400 hover:text-orange-600 text-xs px-2 py-1 h-7"
+                              className="text-white bg-orange-400 hover:bg-orange-500 hover:shadow-md text-xs px-3 py-2 h-7"
                               asChild
                             >
                               <Link

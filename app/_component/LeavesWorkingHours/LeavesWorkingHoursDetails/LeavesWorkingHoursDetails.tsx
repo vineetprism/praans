@@ -91,7 +91,7 @@ export default function LeavesWorkingHoursDetails({
             {/* Header Section */}
             <div className="mb-4 sm:mb-5 lg:mb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-3 w-full">
               <h1 className="text-lg sm:text-xl md:text-2xl lg:text-xl xl:text-2xl font-bold text-slate-800 break-words">
-                Leave &amp; Working Hours :
+                CLRA Applicability :
               </h1>
               <h2 className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl text-orange-600 font-semibold break-words">
                 {name}
@@ -161,8 +161,8 @@ export default function LeavesWorkingHoursDetails({
             {/* ===== Act Information (MOBILE) ===== */}
             <div className="block md:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm sm:text-base font-bold bg-orange-500 text-white text-center rounded-md">
+                <CardHeader className="bg-orange-200 text-orange-700 rounded pt-2">
+                  <CardTitle className="text-sm sm:text-base font-bold text-center ">
                     Act Information
                   </CardTitle>
                 </CardHeader>
@@ -188,7 +188,7 @@ export default function LeavesWorkingHoursDetails({
             <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
-                  Leave Entitlements
+                  Registration
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">
@@ -212,7 +212,7 @@ export default function LeavesWorkingHoursDetails({
                           {initialData.leave_entitlements.headers.map((h) => (
                             <td
                               key={h}
-                              className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 border border-orange-600 text-xs sm:text-sm text-gray-800 break-words"
+                              className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 border border-orange-600 text-xs sm:text-sm text-gray-800 break-words text-center"
                             >
                               {r[h] ?? "—"}
                             </td>
@@ -228,9 +228,9 @@ export default function LeavesWorkingHoursDetails({
             {/* ===== Leave Entitlements (MOBILE) ===== */}
             <div className="block md:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm sm:text-base font-bold bg-orange-500 text-white text-center rounded-md">
-                    Leave Entitlements
+                <CardHeader className="bg-orange-200 text-orange-700 rounded pt-2">
+                  <CardTitle className="text-sm sm:text-base font-bold text-center ">
+                    Registration
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-2 sm:p-3 space-y-2 sm:space-y-3">
@@ -255,7 +255,7 @@ export default function LeavesWorkingHoursDetails({
             <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
-                  Working Hours &amp; Overtime
+                 Licence
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">
@@ -279,7 +279,7 @@ export default function LeavesWorkingHoursDetails({
                           {initialData.working_hours.headers.map((h) => (
                             <td
                               key={h}
-                              className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 border border-orange-600 text-xs sm:text-sm text-gray-800 break-words"
+                              className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 border border-orange-600 text-xs sm:text-sm text-gray-800 break-words text-center"
                             >
                               {r[h] ?? "—"}
                             </td>
@@ -295,9 +295,9 @@ export default function LeavesWorkingHoursDetails({
             {/* ===== Working Hours (MOBILE) ===== */}
             <div className="block md:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm sm:text-base font-bold bg-orange-500 text-white text-center rounded-md">
-                    Working Hours &amp; Overtime
+                <CardHeader className=" bg-orange-200 text-orange-700 rounded pt-2">
+                  <CardTitle className="text-sm sm:text-base font-bold  text-center">
+                    Licence
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-2 sm:p-3 space-y-2 sm:space-y-3">
@@ -332,7 +332,7 @@ export default function LeavesWorkingHoursDetails({
                     {tileFormUrl ? (
                       <Button
                         size="sm"
-                        className="w-[80%] h-9 bg-orange-500 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
+                        className="w-[80%] h-9 bg-orange-200 hover:bg-[#d14e0b] text-orange-700 font-semibold text-sm truncate cursor-pointer rounded-md"
                         onClick={() => openProtectedDownload(router, tileFormUrl)}
                       >
                         Download
@@ -350,7 +350,7 @@ export default function LeavesWorkingHoursDetails({
                 </Card>
 
                 {/* Leave Calculator */}
-                <Card className="h-[140px] w-full max-w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
+                {/* <Card className="h-[140px] w-full max-w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="h-full flex flex-col items-center justify-center">
                     <Calculator className="h-7 w-7 text-[#E85C0D] mb-2" />
                     <h3 className="font-semibold mb-2 text-sm leading-tight text-[#222] px-2">
@@ -358,12 +358,12 @@ export default function LeavesWorkingHoursDetails({
                     </h3>
                     <Button
                       size="sm"
-                      className="w-[80%] h-9 bg-orange-500 hover:bg-[#d14e0b] text-white text-sm truncate cursor-pointer rounded-md"
+                      className="w-[80%] h-9 bg-orange-200 hover:bg-[#d14e0b] text-orange-700 font-semibold text-sm truncate cursor-pointer rounded-md"
                     >
                       Calculate
                     </Button>
                   </CardContent>
-                </Card>
+                </Card> */}
 
                 {/* Official Website */}
                 <Card className="h-[140px] w-full max-w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
@@ -376,7 +376,7 @@ export default function LeavesWorkingHoursDetails({
                       <Button
                         asChild
                         size="sm"
-                        className="w-[80%] h-9 bg-orange-500 hover:bg-[#d14e0b] text-white text-sm truncate rounded-md"
+                        className="w-[80%] h-9 bg-orange-200 hover:bg-[#d14e0b] text-orange-700 font-semibold text-sm truncate rounded-md"
                       >
                         <Link
                           href={tileWebsiteUrl}
@@ -429,7 +429,7 @@ export default function LeavesWorkingHoursDetails({
                 </Card>
 
                 {/* Leave Calculator */}
-                <Card className="h-[140px] w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
+                {/* <Card className="h-[140px] w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="h-full flex flex-col items-center justify-center">
                     <Calculator className="h-7 w-7 text-[#E85C0D] mb-2" />
                     <h3 className="font-semibold mb-2 text-sm lg:text-base leading-tight px-2">
@@ -442,7 +442,7 @@ export default function LeavesWorkingHoursDetails({
                       Calculate
                     </Button>
                   </CardContent>
-                </Card>
+                </Card> */}
 
                 {/* Official Website for this */}
                 <Card className="h-[140px] w-[330px] text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">

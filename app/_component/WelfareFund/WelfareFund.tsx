@@ -11,6 +11,7 @@ import {
   CalculatorIcon,
   Eye,
   MapPin,
+  ChevronRight,
 } from "lucide-react";
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
 import SearchAndStateFilter from "@/app/SearchAndStateFilter/page";
@@ -207,80 +208,65 @@ export default function WelfareFund({
                   <CardTitle>State-wise Applicability :</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                    {/* Applicable */}
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                        Applicable States
-                      </h3>
-                      {filteredApplicable?.length === 0 ? (
-                        <p className="text-sm text-gray-500">
-                          No matching states.
-                        </p>
-                      ) : (
-                        <div className="space-y-3">
-                          {filteredApplicable?.map((s, idx) => (
-                            <Link
-                              key={s?.state_slug}
-                              href={`/labour-welfare-fund-details/${s?.state_slug}`}
-                              aria-label="View State-wise Applicability"
-                            >
-                              <div className="flex items-center justify-between p-3 rounded-lg border hover:bg-orange-50 hover:border-orange-200 transition-colors cursor-pointer group mb-3">
-                                <div>
-                                  <span className="font-medium text-blue-600 group-hover:text-orange-600 transition-colors">
-                                    {idx + 1}. {s?.state_name}
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <MapPin className="w-4 h-4 text-green-600 group-hover:text-orange-500 transition-colors" />
-                                  <Badge
-                                    variant="secondary"
-                                    className="bg-green-100 text-green-800"
-                                  >
-                                    Applicable
-                                  </Badge>
-                                </div>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                  {/* ✅ Applicable States */}
+                  <div className="mb-10">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      Applicable States :
+                    </h3>
 
-                    {/* Non-Applicable (NOT clickable) */}
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                        Non-Applicable States
-                      </h3>
-                      {filteredNonApplicable?.length === 0 ? (
-                        <p className="text-sm text-gray-500">
-                          No matching states.
-                        </p>
-                      ) : (
-                        <div className="space-y-3">
-                          {filteredNonApplicable?.map((s, idx) => (
-                            <div
-                              key={s?.state_slug}
-                              aria-disabled
-                              className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border mb-3 cursor-not-allowed pointer-events-none"
-                            >
-                              <span className="text-gray-700">
-                                {idx + 1}. {s?.state_name}
-                              </span>
-                              <div className="flex items-center gap-2">
-                                <MapPin className="w-4 h-4 text-gray-400" />
-                                <Badge
-                                  variant="secondary"
-                                  className="bg-gray-100 text-gray-600"
-                                >
-                                  Not Applicable
-                                </Badge>
+                    {filteredApplicable?.length === 0 ? (
+                      <p className="text-sm text-gray-500">
+                        No matching states.
+                      </p>
+                    ) : (
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                        {filteredApplicable.map((s) => (
+                          <Link
+                            key={s.state_slug}
+                            href={`/labour-welfare-fund-details/${s.state_slug}`}
+                            aria-label={s.state_name}
+                          >
+                            <div className="bg-gradient-to-r from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-3 sm:p-4 flex items-center justify-between hover:shadow-md transition-shadow cursor-pointer">
+                              <h3 className="text-sm sm:text-base font-semibold text-slate-800 leading-tight line-clamp-2">
+                                {s.state_name}
+                              </h3>
+                              <div className="w-6 h-6 sm:w-7 sm:h-7 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                               </div>
                             </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* ✅ Non-Applicable States */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                      Non-Applicable States :
+                    </h3>
+
+                    {filteredNonApplicable?.length === 0 ? (
+                      <p className="text-sm text-gray-500">
+                        No matching states.
+                      </p>
+                    ) : (
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                        {filteredNonApplicable.map((s) => (
+                          <div
+                            key={s.state_slug}
+                            className="bg-gray-50 border border-gray-200 rounded-lg p-3 sm:p-4 flex items-center justify-between opacity-90"
+                          >
+                            <h3 className="text-sm sm:text-base font-semibold text-gray-700 leading-tight line-clamp-2">
+                              {s.state_name}
+                            </h3>
+                            <div className="w-6 h-6 sm:w-7 sm:h-7 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+                              <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>

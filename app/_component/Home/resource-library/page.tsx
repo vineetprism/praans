@@ -57,8 +57,8 @@ const categories = [
     href: "/professional-tax",
   },
   {
-    title: "Leave & Working Hours",
-    description: "Leave policies and working hour regulations",
+    title: "CLRA Applicability",
+    description: "CLRA Applicability regulations",
     icon: Clock,
     color: "bg-teal-500",
     href: "/leaves-working-hours",
