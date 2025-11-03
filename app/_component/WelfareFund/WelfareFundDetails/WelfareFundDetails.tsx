@@ -148,7 +148,21 @@ export default function WelfareFundDetails({
               <h2 className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl text-orange-600 font-semibold break-words">
                 {data?.state.name}
               </h2>
+              
             </div>
+            {/* Write-up Section (Dynamic) */}
+
+  {/* Write-up Section (Dynamic) */}
+{data?.writeup_space && (
+  <div className="mt-2 mb-4 p-3 bg-orange-50 rounded-md border border-orange-200 text-gray-800 text-sm leading-relaxed">
+    <div
+      dangerouslySetInnerHTML={{ __html: data.writeup_space }}
+    />
+  </div>
+)}
+
+
+
 
             {/* ===== Act Information (DESKTOP) - Responsive ===== */}
             <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
@@ -300,6 +314,7 @@ export default function WelfareFundDetails({
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Labour Welfare Fund Contribution
                 </CardTitle>
+                
               </CardHeader>
 
               <CardContent className="p-0">
