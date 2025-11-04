@@ -63,6 +63,7 @@ const categories = [
     color: "bg-teal-500",
     href: "/leaves-working-hours",
   },
+  
   {
     title: "Calculator",
     description: "Leave policies and working hour regulations",
