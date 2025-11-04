@@ -20,9 +20,7 @@ type WFResponse = {
 };
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
-// const API_BASE ="http://100.110.147.101:8000";
 
-// (optional) SEO
 export const metadata: Metadata = {
   title: "Labour Welfare Fund | State-wise Applicability & Tools",
   description:

@@ -1223,6 +1223,7 @@ export default function MinimumWageDetails({
               <h1 className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl font-bold text-slate-800 leading-tight">
                 Minimum Wages of {data?.state?.name}
               </h1>
+              
               <div className="flex flex-col items-stretch sm:items-end gap-2">
                 <PeriodCombobox
                   apiBase={apiBase}

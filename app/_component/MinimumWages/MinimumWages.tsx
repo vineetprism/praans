@@ -228,7 +228,7 @@ export default function MinimumWages({ items }: Props) {
                               variant="outline"
                               size="sm"
                               aria-label="view details"
-                              className="text-white bg-orange-400 hover:bg-orange-500 hover:shadow-md text-xs px-3 py-2 h-7"
+                              className="text-white bg-orange-400 hover:bg-orange-500 hover:text-white hover:shadow-md text-xs px-3 py-2 h-7"
                               asChild
                             >
                               <Link

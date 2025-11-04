@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
@@ -21,7 +19,6 @@ import {
   openProtectedDownload,
   handleAutoDownloadOnReturn,
 } from "@/lib/download-auth";
-
 
 /* =========================
    Helpers
@@ -63,16 +60,14 @@ function GenericTable({
   emphasizeCols?: string[];
   linkifyCols?: string[];
   vertical?: boolean;
-  
 }) {
   const router = useRouter();
   if (!block?.headers?.length) return null;
-  
 
   const emSet = new Set(emphasizeCols.map((h) => h.toLowerCase()));
   const linkSet = new Set(linkifyCols.map((h) => h.toLowerCase()));
 
-    // ✅ If vertical layout (for Act Information)
+  // ✅ If vertical layout (for Act Information)
   if (vertical) {
     const row = block.rows?.[0] || {};
     return (
@@ -94,7 +89,6 @@ function GenericTable({
       </div>
     );
   }
-
 
   return (
     <div className="overflow-x-auto">
@@ -307,6 +301,7 @@ type Payload = {
       max_annual_rate: number | null;
       slab_count: number | null;
     };
+    writeup_space?: string | null;
   };
 };
 
@@ -345,6 +340,16 @@ export default function ProfessionalTaxDetails({
                 {state.name}
               </h2>
             </div>
+            {/* Write-up Section */}
+            {payload?.data?.writeup_space && (
+              <div className="mt-2 mb-2 p-3 rounded-md text-gray-800 text-md leading-relaxed">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: payload.data.writeup_space,
+                  }}
+                />
+              </div>
+            )}
 
             {/* Act Information */}
             <div className="block lg:hidden mb-4">
@@ -354,7 +359,7 @@ export default function ProfessionalTaxDetails({
                 linkifyCols={["Form", "Website"]}
               />
             </div>
-            
+
             <Card className="hidden lg:block mb-3 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-base lg:text-lg font-bold">

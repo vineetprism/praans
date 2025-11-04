@@ -25,7 +25,7 @@ const POPULAR_SEARCHES = [
   { label: "Calculators", href: "/calculators/bonus", Icon: Calculator },
   { label: "CLRA Applicability", href: "/leaves-working-hours", Icon: CalendarClock },
   { label: "National Festival Holidays", href: "/national-festival-holidays", Icon: CalendarClock },
-  { label: "Applicability S&E Act", href: "/applicability-se-act", Icon: CalendarClock },
+  { label: "Applicability S&E Act", href: "/applicability-se-act/applicability", Icon: CalendarClock },
 ] as const
 
 
