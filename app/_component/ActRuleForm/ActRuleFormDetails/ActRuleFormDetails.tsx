@@ -118,7 +118,6 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
     const search =
       typeof window !== "undefined" ? window.location.search : "";
     handleAutoDownloadOnReturn(router, path, search);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formatDate = (dateString: string) => {

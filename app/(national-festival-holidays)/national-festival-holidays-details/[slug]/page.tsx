@@ -6,7 +6,7 @@ import NationalFestivalHolidaysDetails from "@/app/_component/NationalFestivalHo
 /* --- Types --- */
 export type NFHTableRow = Record<string, string>;
 export type StateNFHData = {
-  state: { name: string; slug: string };
+  state: { name: string; slug: string };  
   updated_date: string | null;
   effective_date: string | null;
   nfh_table?: { header: string[]; rows: NFHTableRow[] } | null;
