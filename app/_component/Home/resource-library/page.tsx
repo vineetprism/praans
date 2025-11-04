@@ -84,7 +84,7 @@ const categories = [
       "Detailed explanation of which businesses and establishments are covered under the Shops and Establishments Act",
     icon: Scale,
     color: "bg-teal-600",
-    href: "/applicability-se-act",
+    href: "/applicability-se-act/applicability",
   },
 ];
 
