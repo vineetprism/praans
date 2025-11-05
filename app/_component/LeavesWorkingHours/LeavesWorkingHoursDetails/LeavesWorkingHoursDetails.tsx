@@ -158,7 +158,7 @@ export default function LeavesWorkingHoursDetails({
               </CardContent>
             </Card>
 
-            {/* ===== Act Information (MOBILE) ===== */}
+            {/* ===== Act Info (MOBILE) ===== */}
             <div className="block md:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="bg-orange-200 text-orange-700 rounded pt-2">
