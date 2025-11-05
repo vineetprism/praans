@@ -18,6 +18,7 @@ export type SEApplicabilityMeta = {
   meta_url?: string | null;
 };
 
+
 // Updated SEApplicabilityData with SEO fields
 type SEApplicabilityData = {
   state: { name: string; slug: string };
@@ -128,3 +129,4 @@ export default async function SEApplicabilityPage({
   if (!data) notFound();
   return <SEApplicabilityDetails data={data} apiBase={API_BASE} />;
 }
+

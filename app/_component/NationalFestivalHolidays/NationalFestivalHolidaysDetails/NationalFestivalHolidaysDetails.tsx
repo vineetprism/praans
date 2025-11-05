@@ -22,6 +22,7 @@ type StateNFHData = {
   nfh_table: { header: string[]; rows: NFHTableRow[] };
   tiles: { form_title: string | null; form_url: string | null };
   sections?: SectionItem[];
+   writeup_space?: string | null
 };
 
 type NFHDetailApi = { data: StateNFHData };
@@ -92,7 +93,7 @@ export default function NationalFestivalHolidaysDetails({
             <div className="sm:shrink-0">
               <Button
                 onClick={handleDownload}
-                className="w-full sm:w-auto bg-[#E85C0D] hover:bg-[#c44c08] text-white"
+                className="w-full sm:w-auto bg-[#E85C0D] hover:bg-[#c44c08] text-white hover:cursor-pointer"
                 aria-label="Download NFH"
               >
                 <Download className="w-4 h-4 mr-2" /> Download NFH
@@ -100,6 +101,12 @@ export default function NationalFestivalHolidaysDetails({
             </div>
           </div>
         </div>
+        
+         {stateData?.writeup_space && (
+              <div className="mt-2 mb-4 p-3 font-medium text-gray-800 text-md leading-relaxed">
+                <div dangerouslySetInnerHTML={{ __html: stateData?.writeup_space }} />
+              </div>
+            )}
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6 xl:gap-8">
           {/* LEFT */}
@@ -221,18 +228,12 @@ export default function NationalFestivalHolidaysDetails({
                                     </td>
 
                                     {/* count */}
-                                    <td
-                                      className="px-4 py-3 align-middle font-medium w-20 text-[#1F2937] text-center border-l border-r border-orange-700"
-                                      
-                                    >
+                                    <td className="px-4 py-3 align-middle font-medium w-20 text-[#1F2937] text-center border-l border-r border-orange-700">
                                       {effective}
                                     </td>
 
                                     {/* vertical list */}
-                                    <td
-                                      className="px-0 py-0 align-top bg-white border-l border-orange-700"
-                                     
-                                    >
+                                    <td className="px-0 py-0 align-top bg-white border-l border-orange-700">
                                       <div className="flex flex-col">
                                         {Array.from({ length: effective }).map(
                                           (_, i) => (
@@ -265,7 +266,6 @@ export default function NationalFestivalHolidaysDetails({
                                 <td className="bg-white px-4 py-3 font-medium w-20 border-l border-r border-orange-700 align-middle text-center">
                                   {totalHolidays}
                                 </td>
-                                
                               </tr>
                             </>
                           );

@@ -97,6 +97,7 @@ export default function LeavesWorkingHoursDetails({
                 {name}
               </h2>
             </div>
+            <p >{initialData?.writeup_space}</p>
 
             {/* ===== Act Information (DESKTOP) ===== */}
             <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">

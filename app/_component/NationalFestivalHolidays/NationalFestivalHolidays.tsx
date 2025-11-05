@@ -220,7 +220,7 @@ export default function NationalFestivalHolidays({
             )}
           </div>
 
-          <div className="min-w-0">
+          {/* <div className="min-w-0">
             <div className="sticky top-24">
               <div className="rounded-lg border bg-white shadow-sm">
                 <div className="p-4">
@@ -228,7 +228,16 @@ export default function NationalFestivalHolidays({
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
+          <div className="hidden lg:block w-full">
+                      <div className="sticky top-2 lg:top-3 w-full">
+                        <Card className="shadow-sm hover:shadow-md transition-shadow w-full">
+                          <CardContent className="p-2 lg:p-3 xl:p-4">
+                            <PopularSearch className="mb-0" />
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </div>
         </div>
       </div>
     </div>
