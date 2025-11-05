@@ -22,6 +22,7 @@ type StateNFHData = {
   nfh_table: { header: string[]; rows: NFHTableRow[] };
   tiles: { form_title: string | null; form_url: string | null };
   sections?: SectionItem[];
+  writeup_space?: string;
 };
 
 type NFHDetailApi = { data: StateNFHData };
@@ -100,6 +101,18 @@ export default function NationalFestivalHolidaysDetails({
             </div>
           </div>
         </div>
+       {stateData?.writeup_space && (
+  <div className="mt-0 mb-2 p-3 font-medium text-gray-800 text-md leading-relaxed bg-white rounded">
+    <div
+      dangerouslySetInnerHTML={{ __html: stateData.writeup_space }}
+      aria-label="State writeup"
+      role="article"
+    />
+  </div>
+)}
+
+
+        
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6 xl:gap-8">
           {/* LEFT */}
