@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   CheckCircle,
   Shield,
@@ -14,10 +14,10 @@ import {
   Bell,
   Database,
   UserCheck,
-} from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 const PlayIcon = () => (
   <svg
@@ -167,7 +167,6 @@ const features = [
   },
 ];
 
-
 const icons = [Shield, Users, Cpu, FileText, CheckCircle];
 
 const whyChooseUs = [
@@ -248,30 +247,30 @@ const faqs = [
 
 // Component
 export default function ComplianceOutsourcing() {
-  const textRef = useRef<HTMLDivElement | null>(null)
-  const imgRef = useRef<HTMLDivElement | null>(null)
+  const textRef = useRef<HTMLDivElement | null>(null);
+  const imgRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!textRef.current || !imgRef.current) return
+    if (!textRef.current || !imgRef.current) return;
 
     const sync = () => {
-      if (!textRef.current || !imgRef.current) return
-      imgRef.current.style.height = 'auto'
-      const h = textRef.current.offsetHeight
-      imgRef.current.style.height = `${h}px`
-    }
+      if (!textRef.current || !imgRef.current) return;
+      imgRef.current.style.height = "auto";
+      const h = textRef.current.offsetHeight;
+      imgRef.current.style.height = `${h}px`;
+    };
 
     // initial + observers
-    sync()
-    const ro = new ResizeObserver(sync)
-    ro.observe(textRef.current)
-    window.addEventListener('resize', sync, { passive: true })
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(textRef.current);
+    window.addEventListener("resize", sync, { passive: true });
 
     return () => {
-      ro.disconnect()
-      window.removeEventListener('resize', sync)
-    }
-  }, [])
+      ro.disconnect();
+      window.removeEventListener("resize", sync);
+    };
+  }, []);
 
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const toggle = (idx: number) => setOpenIndex((p) => (p === idx ? null : idx));
@@ -287,7 +286,7 @@ export default function ComplianceOutsourcing() {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-0 items-stretch">
             {/* LEFT: Text content */}
-            <div className="flex flex-col justify-center pr-6 lg:pr-8">
+            <div className="flex flex-col justify-center pr-0 lg:pr-8">
               <div className="inline-flex items-center gap-3 mb-4">
                 <span className="inline-block bg-orange-50 text-orange-500 font-semibold text-sm px-3 py-1 rounded-full">
                   Your Trusted Partner for Labour Law Compliance Outsourcing
@@ -433,59 +432,60 @@ export default function ComplianceOutsourcing() {
         </div>
       </section>
 
-      {/* Enhanced Founder & Team Section */}
       <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="container mx-auto px-6 lg:px-16">
-
           {/* Founder Section */}
-          <div className="mb-20">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-
-              {/* Left: Founder Image */}
-              <div className="order-2 md:order-1">
+<div className="mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              {/* Image column: on small screens it sits above text; on md+ it's left */}
+              <div className="w-full flex items-center justify-center">
                 <div
                   ref={imgRef}
-                  className="relative w-full aspect-square rounded-3xl overflow-hidden bg-white border-2 border-orange-100 shadow-sm"
+                  className="relative w-full rounded-3xl overflow-hidden bg-white border-2 border-orange-100 shadow-sm h-full"
+                  style={{ minHeight: 220 }}
                 >
-                  <Image
-                    src="/services/adm.webp"
-                    alt="Sandeep Kumar — Founder, Praans Consultech"
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="w-full h-full object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  {/* Responsive aspect: use fixed ratio by CSS classes; next/image handles sizing */}
+                  <div className="relative w-full h-full">
+                    <Image
+                      src="/services/adm.webp"
+                      alt="Sandeep Kumar — Founder, Praans Consultech"
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
 
-                  {/* Badge */}
-                  <div className="absolute top-6 left-6 inline-flex items-center gap-2 bg-white/98 backdrop-blur-sm text-slate-900 px-4 py-2 rounded-full text-sm font-bold border-2 border-orange-500 shadow-lg">
-                    <Shield className="w-5 h-5 text-orange-500" />
+                  {/* Badge (position responsive) */}
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-white/98 backdrop-blur-sm text-slate-900 px-3 py-1 rounded-full text-sm font-bold border-2 border-orange-500 shadow-sm sm:top-6 sm:left-6">
+                    <Shield className="w-4 h-4 text-orange-500" />
                     Founder &amp; Head — Compliance
                   </div>
                 </div>
               </div>
 
-              {/* Right: Founder Content */}
-              <div
-                ref={textRef}
-                className="order-1 md:order-2 space-y-8"
-              >
+              {/* Text column */}
+              <div ref={textRef} className="w-full">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
                     Meet Our Founder
                   </h2>
-                  <p className="text-lg text-orange-500 font-semibold mt-2">Vision Backed by Legal Expertise</p>
+                  <p className="text-lg text-orange-500 font-semibold mt-2">
+                    Vision Backed by Legal Expertise
+                  </p>
                 </div>
 
-                <p className="text-base text-slate-700 leading-relaxed text-justify">
-                  At Praans Consultech, our founder; labour law adviser with over 15 years of experience in managing and streamlining labour law compliance for the businesses PAN India is driving our adventure. Our founder is trusted partner to numerous businesses looking for clarity and control over their statutory responsibilities, in addition to being a legal expert.
-                </p>
-                <p className="text-base text-slate-700 leading-relaxed text-justify">
-                  Our founder has shown to be exceptionally skilled at managing intricate labour aw operations across several states and industries having managed compliance for over <span className="font-bold text-orange-400">2,500 locations and over 50,000 people PAN India</span>.
-                </p>
+                <div className="mt-4 space-y-4">
+                  <p className="text-base text-slate-700 leading-relaxed text-justify">
+                    At Praans Consultech, our founder; labour law adviser with over 15 years of experience in managing and streamlining labour law compliance for the businesses PAN India is driving our adventure. Our founder is trusted partner to numerous businesses looking for clarity and control over their statutory responsibilities, in addition to being a legal expert.
+                  </p>
+                  <p className="text-base text-slate-700 leading-relaxed text-justify">
+                    Our founder has shown to be exceptionally skilled at managing intricate labour aw operations across several states and industries having managed compliance for over <span className="font-bold text-orange-400">2,500 locations and over 50,000 people PAN India</span>.
+                  </p>
+                </div>
 
                 {/* Experience & Credentials Grid */}
-                <div className="order-1 md:order-2 gap-8">
+                <div className="mt-6 grid grid-cols-1 gap-6">
                   <div className="bg-white rounded-2xl p-6 border border-orange-100">
                     <h4 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                       <span className="w-2 h-2 bg-orange-500 rounded-full" />
@@ -502,7 +502,7 @@ export default function ComplianceOutsourcing() {
                       <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-xs font-semibold border border-orange-300">Ph.D. (Pursuing)</span>
                     </div>
 
-                    {/* bullets — same visual tone as your card copy */}
+                    {/* bullets */}
                     <ul className="list-disc pl-5 space-y-3 text-sm text-slate-700">
                       <li>
                         <strong>B.Sc.</strong> – Through this degree he has developed analytical abilities that aid in the deciphering of intricate regulatory matters.
@@ -522,26 +522,16 @@ export default function ComplianceOutsourcing() {
                     </ul>
                   </div>
                 </div>
-
-
-                {/* CTA Button */}
-                {/* <div>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-orange-500 text-white font-bold text-lg hover:bg-orange-600 shadow-lg hover:shadow-xl transition-all duration-200"
-                  >
-                    Book Consultation
-                  </Link>
-                </div> */}
               </div>
             </div>
-            <div className="rounded-3xl border-2 border-orange-200 p-6 mt-9">
+
+            {/* Founder closing box with responsive vertical margins */}
+            <div className="rounded-3xl border-2 border-orange-200 p-6 my-6 md:my-8 lg:my-12">
               <p className="text-base text-slate-700 leading-relaxed text-center max-w-5xl mx-auto">
                 Their strong legal foundation and real-world experience in managing high-volume, multi-location compliance operations provide the strategic edge our clients trust. They lead the organization with a focus on ethical standards, practical execution, and proactive risk management.
               </p>
             </div>
           </div>
-
 
           {/* Team Section */}
           <div className="container mx-auto px-6 lg:px-16">
@@ -557,7 +547,6 @@ export default function ComplianceOutsourcing() {
             <div className="max-w-7xl mx-auto">
               <div className="grid md:grid-cols-2 gap-10 items-start">
                 <div className="space-y-6">
-
                   <div className="bg-gradient-to-br from-orange-50 to-white rounded-2xl p-8 border border-orange-100">
                     <h4 className="font-bold text-slate-900 mb-4 text-lg flex items-center gap-2">
                       Basically, we're experienced in:
@@ -609,7 +598,6 @@ export default function ComplianceOutsourcing() {
       {/* Industries We Work With Section (no hover effects; heading centered) */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-6 lg:px-16">
-
           <div className="mb-16 text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
               Industries We Work With
@@ -620,7 +608,6 @@ export default function ComplianceOutsourcing() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-
             <div className="bg-white rounded-2xl p-6 border-2 border-slate-100">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 border border-orange-100 rounded-lg flex items-center justify-center">
@@ -692,7 +679,6 @@ export default function ComplianceOutsourcing() {
                 <h3 className="font-bold text-slate-900">Retail &amp; Pet Care</h3>
               </div>
             </div>
-
           </div>
 
           {/* Compliance Assurance Box */}
@@ -703,7 +689,6 @@ export default function ComplianceOutsourcing() {
           </div>
         </div>
       </section>
-
 
       {/* Why Choose Us */}
       <section className="py-14">
@@ -808,6 +793,7 @@ export default function ComplianceOutsourcing() {
         </Link>
       </div>
 
+      {/* FAQ Section */}
       <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-8">
         <h1 className="text-center text-2xl sm:text-3xl font-bold text-[#1b2851]">
           Frequently Asked Questions
@@ -846,5 +832,5 @@ export default function ComplianceOutsourcing() {
         </div>
       </section>
     </div>
-  )
+  );
 }
