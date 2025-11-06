@@ -37,6 +37,7 @@ type StateData = {
   leave_entitlements: TableBlock;
   working_hours: TableBlock;
   tiles?: Tiles;
+  writeup_space?: string;
 };
 
 export default function LeavesWorkingHoursDetails({
@@ -97,6 +98,7 @@ export default function LeavesWorkingHoursDetails({
                 {name}
               </h2>
             </div>
+<p className="whitespace-pre-wrap mb-5">{initialData?.writeup_space}</p>
 
             {/* ===== Act Information (DESKTOP) ===== */}
             <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
@@ -158,7 +160,7 @@ export default function LeavesWorkingHoursDetails({
               </CardContent>
             </Card>
 
-            {/* ===== Act Information (MOBILE) ===== */}
+            {/* ===== Act Info (MOBILE) ===== */}
             <div className="block md:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="bg-orange-200 text-orange-700 rounded pt-2">
