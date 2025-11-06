@@ -19,25 +19,25 @@ const whyReadinessMatters = [
     icon: Shield,
     title: "Avoid Legal Penalties",
     description:
-      "Non-compliance can lead to fines, licence suspension or prosecution. Regular internal audits identify gaps early so you can remediate before an inspection.",
+      "Non-compliance can attract financial penalties, suspension of licenses, and even prosecution. Regular audits help identify and rectify gaps before inspections happen.",
   },
   {
     icon: Users,
     title: "Build Trust with Authorities",
     description:
-      "Maintain accurate documentation and follow labour statutes to reduce friction with regulators — smoother inspections, fewer disruptions.",
+      "A business that maintains proper documentation and follows labour laws diligently earns the trust of regulators, leading to smoother inspections and fewer disruptions.",
   },
   {
     icon: FileText,
     title: "Ensure Operational Continuity",
     description:
-      "Audit readiness reduces the risk of sudden compliance issues that could halt operations or trigger legal action, keeping the business running.",
+      "Audit readiness minimizes the risk of sudden compliance issues that can halt business operations or trigger legal proceedings.",
   },
   {
     icon: CheckCircle,
     title: "Protect Your Reputation",
     description:
-      "Timely compliance and transparent processes protect your employer brand and stakeholder confidence — good compliance = good reputation.",
+      "Timely compliance and transparency not only keep you legally safe but also enhance your reputation with employees, partners, and stakeholders.",
   },
 ];
 
@@ -46,27 +46,27 @@ const ourServices = [
   {
     title: "Pre-Audit Review",
     description:
-      "We perform a complete internal review to surface compliance gaps and quantify risk across processes, payroll and documentation — with a prioritized remediation plan.",
+      "We conduct a complete internal review to identify potential compliance gaps and risks in your current processes and documentation.",
   },
   {
     title: "Statutory Documentation Management",
     description:
-      "End-to-end management of mandatory registers, forms, returns and filings — kept current with the latest central and state rules and accessible for inspections.",
+      "Our team ensures all mandatory registers, forms, returns, and filings are properly maintained and updated as per the latest legal norms.",
   },
   {
     title: "On-Site Inspection Support",
     description:
-      "On-ground support during government inspections: our experts liaise with officials, present required documents and help your team respond professionally and confidently.",
+      "We offer on-ground assistance during government inspections. Our experts liaise with visiting officials, provide required documents, and support your internal team in addressing queries professionally.",
   },
   {
     title: "Post-Inspection Compliance",
     description:
-      "If an inspection flags issues, we handle corrective actions, draft response letters, assist with back-dated filings and implement system changes to prevent recurrence.",
+      "If any issues are highlighted during an inspection, we assist with corrective actions, response letters, filing backdated forms, and implementing long-term solutions.",
   },
   {
     title: "Ongoing Advisory",
     description:
-      "Subscription-style advisory that keeps you aligned with legal updates — process tweaks, compliance alerts, and proactive readiness so you’re always inspection-ready.",
+      "We don’t just offer one-time services. Our team provides continuous guidance to ensure you're always in alignment with legal updates and ready for any inspection.",
   },
 ];
 
@@ -88,36 +88,33 @@ export default function AuditAndInspection() {
     <div className="bg-white text-slate-900">
       <section className="py-8 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-1 lg:grid-cols-2 items-stretch lg:gap-4">
+          <div className="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-0 items-stretch">
             {/* LEFT: Text content */}
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center pr-0 lg:pr-8">
               <div className="inline-flex items-center gap-3 mb-4">
                 <span className="inline-block bg-orange-50 text-orange-500 font-semibold text-sm px-3 py-1 rounded-full">
                   Labour Law Audit & Inspection Services
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-                Stay Compliant, Stay Prepared, Stay Confident
+              <h1 className="text-3xl sm:text-3xl lg:text-4xl font-extrabold leading-tight">
+                Stay Compliant. Stay Prepared. Stay Confident.
               </h1>
 
-              <p className="mt-4 text-lg text-slate-700 max-w-xl text-justify">
-                Labour-law audits and inspections are more than box-checking — they’re
-                critical to operational resilience and risk mitigation. Praans
-                Consultech combines field-enabled expertise with tech-backed processes
-                to handle documentation review, gap remediation and live inspection
-                support, so your statutory compliance is accurate, defensible and
-                inspection-ready.
-              </p>
+              <div className="mt-4 text-md text-slate-700 text-justify">
+                <p className="mb-4">
+                  In the dynamic world of regulatory compliance, labour law audits and inspections are more than procedural—they are essential to protecting your organization from penalties, disputes, and reputational risks. Whether it's a routine inspection by a labour department officer or an internal compliance audit, being prepared is non-negotiable.
+                </p>
+                <p className="mb-4">
+                  Praans Consultech empowers businesses to confidently manage the complexities of labour law audits and inspections. From documentation review to real-time inspection support, our expert team ensures that every aspect of your statutory compliance is accurate, complete, and ready for review.
+                </p>
+              </div>
 
-              <div className="mt-8 mb-4 sm:mb-4 md:mb-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="mt-8 mb-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link href="/contact" aria-label="Book free consultation">
                   <Button
                     size="lg"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-6 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg font-bold
-                         hover:bg-transparent hover:text-orange-500
-                         hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
-                         transition duration-200 cursor-pointer"
+                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
                     aria-label="Book free consultation"
                   >
                     <Phone className="w-4 h-4 mr-2" />
@@ -129,13 +126,13 @@ export default function AuditAndInspection() {
 
             {/* RIGHT: Image column */}
             <div className="flex items-stretch">
-              <div className="w-full rounded-xl overflow-hidden shadow-sm border border-slate-100 bg-white flex">
+              <div className="w-full rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white flex h-full">
                 <Image
-                  src="/services/labour-law.webp"
+                  src="/services/labour-law.jpg"
                   alt="Labour law advisory"
                   width={900}
                   height={600}
-                  className="object-cover w-full h-auto lg:h-full"
+                  className="object-cover w-full h-full"
                   priority
                 />
               </div>
@@ -181,7 +178,6 @@ export default function AuditAndInspection() {
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Statutory registers and returns</dt>
-                      <dd className="text-sm">Verify completeness of registers, returns and filing schedules.</dd>
                     </div>
                   </div>
 
@@ -189,7 +185,6 @@ export default function AuditAndInspection() {
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Provident Fund (PF) & ESI records</dt>
-                      <dd className="text-sm">Confirm contribution accuracy, remittances and reconciliations.</dd>
                     </div>
                   </div>
 
@@ -197,7 +192,6 @@ export default function AuditAndInspection() {
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Wages, attendance & contractor documentation</dt>
-                      <dd className="text-sm">Review payroll, attendance logs and third-party contractor files.</dd>
                     </div>
                   </div>
 
@@ -205,7 +199,6 @@ export default function AuditAndInspection() {
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">License validity & renewals</dt>
-                      <dd className="text-sm">Ensure licences are current and renewal schedules are tracked.</dd>
                     </div>
                   </div>
 
@@ -213,7 +206,6 @@ export default function AuditAndInspection() {
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Bonus, gratuity & leave records</dt>
-                      <dd className="text-sm">Validate statutory benefits, accruals and leave balances.</dd>
                     </div>
                   </div>
 
@@ -221,23 +213,12 @@ export default function AuditAndInspection() {
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Employment agreements & applicable Acts</dt>
-                      <dd className="text-sm">Check contracts and compliance with relevant labour laws and regulations.</dd>
                     </div>
                   </div>
                 </dl>
-              </div>
-
-              <div className="mt-6 pt-4">
-                <Link
-                  href=""
-                  className="inline-flex items-center gap-2 text-sm font-medium text-blue-700 hover:underline"
-                  aria-label="Learn more about labour law audits"
-                >
-                  Learn about our Audit Process
-                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
+                <p className="text-slate-700 mt-4">
+                  Audits can be conducted internally or initiated by an external agency to assess the legal standing of your organization’s HR and labour practices.
+                </p>
               </div>
             </article>
 
@@ -259,19 +240,17 @@ export default function AuditAndInspection() {
                 </h2>
 
                 <p className="text-slate-700 mb-4 text-justify">
-                  A labour law inspection is a physical verification of compliance by government-authorized officials.
-                  It may be scheduled, a surprise visit, or prompted by a complaint or whistleblower. Inspectors review
-                  records, premises and processes to confirm statutory compliance.
+                  A labour law inspection is a physical verification of compliance conducted by government-authorized officials. It can be a scheduled inspection, a surprise visit, or triggered by an employee complaint or whistleblower action.
                 </p>
 
-                <p className="text-slate-700 mb-4 font-medium">Inspectors typically check for:</p>
+                <p className="text-slate-700 mb-4 font-medium">Inspectors may visit your premises to check for:</p>
 
                 <dl className="space-y-3 text-slate-700">
                   <div className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Maintenance of statutory records</dt>
-                      <dd className="text-sm">Registers, returns and filing evidence must be complete and up to date.</dd>
+                      {/* <dd className="text-sm">Registers, returns and filing evidence must be complete and up to date.</dd> */}
                     </div>
                   </div>
 
@@ -279,7 +258,6 @@ export default function AuditAndInspection() {
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Proper display of mandatory notices & signage</dt>
-                      <dd className="text-sm">Required workplace notices and statutory signage should be visible and compliant.</dd>
                     </div>
                   </div>
 
@@ -287,7 +265,6 @@ export default function AuditAndInspection() {
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Validity of labour licences</dt>
-                      <dd className="text-sm">Trade, factory and other licences must be current and renewal schedules documented.</dd>
                     </div>
                   </div>
 
@@ -295,7 +272,6 @@ export default function AuditAndInspection() {
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Payments & deductions (PF / ESIC)</dt>
-                      <dd className="text-sm">Contribution records, remittances and payroll deductions are validated for accuracy.</dd>
                     </div>
                   </div>
 
@@ -303,28 +279,13 @@ export default function AuditAndInspection() {
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Working conditions & employee rights</dt>
-                      <dd className="text-sm">On-site checks of welfare facilities, working hours, and statutory employee protections.</dd>
                     </div>
                   </div>
                 </dl>
 
                 <p className="text-slate-700 mt-4">
-                  Inspections can result in penalties or legal notices where violations are found — which is why being inspection-ready
-                  at all times is essential.
+                  An inspection may lead to penalties or legal notices if violations or irregularities are found. That’s why it's essential to be well-prepared at all times.
                 </p>
-              </div>
-
-              <div className="mt-6 pt-4">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-orange-500 hover:underline"
-                  aria-label="Request on-site inspection support"
-                >
-                  Request On-site Support
-                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
               </div>
             </article>
 
@@ -336,10 +297,10 @@ export default function AuditAndInspection() {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold">Why Audit & Inspection Readiness Matters</h2>
-            <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
+            {/* <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
               Protect your operations with a proactive compliance posture — faster remediation, fewer fines, and better
               regulator relations.
-            </p>
+            </p> */}
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -450,6 +411,11 @@ export default function AuditAndInspection() {
               )
             })}
           </div>
+          <div className="rounded-3xl border-2 border-orange-200 p-6 mt-8">
+            <p className="text-base text-slate-700 leading-relaxed text-center max-w-7xl mx-auto">
+              We don’t just offer one-time services. Our team provides continuous guidance to ensure you're always in alignment with legal updates and ready for any inspection.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -461,10 +427,7 @@ export default function AuditAndInspection() {
             <h2 className="text-3xl font-bold mb-4">Technology-Enabled Compliance</h2>
 
             <p className="text-gray-600 mb-6 max-w-xl text-justify">
-              To enhance accuracy and efficiency, we integrate our AI-powered compliance management software with
-              our audit and inspection services. The platform gives you a single pane of glass to track status,
-              centralise documents, automate reminders and produce defensible, inspection-ready reports — so your
-              compliance program is transparent, auditable and operational.
+              To enhance accuracy and efficiency, we also integrate our AI-powered compliance management software with our audit and inspection services. It helps you:
             </p>
 
             <ul className="space-y-3 text-gray-600">
@@ -495,7 +458,7 @@ export default function AuditAndInspection() {
             </ul>
 
             <p className="text-gray-600 mt-6 max-w-lg">
-              With technology on your side, your compliance ecosystem becomes more organised, proactive and inspection-ready—always.
+              With technology on your side, your compliance ecosystem becomes more transparent, organized, and inspection-ready—always.
             </p>
           </div>
 
@@ -517,7 +480,6 @@ export default function AuditAndInspection() {
 
 
 
-      {/* Why Choose Us */}
       <section className="py-14">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="text-center mb-8">
@@ -525,17 +487,9 @@ export default function AuditAndInspection() {
             <p className="text-gray-600 mt-2">Smart compliance starts with a partner who gets operations and law.</p>
           </div>
 
-          {/* responsive boxes grid */}
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {whyChooseUs.map((reason, idx) => {
               const Icon = icons[idx] ?? CheckCircle; // fallback icon
-              const microCopy = [
-                "15+ years delivering pragmatic, audit-ready labour law solutions across industries.",
-                "Field-ready legal teams who coordinate onsite during inspections for zero friction.",
-                "Real-time dashboards + logs so compliance is visible and auditable 24/7.",
-                "Custom operating procedures that fit how you actually work — not off-the-shelf templates.",
-                "End-to-end service: pre-audit, remediation, filings and closure reporting with SLAs.",
-              ][idx] ?? "Trusted, enterprise-grade compliance support.";
 
               return (
                 <div
@@ -553,7 +507,7 @@ export default function AuditAndInspection() {
 
                     <div>
                       <h3 className="text-lg font-semibold text-slate-900">{reason}</h3>
-                      <p className="mt-2 text-sm text-gray-600 text-justify">{microCopy}</p>
+                      {/* <p className="mt-2 text-sm text-gray-600 text-justify">{microCopy}</p> */}
                     </div>
                   </div>
                 </div>
@@ -567,47 +521,49 @@ export default function AuditAndInspection() {
       <section className="py-12 bg-gray-50">
         <div className="mx-auto px-6 lg:px-8">
           <div className="rounded-lg p-8 sm:p-12 text-center">
-            <h2 className="text-3xl sm:text-4xl font-extrabold mb-5 text-slate-700 leading-tight">
-              Let’s Simplify Your Compliance Journey
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 text-slate-800 leading-tight">
+              Stay Ahead of Every Inspection
             </h2>
 
-            <p className="mx-auto max-w-7xl text-gray-600 text-base sm:text-lg leading-relaxed mb-4 text-justify">
-              Labour law compliance doesn’t have to be overwhelming. With Praans Consultech,
-              you receive strategic support, smart software, and a dedicated team that ensures
-              every requirement is met accurately and on time.
-            </p>
+            {/* Centered paragraphs with sensible max width and spacing */}
+            <div className="mx-auto max-w-6xl space-y-4">
+              <p className="text-slate-700 text-base sm:text-lg leading-7">
+                Labour law inspections are becoming increasingly structured, tech-driven, and penalty-focused. Being audit-ready is not optional — it's essential.
+              </p>
 
-            <p className="mx-auto max-w-6xl text-gray-600 text-base sm:text-lg leading-relaxed mb-10 text-justify">
-              Let us help you transform your compliance process into a strength, not a stress.
-              Book your free consultation to explore our labour law compliance outsourcing solutions.
-            </p>
+              <p className="text-slate-700 text-base sm:text-lg leading-7">
+                With Praans Consultech, you gain the assurance of compliance, the confidence to face inspections, and the backing of a team that handles the legal complexities for you.
+              </p>
 
-            <div className="flex justify-center gap-5 sm:gap-6 flex-wrap">
+              <p className="text-slate-700 text-base sm:text-lg leading-7">
+                Book your free consultation today to discover how our labour law audit and inspection services can protect your business and streamline your operations.
+              </p>
+            </div>
+
+            {/* CTA buttons */}
+            <div className="mt-8 flex justify-center gap-4 flex-wrap">
               <Link
                 href="tel:+91-9050576838"
                 aria-label="Call Praans Consultech"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg font-bold
-                         hover:bg-transparent hover:text-orange-500
-                         hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
-                         transition duration-200 cursor-pointer"
+                     hover:bg-transparent hover:text-orange-500 transition duration-200"
               >
-                <span>Book Consultation</span>
+                Book Consultation
               </Link>
 
               <Link
                 href="mailto:info@praansconsultech.com"
                 aria-label="Email Praans Consultech"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-orange-500 bg-transparent text-orange-500 text-lg font-bold
-                         hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500
-                         hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
-                         transition duration-200 cursor-pointer"
+                     hover:bg-orange-50 hover:text-orange-500 transition duration-200"
               >
-                <span>Request a Demo</span>
+                Request a Demo
               </Link>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* Mobile micro-CTA (non-intrusive) */}
       <div className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
@@ -621,8 +577,6 @@ export default function AuditAndInspection() {
           </button>
         </Link>
       </div>
-
-
     </div>
   )
 }

@@ -281,7 +281,6 @@ export default function ComplianceOutsourcing() {
 
   return (
     <div className="bg-white text-slate-900">
-      {/* HERO: left text + right image */}
       <section className="py-8 bg-gray-50">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-0 items-stretch">
@@ -435,7 +434,7 @@ export default function ComplianceOutsourcing() {
       <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white">
         <div className="container mx-auto px-6 lg:px-16">
           {/* Founder Section */}
-<div className="mb-20">
+          <div className="mb-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
               {/* Image column: on small screens it sits above text; on md+ it's left */}
               <div className="w-full flex items-center justify-center">
