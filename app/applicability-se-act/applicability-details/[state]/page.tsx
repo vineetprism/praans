@@ -16,6 +16,7 @@ export type SEApplicabilityMeta = {
   meta_description?: string | null;
   meta_keywords?: string[] | string | null;
   meta_url?: string | null;
+  
 };
 
 // Updated SEApplicabilityData with SEO fields
@@ -31,12 +32,14 @@ type SEApplicabilityData = {
   act_information: { headers: string[]; rows: Row[] };
   labour_welfare_fund_contribution: { headers: string[]; rows: Row[] };
   downloads: { form_title?: string | null; form_url?: string | null; website_url?: string | null };
+ 
 };
 
 type SEApplicabilityResponse = { data: SEApplicabilityData };
 type SEListResponse = {
   applicable_states: { state_slug: string }[];
   non_applicable_states: { state_slug: string }[];
+   data: string | null;
 };
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
@@ -126,5 +129,6 @@ export default async function SEApplicabilityPage({
   const { state } = await params; // ✅ must await
   const data = await getSEApplicabilityState(state);
   if (!data) notFound();
-  return <SEApplicabilityDetails data={data} apiBase={API_BASE} />;
+  // return <SEApplicabilityDetails data={data} apiBase={API_BASE} />;
+return <SEApplicabilityDetails data={data as unknown as any} apiBase={API_BASE} />;
 }

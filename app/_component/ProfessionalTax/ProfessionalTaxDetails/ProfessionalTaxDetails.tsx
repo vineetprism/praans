@@ -223,7 +223,9 @@ function GenericMobileBlock({
                     return (
                       <div
                         key={h}
-                        className="flex justify-between border-orange-300 pb-1"
+                        // className="flex justify-between border-orange-300 pb-1"
+                        // className="flex items-start justify-between gap-x-10 pb-1 border-orange-300"
+                        className="grid grid-cols-[100px_minmax(0,1fr)] min-[360px]:grid-cols-[120px_minmax(0,2fr)] gap-x-6 items-start pb-1 border-orange-300"
                       >
                         <span
                           className={`font-medium ${
@@ -235,10 +237,10 @@ function GenericMobileBlock({
                           {h}:
                         </span>
                         <span
-                          className={`break-words pl-10 text-justify max-w-xs  ${
+                          className={` text-justify max-w-auto  ${
                             numericRow && isCategoryCol
-                              ? " text-orange-500 font-bold px-1 rounded "
-                              : "text-gray-800"
+                              ? " text-orange-500 font-bold px-1 rounded"
+                              : "text-gray-800 "
                           }`}
                         >
                           {linky && isUrl(v) ? (
@@ -268,6 +270,9 @@ function GenericMobileBlock({
                           )}
                         </span>
                       </div>
+
+
+
                     );
                   })}
                 </div>
@@ -352,7 +357,7 @@ export default function ProfessionalTaxDetails({
             )}
 
             {/* Act Information */}
-            <div className="block lg:hidden mb-4">
+            <div className="block md:hidden mb-4">
               <GenericMobileBlock
                 title="Act Information"
                 block={act_information}
@@ -360,7 +365,7 @@ export default function ProfessionalTaxDetails({
               />
             </div>
 
-            <Card className="hidden lg:block mb-3 shadow-sm">
+            <Card className="hidden md:block mb-3 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Act Information
@@ -376,13 +381,13 @@ export default function ProfessionalTaxDetails({
             </Card>
 
             {/* Professional Tax Slabs */}
-            <div className="block lg:hidden mb-4">
+            <div className="block md:hidden mb-4">
               <GenericMobileBlock
                 title="Professional Tax Slabs"
                 block={professional_tax_slabs}
               />
             </div>
-            <Card className="hidden lg:block mb-3 shadow-sm">
+            <Card className="hidden md:block mb-3 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Professional Tax Slabs
@@ -394,13 +399,13 @@ export default function ProfessionalTaxDetails({
             </Card>
 
             {/* Employment Categories */}
-            <div className="block lg:hidden mb-4">
+            <div className="block md:hidden mb-4">
               <GenericMobileBlock
                 title="Employment Categories"
                 block={employment_categories}
               />
             </div>
-            <Card className="hidden lg:block mb-3 shadow-sm">
+            <Card className="hidden md:block mb-3 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Employment Categories

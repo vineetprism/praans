@@ -144,6 +144,6 @@ export default async function Page({
   const { state } = await params;
   const data = await getMinimumWageState(state);
   if (!data) notFound();
-
+// console.log(data)
   return <MinimumWagesDetails data={data} apiBase={MW_BASE} />;
 }

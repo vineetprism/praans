@@ -59,6 +59,7 @@ export type MWSlugData = {
   employment_categories_benefits: TableBlock | any;
   interest_penality?: TableBlock | any;
   tiles?: Tiles;
+  writeup_space?: string;
 };
 
 type PeriodOption = {
@@ -160,12 +161,7 @@ function normalizeMWRates(input: any, fallbackTitle?: string): TableBlock {
       }
     }
 
-    // return {
-    //   title: input?.title ?? fallbackTitle ?? "Minimum Wage Rates",
-    //   headers,
-    //   rows: out,
-    // };
-    // 🟧 Fill-down logic sirf Minimum Wage table ke liye
+
     const isFirstTable = (input?.title || fallbackTitle || "")
       .toLowerCase()
       .includes("minimum wage");
@@ -219,276 +215,6 @@ function normalizeMWRates(input: any, fallbackTitle?: string): TableBlock {
 }
 
 /* ---------- Desktop Table (Tablet+) ---------- */
-
-// function DesktopOrangeGrid({
-//   block,
-//   maxMergeColumns = 3,
-//   excludeCols = [/amount|total|basic|vda|hra|per\s+day|per\s+month|rate|wage|monthly|daily/i],
-//   includeCols, // e.g. ["Category", /categories of employees/i, "Zone", /name of the category/i]
-// }: {
-//   block: TableBlock;
-//   maxMergeColumns?: number;
-//   excludeCols?: (string | RegExp)[];
-//   includeCols?: (string | RegExp)[];
-// }) {
-//   const H: string[] = (block.headers ?? []).map(toHeaderLabel);
-//   const R = (block.rows ?? []) as Row[];
-
-//   // ---------- helpers ----------
-//   const canonBase = (v: any) => {
-//     let s = String(v ?? "");
-//     s = s.replace(/<[^>]+>/g, "");                 // strip tags
-//     s = s.replace(/[\u00A0\u202F\t]/g, " ");       // NBSP + narrow NBSP + tabs -> space
-//     s = s.replace(/[\u2000-\u200B]/g, " ");        // other unicode spaces
-//     s = s.replace(/\s+/g, " ");                    // collapse spaces
-//     s = s.replace(/[\u2010-\u2015\u2212\uFE58\uFE63\uFF0D-]/g, "-"); // normalize dashes
-//     return s.trim().toLowerCase();
-//   };
-
-//   // key-aware canonicalization (fix noisy/typo categories etc.)
-//   const canonSpecial = (key: string, raw: any) => {
-//     let s = canonBase(raw);
-
-//     if (/category/i.test(key)) {
-//       // trailing noise
-//       s = s.replace(/[.:]+$/g, "").trim();
-//       // normalize slash spacing
-//       s = s.replace(/\s*\/\s*/g, " / ");
-//       // **typo & alias fixes**
-//       s = s.replace(/\bcommerical\b/g, "commercial");    // common typo
-//       s = s.replace(/\bestabl?ish?m?e?n?t?s?\b/g, "establishment");
-//       // final collapse
-//       s = s.replace(/\s+/g, " ").trim();
-//     }
-//     return s;
-//   };
-
-//   // placeholder check (ditto rows)
-//   const isPlaceholder = (raw: any, key?: string) => {
-//     const s = key ? canonSpecial(key, raw) : canonBase(raw);
-//     return (
-//       !s ||
-//       s === "-" ||
-//       /^-+$/.test(s) ||
-//       /^(na|n\/a|nil|null|blank|none)$/i.test(String(raw ?? "").trim())
-//     );
-//   };
-
-//   // treat rows with placeholders in ALL non-key cells as "separator"
-//   const separatorRow = (rowIdx: number, key: string) => {
-//     for (const h of H) {
-//       if (h === key) continue;
-//       if (!isPlaceholder(R[rowIdx]?.[h], h)) return false;
-//     }
-//     return true;
-//   };
-
-//   // ditto-aware comparison value
-//   const valueForCompare = (rowIdx: number, key: string): string => {
-//     if (!isPlaceholder(R[rowIdx]?.[key], key)) return canonSpecial(key, R[rowIdx]?.[key]);
-//     let k = rowIdx - 1;
-//     while (k >= 0) {
-//       if (!isPlaceholder(R[k]?.[key], key)) return canonSpecial(key, R[k]?.[key]);
-//       k--;
-//     }
-//     return "__placeholder__";
-//   };
-
-//   const isLikelyNumeric = (label: string, colValues: any[]) => {
-//     if (excludeCols?.length) {
-//       for (const pat of excludeCols) {
-//         if (typeof pat === "string"
-//           ? label.toLowerCase().includes(pat.toLowerCase())
-//           : pat.test(label)) return true;
-//       }
-//     }
-//     let numericish = 0, total = 0;
-//     for (const v of colValues) {
-//       const s = String(v ?? "").trim();
-//       if (!s || s === "—") continue;
-//       total++;
-//       if (/^[₹$]?\s*-?\d[\d,]*(\.\d+)?\s*$/.test(s)) numericish++;
-//     }
-//     return total > 0 && numericish / total > 0.85;
-//   };
-
-//   const matchOne = (label: string, pats?: (string | RegExp)[]) =>
-//     !!pats?.some((p) => (typeof p === "string"
-//       ? label.toLowerCase().includes(p.toLowerCase())
-//       : p.test(label)));
-
-//   // -------- Force-include leftmost Category-ish column --------
-//   const catIdxHard = H.findIndex(h => /category/i.test(h.trim()));
-//   const includeColsEffective: (string | RegExp)[] | undefined = React.useMemo(() => {
-//     if (catIdxHard < 0) return includeCols;
-//     const arr = [...(includeCols ?? [])];
-//     const label = H[catIdxHard];
-//     const rx = new RegExp("^" + label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "$", "i");
-//     if (!arr.some(p => (typeof p === "string"
-//       ? label.toLowerCase().includes(p.toLowerCase())
-//       : (p as RegExp).test(label)))) {
-//       arr.unshift(rx);
-//     }
-//     return arr;
-//   }, [includeCols, catIdxHard, H]);
-
-//   // ---------- score columns by merge-worthiness ----------
-//   type ColScore = { idx: number; label: string; avgRun: number; hasRepeats: boolean; };
-//   const colScores: ColScore[] = (() => {
-//     const scores: ColScore[] = [];
-//     H.forEach((label, idx) => {
-//       const vals = R.map((row) => row?.[label]);
-//       if (isLikelyNumeric(label, vals)) {
-//         scores.push({ idx, label, avgRun: 1, hasRepeats: false });
-//         return;
-//       }
-//       let runs = 0, sumRun = 0;
-//       let i = 0;
-//       while (i < R.length) {
-//         const base = valueForCompare(i, label);
-//         let j = i + 1;
-//         while (j < R.length && valueForCompare(j, label) === base) j++;
-//         const span = Math.max(1, j - i);
-//         runs++; sumRun += span; i = j;
-//       }
-//       const avgRun = runs ? sumRun / runs : 1;
-//       scores.push({ idx, label, avgRun, hasRepeats: avgRun > 1.0001 });
-//     });
-
-//     return scores.sort((a, b) => {
-//       const af = matchOne(a.label, includeColsEffective) ? 1 : 0;
-//       const bf = matchOne(b.label, includeColsEffective) ? 1 : 0;
-//       if (af !== bf) return bf - af;
-//       return b.avgRun - a.avgRun;
-//     });
-//   })();
-
-//   // pick top N textual columns (parent-first order)
-//   const mergeIdxs: number[] = (() => {
-//     const picked: number[] = [];
-//     for (const s of colScores) {
-//       const forced = matchOne(s.label, includeColsEffective);
-//       if (forced || s.hasRepeats) picked.push(s.idx);
-//       if (picked.length >= maxMergeColumns) break;
-//     }
-//     return picked.sort((a, b) => a - b);
-//   })();
-
-//   // ---------- compute rowSpans (parent-first, ditto + separator aware) ----------
-//   const spansByColIdx = (() => {
-//     const map = new Map<number, number[]>();
-//     if (!mergeIdxs.length) return map;
-
-//     for (const cIdx of mergeIdxs) {
-//       const key = H[cIdx];
-//       const spans = new Array(R.length).fill(1);
-//       const isCategoryCol = /category/i.test(key.trim());
-
-//       let i = 0;
-//       while (i < R.length) {
-//         const base = valueForCompare(i, key);
-//         let j = i + 1;
-
-//         while (j < R.length) {
-//           const sameThis = valueForCompare(j, key) === base;
-//           const passThrough = isCategoryCol && separatorRow(j, key); // absorb blank rows for Category
-
-//           // parents must match too
-//           let parentsOk = true;
-//           for (const pIdx of mergeIdxs) {
-//             if (pIdx >= cIdx) break;
-//             const pKey = H[pIdx];
-//             if (valueForCompare(j, pKey) !== valueForCompare(i, pKey)) {
-//               parentsOk = false; break;
-//             }
-//           }
-
-//           if (!parentsOk || !(sameThis || passThrough)) break;
-//           j++;
-//         }
-
-//         const span = j - i;
-//         spans[i] = span;
-//         for (let k = i + 1; k < j; k++) spans[k] = 0;
-//         i = j;
-//       }
-
-//       map.set(cIdx, spans);
-//     }
-//     return map;
-//   })();
-
-//   const firstMergeCol = spansByColIdx.size ? Math.min(...Array.from(spansByColIdx.keys())) : -1;
-
-//   return (
-//     <Card className="hidden sm:block mb-3 sm:mb-4 lg:mb-3 shadow-sm border-l-4 border-l-orange-500">
-//       <CardHeader className="pb-2 px-3 sm:px-4 lg:px-6 pt-3 sm:pt-4">
-//         <CardTitle className="text-sm sm:text-base lg:text-lg font-bold">
-//           {block.title || "Table"}
-//         </CardTitle>
-//       </CardHeader>
-//       <CardContent className="p-0">
-//         <div className="w-full overflow-x-auto">
-//           <div className="min-w-[600px] sm:min-w-[640px] lg:min-w-[720px] rounded-xl overflow-hidden border border-orange-500 mx-2 sm:mx-3 lg:mx-4 mb-3 sm:mb-4">
-//             <table className="w-full border-collapse table-fixed">
-//               <thead>
-//                 <tr className="bg-orange-50 text-orange-700">
-//                   {H.map((h, i) => (
-//                     <th
-//                       key={`${h}-${i}`}
-//                       className={`px-2 sm:px-3 py-2 sm:py-3 text-[11px] sm:text-xs lg:text-sm font-semibold uppercase tracking-wide border border-orange-500 ${i === 0 ? "text-left" : "text-center"}`}
-//                     >
-//                       <span className="break-words">{h}</span>
-//                     </th>
-//                   ))}
-//                 </tr>
-//               </thead>
-//               <tbody>
-//                 {R.map((row, r) => (
-//                   <tr key={r} className="bg-white hover:bg-orange-50/30 transition-colors">
-//                     {H.map((h, c) => {
-//                       const spans = spansByColIdx.get(c);
-//                       if (spans) {
-//                         const span = spans[r] ?? 1;
-//                         if (span === 0) return null;
-//                         return (
-//                           <td
-//                             key={`mrg-${r}-${c}`}
-//                             rowSpan={span}
-//                             className={`px-2 sm:px-3 py-2 sm:py-3 text-[11px] sm:text-xs lg:text-sm text-gray-900 align-top border border-orange-500 ${
-//                               c === firstMergeCol ? "bg-orange-50 font-semibold text-left" : "text-left"
-//                             }`}
-//                           >
-//                             <span className="break-words">{String(row?.[h] ?? "—")}</span>
-//                           </td>
-//                         );
-//                       }
-//                       return (
-//                         <td
-//                           key={`cell-${r}-${c}`}
-//                           className={`px-2 sm:px-3 py-2 sm:py-3 text-[11px] sm:text-xs lg:text-sm text-gray-900 align-top border border-orange-500 ${c === 0 ? "text-left" : "text-center"}`}
-//                         >
-//                           <span className="break-words">{String(row?.[h] ?? "—")}</span>
-//                         </td>
-//                       );
-//                     })}
-//                   </tr>
-//                 ))}
-//                 {(!R || R.length === 0) && (
-//                   <tr>
-//                     <td colSpan={H.length || 1} className="px-3 sm:px-4 py-4 sm:py-6 text-center text-xs sm:text-sm text-gray-500 border border-orange-500">
-//                       No data available.
-//                     </td>
-//                   </tr>
-//                 )}
-//               </tbody>
-//             </table>
-//           </div>
-//         </div>
-//       </CardContent>
-//     </Card>
-//   );
-// }
 
 function DesktopOrangeGrid({
   block,
@@ -719,20 +445,7 @@ function DesktopOrangeGrid({
                     className="bg-white hover:bg-orange-50/30 transition-colors"
                   >
                     {H.map((h, c) => {
-                      // 🟧 Andhra-specific logic: merge only Category every 2 rows
-                      // if (isAndhra && /category/i.test(h)) {
-                      //   if (r % 2 === 1) return null;
-                      //   return (
-                      //     <td
-                      //       key={`andhra-cat-${r}-${c}`}
-                      //       rowSpan={2}
-                      //       className="border border-orange-500 bg-orange-50 font-semibold text-center align-middle px-3 py-2"
-                      //     >
-                      //       {String(row?.[h] ?? "—")}
-                      //     </td>
-                      //   );
-                      // }
-                      // 🟧 Andhra & Tamil Nadu merging logic
+  
                       if (
                         /andhra-pradesh|tamil-nadu|telangana/i.test(
                           stateSlug || ""
@@ -777,12 +490,7 @@ function DesktopOrangeGrid({
                       }
 
                       return (
-                        // <td
-                        //   key={`cell-${r}-${c}`}
-                        //   className={`px-2 sm:px-3 py-2 sm:py-3 text-[11px] sm:text-xs lg:text-sm text-gray-900 align-top border border-orange-500 ${
-                        //     c === 0 ? "text-center" : "text-center align-middle"
-                        //   }`}
-                        // >
+               
                         <td
                           key={`cell-${r}-${c}`}
                           className={`px-2 sm:px-3 py-2 sm:py-3 text-[11px] sm:text-xs lg:text-sm text-gray-900 border border-orange-500 text-justify align-middle `}
@@ -827,12 +535,12 @@ function MobileCards({ block }: { block: TableBlock }) {
               {H.map((h, i) => (
                 <div
                   key={`${ridx}-${i}`}
-                  className="grid grid-cols-[100px_minmax(0,1fr)] min-[360px]:grid-cols-[120px_minmax(0,1fr)] gap-2 items-start py-1.5 border-b border-gray-100 last:border-0"
+                  className="grid grid-cols-[100px_minmax(0,1fr)] min-[360px]:grid-cols-[120px_minmax(0,1fr)] gap-x-15 items-start py-1.5 border-b border-gray-100 last:border-0"
                 >
                   <span className="text-[10px] min-[360px]:text-[11px] leading-tight font-semibold text-orange-600 break-words">
                     {h}:
                   </span>
-                  <span className="text-[10px] min-[360px]:text-[11px] leading-tight text-slate-800 text-right tabular-nums break-words hyphens-auto">
+                  <span className="text-[10px] min-[360px]:text-[11px] leading-tight text-slate-800 text-justify tabular-nums break-words hyphens-auto">
                     {(() => {
                       const v = (row as Row)?.[h];
                       if (v == null || v === "") return "—";
@@ -1223,7 +931,7 @@ export default function MinimumWageDetails({
               <h1 className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl font-bold text-slate-800 leading-tight">
                 Minimum Wages of {data?.state?.name}
               </h1>
-              
+             
               <div className="flex flex-col items-stretch sm:items-end gap-2">
                 <PeriodCombobox
                   apiBase={apiBase}
@@ -1233,7 +941,8 @@ export default function MinimumWageDetails({
                 />
               </div>
             </div>
-
+            {/* Writeup / Description */}
+          <p className="mb-3">{data?.writeup_space}</p>
             {/* Tables with Loading State */}
             <div className="relative">
               {loadingPeriod && (
