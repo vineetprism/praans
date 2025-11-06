@@ -491,7 +491,7 @@ export default function WelfareFundDetails({
                   </CardContent>
                 </Card>
 
-                {/* Download Notification */}
+                {/* Download Notif */}
                 <Card className="h-[140px] w-full text-center border-l-4 border-l-[#E85C0D] shadow-md hover:shadow-lg transition-shadow">
                   <CardContent className="h-full flex flex-col items-center justify-center px-2">
                     <Download className="h-7 w-7 text-[#E85C0D] mb-2" />
