@@ -128,7 +128,7 @@ export default function AuditAndInspection() {
             <div className="flex items-stretch">
               <div className="w-full rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white flex h-full">
                 <Image
-                  src="/services/labour-law.jpg"
+                  src="/services/labour-law.webp"
                   alt="Labour law advisory"
                   width={900}
                   height={600}
@@ -477,8 +477,6 @@ export default function AuditAndInspection() {
           </div>
         </div>
       </section>
-
-
 
       <section className="py-14">
         <div className="container mx-auto px-6 lg:px-8">

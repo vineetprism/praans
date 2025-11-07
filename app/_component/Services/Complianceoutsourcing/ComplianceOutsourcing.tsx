@@ -326,7 +326,7 @@ export default function ComplianceOutsourcing() {
             <div className="flex items-stretch">
               <div className="w-full rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white flex h-full">
                 <Image
-                  src="/services/compliance.jpg"
+                  src="/services/compliance.webp"
                   alt="Labour law advisory"
                   width={900}
                   height={600}
