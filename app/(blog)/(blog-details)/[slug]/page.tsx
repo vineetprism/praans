@@ -1,5 +1,5 @@
 import Link from "next/link";
-import BlogSlug from "@/app/_component/Blog/BlogDetails/BlogDetails";
+import BlogSlug from "@/app/_component/Blog/(BlogDetails)/BlogDetails";
 
 type ApiPost = {
   id: number;

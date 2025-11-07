@@ -209,19 +209,21 @@ export default function HeroSection() {
           justify-center max-w-lg sm:max-w-2xl 2xl:max-w-3xl mx-auto 
           pt-6 sm:pt-8 lg:pt-2 2xl:-mt-4"
         >
-          <Button
-            size="lg"
-            className="bg-gradient-to-r bg-blue-950 hover:bg-gray-950 
-              text-white text-xs sm:text-sm lg:text-[1rem] 2xl:text-xl 
-              px-4 sm:px-5 2xl:px-8 lg:h-11
-              py-3 sm:py-2.5 2xl:py-6
-              shadow-md hover:shadow-orange-500/25 rounded-lg font-bold w-full sm:w-auto cursor-pointer
-              "
-            aria-label="Get a Free Demo Of Software"
-          >
-            Get a Free Demo Of Software
-            <ArrowRight className="ml-1 w-4 h-4 2xl:w-5 2xl:h-5" />
-          </Button>
+          <Link href="/landing-page">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r bg-blue-950 hover:bg-gray-950 
+      text-white text-xs sm:text-sm lg:text-[1rem] 2xl:text-xl 
+      px-4 sm:px-5 2xl:px-8 lg:h-11
+      py-3 sm:py-2.5 2xl:py-6
+      shadow-md hover:shadow-orange-500/25 rounded-lg font-bold w-full sm:w-auto cursor-pointer"
+              aria-label="Get a Free Demo Of Software"
+            >
+              Get a Free Demo Of Software
+              <ArrowRight className="ml-1 w-4 h-4 2xl:w-5 2xl:h-5" />
+            </Button>
+          </Link>
+
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               <Button
@@ -250,29 +252,82 @@ export default function HeroSection() {
                     </DialogTitle>
                   </DialogHeader>
                   <div className="mx-auto mt-1 h-1 w-20 rounded-full bg-gradient-to-r from-orange-500 via-orange-600 to-red-500" />
-                  <p className="text-center text-gray-500 mt-2 mb-6">Get started in just 60 seconds</p>
+                  <p className="text-center text-gray-500 mt-2 mb-6">
+                    Get started in just 60 seconds
+                  </p>
                   <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
-                      <label htmlFor="full_name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                      <Input id="full_name" name="full_name" placeholder="John Doe" required className="h-11 rounded-lg border border-slate-200 focus-visible:ring-2 focus-visible:ring-orange-500" />
+                      <label
+                        htmlFor="full_name"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Full Name
+                      </label>
+                      <Input
+                        id="full_name"
+                        name="full_name"
+                        placeholder="John Doe"
+                        required
+                        className="h-11 rounded-lg border border-slate-200 focus-visible:ring-2 focus-visible:ring-orange-500"
+                      />
                     </div>
                     <div>
-                      <label htmlFor="business_email" className="block text-sm font-medium text-gray-700 mb-1">Business Email</label>
-                      <Input id="business_email" name="business_email" type="email" placeholder="john@company.com" required className="h-11 rounded-lg border border-slate-200 focus-visible:ring-2 focus-visible:ring-orange-500" />
+                      <label
+                        htmlFor="business_email"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Business Email
+                      </label>
+                      <Input
+                        id="business_email"
+                        name="business_email"
+                        type="email"
+                        placeholder="john@company.com"
+                        required
+                        className="h-11 rounded-lg border border-slate-200 focus-visible:ring-2 focus-visible:ring-orange-500"
+                      />
                     </div>
                     <div>
-                      <label htmlFor="mobile_number" className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
-                      <Input id="mobile_number" name="mobile_number" placeholder="+91 98765 43210" required className="h-11 rounded-lg border border-slate-200 focus-visible:ring-2 focus-visible:ring-orange-500" />
+                      <label
+                        htmlFor="mobile_number"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Mobile Number
+                      </label>
+                      <Input
+                        id="mobile_number"
+                        name="mobile_number"
+                        placeholder="+91 98765 43210"
+                        required
+                        className="h-11 rounded-lg border border-slate-200 focus-visible:ring-2 focus-visible:ring-orange-500"
+                      />
                     </div>
                     <div>
-                      <label htmlFor="organization_name" className="block text-sm font-medium text-gray-700 mb-1">Organization Name</label>
-                      <Input id="organization_name" name="organization_name" placeholder="Your Company Ltd." required className="h-11 rounded-lg border border-slate-200 focus-visible:ring-2 focus-visible:ring-orange-500" />
+                      <label
+                        htmlFor="organization_name"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Organization Name
+                      </label>
+                      <Input
+                        id="organization_name"
+                        name="organization_name"
+                        placeholder="Your Company Ltd."
+                        required
+                        className="h-11 rounded-lg border border-slate-200 focus-visible:ring-2 focus-visible:ring-orange-500"
+                      />
                     </div>
-                    <Button type="submit" disabled={submitting} className="w-full h-12 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl cursor-pointer shadow-[0_10px_30px_rgba(234,88,12,0.45)] disabled:opacity-70 disabled:cursor-not-allowed">
+                    <Button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full h-12 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl cursor-pointer shadow-[0_10px_30px_rgba(234,88,12,0.45)] disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
                       {submitting ? "Submitting..." : "REQUEST NOW"}
                       <span className="ml-1">→</span>
                     </Button>
-                    <p className="text-center text-xs text-gray-500">Your information is secure and encrypted</p>
+                    <p className="text-center text-xs text-gray-500">
+                      Your information is secure and encrypted
+                    </p>
                   </form>
                 </div>
               </div>
