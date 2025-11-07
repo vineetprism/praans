@@ -65,11 +65,11 @@ const categories = [
   },
   
   {
-    title: "Calculator",
+    title: "Calculator (Coming Soon!)",
     description: "Leave policies and working hour regulations",
     icon: Calculator,
     color: "bg-violet-500",
-    href: "/calculators/bonus",
+    href: "",
   },
   {
     title: "NFH Details",

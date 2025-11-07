@@ -22,7 +22,7 @@ const POPULAR_SEARCHES = [
   { label: "Labour welfare funds", href: "/labour-welfare-fund", Icon: HandCoins },
   { label: "Minimum wages", href: "/minimum-wages", Icon: Banknote },
   { label: "Professional tax", href: "/professional-tax", Icon: Receipt },
-  { label: "Calculators", href: "/calculators/bonus", Icon: Calculator },
+  { label: "Calculators (Coming Soon!)", href: "", Icon: Calculator },
   { label: "CLRA Applicability", href: "/leaves-working-hours", Icon: CalendarClock },
   { label: "National Festival Holidays", href: "/national-festival-holidays", Icon: CalendarClock },
   { label: "Applicability S&E Act", href: "/applicability-se-act/applicability", Icon: CalendarClock },
