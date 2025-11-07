@@ -143,7 +143,7 @@ export default async function BlogPostPage({
             We couldn’t fetch this article right now.
           </p>
           <Link
-            href="/blog"
+            href="/blog-main"
             className="text-orange-600 font-semibold mt-3 inline-block"
           >
             ← Back to Blog
@@ -169,7 +169,7 @@ export default async function BlogPostPage({
           <h1 className="text-2xl font-bold text-gray-900 mb-2">No data</h1>
           <p className="text-gray-600">This slug didn’t return any content.</p>
           <Link
-            href="/blog"
+            href="/blog-main"
             className="text-orange-600 font-semibold mt-3 inline-block"
           >
             ← Back to Blog

@@ -101,6 +101,16 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
       "code",
       "mark",
       "strike",
+      "table",
+      "thead",
+      "tbody",
+      "tfoot",
+      "tr",
+      "th",
+      "td",
+      "caption",
+      "colgroup",
+      "col",
     ],
     ALLOWED_ATTR: [
       "href",
@@ -111,6 +121,16 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
       "start",
       "reversed",
       "style",
+      "colspan",
+      "rowspan",
+      "border",
+      "cellpadding",
+      "cellspacing",
+      "width",
+      "height",
+      "align",
+      "valign",
+      "scope",
     ],
     KEEP_CONTENT: true,
   });
@@ -201,57 +221,14 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
                 Introduction
               </h2>
-              <div
-                className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-gray-700 space-y-4 text-justify"
-                dangerouslySetInnerHTML={{ __html: safeHtml }}
-              />
+              <div className="overflow-x-auto">
+                <div
+                  className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-gray-700 space-y-4 text-justify"
+                  dangerouslySetInnerHTML={{ __html: safeHtml }}
+                />
+              </div>
             </div>
           </div>
-
-          {/* <div className="col-span-1 lg:col-span-1 order-first lg:order-last">
-            <div className="rounded-lg p-4 sm:p-6 border bg-white lg:sticky lg:top-24">
-              <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-4 text-center">
-                Our Visitors
-              </h3>
-
-              <div className="text-center mb-4 sm:mb-6">
-                <div className="bg-gray-900 text-white px-3 sm:px-4 py-2 rounded font-mono text-lg sm:text-xl lg:text-2xl inline-block">
-                  012794
-                </div>
-              </div>
-
-              <div className="space-y-1 sm:space-y-2 lg:space-y-3 text-xs sm:text-sm overflow-hidden">
-                <div className="flex items-center justify-between min-w-0 gap-1">
-                  <div className="flex items-center gap-1 sm:gap-2 min-w-0 flex-shrink">
-                    <Eye size={12} className="sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-blue-500 flex-shrink-0" />
-                    <span className="font-medium truncate text-xs sm:text-sm">Visit Today</span>
-                  </div>
-                  <span className="font-semibold flex-shrink-0 text-xs sm:text-sm">157</span>
-                </div>
-                <div className="flex items-center justify-between min-w-0 gap-1">
-                  <div className="flex items-center gap-1 sm:gap-2 min-w-0 flex-shrink">
-                    <Eye size={12} className="sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-gray-500 flex-shrink-0" />
-                    <span className="font-medium truncate text-xs sm:text-sm">Visit Yesterday</span>
-                  </div>
-                  <span className="font-semibold flex-shrink-0 text-xs sm:text-sm">220</span>
-                </div>
-                <div className="flex items-center justify-between min-w-0 gap-1">
-                  <div className="flex items-center gap-1 sm:gap-2 min-w-0 flex-shrink">
-                    <Calendar size={12} className="sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-blue-400 flex-shrink-0" />
-                    <span className="font-medium truncate text-xs sm:text-sm">This Month</span>
-                  </div>
-                  <span className="font-semibold flex-shrink-0 text-xs sm:text-sm">2729</span>
-                </div>
-                <div className="flex items-center justify-between min-w-0 gap-1">
-                  <div className="flex items-center gap-1 sm:gap-2 min-w-0 flex-shrink">
-                    <Calendar size={12} className="sm:w-3 sm:h-3 lg:w-4 lg:h-4 text-orange-500 flex-shrink-0" />
-                    <span className="font-medium truncate text-xs sm:text-sm">This Year</span>
-                  </div>
-                  <span className="font-semibold flex-shrink-0 text-xs sm:text-sm">11794</span>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>
