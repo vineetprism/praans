@@ -156,11 +156,6 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
                   alt={post?.title}
                   className="object-contain bg-gray-100 max-w-full"
                 />
-                {/* <img
-                  src={hero}
-                  alt={post?.title}
-                  className="w-full h-[2rem] object-cover"
-                /> */}
               </div>
             )}
 
