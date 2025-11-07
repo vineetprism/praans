@@ -209,7 +209,7 @@ export default function HeroSection() {
           justify-center max-w-lg sm:max-w-2xl 2xl:max-w-3xl mx-auto 
           pt-6 sm:pt-8 lg:pt-2 2xl:-mt-4"
         >
-          <Link href="/landing-page">
+          <Link href="/compliance-software">
             <Button
               size="lg"
               className="bg-gradient-to-r bg-blue-950 hover:bg-gray-950 
