@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import LeavesWorkingHours from "@/app/_component/LeavesWorkingHours/LeavesWorkingHours";
 
-export const revalidate = 900; // ISR: 15 minutes
+export const revalidate = 86400; // ISR: 24 hours
 
 
 type StateItem = {

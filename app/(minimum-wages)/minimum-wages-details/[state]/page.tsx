@@ -6,7 +6,7 @@ import MinimumWagesDetails, {
   MWSlugData,
 } from "@/app/_component/MinimumWages/MinimumWagesDetails/MinimumWagesDetails";
 
-export const revalidate = 1800; // 30m
+export const revalidate = 86400; // 24 hours
 export const dynamicParams = true;
 
 type ApiResponse = { data: MWSlugData };

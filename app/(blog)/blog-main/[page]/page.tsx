@@ -100,7 +100,7 @@ export default async function BlogPageDynamic({ params }: PageProps) {
 
   try {
     const res = await fetch(`${API_BASE}/api/posts?page=${currentPage}`, {
-      next: { revalidate: 1800 }, // 30 minutes cache
+      next: { revalidate: 86400 }, // 24 hours cache
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

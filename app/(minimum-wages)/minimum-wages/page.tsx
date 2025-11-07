@@ -6,7 +6,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 async function getMinimumWagesData() {
   try {
     const res = await fetch(`${API_BASE}/api/minimum-wages`, {
-      next: { revalidate: 1800 },
+      next: { revalidate: 86400 },
     });
 
     if (!res.ok)

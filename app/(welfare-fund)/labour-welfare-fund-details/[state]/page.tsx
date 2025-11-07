@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import WelfareFundDetails from "@/app/_component/WelfareFund/WelfareFundDetails/WelfareFundDetails";
 
-export const revalidate = 1800; // ISR 30min
+export const revalidate = 86400; // ISR 30min
 export const dynamicParams = true; // optional but safe
 
 // ---------- Types from API ----------

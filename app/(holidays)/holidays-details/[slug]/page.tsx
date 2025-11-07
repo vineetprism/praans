@@ -3,7 +3,7 @@
 import HolidayDetails from "@/app/_component/Holiday/HolidayDetails/HolidayDetails";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
-export const revalidate = 1800;
+export const revalidate = 86400;
 
 type HolidayDetail = {
   holiday_name: string;
@@ -43,7 +43,7 @@ async function getHolidayState(slug: string): Promise<HolidayStateData | null> {
   if (!API_BASE) return null;
   try {
     const res = await fetch(`${API_BASE}/api/holidaysdetail/${slug}`, {
-      next: { revalidate },
+      next: { revalidate: 86400 },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
@@ -62,7 +62,7 @@ export async function generateMetadata({
   const { slug } = await params; 
   try {
    const r = await fetch(`${API_BASE}/api/holidaysdetail/${slug}`, {
-      next: { revalidate },
+      next: { revalidate: 86400 },
     });
     if (!r.ok) return { title: "Holidays" }; // ✅ Fixed typo
     const { data }: ApiResponse = await r.json();

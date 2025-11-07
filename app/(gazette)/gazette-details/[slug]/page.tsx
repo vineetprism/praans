@@ -91,7 +91,7 @@ export default async function Page({
   const { slug } = await params; // ✅ must await
 
   const res = await fetch(`${API_BASE}/api/gazettes/${slug}`, {
-    next: { revalidate: 1800 }, // ISR hint
+    next: { revalidate: 86400 }, // ISR hint
   });
 
   if (!res.ok) {

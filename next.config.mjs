@@ -2,21 +2,45 @@
 const nextConfig = {
   compress: true,
 
-  // Optimize images
   images: {
-    formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 60,
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    unoptimized: false, // Added update
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [320, 480, 768, 1024, 1280, 1600, 2000],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    remotePatterns: [
+      { protocol: 'https', hostname: 's3.amazonaws.com', pathname: '/**' },
+    ],
+    unoptimized: false,
+    minimumCacheTTL: 31536000,
+    dangerouslyAllowSVG: false,
   },
 
-  // Enable experimental features for better performance
+  async headers() {
+    return [
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/images/(.*)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/:all*\\.(jpg|jpeg|png|webp|avif|gif)$',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+    ]
+  },
+
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
 
-  // Bundle analyzer in development
   webpack: (config, { dev, isServer }) => {
     if (dev && !isServer) {
       config.optimization.splitChunks = {
@@ -33,13 +57,12 @@ const nextConfig = {
     return config
   },
 
-
   eslint: {
-    ignoreDuringBuilds: true, // Added update
+    ignoreDuringBuilds: true,
   },
 
   typescript: {
-    ignoreBuildErrors: true, // Added update
+    ignoreBuildErrors: true,
   },
 };
 

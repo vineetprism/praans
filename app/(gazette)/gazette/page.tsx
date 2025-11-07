@@ -9,7 +9,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 async function getGazetteData(page: number = 1) {
   try {
     const res = await fetch(`${API_BASE}/api/gazettes?page=${page}`, {
-      next: { revalidate: 1800 }, // 30 min ISR
+      next: { revalidate: 86400 }, // 24 hours ISR
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch gazette data`);
     return await res.json();

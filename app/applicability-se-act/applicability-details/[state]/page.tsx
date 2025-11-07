@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SEApplicabilityDetails from "@/app/_component/ApplicabilitySE/ApplicabilityDetails";
 
-export const revalidate = 1800; // ISR 30min
+export const revalidate = 86400; // ISR 30min
 export const dynamicParams = true; // optional but safe
 
 // Types for handling rows in tables

@@ -142,7 +142,7 @@ export default async function BlogPostPage({
 
   // ✅ 30-min ISR
   const res = await fetch(`${API_BASE}/api/posts/${slug}`, {
-    next: { revalidate: 1800 },
+    next: { revalidate: 86400 },
   }).catch(() => null);
 
   if (!res || !res.ok) {

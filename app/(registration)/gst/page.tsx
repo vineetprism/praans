@@ -20,7 +20,7 @@ const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
   "http://100.110.147.101:8000";
 
-export const revalidate = 1800;
+export const revalidate = 86400;
 
 function normalizeKeywords(v?: string | null): string[] | undefined {
   if (!v) return undefined;

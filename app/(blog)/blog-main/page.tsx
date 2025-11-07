@@ -226,7 +226,7 @@ export default async function BlogMainPage() {
     console.log(`[BLOG] Fetching posts for page ${page}`);
 
     const res = await fetch(`${API_BASE}/api/posts?page=${page}`, {
-      next: { revalidate: 1800 }, // 30 minutes cache
+      next: { revalidate: 86400 }, // 24 hours cache
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

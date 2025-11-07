@@ -16,7 +16,7 @@ export type StateNFHData = {
 };
 export type NFHDetailApi = { data: StateNFHData };
 
-export const revalidate = 1800;
+export const revalidate = 86400;
 export const dynamic = "force-dynamic"; // ✅ avoids build-time fetch crash
 
 const API_BASE = (process.env.NEXT_PUBLIC_API_BASE || "").replace(/\/+$/, "");

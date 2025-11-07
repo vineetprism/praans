@@ -26,7 +26,7 @@ export type ApiPayload = {
 /* =========================
    Config
    ========================= */
-export const revalidate = 1800;
+export const revalidate = 86400;
 export const dynamicParams = true;
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import WelfareFund from "@/app/_component/WelfareFund/WelfareFund";
 
-export const revalidate = 1800; // ISR: 30 minutes
+export const revalidate = 86400; // ISR: 30 minutes
 
 
 type WFState = {

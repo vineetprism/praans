@@ -11,7 +11,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE!
 async function getActsData(page: number = 1) {
   try {
     const res = await fetch(`${API_BASE}/api/act-rule-forms?page=${page}`, {
-      next: { revalidate: 1800 }, // ISR 30m
+      next: { revalidate: 86400 }, // ISR 24h
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch acts data`);
     return await res.json();

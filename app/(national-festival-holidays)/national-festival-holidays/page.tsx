@@ -32,7 +32,7 @@ export type NFHApi = {
   non_applicable_states: StateHoliday[];
 };
 
-export const revalidate = 1800;
+export const revalidate = 86400;
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 
 async function getNFHData(): Promise<NFHApi | null> {
