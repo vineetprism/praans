@@ -126,7 +126,7 @@ export default function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href="/blog-main"
                   aria-label="Blog"
                   className="text-lg transition-colors duration-300 hover:text-orange-400"
                 >
