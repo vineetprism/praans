@@ -163,7 +163,7 @@ export default function WelfareFund({
                       </div>
                       <Calculator className="w-8 h-8 text-orange-600" />
                     </div>
-                    <Link href="/tools/compliance-checker">
+                    <Link href="/welfare-calculator">
                       <Button
                         size="sm"
                         variant="outline"
@@ -187,7 +187,7 @@ export default function WelfareFund({
                       </div>
                       <CalculatorIcon className="w-14 h-14 text-orange-600" />
                     </div>
-                    <Link href="/tools/compliance-checker">
+                    <Link href="/interest&penalitycalculator">
                       <Button
                         size="sm"
                         variant="outline"

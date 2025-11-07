@@ -272,7 +272,7 @@ export default function ComplianceOutsourcing() {
     };
   }, []);
 
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>();
   const toggle = (idx: number) => setOpenIndex((p) => (p === idx ? null : idx));
 
   const mid = Math.ceil(faqs.length / 2);
@@ -748,7 +748,7 @@ export default function ComplianceOutsourcing() {
               Following labour laws doesn't have to be a headache. With Our Praans Consultech, you get help with clever software, a team that will ensure the smooth and accurate work that will be done on time and all the strategy.
             </p>
 
-            <p className="mx-auto max-w-6xl text-gray-600 text-base sm:text-lg leading-relaxed mb-10 text-justify">
+            <p className="mx-auto max-w-7xl text-gray-600 text-base sm:text-lg leading-relaxed mb-10 text-justify">
               Let us help you make your compliance process a strong point, instead of something stressful. Get in touch for a free chat to explore our labour law compliance outsourcing solutions.
             </p>
 

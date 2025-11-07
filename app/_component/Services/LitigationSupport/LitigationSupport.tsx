@@ -192,7 +192,7 @@ const faqs = [
 
 export default function LitigationSupport() {
 
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>();
   const toggle = (idx: number) => setOpenIndex((p) => (p === idx ? null : idx));
 
   const mid = Math.ceil(faqs.length / 2);

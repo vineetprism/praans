@@ -58,7 +58,7 @@ export default function FounderPage() {
             <div className="flex h-full flex-col items-center">
               <div className="relative w-full h-full min-h-[360px]">
                 <Image
-                  src="/services/admin1.jpg"
+                  src="/services/admin1.webp"
                   alt="Sandeep Kumar - Founder of Praans Consultech"
                   fill
                   priority
