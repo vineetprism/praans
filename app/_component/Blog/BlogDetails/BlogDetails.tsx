@@ -116,7 +116,7 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
   });
 
   return (
-    <div className=" min-h-screen">
+    <div className="container mx-auto max-w-7xl min-h-screen">
       <div className=" px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         <div className="grid lg:grid-cols-1 gap-4 sm:gap-6">
           <div className="col-span-1 lg:col-span-1">
@@ -151,16 +151,16 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
 
             {hero && (
               <div className="relative w-full mb-6 sm:mb-8 rounded-lg overflow-hidden">
-                {/* <img
-                  src={hero}
-                  alt={post?.title}
-                  className="object-contain bg-gray-100 max-w-full"
-                /> */}
                 <img
                   src={hero}
                   alt={post?.title}
-                  className="w-full h-auto object-cover"
+                  className="object-contain bg-gray-100 max-w-full"
                 />
+                {/* <img
+                  src={hero}
+                  alt={post?.title}
+                  className="w-full h-[2rem] object-cover"
+                /> */}
               </div>
             )}
 
