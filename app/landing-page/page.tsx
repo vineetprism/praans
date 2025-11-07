@@ -1,7 +1,8 @@
 'use client';
+import Link from 'next/link';
 import { useState } from 'react';
-
-
+ 
+ 
 export default function LandingPage() {
   const [formData, setFormData] = useState({
     full_name: '',
@@ -9,17 +10,17 @@ export default function LandingPage() {
     mobile_number: '',
     organization_name: ''
   });
-  
+ 
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setMessage({ type: '', text: '' });
-    
+   
     try {
-
+ 
        const payload = {
         full_name: formData.full_name,
         business_email: formData.business_email,
@@ -32,36 +33,36 @@ export default function LandingPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
+ 
       if (!response.ok) {
         throw new Error('Something went wrong! Please try again.');
       }
-
+ 
       const result = await response.json();
       console.log('Success:', result);
-      
-      setMessage({ 
-        type: 'success', 
-        text: 'Demo request submitted successfully! 🎉' 
+     
+      setMessage({
+        type: 'success',
+        text: 'Demo request submitted successfully! 🎉'
       });
-      
+     
       setFormData({ full_name: '', business_email: '', mobile_number: '', organization_name: '' });
-      
+     
     } catch (error) {
       console.error('Error:', error);
-      setMessage({ 
-        type: 'error', 
-        text: 'Failed to submit request. Please try again.' 
+      setMessage({
+        type: 'error',
+        text: 'Failed to submit request. Please try again.'
       });
     } finally {
       setIsLoading(false);
     }
   };
-
+ 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+ 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -69,7 +70,7 @@ export default function LandingPage() {
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-white to-orange-50"></div>
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-orange-500/10 to-transparent"></div>
-        
+       
         {/* Orange Decorative Shape */}
         <div className="absolute top-0 right-0 w-2/5 h-full">
           <div className="relative h-full">
@@ -77,7 +78,7 @@ export default function LandingPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-transparent"></div>
           </div>
         </div>
-
+ 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -87,17 +88,17 @@ export default function LandingPage() {
                 <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
                 <span className="text-sm font-semibold text-orange-700">India's #1 Compliance Software</span>
               </div>
-
+ 
               <h1 className="text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
                 India's Leading
                 <span className="block text-orange-600">Legal Compliance</span>
                 Management Software
               </h1>
-
+ 
               <p className="text-xl text-gray-600 leading-relaxed">
                 Automate your compliances, Registrations/Licences, Litigations and Contracts/Agreements with our comprehensive platform.
               </p>
-
+ 
               {/* Free Trial Badge */}
               <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-4 rounded-xl inline-block">
                 <div className="flex items-center space-x-3">
@@ -107,17 +108,19 @@ export default function LandingPage() {
                   <span className="font-bold text-lg">Free Trial with Legal Consultancy</span>
                 </div>
               </div>
-
+ 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4">
+                <Link href="#offers">
                 <button className="bg-gray-900 text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-all shadow-lg">
                   See Our Exciting Offers →
                 </button>
+                </Link>
                 <button className="border-2 border-gray-900 text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-900 hover:text-white transition-all">
                   Watch Demo
                 </button>
               </div>
-
+ 
               {/* Trust Indicators */}
               <div className="grid grid-cols-3 gap-6 pt-6">
                 <div className="text-center">
@@ -134,7 +137,7 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-
+ 
             {/* Right Form */}
             <div className="relative z-10">
               <div className="bg-white rounded-2xl shadow-2xl p-8 border-t-4 border-orange-500">
@@ -142,18 +145,18 @@ export default function LandingPage() {
                   <h2 className="text-3xl font-bold text-gray-900 mb-2">REQUEST A DEMO</h2>
                   <p className="text-gray-600">Get started in just 60 seconds</p>
                 </div>
-                
+               
                 {/* Success/Error Message */}
                 {message.text && (
                   <div className={`mb-4 p-4 rounded-lg ${
-                    message.type === 'success' 
-                      ? 'bg-green-100 text-green-700 border border-green-300' 
+                    message.type === 'success'
+                      ? 'bg-green-100 text-green-700 border border-green-300'
                       : 'bg-red-100 text-red-700 border border-red-300'
                   }`}>
                     {message.text}
                   </div>
                 )}
-                
+               
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
@@ -168,7 +171,7 @@ export default function LandingPage() {
                       disabled={isLoading}
                     />
                   </div>
-                  
+                 
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Business Email</label>
                     <input
@@ -182,7 +185,7 @@ export default function LandingPage() {
                       disabled={isLoading}
                     />
                   </div>
-                  
+                 
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Mobile Number</label>
                     <input
@@ -196,7 +199,7 @@ export default function LandingPage() {
                       disabled={isLoading}
                     />
                   </div>
-                  
+                 
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Organization Name</label>
                     <input
@@ -210,7 +213,7 @@ export default function LandingPage() {
                       disabled={isLoading}
                     />
                   </div>
-                  
+                 
                   <button
                     type="submit"
                     disabled={isLoading}
@@ -219,7 +222,7 @@ export default function LandingPage() {
                     {isLoading ? 'SUBMITTING...' : 'REQUEST NOW →'}
                   </button>
                 </form>
-
+ 
                 <div className="mt-6 flex items-center justify-center space-x-2 text-sm text-gray-500">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/>
@@ -231,7 +234,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
+ 
       {/* Features Section */}
       <section id="features" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -246,7 +249,7 @@ export default function LandingPage() {
               Comprehensive tools to manage all your compliance needs
             </p>
           </div>
-
+ 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: '📊', title: 'Dashboard', desc: 'Comprehensive overview', color: 'bg-blue-50 border-blue-200' },
@@ -274,7 +277,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
+ 
       {/* Stats Section */}
       <section className="py-20 bg-gradient-to-r from-orange-500 to-orange-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -298,7 +301,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
+ 
       {/* Advantages Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -310,7 +313,7 @@ export default function LandingPage() {
               Why Choose Our GRC Software?
             </h2>
           </div>
-
+ 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -362,15 +365,15 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
+ 
       {/* Exciting Offers */}
-      <section className="py-20 bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 text-white">
+      <section id="offers" className="py-20 bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold mb-4">Our Exciting Offers</h2>
             <p className="text-xl opacity-90">Limited time special deals</p>
           </div>
-
+ 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               { num: '1', text: '1st month free trial' },
@@ -390,7 +393,7 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-
+ 
           <div className="text-center mt-12">
             <button className="bg-white text-orange-600 px-10 py-4 rounded-lg font-bold text-lg hover:shadow-2xl transition-all">
               Claim Your Offer Now →
@@ -398,7 +401,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
+ 
       {/* Certifications */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -411,7 +414,7 @@ export default function LandingPage() {
             </h2>
             <p className="text-xl text-gray-600">Industry-leading security standards</p>
           </div>
-
+ 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { name: 'ISO 9001:2015', icon: '🏆', bg: 'bg-blue-50', border: 'border-blue-200' },
@@ -430,7 +433,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
+ 
       {/* Acts Covered */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -443,7 +446,7 @@ export default function LandingPage() {
             </h2>
             <p className="text-xl text-gray-600">Complete compliance across all regulations</p>
           </div>
-
+ 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {[
               { name: 'HR & LABOUR', icon: '👥' },
@@ -468,7 +471,7 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-
+ 
           <div className="text-center mt-12">
             <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-10 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition-all">
               And Many More →
