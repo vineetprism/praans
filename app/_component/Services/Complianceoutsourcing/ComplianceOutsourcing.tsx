@@ -327,7 +327,7 @@ export default function ComplianceOutsourcing() {
               <div className="w-full rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white flex h-full">
                 <Image
                   src="/services/compliance.webp"
-                  alt="Labour law advisory"
+                  alt="Compliance Outsourcing"
                   width={900}
                   height={600}
                   className="object-cover w-full h-full"

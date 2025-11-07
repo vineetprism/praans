@@ -1,22 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compress: true,
-
-  // Optimize images
   images: {
-    formats: ['image/webp', 'image/avif'],
+    formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    unoptimized: true, // Added update
+    dangerouslyAllowSVG: false,
+    remotePatterns: [
+      { protocol: 'https', hostname: 'res.cloudinary.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'images.example-cdn.com', pathname: '/**' },
+    ],
   },
-
-  // Enable experimental features for better performance
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
-
-  // Bundle analyzer in development
   webpack: (config, { dev, isServer }) => {
     if (dev && !isServer) {
       config.optimization.splitChunks = {
@@ -28,19 +24,12 @@ const nextConfig = {
             chunks: 'all',
           },
         },
-      }
+      };
     }
-    return config
+    return config;
   },
-
-
-  eslint: {
-    ignoreDuringBuilds: true, // Added update
-  },
-
-  typescript: {
-    ignoreBuildErrors: true, // Added update
-  },
+  eslint: { ignoreDuringBuilds: false },
+  typescript: { ignoreBuildErrors: false },
 };
 
 export default nextConfig;
