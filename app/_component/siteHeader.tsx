@@ -435,6 +435,7 @@ export default function Header() {
                   </div>
 
                   <div className="mt-8 space-y-3 pt-6 border-t border-orange-100">
+                    <SheetClose asChild>
                     <Button
                       onClick={handleLogin}
                       variant="ghost"
@@ -445,6 +446,8 @@ export default function Header() {
                       <User className="w-4 h-4 mr-2" />
                       Sign In
                     </Button>
+                  </SheetClose>
+                   <SheetClose asChild>
                     <Button
                       size="lg"
                       className="w-full justify-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl font-semibold shadow-lg"
@@ -453,6 +456,7 @@ export default function Header() {
                       Get Started
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
+                      </SheetClose>
                   </div>
                 </SheetContent>
               </Sheet>

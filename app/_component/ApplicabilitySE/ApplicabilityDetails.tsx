@@ -29,6 +29,7 @@ type SEApplicabilityData = {
     website_url?: string | null;
     noti_url?: string | null;
   };
+  doc_required?: string | null;
 };
 
 const LOCAL_HOSTS = new Set([
@@ -148,7 +149,7 @@ export default function SEApplicabilityDetails({
 
             {/* Write-up Section (Dynamic) */}
             {data?.writeup_space && (
-              <div className="mt-2 mb-4 p-3 font-medium text-gray-800 text-md leading-relaxed">
+              <div className=" text-sm mt-2 mb-4 p-3 font-medium text-gray-800 leading-relaxed">
                 <div dangerouslySetInnerHTML={{ __html: data.writeup_space }} />
               </div>
             )}
@@ -470,7 +471,7 @@ export default function SEApplicabilityDetails({
 
             {/* ========== REGISTRATION INFORMATION ========== */}
             {/* DESKTOP VERSION */}
-            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
+            {/* <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Registration Information
@@ -539,11 +540,92 @@ export default function SEApplicabilityDetails({
                   </div>
                 </div>
               </CardContent>
+            </Card> */}
+            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
+              <CardHeader className="pb-1 lg:pb-2">
+                <CardTitle className="text-base lg:text-lg font-bold">
+                  Registration Information
+                </CardTitle>
+              </CardHeader>
+
+              <CardContent className="p-0">
+                <div className="w-full overflow-x-auto">
+                  <div className="min-w-[600px] rounded-3xl overflow-hidden border border-orange-500">
+                    <table className="w-full border-collapse table-fixed">
+                      <thead>
+                        <tr className="bg-orange-50 text-orange-700">
+                          {/* Existing columns */}
+                          {regH?.map((h, i) => (
+                            <th
+                              key={h}
+                              className={[
+                                "px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold uppercase tracking-wide",
+                                "border border-orange-500 text-center",
+                                i === 0 ? "rounded-tl-xl" : "",
+                              ].join(" ")}
+                            >
+                              <span className="break-words">{h}</span>
+                            </th>
+                          ))}
+
+                          {/* Doc Required Header */}
+                          <th className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold uppercase tracking-wide border border-orange-500 text-center rounded-tr-xl">
+                            <span className="break-words">Doc Required</span>
+                          </th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {regRows?.map((r, ridx) => (
+                          <tr key={ridx} className="bg-white">
+                            {/* Existing data columns */}
+                            {regH?.map((h) => (
+                              <td
+                                key={h}
+                                className="px-2 sm:px-3 lg:px-4 py-2 sm:py-4 text-xs sm:text-sm text-gray-900 align-top border border-orange-500 text-center"
+                              >
+                                <span className="break-words">
+                                  {fmt(cell(r, h))}
+                                </span>
+                              </td>
+                            ))}
+
+                            {/* Doc Required - Only in FIRST row with rowspan */}
+                            {ridx === 0 && (
+                              <td
+                                rowSpan={regRows.length}
+                                className="px-2 sm:px-3 lg:px-4 py-2 sm:py-4 text-xs sm:text-sm text-gray-900 align-middle border border-orange-500 text-center"
+                              >
+                                <span className="break-words">
+                                  {data.doc_required
+                                    ? fmt(data.doc_required)
+                                    : "-"}
+                                </span>
+                              </td>
+                            )}
+                          </tr>
+                        ))}
+
+                        {(!regRows || regRows.length === 0) && (
+                          <tr>
+                            <td
+                              colSpan={(regH?.length || 1) + 1}
+                              className="px-4 py-6 text-center text-sm text-gray-500 border border-orange-500"
+                            >
+                              No data available.
+                            </td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </CardContent>
             </Card>
 
             {/* MOBILE VERSION - Registration Information */}
             <div className="block md:hidden mb-4 w-full">
-              <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
+              {/* <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">
                     Registration Information
@@ -581,7 +663,60 @@ export default function SEApplicabilityDetails({
                     </div>
                   )}
                 </CardContent>
-              </Card>
+              </Card> */}
+              {/* MOBILE VERSION - Registration Information */}
+              <div className="block md:hidden mb-4 w-full">
+                <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">
+                      Registration Information
+                    </CardTitle>
+
+                    {/* Doc Required - Single time, just below heading */}
+                    {data.doc_required && (
+                      <div className="mt-3 bg-orange-50 border border-orange-200 rounded-lg px-3 sm:px-4 py-2 sm:py-3">
+                        <div className="flex flex-col space-y-1">
+                          <span className="text-xs font-semibold text-orange-800">
+                            Doc Required:
+                          </span>
+                          <span className="text-xs sm:text-sm text-gray-800 leading-relaxed">
+                            {fmt(data.doc_required)}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </CardHeader>
+
+                  <CardContent className="p-3 sm:p-4 space-y-3">
+                    {regRows?.length ? (
+                      regRows.map((r, idx) => (
+                        <div
+                          key={idx}
+                          className="bg-white rounded-lg p-3 sm:p-4 border border-orange-200 shadow-sm text-xs sm:text-sm divide-y divide-orange-100"
+                        >
+                          {/* Existing fields only - No Doc Required here */}
+                          {regH?.map((h, i) => (
+                            <div key={i} className="py-2 first:pt-0 last:pb-0">
+                              <div className="flex justify-between">
+                                <span className="font-semibold text-orange-600 min-w-[130px]">
+                                  {h}:
+                                </span>
+                                <span className="text-gray-800 leading-relaxed break-words text-justify">
+                                  {fmt(cell(r, h))}
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ))
+                    ) : (
+                      <div className="text-center text-sm text-gray-500">
+                        No data available.
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </div>
             </div>
 
             <div className="w-full mb-4">
