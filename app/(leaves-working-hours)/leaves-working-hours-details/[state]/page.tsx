@@ -1,7 +1,3 @@
-
-
-// app/leaves-working-hours/[state]/page.tsx
-
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import LeavesWorkingHoursDetails from "@/app/_component/LeavesWorkingHours/LeavesWorkingHoursDetails/LeavesWorkingHoursDetails";
@@ -11,10 +7,6 @@ export const dynamicParams = true;
 
 const API_BASE = (process.env.NEXT_PUBLIC_API_BASE || "").replace(/\/+$/, "");
 const LWH_BASE = `${API_BASE}/api/leaves-working-hours`;
-
-/* =========================
-   Types
-   ========================= */
 
 type LWHApi = {
   data: {
@@ -45,10 +37,6 @@ type LWHApi = {
     } | null;
   };
 };
-
-/* =========================
-   Helpers
-   ========================= */
 
 const normSlug = (s: string) =>
   s
@@ -83,10 +71,6 @@ function pickMeta(data: any): MetaBag {
   };
 }
 
-/* =========================
-   Fetcher
-   ========================= */
-
 async function getStateLWH(slug: string): Promise<LWHApi["data"] | null> {
   const url = `${LWH_BASE}/${encodeURIComponent(normSlug(slug))}`;
   try {
@@ -103,10 +87,6 @@ async function getStateLWH(slug: string): Promise<LWHApi["data"] | null> {
     return null;
   }
 }
-
-/* =========================
-   Metadata
-   ========================= */
 
 export async function generateMetadata({
   params,
@@ -146,10 +126,6 @@ export async function generateMetadata({
     };
   }
 }
-
-/* =========================
-   Page
-   ========================= */
 
 export default async function StateLeavesWorkingHoursPage({
   params,

@@ -22,14 +22,9 @@ type ApiPost = {
   tags?: string[] | null;
 };
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "");
+const FILE_HOST = process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") || API_BASE;
 
-const FILE_HOST =
-  process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") || API_BASE;
-
-/* ---------- tiny helper for metadata image ---------- */
 function normalizeImageUrlForMeta(
   post?: Partial<ApiPost> | null
 ): string | undefined {
@@ -56,7 +51,6 @@ function normalizeImageUrlForMeta(
   }
 }
 
-/* ---------- normalize API response shape ---------- */
 function normalizePost(data: any): ApiPost {
   if (!data || typeof data !== "object") return data as ApiPost;
   const author = data.author
@@ -90,13 +84,11 @@ function normalizePost(data: any): ApiPost {
   };
 }
 
-/* ---------- SEO metadata ---------- */
 export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
 }) {
-  // ✅ Await `params` to access the `slug`
   const { slug } = await params;
 
   const res = await fetch(`${API_BASE}/api/posts/${slug}`, {
@@ -126,21 +118,16 @@ export async function generateMetadata({
     keywords,
     url,
     img
-    // openGraph: { title, description, images: img ? [{ url: img }] : [] },
-    // twitter: { card: "summary_large_image", title, description, images: img ? [img] : [] },
   };
 }
 
-/* ---------- Page (ISR fetch -> render-only component) ---------- */
 export default async function BlogPostPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  // ✅ Await `params` to access the `slug`
   const { slug } = await params;
 
-  // ✅ 30-min ISR
   const res = await fetch(`${API_BASE}/api/posts/${slug}`, {
     next: { revalidate: 86400 },
   }).catch(() => null);
@@ -192,6 +179,5 @@ export default async function BlogPostPage({
     );
   }
 
-  // 🔥 render-only component — same design as your static version
   return <BlogSlug post={post} />;
 }

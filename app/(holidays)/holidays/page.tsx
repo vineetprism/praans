@@ -17,7 +17,7 @@ async function getHolidays(year: number) {
   try {
     if (!API_BASE) throw new Error("API base missing");
     const res = await fetch(`${API_BASE}/api/holidays/${year}`, {
-      next: { revalidate: 86400 }, // ISR: 24 hours
+      next: { revalidate: 86400 },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();

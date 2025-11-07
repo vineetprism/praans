@@ -1,22 +1,5 @@
-import { Metadata } from "next";
 import ProfessionalTax from "@/app/_component/ProfessionalTax/ProfessionalTax";
 
-// ---------- SEO ----------
- const metadata: Metadata = {
-  title: "Professional Tax - State-wise Rates & Slabs | E-Library",
-  description:
-    "Complete guide to Professional Tax rates, slabs, and compliance across all Indian states. Get latest PT rates, forms, and calculation methods.",
-  keywords: [
-    "professional tax",
-    "PT rates",
-    "state wise professional tax",
-    "professional tax slabs",
-    "professional tax compliance",
-    "professional tax forms",
-  ],
-};
-
-// ---------- Types ----------
 export type ApplicableState = {
   state_name: string;
   state_slug: string;
@@ -35,7 +18,6 @@ export type PTApi = {
   non_applicable_states: string[];
 };
 
-// ---------- Config ----------
 export const revalidate = 86400; 
 const API_BASE=process.env.NEXT_PUBLIC_API_BASE!
 async function getPTData(): Promise<PTApi | null> {

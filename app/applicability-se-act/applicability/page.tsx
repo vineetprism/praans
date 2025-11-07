@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import SEApplicability from "@/app/_component/ApplicabilitySE/SEApplicability";
-export const revalidate = 86400; // ISR: 30 minutes
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "S&E Applicability | State-wise",

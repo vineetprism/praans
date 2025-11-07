@@ -1,9 +1,7 @@
-// app/blog-main/[page]/page.tsx
 import Blog from "@/app/_component/Blog/Blog";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-// ==================== TYPES ====================
 type ApiPost = {
   id: number;
   title: string;
@@ -31,17 +29,10 @@ type ApiResponse = {
   };
 };
 
-// ✅ Next.js 15 - PageProps with Promise
 type PageProps = {
   params: Promise<{ page: string }>;
 };
-
-// ==================== CONFIG ====================
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
-
-// ==================== METADATA ====================
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "");
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
@@ -57,13 +48,12 @@ export async function generateMetadata({
   };
 }
 
-// ==================== STATIC PARAMS (Optional - for SSG) ====================
 export async function generateStaticParams() {
   try {
     console.log("[STATIC PARAMS] Generating static params for blog pages");
 
     const res = await fetch(`${API_BASE}/api/posts?page=1`, {
-      next: { revalidate: 3600 }, // 1 hour cache
+      next: { revalidate: 3600 },
     });
 
     if (res.ok) {
@@ -84,15 +74,12 @@ export async function generateStaticParams() {
   return [];
 }
 
-// ==================== PAGE COMPONENT ====================
 export default async function BlogPageDynamic({ params }: PageProps) {
-  // ✅ Await params to get page number (Next.js 15)
   const { page: pageParam } = await params;
   const currentPage = parseInt(pageParam, 10);
 
   console.log(`[BLOG DYNAMIC] Rendering page ${currentPage}`);
 
-  // Validate page number
   if (isNaN(currentPage) || currentPage < 1) {
     console.warn(`[BLOG DYNAMIC] Invalid page number: ${pageParam}`);
     notFound();
@@ -100,7 +87,7 @@ export default async function BlogPageDynamic({ params }: PageProps) {
 
   try {
     const res = await fetch(`${API_BASE}/api/posts?page=${currentPage}`, {
-      next: { revalidate: 86400 }, // 24 hours cache
+      next: { revalidate: 86400 },
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -127,7 +114,6 @@ export default async function BlogPageDynamic({ params }: PageProps) {
     const totalPages = json?.meta?.last_page || 1;
     const totalPosts = json?.meta?.total;
 
-    // If page number exceeds total pages, show 404
     if (currentPage > totalPages) {
       console.warn(
         `[BLOG DYNAMIC] Page ${currentPage} exceeds total pages ${totalPages}`

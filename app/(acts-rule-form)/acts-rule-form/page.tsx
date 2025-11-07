@@ -1,17 +1,12 @@
-
-
-// app/(e-library)/acts/page.tsx
 import type { Metadata } from "next";
 import ActsPageClient from "../../_component/ActRuleForm/ActsPageClient";
 
-// Use environment variables for API base URLs (trim trailing slashes for safety)
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!
 
-// Fetch Acts Data
 async function getActsData(page: number = 1) {
   try {
     const res = await fetch(`${API_BASE}/api/act-rule-forms?page=${page}`, {
-      next: { revalidate: 86400 }, // ISR 24h
+      next: { revalidate: 86400 },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch acts data`);
     return await res.json();
@@ -26,7 +21,6 @@ async function getActsData(page: number = 1) {
 }
 
 
-// Server-side metadata
 export const metadata: Metadata = {
   title: "Labour Acts & Regulations | Complete Legal Database",
   description:
@@ -49,7 +43,6 @@ export default async function ActsPage(
   const { page } = await searchParams;        
   const currentPage = Number(page) || 1;
 
-  // Concurrent fetch
   const [initialData] = await Promise.all([
     getActsData(currentPage),
   ]);

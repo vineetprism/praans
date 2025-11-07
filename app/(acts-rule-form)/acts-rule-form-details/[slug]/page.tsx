@@ -2,8 +2,6 @@ import ActDetailClient from "@/app/_component/ActRuleForm/ActRuleFormDetails/Act
 import { notFound } from "next/navigation";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
-
-// Types based on actual API response
 type FormAPI = {
   id: number;
   form_no: string;
@@ -54,7 +52,7 @@ type ApiPost = {
 async function getActDetail(slug: string): Promise<ActDetailAPI | null> {
   try {
     const res = await fetch(`${API_BASE}/api/act-rule-forms/${slug}`, {
-      next: { revalidate: 86400 }, // 24 hours ISR cache
+      next: { revalidate: 86400 },
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -106,12 +104,10 @@ function normalizePost(data: any): ApiPost {
   };
 }
 
-/* ---------- SEO metadata ---------- */
-// IMPORTANT: accept params as plain object (not Promise) and don't `await params`
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  // if API_BASE is empty, return fallback metadata
+  if (!API_BASE) return { title: "ACT-RULE-FORMS | Prism" };
   if (!API_BASE) return { title: "ACT-RULE-FORMS | Prism" };
 
   const res = await fetch(`${API_BASE}/api/act-rule-forms/${slug}`, { cache: "no-store" }).catch(() => null);
@@ -134,9 +130,6 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-/* =========================
-   Page — accept params as plain object (not Promise)
-   ========================= */
 export default async function ActDetailPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const payload = await getActDetail(slug);

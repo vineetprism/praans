@@ -1,12 +1,10 @@
-
-// app/minimum-wages/[state]/page.tsx
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import MinimumWagesDetails, {
   MWSlugData,
 } from "@/app/_component/MinimumWages/MinimumWagesDetails/MinimumWagesDetails";
 
-export const revalidate = 86400; // 24 hours
+export const revalidate = 86400;
 export const dynamicParams = true;
 
 type ApiResponse = { data: MWSlugData };
@@ -14,7 +12,6 @@ type ApiResponse = { data: MWSlugData };
 const API_BASE = (process.env.NEXT_PUBLIC_API_BASE || "").replace(/\/+$/, "");
 const MW_BASE = `${API_BASE}/api/minimum-wages`;
 
-// ── helpers
 const normSlug = (s: string) =>
   s
     .trim()
@@ -36,7 +33,6 @@ function normalizeKeywords(
         .filter(Boolean);
 }
 
-// ---- meta compat (flat | meta | meta_column)
 type MWMetaBag = {
   seo_title?: string | null;
   meta_description?: string | null;
@@ -72,7 +68,6 @@ function pickMeta(data: unknown) {
   };
 }
 
-// ── Metadata (server-side)
 export async function generateMetadata({
   params,
 }: {
@@ -106,7 +101,6 @@ export async function generateMetadata({
   }
 }
 
-// ── Data fetch (server-side)
 async function getMinimumWageState(
   stateParam: string,
 ): Promise<MWSlugData | null> {
@@ -135,7 +129,6 @@ async function getMinimumWageState(
   }
 }
 
-// ── Page
 export default async function Page({
   params,
 }: {
@@ -144,6 +137,5 @@ export default async function Page({
   const { state } = await params;
   const data = await getMinimumWageState(state);
   if (!data) notFound();
-// console.log(data)
   return <MinimumWagesDetails data={data} apiBase={MW_BASE} />;
 }

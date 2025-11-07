@@ -1,15 +1,12 @@
 
 import type { Metadata } from "next";
-import Gazette from "@/app/_component/Gazette/Gazette"; // Client-side component
+import Gazette from "@/app/_component/Gazette/Gazette";
 
-// Use environment variable for API base URL
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
-
-// ---------- Server fetchers (ISR enabled) ----------
 async function getGazetteData(page: number = 1) {
   try {
     const res = await fetch(`${API_BASE}/api/gazettes?page=${page}`, {
-      next: { revalidate: 86400 }, // 24 hours ISR
+      next: { revalidate: 86400 },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}: Failed to fetch gazette data`);
     return await res.json();
@@ -23,7 +20,6 @@ async function getGazetteData(page: number = 1) {
   }
 }
 
-// ---------- Static SEO ----------
 export const metadata: Metadata = {
   title: "Gazette Notifications | Government Legal Publications",
   description:
@@ -38,14 +34,12 @@ export const metadata: Metadata = {
   ],
 };
 
-// ---------- Page (await searchParams) ----------
 export default async function GazetteNotificationsPage(
-  { searchParams }: { searchParams: Promise<{ page?: string }> } // keeping your Promise-based typing
+  { searchParams }: { searchParams: Promise<{ page?: string }> }
 ) {
-  const { page } = await searchParams; // await as you had
+  const { page } = await searchParams;
   const currentPage = Number(page) || 1;
 
-  // Fetch gazettes
   const initialData = await getGazetteData(currentPage);
 
   return (

@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import NationalFestivalHolidaysDetails from "@/app/_component/NationalFestivalHolidays/NationalFestivalHolidaysDetails/NationalFestivalHolidaysDetails";
 
-/* --- Types --- */
 export type NFHTableRow = Record<string, string>;
 export type StateNFHData = {
   state: { name: string; slug: string };  
@@ -22,13 +21,10 @@ export const dynamic = "force-dynamic"; // ✅ avoids build-time fetch crash
 const API_BASE = (process.env.NEXT_PUBLIC_API_BASE || "").replace(/\/+$/, "");
 const NFH_BASE = `${API_BASE}/api/national-festival-holidays`;
 
-/* --- Helpers --- */
 const normalizeKeywords = (v?: string[] | string | null) =>
   !v ? undefined : Array.isArray(v) ? v.filter(Boolean) : v.split(",").map((x) => x.trim());
 
 const pickMeta = (data: StateNFHData) => data.meta_column ?? data.meta ?? {};
-
-/* --- Fetcher --- */
 async function getStateNFHData(slug: string): Promise<StateNFHData | null> {
   if (!API_BASE) {
     console.warn("⚠️ API base not configured, skipping NFH fetch.");
@@ -50,7 +46,6 @@ async function getStateNFHData(slug: string): Promise<StateNFHData | null> {
   }
 }
 
-/* --- Metadata --- */
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
 
@@ -77,7 +72,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-/* --- Static Params --- */
 export async function generateStaticParams() {
   if (!API_BASE) {
     console.warn("⚠️ Skipping generateStaticParams due to missing API_BASE");
@@ -99,7 +93,6 @@ export async function generateStaticParams() {
   }
 }
 
-/* --- Page --- */
 export default async function StateDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const initialData = await getStateNFHData(slug);

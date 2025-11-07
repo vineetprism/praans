@@ -1,12 +1,10 @@
-// app/welfare-fund/[state]/page.tsx
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import WelfareFundDetails from "@/app/_component/WelfareFund/WelfareFundDetails/WelfareFundDetails";
 
-export const revalidate = 86400; // ISR 30min
-export const dynamicParams = true; // optional but safe
+export const revalidate = 86400;
+export const dynamicParams = true;
 
-// ---------- Types from API ----------
 type Row = Record<string, string | null>;
 
 export type WelfareFundStateMeta = {
@@ -15,8 +13,6 @@ export type WelfareFundStateMeta = {
   meta_keywords?: string[] | string | null;
   meta_url?: string | null;
 };
-
-// Updated WFSlugData with SEO fields
 type WFSlugData = {
   state: { name: string; slug: string };
   updated_date?: string | null;
@@ -39,16 +35,12 @@ type WFListResponse = {
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 
-
-// ---------- Helpers ----------
 function normalizeKeywords(v: WelfareFundStateMeta["meta_keywords"]): string[] | undefined {
   if (!v) return undefined;
   if (Array.isArray(v)) return v.filter(Boolean);
   return v.split(",").map(s => s.trim()).filter(Boolean);
 }
 
-
-// ---------- Fetchers ----------
 async function getWFState(slug: string): Promise<WFSlugData | null> {
   try {
     const res = await fetch(`${API_BASE}/api/welfare-funds/${slug}`, { next: { revalidate } });
@@ -75,13 +67,12 @@ async function getAllSlugs(): Promise<string[]> {
   }
 }
 
-// ---------- Metadata (params is async in Next 15) ----------
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ state: string }>;
 }): Promise<Metadata> {
-  const { state } = await params; // ✅ must await
+  const { state } = await params;
 
   try {
     const res = await fetch(`${API_BASE}/api/welfare-funds/${state}`, { next: { revalidate } });
@@ -106,19 +97,16 @@ export async function generateMetadata({
   }
 }
 
-// ---------- SSG params ----------
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
-  return slugs.map(state => ({ state })); // key must match folder param
+  return slugs.map(state => ({ state }));
 }
-
-// ---------- Page (params is async in Next 15) ----------
 export default async function StateWelfareFundPage({
   params,
 }: {
   params: Promise<{ state: string }>;
 }) {
-  const { state } = await params; // ✅ must await
+  const { state } = await params;
   const data = await getWFState(state);
   if (!data) notFound();
   return <WelfareFundDetails data={data} apiBase={API_BASE} />;

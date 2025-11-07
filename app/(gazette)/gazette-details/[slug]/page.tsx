@@ -59,13 +59,12 @@ function prettyDate(iso?: string | null) {
   return `${ordinal(d.getDate())} ${d.toLocaleString("en-US",{month:"short"})}, ${d.getFullYear()}`;
 }
 
-// 👇 Next.js 15+: params is a Promise
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params; // ✅ must await
+  const { slug } = await params;
   try {
     const r = await fetch(`${API_BASE}/api/gazettes/${slug}`, { cache: "no-store" });
     if (!r.ok) return { title: "Gazette Notification" };
@@ -82,16 +81,15 @@ export async function generateMetadata({
   }
 }
 
-// 👇 Next.js 15+: params is a Promise
 export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params; // ✅ must await
+  const { slug } = await params;
 
   const res = await fetch(`${API_BASE}/api/gazettes/${slug}`, {
-    next: { revalidate: 86400 }, // ISR hint
+    next: { revalidate: 86400 },
   });
 
   if (!res.ok) {

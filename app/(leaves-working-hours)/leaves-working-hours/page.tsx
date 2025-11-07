@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import LeavesWorkingHours from "@/app/_component/LeavesWorkingHours/LeavesWorkingHours";
 
-export const revalidate = 86400; // ISR: 24 hours
+export const revalidate = 86400;
 
 
 type StateItem = {
@@ -16,7 +16,6 @@ type LeavesWorkingHoursAPI = {
 };
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE
-// (optional) SEO
 export const metadata: Metadata = {
   title: "Leave & Working Hours - Labour Laws & Regulations | E-Library",
   description:

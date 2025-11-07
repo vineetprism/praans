@@ -1,14 +1,6 @@
-
-
-// app/professional-tax/[state]/page.tsx
-
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProfessionalTaxDetails from "@/app/_component/ProfessionalTax/ProfessionalTaxDetails/ProfessionalTaxDetails";
 
-/* =========================
-   Types (FIXED ✅ no ./types import)
-   ========================= */
 export type ApiPayload = {
   data: {
     state: {
@@ -23,18 +15,12 @@ export type ApiPayload = {
   };
 };
 
-/* =========================
-   Config
-   ========================= */
 export const revalidate = 86400;
 export const dynamicParams = true;
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 const PT_BASE = `${API_BASE.replace(/\/+$/, "")}/api/professional-tax`;
 
-/* =========================
-   Helpers
-   ========================= */
 const normSlug = (s: string) =>
   s
     .trim()
@@ -53,9 +39,6 @@ function normalizeKeywords(
     : v.split(",").map((s) => s.trim()).filter(Boolean);
 }
 
-/* =========================
-   Meta compatibility
-   ========================= */
 type PTMetaBag = {
   seo_title?: string | null;
   meta_description?: string | null;
@@ -95,9 +78,6 @@ function pickMeta(data: unknown) {
   };
 }
 
-/* =========================
-   Fetcher
-   ========================= */
 async function getProfessionalTaxState(
   stateParam: string
 ): Promise<ApiPayload["data"] | null> {
@@ -121,9 +101,6 @@ async function getProfessionalTaxState(
   }
 }
 
-/* =========================
-   Metadata
-   ========================= */
 export async function generateMetadata({
   params,
 }: {
@@ -158,9 +135,6 @@ export async function generateMetadata({
   }
 }
 
-/* =========================
-   Page
-   ========================= */
 export default async function Page({
   params,
 }: {

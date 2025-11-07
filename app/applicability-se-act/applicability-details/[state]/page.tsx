@@ -1,14 +1,10 @@
-
-
-
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SEApplicabilityDetails from "@/app/_component/ApplicabilitySE/ApplicabilityDetails";
 
-export const revalidate = 86400; // ISR 30min
-export const dynamicParams = true; // optional but safe
+export const revalidate = 86400;
+export const dynamicParams = true;
 
-// Types for handling rows in tables
 type Row = Record<string, string | null>;
 
 export type SEApplicabilityMeta = {
@@ -18,8 +14,6 @@ export type SEApplicabilityMeta = {
   meta_url?: string | null;
   
 };
-
-// Updated SEApplicabilityData with SEO fields
 type SEApplicabilityData = {
   state: { name: string; slug: string };
   updated_date?: string | null;
@@ -44,15 +38,11 @@ type SEListResponse = {
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 
-// ---------- Helpers ----------
-
 function normalizeKeywords(v: SEApplicabilityMeta["meta_keywords"]): string[] | undefined {
   if (!v) return undefined;
   if (Array.isArray(v)) return v.filter(Boolean);
   return v.split(",").map(s => s.trim()).filter(Boolean);
 }
-
-// ---------- Fetchers ----------
 
 async function getSEApplicabilityState(slug: string): Promise<SEApplicabilityData | null> {
   try {
@@ -80,15 +70,12 @@ async function getAllSESlugs(): Promise<string[]> {
   }
 }
 
-// ---------- Metadata ----------
-
-
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ state: string }>;
 }): Promise<Metadata> {
-  const { state } = await params; // ✅ must await
+  const { state } = await params;
 
   try {
     const res = await fetch(`${API_BASE}/api/applicabilities/${state}`, { next: { revalidate } });
@@ -112,23 +99,18 @@ export async function generateMetadata({
   }
 }
 
-// ---------- Static Params ----------
-
 export async function generateStaticParams() {
   const slugs = await getAllSESlugs();
-  return slugs.map(state => ({ state })); // key must match folder param
+  return slugs.map(state => ({ state }));
 }
-
-// ---------- Page ----------
 
 export default async function SEApplicabilityPage({
   params,
 }: {
   params: Promise<{ state: string }>;
 }) {
-  const { state } = await params; // ✅ must await
+  const { state } = await params;
   const data = await getSEApplicabilityState(state);
   if (!data) notFound();
-  // return <SEApplicabilityDetails data={data} apiBase={API_BASE} />;
 return <SEApplicabilityDetails data={data as unknown as any} apiBase={API_BASE} />;
 }

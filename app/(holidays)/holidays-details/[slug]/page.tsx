@@ -1,5 +1,3 @@
-
-
 import HolidayDetails from "@/app/_component/Holiday/HolidayDetails/HolidayDetails";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
@@ -64,13 +62,12 @@ export async function generateMetadata({
    const r = await fetch(`${API_BASE}/api/holidaysdetail/${slug}`, {
       next: { revalidate: 86400 },
     });
-    if (!r.ok) return { title: "Holidays" }; // ✅ Fixed typo
+    if (!r.ok) return { title: "Holidays" }; 
     const { data }: ApiResponse = await r.json();
     return {
       title: data?.meta?.seo_title || "vin-pages",
       description: data?.meta?.meta_description || "",
       keywords: data.meta?.meta_keywords,
-      // ✅ Changed 'url' to proper Next.js metadata property
       ...(data.meta?.meta_url && {
         alternates: {
           canonical: data.meta.meta_url
