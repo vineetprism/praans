@@ -475,6 +475,14 @@ export default function SEApplicabilityDetails({
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Registration Information
                 </CardTitle>
+                {data.doc_required && (
+    <div className="mt-3 max-w-full">
+      <div className="inline-block bg-orange-50 border border-orange-200 rounded-lg px-4 py-3">
+        <strong className="mr-2 text-orange-800">Doc Required:</strong>
+        <span className="text-sm text-gray-800">{fmt(data.doc_required)}</span>
+      </div>
+    </div>
+  )}
               </CardHeader>
 
               <CardContent className="p-0">
@@ -514,6 +522,7 @@ export default function SEApplicabilityDetails({
                             ))}
                           </tr>
                         ))}
+                        
 
                         {(!regRows || regRows.length === 0) && (
                           <tr>
@@ -539,6 +548,7 @@ export default function SEApplicabilityDetails({
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">
                     Registration Information
                   </CardTitle>
+                  <p></p>
                 </CardHeader>
 
                 <CardContent className="p-3 sm:p-4 space-y-3">

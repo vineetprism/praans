@@ -270,9 +270,6 @@ function GenericMobileBlock({
                           )}
                         </span>
                       </div>
-
-
-
                     );
                   })}
                 </div>

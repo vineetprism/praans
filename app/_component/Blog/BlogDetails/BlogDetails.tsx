@@ -85,10 +85,10 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
   });
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
-          <div className="col-span-1 lg:col-span-3">
+    <div className=" min-h-screen">
+      <div className=" px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+        <div className="grid lg:grid-cols-1 gap-4 sm:gap-6">
+          <div className="col-span-1 lg:col-span-1">
             <div className="mb-6 sm:mb-8">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight break-words">
                 {post?.title}
@@ -114,11 +114,16 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
 
             {hero && (
               <div className="relative w-full mb-6 sm:mb-8 rounded-lg overflow-hidden">
-                <img
+                {/* <img
                   src={hero}
                   alt={post?.title}
                   className="object-contain bg-gray-100 max-w-full"
-                />
+                /> */}
+                <img
+  src={hero}
+  alt={post?.title}
+  className="w-full h-auto object-cover"
+/>
               </div>
             )}
 
@@ -161,7 +166,7 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
             </div>
           </div>
 
-          <div className="col-span-1 lg:col-span-1 order-first lg:order-last">
+          {/* <div className="col-span-1 lg:col-span-1 order-first lg:order-last">
             <div className="rounded-lg p-4 sm:p-6 border bg-white lg:sticky lg:top-24">
               <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-4 text-center">
                 Our Visitors
@@ -204,7 +209,7 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
