@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
-import Image from "next/image";
+
 
 type ApiPost = {
   id: number;
