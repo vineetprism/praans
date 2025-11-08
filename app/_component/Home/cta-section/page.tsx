@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { TrendingUp, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import ComplianceFormDialog from '@/components/ComplianceFormDialog';
+import React from "react";
+import { TrendingUp, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import ComplianceFormDialog from "@/components/ComplianceFormDialog";
+import Link from "next/link";
 
 const CTASection = () => {
   const [success, setSuccess] = React.useState(false);
@@ -22,10 +23,19 @@ const CTASection = () => {
         <div className="absolute inset-0 z-20 flex items-center justify-center px-4 bg-black/20 backdrop-blur-sm">
           <div className="relative max-w-xl w-full mx-auto p-8 sm:p-10 rounded-3xl bg-orange-200 text-white shadow-2xl ring-1 ring-orange-500/50">
             <div className="absolute -inset-0.5 -z-10 rounded-3xl bg-gradient-to-r from-white/10 via-white/5 to-transparent blur-xl" />
-            <h2 className="text-center text-3xl sm:text-4xl font-extrabold tracking-tight drop-shadow">Thanks for Reaching!</h2>
-            <p className="mt-3 text-center text-white/90 text-base sm:text-lg">Our team will reach out shortly.</p>
+            <h2 className="text-center text-3xl sm:text-4xl font-extrabold tracking-tight drop-shadow">
+              Thanks for Reaching!
+            </h2>
+            <p className="mt-3 text-center text-white/90 text-base sm:text-lg">
+              Our team will reach out shortly.
+            </p>
             <div className="mt-6 flex justify-center">
-              <Button className="bg-white/20 hover:bg-white/30 text-white font-bold rounded-xl" onClick={() => setSuccess(false)}>Close</Button>
+              <Button
+                className="bg-white/20 hover:bg-white/30 text-white font-bold rounded-xl"
+                onClick={() => setSuccess(false)}
+              >
+                Close
+              </Button>
             </div>
           </div>
         </div>
@@ -53,14 +63,18 @@ const CTASection = () => {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center max-w-4xl mx-auto">
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-sm sm:text-base md:text-lg lg:text-xl px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 lg:py-6 shadow-2xl hover:shadow-orange-500/30 rounded-xl sm:rounded-2xl font-bold w-full sm:w-auto cursor-pointer transition-all duration-300 hover:scale-105"
+          <Link
+            href="/compliance-software"
             aria-label="Get a Free Demo Of Software"
           >
-            <span className="">Get a Free Demo Of Software</span>
-            <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-          </Button>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white text-sm sm:text-base md:text-lg lg:text-xl px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 md:py-5 lg:py-6 shadow-2xl hover:shadow-orange-500/30 rounded-xl sm:rounded-2xl font-bold w-full sm:w-auto cursor-pointer transition-all duration-300 hover:scale-105"
+            >
+              <span>Get a Free Demo Of Software</span>
+              <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            </Button>
+          </Link>
 
           <ComplianceFormDialog onSuccess={() => setSuccess(true)}>
             <Button
@@ -75,7 +89,7 @@ const CTASection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default CTASection;

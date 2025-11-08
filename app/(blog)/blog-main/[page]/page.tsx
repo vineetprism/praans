@@ -128,7 +128,6 @@ export default async function BlogPageDynamic({ params }: PageProps) {
     console.log(
       `[BLOG DYNAMIC] Successfully fetched ${posts.length} posts for page ${currentPage}`
     );
-    console.log(posts)
 
     return (
       <Blog
