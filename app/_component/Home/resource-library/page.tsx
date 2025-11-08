@@ -61,7 +61,7 @@ const categories = [
     description: "CLRA Applicability regulations",
     icon: Clock,
     color: "bg-teal-500",
-    href: "/leaves-working-hours",
+    href: "/clra-applicability",
   },
   
   {

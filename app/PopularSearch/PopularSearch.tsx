@@ -23,7 +23,7 @@ const POPULAR_SEARCHES = [
   { label: "Minimum wages", href: "/minimum-wages", Icon: Banknote },
   { label: "Professional tax", href: "/professional-tax", Icon: Receipt },
   { label: "Calculators (Coming Soon!)", href: "", Icon: Calculator },
-  { label: "CLRA Applicability", href: "/leaves-working-hours", Icon: CalendarClock },
+  { label: "CLRA Applicability", href: "/clra-applicability", Icon: CalendarClock },
   { label: "National Festival Holidays", href: "/national-festival-holidays", Icon: CalendarClock },
   { label: "Applicability S&E Act", href: "/applicability-se-act/applicability", Icon: CalendarClock },
 ] as const

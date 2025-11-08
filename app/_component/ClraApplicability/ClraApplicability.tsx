@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { useMemo, useState } from "react";
@@ -175,7 +173,7 @@ export default function LeavesWorkingHours({
                   return s.available ? (
                     <Link
                       key={s.slug}
-                      href={`/leaves-working-hours-details/${s.slug}`}
+                      href={`/clra-applicability-details/${s.slug}`}
                       aria-label={`${s.name} leave & working hours`}
                     >
                       {CardInner}

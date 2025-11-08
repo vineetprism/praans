@@ -1,8 +1,12 @@
+import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-const ProfessionalTax = dynamic(() => import("@/app/_component/ProfessionalTax/ProfessionalTax"), {
-  ssr: true,
-});
+const ProfessionalTax = dynamic(
+  () => import("@/app/_component/ProfessionalTax/ProfessionalTax"),
+  {
+    ssr: true,
+  }
+);
 
 export type ApplicableState = {
   state_name: string;
@@ -22,8 +26,8 @@ export type PTApi = {
   non_applicable_states: string[];
 };
 
-export const revalidate = 86400; 
-const API_BASE=process.env.NEXT_PUBLIC_API_BASE!
+export const revalidate = 86400;
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 async function getPTData(): Promise<PTApi | null> {
   try {
     const res = await fetch(`${API_BASE}/api/professional-tax`, {
@@ -36,6 +40,13 @@ async function getPTData(): Promise<PTApi | null> {
     return null;
   }
 }
+
+export const metadata: Metadata = {
+  title: "Professional Tax Compliance Guide",
+  description:
+    "Understand professional tax rates, filing process, and compliance rules for businesses and employees across India.",
+  keywords: ["professional tax", "tax compliance"],
+};
 
 export default async function ProfessionalTaxPage() {
   const initialData = await getPTData();

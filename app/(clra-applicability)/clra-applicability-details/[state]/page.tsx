@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import dynamic from "next/dynamic";
 
-const LeavesWorkingHoursDetails = dynamic(() => import("@/app/_component/LeavesWorkingHours/LeavesWorkingHoursDetails/LeavesWorkingHoursDetails"), {
+const LeavesWorkingHoursDetails = dynamic(() => import("@/app/_component/ClraApplicability/ClraApplicabilityDetails/ClraApplicabilityDetails"), {
   ssr: true,
 });
 

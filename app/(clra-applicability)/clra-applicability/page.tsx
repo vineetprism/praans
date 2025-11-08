@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-const LeavesWorkingHours = dynamic(() => import("@/app/_component/LeavesWorkingHours/LeavesWorkingHours"), {
-  ssr: true,
-});
+const LeavesWorkingHours = dynamic(
+  () => import("@/app/_component/ClraApplicability/ClraApplicability"),
+  {
+    ssr: true,
+  }
+);
 
 export const revalidate = 86400;
-
 
 type StateItem = {
   id: number;
@@ -19,13 +21,12 @@ type LeavesWorkingHoursAPI = {
   non_applicable: StateItem[];
 };
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 export const metadata: Metadata = {
-  title: "Leave & Working Hours - Labour Laws & Regulations | E-Library",
+  title: "CLRA Rules & Contract Labour",
   description:
-    "Comprehensive guide to statutory leave policies and working hours regulations across Indian states. Find state-wise leave entitlements, working hour limits, and compliance requirements.",
-  keywords:
-    "leave policy, working hours, statutory leave, annual leave, sick leave, casual leave, overtime, labour laws, shops and establishments act",
+    "Learn about CLRA applicability, registration, and compliance rules for contract labour under Indian labour laws.",
+  keywords: ["CLRA rules, contract labour"],
 };
 
 async function getLeavesWorkingHours(): Promise<LeavesWorkingHoursAPI | null> {
@@ -38,7 +39,9 @@ async function getLeavesWorkingHours(): Promise<LeavesWorkingHoursAPI | null> {
 
     return {
       applicable: Array.isArray(data.applicable) ? data.applicable : [],
-      non_applicable: Array.isArray(data.non_applicable) ? data.non_applicable : [],
+      non_applicable: Array.isArray(data.non_applicable)
+        ? data.non_applicable
+        : [],
     };
   } catch (err) {
     console.error("Failed to fetch Leave & Working Hours:", err);

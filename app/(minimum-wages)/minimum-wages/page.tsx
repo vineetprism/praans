@@ -3,9 +3,12 @@ import dynamic from "next/dynamic";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 
-const MinimumWages = dynamic(() => import("@/app/_component/MinimumWages/MinimumWages"), {
-  ssr: true,
-});
+const MinimumWages = dynamic(
+  () => import("@/app/_component/MinimumWages/MinimumWages"),
+  {
+    ssr: true,
+  }
+);
 
 async function getMinimumWagesData() {
   try {
@@ -23,18 +26,10 @@ async function getMinimumWagesData() {
 }
 
 export const metadata: Metadata = {
-  title:
-    "Minimum Wages in India - State-wise Rates & Notifications | E-Library",
+  title: "Minimum Wages & Wage Rates India",
   description:
-    "Complete guide to minimum wages across Indian states. Find current rates, notifications, and compliance requirements for different categories of workers.",
-  keywords: [
-    "minimum wages",
-    "state wise minimum wages",
-    "wage rates",
-    "labour compliance",
-    "wage notification",
-    "minimum wage act",
-  ],
+    "Check updated minimum wages and state-wise wage rates to ensure compliance with current labour standards.",
+  keywords: ["minimum wages", "wage rates"],
 };
 
 export default async function MinimumWagesPage() {

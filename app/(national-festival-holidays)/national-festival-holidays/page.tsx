@@ -1,21 +1,20 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-const NationalFestivalHolidays = dynamic(() => import("@/app/_component/NationalFestivalHolidays/NationalFestivalHolidays"), {
-  ssr: true,
-});
+const NationalFestivalHolidays = dynamic(
+  () =>
+    import(
+      "@/app/_component/NationalFestivalHolidays/NationalFestivalHolidays"
+    ),
+  {
+    ssr: true,
+  }
+);
 
 export const metadata: Metadata = {
-  title: "National & Festival Holidays - State-wise Holiday Matrix | Praans",
+  title: "National Festival Holidays India",
   description:
-    "Complete guide to National & Festival Holidays across all Indian states. Get latest holiday lists, state-wise applicability, and compliance requirements.",
-  keywords: [
-    "national holidays",
-    "festival holidays",
-    "state wise holidays",
-    "holiday matrix",
-    "public holidays india",
-    "national festival holidays",
-  ],
+    "Explore official national and festival holidays across India with NFH details and compliance information.",
+  keywords: ["national holidays", "festival holidays"],
 };
 
 export type StateHoliday = {

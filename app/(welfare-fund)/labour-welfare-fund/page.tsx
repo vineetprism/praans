@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-const WelfareFund = dynamic(() => import("@/app/_component/WelfareFund/WelfareFund"), {
-  ssr: true,
-});
+const WelfareFund = dynamic(
+  () => import("@/app/_component/WelfareFund/WelfareFund"),
+  {
+    ssr: true,
+  }
+);
 
 export const revalidate = 86400;
-
 
 type WFState = {
   state_name: string;
@@ -26,14 +28,17 @@ type WFResponse = {
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 
 export const metadata: Metadata = {
-  title: "Labour Welfare Fund | State-wise Applicability & Tools",
+  title: "Labour Welfare Fund Benefits",
   description:
-    "Browse state-wise Labour Welfare Fund applicability with search & filters, plus calculators and quick links.",
+    "Learn about employee welfare and welfare fund contributions for workers under various state labour welfare boards.",
+  keywords: ["welfare fund", "employee welfare"],
 };
 
 async function getWelfareFunds(): Promise<WFResponse | null> {
   try {
-    const res = await fetch(`${API_BASE}/api/welfare-funds`, { next: { revalidate } });
+    const res = await fetch(`${API_BASE}/api/welfare-funds`, {
+      next: { revalidate },
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return (await res.json()) as WFResponse;
   } catch (err) {
@@ -45,9 +50,5 @@ async function getWelfareFunds(): Promise<WFResponse | null> {
 export default async function WelfareFundPage() {
   const initialData = await getWelfareFunds();
 
-  return (
-    <WelfareFund
-      initialData={initialData}
-    />
-  );
+  return <WelfareFund initialData={initialData} />;
 }
