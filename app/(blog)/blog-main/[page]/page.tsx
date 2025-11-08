@@ -1,6 +1,10 @@
-import Blog from "@/app/_component/Blog/Blog";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+const Blog = dynamic(() => import("@/app/_component/Blog/Blog"), {
+  ssr: true,
+});
 
 type ApiPost = {
   id: number;

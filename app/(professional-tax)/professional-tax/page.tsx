@@ -1,4 +1,8 @@
-import ProfessionalTax from "@/app/_component/ProfessionalTax/ProfessionalTax";
+import dynamic from "next/dynamic";
+
+const ProfessionalTax = dynamic(() => import("@/app/_component/ProfessionalTax/ProfessionalTax"), {
+  ssr: true,
+});
 
 export type ApplicableState = {
   state_name: string;

@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import ActsPageClient from "../../_component/ActRuleForm/ActsPageClient";
+import dynamic from "next/dynamic";
+
+const ActsPageClient = dynamic(() => import("../../_component/ActRuleForm/ActsPageClient"), {
+  ssr: true,
+});
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!
 

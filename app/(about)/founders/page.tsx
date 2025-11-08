@@ -1,12 +1,27 @@
-import Hero from '@/app/_component/AboutSection/Founder/Hero'
-import Founder from '@/app/_component/AboutSection/Founder/Founder'
-import Expertise from '@/app/_component/AboutSection/Founder/Expertise'
-import Vision from '@/app/_component/AboutSection/Founder/Vision'
-import Leadership from '@/app/_component/AboutSection/Founder/Leadership'
-import Media from '@/app/_component/AboutSection/Founder/Media'
-import Cta from '@/app/_component/AboutSection/Founder/Cta'
 import React from 'react'
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
+const Hero = dynamic(() => import('@/app/_component/AboutSection/Founder/Hero'), {
+  ssr: true,
+});
+const Founder = dynamic(() => import('@/app/_component/AboutSection/Founder/Founder'), {
+  ssr: true,
+});
+const Expertise = dynamic(() => import('@/app/_component/AboutSection/Founder/Expertise'), {
+  ssr: true,
+});
+const Vision = dynamic(() => import('@/app/_component/AboutSection/Founder/Vision'), {
+  ssr: true,
+});
+const Leadership = dynamic(() => import('@/app/_component/AboutSection/Founder/Leadership'), {
+  ssr: true,
+});
+const Media = dynamic(() => import('@/app/_component/AboutSection/Founder/Media'), {
+  ssr: true,
+});
+const Cta = dynamic(() => import('@/app/_component/AboutSection/Founder/Cta'), {
+  ssr: true,
+});
 
 type ApiPost = {
   meta_title?: string | null;
@@ -15,9 +30,7 @@ type ApiPost = {
   meta_url?: string | null;
 };
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "");
 
 export const revalidate = 1800;
 

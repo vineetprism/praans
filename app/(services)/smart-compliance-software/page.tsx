@@ -1,6 +1,9 @@
-import React from "react";
+import dynamic from "next/dynamic";
 import { Metadata } from "next";
-import SmartComplianceSoftware from "@/app/_component/Services/SmartComplianceSoftware/SmartComplianceSoftware";
+
+const SmartComplianceSoftware = dynamic(() => import("@/app/_component/Services/SmartComplianceSoftware/SmartComplianceSoftware"), {
+  ssr: true,
+});
 
 type ApiPost = {
   meta_title?: string | null;

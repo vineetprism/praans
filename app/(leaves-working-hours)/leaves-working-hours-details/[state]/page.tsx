@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import LeavesWorkingHoursDetails from "@/app/_component/LeavesWorkingHours/LeavesWorkingHoursDetails/LeavesWorkingHoursDetails";
+import dynamic from "next/dynamic";
+
+const LeavesWorkingHoursDetails = dynamic(() => import("@/app/_component/LeavesWorkingHours/LeavesWorkingHoursDetails/LeavesWorkingHoursDetails"), {
+  ssr: true,
+});
 
 export const revalidate = 86400;
 export const dynamicParams = true;

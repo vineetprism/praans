@@ -68,7 +68,7 @@ const NAV = [
   },
   { label: "Blog", href: "/blog-main" },
   { label: "Library", href: "/library" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/contact-us" },
 ];
 
 export default function Header() {

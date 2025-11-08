@@ -1,9 +1,21 @@
 import React from "react";
-import Hero from "@/app/_component/AboutSection/Clients/Hero";
-import Sector from "@/app/_component/AboutSection/Clients/Sector";
-import Confidental from "@/app/_component/AboutSection/Clients/Confidental";
-import Cta from "@/app/_component/AboutSection/Clients/Cta";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+const Hero = dynamic(
+  () => import("@/app/_component/AboutSection/Clients/Hero"),
+  { ssr: true }
+);
+const Sector = dynamic(
+  () => import("@/app/_component/AboutSection/Clients/Sector"),
+  { ssr: true }
+);
+const Confidental = dynamic(
+  () => import("@/app/_component/AboutSection/Clients/Confidental"),
+  { ssr: true }
+);
+const Cta = dynamic(() => import("@/app/_component/AboutSection/Clients/Cta"), {
+  ssr: true,
+});
 
 type ApiPost = {
   meta_title?: string | null;

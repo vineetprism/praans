@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
-import ProfessionalTaxDetails from "@/app/_component/ProfessionalTax/ProfessionalTaxDetails/ProfessionalTaxDetails";
+import dynamic from "next/dynamic";
+
+const ProfessionalTaxDetails = dynamic(() => import("@/app/_component/ProfessionalTax/ProfessionalTaxDetails/ProfessionalTaxDetails"), {
+  ssr: true,
+});
 
 export type ApiPayload = {
   data: {

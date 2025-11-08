@@ -1,4 +1,8 @@
-import HolidayDetails from "@/app/_component/Holiday/HolidayDetails/HolidayDetails";
+import dynamic from "next/dynamic";
+const HolidayDetails = dynamic(
+  () => import("@/app/_component/Holiday/HolidayDetails/HolidayDetails"),
+  { ssr: true }
+);
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 export const revalidate = 86400;

@@ -1,6 +1,9 @@
-import React from "react";
-import LitigationSupport from "@/app/_component/Services/LitigationSupport/LitigationSupport";
+import dynamic from "next/dynamic";
 import { Metadata } from "next";
+
+const LitigationSupport = dynamic(() => import("@/app/_component/Services/LitigationSupport/LitigationSupport"), {
+  ssr: true,
+});
 
 type ApiPost = {
   meta_title?: string | null;

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import WelfareFundDetails from "@/app/_component/WelfareFund/WelfareFundDetails/WelfareFundDetails";
+import dynamic from "next/dynamic";
+
+const WelfareFundDetails = dynamic(() => import("@/app/_component/WelfareFund/WelfareFundDetails/WelfareFundDetails"), {
+  ssr: true,
+});
 
 export const revalidate = 86400;
 export const dynamicParams = true;

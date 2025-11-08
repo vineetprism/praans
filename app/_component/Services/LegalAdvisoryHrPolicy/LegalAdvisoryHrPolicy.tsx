@@ -107,7 +107,7 @@ export default function LegalAdvisoryHrPolicies() {
                             </p>
 
                             <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                                <Link href="/contact" aria-label="Book free consultation">
+                                <Link href="/contact-us" aria-label="Book free consultation">
                                     <Button
                                         size="lg"
                                         className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-tertiary bg-[#eb8535] text-white text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
@@ -271,7 +271,7 @@ export default function LegalAdvisoryHrPolicies() {
 
                             <div className="mt-6 pt-4">
                                 <a
-                                    href="/contact"
+                                    href="/contact-us"
                                     className="inline-flex items-center gap-2 text-sm font-medium text-[#eb8535] hover:underline"
                                     aria-label="Request on-site inspection support"
                                 >

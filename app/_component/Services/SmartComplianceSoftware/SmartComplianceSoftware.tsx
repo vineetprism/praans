@@ -139,7 +139,7 @@ export default function SmartComplianceSupport() {
                   </Button>
                 </Link>
 
-                <Link href="/contact" aria-label="Request litigation consultation">
+                <Link href="/contact-us" aria-label="Request litigation consultation">
                   <Button
                     size="lg"
                     variant="ghost"
@@ -259,12 +259,12 @@ export default function SmartComplianceSupport() {
               </div>
 
               <div className="mt-6 pt-4">
-                <a href="/contact" className="inline-flex items-center gap-2 text-sm font-medium text-[#eb8535] hover:underline" aria-label="Request on-site inspection support">
+                <Link href="/contact-us" className="inline-flex items-center gap-2 text-sm font-medium text-[#eb8535] hover:underline" aria-label="Request on-site inspection support">
                   Request Dispute Support
                   <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </Link>
               </div>
             </article>
           </div>

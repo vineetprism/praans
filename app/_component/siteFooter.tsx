@@ -135,7 +135,7 @@ export default function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/contact"
+                  href="/contact-us"
                   aria-label="Contact Us"
                   className="text-lg transition-colors duration-300 hover:text-orange-400"
                 >

@@ -1,5 +1,9 @@
-import LegalAdvisoryHrPolicy from "@/app/_component/Services/LegalAdvisoryHrPolicy/LegalAdvisoryHrPolicy";
+import dynamic from "next/dynamic";
 import { Metadata } from "next";
+
+const LegalAdvisoryHrPolicy = dynamic(() => import("@/app/_component/Services/LegalAdvisoryHrPolicy/LegalAdvisoryHrPolicy"), {
+  ssr: true,
+});
 
 type ApiPost = {
   meta_title?: string | null;

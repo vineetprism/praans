@@ -265,35 +265,65 @@ export default function ActDetailClient({ act }: ActDetailClientProps) {
 
                       {/* Recent Amendments Section */}
                       {act?.amendments && act?.amendments?.length > 0 && (
-                        <div className="mt-8 pt-6 border-t border-gray-200">
+                        <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-gray-200">
                           <h3 className="text-base font-semibold mb-4 flex items-center gap-2">
                             <Scale className="w-4 h-4 text-orange-500" />
                             Recent Amendments
                           </h3>
-                          <div className="space-y-1 rounded-lg p-4">
+                          <div className="space-y-2 sm:space-y-1 rounded-lg p-2 sm:p-4">
                             {act?.amendments?.map((yearGroup, yearIndex) => (
                               <div key={yearIndex}>
                                 {yearGroup?.entries?.map((amendment, amendmentIndex) => (
                                   <div
                                     key={`${yearIndex}-${amendmentIndex}`}
-                                    className="flex items-start gap-4 py-3 last:border-b-0"
+                                    className="rounded-md border border-gray-200/70 p-3 sm:p-0 sm:border-0 sm:rounded-none sm:flex sm:items-start gap-3 sm:gap-4 py-3 last:border-b-0"
                                   >
-                                    <div className="flex-shrink-0 mt-1">
+                                    <div className="sm:hidden flex items-center justify-between gap-3">
+                                      <div className="flex-shrink-0">
+                                        <div className="w-10 h-6 bg-orange-50 border border-orange-200 rounded flex items-center justify-center">
+                                          <span className="text-orange-600 font-bold text-xs">
+                                            {yearGroup?.year}
+                                          </span>
+                                        </div>
+                                      </div>
+                                      <div className="flex-shrink-0">
+                                        {normalizeUrl(
+                                          amendment?.doc_url,
+                                          amendment?.doc_path || null
+                                        ) ? (
+                                          <Button
+                                            size="sm"
+                                            className="h-7 px-2 bg-orange-400 text-white hover:bg-orange-500 hover:cursor-pointer text-xs"
+                                            onClick={() => handleAmendmentDownload(amendment)}
+                                            aria-label="Download Amendment"
+                                          >
+                                            <Download className="w-3 h-3 mr-1" />
+                                            Download
+                                          </Button>
+                                        ) : (
+                                          <span className="text-xs text-gray-400">No PDF</span>
+                                        )}
+                                      </div>
+                                    </div>
+
+                                    <div className="hidden sm:block flex-shrink-0 mt-1">
                                       <div className="w-10 h-6 bg-orange-50 border border-orange-200 rounded flex items-center justify-center">
                                         <span className="text-orange-600 font-bold text-xs">
                                           {yearGroup?.year}
                                         </span>
                                       </div>
                                     </div>
-                                    <div className="flex-1 min-w-0">
-                                      <p className="text-sm font-medium leading-relaxed mb-1">
+
+                                    <div className="flex-1 min-w-0 mt-2 sm:mt-0">
+                                      <p className="text-[13px] sm:text-sm font-medium leading-relaxed mb-1">
                                         {amendment?.short_desc}
                                       </p>
-                                      <p className="text-xs">
+                                      <p className="text-[11px] sm:text-xs">
                                         Date: {amendment?.date}
                                       </p>
                                     </div>
-                                    <div className="flex-shrink-0">
+
+                                    <div className="hidden sm:block flex-shrink-0">
                                       {normalizeUrl(
                                         amendment?.doc_url,
                                         amendment?.doc_path || null

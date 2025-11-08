@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import DOMPurify from "isomorphic-dompurify";
 import Link from "next/link";
-
+import Image from "next/image";
 
 type ApiPost = {
   id: number;
@@ -170,11 +170,15 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
             </div>
 
             {hero && (
-              <div className="relative w-full mb-6 sm:mb-8 rounded-lg overflow-hidden">
-                <img
+              <div className="relative w-full mb-6 sm:mb-8 rounded-lg overflow-hidden aspect-[16/9] bg-gray-100">
+                <Image
                   src={hero}
                   alt={post?.title}
-                  className="object-contain bg-gray-100 max-w-full"
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                  priority
+                  fetchPriority="high"
                 />
               </div>
             )}

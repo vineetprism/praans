@@ -1,6 +1,4 @@
 import React from "react";
-import Hero from "@/app/_component/AboutSection/Company/Hero";
-import OurStory from "@/app/_component/AboutSection/Company/OurStory";
 import OurJourney from "@/app/_component/AboutSection/Company/OurJourney";
 import Services from "@/app/_component/AboutSection/Company/Services";
 import Choose from "@/app/_component/AboutSection/Company/Choose";
@@ -13,6 +11,16 @@ import Serve from "@/app/_component/AboutSection/Company/Serve";
 import Media from "@/app/_component/AboutSection/Company/Media";
 import { Metadata } from "next";
 import AboutFaq from "@/app/_component/AboutSection/Company/AboutFaq";
+import dynamic from "next/dynamic";
+
+const Hero = dynamic(() => import("@/app/_component/AboutSection/Company/Hero"), {
+  ssr: true,
+});
+
+const OurStory = dynamic(() => import("@/app/_component/AboutSection/Company/OurStory"), {
+  ssr: true,
+});
+
 
 type ApiPost = {
   meta_title?: string | null;
@@ -21,9 +29,7 @@ type ApiPost = {
   meta_url?: string | null;
 };
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "");
 
 export const revalidate = 1800;
 

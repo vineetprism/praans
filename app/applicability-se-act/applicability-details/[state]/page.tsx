@@ -1,6 +1,10 @@
+import dynamic from "next/dynamic";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import SEApplicabilityDetails from "@/app/_component/ApplicabilitySE/ApplicabilityDetails";
+
+const SEApplicabilityDetails = dynamic(() => import("@/app/_component/ApplicabilitySE/ApplicabilityDetails"), {
+  ssr: true,
+});
 
 export const revalidate = 86400;
 export const dynamicParams = true;

@@ -26,21 +26,18 @@ export type GazetteVM = {
 export default function GazetteView({ vm }: { vm: GazetteVM }) {
   const router = useRouter();
 
-  // Auto-download after returning from login with ?dl=...
   useEffect(() => {
     const path =
       typeof window !== "undefined" ? window.location.pathname : "/gazette-details";
     const search =
       typeof window !== "undefined" ? window.location.search : "";
     handleAutoDownloadOnReturn(router, path, search);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="">
       <div className="w-full px-0 py-3 sm:py-4 lg:py-5">
         <div className="grid gap-4 lg:gap-6 md:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_360px]">
-          {/* PopularSearch on small screens */}
           <div className="md:hidden px-3 sm:px-4 lg:px-6">
             <Card>
               <CardContent className="p-4 md:p-3 lg:p-3 xl:p-3 2xl:p-6">
@@ -49,10 +46,8 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
             </Card>
           </div>
 
-          {/* Main */}
           <main className="min-w-0 px-3 sm:px-4 lg:px-6">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 border-l-4 border-l-orange-500 p-3 sm:p-4 lg:p-4">
-              {/* Header */}
               <div className="flex items-start justify-between gap-4 mb-2">
                 <div className="flex-1 min-w-0">
                   <h1 className="font-bold text-gray-900 leading-tight mb-1 text-base sm:text-lg lg:text-sm xl:text-lg">
@@ -103,7 +98,6 @@ export default function GazetteView({ vm }: { vm: GazetteVM }) {
             </div>
           </main>
 
-          {/* Sidebar */}
           <aside className="min-w-0 px-3 sm:px-4 lg:px-6 hidden md:block">
             <div className="sticky top-24">
               <Card>

@@ -1,5 +1,9 @@
-import PanIndiaRegistrations from "@/app/_component/Services/PanIndiaRegistration/PanIndiaRegistration";
+import dynamic from "next/dynamic";
 import { Metadata } from "next";
+
+const PanIndiaRegistrations = dynamic(() => import("@/app/_component/Services/PanIndiaRegistration/PanIndiaRegistration"), {
+  ssr: true,
+});
 
 type ApiPost = {
   meta_title?: string | null;

@@ -1,5 +1,8 @@
 import { Metadata } from "next";
-import NationalFestivalHolidays from "@/app/_component/NationalFestivalHolidays/NationalFestivalHolidays";
+import dynamic from "next/dynamic";
+const NationalFestivalHolidays = dynamic(() => import("@/app/_component/NationalFestivalHolidays/NationalFestivalHolidays"), {
+  ssr: true,
+});
 
 export const metadata: Metadata = {
   title: "National & Festival Holidays - State-wise Holiday Matrix | Praans",

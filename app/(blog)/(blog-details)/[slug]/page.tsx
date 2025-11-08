@@ -1,5 +1,9 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import BlogSlug from "@/app/_component/Blog/(BlogDetails)/BlogDetails";
+
+const BlogSlug = dynamic(() => import("@/app/_component/Blog/(BlogDetails)/BlogDetails"), {
+  ssr: true,
+});
 
 type ApiPost = {
   id: number;

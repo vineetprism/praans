@@ -1,5 +1,10 @@
 import { Metadata } from "next";
-import HolidaysPageClient from "@/app/_component/Holiday/Holiday";
+
+import dynamic from "next/dynamic";
+const HolidaysPageClient = dynamic(
+  () => import("@/app/_component/Holiday/Holiday"),
+  { ssr: true }
+);
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
 
@@ -7,7 +12,11 @@ type HolidayListItem = { slug: string; state: string };
 
 function parseHolidayPayload(payload: unknown): HolidayListItem[] {
   if (Array.isArray(payload)) return payload as HolidayListItem[];
-  if (payload && typeof payload === "object" && Array.isArray((payload as any).data)) {
+  if (
+    payload &&
+    typeof payload === "object" &&
+    Array.isArray((payload as any).data)
+  ) {
     return (payload as any).data as HolidayListItem[];
   }
   return [];
@@ -28,9 +37,10 @@ async function getHolidays(year: number) {
   }
 }
 
- const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "Holiday Lists | Prism PRNS",
-  description: "Browse state-wise statutory holiday lists with year-wise filters.",
+  description:
+    "Browse state-wise statutory holiday lists with year-wise filters.",
 };
 
 export default async function HolidaysPage() {

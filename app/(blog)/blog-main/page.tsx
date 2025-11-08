@@ -1,5 +1,9 @@
-import Blog from "@/app/_component/Blog/Blog";
+import dynamic from "next/dynamic";
 import type { Metadata } from "next";
+
+const Blog = dynamic(() => import("@/app/_component/Blog/Blog"), {
+  ssr: true,
+});
 
 type ApiPost = {
   id: number;
@@ -28,9 +32,8 @@ type ApiResponse = {
   };
 };
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "");
+
 export const metadata: Metadata = {
   title: "Blog | Praans Consultech - Labour Law Compliance Insights",
   description:

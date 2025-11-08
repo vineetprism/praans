@@ -111,7 +111,7 @@ export default function AuditAndInspection() {
               </div>
 
               <div className="mt-8 mb-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link href="/contact" aria-label="Book free consultation">
+                <Link href="/contact-us" aria-label="Book free consultation">
                   <Button
                     size="lg"
                     className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"

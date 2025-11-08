@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import LeavesWorkingHours from "@/app/_component/LeavesWorkingHours/LeavesWorkingHours";
+import dynamic from "next/dynamic";
+
+const LeavesWorkingHours = dynamic(() => import("@/app/_component/LeavesWorkingHours/LeavesWorkingHours"), {
+  ssr: true,
+});
 
 export const revalidate = 86400;
 

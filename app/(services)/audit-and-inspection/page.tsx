@@ -1,6 +1,9 @@
-import React from "react";
-import AuditAndInspection from "@/app/_component/Services/AuditandInspection/AuditAndInspection";
+import dynamic from "next/dynamic";
 import { Metadata } from "next";
+
+const AuditAndInspection = dynamic(() => import("@/app/_component/Services/AuditandInspection/AuditAndInspection"), {
+  ssr: true,
+});
 
 type ApiPost = {
   meta_title?: string | null;

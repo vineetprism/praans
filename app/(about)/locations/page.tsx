@@ -1,7 +1,12 @@
-import Hero from '@/app/_component/AboutSection/Location/Hero'
-import Map_Sidebar from '@/app/_component/AboutSection/Location/Map_Sidebar'
 import React from 'react'
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
+const Hero = dynamic(() => import('@/app/_component/AboutSection/Location/Hero'), {
+  ssr: true,
+});
+const Map_Sidebar = dynamic(() => import('@/app/_component/AboutSection/Location/Map_Sidebar'), {
+  ssr: true,
+});
 
 type ApiPost = {
   meta_title?: string | null;
@@ -10,9 +15,7 @@ type ApiPost = {
   meta_url?: string | null;
 };
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "");
 
 export const revalidate = 1800;
 

@@ -1,5 +1,9 @@
-// import DOMPurify from "isomorphic-dompurify";
-import GazetteView, { GazetteVM } from "@/app/_component/Gazette/GazzetteDetails/GazetteDetails";
+import dynamic from "next/dynamic";
+import { GazetteVM } from "@/app/_component/Gazette/GazzetteDetails/GazetteDetails";
+
+const GazetteView = dynamic(() => import("@/app/_component/Gazette/GazzetteDetails/GazetteDetails"), {
+  ssr: true,
+});
 
 
 type GazetteItem = {

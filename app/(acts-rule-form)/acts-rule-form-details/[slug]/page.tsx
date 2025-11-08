@@ -1,5 +1,9 @@
-import ActDetailClient from "@/app/_component/ActRuleForm/ActRuleFormDetails/ActRuleFormDetails";
 import { notFound } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const ActDetailClient = dynamic(() => import("@/app/_component/ActRuleForm/ActRuleFormDetails/ActRuleFormDetails"), {
+  ssr: true,
+});
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
 type FormAPI = {

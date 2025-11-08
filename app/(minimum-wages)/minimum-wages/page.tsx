@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import MinimumWages from "@/app/_component/MinimumWages/MinimumWages";
+import dynamic from "next/dynamic";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
+
+const MinimumWages = dynamic(() => import("@/app/_component/MinimumWages/MinimumWages"), {
+  ssr: true,
+});
 
 async function getMinimumWagesData() {
   try {

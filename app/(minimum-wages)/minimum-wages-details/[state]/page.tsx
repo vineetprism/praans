@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import MinimumWagesDetails, {
-  MWSlugData,
-} from "@/app/_component/MinimumWages/MinimumWagesDetails/MinimumWagesDetails";
+import dynamic from "next/dynamic";
+import { MWSlugData } from "@/app/_component/MinimumWages/MinimumWagesDetails/MinimumWagesDetails";
+
+const MinimumWagesDetails = dynamic(() => import("@/app/_component/MinimumWages/MinimumWagesDetails/MinimumWagesDetails"), {
+  ssr: true,
+});
 
 export const revalidate = 86400;
 export const dynamicParams = true;

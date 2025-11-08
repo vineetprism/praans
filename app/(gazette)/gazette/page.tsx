@@ -1,6 +1,8 @@
-
 import type { Metadata } from "next";
-import Gazette from "@/app/_component/Gazette/Gazette";
+import dynamic from "next/dynamic";
+const Gazette = dynamic(() => import("@/app/_component/Gazette/Gazette"), {
+  ssr: true,
+});
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
 async function getGazetteData(page: number = 1) {

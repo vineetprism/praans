@@ -1,6 +1,9 @@
-import React from "react";
-import ComplianceOutsourcing from "@/app/_component/Services/Complianceoutsourcing/ComplianceOutsourcing";
+import dynamic from "next/dynamic";
 import { Metadata } from "next";
+
+const ComplianceOutsourcing = dynamic(() => import("@/app/_component/Services/Complianceoutsourcing/ComplianceOutsourcing"), {
+  ssr: true,
+});
 
 type ApiPost = {
   meta_title?: string | null;
