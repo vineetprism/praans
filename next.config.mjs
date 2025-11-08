@@ -7,7 +7,7 @@ const nextConfig = {
     deviceSizes: [320, 480, 768, 1024, 1280, 1600, 2000],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
-      { protocol: 'https', hostname: 'prns.prisminfoways.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'a4m1n.praansconsultech.com', pathname: '/**' },
     ],
     unoptimized: false,
     minimumCacheTTL: 31536000,
