@@ -1,3 +1,6 @@
+
+
+
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -70,12 +73,93 @@ const formatStateName = (s: string) =>
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
 
-const formatDisplayDate = (iso: string) => {
-  const d = new Date(iso);
-  const dd = String(d.getDate()).padStart(2, "0");
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  const yy = d.getFullYear();
-  return `${dd}-${mm}-${yy}`;
+// MAIN FIX: Parse DD-MM-YYYY format properly
+const parseDate = (dateStr: string | null | undefined): Date | null => {
+  if (!dateStr || dateStr === "null" || dateStr === "undefined") {
+    return null;
+  }
+
+  try {
+    // Check multiple possible formats
+    
+    // Format 1: DD-MM-YYYY or DD/MM/YYYY
+    if (dateStr.includes("-") || dateStr.includes("/")) {
+      const separator = dateStr.includes("-") ? "-" : "/";
+      const parts = dateStr.split(separator);
+      
+      // DD-MM-YYYY format
+      if (parts.length === 3 && parts[0].length <= 2) {
+        const day = parseInt(parts[0], 10);
+        const month = parseInt(parts[1], 10) - 1; // Month is 0-indexed
+        const year = parseInt(parts[2], 10);
+        
+        const date = new Date(year, month, day);
+        
+        // Validate the date
+        if (date.getFullYear() === year && 
+            date.getMonth() === month && 
+            date.getDate() === day) {
+          return date;
+        }
+      }
+      
+      // YYYY-MM-DD format (ISO)
+      if (parts.length === 3 && parts[0].length === 4) {
+        const date = new Date(dateStr);
+        if (!isNaN(date.getTime())) {
+          return date;
+        }
+      }
+    }
+    
+    // Format 2: Try standard Date parsing (ISO format)
+    const date = new Date(dateStr);
+    if (!isNaN(date.getTime())) {
+      return date;
+    }
+    
+    return null;
+  } catch (error) {
+    console.error("❌ Error parsing date:", error, "for value:", dateStr);
+    return null;
+  }
+};
+
+// Format date for display
+const formatDisplayDate = (iso: string | null | undefined): string => {
+  if (!iso || iso === "null" || iso === "undefined") {
+    return "Date Not Available";
+  }
+
+  try {
+    const dateObj = parseDate(iso);
+    
+    if (!dateObj) {
+      console.warn("⚠️ Could not parse date:", iso);
+      return "Invalid Date";
+    }
+
+    const day = dateObj.getDate();
+    const month = dateObj.getMonth() + 1;
+    const year = dateObj.getFullYear();
+
+    if (isNaN(day) || isNaN(month) || isNaN(year)) {
+      return "Invalid Date";
+    }
+
+    const dd = String(day).padStart(2, "0");
+    const mm = String(month).padStart(2, "0");
+    
+    return `${dd}-${mm}-${year}`;
+  } catch (error) {
+    console.error("❌ Error formatting date:", error, "for value:", iso);
+    return "Date Error";
+  }
+};
+
+// Validate if date string can be parsed
+const isValidDateString = (dateStr: string | null | undefined): boolean => {
+  return parseDate(dateStr) !== null;
 };
 
 export default function HolidayDetails({
@@ -104,7 +188,7 @@ export default function HolidayDetails({
       typeof window !== "undefined" ? window.location.pathname : "/holidays";
     const search = typeof window !== "undefined" ? window.location.search : "";
     handleAutoDownloadOnReturn(router, path, search);
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     if (initialData) return;
@@ -120,10 +204,22 @@ export default function HolidayDetails({
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         const data: HolidayStateData | null = json?.data ?? null;
+        
+    
+        
+        // Sample first 5 holidays for debugging
+        if (data?.holiday_details && data.holiday_details.length > 0) {
+     
+          data.holiday_details.slice(0, 5).forEach((h, i) => {
+            const parsed = parseDate(h.date);
+          });
+        }
+        
         setApiData(data);
         setHolidayDetails(data?.holiday_details ?? []);
       } catch (e: any) {
         if (e?.name !== "AbortError") {
+          console.error("❌ API Error:", e);
           setError("Failed to load holiday data");
           setApiData(null);
           setHolidayDetails([]);
@@ -138,21 +234,42 @@ export default function HolidayDetails({
   }, [slug, initialData]);
 
   const filteredHolidays = useMemo(() => {
-    return holidayDetails.filter((h) => {
+
+    if (!holidayDetails || holidayDetails.length === 0) {
+      return [];
+    }
+
+    const filtered = holidayDetails.filter((h) => {
+      // Month filter
       const monthOk =
         selectedMonth === "all" ||
         h.month.toLowerCase() === selectedMonth.toLowerCase();
+
+      // Type filter
       const typeOk = selectedType === "all" || h.type === selectedType;
 
+      // Date filter
       let dateOk = true;
       if (startDate || endDate) {
-        const hd = new Date(h.date);
-        if (startDate && endDate) dateOk = hd >= startDate && hd <= endDate;
-        else if (startDate) dateOk = hd >= startDate;
-        else if (endDate) dateOk = hd <= endDate;
+        const hd = parseDate(h.date);
+        
+        if (!hd) {
+          return false;
+        }
+
+        if (startDate && endDate) {
+          dateOk = hd >= startDate && hd <= endDate;
+        } else if (startDate) {
+          dateOk = hd >= startDate;
+        } else if (endDate) {
+          dateOk = hd <= endDate;
+        }
       }
+
       return monthOk && typeOk && dateOk;
     });
+
+    return filtered;
   }, [holidayDetails, selectedMonth, selectedType, startDate, endDate]);
 
   const clearDateFilters = () => {
@@ -160,9 +277,10 @@ export default function HolidayDetails({
     setEndDate(null);
   };
 
+
   if (isLoading) {
     return (
-      <div className=" bg-gray-50 flex items-center justify-center">
+      <div className="bg-gray-50 flex items-center justify-center min-h-[400px]">
         <div className="text-center">
           <Loader2 className="w-8 h-8 animate-spin text-orange-500 mx-auto mb-4" />
           <p className="text-gray-600">Loading holiday data...</p>
@@ -173,7 +291,7 @@ export default function HolidayDetails({
 
   if (error || !apiData) {
     return (
-      <div className=" flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
           <p className="text-red-600 mb-4">Error: {error || "No data found"}</p>
           <Button onClick={() => location.reload()}>Try Again</Button>
@@ -196,7 +314,7 @@ export default function HolidayDetails({
             </div>
           </div>
 
-          <div className="lg:col-span-4 lg:order-1 order-2 ">
+          <div className="lg:col-span-4 lg:order-1 order-2">
             <div className="mb-3 sm:mb-4">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <div className="flex-1">
@@ -207,8 +325,7 @@ export default function HolidayDetails({
                         {apiData?.year}) :
                       </h1>
 
-                      <div className="flex flex-col min-[480px]:flex-row gap-2 min-[480px]:gap-1 sm:gap-2 ">
-
+                      <div className="flex flex-col min-[480px]:flex-row gap-2 min-[480px]:gap-1 sm:gap-2">
                         <Button
                           className="h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 hover:bg-orange-600 text-white text-xs min-[375px]:text-xs sm:text-sm transition-colors px-2 sm:px-3 md:px-4 cursor-pointer"
                           onClick={() => {
@@ -240,7 +357,7 @@ export default function HolidayDetails({
 
             <div className="pt-7">
               <Select value={selectedMonth} onValueChange={setSelectedMonth}>
-                <SelectTrigger className="flex justify-center p-[1.2rem] w/full min-[480px]:w-auto h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 text-white text-xs min-[375px]:text-xs sm:text-sm hover:bg-orange-600 px-2 focus-visible:ring-orange-500 focus-visible:border-orange-500 cursor-pointer">
+                <SelectTrigger className="flex justify-center p-[1.2rem] w-full min-[480px]:w-auto h-7 min-[375px]:h-8 sm:h-9 md:h-10 bg-orange-500 text-white text-xs min-[375px]:text-xs sm:text-sm hover:bg-orange-600 px-2 focus-visible:ring-orange-500 focus-visible:border-orange-500 cursor-pointer">
                   <SelectValue placeholder="Months" />
                 </SelectTrigger>
                 <SelectContent>
@@ -263,6 +380,7 @@ export default function HolidayDetails({
               </Select>
             </div>
 
+            {/* Mobile View */}
             <div className="block sm:hidden space-y-2 min-[375px]:space-y-3 mt-5">
               {filteredHolidays?.map((h, i) => (
                 <div
@@ -302,6 +420,7 @@ export default function HolidayDetails({
               ))}
             </div>
 
+            {/* Tablet View */}
             <div className="hidden sm:block md:hidden space-y-3 mt-2">
               {filteredHolidays.map((h, i) => (
                 <div
@@ -341,13 +460,12 @@ export default function HolidayDetails({
               ))}
             </div>
 
+            {/* Desktop Table */}
             <div className="hidden md:block bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] min-[1600px]:max-w-[1560px] min-[1800px]:max-w-[1720px] min-[1920px]:max-w-[1880px] lg:mx-auto mt-7">
               <div className="overflow-x-auto">
-                {/* Outer rounded frame with single orange outline */}
-                <div className="rounded-xl overflow-hidden border border-orange-500 lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] min-[1600px]:max-w-[1560px] min-[1800px]:max-w-[1720px] min-[1920px]:max-w-[1880px] lg:mx-auto bg-white">
+                <div className="rounded-xl overflow-hidden border border-orange-500 bg-white">
                   <table className="w-full table-fixed border-collapse">
                     <colgroup>
-                      {/* thoda better layout ke liye: S.No thoda chhota, Type thoda bada */}
                       <col style={{ width: "70px" }} />
                       <col />
                       <col style={{ width: "120px" }} />
@@ -359,22 +477,16 @@ export default function HolidayDetails({
                     <thead>
                       <tr className="bg-orange-500">
                         {[
-                          "S.No",
-                          "Holiday Name",
-                          "Month",
-                          "Date",
-                          "Day",
-                          "Type",
-                        ].map((h, i, arr) => (
+                          "S.NO",
+                          "HOLIDAY NAME",
+                          "MONTH",
+                          "DATE",
+                          "DAY",
+                          "TYPE",
+                        ].map((h) => (
                           <th
                             key={h}
-                            className={[
-                              "text-left font-semibold text-white uppercase tracking-wide",
-                              "text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base",
-                              "p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4",
-                              // header bhi grid ke saath:
-                              "border border-orange-500",
-                            ].join(" ")}
+                            className="text-left font-semibold text-white uppercase tracking-wide text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 border border-orange-500"
                           >
                             {h}
                           </th>
@@ -386,13 +498,13 @@ export default function HolidayDetails({
                       {filteredHolidays?.map((h, i) => (
                         <tr
                           key={`${h?.holiday_name}-${i}`}
-                          className="bg-white"
+                          className="bg-white hover:bg-gray-50 transition-colors"
                         >
                           <td className="border border-orange-500 p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-700 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
                             {i + 1}
                           </td>
 
-                          <td className="border border-orange-500 p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-800 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base truncate">
+                          <td className="border border-orange-500 p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4 text-gray-800 text-xs md:text-sm lg:text-sm xl:text-[13px] 2xl:text-[15px] min-[1600px]:text-base">
                             {h?.holiday_name}
                           </td>
 
@@ -410,16 +522,13 @@ export default function HolidayDetails({
 
                           <td className="border border-orange-500 p-2 md:p-3 lg:p-2 xl:p-2 2xl:p-3 min-[1600px]:p-4">
                             <span
-                              className={[
-                                "rounded-full font-medium",
-                                "px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5",
-                                "text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px]",
+                              className={`rounded-full font-medium px-2 py-1 md:px-3 md:py-1 lg:px-2 lg:py-1 2xl:px-3 2xl:py-1 min-[1600px]:px-4 min-[1600px]:py-1.5 text-xs md:text-sm lg:text-[12px] xl:text-[11px] 2xl:text-sm min-[1600px]:text-[15px] ${
                                 h?.type === "National"
                                   ? "bg-green-100 text-green-800"
                                   : h?.type === "Regional"
                                   ? "bg-blue-100 text-blue-800"
-                                  : "bg-gray-100 text-gray-800",
-                              ].join(" ")}
+                                  : "bg-gray-100 text-gray-800"
+                              }`}
                             >
                               {h?.type}
                             </span>
@@ -433,7 +542,7 @@ export default function HolidayDetails({
             </div>
 
             {filteredHolidays?.length === 0 && (
-              <Card className="text-center py-8 border-l-4 border-l-orange-500">
+              <Card className="text-center py-8 border-l-4 border-l-orange-500 mt-5">
                 <CardContent>
                   <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                   <h3 className="text-lg font-medium text-gray-900 mb-2">
@@ -451,7 +560,6 @@ export default function HolidayDetails({
                       setEndDate(null);
                     }}
                     className="hover:bg-orange-50 hover:border-orange-200 hover:text-orange-600"
-                    aria-label="Clear All Filters"
                   >
                     Clear All Filters
                   </Button>
