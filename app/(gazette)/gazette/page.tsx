@@ -1,4 +1,3 @@
-
 // import type { Metadata } from "next";
 // import Gazette from "@/app/_component/Gazette/Gazette";
 
@@ -50,20 +49,12 @@
 //   );
 // }
 
-
-
-
-
-
-
-
- 
 // app/gazette/page.tsx
 import type { Metadata } from "next";
 import Gazette from "@/app/_component/Gazette/Gazette";
- 
+
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
- 
+
 // Fetch gazette data with all filters
 async function getGazetteData(
   page: number = 1,
@@ -75,37 +66,37 @@ async function getGazetteData(
   try {
     const params = new URLSearchParams();
     params.set("page", page.toString());
- 
+
     if (search && search.trim()) {
       params.set("search", search.trim());
     }
- 
+
     if (state && state !== "All States" && state.trim()) {
       params.set("state", state.trim());
     }
- 
+
     if (effective && effective.trim()) {
       params.set("effective", effective.trim());
     }
- 
+
     if (updated && updated.trim()) {
       params.set("updated", updated.trim());
     }
- 
+
     const url = `${API_BASE}/api/gazettes?${params.toString()}`;
     console.log("🔍 [SSR] Fetching gazettes:", url);
- 
+
     const res = await fetch(url, {
       cache: "no-store",
     });
- 
+
     if (!res.ok) {
       throw new Error(`HTTP ${res.status}: Failed to fetch gazette data`);
     }
- 
+
     const data = await res.json();
     console.log("✅ [SSR] Fetched:", data.data?.length, "gazettes");
- 
+
     return data;
   } catch (error) {
     console.error("❌ [SSR] Error fetching gazette data:", error);
@@ -124,13 +115,13 @@ async function getGazetteData(
     };
   }
 }
- 
+
 // Fetch available states
 async function getStates() {
   try {
     const url = `${API_BASE}/api/states`;
     console.log("🏢 [SSR] Fetching states from:", url);
- 
+
     const res = await fetch(url, {
       next: { revalidate: 3600 },
       headers: {
@@ -138,14 +129,14 @@ async function getStates() {
         Accept: "application/json",
       },
     });
- 
+
     if (!res.ok) {
       console.error("❌ [SSR] States API failed:", res.status);
       return [];
     }
- 
+
     const data = await res.json();
- 
+
     // Handle different response formats
     let statesArray = [];
     if (Array.isArray(data)) {
@@ -155,37 +146,30 @@ async function getStates() {
     } else if (data.data && Array.isArray(data.data)) {
       statesArray = data.data;
     }
- 
+
     const formattedStates = statesArray.map((state: any, index: number) => {
       if (typeof state === "string") {
         return state;
       }
       return state.name || state.state_name || String(state);
     });
- 
+
     console.log("✅ [SSR] States count:", formattedStates.length);
- 
+
     return formattedStates;
   } catch (error) {
     console.error("❌ [SSR] Error fetching states:", error);
     return [];
   }
 }
- 
+
 export const metadata: Metadata = {
-  title: "Gazette Notifications | Government Legal Publications",
+  title: "Latest Gazette Notifications India",
   description:
-    "Find and read official government gazette notifications, statutory orders, and rules published in the official gazette by the Indian government.",
-  keywords: [
-    "Gazette Notifications",
-    "Legal Publications",
-    "Government Gazette",
-    "Statutory Orders",
-    "Official Government Documents",
-    "Indian Laws",
-  ],
+    "Stay informed with government circulars and gazette notifications related to labour law and policy updates in India.",
+  keywords: ["gazette notifications", "government circulars"],
 };
- 
+
 export default async function GazetteNotificationsPage({
   searchParams,
 }: {
@@ -203,7 +187,7 @@ export default async function GazetteNotificationsPage({
   const state = params.state || "";
   const effective = params.effective || "";
   const updated = params.updated || "";
- 
+
   console.log("🔍 [SSR] Gazette params:", {
     currentPage,
     search,
@@ -211,12 +195,12 @@ export default async function GazetteNotificationsPage({
     effective,
     updated,
   });
- 
+
   const [initialData, statesData] = await Promise.all([
     getGazetteData(currentPage, search, state, effective, updated),
     getStates(),
   ]);
- 
+
   return (
     <Gazette
       initialData={initialData}
@@ -229,8 +213,7 @@ export default async function GazetteNotificationsPage({
     />
   );
 }
- 
+
 // Force dynamic rendering
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
- 
