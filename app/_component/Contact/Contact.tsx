@@ -9,7 +9,7 @@ import { Phone, Mail, MapPin, Building, X } from "lucide-react";
 import Link from "next/link";
 
 const API_URL =
-  process.env.NEXT_PUBLIC_API_BASE || "https://prns.prisminfoways.com";
+  process.env.NEXT_PUBLIC_API_BASE!
 
 import {
   Dialog,

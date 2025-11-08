@@ -46,10 +46,8 @@ type BlogProps = {
 };
 
 // ==================== CONFIG ====================
-const FILE_HOST =
-  process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") ||
-  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
+const FILE_HOST = process.env.NEXT_PUBLIC_API_BASE!;
+
 
 // ==================== HELPER FUNCTIONS ====================
 function normalizeImageUrl(post: ApiPost): string | null {
@@ -59,6 +57,7 @@ function normalizeImageUrl(post: ApiPost): string | null {
     (post.image_path ? `/storage/${post.image_path}` : null) ||
     (post.meta_image_path ? `/storage/${post.meta_image_path}` : null);
 
+    
   if (!raw) return null;
 
   try {

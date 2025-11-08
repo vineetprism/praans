@@ -326,10 +326,10 @@
 //                                     asChild
 //                                     aria-label="Read More"
 //                                   >
-//                                     <Link href={`/gazette-details/${n?.slug}`}>
-//                                       <Eye className="w-3 h-3 2xl:w-4 2xl:h-4" />
-//                                       <span className="whitespace-nowrap">Read More</span>
-//                                     </Link>
+                                    // <Link href={`/gazette-details/${n?.slug}`}>
+                                    //   <Eye className="w-3 h-3 2xl:w-4 2xl:h-4" />
+                                    //   <span className="whitespace-nowrap">Read More</span>
+                                    // </Link>
 //                                   </Button>
 //                                 </div>
 //                               </div>
@@ -2778,7 +2778,6 @@
 
 
 
-// app/_component/ActRuleForm/ActsPageClient.tsx
 "use client";
  
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
@@ -3217,7 +3216,7 @@ export default function ActsPageClient({
                                   asChild
                                 >
                                   <Link
-                                    href={`/acts-rule-form-details/${
+                                    href={`/gazette-details/${
                                       act?.slug || act?.id
                                     }`}
                                   >

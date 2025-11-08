@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE || "https://prns.prisminfoways.com";
+  process.env.NEXT_PUBLIC_API_BASE!
 const SUBSCRIBE_ENDPOINT = new URL("/api/subscribe", API_BASE).toString();
 
 export default function SiteFooter() {

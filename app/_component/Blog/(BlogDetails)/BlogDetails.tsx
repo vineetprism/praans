@@ -30,12 +30,9 @@ type ApiPost = {
   tags?: string[] | null;
 };
 
-const FILE_HOST =
-  process.env.NEXT_PUBLIC_FILE_HOST?.replace(/\/+$/, "") ||
-  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
+const FILE_HOST =  process.env.NEXT_PUBLIC_API_BASE!
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "";
+const SITE_URL = process.env.NEXT_PUBLIC_API_BASE!
 
 function normalizeImageUrl(post: ApiPost): string | null {
   const raw =

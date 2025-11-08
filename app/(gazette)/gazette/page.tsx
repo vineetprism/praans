@@ -49,6 +49,11 @@
 //   );
 // }
 
+
+
+
+
+
 // app/gazette/page.tsx
 import type { Metadata } from "next";
 import Gazette from "@/app/_component/Gazette/Gazette";
