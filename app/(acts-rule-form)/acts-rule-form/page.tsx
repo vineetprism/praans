@@ -18,7 +18,6 @@ async function getActsData(page: number = 1, search?: string, state?: string) {
     }
 
     const url = `${API_BASE}/api/act-rule-forms?${params.toString()}`;
-    console.log("🔍 [SSR] Fetching acts:", url);
 
     const res = await fetch(url, {
       cache: "no-store",
@@ -71,7 +70,6 @@ async function getStates() {
     }
 
     const data = await res.json();
-    console.log("✅ [SSR] States data:", data);
 
     // Handle different possible response formats
     let statesArray = [];
@@ -87,7 +85,6 @@ async function getStates() {
       statesArray = data.data;
     }
 
-    console.log("✅ [SSR] Parsed states:", statesArray.length);
 
     // Ensure proper format
     const formattedStates = statesArray.map((state: any, index: number) => ({
@@ -126,7 +123,6 @@ export default async function ActsPage({
     getStates(),
   ]);
 
-  console.log("📊 [SSR] States count:", statesData.length);
 
   return (
     <ActsPageClient

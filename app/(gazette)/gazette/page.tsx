@@ -95,7 +95,6 @@ async function getGazetteData(
     }
 
     const data = await res.json();
-    console.log("✅ [SSR] Fetched:", data.data?.length, "gazettes");
 
     return data;
   } catch (error) {
@@ -188,13 +187,7 @@ export default async function GazetteNotificationsPage({
   const effective = params.effective || "";
   const updated = params.updated || "";
 
-  console.log("🔍 [SSR] Gazette params:", {
-    currentPage,
-    search,
-    state,
-    effective,
-    updated,
-  });
+
 
   const [initialData, statesData] = await Promise.all([
     getGazetteData(currentPage, search, state, effective, updated),

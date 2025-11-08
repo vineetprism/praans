@@ -3251,7 +3251,7 @@ export default function ActsPageClient({
                   <Button
                     variant="outline"
                     size="sm"
-                    className="h-8 px-3 text-xs border-gray-300 hover:bg-gray-50"
+                    className="h-8 px-3 text-xs border-gray-300 hover:bg-gray-50 "
                     disabled={currentPage <= 1}
                     onClick={() =>
                       handlePageChange(Math.max(1, currentPage - 1))
@@ -3269,8 +3269,8 @@ export default function ActsPageClient({
                         size="sm"
                         className={
                           currentPage === p
-                            ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400"
-                            : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200"
+                            ? "h-8 px-3 text-xs bg-orange-400 text-white hover:bg-orange-500 border-orange-400 hover:cursor-pointer"
+                            : "h-8 px-3 text-xs border-gray-300 hover:bg-orange-50 hover:border-orange-200 hover:cursor-pointer"
                         }
                         onClick={() => handlePageChange(p)}
                         aria-label={`Page ${p}`}
@@ -3287,7 +3287,7 @@ export default function ActsPageClient({
                   <Button
                     variant="outline"
                     size="sm"
-                    className="h-8 px-3 text-xs border-gray-300 hover:bg-gray-50"
+                    className="h-8 px-3 text-xs border-gray-300 hover:bg-gray-50 hover:cursor-pointer"
                     disabled={currentPage >= lastPage}
                     onClick={() =>
                       handlePageChange(Math.min(lastPage, currentPage + 1))
