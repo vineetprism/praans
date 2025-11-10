@@ -11,7 +11,6 @@ import {
 import Link from "next/link";
 import React from "react";
 
-
 interface Offering {
   icon: LucideIcon;
   title: string;
@@ -20,7 +19,6 @@ interface Offering {
   bgColor: string;
   href: string;
 }
-
 
 interface OfferingCardProps {
   offering: Offering;
@@ -31,8 +29,7 @@ const keyOfferings = [
   {
     icon: Monitor,
     title: "Smart Compliance Software",
-    description:
-      "Precise and automated management of Labour laws.",
+    description: "Precise and automated management of Labour laws.",
     color: "from-blue-500 to-blue-600",
     bgColor: "from-blue-50 to-blue-100",
     href: "/smart-compliance-software",
@@ -40,8 +37,7 @@ const keyOfferings = [
   {
     icon: Briefcase,
     title: "Compliance Outsourcing",
-    description:
-      " Easing of workload.",
+    description: " Easing of workload.",
     color: "from-orange-500 to-orange-600",
     bgColor: "from-orange-50 to-orange-100",
     href: "/compliance-outsourcing",
@@ -49,8 +45,7 @@ const keyOfferings = [
   {
     icon: ClipboardCheck,
     title: "PAN India Registrations",
-    description:
-      "National wide and smooth filing processes.",
+    description: "National wide and smooth filing processes.",
     color: "from-green-500 to-green-600",
     bgColor: "from-green-50 to-green-100",
     href: "/pan-india-registrations",
@@ -58,8 +53,7 @@ const keyOfferings = [
   {
     icon: ClipboardList,
     title: "Audit & Inspection",
-    description:
-      "Provide Help and supports for the auditing and inspections.",
+    description: "Provide Help and supports for the auditing and inspections.",
     color: "from-indigo-500 to-indigo-600",
     bgColor: "from-indigo-50 to-indigo-100",
     href: "/audit-and-inspection",
@@ -82,8 +76,6 @@ const keyOfferings = [
     bgColor: "from-red-50 to-red-100",
     href: "/litigation-support",
   },
-
-
 ];
 
 const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
@@ -126,7 +118,7 @@ const OfferingCard = React.memo(({ offering, index }: OfferingCardProps) => (
     </div>
   </Link>
 ));
-export const ServiceSection = () => {
+export default function ServiceSection() {
   return (
     <section className="relative m-0 p-0 bg-gradient-to-br from-white via-orange-50/30 to-blue-50/30 overflow-hidden">
       <div className="w-full">
@@ -134,7 +126,10 @@ export const ServiceSection = () => {
           <section className="py-8 sm:py-10 lg:py-12 2xl:py-16 min-h-[70vh] 2xl:min-h-[80vh]">
             <div className="text-center mb-6 sm:mb-8 lg:mb-10 2xl:mb-12">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl 2xl:text-4xl font-bold mb-2 2xl:mb-3 bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                Single Platform for All <span className="bg-clip-text bg-gradient-to-r from-orange-500 to-orange-400">Labour Law Compliances</span>
+                Single Platform for All{" "}
+                <span className="bg-clip-text bg-gradient-to-r from-orange-500 to-orange-400">
+                  Labour Law Compliances
+                </span>
               </h2>
               <p className="text-xs sm:text-sm md:text-[1rem] lg:text-base 2xl:text-lg text-gray-700 max-w-2xl 2xl:max-w-3xl mx-auto leading-snug 2xl:leading-relaxed px-3">
                 From automated software to expert legal support, we've got you
@@ -151,5 +146,5 @@ export const ServiceSection = () => {
         </div>
       </div>
     </section>
-  )
+  );
 }

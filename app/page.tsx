@@ -1,10 +1,32 @@
 import type { Metadata } from "next";
-import ResourceLibrary from "@/app/_component/Home/resource-library/page";
-import NewsCarouselSection from "@/app/_component/Home/carousel-section/page";
-import HeroSection from "./_component/Home/hero-section/page";
-import CTASection from "./_component/Home/cta-section/page";
-import { ServiceSection } from "./_component/Home/service-section/page";
+// import ResourceLibrary from "@/app/_component/Home/resource-library/page";
+// import NewsCarouselSection from "@/app/_component/Home/carousel-section/page";
+// import HeroSection from "./_component/Home/hero-section/page";
+// import CTASection from "./_component/Home/cta-section/page";
+// import { ServiceSection } from "./_component/Home/service-section/page";
 import { cache } from "react";
+
+import dynamic from "next/dynamic";
+
+const ResourceLibrary = dynamic(
+  () => import("./_component/Home/resource-library/page"),
+  { ssr: true }
+);
+const NewsCarouselSection = dynamic(
+  () => import("./_component/Home/carousel-section/page"),
+  { ssr: true }
+);
+const HeroSection = dynamic(
+  () => import("./_component/Home/hero-section/page"),
+  { ssr: true }
+);
+const CTASection = dynamic(() => import("./_component/Home/cta-section/page"), {
+  ssr: true,
+});
+
+const ServiceSection = dynamic(() => import("./_component/Home/service-section/page"), {
+  ssr: true,
+})
 
 type ApiPost = {
   meta_title?: string | null;
@@ -172,7 +194,6 @@ export default async function HomePage({
       <ServiceSection />
       <ResourceLibrary />
       <CTASection />
-      
     </div>
   );
 }
