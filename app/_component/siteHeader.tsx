@@ -29,17 +29,17 @@ const NAV = [
     label: "Services",
     href: "",
     dropdown: [
-      {
-        label: "Smart Compliance Software",
-        href: "/smart-compliance-software",
-      },
+      // {
+      //   label: "Smart Compliance Software",
+      //   href: "/smart-compliance-software",
+      // },
       { label: "Compliance Outsourcing", href: "/compliance-outsourcing" },
-      { label: "Pan India Registration", href: "/pan-india-registrations" },
+      // { label: "Pan India Registration", href: "/pan-india-registrations" },
       { label: "Audit & Inspection", href: "/audit-and-inspection" },
-      {
-        label: "Legal Advisory & HR Policies",
-        href: "/legal-advisory-hr-policies",
-      },
+      // {
+      //   label: "Legal Advisory & HR Policies",
+      //   href: "/legal-advisory-hr-policies",
+      // },
       { label: "Litigation Support", href: "/litigation-support" },
     ],
   },
