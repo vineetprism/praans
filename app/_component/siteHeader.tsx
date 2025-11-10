@@ -286,12 +286,12 @@ export default function Header() {
                 <User className="w-4 h-4 mr-2" />
                 Sign In
               </Button>
-              <Link href="/register" aria-label="Get started">
+              <Link href="https://compliance.praansconsultech.com/login" aria-label="Software">
                 <Button
                   className="relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl font-semibold px-6 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-200 group cursor-pointer"
                 >
-                  <span className="relative z-10">Get Started</span>
-                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5" />
+                  <span className="relative z-10">Software</span>
+                  {/* <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5" /> */}
                 </Button>
               </Link>
             </div>
@@ -449,13 +449,13 @@ export default function Header() {
                     </Button>
                   </SheetClose>
                    <SheetClose asChild>
-                    <Link href="/register" aria-label="Get started">
+                    <Link href="https://compliance.praansconsultech.com/login" aria-label="Software">
                       <Button
                         size="lg"
                         className="w-full justify-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl font-semibold shadow-lg"
                       >
-                        Get Started
-                        <ArrowRight className="w-4 h-4 ml-2" />
+                        Software
+                        {/* <ArrowRight className="w-4 h-4 ml-2" /> */}
                       </Button>
                     </Link>
                   </SheetClose>

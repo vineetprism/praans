@@ -13,6 +13,7 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  Instagram,
 } from "lucide-react";
 import { FaPinterest, FaWhatsapp } from "react-icons/fa";
 import {
@@ -328,7 +329,7 @@ export default function Blog({
       <div className="flex justify-between py-4 mb-4">
         <div className="flex gap-3">
           <Link
-            href="https://facebook.com/praansconsultech"
+            href="https://www.facebook.com/profile.php?id=100084889211872"
             target="_blank"
             rel="noopener noreferrer"
             className="text-orange-400 hover:text-orange-500 transition-colors"
@@ -364,13 +365,13 @@ export default function Blog({
             <FaPinterest size={24} />
           </Link>
           <Link
-            href="https://wa.me/919876543210"
+            href="https://www.instagram.com/praans_consultech/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-orange-400 hover:text-orange-500 transition-colors"
             aria-label="Contact us on WhatsApp"
           >
-            <FaWhatsapp size={24} />
+            <Instagram size={24} />
           </Link>
         </div>
       </div>
