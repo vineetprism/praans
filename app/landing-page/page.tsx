@@ -67,7 +67,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background Pattern */}
+        {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-white to-orange-50"></div>
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-orange-500/10 to-transparent"></div>
        
