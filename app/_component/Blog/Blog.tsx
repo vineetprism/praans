@@ -325,8 +325,7 @@ export default function Blog({
 }: BlogProps) {
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Social Media Links */}
-      <div className="flex justify-between py-4 mb-4">
+      {/* <div className="flex justify-between py-4 mb-4">
         <div className="flex gap-3">
           <Link
             href="https://www.facebook.com/profile.php?id=100084889211872"
@@ -374,7 +373,7 @@ export default function Blog({
             <Instagram size={24} />
           </Link>
         </div>
-      </div>
+      </div> */}
 
       {/* Pagination Info */}
       {totalPosts && totalPages > 1 && (

@@ -542,13 +542,12 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
                 </div>
               )}
 
-              <div className="mb-6 sm:mb-8">
+              {/* <div className="mb-6 sm:mb-8">
                 <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-3">
                   Spread the love
                 </h3>
 
                 <div className="flex gap-2 flex-wrap">
-                  {/* Facebook Share */}
                   <Link
                     className="bg-blue-600 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center flex-shrink-0"
                     href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
@@ -560,7 +559,6 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
                     <Facebook size={16} className="sm:w-5 sm:h-5" />
                   </Link>
 
-                  {/* Instagram (Profile only – NO share API available) */}
                   <Link
                     className="bg-gray-800 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-gray-900 transition-colors flex items-center justify-center flex-shrink-0"
                     href="https://www.instagram.com/praans_consultech/"
@@ -570,7 +568,6 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
                     <Instagram size={16} className="sm:w-5 sm:h-5" />
                   </Link>
 
-                  {/* LinkedIn Share */}
                   <Link
                     className="bg-blue-700 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-blue-800 transition-colors flex items-center justify-center flex-shrink-0"
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
@@ -582,7 +579,7 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
                     <Linkedin size={16} className="sm:w-5 sm:h-5" />
                   </Link>
                 </div>
-              </div>
+              </div> */}
 
               <div className="rounded-lg">
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
