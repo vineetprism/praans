@@ -127,15 +127,57 @@ export default function NewsCarouselSection({
 
   const loopEnabled = cards.length > 4;
 
-  const onSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      const term = q.trim();
-      const url = term ? `/gazette?q=${encodeURIComponent(term)}` : `/gazette`;
-      router.push(url);
-    },
-    [q, router]
+  // const onSubmit = useCallback(
+  //   (e: React.FormEvent<HTMLFormElement>) => {
+  //     e.preventDefault();
+  //     const term = q.trim();
+  //     const url = term ? `/gazette?q=${encodeURIComponent(term)}` : `/gazette`;
+  //     router.push(url);
+  //   },
+  //   [q, router]
+  // );
+
+
+const norm = (s: string) => s.toLowerCase().trim();
+
+const findFirstMatch = (term: string) => {
+  const n = norm(term);
+
+  // priority: title startsWith → title includes → date match
+  return allCards.find(
+    (c) =>
+      c.hasLink &&
+      (
+        norm(c.title).startsWith(n) ||
+        norm(c.title).includes(n) ||
+        (toDDMMYYYY(c.effective_date) || "").toLowerCase().includes(n)
+      )
   );
+};
+
+const onSubmit = useCallback(
+  (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const term = q.trim();
+
+    if (!term) {
+      router.push("/gazette");
+      return;
+    }
+
+    const hit = findFirstMatch(term);
+
+    if (hit?.slug) {
+      // ✅ go straight to the details page of the first match
+      router.push(`/gazette-details/${hit.slug}`);
+    } else {
+      // fallback: open listing with query
+      router.push(`/gazette?q=${encodeURIComponent(term)}`);
+    }
+  },
+  [q, router, allCards]
+);
+
 
   return (
     <>
