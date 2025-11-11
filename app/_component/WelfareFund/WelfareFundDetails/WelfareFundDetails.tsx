@@ -128,15 +128,7 @@ export default function WelfareFundDetails({
   return (
     <div className="min-h-screen w-full">
       <div className="w-full max-w-none mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
-        {/* Popular Search (mobile) */}
-        <div className="lg:hidden mb-3 sm:mb-4 w-full">
-          <Card className="shadow-sm w-full">
-            <CardContent className="p-2 sm:p-3">
-              <PopularSearch className="mb-0" />
-            </CardContent>
-          </Card>
-        </div>
-
+        
         <div className="w-full grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5">
           <div className="w-full lg:col-span-3 min-w-0">
             {/* Header Section - Responsive */}
@@ -531,6 +523,14 @@ export default function WelfareFundDetails({
               </div>
             </div>
           </div>
+          {/* Popular Search (mobile) */}
+        <div className="lg:hidden mb-3 sm:mb-4 w-full">
+          <Card className="shadow-sm w-full">
+            <CardContent className="p-2 sm:p-3">
+              <PopularSearch className="mb-0" />
+            </CardContent>
+          </Card>
+        </div>
 
           {/* Sidebar*/}
           <div className="hidden lg:block w-full">

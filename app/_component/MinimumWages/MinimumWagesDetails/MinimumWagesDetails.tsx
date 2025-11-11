@@ -161,7 +161,6 @@ function normalizeMWRates(input: any, fallbackTitle?: string): TableBlock {
       }
     }
 
-
     const isFirstTable = (input?.title || fallbackTitle || "")
       .toLowerCase()
       .includes("minimum wage");
@@ -422,7 +421,6 @@ function DesktopOrangeGrid({
       </CardHeader>
       <CardContent className="p-0">
         <div className="w-full overflow-x-auto">
-          <div className="min-w-[600px] sm:min-w-[640px] lg:min-w-[720px] rounded-xl overflow-hidden border border-orange-500 mx-2 sm:mx-3 lg:mx-4 mb-3 sm:mb-4">
             <table className="w-full border-collapse table-fixed">
               <thead>
                 <tr className="bg-orange-50 text-orange-700">
@@ -445,7 +443,6 @@ function DesktopOrangeGrid({
                     className="bg-white hover:bg-orange-50/30 transition-colors"
                   >
                     {H.map((h, c) => {
-  
                       if (
                         /andhra-pradesh|tamil-nadu|telangana/i.test(
                           stateSlug || ""
@@ -490,7 +487,6 @@ function DesktopOrangeGrid({
                       }
 
                       return (
-               
                         <td
                           key={`cell-${r}-${c}`}
                           className={`px-2 sm:px-3 py-2 sm:py-3 text-[11px] sm:text-xs lg:text-sm text-gray-900 border border-orange-500 text-justify align-middle `}
@@ -505,7 +501,6 @@ function DesktopOrangeGrid({
                 ))}
               </tbody>
             </table>
-          </div>
         </div>
       </CardContent>
     </Card>
@@ -915,15 +910,6 @@ export default function MinimumWageDetails({
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-gray-50">
       <div className="w-full mx-auto px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 py-3 sm:py-4 md:py-5 lg:py-6">
-        {/* Mobile PopularSearch */}
-        <div className="lg:hidden mb-3 sm:mb-4">
-          <Card className="shadow-sm">
-            <CardContent className="p-2 sm:p-3">
-              <PopularSearch className="mb-0" />
-            </CardContent>
-          </Card>
-        </div>
-
         <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-[1fr_300px] xl:grid-cols-[1fr_320px] lg:gap-5 xl:gap-6">
           <div className="min-w-0">
             {/* Header + Period Selector */}
@@ -931,7 +917,7 @@ export default function MinimumWageDetails({
               <h1 className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl font-bold text-slate-800 leading-tight">
                 Minimum Wages of {data?.state?.name}
               </h1>
-             
+
               <div className="flex flex-col items-stretch sm:items-end gap-2">
                 <PeriodCombobox
                   apiBase={apiBase}
@@ -942,7 +928,7 @@ export default function MinimumWageDetails({
               </div>
             </div>
             {/* Writeup / Description */}
-          <p className="mb-3">{data?.writeup_space}</p>
+            <p className="mb-3">{data?.writeup_space}</p>
             {/* Tables with Loading State */}
             <div className="relative">
               {loadingPeriod && (
@@ -1034,7 +1020,14 @@ export default function MinimumWageDetails({
               />
             </div>
           </div>
-
+          {/* Mobile PopularSearch */}
+          <div className="lg:hidden mb-3 sm:mb-4">
+            <Card className="shadow-sm">
+              <CardContent className="p-2 sm:p-3">
+                <PopularSearch className="mb-0" />
+              </CardContent>
+            </Card>
+          </div>
           {/* Desktop Sidebar - Sticky */}
           <div className="hidden lg:block min-w-0">
             <div className="sticky top-3 lg:top-4 xl:top-5">
