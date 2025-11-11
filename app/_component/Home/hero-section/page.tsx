@@ -146,7 +146,7 @@ export default function HeroSection() {
           </span>
           <br className="block sm:hidden" />
           <span className="relative inline-block">
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500">
+            <div className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 ">
               Law
             </div>
             <div
