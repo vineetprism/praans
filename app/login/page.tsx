@@ -6,9 +6,7 @@ import Link from "next/link";
 import { Mail, Eye, EyeOff, Sparkles, LogIn } from "lucide-react";
 import { setAuthFromLoginResponse } from "@/lib/auth";
 
-const DEFAULT_LOGIN_URL = "http://100.110.147.101:8000/api/auth/login";
-const LOGIN_URL =
-  process.env.NEXT_PUBLIC_LOGIN_URL?.replace(/\/+$/, "") || DEFAULT_LOGIN_URL;
+const LOGIN_URL = process.env.NEXT_PUBLIC_LOGIN_URL?.replace(/\/+$/, "");
 
 /** Wrapper required by Next.js when using useSearchParams */
 export default function LoginPage() {
@@ -47,6 +45,10 @@ function LoginPageInner() {
     setFormError(null);
     setLoading(true);
     try {
+      if (!LOGIN_URL) {
+        setFormError("Login API URL is not configured. Set NEXT_PUBLIC_LOGIN_URL in your environment.");
+        return;
+      }
       const res = await fetch(LOGIN_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
