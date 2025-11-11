@@ -28,11 +28,11 @@ interface OfferingCardProps {
 const keyOfferings = [
   {
     icon: Monitor,
-    title: "Smart Compliance Software",
+    title: "Smart Compliance Software (Coming Soon)",
     description: "Precise and automated management of Labour laws.",
     color: "from-blue-500 to-blue-600",
     bgColor: "from-blue-50 to-blue-100",
-    href: "/smart-compliance-software",
+    href: "",
   },
   {
     icon: Briefcase,
@@ -44,11 +44,11 @@ const keyOfferings = [
   },
   {
     icon: ClipboardCheck,
-    title: "PAN India Registrations",
+    title: "PAN India Registrations (Coming Soon)",
     description: "National wide and smooth filing processes.",
     color: "from-green-500 to-green-600",
     bgColor: "from-green-50 to-green-100",
-    href: "/pan-india-registrations",
+    href: "",
   },
   {
     icon: ClipboardList,
@@ -60,12 +60,12 @@ const keyOfferings = [
   },
   {
     icon: Gavel,
-    title: "Legal Advisory & HR Policies",
+    title: "Legal Advisory & HR Policies (Coming Soon)",
     description:
       "Provide professional support and help for complex labour regulations.",
     color: "from-purple-500 to-purple-600",
     bgColor: "from-purple-50 to-purple-100",
-    href: "/legal-advisory-hr-policies",
+    href: "",
   },
 
   {
