@@ -49,7 +49,6 @@ type BlogProps = {
 // ==================== CONFIG ====================
 const FILE_HOST = process.env.NEXT_PUBLIC_API_BASE!;
 
-
 // ==================== HELPER FUNCTIONS ====================
 function normalizeImageUrl(post: ApiPost): string | null {
   const raw =
@@ -58,7 +57,6 @@ function normalizeImageUrl(post: ApiPost): string | null {
     (post.image_path ? `/storage/${post.image_path}` : null) ||
     (post.meta_image_path ? `/storage/${post.meta_image_path}` : null);
 
-    
   if (!raw) return null;
 
   try {
@@ -325,7 +323,7 @@ export default function Blog({
 }: BlogProps) {
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* <div className="flex justify-between py-4 mb-4">
+      <div className="flex justify-between py-4 mb-4">
         <div className="flex gap-3">
           <Link
             href="https://www.facebook.com/profile.php?id=100084889211872"
@@ -337,7 +335,7 @@ export default function Blog({
             <Facebook size={24} />
           </Link>
           <Link
-            href="https://twitter.com/praansconsultech"
+            href="https://x.com/SANDEEP9112605"
             target="_blank"
             rel="noopener noreferrer"
             className="text-orange-400 hover:text-orange-500 transition-colors"
@@ -346,22 +344,13 @@ export default function Blog({
             <Twitter size={24} />
           </Link>
           <Link
-            href="https://linkedin.com/company/praansconsultech"
+            href="https://www.linkedin.com/company/83492002/admin/dashboard/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-orange-400 hover:text-orange-500 transition-colors"
             aria-label="Follow us on LinkedIn"
           >
             <Linkedin size={24} />
-          </Link>
-          <Link
-            href="https://pinterest.com/praansconsultech"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-orange-400 hover:text-orange-500 transition-colors"
-            aria-label="Follow us on Pinterest"
-          >
-            <FaPinterest size={24} />
           </Link>
           <Link
             href="https://www.instagram.com/praans_consultech/"
@@ -373,7 +362,7 @@ export default function Blog({
             <Instagram size={24} />
           </Link>
         </div>
-      </div> */}
+      </div>
 
       {/* Pagination Info */}
       {totalPosts && totalPages > 1 && (
@@ -407,8 +396,7 @@ export default function Blog({
               const short_description =
                 post?.short_description ||
                 (post?.content
-                  ? post?.content?.replace(/<[^>]+>/g, "")?.slice(0, 180) +
-                    "…"
+                  ? post?.content?.replace(/<[^>]+>/g, "")?.slice(0, 180) + "…"
                   : "");
               const tags = Array.isArray(post?.tags)
                 ? post?.tags?.filter(Boolean)
@@ -463,7 +451,11 @@ export default function Blog({
                       {tags.length > 0 && (
                         <>
                           <span className="text-gray-300">•</span>
-                          <TagsInline tags={tags} max={2} label="All Comments" />
+                          <TagsInline
+                            tags={tags}
+                            max={2}
+                            label="All Comments"
+                          />
                         </>
                       )}
                     </div>

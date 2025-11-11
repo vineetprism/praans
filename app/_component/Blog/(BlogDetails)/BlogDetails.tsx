@@ -542,7 +542,7 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
                 </div>
               )}
 
-              {/* <div className="mb-6 sm:mb-8">
+              <div className="mb-6 sm:mb-8">
                 <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-3">
                   Spread the love
                 </h3>
@@ -550,9 +550,7 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
                 <div className="flex gap-2 flex-wrap">
                   <Link
                     className="bg-blue-600 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center flex-shrink-0"
-                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                      `${SITE_URL}/blog/${post?.slug}`
-                    )}`}
+                    href={`https://www.facebook.com/profile.php?id=100084889211872`}
                     target="_blank"
                     aria-label="Share on Facebook"
                   >
@@ -570,16 +568,22 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
 
                   <Link
                     className="bg-blue-700 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-blue-800 transition-colors flex items-center justify-center flex-shrink-0"
-                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                      `${SITE_URL}/blog/${post?.slug}`
-                    )}`}
+                    href={`https://www.linkedin.com/company/83492002/admin/dashboard/`}
                     target="_blank"
                     aria-label="Share on LinkedIn"
                   >
                     <Linkedin size={16} className="sm:w-5 sm:h-5" />
                   </Link>
+                  <Link
+                    className="bg-blue-700 text-white w-8 h-8 sm:w-10 sm:h-10 rounded-full hover:bg-blue-800 transition-colors flex items-center justify-center flex-shrink-0"
+                    href={`https://x.com/SANDEEP9112605`}
+                    target="_blank"
+                    aria-label="Share on Twitter"
+                  >
+                    <Twitter size={16} className="sm:w-5 sm:h-5" />
+                  </Link>
                 </div>
-              </div> */}
+              </div>
 
               <div className="rounded-lg">
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
