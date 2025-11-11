@@ -79,8 +79,9 @@ function FaqItem({
       </button>
 
       <div
-        className={`grid transition-[grid-template-rows] duration-300 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-          }`}
+        className={`grid transition-[grid-template-rows] duration-300 ${
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
       >
         <div className="overflow-hidden">
           <div className="bg-white px-6 py-4">
@@ -138,32 +139,27 @@ const features = [
   {
     icon: Zap,
     title: "Real-Time Legal Updates",
-    desc:
-      "Get out of the ordinary with the first-hand updates on labour laws, government notifications, and compliance deadlines for all states and jurisdictions.",
+    desc: "Get out of the ordinary with the first-hand updates on labour laws, government notifications, and compliance deadlines for all states and jurisdictions.",
   },
   {
     icon: Monitor,
     title: "Centralized Compliance Dashboard",
-    desc:
-      "Have a consolidated look to oversee the status and health of compliance at all your business locations from a single secure platform.",
+    desc: "Have a consolidated look to oversee the status and health of compliance at all your business locations from a single secure platform.",
   },
   {
     icon: Bell,
     title: "Auto Alerts & Intelligent Reminders",
-    desc:
-      "We provide with the notification for renewal, inspections, payment that should be timely done, and return so that it always done before the deadline.",
+    desc: "We provide with the notification for renewal, inspections, payment that should be timely done, and return so that it always done before the deadline.",
   },
   {
     icon: Database,
     title: "Safe Digital Record Management",
-    desc:
-      "We keep all the register, receipts and every statutory compliance with audit report and any other documents that will be easily available with all the version control and are traceable.",
+    desc: "We keep all the register, receipts and every statutory compliance with audit report and any other documents that will be easily available with all the version control and are traceable.",
   },
   {
     icon: UserCheck,
     title: "HR & Admin-Lovable Interface",
-    desc:
-      "Designed with internal teams in mind, easy navigation ensures fast access to reports and efficient tracking of compliance. See, manage, and take down the whole cycle of risks in your firm's rules life while making sure 100% lawful stick.",
+    desc: "Designed with internal teams in mind, easy navigation ensures fast access to reports and efficient tracking of compliance. See, manage, and take down the whole cycle of risks in your firm's rules life while making sure 100% lawful stick.",
   },
 ];
 
@@ -292,19 +288,35 @@ export default function ComplianceOutsourcing() {
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-3xl lg:text-4xl font-extrabold leading-tight">
+              <h1 className="text-[24px] font-extrabold leading-tight text-[#1C284F]">
                 Assure complete Compliance. Lower the Risk. Boost Efficiency.
               </h1>
 
-              <div className="mt-4 text-md text-slate-700 text-justify">
+              <div className="mt-4 text-[15px] text-slate-700 text-justify">
                 <p className="mb-4">
-                  Managing labour law compliance is one of the most important but difficult tasks for companies in all sectors of the economy in the complicated regulatory environment today. By offering accurate, dependable, and completely compliant end-to-end labour law compliance outsourcing solutions that are in with the most recent regulations and industry standards, Praans Consultech streamlines this process.
+                  Managing labour law compliance is one of the most important
+                  but difficult tasks for companies in all sectors of the
+                  economy in the complicated regulatory environment today. By
+                  offering accurate, dependable, and completely compliant
+                  end-to-end labour law compliance outsourcing solutions that
+                  are in with the most recent regulations and industry
+                  standards, Praans Consultech streamlines this process.
                 </p>
                 <p className="mb-4">
-                  As your tactical conformity partner, we are with you through all stages of your business life cycle - a start-up, a scaling enterprise, or a large multi-location corporation, thus making sure your business is compliant, audit-ready, and free from legal risks. Our strong legal knowledge, when mixed with powerful technology, is the perfect recipe for hassle-free operations while keeping up with every statutory obligation in due time.
+                  As your tactical conformity partner, we are with you through
+                  all stages of your business life cycle - a start-up, a scaling
+                  enterprise, or a large multi-location corporation, thus making
+                  sure your business is compliant, audit-ready, and free from
+                  legal risks. Our strong legal knowledge, when mixed with
+                  powerful technology, is the perfect recipe for hassle-free
+                  operations while keeping up with every statutory obligation in
+                  due time.
                 </p>
                 <p>
-                  We are not only a service provider to you but a compliance partner who deeply understands the complexities of labour laws and provides customer-centric, anticipative solutions at each stage of your business odyssey.
+                  We are not only a service provider to you but a compliance
+                  partner who deeply understands the complexities of labour laws
+                  and provides customer-centric, anticipative solutions at each
+                  stage of your business odyssey.
                 </p>
               </div>
 
@@ -343,107 +355,138 @@ export default function ComplianceOutsourcing() {
       <section className="py-12 bg-white">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold">Why Outsource Labour Law Compliance?</h2>
-            <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
-              It is no longer an option to just outsource the compliance of labour law; it is a competitive advantage. Here is the reason why companies all over India are opting for Praans Consultech
+            <h2 className="text-3xl font-bold text-[30px] text-[#1C284F]">
+              Why Outsource Labour Law Compliance?
+            </h2>
+            <p className="mt-2 text-gray-600 max-w-8xl mx-auto text-[15px]">
+              It is no longer an option to just outsource the compliance of
+              labour law; it is a competitive advantage. Here is the reason why
+              companies all over India are opting for Praans Consultech
+            </p>
+            <p className="mt-1 text-gray-600 max-w-8xl mx-auto text-[15px]">
+              We look after everything - from contractor licensing and
+              registration to provision of accurate records, payroll related
+              documentation, inspection, and compliance audit support enabling
+              you to devote your time to business growth instead of paperwork.
             </p>
           </div>
 
           <div className="w-full">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {whyReadinessMatters.map((item, idx) => (
                 <div
                   key={idx}
-                  className="group relative rounded-lg overflow-hidden bg-gray-50 border border-orange-50 p-6 h-full flex flex-col"
+                  className="group relative rounded-lg overflow-hidden bg-gray-50 border border-orange-50 px-4 py-2 h-full flex flex-col"
                   tabIndex={0}
                   role="button"
                   aria-pressed="false"
                 >
                   <div className="flex flex-col h-full">
-                    <div className="flex items-center justify-center mb-4">
+                    {/* <div className="flex items-center justify-center mb-4">
                       <div className="w-14 h-14 rounded-full flex items-center justify-center bg-white border border-orange-100">
                         <item.icon className="w-6 h-6 text-[#eb8535]" />
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="flex-1">
-                      <h3 className="font-semibold text-lg text-slate-900 mb-3">{item.title}</h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
+                      <h3 className="font-semibold text-lg text-slate-900 mb-2 text-[#1C284F]">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
 
-                    <div className="mt-4" aria-hidden="true">{/* spacer for consistent height */}</div>
+                    <div className="mt-2" aria-hidden="true">
+                      {/* spacer for consistent height */}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="rounded-3xl border-2 border-orange-200 p-6 mt-8">
+            {/* <div className="rounded-3xl border-2 border-orange-200 p-6 mt-8">
               <p className="text-base text-slate-700 leading-relaxed text-center max-w-5xl mx-auto">
                 We look after everything - from contractor licensing and registration to provision of accurate records, payroll related documentation, inspection, and compliance audit support enabling you to devote your time to business growth instead of paperwork.
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
 
       {/* FEATURES grid — uniform cards */}
-      <section className="bg-white py-12">
+      <section className="bg-gray-50 py-12">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-slate-900">Empowering Compliance through Smart Technology</h2>
-            <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
-              We fuse conventional legal advisory with intelligent automation. Our local, AI-enabled compliance management software is your way to full control, transparency, and ease over all your compliance operations.
+            <h2 className="text-3xl font-bold text-[30px] text-[#1C284F]">
+              Empowering Compliance through Smart Technology
+            </h2>
+            <p className="mt-3 text-gray-600 max-w-8xl mx-auto text-[15px]">
+              We fuse conventional legal advisory with intelligent automation.
+              Our local, AI-enabled compliance management software is your way
+              to full control, transparency, and ease over all your compliance
+              operations.
+              <br />
+              The combined effect of our software + service model is that your
+              organization remains legally safe, operationally effective, and
+              always on top of compliance issues.
             </p>
           </div>
 
           <div className="w-full">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {features.map((item, idx) => (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {features?.map((item, idx) => (
                 <div
                   key={idx}
-                  className="group relative rounded-lg overflow-hidden bg-gray-50 border border-orange-50 p-6 h-full flex flex-col"
+                  className="group relative rounded-lg overflow-hidden bg-white border border-orange-50 px-4 py-2 h-full flex flex-col"
                   tabIndex={0}
                   role="button"
                   aria-pressed="false"
                 >
                   <div className="flex flex-col h-full">
-                    <div className="flex items-center justify-center mb-4">
+                    {/* <div className="flex items-center justify-center mb-4">
                       <div className="w-14 h-14 rounded-full flex items-center justify-center bg-white border border-orange-100">
                         <item.icon className="w-6 h-6 text-[#eb8535]" />
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="flex-1">
-                      <h3 className="font-semibold text-lg text-slate-900 mb-3">{item.title}</h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                      <h3 className="font-semibold text-lg text-slate-900 mb-2 text-[#1C284F]">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {item.desc}
+                      </p>
                     </div>
 
-                    <div className="mt-4" aria-hidden="true">{/* spacer for consistent height */}</div>
+                    <div className="mt-2" aria-hidden="true">
+                      {/* spacer for consistent height */}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="rounded-3xl border-2 border-orange-200 p-6 mt-8">
+            {/* <div className="rounded-3xl border-2 border-orange-200 p-6 mt-8">
               <p className="text-base text-slate-700 leading-relaxed text-center max-w-6xl mx-auto">
-                The combined effect of our software + service model is that your organization remains legally safe, operationally effective, and always on top of compliance issues.
+                The combined effect of our software + service model is that your
+                organization remains legally safe, operationally effective, and
+                always on top of compliance issues.
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white">
+      {/* Founder Section */}
+      <section className="py-12 bg-white">
         <div className="w-full px-6 lg:px-16">
-          {/* Founder Section */}
           <div className="mb-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-              {/* Image column: on small screens it sits above text; on md+ it's left */}
               <div className="w-full flex items-center justify-center">
                 <div
                   ref={imgRef}
                   className="relative w-full rounded-3xl overflow-hidden bg-white border-2 border-orange-100 shadow-sm h-full"
                   style={{ minHeight: 220 }}
                 >
-                  {/* Responsive aspect: use fixed ratio by CSS classes; next/image handles sizing */}
                   <div className="relative w-full h-full">
                     <Image
                       src="/services/adm.webp"
@@ -455,7 +498,6 @@ export default function ComplianceOutsourcing() {
                     />
                   </div>
 
-                  {/* Badge (position responsive) */}
                   <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-white/98 backdrop-blur-sm text-slate-900 px-3 py-1 rounded-full text-sm font-bold border-2 border-orange-500 shadow-sm sm:top-6 sm:left-6">
                     <Shield className="w-4 h-4 text-orange-500" />
                     Founder &amp; Head — Compliance
@@ -463,60 +505,100 @@ export default function ComplianceOutsourcing() {
                 </div>
               </div>
 
-              {/* Text column */}
               <div ref={textRef} className="w-full">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+                  <h2 className="text-[30px] font-bold text-slate-900 leading-tight text-[#1C284F]">
                     Meet Our Founder
                   </h2>
-                  <p className="text-lg text-orange-500 font-semibold mt-2">
+                  <p className="text-md text-orange-500 font-semibold mt-2">
                     Vision Backed by Legal Expertise
                   </p>
                 </div>
 
-                <div className="mt-4 space-y-4">
-                  <p className="text-base text-slate-700 leading-relaxed text-justify">
-                    At Praans Consultech, our founder; labour law adviser with over 15 years of experience in managing and streamlining labour law compliance for the businesses PAN India is driving our adventure. Our founder is trusted partner to numerous businesses looking for clarity and control over their statutory responsibilities, in addition to being a legal expert.
+                <div className="mt-2 space-y-2">
+                  <p className="text-base text-slate-700 leading-relaxed text-justify text-[15px]">
+                    At Praans Consultech, our founder; labour law adviser with
+                    over 15 years of experience in managing and streamlining
+                    labour law compliance for the businesses PAN India is
+                    driving our adventure. Our founder is trusted partner to
+                    numerous businesses looking for clarity and control over
+                    their statutory responsibilities, in addition to being a
+                    legal expert.
                   </p>
-                  <p className="text-base text-slate-700 leading-relaxed text-justify">
-                    Our founder has shown to be exceptionally skilled at managing intricate labour aw operations across several states and industries having managed compliance for over <span className="font-bold text-orange-400">2,500 locations and over 50,000 people PAN India</span>.
+                  <p className="text-base text-slate-700 leading-relaxed text-justify text-[15px]">
+                    Our founder has shown to be exceptionally skilled at
+                    managing intricate labour aw operations across several
+                    states and industries having managed compliance for over{" "}
+                    <span className="font-bold text-orange-400">
+                      2,500 locations and over 50,000 people PAN India
+                    </span>
+                    .
+                  </p>
+                  <p className="text-base text-slate-700 leading-relaxed text-justify text-[15px]">
+                    Their strong legal foundation and real-world experience in
+                    managing high-volume, multi-location compliance operations
+                    provide the strategic edge our clients trust. They lead the
+                    organization with a focus on ethical standards, practical
+                    execution, and proactive risk management.
                   </p>
                 </div>
 
-                {/* Experience & Credentials Grid */}
                 <div className="mt-6 grid grid-cols-1 gap-6">
                   <div className="bg-white rounded-2xl p-6 border border-orange-100">
                     <h4 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                      <span className="w-2 h-2 bg-orange-500 rounded-full" />
+                      <span className="w-2 h-2 bg-orange-500 rounded-full text-[#1C284F]" />
                       A Strong Educational Foundation in Law and Compliance
                     </h4>
 
-                    {/* tag chips */}
                     <div className="flex flex-wrap gap-2 mb-4">
-                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-xs font-semibold border border-orange-300">B.Sc.</span>
-                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-xs font-semibold border border-orange-300">LL.B.</span>
-                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-xs font-semibold border border-orange-300">LL.M.</span>
-                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-xs font-semibold border border-orange-300">PG Diploma — Labour Laws</span>
-                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-xs font-semibold border border-orange-300">XLRI Alumnus</span>
-                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-xs font-semibold border border-orange-300">Ph.D. (Pursuing)</span>
+                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-[15px] font-semibold border border-orange-300">
+                        B.Sc.
+                      </span>
+                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-[15px] font-semibold border border-orange-300">
+                        LL.B.
+                      </span>
+                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-[15px] font-semibold border border-orange-300">
+                        LL.M.
+                      </span>
+                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-[15px] font-semibold border border-orange-300">
+                        PG Diploma — Labour Laws
+                      </span>
+                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-[15px] font-semibold border border-orange-300">
+                        XLRI Alumnus
+                      </span>
+                      <span className="px-3 py-1.5 rounded-lg bg-orange-50 text-slate-800 text-[15px] font-semibold border border-orange-300">
+                        Ph.D. (Pursuing)
+                      </span>
                     </div>
 
-                    {/* bullets */}
                     <ul className="list-disc pl-5 space-y-3 text-sm text-slate-700">
                       <li>
-                        <strong>B.Sc.</strong> – Through this degree he has developed analytical abilities that aid in the deciphering of intricate regulatory matters.
+                        <strong>B.Sc.</strong> – Through this degree he has
+                        developed analytical abilities that aid in the
+                        deciphering of intricate regulatory matters.
                       </li>
                       <li>
-                        <strong>LL.B. &amp; LL.M.</strong> – It developed an extensive legal understanding of Indian labour laws, and industrial relations were provided through.
+                        <strong>LL.B. &amp; LL.M.</strong> – It developed an
+                        extensive legal understanding of Indian labour laws, and
+                        industrial relations were provided through.
                       </li>
                       <li>
-                        <strong>PG Diploma in Labour Laws &amp; Industrial Relations</strong> – It developed strong foundations in labour law and industrial relations were established through this degree.
+                        <strong>
+                          PG Diploma in Labour Laws &amp; Industrial Relations
+                        </strong>{" "}
+                        – It developed strong foundations in labour law and
+                        industrial relations were established through this
+                        degree.
                       </li>
                       <li>
-                        <strong>XLRI Alumnus</strong> – Acquired advanced leadership and HR management knowledge from one of the most prestigious business school in India.
+                        <strong>XLRI Alumnus</strong> – Acquired advanced
+                        leadership and HR management knowledge from one of the
+                        most prestigious business school in India.
                       </li>
                       <li>
-                        <strong>Ph.D. (Pursuing)</strong> – To be up to date with the all latest legal trends, founder is pursuing a doctorate in labour law and compliance frameworks.
+                        <strong>Ph.D. (Pursuing)</strong> – To be up to date
+                        with the all latest legal trends, founder is pursuing a
+                        doctorate in labour law and compliance frameworks.
                       </li>
                     </ul>
                   </div>
@@ -525,21 +607,30 @@ export default function ComplianceOutsourcing() {
             </div>
 
             {/* Founder closing box with responsive vertical margins */}
-            <div className="rounded-3xl border-2 border-orange-200 p-6 my-6 md:my-8 lg:my-12">
+            {/* <div className="rounded-3xl border-2 border-orange-200 p-6 my-6 md:my-8 lg:my-12">
               <p className="text-base text-slate-700 leading-relaxed text-center max-w-5xl mx-auto">
-                Their strong legal foundation and real-world experience in managing high-volume, multi-location compliance operations provide the strategic edge our clients trust. They lead the organization with a focus on ethical standards, practical execution, and proactive risk management.
+                Their strong legal foundation and real-world experience in
+                managing high-volume, multi-location compliance operations
+                provide the strategic edge our clients trust. They lead the
+                organization with a focus on ethical standards, practical
+                execution, and proactive risk management.
               </p>
-            </div>
+            </div> */}
           </div>
 
           {/* Team Section */}
           <div className="w-full px-6 lg:px-16">
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
+            <div className="max-w-8xl mx-auto text-center mb-12">
+              <h3 className="text-[30px] font-bold text-slate-900 mb-3 text-[#1C284F]">
                 Meet the team – They Make It All Happen
               </h3>
-              <p className="text-base text-slate-700 leading-relaxed text-justify">
-                Behind the scenes, there's a solid team helping out the founder. We've got legal eagles, folks who know all about staying compliant, document wizards, and people on the ground making sure things run smoothly. Each person knows their stuff when it comes to Indian labour laws, what's up in different regions, and what each industry needs to do.
+              <p className="mt-3 text-gray-600 max-w-8xl mx-auto text-[15px]">
+                Behind the scenes, there's a solid team helping out the founder.
+                We've got legal eagles, folks who know all about staying
+                compliant, document wizards, and people on the ground making
+                sure things run smoothly. Each person knows their stuff when it
+                comes to Indian labour laws, what's up in different regions, and
+                what each industry needs to do.
               </p>
             </div>
 
@@ -547,14 +638,17 @@ export default function ComplianceOutsourcing() {
               <div className="grid md:grid-cols-2 gap-10 items-start">
                 <div className="space-y-6">
                   <div className="bg-gradient-to-br from-orange-50 to-white rounded-2xl p-8 border border-orange-100">
-                    <h4 className="font-bold text-slate-900 mb-4 text-lg flex items-center gap-2">
+                    <h4 className="font-bold text-slate-900 mb-4 text-lg flex items-center gap-2 text-[#1C284F]">
                       Basically, we're experienced in:
                     </h4>
 
                     <ul className="space-y-3">
                       <li className="flex gap-3 text-sm text-slate-700">
                         <span className="text-orange-500 font-bold">✓</span>
-                        <span>Making sure you're set up right (establishment compliance)</span>
+                        <span>
+                          Making sure you're set up right (establishment
+                          compliance)
+                        </span>
                       </li>
                       <li className="flex gap-3 text-sm text-slate-700">
                         <span className="text-orange-500 font-bold">✓</span>
@@ -570,11 +664,15 @@ export default function ComplianceOutsourcing() {
                       </li>
                       <li className="flex gap-3 text-sm text-slate-700">
                         <span className="text-orange-500 font-bold">✓</span>
-                        <span>Getting all the necessary registrations and licenses</span>
+                        <span>
+                          Getting all the necessary registrations and licenses
+                        </span>
                       </li>
                       <li className="flex gap-3 text-sm text-slate-700">
                         <span className="text-orange-500 font-bold">✓</span>
-                        <span>Audits and inspections, plus a bunch of other things</span>
+                        <span>
+                          Audits and inspections, plus a bunch of other things
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -582,9 +680,15 @@ export default function ComplianceOutsourcing() {
 
                 <div>
                   <div className="bg-gradient-to-br from-orange-50 to-white rounded-2xl p-8 border border-orange-100">
-                    <h4 className="text-lg font-bold text-slate-900 mb-4">How we work?</h4>
+                    <h4 className="text-lg font-bold text-slate-900 mb-4 text-[#1C284F]">
+                      How we work?
+                    </h4>
                     <p className="text-sm text-slate-700 leading-relaxed text-justify">
-                      We work hand in hand with HR departments, the government, and our clients to get everything in on time, make sure everything's crystal clear legally, and get things done right. This all result in smooth functioning of our entire compliance partner in every industry.
+                      We work hand in hand with HR departments, the government,
+                      and our clients to get everything in on time, make sure
+                      everything's crystal clear legally, and get things done
+                      right. This all result in smooth functioning of our entire
+                      compliance partner in every industry.
                     </p>
                   </div>
                 </div>
@@ -595,24 +699,32 @@ export default function ComplianceOutsourcing() {
       </section>
 
       {/* Industries We Work With Section (no hover effects; heading centered) */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-12 bg-gray-50">
         <div className="w-full px-6 lg:px-16">
           <div className="mb-16 text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
+            <h2 className="text-[30px] font-bold text-slate-900 mb-4 text-[#1C284F]">
               Industries We Work With
             </h2>
-            <p className="text-lg text-slate-700 max-w-3xl mx-auto">
-              We're happy to help out all sorts of businesses with tailor-made compliance solutions:
+            <p className="text-[15px] text-slate-700 max-w-8xl mx-auto">
+              We're happy to help out all sorts of businesses with tailor-made
+              compliance solutions:
+            </p>
+            <p className="text-[15px] text-slate-700 max-w-8xl mx-auto">
+              Each and every industry in India has its own rules and regulations
+              that they follow, but our compliance solutions make sure that
+              everyone adheres to both state and central labour laws.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div className="bg-white rounded-2xl p-6 border-2 border-slate-100">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 border border-orange-100 rounded-lg flex items-center justify-center">
                   <span className="text-lg">🍊</span>
                 </div>
-                <h3 className="font-bold text-slate-900">Drinks &amp; Fruits</h3>
+                <h3 className="font-bold text-slate-900 text-[#1C284F]">
+                  Drinks &amp; Fruits
+                </h3>
               </div>
             </div>
 
@@ -621,7 +733,9 @@ export default function ComplianceOutsourcing() {
                 <div className="w-10 h-10 border border-orange-100 rounded-lg flex items-center justify-center">
                   <span className="text-lg">👥</span>
                 </div>
-                <h3 className="font-bold text-slate-900">Staffing Companies</h3>
+                <h3 className="font-bold text-slate-900 text-[#1C284F]">
+                  Staffing Companies
+                </h3>
               </div>
             </div>
 
@@ -630,7 +744,9 @@ export default function ComplianceOutsourcing() {
                 <div className="w-10 h-10 border border-orange-100 rounded-lg flex items-center justify-center">
                   <span className="text-lg">🏦</span>
                 </div>
-                <h3 className="font-bold text-slate-900">Financial Services</h3>
+                <h3 className="font-bold text-slate-900 text-[#1C284F]">
+                  Financial Services
+                </h3>
               </div>
             </div>
 
@@ -639,7 +755,9 @@ export default function ComplianceOutsourcing() {
                 <div className="w-10 h-10 border border-orange-100 rounded-lg flex items-center justify-center">
                   <span className="text-lg">📚</span>
                 </div>
-                <h3 className="font-bold text-slate-900">Edtech &amp; Schools</h3>
+                <h3 className="font-bold text-slate-900 text-[#1C284F]">
+                  Edtech &amp; Schools
+                </h3>
               </div>
             </div>
 
@@ -648,7 +766,9 @@ export default function ComplianceOutsourcing() {
                 <div className="w-10 h-10 border border-orange-100 rounded-lg flex items-center justify-center">
                   <span className="text-lg">💼</span>
                 </div>
-                <h3 className="font-bold text-slate-900">Professional Services</h3>
+                <h3 className="font-bold text-slate-900 text-[#1C284F]">
+                  Professional Services
+                </h3>
               </div>
             </div>
 
@@ -657,7 +777,9 @@ export default function ComplianceOutsourcing() {
                 <div className="w-10 h-10 border border-orange-100 rounded-lg flex items-center justify-center">
                   <span className="text-lg">🌾</span>
                 </div>
-                <h3 className="font-bold text-slate-900">Agriculture</h3>
+                <h3 className="font-bold text-slate-900 text-[#1C284F]">
+                  Agriculture
+                </h3>
               </div>
             </div>
 
@@ -666,7 +788,9 @@ export default function ComplianceOutsourcing() {
                 <div className="w-10 h-10 border border-orange-100 rounded-lg flex items-center justify-center">
                   <span className="text-lg">🏨</span>
                 </div>
-                <h3 className="font-bold text-slate-900">Hotels &amp; Restaurants</h3>
+                <h3 className="font-bold text-slate-900 text-[#1C284F]">
+                  Hotels &amp; Restaurants
+                </h3>
               </div>
             </div>
 
@@ -675,55 +799,69 @@ export default function ComplianceOutsourcing() {
                 <div className="w-10 h-10 border border-orange-100 rounded-lg flex items-center justify-center">
                   <span className="text-lg">🛍️</span>
                 </div>
-                <h3 className="font-bold text-slate-900">Retail &amp; Pet Care</h3>
+                <h3 className="font-bold text-slate-900 text-[#1C284F]">
+                  Retail &amp; Pet Care
+                </h3>
               </div>
             </div>
           </div>
 
           {/* Compliance Assurance Box */}
-          <div className="rounded-3xl border-2 border-orange-200 p-6">
+          {/* <div className="rounded-3xl border-2 border-orange-200 p-6">
             <p className="text-base text-slate-700 leading-relaxed text-center max-w-4xl mx-auto">
-              Each and every industry in India has its own rules and regulations that they follow, but our compliance solutions make sure that everyone adheres to both state and central labour laws.
+              Each and every industry in India has its own rules and regulations
+              that they follow, but our compliance solutions make sure that
+              everyone adheres to both state and central labour laws.
             </p>
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-14">
+      <section className="py-12 bg-white">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold">Why Choose Praans Consultech?</h2>
-            <p className="text-gray-600 mt-2">Smart compliance starts with a partner who gets operations and law.</p>
+            <h2 className="text-[30px] font-bold text-[#1C284F]">
+              Why Choose Praans Consultech?
+            </h2>
+            <p className="text-gray-600 mt-2 text-[15px]">
+              Smart compliance starts with a partner who gets operations and
+              law.
+            </p>
           </div>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {whyChooseUs.map((reason, idx) => {
               const Icon = icons[idx] ?? CheckCircle; // fallback icon
-              const microCopy = [
-                "We've been at this for over 15 years.",
-                "We know our way around a bunch of different industries.",
-                "We use centralized, AI-powered compliance software.",
-                "We're all over India, with people on the ground.",
-                "We do things our way – customized, honest, and ethical.",
-              ][idx] ?? "We handle all your compliance outsourcing needs.";
+              const microCopy =
+                [
+                  "We've been at this for over 15 years.",
+                  "We know our way around a bunch of different industries.",
+                  "We use centralized, AI-powered compliance software.",
+                  "We're all over India, with people on the ground.",
+                  "We do things our way – customized, honest, and ethical.",
+                ][idx] ?? "We handle all your compliance outsourcing needs.";
 
               return (
                 <div
                   key={idx}
-                  className="relative bg-white border border-slate-100 rounded-lg p-6 shadow-sm hover:shadow-md focus-within:ring-2 focus-within:ring-orange-200 h-full"
+                  className="relative bg-white border border-slate-100 rounded-lg px-4 py-2 shadow-sm hover:shadow-md focus-within:ring-2 focus-within:ring-orange-200 h-full"
                   role="article"
                   aria-label={`Reason ${idx + 1} - ${reason}`}
                 >
                   <div className="flex items-start gap-4 h-full flex-col">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-md bg-orange-50 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-orange-500" />
+                      <div className="w-8 h-8 rounded-md bg-orange-50 flex items-center justify-center">
+                        <Icon className="w-4 h-4 text-orange-500" />
                       </div>
 
                       <div>
-                        <h3 className="text-lg font-semibold text-slate-900">{reason}</h3>
-                        <p className="mt-2 text-sm text-gray-600 text-justify">{microCopy}</p>
+                        <h3 className="text-lg font-semibold text-slate-900 text-[#1C284F]">
+                          {reason}
+                        </h3>
+                        <p className="mt-2 text-sm text-gray-600 text-justify">
+                          {microCopy}
+                        </p>
                       </div>
                     </div>
 
@@ -737,19 +875,24 @@ export default function ComplianceOutsourcing() {
       </section>
 
       {/* CTA */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-12 bg-white">
         <div className="w-full px-6 lg:px-8">
           <div className="rounded-lg p-8 sm:p-12 text-center">
-            <h2 className="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight">
+            <h2 className="text-[30px] font-bold mb-5 leading-tight text-[#1C284F]">
               Let's Make Compliance Easier
             </h2>
 
-            <p className="w-full text-gray-600 text-base sm:text-lg leading-relaxed mb-4 text-justify">
-              Following labour laws doesn't have to be a headache. With Our Praans Consultech, you get help with clever software, a team that will ensure the smooth and accurate work that will be done on time and all the strategy.
+            <p className="w-full text-gray-600 text-base leading-relaxed mb-2 text-center text-[15px]">
+              Following labour laws doesn't have to be a headache. With Our
+              Praans Consultech, you get help with clever software, a team that
+              will ensure the smooth and accurate work that will be done on time
+              and all the strategy.
             </p>
 
-            <p className="w-full text-gray-600 text-base sm:text-lg leading-relaxed mb-10 text-justify">
-              Let us help you make your compliance process a strong point, instead of something stressful. Get in touch for a free chat to explore our labour law compliance outsourcing solutions.
+            <p className="w-full text-gray-600 text-base leading-relaxed mb-4 text-center text-[15px]">
+              Let us help you make your compliance process a strong point,
+              instead of something stressful. Get in touch for a free chat to
+              explore our labour law compliance outsourcing solutions.
             </p>
 
             <div className="flex justify-center gap-5 sm:gap-6 flex-wrap">
@@ -794,7 +937,7 @@ export default function ComplianceOutsourcing() {
 
       {/* FAQ Section */}
       <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-8">
-        <h1 className="text-center text-2xl sm:text-3xl font-bold text-[#1b2851]">
+        <h1 className="text-center text-[30px] font-bold text-[#1C284F]">
           Frequently Asked Questions
         </h1>
 
