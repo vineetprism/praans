@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Mail, Eye, EyeOff, Sparkles, LogIn } from "lucide-react";
 import { setAuthFromLoginResponse } from "@/lib/auth";
 
-const LOGIN_URL = process.env.NEXT_PUBLIC_LOGIN_URL?.replace(/\/+$/, "");
+const LOGIN_URL = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "");
 
 /** Wrapper required by Next.js when using useSearchParams */
 export default function LoginPage() {

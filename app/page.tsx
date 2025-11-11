@@ -52,9 +52,7 @@ type GazetteResponse = {
   };
 };
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "") ||
-  "http://100.110.147.101:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "");
 
 export const revalidate = 1800;
 
