@@ -389,9 +389,14 @@ export default function ComplianceOutsourcing() {
                     </div> */}
 
                     <div className="flex-1">
-                      <h3 className="font-semibold text-lg text-slate-900 mb-2 text-[#1C284F]">
+                      <h3 className="flex items-center gap-2 font-semibold text-lg text-[#1C284F] mb-2">
+                        <item.icon
+                          className="w-4 h-4 shrink-0 text-[#eb8535]"
+                          aria-hidden="true"
+                        />
                         {item.title}
                       </h3>
+
                       <p className="text-sm text-gray-600 leading-relaxed">
                         {item.description}
                       </p>
@@ -450,9 +455,14 @@ export default function ComplianceOutsourcing() {
                     </div> */}
 
                     <div className="flex-1">
-                      <h3 className="font-semibold text-lg text-slate-900 mb-2 text-[#1C284F]">
+                      <h3 className="flex items-center gap-2 font-semibold text-lg text-[#1C284F] mb-2">
+                        <item.icon
+                          className="w-4 h-4 shrink-0 text-[#eb8535]"
+                          aria-hidden="true"
+                        />
                         {item.title}
                       </h3>
+
                       <p className="text-sm text-gray-600 leading-relaxed">
                         {item.desc}
                       </p>
