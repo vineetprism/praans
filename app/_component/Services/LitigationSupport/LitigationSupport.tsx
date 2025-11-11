@@ -203,7 +203,7 @@ export default function LitigationSupport() {
     <div className="bg-white text-slate-900">
       {/* Hero */}
       <section className="py-8 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-0 items-stretch">
             {/* LEFT: Text content */}
             <div className="flex flex-col justify-center pr-0 lg:pr-8">
@@ -213,11 +213,11 @@ export default function LitigationSupport() {
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-3xl lg:text-4xl font-extrabold leading-tight">
+              <h1 className="text-[24px] font-extrabold leading-tight text-[#1C284F]">
                 Labour Law Litigation Support Services – PAN India
               </h1>
 
-              <div className="mt-4 text-md text-slate-700 text-justify">
+              <div className="mt-4 text-[15px] text-slate-700 text-justify">
                 <p className="mb-4">
                   Dealing with labour law stuff is just a part of running a business, plain and simple. Even when you've
                   got a great HR setup, there's always a chance something might go sideways. Maybe it's about pay,
@@ -266,20 +266,20 @@ export default function LitigationSupport() {
 
       {/* What is Litigation Readiness / Dispute Resolution */}
       <section className="py-12 bg-white">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-2 items-stretch">
             <article className="relative rounded-lg p-6 bg-blue-50 border border-blue-100 shadow-sm overflow-hidden flex flex-col h-full" aria-labelledby="readiness-title">
               <div className="absolute inset-y-0 left-0 w-1 bg-blue-400 rounded-tr-md rounded-br-md" aria-hidden="true" />
               <div className="ml-4 flex-1">
-                <h2 id="readiness-title" className="text-2xl font-semibold mb-2 text-slate-800">How Praans Consultech can help?</h2>
-                <p className="text-slate-700 mb-5">
+                <h2 id="readiness-title" className="text-[30px] font-bold mb-2 text-[#1C284F]">How Praans Consultech can help?</h2>
+                <p className="text-slate-700 mb-5 text-[15px]">
                   Praans Consultech offers full-service support for labour law issues. We're there to help businesses
                   every step of the way. Here's what we do:
                 </p>
 
-                <dl className="space-y-3 text-slate-700">
+                <dl className="space-y-3 text-slate-700 text-[15px]">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-semibold">Paperwork Help</dt>
                       <dd className="text-sm">We help you get all your records organized and checked so you have the right proof for any legal stuff.</dd>
@@ -397,23 +397,23 @@ export default function LitigationSupport() {
 
       {/* Our Services */}
       <section className="py-14 bg-white">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-10">
-            <h2 className="text-3xl font-bold">Labour Law Support provides you with</h2>
+            <h2 className="text-[30px] font-bold text-[#1C284F]">Labour Law Support provides you with</h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {ourServices.map((service, idx) => {
               const Icon = serviceIcons[idx % serviceIcons.length] || FileText
               return (
-                <Card key={idx} className="p-6 border border-slate-100 shadow-sm">
+                <Card key={idx} className="px-4 py-2 border border-slate-100 shadow-sm">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-md bg-orange-50 flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-[#eb8535]" />
+                    <div className="w-8 h-8 rounded-md bg-orange-50 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-[#eb8535]" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-xl">{service.title}</h3>
-                      <p className="mt-2 text-sm text-gray-600">{service.description}</p>
+                      <h3 className="font-semibold text-lg text-[#1C284F]">{service.title}</h3>
+                      <p className="mt-2 text-sm text-gray-600 text-justify">{service.description}</p>
                     </div>
                   </div>
                 </Card>
@@ -425,7 +425,7 @@ export default function LitigationSupport() {
 
       {/* Faq */}
       <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-8">
-        <h1 className="text-center text-2xl sm:text-3xl font-bold text-[#1b2851]">
+        <h1 className="text-center text-[30px] font-bold text-[#1C284F]">
           Frequently Asked Questions
         </h1>
 

@@ -86,7 +86,7 @@ export default function LegalAdvisoryHrPolicies() {
         <div className="bg-white text-slate-900">
             {/* Hero */}
             <section className="py-16 bg-gray-50">
-                <div className="container mx-auto px-6 lg:px-8">
+                <div className="w-full px-4 sm:px-6 lg:px-8">
                     {/* stack on md (768px) and go 2-col on lg */}
                     <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 items-center">
                         <div>
@@ -96,12 +96,12 @@ export default function LegalAdvisoryHrPolicies() {
                                 </span>
                             </div>
 
-                            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+                            <h1 className="text-[24px] font-extrabold leading-tight text-[#1C284F]">
                                 Labour Law Legal Advisory & HR Policies
                             </h1>
 
                             {/* constrain width for better readability on tablets */}
-                            <p className="mt-4 text-lg text-slate-700 max-w-xl">
+                            <p className="mt-4 text-[15px] text-slate-700 max-w-xl">
                                 Stay compliant, prepared and confident. Praans Consultech provides full-stack labour law advisory with
                                 technology-enabled audit readiness and field support to minimize legal and operational risk.
                             </p>

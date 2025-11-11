@@ -87,7 +87,7 @@ export default function AuditAndInspection() {
   return (
     <div className="bg-white text-slate-900">
       <section className="py-8 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-0 items-stretch">
             {/* LEFT: Text content */}
             <div className="flex flex-col justify-center pr-0 lg:pr-8">
@@ -97,11 +97,11 @@ export default function AuditAndInspection() {
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-3xl lg:text-4xl font-extrabold leading-tight">
+              <h1 className="text-[24px] font-extrabold leading-tight text-[#1C284F]">
                 Stay Compliant. Stay Prepared. Stay Confident.
               </h1>
 
-              <div className="mt-4 text-md text-slate-700 text-justify">
+              <div className="mt-4 text-[15px] text-slate-700 text-justify">
                 <p className="mb-4">
                   In the dynamic world of regulatory compliance, labour law audits and inspections are more than procedural—they are essential to protecting your organization from penalties, disputes, and reputational risks. Whether it's a routine inspection by a labour department officer or an internal compliance audit, being prepared is non-negotiable.
                 </p>
@@ -114,7 +114,7 @@ export default function AuditAndInspection() {
                 <Link href="/contact-us" aria-label="Book free consultation">
                   <Button
                     size="lg"
-                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
+                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-white text-orange-500 text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
                     aria-label="Book free consultation"
                   >
                     <Phone className="w-4 h-4 mr-2" />
@@ -143,8 +143,8 @@ export default function AuditAndInspection() {
 
       {/* What is an Audit / Inspection */}
       <section className="py-12 bg-white">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-2 items-stretch">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-4 md:grid-cols-2 items-stretch">
             {/* Audit Card */}
             <article
               className="relative rounded-lg p-6 bg-blue-50 border border-blue-100 shadow-sm overflow-hidden flex flex-col h-full"
@@ -161,28 +161,29 @@ export default function AuditAndInspection() {
                   </span>
                 </div>
 
-                <h2 id="audit-title" className="text-2xl font-semibold mb-2 text-slate-800">
+                <h2 id="audit-title" className="text-[30px] font-bold mb-2 text-[#1C284F]">
                   What is a Labour Law Audit?
                 </h2>
 
-                <p className="text-slate-700 mb-5 text-justify">
+                <p className="text-slate-700 mb-5 text-justify text-[15px]">
                   A labour law audit is a detailed examination of your company’s statutory records, processes, and practices
                   to ensure compliance with central and state-specific labour regulations. These audits are often part of
                   internal control systems or preemptive measures to avoid penalties and legal actions.
                 </p>
 
-                <p className="text-slate-700 mb-4 font-medium">During an audit, the focus areas typically include:</p>
+                <p className="text-slate-700 mb-4 font-medium text-[15px]">During an audit, the focus areas typically include:</p>
 
-                <dl className="space-y-3 text-slate-700">
+                <dl className="space-y-3 text-slate-700 text-[15px]">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
-                      <dt className="font-medium">Statutory registers and returns</dt>
+                      <dt className="font-semibold">Registers & Documentation</dt>
+                      <dd className="text-sm">Mandatory registers, forms, returns and records maintained and updated.</dd>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Provident Fund (PF) & ESI records</dt>
                     </div>
@@ -421,43 +422,43 @@ export default function AuditAndInspection() {
 
       {/* Technology */}
       <section className="py-14 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8 lg:gap-4 grid md:grid-cols-2 items-stretch">
+        <div className="w-full px-4 sm:px-6 lg:px-8 lg:gap-4 grid md:grid-cols-2 items-stretch">
           {/* LEFT: Text content */}
           <div className="flex flex-col justify-center">
-            <h2 className="text-3xl font-bold mb-4">Technology-Enabled Compliance</h2>
+            <h2 className="text-[30px] font-bold mb-4 text-[#1C284F]">Technology-Enabled Compliance</h2>
 
-            <p className="text-gray-600 mb-6 max-w-xl text-justify">
+            <p className="text-gray-600 mb-6 max-w-xl text-justify text-[15px]">
               To enhance accuracy and efficiency, we also integrate our AI-powered compliance management software with our audit and inspection services. It helps you:
             </p>
 
-            <ul className="space-y-3 text-gray-600">
+            <ul className="space-y-3 text-gray-600 text-[15px]">
               <li className="flex items-start gap-3">
-                <Cpu className="w-5 h-5 text-orange-500 mt-1" />
+                <Cpu className="w-4 h-4 text-orange-500 mt-1" />
                 <span>Track compliance status in real-time</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <FileText className="w-5 h-5 text-orange-500 mt-1" />
+                <FileText className="w-4 h-4 text-orange-500 mt-1" />
                 <span>Maintain digital records of registers and forms</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-orange-500 mt-1" />
+                <Mail className="w-4 h-4 text-orange-500 mt-1" />
                 <span>Receive automated alerts for upcoming deadlines</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <Users className="w-5 h-5 text-orange-500 mt-1" />
+                <Users className="w-4 h-4 text-orange-500 mt-1" />
                 <span>Centralise documents across locations</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <Search className="w-5 h-5 text-orange-500 mt-1" />
+                <Search className="w-4 h-4 text-orange-500 mt-1" />
                 <span>Generate audit reports and compliance checklists instantly</span>
               </li>
             </ul>
 
-            <p className="text-gray-600 mt-6 max-w-lg">
+            <p className="text-gray-600 mt-6 max-w-lg text-[15px]">
               With technology on your side, your compliance ecosystem becomes more transparent, organized, and inspection-ready—always.
             </p>
           </div>
@@ -478,33 +479,31 @@ export default function AuditAndInspection() {
         </div>
       </section>
 
-      <section className="py-14">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-14 bg-white">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold">Why Choose Praans Consultech?</h2>
-            <p className="text-gray-600 mt-2">Smart compliance starts with a partner who gets operations and law.</p>
+            <h2 className="text-[30px] font-bold text-[#1C284F]">Why Choose Praans Consultech?</h2>
+            <p className="text-gray-600 mt-2 text-[15px]">Smart compliance starts with a partner who gets operations and law.</p>
           </div>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {whyChooseUs.map((reason, idx) => {
               const Icon = icons[idx] ?? CheckCircle; // fallback icon
 
               return (
                 <div
                   key={idx}
-                  className="relative bg-white border border-slate-100 rounded-lg p-6 shadow-sm hover:shadow-md focus-within:ring-2 focus-within:ring-orange-200"
+                  className="relative bg-white border border-slate-100 rounded-lg px-4 py-2 shadow-sm hover:shadow-md focus-within:ring-2 focus-within:ring-orange-200 h-full"
                   role="article"
                   aria-label={`Reason ${idx + 1} - ${reason}`}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-md bg-orange-50 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-orange-500" />
-                      </div>
+                    <div className="w-8 h-8 rounded-md bg-orange-50 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-orange-500" />
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-semibold text-slate-900">{reason}</h3>
+                      <h3 className="text-lg font-semibold text-slate-900 text-[#1C284F]">{reason}</h3>
                       {/* <p className="mt-2 text-sm text-gray-600 text-justify">{microCopy}</p> */}
                     </div>
                   </div>
@@ -516,24 +515,22 @@ export default function AuditAndInspection() {
       </section>
 
       {/* CTA — updated copy */}
-      <section className="py-12 bg-gray-50">
-        <div className="mx-auto px-6 lg:px-8">
+      <section className="py-12 bg-white">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="rounded-lg p-8 sm:p-12 text-center">
-            <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 text-slate-800 leading-tight">
-              Stay Ahead of Every Inspection
-            </h2>
+            <h2 className="text-[30px] font-bold mb-4 leading-tight text-[#1C284F]">Stay Ahead of Every Inspection</h2>
 
             {/* Centered paragraphs with sensible max width and spacing */}
-            <div className="mx-auto max-w-6xl space-y-4">
-              <p className="text-slate-700 text-base sm:text-lg leading-7">
+            <div className="mx-auto max-w-6xl space-y-2">
+              <p className="text-slate-700 text-[15px] leading-7">
                 Labour law inspections are becoming increasingly structured, tech-driven, and penalty-focused. Being audit-ready is not optional — it's essential.
               </p>
 
-              <p className="text-slate-700 text-base sm:text-lg leading-7">
+              <p className="text-slate-700 text-[15px] leading-7">
                 With Praans Consultech, you gain the assurance of compliance, the confidence to face inspections, and the backing of a team that handles the legal complexities for you.
               </p>
 
-              <p className="text-slate-700 text-base sm:text-lg leading-7">
+              <p className="text-slate-700 text-[15px] leading-7">
                 Book your free consultation today to discover how our labour law audit and inspection services can protect your business and streamline your operations.
               </p>
             </div>

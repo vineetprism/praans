@@ -93,7 +93,7 @@ export default function PanIndiaRegistrations() {
     <div className="bg-white text-slate-900">
       {/* Hero */}
       <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 items-center">
             <div>
               <div className="inline-flex items-center gap-3 mb-4">
@@ -102,11 +102,11 @@ export default function PanIndiaRegistrations() {
                 </span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+              <h1 className="text-[24px] font-extrabold leading-tight text-[#1C284F]">
                 Strategic Litigation Support for Business-Critical Disputes
               </h1>
 
-              <p className="mt-4 text-lg text-slate-700 max-w-xl">
+              <p className="mt-4 text-[15px] text-slate-700 max-w-xl">
                 When disputes threaten operations or reputation, you need counsel that moves fast and thinks long-term. We combine seasoned
                 litigators, pragmatic commercial strategy and a tech-driven caseops stack to protect value and deliver measurable outcomes.
               </p>
@@ -174,20 +174,20 @@ export default function PanIndiaRegistrations() {
 
       {/* What is Litigation Readiness / Dispute Resolution */}
       <section className="py-12 bg-white">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-2 items-stretch">
             <article className="relative rounded-lg p-6 bg-blue-50 border border-blue-100 shadow-sm overflow-hidden flex flex-col h-full" aria-labelledby="readiness-title">
               <div className="absolute inset-y-0 left-0 w-1 bg-blue-400 rounded-tr-md rounded-br-md" aria-hidden="true" />
               <div className="ml-4 flex-1">
                 <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-white/60 text-blue-700 border border-blue-100 mb-3">Litigation Readiness</span>
-                <h2 id="readiness-title" className="text-2xl font-semibold mb-2 text-slate-800">What is Litigation Readiness?</h2>
-                <p className="text-slate-700 mb-5">
+                <h2 id="readiness-title" className="text-[30px] font-bold mb-2 text-[#1C284F]">What is Litigation Readiness?</h2>
+                <p className="text-slate-700 mb-5 text-[15px]">
                   A structured program to preserve evidence, document decision trails and ensure your team can respond to subpoenas, notices or complaints with confidence.
                 </p>
 
-                <dl className="space-y-3 text-slate-700">
+                <dl className="space-y-3 text-slate-700 text-[15px]">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Evidence preservation</dt>
                       <dd className="text-sm">Hold processes, defensible data collection and secure storage for emails, logs and documents.</dd>
@@ -226,14 +226,14 @@ export default function PanIndiaRegistrations() {
               <div className="absolute inset-y-0 left-0 w-1 bg-orange-400 rounded-tr-md rounded-br-md" aria-hidden="true" />
               <div className="ml-4 flex-1">
                 <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-white/60 text-[#eb8535] border border-orange-100 mb-3">Dispute Resolution</span>
-                <h2 id="dispute-title" className="text-2xl font-semibold mb-2 text-slate-800">What is Dispute Resolution?</h2>
-                <p className="text-slate-700 mb-5">
+                <h2 id="dispute-title" className="text-[30px] font-bold mb-2 text-[#1C284F]">What is Dispute Resolution?</h2>
+                <p className="text-slate-700 mb-5 text-[15px]">
                   The practical toolkit — mediation, arbitration, settlement negotiation and litigation — we deploy to resolve disputes while preserving commercial value.
                 </p>
 
-                <dl className="space-y-3 text-slate-700">
+                <dl className="space-y-3 text-slate-700 text-[15px]">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-medium">Mediation & settlement</dt>
                       <dd className="text-sm">Structured negotiation to protect commercial relationships and cashflow.</dd>
@@ -273,26 +273,26 @@ export default function PanIndiaRegistrations() {
 
       {/* Why Readiness Matters */}
       <section className="py-14 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold">Why Litigation Readiness Matters</h2>
-            <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-[30px] font-bold text-[#1C284F]">Why Litigation Readiness Matters</h2>
+            <p className="mt-2 text-gray-600 max-w-2xl mx-auto text-[15px]">
               Proactive dispute readiness saves time, reduces spend and protects business continuity when disputes arise.
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {whyReadinessMatters.map((item, idx) => (
               <div key={idx} className="group relative rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-offset-2" tabIndex={0} role="button" aria-pressed="false">
                 <div className="surface relative border rounded-md border-orange-100 shadow-md">
                   <div className="relative z-10 p-5 flex flex-col items-center text-center min-h-[220px]">
-                    <div className="w-14 h-14 mb-3 rounded-full flex items-center justify-center bg-white border border-orange-100 transition-colors duration-200" aria-hidden="true">
-                      <item.icon className="w-6 h-6 text-[#eb8535] group-hover:text-white transition-colors duration-200" />
+                    <div className="w-10 h-10 mb-3 rounded-full flex items-center justify-center bg-white border border-orange-100 transition-colors duration-200" aria-hidden="true">
+                      <item.icon className="w-4 h-4 text-[#eb8535] group-hover:text-white transition-colors duration-200" />
                     </div>
 
                     <h3 className="font-semibold text-lg group-hover:text-white transition-colors duration-200">{item.title}</h3>
 
-                    <p className="mt-2 text-sm text-gray-600 group-hover:text-white/90 transition-colors duration-200">{item.description}</p>
+                    <p className="mt-2 text-sm text-gray-600 group-hover:text-white/90 transition-colors duration-200 text-justify">{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -345,26 +345,26 @@ export default function PanIndiaRegistrations() {
 
       {/* Our Services */}
       <section className="py-14 bg-white">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-10">
-            <h2 className="text-3xl font-bold">Our Litigation Services</h2>
-            <p className="mt-3 text-gray-600">
+            <h2 className="text-[30px] font-bold text-[#1C284F]">Our Litigation Services</h2>
+            <p className="mt-3 text-gray-600 text-[15px]">
               End-to-end litigation and dispute services—designed to protect value and deliver clear outcomes.
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {ourServices.map((service, idx) => {
               const Icon = serviceIcons[idx % serviceIcons.length] || FileText
               return (
-                <Card key={idx} className="p-6 border border-slate-100 shadow-sm">
+                <Card key={idx} className="px-4 py-2 border border-slate-100 shadow-sm">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-md bg-orange-50 flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-[#eb8535]" />
+                    <div className="w-8 h-8 rounded-md bg-orange-50 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-[#eb8535]" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-xl">{service.title}</h3>
-                      <p className="mt-2 text-sm text-gray-600">{service.description}</p>
+                      <h3 className="font-semibold text-lg text-[#1C284F]">{service.title}</h3>
+                      <p className="mt-2 text-sm text-gray-600 text-justify">{service.description}</p>
                     </div>
                   </div>
                 </Card>
@@ -376,10 +376,10 @@ export default function PanIndiaRegistrations() {
 
       {/* Technology */}
       <section className="py-14 bg-[#1c2752] text-white">
-        <div className="container mx-auto px-6 lg:px-8 grid gap-8 md:grid-cols-2 items-center">
+        <div className="w-full px-4 sm:px-6 lg:px-8 grid gap-8 md:grid-cols-2 items-center">
           <div>
-            <h2 className="text-3xl font-bold mb-4">Tech-Enabled Case Management</h2>
-            <p className="text-gray-200 mb-6">
+            <h2 className="text-[30px] font-bold mb-4 text-white">Tech-Enabled Case Management</h2>
+            <p className="text-gray-200 mb-6 text-[15px]">
               Use secure evidence vaults, eDiscovery tooling and case dashboards to make litigation leaner, faster and more transparent.
             </p>
 
@@ -415,13 +415,13 @@ export default function PanIndiaRegistrations() {
 
       {/* Why Choose Us */}
       <section className="py-14">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold">Why Choose Our Disputes Team?</h2>
-            <p className="text-gray-600 mt-2">A commercial-first approach to litigation with measurable KPIs and clear governance.</p>
+            <h2 className="text-[30px] font-bold text-[#1C284F]">Why Choose Our Disputes Team?</h2>
+            <p className="text-gray-600 mt-2 text-[15px]">A commercial-first approach to litigation with measurable KPIs and clear governance.</p>
           </div>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {whyChooseUs.map((reason, idx) => {
               const Icon = icons[idx] ?? CheckCircle;
               const microCopy = [
@@ -433,17 +433,15 @@ export default function PanIndiaRegistrations() {
               ][idx] ?? "Trusted, enterprise-grade litigation support.";
 
               return (
-                <div key={idx} className="relative bg-white border border-slate-100 rounded-lg p-6 shadow-sm hover:shadow-md focus-within:ring-2 focus-within:ring-orange-200" role="article" aria-label={`Reason ${idx + 1} - ${reason}`}>
+                <div key={idx} className="relative bg-white border border-slate-100 rounded-lg px-4 py-2 shadow-sm hover:shadow-md focus-within:ring-2 focus-within:ring-orange-200" role="article" aria-label={`Reason ${idx + 1} - ${reason}`}>
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 rounded-md bg-orange-50 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-[#eb8535]" />
-                      </div>
+                    <div className="w-8 h-8 rounded-md bg-orange-50 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-[#eb8535]" />
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-semibold text-slate-900">{reason}</h3>
-                      <p className="mt-2 text-sm text-gray-600">{microCopy}</p>
+                      <h3 className="text-lg font-semibold text-slate-900 text-[#1C284F]">{reason}</h3>
+                      <p className="mt-2 text-sm text-gray-600 text-justify">{microCopy}</p>
                     </div>
                   </div>
                 </div>
