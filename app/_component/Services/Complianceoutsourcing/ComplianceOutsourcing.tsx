@@ -282,7 +282,7 @@ export default function ComplianceOutsourcing() {
   return (
     <div className="bg-white text-slate-900">
       <section className="py-8 bg-gray-50">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-1 lg:grid-cols-2 lg:gap-0 items-stretch">
             {/* LEFT: Text content */}
             <div className="flex flex-col justify-center pr-0 lg:pr-8">
@@ -326,7 +326,7 @@ export default function ComplianceOutsourcing() {
             <div className="flex items-stretch">
               <div className="w-full rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white flex h-full">
                 <Image
-                  src="/services/compliance.webp"
+                  src="/services/labour-law-advisory-compliance.webp"
                   alt="Compliance Outsourcing"
                   width={900}
                   height={600}
@@ -341,7 +341,7 @@ export default function ComplianceOutsourcing() {
 
       {/* WHY OUTSOURCE — uniform equal-height cards */}
       <section className="py-12 bg-white">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold">Why Outsource Labour Law Compliance?</h2>
             <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
@@ -349,7 +349,7 @@ export default function ComplianceOutsourcing() {
             </p>
           </div>
 
-          <div className="max-w-8xl mx-auto">
+          <div className="w-full">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {whyReadinessMatters.map((item, idx) => (
                 <div
@@ -387,7 +387,7 @@ export default function ComplianceOutsourcing() {
 
       {/* FEATURES grid — uniform cards */}
       <section className="bg-white py-12">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-slate-900">Empowering Compliance through Smart Technology</h2>
             <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
@@ -395,7 +395,7 @@ export default function ComplianceOutsourcing() {
             </p>
           </div>
 
-          <div className="max-w-8xl mx-auto">
+          <div className="w-full">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {features.map((item, idx) => (
                 <div
@@ -432,7 +432,7 @@ export default function ComplianceOutsourcing() {
       </section>
 
       <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white">
-        <div className="container mx-auto px-6 lg:px-16">
+        <div className="w-full px-6 lg:px-16">
           {/* Founder Section */}
           <div className="mb-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -533,7 +533,7 @@ export default function ComplianceOutsourcing() {
           </div>
 
           {/* Team Section */}
-          <div className="container mx-auto px-6 lg:px-16">
+          <div className="w-full px-6 lg:px-16">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
                 Meet the team – They Make It All Happen
@@ -596,7 +596,7 @@ export default function ComplianceOutsourcing() {
 
       {/* Industries We Work With Section (no hover effects; heading centered) */}
       <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-6 lg:px-16">
+        <div className="w-full px-6 lg:px-16">
           <div className="mb-16 text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
               Industries We Work With
@@ -691,7 +691,7 @@ export default function ComplianceOutsourcing() {
 
       {/* Why Choose Us */}
       <section className="py-14">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold">Why Choose Praans Consultech?</h2>
             <p className="text-gray-600 mt-2">Smart compliance starts with a partner who gets operations and law.</p>
@@ -738,17 +738,17 @@ export default function ComplianceOutsourcing() {
 
       {/* CTA */}
       <section className="py-12 bg-gray-50">
-        <div className="mx-auto w-full max-w-[1700px] px-6 lg:px-8">
+        <div className="w-full px-6 lg:px-8">
           <div className="rounded-lg p-8 sm:p-12 text-center">
             <h2 className="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight">
               Let's Make Compliance Easier
             </h2>
 
-            <p className="mx-auto max-w-7xl text-gray-600 text-base sm:text-lg leading-relaxed mb-4 text-justify">
+            <p className="w-full text-gray-600 text-base sm:text-lg leading-relaxed mb-4 text-justify">
               Following labour laws doesn't have to be a headache. With Our Praans Consultech, you get help with clever software, a team that will ensure the smooth and accurate work that will be done on time and all the strategy.
             </p>
 
-            <p className="mx-auto max-w-7xl text-gray-600 text-base sm:text-lg leading-relaxed mb-10 text-justify">
+            <p className="w-full text-gray-600 text-base sm:text-lg leading-relaxed mb-10 text-justify">
               Let us help you make your compliance process a strong point, instead of something stressful. Get in touch for a free chat to explore our labour law compliance outsourcing solutions.
             </p>
 
