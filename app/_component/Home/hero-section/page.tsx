@@ -130,7 +130,7 @@ export default function HeroSection() {
         space-y-0.5 min-[390px]:space-y-0.5 sm:space-y-6 md:space-y-5 lg:space-y-0.5 2xl:space-y-4 relative z-10"
       >
         <h1
-          className="text-[2.7rem] min-[360px]:text-[34px] min-[375px]:text-[37px] min-[390px]:text-[37px] min-[414px]:text-[37px] min-[430px]:text-[px] sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[6.2rem] 2xl:text-[6.5rem]
+          className="text-[2.7rem] min-[360px]:text-[38px] min-[375px]:text-[40px] min-[390px]:text-[45px] min-[414px]:text-[49px] min-[430px]:text-[px] sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[6.2rem] 2xl:text-[6.5rem]
           font-black text-slate-900 tracking-tight"
         >
           Simplifying{" "}
