@@ -649,7 +649,7 @@ export default function LeavesWorkingHoursDetails({
             <p className="whitespace-pre-wrap mb-5">{initialData?.writeup_space}</p>
 
             {/* ===== Act Information (DESKTOP) ===== */}
-            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
+            <Card className="hidden sm:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Act Information
@@ -707,7 +707,7 @@ export default function LeavesWorkingHoursDetails({
             </Card>
 
             {/* ===== Act Info (MOBILE) ===== */}
-            {/* <div className="block md:hidden mb-4 w-full">
+            <div className="block sm:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="bg-orange-200 text-orange-700 rounded pt-2">
                   <CardTitle className="text-sm sm:text-base font-bold text-center ">
@@ -730,45 +730,12 @@ export default function LeavesWorkingHoursDetails({
                   ))}
                 </CardContent>
               </Card>
-            </div> */}
-{/* ===== Act Info (MOBILE) ===== */}
-<div className="block md:hidden mb-4 w-full">
-  <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
-    <CardHeader className="bg-orange-200 text-orange-700 rounded pt-2">
-      <CardTitle className="text-sm sm:text-base font-bold text-center">
-        Act Information
-      </CardTitle>
-    </CardHeader>
-    <CardContent className="p-2 sm:p-3 space-y-2 sm:space-y-3">
-      {initialData?.act_information?.rows?.map((r, idx) => (
-        <div 
-          key={idx} 
-          className="rounded-lg p-2 sm:p-3 border text-xs sm:text-sm space-y-1 sm:space-y-2 w-full"
-        >
-          {initialData?.act_information?.headers?.map((h) => (
-            <div
-              key={h}
-              className="grid grid-cols-[auto_2fr] gap-2 items-start border-b last:border-0 pb-1 mr-12"
-            >
-              {/* Label - Fixed width, right aligned */}
-              <div className="font-semibold text-orange-600 text-left min-w-[100px] pr-2">
-                {h}:
-              </div>
-              
-              {/* Value - Takes remaining space */}
-              <div className="text-gray-800 text-justify">
-                {r[h] ?? "—"}
-              </div>
             </div>
-          ))}
-        </div>
-      ))}
-    </CardContent>
-  </Card>
-</div>
+{/* ===== Act Info (MOBILE) ===== */}
+
 
             {/* ===== Leave Entitlements (DESKTOP) ===== */}
-            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
+            <Card className="hidden sm:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Registration
@@ -809,7 +776,7 @@ export default function LeavesWorkingHoursDetails({
             </Card>
 
             {/* ===== Leave Entitlements (MOBILE) ===== */}
-            <div className="block md:hidden mb-4 w-full">
+            <div className="block sm:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="bg-orange-200 text-orange-700 rounded pt-2">
                   <CardTitle className="text-sm sm:text-base font-bold text-center ">
@@ -835,7 +802,7 @@ export default function LeavesWorkingHoursDetails({
             </div>
 
             {/* ===== Working Hours & Overtime (DESKTOP) ===== */}
-            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
+            <Card className="hidden sm:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Licence
@@ -876,7 +843,7 @@ export default function LeavesWorkingHoursDetails({
             </Card>
 
             {/* ===== Working Hours (MOBILE) ===== */}
-            <div className="block md:hidden mb-4 w-full">
+            <div className="block sm:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className=" bg-orange-200 text-orange-700 rounded pt-2">
                   <CardTitle className="text-sm sm:text-base font-bold  text-center">

@@ -354,7 +354,7 @@ export default function ProfessionalTaxDetails({
             )}
 
             {/* Act Information */}
-            <div className="block md:hidden mb-4">
+            <div className="block sm:hidden mb-4">
               <GenericMobileBlock
                 title="Act Information"
                 block={act_information}
@@ -362,7 +362,7 @@ export default function ProfessionalTaxDetails({
               />
             </div>
 
-            <Card className="hidden md:block mb-3 shadow-sm">
+            <Card className="hidden sm:block mb-3 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Act Information
@@ -378,13 +378,13 @@ export default function ProfessionalTaxDetails({
             </Card>
 
             {/* Professional Tax Slabs */}
-            <div className="block md:hidden mb-4">
+            <div className="block sm:hidden mb-4">
               <GenericMobileBlock
                 title="Professional Tax Slabs"
                 block={professional_tax_slabs}
               />
             </div>
-            <Card className="hidden md:block mb-3 shadow-sm">
+            <Card className="hidden sm:block mb-3 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Professional Tax Slabs
@@ -396,13 +396,13 @@ export default function ProfessionalTaxDetails({
             </Card>
 
             {/* Employment Categories */}
-            <div className="block md:hidden mb-4">
+            <div className="block sm:hidden mb-4">
               <GenericMobileBlock
                 title="Employment Categories"
                 block={employment_categories}
               />
             </div>
-            <Card className="hidden md:block mb-3 shadow-sm">
+            <Card className="hidden sm:block mb-3 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Employment Categories

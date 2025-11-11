@@ -139,7 +139,6 @@ export default async function StateLeavesWorkingHoursPage({
   const { state } = await params;
   const payload = await getStateLWH(state);
   if (!payload?.state?.slug) notFound();
-  console.log(payload)
 
   return <LeavesWorkingHoursDetails apiBase={API_BASE} initialData={payload} />;
 }

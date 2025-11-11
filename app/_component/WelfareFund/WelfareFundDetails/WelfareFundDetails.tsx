@@ -160,7 +160,7 @@ export default function WelfareFundDetails({
             )}
 
             {/* ===== Act Information (DESKTOP) - Responsive ===== */}
-            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
+            <Card className="hidden sm:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Act Information
@@ -262,7 +262,7 @@ export default function WelfareFundDetails({
             </Card>
 
             {/* Mobile Act Information — Responsive */}
-            <div className="block md:hidden mb-4 w-full">
+            <div className="block sm:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 {/* Header */}
                 <CardHeader className="pb-0 px-3 pt-2">
@@ -304,7 +304,7 @@ export default function WelfareFundDetails({
             </div>
 
             {/* ===== Contribution (DESKTOP) — Responsive ===== */}
-            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
+            <Card className="hidden sm:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Labour Welfare Fund Contribution
@@ -372,7 +372,7 @@ export default function WelfareFundDetails({
             </Card>
 
             {/* ===== Contribution (MOBILE) — Responsive ===== */}
-            <div className="block md:hidden mb-4 w-full">
+            <div className="block sm:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">

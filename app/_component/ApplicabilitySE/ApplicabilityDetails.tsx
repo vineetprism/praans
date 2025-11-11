@@ -156,7 +156,7 @@ export default function SEApplicabilityDetails({
 
             {/* ========== ACT INFORMATION ========== */}
             {/* DESKTOP VERSION */}
-            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
+            <Card className="hidden sm:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Act Information
@@ -215,7 +215,7 @@ export default function SEApplicabilityDetails({
             </Card>
 
             {/* MOBILE VERSION - Act Information */}
-            <div className="block md:hidden mb-4 w-full">
+            <div className="block sm:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="pb-0 px-3 pt-2">
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">
@@ -257,7 +257,7 @@ export default function SEApplicabilityDetails({
 
             {/* ========== LEAVE INFORMATION ========== */}
             {/* DESKTOP VERSION */}
-            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
+            <Card className="hidden sm:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Leave Information
@@ -320,7 +320,7 @@ export default function SEApplicabilityDetails({
             </Card>
 
             {/* MOBILE VERSION - Leave Information */}
-            <div className="block md:hidden mb-4 w-full">
+            <div className="block sm:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">
@@ -363,7 +363,7 @@ export default function SEApplicabilityDetails({
 
             {/* ========== HOLIDAY INFORMATION ========== */}
             {/* DESKTOP VERSION */}
-            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
+            <Card className="hidden sm:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Holiday Information
@@ -428,7 +428,7 @@ export default function SEApplicabilityDetails({
             </Card>
 
             {/* MOBILE VERSION - Holiday Information */}
-            <div className="block md:hidden mb-4 w-full">
+            <div className="block sm:hidden mb-4 w-full">
               <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">
@@ -541,7 +541,7 @@ export default function SEApplicabilityDetails({
                 </div>
               </CardContent>
             </Card> */}
-            <Card className="hidden md:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
+            <Card className="hidden sm:block mb-3 shadow-sm border-l-4 border-l-orange-500 w-full">
               <CardHeader className="pb-1 lg:pb-2">
                 <CardTitle className="text-base lg:text-lg font-bold">
                   Registration Information
@@ -624,7 +624,7 @@ export default function SEApplicabilityDetails({
             </Card>
 
             {/* MOBILE VERSION - Registration Information */}
-            <div className="block md:hidden mb-4 w-full">
+            <div className="block sm:hidden mb-4 w-full">
               {/* <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">
@@ -665,7 +665,7 @@ export default function SEApplicabilityDetails({
                 </CardContent>
               </Card> */}
               {/* MOBILE VERSION - Registration Information */}
-              <div className="block md:hidden mb-4 w-full">
+              <div className="block sm:hidden mb-4 w-full">
                 <Card className="shadow-sm border-l-4 border-l-orange-500 w-full">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm sm:text-base font-bold bg-orange-100 text-orange-700 text-center py-2 rounded-md shadow-inner">

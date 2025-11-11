@@ -593,7 +593,7 @@ function ResponsiveKV({
         </CardHeader>
         <CardContent className="p-0">
           <div className="w-full overflow-x-auto">
-            <div className="min-w-[500px] sm:min-w-[600px] rounded-xl overflow-hidden border border-orange-500 mx-2 sm:mx-3 lg:mx-4 mb-3 sm:mb-4">
+            <div className="min-w-[400px] sm:min-w-[600px] rounded-xl overflow-hidden border border-orange-500 mx-2 sm:mx-3 lg:mx-4 mb-3 sm:mb-4">
               <table className="w-full table-fixed border-collapse">
                 <colgroup>
                   <col className="w-[160px] sm:w-[200px] lg:w-[220px]" />
@@ -1036,7 +1036,7 @@ export default function MinimumWageDetails({
           </div>
 
           {/* Desktop Sidebar - Sticky */}
-          <div className="hidden lg:block min-w-0">
+          <div className="hidden md:block min-w-0">
             <div className="sticky top-3 lg:top-4 xl:top-5">
               <Card className="shadow-sm hover:shadow-md transition-shadow">
                 <CardContent className="p-3 lg:p-4">
