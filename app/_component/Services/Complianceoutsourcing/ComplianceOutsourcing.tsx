@@ -711,7 +711,7 @@ export default function ComplianceOutsourcing() {
       {/* Industries We Work With Section (no hover effects; heading centered) */}
       <section className="py-12 bg-gray-50">
         <div className="w-full px-6 lg:px-16">
-          <div className="mb-16 text-center">
+          <div className="mb-6 text-center">
             <h2 className="text-[30px] font-bold text-slate-900 mb-4 text-[#1C284F]">
               Industries We Work With
             </h2>
@@ -726,7 +726,7 @@ export default function ComplianceOutsourcing() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <div className="bg-white rounded-2xl p-6 border-2 border-slate-100">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 border border-orange-100 rounded-lg flex items-center justify-center">
@@ -861,7 +861,7 @@ export default function ComplianceOutsourcing() {
                 >
                   <div className="flex items-start gap-4 h-full flex-col">
                     <div className="flex items-start gap-4">
-                      <div className="w-8 h-8 rounded-md bg-orange-50 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-md flex items-center justify-center">
                         <Icon className="w-4 h-4 text-orange-500" />
                       </div>
 
@@ -869,7 +869,7 @@ export default function ComplianceOutsourcing() {
                         <h3 className="text-lg font-semibold text-slate-900 text-[#1C284F]">
                           {reason}
                         </h3>
-                        <p className="mt-2 text-sm text-gray-600 text-justify">
+                        <p className="mt-1 text-sm text-gray-600 text-justify">
                           {microCopy}
                         </p>
                       </div>
@@ -885,7 +885,7 @@ export default function ComplianceOutsourcing() {
       </section>
 
       {/* CTA */}
-      <section className="py-12 bg-white">
+      <section className="py-8 bg-gray-50">
         <div className="w-full px-6 lg:px-8">
           <div className="rounded-lg p-8 sm:p-12 text-center">
             <h2 className="text-[30px] font-bold mb-5 leading-tight text-[#1C284F]">

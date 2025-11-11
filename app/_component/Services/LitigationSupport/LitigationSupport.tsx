@@ -396,7 +396,7 @@ export default function LitigationSupport() {
       </section>
 
       {/* Our Services */}
-      <section className="py-14 bg-white">
+      <section className="py-14 bg-gray-50">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-10">
             <h2 className="text-[30px] font-bold text-[#1C284F]">Labour Law Support provides you with</h2>
@@ -406,14 +406,14 @@ export default function LitigationSupport() {
             {ourServices.map((service, idx) => {
               const Icon = serviceIcons[idx % serviceIcons.length] || FileText
               return (
-                <Card key={idx} className="px-4 py-2 border border-slate-100 shadow-sm">
-                  <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-md bg-orange-50 flex items-center justify-center">
+                <Card key={idx} className="px-4 py-2 border border-orange-100 shadow-sm">
+                  <div className="flex items-start gap-2">
+                    <div className="w-8 h-8 rounded-md flex items-center justify-center">
                       <Icon className="w-4 h-4 text-[#eb8535]" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg text-[#1C284F]">{service.title}</h3>
-                      <p className="mt-2 text-sm text-gray-600 text-justify">{service.description}</p>
+                      <h3 className="font-semibold text-md text-[#1C284F]">{service.title}</h3>
+                      <p className="mt-1 text-sm text-gray-600 text-justify">{service.description}</p>
                     </div>
                   </div>
                 </Card>
