@@ -379,6 +379,7 @@ export default function AuditAndInspection() {
         </div>
       </section>
 
+      {/* Why Audit & Inspection Readiness Matters */}
       <section className="py-12 bg-gray-50">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-6">
@@ -415,38 +416,6 @@ export default function AuditAndInspection() {
             ))}
           </div>
         </div>
-        <style jsx>{`
-          .surface::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-color: #eb8535;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
-              box-shadow 320ms;
-            z-index: 0;
-          }
-          .group:hover .surface::before,
-          .group:focus-within .surface::before,
-          .group:focus .surface::before {
-            transform: scaleX(1);
-            box-shadow: 0 12px 30px rgba(235, 133, 53, 0.12);
-          }
-          .surface > .relative {
-            z-index: 10;
-          }
-          .group:hover h3,
-          .group:focus-within h3,
-          .group:focus h3 {
-            color: #fff !important;
-          }
-          .group:hover p,
-          .group:focus-within p,
-          .group:focus p {
-            color: rgba(255, 255, 255, 0.9) !important;
-          }
-        `}</style>
       </section>
 
       {/* Our Services */}
