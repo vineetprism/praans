@@ -28,33 +28,65 @@ const OurJourney = () => {
                         </div>
 
                         {/* Timeline */}
-                        <div className="relative border-l-2 border-orange-500 ml-6">
-                            {/* 2022 */}
-                            <div className="mb-8 ml-6 relative">
-                                <span className="absolute -left-8 top-1 w-4 h-4 bg-orange-500 rounded-full border-2 border-white"></span>
-                                <h3 className="text-[15px] font-semibold text-[#1C284F]">2022</h3>
-                                <p className="text-gray-600">Company Founded</p>
+                        <div className="relative mt-6">
+                            {/* vertical version for mobile/tablet/sm laptops */}
+                            <div className="xl:hidden relative border-l-2 border-orange-500 ml-6 space-y-8">
+                                {/* 2022 */}
+                                <div className="relative pl-6">
+                                    <span className="absolute -left-2 top-1 w-3.5 h-3.5 bg-orange-500 rounded-full border-2 border-white"></span>
+                                    <h3 className="text-[15px] font-semibold text-[#1C284F]">2022</h3>
+                                    <p className="text-gray-600">Company Founded</p>
+                                </div>
+                                {/* 2023 */}
+                                <div className="relative pl-6">
+                                    <span className="absolute -left-2 top-1 w-3.5 h-3.5 bg-orange-500 rounded-full border-2 border-white"></span>
+                                    <h3 className="text-[15px] font-semibold text-[#1C284F]">2023</h3>
+                                    <p className="text-gray-600">Recognized as Start-up India and Compliance Software Launched</p>
+                                </div>
+                                {/* 2024 */}
+                                <div className="relative pl-6">
+                                    <span className="absolute -left-2 top-1 w-3.5 h-3.5 bg-orange-500 rounded-full border-2 border-white"></span>
+                                    <h3 className="text-[15px] font-semibold text-[#1C284F]">2024</h3>
+                                    <p className="text-gray-600">PAN India Reach for Labour Law Compliances</p>
+                                </div>
+                                {/* 2025 */}
+                                <div className="relative pl-6">
+                                    <span className="absolute -left-2 top-1 w-3.5 h-3.5 bg-orange-500 rounded-full border-2 border-white"></span>
+                                    <h3 className="text-[15px] font-semibold text-[#1C284F]">2025</h3>
+                                    <p className="text-gray-600">Awarded as the Best Labour Law Consultant, Certified by ISO, and Launched our AI Chatbot for Labour Law</p>
+                                </div>
                             </div>
 
-                            {/* 2023 */}
-                            <div className="mb-8 ml-6 relative">
-                                <span className="absolute -left-8 top-1 w-4 h-4 bg-orange-500 rounded-full border-2 border-white"></span>
-                                <h3 className="text-[15px] font-semibold text-[#1C284F]">2023</h3>
-                                <p className="text-gray-600">Recognized as Start-up India and Compliance Software Launched</p>
-                            </div>
+                            {/* horizontal version for desktops */}
+                            <div className="hidden xl:block relative py-10">
+                                <div className="absolute inset-x-6 top-1/2 -translate-y-1/2">
+                                    <div className="relative">
+                                        <div className="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 bg-orange-500/80"></div>
 
-                            {/* 2024 */}
-                            <div className="mb-8 ml-6 relative">
-                                <span className="absolute -left-8 top-1 w-4 h-4 bg-orange-500 rounded-full border-2 border-white"></span>
-                                <h3 className="text-[15px] font-semibold text-[#1C284F]">2024</h3>
-                                <p className="text-gray-600">PAN India Reach for Labour Law Compliances</p>
-                            </div>
+                                        <span className="absolute top-1/2 left-3 -translate-y-1/2 w-3.5 h-3.5 bg-orange-500 rounded-full border-2 border-white shadow"></span>
+                                        <span className="absolute top-1/2 left-[33.333%] -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-orange-500 rounded-full border-2 border-white shadow"></span>
+                                        <span className="absolute top-1/2 left-[66.666%] -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-orange-500 rounded-full border-2 border-white shadow"></span>
+                                        <span className="absolute top-1/2 right-3 -translate-y-1/2 w-3.5 h-3.5 bg-orange-500 rounded-full border-2 border-white shadow"></span>
 
-                            {/* 2025 */}
-                            <div className="ml-6 relative">
-                                <span className="absolute -left-8 top-1 w-4 h-4 bg-orange-500 rounded-full border-2 border-white"></span>
-                                <h3 className="text-[15px] font-semibold text-[#1C284F]">2025</h3>
-                                <p className="text-gray-600">Awarded as the Best Labour Law Consultant, Certified by ISO, and Launched our AI Chatbot for Labour Law</p>
+                                        {/* 2022 */}
+                                        <div className="absolute top-1/2 left-3 -translate-y-[140%] text-[#1C284F] text-[15px] font-semibold">2022</div>
+                                        {/* 2023 */}
+                                        <div className="absolute top-1/2 left-[33.333%] -translate-x-1/2 -translate-y-[140%] text-[#1C284F] text-[15px] font-semibold">2023</div>
+                                        {/* 2024 */}
+                                        <div className="absolute top-1/2 left-[66.666%] -translate-x-1/2 -translate-y-[140%] text-[#1C284F] text-[15px] font-semibold">2024</div>
+                                        {/* 2025 */}
+                                        <div className="absolute top-1/2 right-3 -translate-y-[140%] text-right text-[#1C284F] text-[15px] font-semibold">2025</div>
+
+                                        {/* 2022 */}
+                                        <div className="absolute top-1/2 left-3 translate-y-3 text-gray-600 text-left max-w-[240px]">Company Founded</div>
+                                        {/* 2023 */}
+                                        <div className="absolute top-1/2 left-[33.333%] -translate-x-1/2 translate-y-3 text-gray-600 text-center max-w-[260px]">Recognized as Start-up India and Compliance Software Launched</div>
+                                        {/* 2024 */}
+                                        <div className="absolute top-1/2 left-[66.666%] -translate-x-1/2 translate-y-3 text-gray-600 text-center max-w-[260px]">PAN India Reach for Labour Law Compliances</div>
+                                        {/* 2025 */}
+                                        <div className="absolute top-1/2 right-3 translate-y-3 text-gray-600 text-right max-w-[320px]">Awarded as the Best Labour Law Consultant, Certified by ISO, and Launched our AI Chatbot for Labour Law</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
