@@ -44,11 +44,11 @@ const keyOfferings = [
   },
   {
     icon: ClipboardCheck,
-    title: "PAN India Registrations (Coming Soon)",
+    title: "PAN India Registrations",
     description: "National wide and smooth filing processes.",
     color: "from-green-500 to-green-600",
     bgColor: "from-green-50 to-green-100",
-    href: "",
+    href: "/pan-india-registrations",
   },
   {
     icon: ClipboardList,
