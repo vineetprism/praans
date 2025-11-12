@@ -70,16 +70,15 @@ export default function LWFProcessPage() {
 
             <section className="bg-white py-4 sm:py-6">
                 <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
-                    <div className="flex flex-col items-center gap-6 md:gap-x-10 md:gap-y-8
-                          md:flex-row md:flex-wrap md:justify-center
-                          xl:flex-nowrap xl:justify-between">
+                    <div className="flex flex-col items-center gap-6 sm:gap-8
+                          sm:flex-row sm:flex-nowrap sm:justify-between">
                         {STEPS?.map((s, idx) => (
                             <React.Fragment key={s.title}>
                                 <StepCard step={s} />
                                 {idx < STEPS.length - 1 && (
                                     <>
-                                        <ArrowImg className="hidden xl:block" size={28} />
-                                        <ArrowImg className="xl:hidden rotate-90" size={24} />
+                                        <ArrowImg className="hidden sm:block" size={28} />
+                                        <ArrowImg className="sm:hidden rotate-90" size={24} />
                                     </>
                                 )}
                             </React.Fragment>

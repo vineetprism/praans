@@ -32,7 +32,7 @@ export default function ShopEstabilishmentDocs() {
                     <span className="block sm:inline"> Estabilishment Registration In India</span>
                 </h2>
 
-                <div className="mx-auto mt-8 grid grid-cols-1 xl:grid-cols-2 gap-10 lg:gap-16 xl:gap-24 2xl:gap-40">
+                <div className="mx-auto mt-8 grid grid-cols-1 xl:grid-cols-2 gap-0 xl:gap-24 2xl:gap-40">
                     <ul className="space-y-2 text-[15px] leading-7 text-slate-700">
                         {LEFT_DOCS?.map((item, idx) => (
                             <li key={`l-${idx}`} className="flex items-start gap-3">

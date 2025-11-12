@@ -243,10 +243,7 @@ export default function ProfessionalTaxHero() {
               <span className="text-orange-500">
                 Professional Tax Registration
               </span>
-              <span className="text-orange-500 hidden lg:block">
-                Consultant
-              </span>
-              <span className="text-orange-500 lg:hidden"> Consultant</span>
+              <span className="text-orange-500"> Consultant</span>
             </h1>
 
             <p className="mt-1 text-center text-sm font-semibold text-slate-700">

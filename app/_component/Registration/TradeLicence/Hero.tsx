@@ -242,13 +242,8 @@ export default function TradeLicenceHero() {
           <div className="max-w-none lg:col-span-7 pl-3 sm:pl-6 md:pl-10 lg:pl-14 xl:pl-20 2xl:pl-24 break-words">
             <h1 className="w-full text-center text-2xl font-extrabold tracking-tight text-[#1c284f] sm:text-3xl whitespace-normal lg:whitespace-normal">
               India’s Trusted{" "}
-              <span className="text-orange-500">
-                Trade Licence Registration
-              </span>
-              <span className="text-orange-500 hidden lg:block">
-                Consultant
-              </span>
-              <span className="text-orange-500 lg:hidden"> Consultant</span>
+              <span className="text-orange-500">Trade Licence</span>
+              <span className="text-orange-500 whitespace-nowrap"> Registration Consultant</span>
             </h1>
 
             <p className="mt-1 text-center text-sm font-semibold text-slate-700">

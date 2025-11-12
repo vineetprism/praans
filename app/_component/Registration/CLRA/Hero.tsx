@@ -245,10 +245,7 @@ export default function CLRAHero() {
               <span className="text-orange-500">
                 CLRA Registration &amp; Licence
               </span>
-              <span className="text-orange-500 hidden lg:block">
-                Consultant
-              </span>
-              <span className="text-orange-500 lg:hidden"> Consultant</span>
+              <span className="text-orange-500"> Consultant</span>
             </h1>
 
             <p className="mt-1 text-center text-sm font-semibold text-slate-800">
