@@ -322,7 +322,7 @@ export default function Blog({
   basePath = "/blog-main",
 }: BlogProps) {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className=" px-8 py-8">
       <div className="flex justify-between py-4 mb-4">
         <div className="flex gap-3">
           <Link

@@ -491,7 +491,7 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
         }
       `}</style>
 
-      <div className="container mx-auto max-w-7xl min-h-screen">
+      <div className="mx-2 min-h-screen">
         <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
           <div className="grid lg:grid-cols-1 gap-4 sm:gap-6">
             <div className="col-span-1 lg:col-span-1">
@@ -533,8 +533,8 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
                       src={hero}
                       alt={post?.title}
                       fill
-                      sizes="70vw"
-                      className="object-contain object-left"
+                      // sizes="60vw"
+                      className="object-fill object-left"
                       priority
                       fetchPriority="high"
                     />
@@ -585,13 +585,13 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
                 </div>
               </div>
 
-              <div className="rounded-lg">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+              <div className="">
+                {/* <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
                   Introduction
-                </h2>
+                </h2> */}
 
                 <div
-                  className="blog-content prose prose-sm sm:prose-base lg:prose-lg max-w-none text-gray-700 space-y-4"
+                  className="blog-content prose prose-sm sm:prose-base lg:prose-lg max-w-auto text-gray-700 space-y-4"
                   dangerouslySetInnerHTML={{ __html: safeHtml }}
                 />
               </div>
