@@ -120,7 +120,7 @@ const col1 = faqs.slice(0, mid);
 const col2 = faqs.slice(mid);
 
 export default function AboutFaq() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>();
   const toggle = (idx: number) => setOpenIndex((p) => (p === idx ? null : idx));
   return (
     <>

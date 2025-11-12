@@ -4,75 +4,75 @@ import React from 'react'
 export default function Certification() {
   return (
     <>
-      <section className="py-16 md:py-20 lg:py-10 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="py-12 bg-white">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
 
           {/* Heading */}
-          <div className="text-center mb-10 md:mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+          <div className="text-center mb-6">
+            <h2 className="text-[30px] font-bold text-[#1C284F]">
               Certifications <span className="text-orange-500">&amp; Recognitions</span>
             </h2>
             <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-4" />
-            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            <p className="mt-2 text-[15px] text-[#1C284F] max-w-2xl mx-auto">
               Recognitions that validate our compliance-first operating model.
             </p>
           </div>
 
           {/* Cards Grid */}
-          <div className="max-w-6xl mx-auto">
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="w-full">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
               {/* ISO Certification */}
-              <div className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200">
+              <div className="relative overflow-hidden rounded-2xl shadow-sm border border-orange-100">
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
-                <div className="p-6 md:p-7 pt-8 text-center">
-                  <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-orange-50 to-orange-200/70">
-                    <ShieldCheck className="h-8 w-8 text-orange-600" aria-hidden />
+                <div className="p-4 text-center">
+                  <div className="mx-auto mb-2 grid h-10 w-10 place-items-center rounded-2xl">
+                    <ShieldCheck className="h-6 w-6 text-orange-500" aria-hidden />
                   </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">ISO Certification</h3>
-                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed text-justify">
+                  <h3 className="text-[20px] font-semibold text-[#1C284F]">ISO Certification</h3>
+                  <p className="mt-2 text-[15px] text-[#1C284F] leading-relaxed text-justify">
                     Ensures our services maintain the highest quality standards and reliability.
                   </p>
                 </div>
               </div>
 
               {/* Startup India Recognition */}
-              <div className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200">
+              <div className="relative overflow-hidden rounded-2xl shadow-sm border border-orange-100">
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
-                <div className="p-6 md:p-7 pt-8 text-center">
-                  <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-orange-50 to-orange-200/70">
-                    <Rocket className="h-8 w-8 text-orange-600" aria-hidden />
+                <div className="p-4 text-center">
+                  <div className="mx-auto mb-2 grid h-10 w-10 place-items-center rounded-2xl">
+                    <Rocket className="h-6 w-6 text-orange-500" aria-hidden />
                   </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">Startup India Recognition</h3>
-                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed text-justify">
+                  <h3 className="text-[20px] font-semibold text-[#1C284F]">Startup India Recognition</h3>
+                  <p className="mt-2 text-[15px] text-[#1C284F] leading-relaxed text-justify">
                     Certified under the flagship initiative of the Government of India.
                   </p>
                 </div>
               </div>
 
               {/* MSME Certification */}
-              <div className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200">
+              <div className="relative overflow-hidden rounded-2xl shadow-sm border border-orange-100">
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
-                <div className="p-6 md:p-7 pt-8 text-center">
-                  <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-orange-50 to-orange-200/70">
-                    <Factory className="h-8 w-8 text-orange-600" aria-hidden />
+                <div className="p-4 text-center">
+                  <div className="mx-auto mb-2 grid h-10 w-10 place-items-center rounded-2xl">
+                    <Factory className="h-6 w-6 text-orange-500" aria-hidden />
                   </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">MSME Certification</h3>
-                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed text-justify">
+                  <h3 className="text-[20px] font-semibold text-[#1C284F]">MSME Certification</h3>
+                  <p className="mt-2 text-[15px] text-[#1C284F] leading-relaxed text-justify">
                     Recognition as a rapidly growing micro, small, and medium enterprise.
                   </p>
                 </div>
               </div>
 
               {/* MCA Registration */}
-              <div className="relative overflow-hidden rounded-2xl shadow-md border border-gray-200">
+              <div className="relative overflow-hidden rounded-2xl shadow-sm border border-orange-100">
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
-                <div className="p-6 md:p-7 pt-8 text-center">
-                  <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-orange-50 to-orange-200/70">
-                    <Landmark className="h-8 w-8 text-orange-600" aria-hidden />
+                <div className="p-4 text-center">
+                  <div className="mx-auto mb-2 grid h-10 w-10 place-items-center rounded-2xl">
+                    <Landmark className="h-6 w-6 text-orange-500" aria-hidden />
                   </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-slate-800">MCA Registration</h3>
-                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed text-justify">
+                  <h3 className="text-[20px] font-semibold text-[#1C284F]">MCA Registration</h3>
+                  <p className="mt-2 text-[15px] text-[#1C284F] leading-relaxed text-justify">
                     Accredited under the Ministry of Corporate Affairs as a reliable compliance partner.
                   </p>
                 </div>

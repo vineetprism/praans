@@ -35,23 +35,23 @@ const media: MediaItem[] = [
 export default function Media() {
   return (
     <>
-      <section className="py-16 md:py-20 lg:py-10 bg-white">
-        <div className="container mx-auto px-4 md:px-6 max-w-8xl">
+      <section className="py-12 bg-white">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
 
           {/* Heading */}
-          <div className="text-center mb-10 md:mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+          <div className="text-center mb-6">
+            <h2 className="text-[30px] font-bold text-[#1C284F]">
               Media & <span className="text-orange-500">Awards</span>
             </h2>
-            <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-4" />
-            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-2" />
+            <p className="mt-2 text-[15px] text-[#1C284F] max-w-3xl mx-auto leading-relaxed">
               Praans Consultech has quickly earned recognition in the industry for its
               labour law consulting and compliance management services.
             </p>
           </div>
 
           {/* Highlights List */}
-          <div className="max-w-3xl mx-auto mb-12 space-y-3 text-gray-700 text-base md:text-lg leading-relaxed">
+          <div className="max-w-8xl mx-auto mb-4 text-[15px] text-[#1C284F] text-base text-center leading-relaxed">
             <p>🏆 Acknowledged as the <strong>Best Labour Law Consultant</strong> for offering comprehensive compliance solutions.</p>
             <p>🏆 Awarded for <strong>Excellence in Business Compliance</strong> for helping businesses streamline operations and avoid fines.</p>
             <p>🏆 Recognized as a <strong>technologically advanced pioneer</strong> in the field of labour law compliance at leading business forums.</p>
