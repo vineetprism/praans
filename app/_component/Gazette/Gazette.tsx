@@ -3414,7 +3414,7 @@ const ExpandableDescription = ({
     ? words.slice(0, 50).join(" ") + "..."
     : cleanedDescription;
   return (
-    <p className="text-gray-700 leading-snug mt-3 text-[11px] min-[375px]:text-[10px] sm:text-[0.8rem] lg:text-xs line-clamp-2">
+    <p className="text-gray-700 leading-snug mt-3 text-[11px] min-[375px]:text-[12px] sm:text-[0.8rem] lg:text-xs line-clamp-2">
       {displayText}
     </p>
   );
@@ -3539,8 +3539,6 @@ export default function Gazette({
       });
     }
 
-    console.log("✅ [Client Gazette] Options created:", options.length);
-    console.log("✅ [Client Gazette] Sample:", options.slice(0, 3));
     
     return options;
   }, [availableStates]);
@@ -3586,7 +3584,6 @@ export default function Gazette({
       const queryString = params.toString();
       const newURL = queryString ? `${pathname}?${queryString}` : pathname;
 
-      console.log("🔄 [Client] Navigating to:", newURL);
       setIsLoading(true);
       router.push(newURL);
     },
@@ -3665,7 +3662,7 @@ export default function Gazette({
               <h1 className="text-base sm:text-lg font-semibold text-slate-800 mb-2 2xl:text-2xl">
                 Gazette Notifications :
               </h1>
-              <p className="text-gray-600 leading-relaxed text-[10px] sm:text-sm text-justify">
+              <p className="text-gray-600 leading-relaxed text-[12px] sm:text-md text-justify">
                 Explore the latest Gazette Notifications for timely updates on
                 government decisions, legal changes, and compliance requirements.
               </p>
@@ -3960,11 +3957,11 @@ export default function Gazette({
                       return (
                         <div
                           key={n?.id}
-                          className="group bg-orange-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border-l-4 border-l-orange-500 overflow-hidden"
+                          className="group bg-orange-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md border-l-4 border-l-orange-500 overflow-hidden"
                         >
                           <div className="p-3">
-                            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-start gap-3">
-                              <div className="min-w-0">
+                            <div className="grid grid-cols-2 sm:grid-cols-[1fr_auto] md:grid-cols-[1fr_auto] items-start gap-0">
+                              <div className="max-w-full min-w-0"> 
                                 <h4 className="text-xs sm:text-sm font-semibold text-gray-900 line-clamp-2">
                                   {n?.title}
                                 </h4>
@@ -3992,7 +3989,7 @@ export default function Gazette({
                                   variant="outline"
                                   className="bg-blue-50 text-blue-700 border-blue-200 text-xs px-1.5 py-0.5 font-medium"
                                 >
-                                  {n?.state_name || "Central"}
+                                  {n?.state_name || ""}
                                 </Badge>
 
                                 <div className="space-y-1 text-xs">
