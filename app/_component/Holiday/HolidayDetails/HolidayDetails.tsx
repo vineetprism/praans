@@ -304,17 +304,9 @@ export default function HolidayDetails({
     <div className="">
       <div className="mx-auto px-2 py-2 min-[320px]:px-3 min-[320px]:py-3 sm:px-4 sm:py-4 md:px-5 md:py-5 lg:px-6 lg:py-6 xl:px-8">
         <div className="grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-5 xl:gap-6">
-          <div className="lg:col-span-1 lg:order-2 order-1">
-            <div className="sticky top-2 sm:top-4 z-10">
-              <Card>
-                <CardContent className="p-2 sm:p-3 md:p-4">
-                  <PopularSearch className="mt-0" />
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+          
 
-          <div className="lg:col-span-4 lg:order-1 order-2">
+          <div className="lg:col-span-4 lg:order-2 order-1">
             <div className="mb-3 sm:mb-4">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <div className="flex-1">
@@ -566,6 +558,15 @@ export default function HolidayDetails({
                 </CardContent>
               </Card>
             )}
+          </div>
+          <div className="lg:col-span-1 lg:order-2 order-1">
+            <div className="sticky top-2 sm:top-4 z-10">
+              <Card>
+                <CardContent className="p-2 sm:p-3 md:p-4">
+                  <PopularSearch className="mt-0" />
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </div>

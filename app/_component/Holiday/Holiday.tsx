@@ -279,19 +279,10 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
     <div className="">
       <div className="mx-auto px-2 py-2 min-[375px]:px-3 min-[375px]:py-3 sm:px-4 sm:py-4 lg:px-5 lg:py-5 xl:px-6">
         <div className="grid gap-3 sm:gap-4 lg:grid-cols-5">
-          {/* Sidebar */}
-          <div className="lg:col-span-1 lg:order-2 order-1">
-            <div className="sticky top-4 z-10">
-              <Card>
-                <CardContent className="p-3">
-                  <PopularSearch className="mt-0" />
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+       
 
           {/* Main */}
-          <div className="lg:col-span-4 lg:order-1 order-2">
+          <div className="lg:col-span-4 lg:order-2 order-1">
             <div className="mb-4">
               <div className="mb-4">
                 <div className="flex justify-between">
@@ -300,7 +291,7 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
                   </h2>
 
                   {/* Year Selector */}
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-1">
+                  <div className="flex flex-col- sm:flex-row sm:items-start sm:justify-between gap-3 mb-1">
                     <div className="flex-shrink-0">
                       <Select value={year} onValueChange={setYear}>
                         <SelectTrigger className="w-24 sm:w-32 border-orange-300 focus:ring-orange-500 h-9">
@@ -341,7 +332,8 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
             </div>
 
             {/* Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3">
+              
               {loading ? (
                 <p>Loading holidays...</p>
               ) : error ? (
@@ -382,6 +374,16 @@ export default function Holiday({ initialYear, initialHolidays }: Props) {
                   </Link>
                 ))
               )}
+            </div>
+          </div>
+             {/* Sidebar */}
+          <div className="lg:col-span-1 lg:order-2 order-1">
+            <div className="sticky top-4 z-10">
+              <Card>
+                <CardContent className="p-3">
+                  <PopularSearch className="mt-0" />
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
