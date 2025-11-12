@@ -570,7 +570,7 @@ export default function SEApplicabilityDetails({
 
                           {/* Doc Required Header */}
                           <th className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold uppercase tracking-wide border border-orange-500 text-center rounded-tr-xl">
-                            <span className="break-words">Doc Required</span>
+                            <span className="break-words">Documents Required</span>
                           </th>
                         </tr>
                       </thead>
@@ -677,7 +677,7 @@ export default function SEApplicabilityDetails({
                       <div className="mt-3 bg-orange-50 border border-orange-200 rounded-lg px-3 sm:px-4 py-2 sm:py-3">
                         <div className="flex flex-col space-y-1">
                           <span className="text-xs font-semibold text-orange-800">
-                            Doc Required:
+                           Documents Required:
                           </span>
                           <span className="text-xs sm:text-sm text-gray-800 leading-relaxed">
                             {fmt(data.doc_required)}
