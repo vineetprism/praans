@@ -40,7 +40,7 @@ const Choose = () => {
               </div>
             </div>
 
-            <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm transition">
+            <div className="bg-white border border-orange-100 rounded-xl p-4 shadow-sm transition">
               <div className="flex items-start gap-3">
                 <Globe className="w-6 h-6 text-orange-500" />
                 <div>
@@ -55,7 +55,7 @@ const Choose = () => {
               </div>
             </div>
 
-            <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm transition">
+            <div className="bg-white border border-orange-100 rounded-xl p-4 shadow-sm transition">
               <div className="flex items-start gap-3">
                 <Layers className="w-6 h-6 text-orange-500" />
                 <div>
@@ -70,7 +70,7 @@ const Choose = () => {
               </div>
             </div>
 
-            <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm transition">
+            <div className="bg-white border border-orange-100 rounded-xl p-4 shadow-sm transition">
               <div className="flex items-start gap-3">
                 <Users className="w-6 h-6 text-orange-500" />
                 <div>
@@ -83,7 +83,7 @@ const Choose = () => {
               </div>
             </div>
 
-            <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm transition">
+            <div className="bg-white border border-orange-100 rounded-xl p-4 shadow-sm transition">
               <div className="flex items-start gap-3">
                 <ShieldCheck className="w-6 h-6 text-orange-500" />
                 <div>
@@ -98,7 +98,7 @@ const Choose = () => {
               </div>
             </div>
 
-            <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm transition">
+            <div className="bg-white border border-orange-100 rounded-xl p-4 shadow-sm transition">
               <div className="flex items-start gap-3">
                 <Settings className="w-6 h-6 text-orange-500" />
                 <div>

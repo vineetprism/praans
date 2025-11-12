@@ -6,15 +6,15 @@ export default function OurPromise() {
     <>
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <h2 className="text-[30px] text-center font-bold text-[#1C284F]">
+          <div className="mb-8 text-center">
+            <h2 className="text-[30px] font-bold text-[#1C284F]">
               Our <span className="text-orange-500">Promise</span>
             </h2>
-            <p className="mt-4 text-[15px] text-[#1C284F] text-center leading-relaxed">
+            <p className="mt-4 text-[15px] text-[#1C284F] leading-relaxed">
               Legal compliance should never be a burden—it should enable your
               growth.
             </p>
-            <p className="text-[15px] text-[#1C284F] text-center leading-relaxed">
+            <p className="text-[15px] text-[#1C284F] leading-relaxed">
               We are more than just consultants, we, Praans Consultech, are
               partners in your growth journey of your business. We promise you
               to:
