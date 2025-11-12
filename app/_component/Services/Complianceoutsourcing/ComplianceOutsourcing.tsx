@@ -382,12 +382,6 @@ export default function ComplianceOutsourcing() {
                   aria-pressed="false"
                 >
                   <div className="flex flex-col h-full">
-                    {/* <div className="flex items-center justify-center mb-4">
-                      <div className="w-14 h-14 rounded-full flex items-center justify-center bg-white border border-orange-100">
-                        <item.icon className="w-6 h-6 text-[#eb8535]" />
-                      </div>
-                    </div> */}
-
                     <div className="flex-1">
                       <h3 className="flex items-center gap-2 font-semibold text-lg text-[#1C284F] mb-2">
                         <item.icon
@@ -397,7 +391,7 @@ export default function ComplianceOutsourcing() {
                         {item.title}
                       </h3>
 
-                      <p className="text-sm text-gray-600 leading-relaxed">
+                      <p className="text-sm text-gray-600 leading-relaxed mb-0 ml-6">
                         {item.description}
                       </p>
                     </div>
@@ -463,7 +457,7 @@ export default function ComplianceOutsourcing() {
                         {item.title}
                       </h3>
 
-                      <p className="text-sm text-gray-600 leading-relaxed">
+                      <p className="text-sm text-gray-600 leading-relaxed mb-0 ml-6">
                         {item.desc}
                       </p>
                     </div>
