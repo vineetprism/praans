@@ -170,7 +170,6 @@ export default function GSTHero() {
     <section className="relative w-full overflow-hidden bg-white">
       <div className="mx-auto w-full px-4 py-2 sm:py-4 lg:py-6">
         <div className="grid gap-4 lg:grid-cols-12 lg:items-start lg:gap-5">
-          {/* LEFT */}
           <div className="max-w-none lg:col-span-7 pl-3 sm:pl-6 md:pl-10 lg:pl-14 xl:pl-20 2xl:pl-24 break-words">
             <h1 className="w-full text-2xl font-extrabold tracking-tight text-[#1c284f] sm:text-3xl whitespace-normal lg:text-center">
               India’s Trusted <span className="text-orange-500 whitespace-nowrap">GST Registration Consultant</span>
