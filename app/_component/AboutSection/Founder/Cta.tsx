@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Cta() {
   return (
@@ -16,20 +17,24 @@ export default function Cta() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 mt-6 justify-center max-w-none mx-auto">
-            <Button
-              className="bg-orange-500 hover:bg-orange-400 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto cursor-pointer"
-              aria-label="get expert consultation"
-            >
-              Get Expert Consultation
-              <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
-            </Button>
-            <Button
-              variant="outline"
-              className="border-2 border-orange-100 text-orange-500 hover:bg-orange-400 hover:text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 bg-transparent rounded-2xl font-bold w-full sm:w-auto cursor-pointer"
-              aria-label="schedule a demo"
-            >
-              Schedule a Demo
-            </Button>
+            <Link href="/contact-us">
+              <Button
+                className="bg-orange-500 hover:bg-orange-400 text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 shadow-2xl hover:shadow-orange-500/25 rounded-2xl font-bold w-full sm:w-auto cursor-pointer"
+                aria-label="get expert consultation"
+              >
+                Get Expert Consultation
+                <ArrowRight className="ml-2 w-5 h-5 md:w-6 md:h-6" />
+              </Button>
+            </Link>
+            <Link href="tel:+91-9050576838">
+              <Button
+                variant="outline"
+                className="border-2 border-orange-100 text-orange-500 hover:bg-orange-400 hover:text-white text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 bg-transparent rounded-2xl font-bold w-full sm:w-auto cursor-pointer"
+                aria-label="schedule a demo"
+              >
+                Schedule a Demo
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

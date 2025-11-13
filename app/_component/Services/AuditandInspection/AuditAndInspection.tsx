@@ -462,66 +462,56 @@ export default function AuditAndInspection() {
         </div>
       </section>
 
-      {/* Technology */}
       <section className="py-12 bg-gray-50">
-        <div className="w-full px-4 sm:px-6 lg:px-8 lg:gap-4 grid md:grid-cols-2 items-stretch">
-          <div className="flex flex-col justify-center">
-            <h2 className="text-[30px] font-bold mb-4 text-[#1C284F]">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          {/* Heading + subheading centered */}
+          <div className="max-w-8xl mx-auto text-center mb-8">
+            <h2 className="text-[30px] font-bold text-[#1C284F] mb-3">
               Technology-Enabled Compliance
             </h2>
 
-            <p className="text-gray-600 mb-6 text-justify text-[15px]">
+            <p className="text-gray-600 text-[15px] leading-relaxed">
+              With technology on your side, your compliance ecosystem becomes
+              more transparent, organized, and inspection-ready—always.
+            </p>
+
+            <p className="text-gray-600 text-[15px] leading-relaxed">
               To enhance accuracy and efficiency, we also integrate our
               AI-powered compliance management software with our audit and
               inspection services. It helps you:
             </p>
+          </div>
 
-            <ul className="space-y-3 text-gray-600 text-[15px]">
+          {/* Points split into two columns on md+ */}
+          <div className="max-w-5xl mx-auto">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-gray-600 text-[15px]">
               <li className="flex items-start gap-3">
-                <Cpu className="w-4 h-4 text-orange-500 mt-1" />
+                <Cpu className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
                 <span>Track compliance status in real-time</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <FileText className="w-4 h-4 text-orange-500 mt-1" />
+                <FileText className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
                 <span>Maintain digital records of registers and forms</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 text-orange-500 mt-1" />
+                <Mail className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
                 <span>Receive automated alerts for upcoming deadlines</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <Users className="w-4 h-4 text-orange-500 mt-1" />
+                <Users className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
                 <span>Centralise documents across locations</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <Search className="w-4 h-4 text-orange-500 mt-1" />
+                <Search className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
                 <span>
                   Generate audit reports and compliance checklists instantly
                 </span>
               </li>
             </ul>
-
-            <p className="text-gray-600 mt-6 text-[15px]">
-              With technology on your side, your compliance ecosystem becomes
-              more transparent, organized, and inspection-ready—always.
-            </p>
-          </div>
-
-          <div className="flex items-stretch">
-            <div className="w-full rounded-lg overflow-hidden bg-white flex">
-              <Image
-                src="/services/technology-compliance.webp"
-                alt="Compliance software dashboard"
-                width={900}
-                height={600}
-                priority
-                className="object-cover w-full h-auto md:h-full"
-              />
-            </div>
           </div>
         </div>
       </section>
