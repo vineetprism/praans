@@ -11,7 +11,9 @@ const LOGIN_URL = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "");
 /** Wrapper required by Next.js when using useSearchParams */
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="p-6 text-center text-slate-600">Loading…</div>}>
+    <Suspense
+      fallback={<div className="p-6 text-center text-slate-600">Loading…</div>}
+    >
       <LoginPageInner />
     </Suspense>
   );
@@ -31,7 +33,8 @@ function LoginPageInner() {
 
   const validate = () => {
     if (!email.trim()) return "Email is required";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) return "Enter a valid email";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
+      return "Enter a valid email";
     if (!password) return "Password is required";
     return null;
   };
@@ -46,12 +49,17 @@ function LoginPageInner() {
     setLoading(true);
     try {
       if (!LOGIN_URL) {
-        setFormError("Login API URL is not configured. Set NEXT_PUBLIC_LOGIN_URL in your environment.");
+        setFormError(
+          "Login API URL is not configured. Set NEXT_PUBLIC_LOGIN_URL in your environment."
+        );
         return;
       }
-      const res = await fetch(LOGIN_URL, {
+      const res = await fetch(`${LOGIN_URL}/api/auth/login`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify({ email: email.trim(), password }),
       });
 
@@ -62,7 +70,9 @@ function LoginPageInner() {
         return;
       }
       if (!res.ok) {
-        setFormError(payload?.message || `Login failed (HTTP ${res.status}). Try again.`);
+        setFormError(
+          payload?.message || `Login failed (HTTP ${res.status}). Try again.`
+        );
         return;
       }
 
@@ -93,7 +103,9 @@ function LoginPageInner() {
             <div className="relative flex items-center gap-3">
               <Sparkles className="w-8 h-8 text-yellow-200 animate-pulse" />
               <div>
-                <h1 className="text-3xl font-bold text-white tracking-tight">Login</h1>
+                <h1 className="text-3xl font-bold text-white tracking-tight">
+                  Login
+                </h1>
                 <p className="text-orange-50 mt-1">Welcome back</p>
               </div>
             </div>
@@ -137,19 +149,23 @@ function LoginPageInner() {
                   className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-2 text-orange-600 hover:bg-orange-100 transition-all duration-200"
                   aria-label="Toggle password"
                 >
-                  {showPwd ? <EyeOff className="h-5 w-5" /> : <LogIn className="h-5 w-5" />}
+                  {showPwd ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <LogIn className="h-5 w-5" />
+                  )}
                 </button>
               </div>
 
               {/* Forgot Password link (kept as you wrote) */}
-              <div className="flex justify-end -mt-2">
+              {/* <div className="flex justify-end -mt-2">
                 <Link
                   href={`/forget-password?next=${encodeURIComponent(nextUrl)}`}
                   className="text-sm font-medium text-orange-600 hover:text-orange-700 hover:underline transition-all duration-200"
                 >
                   Forgot Password?
                 </Link>
-              </div>
+              </div> */}
 
               <button
                 onClick={handleSubmit}
@@ -167,7 +183,10 @@ function LoginPageInner() {
 
               <div className="text-center text-sm text-slate-600">
                 Don&apos;t have an account?{" "}
-                <Link href="/register" className="text-orange-600 underline underline-offset-2">
+                <Link
+                  href="/register"
+                  className="text-orange-600 underline underline-offset-2"
+                >
                   Register
                 </Link>
               </div>
