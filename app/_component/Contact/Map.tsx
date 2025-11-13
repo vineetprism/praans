@@ -136,9 +136,9 @@ export default function Locations() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-orange-50">
       <div className="container mx-auto px-4 py-8 space-y-8">
-        <div className="bg-white rounded-2xl shadow-xl p-3 border border-gray-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Pan India Locations</h2>
-          <p className="text-sm text-gray-600 mb-3">
+        <div className="bg-white rounded-2xl shadow-md p-2 border border-orange-50">
+          <h2 className="text-[20px] font-bold text-gray-900">Pan India Locations</h2>
+          <p className="text-[15px] text-gray-600 mb-2">
             Offices in Haryana (HQ), Karnataka, and Assam.
           </p>
 
@@ -149,7 +149,7 @@ export default function Locations() {
               width={900}
               height={640}
               preserveAspectRatio="xMidYMid meet"
-              className="w-full h-auto border border-gray-200 rounded-lg"
+              className="w-full h-auto border border-orange-50 rounded-lg"
             >
               {/* STATES: FILL + AUTO-HIGHLIGHT OFFICE STATES */}
               <Geographies geography={geoUrl}>
@@ -267,9 +267,9 @@ export default function Locations() {
           </div>
 
           {/* Legend */}
-          <div className="flex justify-center mt-4">
-            <div className="bg-orange-50 rounded-xl p-3 border border-orange-200 text-sm">
-              <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex justify-center mt-2">
+            <div className="bg-orange-50 rounded-xl p-2 border border-orange-200 text-sm">
+              <div className="flex flex-wrap justify-center gap-4">
                 <div className="flex items-center gap-2">
                   <span className="inline-block w-4 h-4 rounded-full" style={{ background: HIGHLIGHT_HEX }} />
                   <span className="font-medium text-gray-700">Office States (filled)</span>
@@ -284,34 +284,34 @@ export default function Locations() {
         </div>
 
         {/* Coverage blurb */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-orange-100/80 via-white/80 to-blue-100/80 rounded-3xl p-8 max-w-5xl mx-auto shadow-xl border border-gray-200/50 backdrop-blur-lg">
-            <div className="flex items-center justify-center mb-6">
-              <div className="w-16 h-16 bg-[#eb8535] rounded-full flex items-center justify-center shadow-lg">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="text-center mt-12">
+          <div className="bg-gradient-to-r from-orange-100/80 via-white/80 to-blue-100/80 rounded-3xl p-6 max-w-5xl mx-auto shadow-sm border border-orange-200/50 backdrop-blur-lg">
+            <div className="flex items-center justify-center mb-2">
+              <div className="w-12 h-12 bg-[#eb8535] rounded-full flex items-center justify-center shadow-lg">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                 </svg>
               </div>
             </div>
-            <h3 className="text-3xl font-bold mb-4 text-slate-800">Complete India Coverage</h3>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+            <h3 className="text-[25px] font-bold text-slate-800">Complete India Coverage</h3>
+            <p className="text-[15px] text-gray-700 leading-relaxed mb-6">
               We maintain physical presence and operational coverage across <strong className="text-[#eb8535]">all 28 states and 8 union territories</strong> of India,
               ensuring local expertise and nationwide support for your business needs.
             </p>
-            <div className="flex justify-center gap-8 text-center">
+            <div className="flex justify-center gap-6 text-center">
               <div>
-                <div className="text-3xl font-black text-[#eb8535]">28</div>
-                <div className="text-sm text-gray-600">States</div>
+                <div className="text-[20px] font-black text-[#eb8535]">28</div>
+                <div className="text-[13px] text-gray-600">States</div>
               </div>
               <div className="w-px bg-gray-300"></div>
               <div>
-                <div className="text-3xl font-black text-blue-600">8</div>
-                <div className="text-sm text-gray-600">Union Territories</div>
+                <div className="text-[20px] font-black text-blue-600">8</div>
+                <div className="text-[13px] text-gray-600">Union Territories</div>
               </div>
               <div className="w-px bg-gray-300"></div>
               <div>
-                <div className="text-3xl font-black text-green-600">100%</div>
-                <div className="text-sm text-gray-600">Coverage</div>
+                <div className="text-[20px] font-black text-green-600">100%</div>
+                <div className="text-[13px] text-gray-600">Coverage</div>
               </div>
             </div>
           </div>

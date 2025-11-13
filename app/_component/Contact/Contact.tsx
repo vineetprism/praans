@@ -146,24 +146,24 @@ export default function Contact() {
 
   return (
     <>
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold mb-6 text-slate-800">
+                <h2 className="text-[25px] font-bold mb-4 text-[#1C284F]">
                   Our Offices
                 </h2>
                 {officeLocations.map((office, index) => (
                   <Card
                     key={index}
-                    className="mb-6 border-l-4 border-[#eb8535]"
+                    className="mb-2 border-l-4 border-[#eb8535]"
                   >
-                    <CardHeader className="flex flex-row items-start gap-4 p-5">
-                      <office.icon className="w-8 h-8 text-[#eb8535] mt-1 flex-shrink-0" />
+                    <CardHeader className="flex flex-row items-start gap-4 px-2 py-0">
+                      <office.icon className="w-6 h-6 text-[#eb8535] mt-1 flex-shrink-0" />
                       <div>
-                        <CardTitle className="text-xl">{office.city}</CardTitle>
-                        <p className="text-gray-600">{office.address}</p>
+                        <CardTitle className="text-[17px] font-bold">{office.city}</CardTitle>
+                        <p className="text-gray-600 text-[13px]">{office.address}</p>
                       </div>
                     </CardHeader>
                   </Card>
@@ -171,22 +171,22 @@ export default function Contact() {
               </div>
 
               <div>
-                <h3 className="text-2xl font-bold mb-4">General Inquiries</h3>
-                <div className="space-y-4">
+                <h3 className="text-[25px] font-bold mb-2 text-[#1C284F]">General Inquiries</h3>
+                <div className="space-y-2">
                   <Link
                     href="tel:+919050576838"
-                    className="flex items-center gap-3 text-lg text-gray-700 hover:text-[#eb8535]"
+                    className="flex items-center gap-2 text-[15px] text-gray-700 hover:text-[#eb8535]"
                     aria-label="Call us"
                   >
-                    <Phone className="w-6 h-6 text-orange-500" />
+                    <Phone className="w-4 h-4 text-orange-500" />
                     <span>+91-9050576838</span>
                   </Link>
                   <Link
                     href="mailto:info@praansconsultech.com"
-                    className="flex items-center gap-3 text-lg text-gray-700 hover:text-[#eb8535]"
+                    className="flex items-center gap-2 text-[15px] text-gray-700 hover:text-[#eb8535]"
                     aria-label="Send email"
                   >
-                    <Mail className="w-6 h-6 text-orange-500" />
+                    <Mail className="w-4 h-4 text-orange-500" />
                     <span>info@praansconsultech.com</span>
                   </Link>
                 </div>
@@ -195,7 +195,7 @@ export default function Contact() {
 
             <div>
               <Card className="p-8 shadow-sm">
-                <h2 className="text-3xl font-bold mb-6 text-slate-800">
+                <h2 className="text-[25px] font-bold mb-4 text-[#1C284F]">
                   Send Us a Message
                 </h2>
 
@@ -217,7 +217,7 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="full_name"
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-sm font-medium text-gray-800 mb-1"
                       >
                         Full Name
                       </label>
@@ -233,7 +233,7 @@ export default function Contact() {
                     <div>
                       <label
                         htmlFor="email"
-                        className="block text-sm font-medium text-gray-700 mb-1"
+                        className="block text-sm font-medium text-gray-800 mb-1"
                       >
                         Email Address
                       </label>
@@ -253,7 +253,7 @@ export default function Contact() {
                     {/* ✅ match htmlFor/id */}
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-800 mb-1"
                     >
                       Phone Number
                     </label>
@@ -270,7 +270,7 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor="subject"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-800 mb-1"
                     >
                       Subject
                     </label>
@@ -287,7 +287,7 @@ export default function Contact() {
                   <div>
                     <label
                       htmlFor="message"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      className="block text-sm font-medium text-gray-800 mb-1"
                     >
                       Your Message
                     </label>
@@ -335,10 +335,10 @@ export default function Contact() {
             </DialogDescription>
           </DialogHeader>
           <div className="flex flex-col items-center text-center gap-3">
-            <div className="h-14 w-14 rounded-full bg-green-100 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8 text-green-600"
+                className="h-6 w-6 text-green-600"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -351,7 +351,7 @@ export default function Contact() {
               </svg>
             </div>
 
-            <h3 className="mt-1 text-2xl font-semibold text-slate-900">
+            <h3 className="mt-1 text-[20px] font-semibold text-slate-900">
               Thank You!
             </h3>
             <p className="text-slate-600">
@@ -360,7 +360,7 @@ export default function Contact() {
 
             <Button
               onClick={() => setSuccessOpen(false)}
-              className="mt-2 bg-orange-500 hover:bg-orange-600 text-white px-6 cursor-pointer"
+              className="mt-2 bg-orange-500 hover:bg-orange-400 text-white px-6 cursor-pointer"
               aria-label="Close"
             >
               OK
