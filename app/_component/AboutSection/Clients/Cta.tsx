@@ -1,8 +1,17 @@
+"use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import ComplianceFormDialog from "@/components/ComplianceFormDialog";
 
 export default function Cta() {
+  const [success, setSuccess] = React.useState(false);
+  React.useEffect(() => {
+    if (!success) return;
+    const t = setTimeout(() => setSuccess(false), 2000);
+    return () => clearTimeout(t);
+  }, [success]);
+
   return (
     <section className="py-12 bg-white w-full">
       <div className="w-full px-4 text-center">
@@ -15,7 +24,7 @@ export default function Cta() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link href="tel:+91-9050576838">
+          <ComplianceFormDialog onSuccess={() => setSuccess(true)} >
             <Button
               size="lg"
               className="bg-orange-500 hover:bg-orange-400 text-white text-lg px-8 py-2 cursor-pointer"
@@ -23,7 +32,7 @@ export default function Cta() {
             >
               Get Free Consultation
             </Button>
-          </Link>
+          </ComplianceFormDialog>
 
           <Link href="/contact-us">
             <Button

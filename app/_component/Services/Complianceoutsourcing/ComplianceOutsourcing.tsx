@@ -17,7 +17,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import ComplianceFormDialog from "@/components/ComplianceFormDialog";
 
 const PlayIcon = () => (
   <svg
@@ -243,6 +244,13 @@ const faqs = [
 
 // Component
 export default function ComplianceOutsourcing() {
+  const [success, setSuccess] = React.useState(false);
+  React.useEffect(() => {
+    if (!success) return;
+    const t = setTimeout(() => setSuccess(false), 2000);
+    return () => clearTimeout(t);
+  }, [success]);
+
   const textRef = useRef<HTMLDivElement | null>(null);
   const imgRef = useRef<HTMLDivElement | null>(null);
 
@@ -321,16 +329,16 @@ export default function ComplianceOutsourcing() {
               </div>
 
               <div className="mt-8 mb-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link href="/contact-us" aria-label="Book free consultation">
+                <ComplianceFormDialog onSuccess={() => setSuccess(true)}>
                   <Button
                     size="lg"
                     className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
-                    aria-label="Book free consultation"
+                    aria-label="Book Free Consultation"
                   >
                     <Phone className="w-4 h-4 mr-2" />
                     Book Free Consultation
                   </Button>
-                </Link>
+                </ComplianceFormDialog>
               </div>
             </div>
 
@@ -901,19 +909,18 @@ export default function ComplianceOutsourcing() {
             </p>
 
             <div className="flex justify-center gap-5 sm:gap-6 flex-wrap">
-              <Link
-                href="tel:+91-9050576838"
-                aria-label="Call Praans Consultech"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg font-bold
-                         hover:bg-transparent hover:text-orange-500
-                         hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)]
-                         transition duration-200 cursor-pointer"
-              >
-                <span>Book Consultation</span>
-              </Link>
+              <ComplianceFormDialog onSuccess={() => setSuccess(true)}>
+                <Button
+                  size="lg"
+                  className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
+                  aria-label="Book Free Consultation"
+                >
+                  Get Free Consultation
+                </Button>
+              </ComplianceFormDialog>
 
               <Link
-                href="mailto:info@praansconsultech.com"
+                href="/compliance-software"
                 aria-label="Email Praans Consultech"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-orange-500 bg-transparent text-orange-500 text-lg font-bold
                          hover:bg-orange-50 hover:text-orange-500 hover:border-orange-500
