@@ -360,18 +360,19 @@ export default function PanIndiaRegistrations() {
             <h2 className="text-[30px] font-bold text-[#1C284F]">
               Why is it important to register under labour law?
             </h2>
-            <p className="mt-2 text-gray-600 max-w-8xl mx-auto text-[15px]">
-              Think of labour law registrations as more than just a bunch of
-              paperwork. They are not just legal formality but also the most
-              important foundation of ethical employment and statutory
-              compliance.
-            </p>
+
             <p className="mt-1 text-gray-600 max-w-8xl mx-auto text-[15px]">
               So by doing the registration it means that you and your business
               are doing correct thing, being transparent and while protecting
               your employees. As it will mitigate all the risk and also avoid
               you from paying big fines and remove the entire legal burden in
               our path
+            </p>
+            <p className="mt-2 text-gray-600 max-w-8xl mx-auto text-[15px]">
+              Think of labour law registrations as more than just a bunch of
+              paperwork. They are not just legal formality but also the most
+              important foundation of ethical employment and statutory
+              compliance.
             </p>
           </div>
 

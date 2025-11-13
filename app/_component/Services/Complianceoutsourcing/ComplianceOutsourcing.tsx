@@ -709,14 +709,15 @@ export default function ComplianceOutsourcing() {
             <h2 className="text-[30px] font-bold text-slate-900 mb-4 text-[#1C284F]">
               Industries We Work With
             </h2>
-            <p className="text-[15px] text-slate-700 max-w-8xl mx-auto">
-              We're happy to help out all sorts of businesses with tailor-made
-              compliance solutions:
-            </p>
+
             <p className="text-[15px] text-slate-700 max-w-8xl mx-auto">
               Each and every industry in India has its own rules and regulations
               that they follow, but our compliance solutions make sure that
               everyone adheres to both state and central labour laws.
+            </p>
+            <p className="text-[15px] text-slate-700 max-w-8xl mx-auto">
+              We're happy to help out all sorts of businesses with tailor-made
+              compliance solutions:
             </p>
           </div>
 

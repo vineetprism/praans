@@ -16,11 +16,6 @@ const Choose = () => {
               Tech-first. Reliable. Battle-tested expertise. We own the
               compliance problem so you can focus on growth.
             </p>
-            <p className="text-[15px] text-[#1C284F] max-w-8xl mx-auto leading-relaxed">
-              By all the above mentioned factors, we can assure you that you now
-              don’t have to worry about compliance lapse; our clients never have
-              to worry about it.
-            </p>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

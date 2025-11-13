@@ -10,14 +10,14 @@ export default function OurPromise() {
             <h2 className="text-[30px] font-bold text-[#1C284F]">
               Our <span className="text-orange-500">Promise</span>
             </h2>
-            <p className="mt-4 text-[15px] text-[#1C284F] leading-relaxed">
-              Legal compliance should never be a burden—it should enable your
-              growth.
+            <div className="w-24 h-1 bg-orange-500 mx-auto mt-2 rounded-full" />
+            <p className="mt-2 text-[15px] text-[#1C284F] leading-relaxed">
+              We are more than just consultants, we, Praans Consultech, are
+              partners in your growth journey of your business.
             </p>
             <p className="text-[15px] text-[#1C284F] leading-relaxed">
-              We are more than just consultants, we, Praans Consultech, are
-              partners in your growth journey of your business. We promise you
-              to:
+              Legal compliance should never be a burden—it should enable your
+              growth. We promise you to:
             </p>
           </div>
 

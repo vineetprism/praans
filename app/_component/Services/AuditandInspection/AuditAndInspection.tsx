@@ -471,14 +471,15 @@ export default function AuditAndInspection() {
             </h2>
 
             <p className="text-gray-600 text-[15px] leading-relaxed">
-              With technology on your side, your compliance ecosystem becomes
-              more transparent, organized, and inspection-ready—always.
+              To enhance accuracy and efficiency, we also integrate our
+              AI-powered compliance management software with our audit and
+              inspection services.
             </p>
 
             <p className="text-gray-600 text-[15px] leading-relaxed">
-              To enhance accuracy and efficiency, we also integrate our
-              AI-powered compliance management software with our audit and
-              inspection services. It helps you:
+              With technology on your side, your compliance ecosystem becomes
+              more transparent, organized, and inspection-ready—always.It helps
+              you:
             </p>
           </div>
 
@@ -568,12 +569,6 @@ export default function AuditAndInspection() {
             {/* Centered paragraphs with sensible max width and spacing */}
             <div className="mx-auto w-full space-y-2">
               <p className="text-slate-700 text-[15px] leading-7">
-                Labour law inspections are becoming increasingly structured,
-                tech-driven, and penalty-focused. Being audit-ready is not
-                optional — it's essential.
-              </p>
-
-              <p className="text-slate-700 text-[15px] leading-7">
                 With Praans Consultech, you gain the assurance of compliance,
                 the confidence to face inspections, and the backing of a team
                 that handles the legal complexities for you.
@@ -583,6 +578,12 @@ export default function AuditAndInspection() {
                 Book your free consultation today to discover how our labour law
                 audit and inspection services can protect your business and
                 streamline your operations.
+              </p>
+
+              <p className="text-slate-700 text-[15px] leading-7">
+                Labour law inspections are becoming increasingly structured,
+                tech-driven, and penalty-focused. Being audit-ready is not
+                optional — it's essential.
               </p>
             </div>
 
