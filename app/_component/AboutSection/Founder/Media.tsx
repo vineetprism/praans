@@ -34,27 +34,24 @@ const media: MediaItem[] = [
 export default function Media() {
     return (
         <>
-            <section className="py-16 md:py-20 lg:py-10 bg-white">
-                <div className="container mx-auto px-4 md:px-6 max-w-8xl">
-                    {/* Heading */}
-                    <div className="text-center mb-10 md:mb-14">
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
+            <section className="py-12 bg-white w-full">
+                <div className="w-full px-4 md:px-6 max-w-none relative z-10">
+                    <div className="text-center mb-8">
+                        <h2 className="text-[30px] font-bold text-[#1C284F]">
                             Featured <span className="text-orange-500">Articles</span>
                         </h2>
-                        <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-4" />
-                        <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+                        <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full mt-2" />
+                        <p className="mt-2 text-[15px] text-gray-600 max-w-none mx-auto">
                             Third-party coverage and accolades that validate our execution.
                         </p>
                     </div>
 
-                    {/* Cards – scrollable preview, footer clickable */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch w-full">
                         {media.map((item, idx) => (
                             <Card
                                 key={idx}
-                                className="relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white shadow-sm ring-1 ring-black/5"
+                                className="relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white shadow-sm ring-1 ring-black/5 w-full"
                             >
-                                {/* top accent bar */}
                                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-orange-600" />
 
                                 <CardContent className="p-0 flex flex-col h-full">
@@ -73,7 +70,6 @@ export default function Media() {
                                         </Link>
                                     </div>
 
-                                    {/* Scrollable live preview (no Link wrapper, no pointer-events-none) */}
                                     <div className="w-full bg-white border-t">
                                         <iframe
                                             src={item.link!}
@@ -96,10 +92,10 @@ export default function Media() {
                                         <div className="mb-2 flex items-start justify-between">
                                             <span className="text-xs text-orange-500 font-medium">{item.year}</span>
                                         </div>
-                                        <h3 className="text-lg md:text-xl font-semibold text-slate-800 mb-1 leading-tight">
+                                        <h3 className="text-[16px] font-semibold text-slate-800 mb-1 leading-tight">
                                             {item.title}
                                         </h3>
-                                        <p className="text-sm md:text-base text-gray-600">{item.source}</p>
+                                        <p className="text-[15px] text-gray-600">{item.source}</p>
                                     </Link>
                                 </CardContent>
                             </Card>

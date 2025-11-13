@@ -1,9 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
-const Hero = dynamic(() => import('@/app/_component/AboutSection/Founder/Hero'), {
-  ssr: true,
-});
+
 const Founder = dynamic(() => import('@/app/_component/AboutSection/Founder/Founder'), {
   ssr: true,
 });
@@ -126,7 +124,6 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Page() {
   return (
     <>
-      <Hero />
       <Founder />
       <Expertise />
       <Vision />
