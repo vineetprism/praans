@@ -289,23 +289,23 @@ export default function AuditAndInspection() {
 
                 <h2
                   id="inspection-title"
-                  className="text-2xl font-semibold mb-2 text-slate-800"
+                  className="text-[30px] font-semibold mb-2 text-[#1C284F]"
                 >
                   Understanding Labour Law Inspections
                 </h2>
 
-                <p className="text-slate-700 mb-4 text-justify">
+                <p className="text-slate-700 mb-4 text-justify text-[15px]">
                   A labour law inspection is a physical verification of
                   compliance conducted by government-authorized officials. It
                   can be a scheduled inspection, a surprise visit, or triggered
                   by an employee complaint or whistleblower action.
                 </p>
 
-                <p className="text-slate-700 mb-4 font-medium">
+                <p className="text-slate-700 mb-4 font-medium text-[15px]">
                   Inspectors may visit your premises to check for:
                 </p>
 
-                <dl className="space-y-3 text-slate-700">
+                <dl className="space-y-3 text-slate-700 text-[15px]">
                   <div className="flex items-start gap-3">
                     <CheckCircle
                       className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
@@ -368,7 +368,7 @@ export default function AuditAndInspection() {
                   </div>
                 </dl>
 
-                <p className="text-slate-700 mt-4">
+                <p className="text-slate-700 mt-4 text-[15px]">
                   An inspection may lead to penalties or legal notices if
                   violations or irregularities are found. That’s why it's
                   essential to be well-prepared at all times.

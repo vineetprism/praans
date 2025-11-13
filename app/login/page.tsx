@@ -8,7 +8,6 @@ import { setAuthFromLoginResponse } from "@/lib/auth";
 
 const LOGIN_URL = process.env.NEXT_PUBLIC_API_BASE?.replace(/\/+$/, "");
 
-/** Wrapper required by Next.js when using useSearchParams */
 export default function LoginPage() {
   return (
     <Suspense
@@ -156,16 +155,6 @@ function LoginPageInner() {
                   )}
                 </button>
               </div>
-
-              {/* Forgot Password link (kept as you wrote) */}
-              {/* <div className="flex justify-end -mt-2">
-                <Link
-                  href={`/forget-password?next=${encodeURIComponent(nextUrl)}`}
-                  className="text-sm font-medium text-orange-600 hover:text-orange-700 hover:underline transition-all duration-200"
-                >
-                  Forgot Password?
-                </Link>
-              </div> */}
 
               <button
                 onClick={handleSubmit}
