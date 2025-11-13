@@ -5,16 +5,16 @@ import { useState } from 'react';
 
 export default function LandingPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    mobile: '',
-    organization: ''
+    full_name: '',
+    business_email: '',
+    mobile_number: '',
+    organization_name: ''
   });
   
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e : any) => {
     e.preventDefault();
     setIsLoading(true);
     setMessage({ type: '', text: '' });
@@ -22,10 +22,10 @@ export default function LandingPage() {
     try {
 
        const payload = {
-        name: formData.name,
-        email: formData.email,
-        mobile: formData.mobile,
-        organization: formData.organization
+        full_name: formData.full_name,
+        business_email: formData.business_email,
+        mobile_number: formData.mobile_number,
+        organization_name: formData.organization_name
       };
         // console.log(payload,process.env.NEXT_PUBLIC_API_BASE)
 
@@ -47,7 +47,7 @@ export default function LandingPage() {
         text: 'Demo request submitted successfully! 🎉' 
       });
       
-      setFormData({ name: '', email: '', mobile: '', organization: '' });
+      setFormData({ full_name: '', business_email: '', mobile_number: '', organization_name: '' });
       
     } catch (error) {
       console.error('Error:', error);
@@ -60,7 +60,7 @@ export default function LandingPage() {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e : any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -154,8 +154,8 @@ export default function LandingPage() {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
                     <input
                       type="text"
-                      name="name"
-                      value={formData.name}
+                      name="full_name"
+                      value={formData.full_name}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none transition-colors"
                       placeholder="John Doe"
@@ -168,8 +168,8 @@ export default function LandingPage() {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Business Email</label>
                     <input
                       type="email"
-                      name="email"
-                      value={formData.email}
+                      name="business_email"
+                      value={formData.business_email}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none transition-colors"
                       placeholder="john@company.com"
@@ -182,8 +182,8 @@ export default function LandingPage() {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Mobile Number</label>
                     <input
                       type="tel"
-                      name="mobile"
-                      value={formData.mobile}
+                      name="mobile_number"
+                      value={formData.mobile_number}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none transition-colors"
                       placeholder="+91 98765 43210"
@@ -196,8 +196,8 @@ export default function LandingPage() {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Organization Name</label>
                     <input
                       type="text"
-                      name="organization"
-                      value={formData.organization}
+                      name="organization_name"
+                      value={formData.organization_name}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none transition-colors"
                       placeholder="Your Company Ltd."
