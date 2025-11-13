@@ -15,27 +15,23 @@ import {
   type GeoPermissibleObjects,
 } from "d3-geo";
 
-// ---------- Types ----------
 type Office = {
   name: string;
   city: string;
   address: string;
-  coordinates: [number, number]; // [lon, lat]
+  coordinates: [number, number];
   type: "corporate" | "regional";
-  // employees: string;
   icon: string;
   phone: string;
   email: string;
 };
 
-// ---------- Config ----------
 const geoUrl =
   "https://gist.githubusercontent.com/jbrobst/56c13bbbf9d97d187fea01ca62ea5112/raw/e388c4cae20aa53cb5090210a42ebb9b765c0a36/india_states.geojson";
 
 const HIGHLIGHT_HEX = "#eb8535";
 const highlightStates = new Set(["haryana", "karnataka", "assam"]);
 
-// --- helpers ---
 const norm = (s: string) =>
   s
     .toLowerCase()
@@ -43,24 +39,17 @@ const norm = (s: string) =>
     .replace(/[.\s]+/g, " ")
     .trim();
 
-// helpers that tolerate singular/plural + ampersand
 const isAndaman = (key: string) => key.startsWith("andaman and nicobar");
 const isLadakh = (key: string) => key === "ladakh";
 const isJammuKashmir = (key: string) => key === "jammu and kashmir";
 
-// Exclude **pins** for these states (robust checks)
 const shouldExcludePin = (key: string) => isAndaman(key) || isLadakh(key);
-
-// Exclude **color** for these states (render white)
 const shouldExcludeColor = (key: string) => isAndaman(key) || isLadakh(key);
 
-// override pin placement (lon, lat)
 const PIN_OVERRIDES: Record<string, [number, number]> = {
-  // Show the pin in Jammu (not Kashmir)
   "jammu and kashmir": [74.86, 32.73],
 };
 
-// --- colorful palette ---
 const STATE_PALETTE = [
   "#fde68a",
   "#fdba74",
@@ -110,13 +99,10 @@ const colorForState = (stateKey: string) => {
   return STATE_PALETTE[idx];
 };
 
-// Choose a centroid that lies inside the state geometry.
 function safeCentroid(feature: any): [number, number] {
-  // 1) overall centroid
   let c = geoCentroid(feature) as [number, number];
   if (geoContains(feature as GeoPermissibleObjects, c)) return c;
 
-  // 2) largest polygon centroid (for MultiPolygon)
   if (feature?.geometry?.type === "MultiPolygon") {
     let bestPoly: any = null;
     let bestArea = -1;
@@ -134,14 +120,12 @@ function safeCentroid(feature: any): [number, number] {
     }
   }
 
-  // 3) bbox center fallback
   const [[minLon, minLat], [maxLon, maxLat]] = geoBounds(
     feature as GeoPermissibleObjects
   );
   return [(minLon + maxLon) / 2, (minLat + maxLat) / 2];
 }
 
-// ---------- Data ----------
 const officeLocations: Office[] = [
   {
     name: "Corporate Office",
@@ -149,7 +133,6 @@ const officeLocations: Office[] = [
     address: "CP-9, Sector-8, IMT Manesar, Gurugram, Haryana-122052",
     coordinates: [76.9306, 28.367],
     type: "corporate",
-    // employees: "150+",
     icon: "🏢",
     phone: "+91-9050576838",
     email: "info@paraansconsultech.com",
@@ -160,7 +143,6 @@ const officeLocations: Office[] = [
     address: "No 1/3, 3rd Main, 4th Cross, Mathikere, Bengaluru – 560054",
     coordinates: [77.5946, 12.9716],
     type: "regional",
-    // employees: "80+",
     icon: "🏢",
     phone: "+91-9050576838",
     email: "info@paraansconsultech.com",
@@ -171,17 +153,15 @@ const officeLocations: Office[] = [
     address: "283, Paltan Bazar, Guwahati, Kamrup Metro, Assam-781008",
     coordinates: [91.7362, 26.1445],
     type: "regional",
-    // employees: "60+",
     icon: "🏢",
     phone: "+91-9050576838",
     email: "info@paraansconsultech.com",
   },
 ];
 
-// Build a Google Maps directions URL to the office (from current location)
 const getDirectionsUrl = (office: Office) => {
-  const [lon, lat] = office.coordinates; // [lon, lat]
-  const destination = `${lat},${lon}`; // Google expects lat,lng
+  const [lon, lat] = office.coordinates;
+  const destination = `${lat},${lon}`;
   return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
     destination
   )}&travelmode=driving&dir_action=navigate`;
@@ -191,14 +171,14 @@ export default function Map_Sidebar() {
   const [selectedOffice, setSelectedOffice] = useState<Office | null>(null);
   return (
     <>
-      <div className="container mx-auto px-4 py-8 grid lg:grid-cols-3 gap-8 items-start bg-white">
+      <div className="container mx-auto px-4 py-2 grid lg:grid-cols-3 gap-4 items-start bg-white">
         {/* Map */}
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-2xl shadow-xl p-3 border border-gray-100">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <div className="bg-white rounded-2xl shadow-md p-2 border border-orange-100">
+            <h2 className="text-[14px] font-semibold text-gray-900">
               Pan India Locations
             </h2>
-            <p className="text-sm text-gray-600 mb-3">
+            <p className="text-[12px] text-gray-600 mb-1">
               Offices in Haryana (HQ), Karnataka, and Assam. Click markers for
               details.
             </p>
@@ -210,9 +190,8 @@ export default function Map_Sidebar() {
                 width={900}
                 height={640}
                 preserveAspectRatio="xMidYMid meet"
-                className="w-full h-auto border border-gray-200 rounded-lg"
+                className="w-full h-auto border border-orange-100 rounded-lg"
               >
-                {/* States (colored or excluded) */}
                 <Geographies geography={geoUrl}>
                   {({ geographies }) =>
                     geographies.map((geo) => {
@@ -253,7 +232,6 @@ export default function Map_Sidebar() {
                   }
                 </Geographies>
 
-                {/* State pins (skip Andaman + Ladakh; place J&K pin in Jammu) */}
                 <Geographies geography={geoUrl}>
                   {({ geographies }) =>
                     geographies.map((geo) => {
@@ -271,7 +249,6 @@ export default function Map_Sidebar() {
 
                       return (
                         <Marker key={`${geo.rsmKey}-pin`} coordinates={pinAt}>
-                          {/* SVG pin (scaled smaller) */}
                           <g transform="translate(-8,-16) scale(0.6)">
                             <path
                               d="M12 2C7.03 2 3 6.03 3 11c0 5.25 7.5 11 9 11s9-5.75 9-11c0-4.97-4.03-9-9-9z"
@@ -285,7 +262,6 @@ export default function Map_Sidebar() {
                   }
                 </Geographies>
 
-                {/* Office markers (keep ripple + labels) */}
                 {officeLocations.map((office) => (
                   <Marker
                     key={office.city}
@@ -298,13 +274,13 @@ export default function Map_Sidebar() {
                     className="cursor-pointer"
                   >
                     <circle
-                      r={20}
+                      r={18}
                       fill={HIGHLIGHT_HEX}
                       opacity="0.15"
                       className="animate-ping"
                     />
                     <circle
-                      r={12}
+                      r={10}
                       fill={HIGHLIGHT_HEX}
                       opacity="0.25"
                       className="animate-pulse"
@@ -313,21 +289,25 @@ export default function Map_Sidebar() {
                       r={2}
                       fill={HIGHLIGHT_HEX}
                       stroke="#fff"
-                      strokeWidth={3}
+                      strokeWidth={2.5}
                     />
                     <text
-                      y={30}
+                      y={28}
                       textAnchor="middle"
                       className="pointer-events-none"
-                      style={{ fontSize: 12, fontWeight: 700, fill: "#111827" }}
+                      style={{ fontSize: 11, fontWeight: 700, fill: "#111827" }}
                     >
                       {office.city.split(",")[0]}
                     </text>
                     <text
-                      y={42}
+                      y={40}
                       textAnchor="middle"
                       className="pointer-events-none"
-                      style={{ fontSize: 9, fontWeight: 600, fill: "#ea580c" }}
+                      style={{
+                        fontSize: 8.5,
+                        fontWeight: 600,
+                        fill: "#ea580c",
+                      }}
                     >
                       {office.type === "corporate" ? "HQ" : "Regional"}
                     </text>
@@ -337,21 +317,21 @@ export default function Map_Sidebar() {
             </div>
 
             {/* Legend */}
-            <div className="flex justify-center mt-4">
-              <div className="bg-orange-50 rounded-xl p-3 border border-orange-200 text-sm">
-                <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex justify-center mt-2">
+              <div className="bg-orange-50 rounded-xl p-1 border border-orange-200 text-sm">
+                <div className="flex flex-wrap justify-center gap-4 items-center">
                   <div className="flex items-center gap-2">
                     <span
-                      className="inline-block w-4 h-4 rounded-full"
+                      className="inline-block w-3 h-3 rounded-full"
                       style={{ background: HIGHLIGHT_HEX }}
                     />
-                    <span className="font-medium text-gray-700">
+                    <span className="font-medium text-gray-700 text-xs">
                       Office States (highlighted)
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="inline-block w-4 h-4 rounded-full bg-gradient-to-r from-amber-300 to-sky-300" />
-                    <span className="font-medium text-gray-700">
+                    <span className="inline-block w-3 h-3 rounded-full bg-gradient-to-r from-amber-300 to-sky-300" />
+                    <span className="font-medium text-gray-700 text-xs">
                       Other States (varied colors)
                     </span>
                   </div>
@@ -362,40 +342,41 @@ export default function Map_Sidebar() {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-            <h3 className="text-xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+        <div className="space-y-4">
+          <div className="bg-white rounded-xl shadow-md p-3 border border-orange-100">
+            <h3 className="text-[15px] font-semibold mb-1 text-gray-900 flex items-center gap-2">
               <span className="text-orange-600">📍</span>
               Our Offices
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {officeLocations.map((o) => {
                 const isSel = selectedOffice?.city === o.city;
                 return (
                   <div
                     key={o.city}
-                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                    className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
                       isSel
                         ? "border-orange-300 bg-orange-50 shadow"
-                        : "border-gray-200 bg-gray-50 hover:border-orange-200 hover:bg-orange-50/30"
+                        : "border-orange-100 bg-gray-50 hover:border-orange-200 hover:bg-orange-50/30"
                     }`}
                     onClick={() => setSelectedOffice(isSel ? null : o)}
                   >
-                    <div className="flex items-start gap-3">
-                      <span className="text-xl">{o.icon}</span>
+                    <div className="flex items-start gap-2">
+                      <span className="text-lg">{o.icon}</span>
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <h4 className="font-bold text-gray-900">{o.city}</h4>
-                          <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-orange-100 text-orange-700">
+                          <h4 className="font-semibold text-gray-900 text-sm">
+                            {o.city}
+                          </h4>
+                          <span className="px-1 py-0.5 rounded-full text-xs font-semibold bg-orange-100 text-orange-700">
                             {o.type === "corporate"
                               ? "Corporate HQ"
                               : "Regional Office"}
                           </span>
                         </div>
-                        <p className="text-sm text-gray-600 mb-1">
+                        <p className="text-xs text-gray-600 mb-0">
                           {o.address}
                         </p>
-                        {/* <div className="text-xs text-gray-500">{o.employees} team members</div> */}
                       </div>
                     </div>
                   </div>
@@ -405,25 +386,31 @@ export default function Map_Sidebar() {
           </div>
 
           {selectedOffice && (
-            <div className="bg-[#2a3154] rounded-xl shadow-lg p-6 text-white border border-orange-200">
-              <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+            <div className="bg-[#2a3154] rounded-xl shadow-md p-2 text-white border border-orange-200">
+              <h3 className="text-[15px] font-semibold mb-2 flex items-center gap-2">
                 Contact Information
               </h3>
-              <div className="space-y-3">
-                <div className="bg-white/10 rounded-lg p-3 border border-orange-600/20">
-                  <div className="text-orange-200 text-sm mb-1">Office</div>
-                  <div className="font-semibold">{selectedOffice.name}</div>
-                  <div className="text-sm text-gray-300">
+              <div className="space-y-2">
+                <div className="bg-white/10 rounded-md p-2 border border-orange-600/20">
+                  <div className="text-orange-200 text-xs mb-1">Office</div>
+                  <div className="font-semibold text-sm">
+                    {selectedOffice.name}
+                  </div>
+                  <div className="text-xs text-gray-300">
                     {selectedOffice.city}
                   </div>
                 </div>
-                <div className="bg-white/10 rounded-lg p-3 border border-orange-600/20">
-                  <div className="text-orange-200 text-sm mb-1">Phone</div>
-                  <div className="font-semibold">{selectedOffice.phone}</div>
+                <div className="bg-white/10 rounded-md p-2 border border-orange-600/20">
+                  <div className="text-orange-200 text-xs mb-1">Phone</div>
+                  <div className="font-semibold text-sm">
+                    {selectedOffice.phone}
+                  </div>
                 </div>
-                <div className="bg-white/10 rounded-lg p-3 border border-orange-600/20">
-                  <div className="text-orange-200 text-sm mb-1">Email</div>
-                  <div className="font-semibold">{selectedOffice.email}</div>
+                <div className="bg-white/10 rounded-md p-2 border border-orange-600/20">
+                  <div className="text-orange-200 text-xs mb-1">Email</div>
+                  <div className="font-semibold text-sm">
+                    {selectedOffice.email}
+                  </div>
                 </div>
               </div>
 
@@ -433,24 +420,21 @@ export default function Map_Sidebar() {
                 onClick={() =>
                   window.open(getDirectionsUrl(selectedOffice), "_blank")
                 }
-                className="w-full mt-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-2 group"
+                className="w-full mt-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-3 rounded-md transition-all cursor-pointer flex items-center justify-center gap-2"
               >
                 Get Directions
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform"
+                  fill="none"
+                  className="w-4 h-4"
                   aria-hidden="true"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  <path
-                    d="M13.5 4.5l7 7-7 7m7-7H3"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    fill="none"
-                  />
+                  <path d="M13.5 4.5l7 7-7 7m7-7H3" />
                 </svg>
               </button>
             </div>
