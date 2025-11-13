@@ -125,15 +125,15 @@ export default function SEApplicabilityDetails({
     <div className="min-h-screen w-full">
       <div className="w-full max-w-none mx-auto px-2 py-2 sm:px-3 sm:py-3 md:px-4 md:py-4 lg:px-5 lg:py-4 xl:px-6 xl:py-5">
         {/* Popular Search (mobile) */}
-        <div className="lg:hidden mb-3 sm:mb-4 w-full">
+        {/* <div className="lg:hidden mb-3 sm:mb-4 w-full">
           <Card className="shadow-sm w-full">
             <CardContent className="p-2 sm:p-3">
               <PopularSearch className="mb-0" />
             </CardContent>
           </Card>
-        </div>
+        </div> */}
 
-        <div className="w-full grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5">
+        <div className="w-full grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5 order-1">
           <div className="w-full lg:col-span-3 min-w-0">
             {/* Header Section - Responsive */}
             <div className="mb-4 sm:mb-5 lg:mb-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-3 w-full">
@@ -778,7 +778,7 @@ export default function SEApplicabilityDetails({
           </div>
 
           {/* Sidebar - Popular Search */}
-          <div className="hidden lg:block w-full">
+          <div className="w-full lg:col-span-1 order-2 lg:order-2">
             <div className="sticky top-2 lg:top-3 w-full">
               <Card className="shadow-sm hover:shadow-md transition-shadow w-full">
                 <CardContent className="p-2 lg:p-3 xl:p-4">

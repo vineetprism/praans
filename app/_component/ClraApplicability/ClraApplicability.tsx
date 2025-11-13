@@ -87,7 +87,7 @@ export default function LeavesWorkingHours({
         ) : (
           <div className="grid gap-3 sm:gap-4 lg:grid-cols-5">
             {/* Sidebar */}
-            <div className="lg:col-span-1 lg:order-2 order-1">
+            <div className="lg:col-span-1 lg:order-2 order-2">
               <div className="sticky top-4 z-10">
                 <Card>
                   <CardContent className="p-3">
@@ -98,7 +98,7 @@ export default function LeavesWorkingHours({
             </div>
 
             {/* Main Content */}
-            <div className="lg:col-span-4 lg:order-1 order-2">
+            <div className="lg:col-span-4 lg:order-1 order-1">
               {/* Page Header */}
               <div className="mb-4">
                 <div className="mb-4">

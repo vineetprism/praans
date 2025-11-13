@@ -58,15 +58,15 @@ export default function SEApplicability({
         ) : (
           <>
             {/* Popular Search (mobile) */}
-            <div className="lg:hidden mb-3 sm:mb-4 w-full">
+            {/* <div className="lg:hidden mb-3 sm:mb-4 w-full">
               <Card className="shadow-sm w-full">
                 <CardContent className="p-2 sm:p-3">
                   <PopularSearch className="mb-0" />
                 </CardContent>
               </Card>
-            </div>
+            </div> */}
 
-            <div className="w-full grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5">
+            <div className="w-full grid gap-3 sm:gap-4 md:gap-5 lg:grid-cols-4 lg:gap-4 xl:gap-5 order-1">
               <div className="w-full lg:col-span-3 min-w-0">
                 <div className="mb-8">
                   <div className="flex items-center justify-between mb-4">
@@ -134,7 +134,7 @@ export default function SEApplicability({
               </div>
 
               {/* Sidebar - Popular Search */}
-              <div className="hidden lg:block w-full">
+              <div className="w-full lg:col-span-1 order-2 lg:order-2">
                 <div className="sticky top-2 lg:top-3 w-full">
                   <Card className="shadow-sm hover:shadow-md transition-shadow w-full">
                     <CardContent className="p-2 lg:p-3 xl:p-4">

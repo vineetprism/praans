@@ -50,13 +50,7 @@ export default function MinimumWages({ items }: Props) {
   return (
     <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
-        <div className="lg:hidden mb-4 sm:mb-5 md:mb-6">
-          <Card className="shadow-sm w-full">
-            <CardContent className="p-3 sm:p-4">
-              <PopularSearch className="mb-0" />
-            </CardContent>
-          </Card>
-        </div>
+    
 
         <div className="grid gap-4 sm:gap-5 md:gap-6 lg:grid-cols-4 xl:gap-8 w-full">
           <div className="lg:col-span-3 2xl:col-span-3 w-full">
@@ -436,6 +430,13 @@ export default function MinimumWages({ items }: Props) {
           </div>
         </div>
         <FaqMinimumWages />
+            <div className="lg:hidden mb-4 sm:mb-5 md:mb-6">
+          <Card className="shadow-sm w-full">
+            <CardContent className="p-3 sm:p-4">
+              <PopularSearch className="mb-0" />
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
