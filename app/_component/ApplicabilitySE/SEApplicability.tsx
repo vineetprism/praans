@@ -1,14 +1,13 @@
 
 
 "use client";
-import { useState, useMemo } from "react";
-import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import SearchAndStateFilter from "@/app/SearchAndStateFilter/page"; // Import your search filter component
 import PopularSearch from "@/app/PopularSearch/PopularSearch";
+import SearchAndStateFilter from "@/app/SearchAndStateFilter/page"; // Import your search filter component
+import { Card, CardContent } from "@/components/ui/card";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
+
 
 type SEState = {
   state_name: string;
