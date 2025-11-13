@@ -28,7 +28,7 @@ interface OfferingCardProps {
 const keyOfferings = [
   {
     icon: Monitor,
-    title: "Smart Compliance Software (Coming Soon)",
+    title: "Smart Compliance Software",
     description: "Precise and automated management of Labour laws.",
     color: "from-blue-500 to-blue-600",
     bgColor: "from-blue-50 to-blue-100",
@@ -60,7 +60,7 @@ const keyOfferings = [
   },
   {
     icon: Gavel,
-    title: "Legal Advisory & HR Policies (Coming Soon)",
+    title: "Legal Advisory & HR Policies",
     description:
       "Provide professional support and help for complex labour regulations.",
     color: "from-purple-500 to-purple-600",
