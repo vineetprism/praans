@@ -31,7 +31,6 @@ type SEApplicabilityData = {
     
   };
   doc_required?: string | null;
-  formUrl2Norm?: string | null;
 };
 
 const LOCAL_HOSTS = new Set([
