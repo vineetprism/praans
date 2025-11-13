@@ -335,12 +335,12 @@ export default function LitigationSupport() {
             <article className="relative rounded-lg p-6 bg-orange-50 border border-orange-100 shadow-sm overflow-hidden flex flex-col h-full" aria-labelledby="dispute-title">
               <div className="absolute inset-y-0 left-0 w-1 bg-orange-400 rounded-tr-md rounded-br-md" aria-hidden="true" />
               <div className="ml-4 flex-1">
-                <h2 id="dispute-title" className="text-2xl font-semibold mb-2 text-slate-800">How We Work to Help You?</h2>
-                <p className="text-slate-700 mb-5">
+                <h2 id="dispute-title" className="text-[30px] font-semibold mb-2 text-slate-800">How We Work to Help You?</h2>
+                <p className="text-slate-700 mb-5 text-[15px]">
                   The practical toolkit — mediation, arbitration, settlement negotiation and litigation — we deploy to resolve disputes while preserving commercial value.
                 </p>
 
-                <dl className="space-y-3 text-slate-700">
+                <dl className="space-y-3 text-slate-700 text-[15px]">
                   <div className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
                     <div>
