@@ -312,6 +312,10 @@ export default function PanIndiaRegistrations() {
                 </span>
               </div>
 
+              <h1 className="text-[24px] font-extrabold leading-tight text-[#1C284F]">
+                Labour Law Registrations PAN- India
+              </h1>
+
               <p className="mt-4 text-[15px] text-slate-700 text-justify">
                 Assure complete Compliance with expert labour law registration
                 support PAN India. We, Praans Consultech, are here to assist
