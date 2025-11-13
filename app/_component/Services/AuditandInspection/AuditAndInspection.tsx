@@ -117,15 +117,14 @@ export default function AuditAndInspection() {
               </div>
 
               <div className="mt-8 mb-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link href="/contact-us" aria-label="Book free consultation">
-                  <Button
-                    size="lg"
-                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-white text-orange-500 text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
-                    aria-label="Book free consultation"
-                  >
-                    <Phone className="w-4 h-4 mr-2" />
-                    Book Free Consultation
-                  </Button>
+                <Link
+                  href="tel:+919050576838"
+                  aria-label="Call Praans Consultech"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg font-bold
+             hover:bg-transparent hover:text-orange-500 transition duration-200"
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  Book Free Consultation
                 </Link>
               </div>
             </div>
@@ -590,10 +589,10 @@ export default function AuditAndInspection() {
             {/* CTA buttons */}
             <div className="mt-8 flex justify-center gap-4 flex-wrap">
               <Link
-                href="tel:+91-9050576838"
+                href="tel:+919050576838"
                 aria-label="Call Praans Consultech"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg font-bold
-                     hover:bg-transparent hover:text-orange-500 transition duration-200"
+             hover:bg-transparent hover:text-orange-500 transition duration-200"
               >
                 Book Consultation
               </Link>

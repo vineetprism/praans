@@ -1,17 +1,10 @@
-'use client'
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import {
-  CheckCircle,
-  Shield,
-  Cpu,
-  Users,
-  FileText,
-  Phone,
-} from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import { useState } from "react"
+"use client";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { CheckCircle, Shield, Cpu, Users, FileText, Phone } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 
 const PlayIcon = () => (
   <svg
@@ -73,8 +66,9 @@ function FaqItem({
       </button>
 
       <div
-        className={`grid transition-[grid-template-rows] duration-300 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-          }`}
+        className={`grid transition-[grid-template-rows] duration-300 ${
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
       >
         <div className="overflow-hidden">
           <div className="bg-white px-6 py-4">
@@ -92,7 +86,8 @@ const serviceIcons = [Shield, FileText, Users, CheckCircle, Cpu];
 const ourServices = [
   {
     title: "Expert Advice",
-    description: "To resolve the dispute effectively get specialised knowledge.",
+    description:
+      "To resolve the dispute effectively get specialised knowledge.",
     icon: serviceIcons[2], // Users — human experts / advisors
   },
   {
@@ -102,22 +97,26 @@ const ourServices = [
   },
   {
     title: "Faster Solutions",
-    description: "We can get things resolved quicker, whether through talking it out, mediation, or going to court.",
+    description:
+      "We can get things resolved quicker, whether through talking it out, mediation, or going to court.",
     icon: serviceIcons[4], // Cpu — speed, efficiency, process automation
   },
   {
     title: "Stay Compliant",
-    description: "Regular audits and advice make sure you're following the rules.",
+    description:
+      "Regular audits and advice make sure you're following the rules.",
     icon: serviceIcons[1], // FileText — paperwork, records, compliance
   },
   {
     title: "Better Workplace",
-    description: "Helps build trust and confidence by handling things fairly and quickly.",
+    description:
+      "Helps build trust and confidence by handling things fairly and quickly.",
     icon: serviceIcons[2], // Users — people, culture, trust (reused)
   },
   {
     title: "Real-Time Tracking",
-    description: "To get the timely update and so that you won’t miss any deadlines or do any mistakes.",
+    description:
+      "To get the timely update and so that you won’t miss any deadlines or do any mistakes.",
     icon: serviceIcons[3], // CheckCircle — status, completed tasks, tracking ticks
   },
 ];
@@ -189,9 +188,7 @@ const faqs = [
   },
 ];
 
-
 export default function LitigationSupport() {
-
   const [openIndex, setOpenIndex] = useState<number | null>();
   const toggle = (idx: number) => setOpenIndex((p) => (p === idx ? null : idx));
 
@@ -219,30 +216,36 @@ export default function LitigationSupport() {
 
               <div className="mt-4 text-[15px] text-slate-700 text-justify">
                 <p className="mb-4">
-                  Dealing with labour law stuff is just a part of running a business, plain and simple. Even when you've
-                  got a great HR setup, there's always a chance something might go sideways. Maybe it's about pay,
-                  getting fired, benefits, or what's happening at work. When those things come up, you want solid
-                  support to make sure you're doing things right. That means staying on the right side of the law,
-                  protecting you, and being ready for anything that comes up with labour authorities or in court.
+                  Dealing with labour law stuff is just a part of running a
+                  business, plain and simple. Even when you've got a great HR
+                  setup, there's always a chance something might go sideways.
+                  Maybe it's about pay, getting fired, benefits, or what's
+                  happening at work. When those things come up, you want solid
+                  support to make sure you're doing things right. That means
+                  staying on the right side of the law, protecting you, and
+                  being ready for anything that comes up with labour authorities
+                  or in court.
                 </p>
                 <p className="mb-4">
-                  Having good labour law help gives businesses a leg up. It means getting professional advice, smart
-                  solutions, and hands-on help to sort out any legal issues that pop up with employees. Whether it's
-                  about wages, being fired unfairly, problems at work, or inspections, having experts in your corner
-                  means you can handle whatever comes your way. You'll be ready to face it head on.
+                  Having good labour law help gives businesses a leg up. It
+                  means getting professional advice, smart solutions, and
+                  hands-on help to sort out any legal issues that pop up with
+                  employees. Whether it's about wages, being fired unfairly,
+                  problems at work, or inspections, having experts in your
+                  corner means you can handle whatever comes your way. You'll be
+                  ready to face it head on.
                 </p>
               </div>
 
               <div className="mt-8 mb-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link href="/contact-us" aria-label="Book free consultation">
-                  <Button
-                    size="lg"
-                    className="px-6 py-3 sm:py-4 md:py-4 lg:py-6 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg hover:bg-transparent hover:text-gray-800 font-bold hover:shadow-[4px_4px_0px_0px_rgba(235,133,53,1)] transition duration-200 cursor-pointer w-full sm:w-auto"
-                    aria-label="Book free consultation"
-                  >
-                    <Phone className="w-4 h-4 mr-2" />
-                    Book Free Consultation
-                  </Button>
+                <Link
+                  href="tel:+919050576838"
+                  aria-label="Call Praans Consultech"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-orange-500 bg-orange-50 text-orange-500 text-lg font-bold
+             hover:bg-transparent hover:text-orange-500 transition duration-200"
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  Book Free Consultation
                 </Link>
               </div>
             </div>
@@ -268,124 +271,233 @@ export default function LitigationSupport() {
       <section className="py-12 bg-white">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-2 items-stretch">
-            <article className="relative rounded-lg p-6 bg-blue-50 border border-blue-100 shadow-sm overflow-hidden flex flex-col h-full" aria-labelledby="readiness-title">
-              <div className="absolute inset-y-0 left-0 w-1 bg-blue-400 rounded-tr-md rounded-br-md" aria-hidden="true" />
+            <article
+              className="relative rounded-lg p-6 bg-blue-50 border border-blue-100 shadow-sm overflow-hidden flex flex-col h-full"
+              aria-labelledby="readiness-title"
+            >
+              <div
+                className="absolute inset-y-0 left-0 w-1 bg-blue-400 rounded-tr-md rounded-br-md"
+                aria-hidden="true"
+              />
               <div className="ml-4 flex-1">
-                <h2 id="readiness-title" className="text-[30px] font-bold mb-2 text-[#1C284F]">How Praans Consultech can help?</h2>
+                <h2
+                  id="readiness-title"
+                  className="text-[30px] font-bold mb-2 text-[#1C284F]"
+                >
+                  How Praans Consultech can help?
+                </h2>
                 <p className="text-slate-700 mb-5 text-[15px]">
-                  Praans Consultech offers full-service support for labour law issues. We're there to help businesses
-                  every step of the way. Here's what we do:
+                  Praans Consultech offers full-service support for labour law
+                  issues. We're there to help businesses every step of the way.
+                  Here's what we do:
                 </p>
 
                 <dl className="space-y-3 text-slate-700 text-[15px]">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-4 h-4 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
                       <dt className="font-semibold">Paperwork Help</dt>
-                      <dd className="text-sm">We help you get all your records organized and checked so you have the right proof for any legal stuff.</dd>
+                      <dd className="text-sm">
+                        We help you get all your records organized and checked
+                        so you have the right proof for any legal stuff.
+                      </dd>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
-                      <dt className="font-semibold">Before Things Go to Court</dt>
-                      <dd className="text-sm"> We look at the risks, suggest fixes, and explore ways to solve problems without going to court first.</dd>
+                      <dt className="font-semibold">
+                        Before Things Go to Court
+                      </dt>
+                      <dd className="text-sm">
+                        {" "}
+                        We look at the risks, suggest fixes, and explore ways to
+                        solve problems without going to court first.
+                      </dd>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
                       <dt className="font-semibold">Help with Inspections</dt>
-                      <dd className="text-sm">We'll be there during inspections, talk to the authorities for you, and make sure you've got all the right paperwork in order</dd>
+                      <dd className="text-sm">
+                        We'll be there during inspections, talk to the
+                        authorities for you, and make sure you've got all the
+                        right paperwork in order
+                      </dd>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
                       <dt className="font-semibold">Timely Report</dt>
-                      <dd className="text-sm">Any legal change will be will timely informed to you and we will give you all the advice so that you can avoid any problem.</dd>
+                      <dd className="text-sm">
+                        Any legal change will be will timely informed to you and
+                        we will give you all the advice so that you can avoid
+                        any problem.
+                      </dd>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
-                      <dt className="font-semibold">Software for timely case tracking</dt>
-                      <dd className="text-sm">We track everything from what is status of case, court
-                        dates, and all the documents by this software in real-time. So that you don’t miss anything
-                        and make a smart choice.</dd>
+                      <dt className="font-semibold">
+                        Software for timely case tracking
+                      </dt>
+                      <dd className="text-sm">
+                        We track everything from what is status of case, court
+                        dates, and all the documents by this software in
+                        real-time. So that you don’t miss anything and make a
+                        smart choice.
+                      </dd>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
                       <dt className="font-semibold">Expert Advice</dt>
-                      <dd className="text-sm">You get to talk to pros that know their stuff and can give you solid advice and
-                        represent you when things get tough.</dd>
+                      <dd className="text-sm">
+                        You get to talk to pros that know their stuff and can
+                        give you solid advice and represent you when things get
+                        tough.
+                      </dd>
                     </div>
                   </div>
                 </dl>
               </div>
             </article>
 
-            <article className="relative rounded-lg p-6 bg-orange-50 border border-orange-100 shadow-sm overflow-hidden flex flex-col h-full" aria-labelledby="dispute-title">
-              <div className="absolute inset-y-0 left-0 w-1 bg-orange-400 rounded-tr-md rounded-br-md" aria-hidden="true" />
+            <article
+              className="relative rounded-lg p-6 bg-orange-50 border border-orange-100 shadow-sm overflow-hidden flex flex-col h-full"
+              aria-labelledby="dispute-title"
+            >
+              <div
+                className="absolute inset-y-0 left-0 w-1 bg-orange-400 rounded-tr-md rounded-br-md"
+                aria-hidden="true"
+              />
               <div className="ml-4 flex-1">
-                <h2 id="dispute-title" className="text-[30px] font-semibold mb-2 text-slate-800">How We Work to Help You?</h2>
+                <h2
+                  id="dispute-title"
+                  className="text-[30px] font-semibold mb-2 text-slate-800"
+                >
+                  How We Work to Help You?
+                </h2>
                 <p className="text-slate-700 mb-5 text-[15px]">
-                  The practical toolkit — mediation, arbitration, settlement negotiation and litigation — we deploy to resolve disputes while preserving commercial value.
+                  The practical toolkit — mediation, arbitration, settlement
+                  negotiation and litigation — we deploy to resolve disputes
+                  while preserving commercial value.
                 </p>
 
                 <dl className="space-y-3 text-slate-700 text-[15px]">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
-                      <dt className="font-semibold">Figure Out what’s happening</dt>
-                      <dd className="text-sm">We look at the problem, read the notices, and gather the facts.</dd>
+                      <dt className="font-semibold">
+                        Figure Out what’s happening
+                      </dt>
+                      <dd className="text-sm">
+                        We look at the problem, read the notices, and gather the
+                        facts.
+                      </dd>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
                       <dt className="font-semibold">Get the Documents</dt>
-                      <dd className="text-sm">We collect all documents of the register, emails or letter and employees record.</dd>
+                      <dd className="text-sm">
+                        We collect all documents of the register, emails or
+                        letter and employees record.
+                      </dd>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
                       <dt className="font-semibold">File and write-up</dt>
-                      <dd className="text-sm">We prepare all the affidavits, the responses, or any other paperwork that's needed in the right format.</dd>
+                      <dd className="text-sm">
+                        We prepare all the affidavits, the responses, or any
+                        other paperwork that's needed in the right format.
+                      </dd>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
-                      <dt className="font-semibold">Coordination and Work with Your Lawyer</dt>
-                      <dd className="text-sm"> We aid and help you and your legal team during hearings.</dd>
+                      <dt className="font-semibold">
+                        Coordination and Work with Your Lawyer
+                      </dt>
+                      <dd className="text-sm">
+                        {" "}
+                        We aid and help you and your legal team during hearings.
+                      </dd>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
                       <dt className="font-semibold">Follow Up and keep tabs</dt>
-                      <dd className="text-sm"> We track the records, how things are going, keep records, and report that to you.</dd>
+                      <dd className="text-sm">
+                        {" "}
+                        We track the records, how things are going, keep
+                        records, and report that to you.
+                      </dd>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" aria-hidden="true" />
+                    <CheckCircle
+                      className="w-5 h-5 text-green-500 mt-1 flex-shrink-0"
+                      aria-hidden="true"
+                    />
                     <div>
                       <dt className="font-semibold">Wrap Things Up and File</dt>
-                      <dd className="text-sm">We help with the final settlement or order, and then figure out what you need to do to fix things.</dd>
+                      <dd className="text-sm">
+                        We help with the final settlement or order, and then
+                        figure out what you need to do to fix things.
+                      </dd>
                     </div>
                   </div>
                 </dl>
@@ -399,25 +511,34 @@ export default function LitigationSupport() {
       <section className="py-14 bg-gray-50">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-10">
-            <h2 className="text-[30px] font-bold text-[#1C284F]">Labour Law Support provides you with</h2>
+            <h2 className="text-[30px] font-bold text-[#1C284F]">
+              Labour Law Support provides you with
+            </h2>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {ourServices.map((service, idx) => {
-              const Icon = serviceIcons[idx % serviceIcons.length] || FileText
+              const Icon = serviceIcons[idx % serviceIcons.length] || FileText;
               return (
-                <Card key={idx} className="px-4 py-2 border border-orange-100 shadow-sm">
+                <Card
+                  key={idx}
+                  className="px-4 py-2 border border-orange-100 shadow-sm"
+                >
                   <div className="flex items-start gap-2">
                     <div className="w-8 h-8 rounded-md flex items-center justify-center">
                       <Icon className="w-4 h-4 text-[#eb8535]" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-md text-[#1C284F]">{service.title}</h3>
-                      <p className="mt-1 text-sm text-gray-600 text-justify">{service.description}</p>
+                      <h3 className="font-semibold text-md text-[#1C284F]">
+                        {service.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-gray-600 text-justify">
+                        {service.description}
+                      </p>
                     </div>
                   </div>
                 </Card>
-              )
+              );
             })}
           </div>
         </div>
@@ -462,16 +583,18 @@ export default function LitigationSupport() {
         </div>
       </section>
 
-
       {/* Mobile micro-CTA */}
       <div className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-40">
         <Link href="tel:+91-9582200771" aria-label="Quick consult">
-          <button className="bg-red-600 text-white px-4 py-2 rounded-full shadow-md flex items-center gap-2" aria-label="Quick consult">
+          <button
+            className="bg-red-600 text-white px-4 py-2 rounded-full shadow-md flex items-center gap-2"
+            aria-label="Quick consult"
+          >
             <Phone className="w-4 h-4" />
             Quick Consult
           </button>
         </Link>
       </div>
     </div>
-  )
+  );
 }
