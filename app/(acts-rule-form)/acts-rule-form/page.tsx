@@ -57,7 +57,7 @@ async function getStates() {
     console.log("🏢 [SSR] Fetching states from:", url);
 
     const res = await fetch(url, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
+      next: { revalidate: 86400 }, // Cache for 1 hour
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
