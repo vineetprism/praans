@@ -69,7 +69,7 @@ const categories = [
     description: "Leave policies and working hour regulations",
     icon: Calculator,
     color: "bg-violet-500",
-    href: "",
+    href: "/calculators/bonus",
   },
   {
     title: "NFH Details",
