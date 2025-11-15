@@ -65,7 +65,7 @@ const keyOfferings = [
       "Provide professional support and help for complex labour regulations.",
     color: "from-purple-500 to-purple-600",
     bgColor: "from-purple-50 to-purple-100",
-    href: "",
+    href: "/legal-advisory-hr-policies",
   },
 
   {

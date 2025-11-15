@@ -320,18 +320,31 @@ export default function PanIndiaRegistrations() {
               </div>
 
               <h1 className="text-[24px] font-extrabold leading-tight text-[#1C284F]">
-                Labour Law Registrations PAN- India
+                Stay Registered. Stay Compliant. PAN India.
               </h1>
 
               <p className="mt-4 text-[15px] text-slate-700 text-justify">
-                Assure complete Compliance with expert labour law registration
-                support PAN India. We, Praans Consultech, are here to assist
-                your business so that they remain compliant with all the
+                We ensure full Compliance with expert labour law registration
+                support across PAN India. We, Praans Consultech, are here to
+                assist your business so that they remain compliant with all the
                 regulations and rules. We make things simple, smooth handling of
                 the tricky stuff like CLRA registrations, PF, ESI, Professional
                 tax, Factory Licenses, Shop & Establishment permits, MSME and
                 GST registration. To keep your business on right side of law, we
                 are here to assist you.
+              </p>
+              <p className="text-[15px] text-slate-700 text-justify">
+                Our team ensures that all registrations are handled efficiently,
+                accurately, and in a timely manner, reducing the risk of
+                penalties and legal complications. At Praans Consultech, we have
+                you covered with registration and licensing services all over
+                India. Whether your company needs, the service we provide here
+                can be customized as per the requirements of your company. We
+                would ease the approvals, renewals, and any necessary
+                documentation. With our service, you have the authority to
+                operate as you have your labour law registrations done and
+                cross-checked to ensure they are compliant and lawful across
+                India.
               </p>
 
               <div className="mt-8 mb-4 flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -364,22 +377,68 @@ export default function PanIndiaRegistrations() {
         </div>
       </section>
 
-      {/* What is Litigation Readiness / Dispute Resolution */}
+      {/* Labour Law Audit And Inspection Services */}
       <section className="py-12 bg-white">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          {/* single column layout (no image) */}
+          <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-1">
+            <div>
+              <h1 className="text-[30px] text-center font-extrabold leading-tight text-[#1C284F]">
+                Labour Law Audit And Inspection Services
+              </h1>
+
+              <p className="mt-4 text-[15px] text-slate-700 text-justify">
+                In today's world, labour law audit and inspection is more than
+                just a formality. With the rising labour law violations in
+                workplaces and the associated fines, lawsuits and loss of
+                reputation, you need to ensure that the audit and inspection is
+                done to safeguard your firm. Internal compliance audit as well
+                as labour department inspection, we understand that preparation
+                is the key to smooth functioning of the firm and avoiding
+                breaches of law.
+              </p>
+
+              <p className="mt-1 text-[15px] text-slate-700 text-justify">
+                At Praans Consultech, we understand the labour legislation audit
+                and inspection challenges, and to ease the stress to your firm,
+                our team works with you before the inspection to ensure that the
+                documentation are in order, we are in compliance with the law,
+                and we know what an audit is looking for. Thus, you know your
+                firm is audit-ready, and you can be less worried.
+              </p>
+
+              <p className="mt-1 text-[15px] text-slate-700 text-justify">
+                We can provide you with tailored support in terms of step by
+                step guidance for preparation of registers, maintenance of
+                records, and statutory filings along with support during an
+                inspection. So, By joining hands with Praans consultech, your
+                companies and businesses may uphold the full compliance, with
+                transparency and perform the functions with the assurance
+                knowing that every aspect of labour law is accurate and up to
+                date, always inspections ready across all regulatory
+                requirements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What is Litigation Readiness / Dispute Resolution */}
+      <section className="py-12 bg-gray-50">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-6">
             <h2 className="text-[30px] font-bold text-[#1C284F]">
               Why is it important to register under labour law?
             </h2>
 
-            <p className="mt-1 text-gray-600 max-w-8xl mx-auto text-[15px]">
+            <p className="mt-1 text-gray-600 max-w-8xl mx-auto text-[15px] text-justify">
               So by doing the registration it means that you and your business
               are doing correct thing, being transparent and while protecting
               your employees. As it will mitigate all the risk and also avoid
               you from paying big fines and remove the entire legal burden in
               our path
             </p>
-            <p className="mt-2 text-gray-600 max-w-8xl mx-auto text-[15px]">
+            <p className="mt-2 text-gray-600 max-w-8xl mx-auto text-[15px] text-justify">
               Think of labour law registrations as more than just a bunch of
               paperwork. They are not just legal formality but also the most
               important foundation of ethical employment and statutory
@@ -396,7 +455,7 @@ export default function PanIndiaRegistrations() {
               {whyReadinessMatters.map((item, idx) => (
                 <div
                   key={idx}
-                  className="group relative rounded-lg overflow-hidden shadow-sm bg-gray-50 border border-orange-50 px-4 py-2 h-full flex flex-col"
+                  className="group relative rounded-lg overflow-hidden shadow-sm bg-white border border-orange-50 px-4 py-2 h-full flex flex-col"
                   tabIndex={0}
                   role="button"
                   aria-pressed="false"
@@ -420,7 +479,7 @@ export default function PanIndiaRegistrations() {
       </section>
 
       {/* Our Services */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-12 bg-white">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-[30px] font-bold text-[#1C284F]">
@@ -440,7 +499,7 @@ export default function PanIndiaRegistrations() {
               return (
                 <Card
                   key={idx}
-                  className="px-4 py-2 border border-orange-50 shadow-sm"
+                  className="px-4 py-2 border border-orange-50 shadow-sm bg-gray-50"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-8 h-8 rounded-md flex items-center justify-center">
@@ -463,7 +522,7 @@ export default function PanIndiaRegistrations() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-gray-50">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-[30px] font-bold text-[#1C284F]">
@@ -478,7 +537,7 @@ export default function PanIndiaRegistrations() {
               return (
                 <div
                   key={idx}
-                  className="relative bg-white border border-orange-50 rounded-lg px-4 py-2 shadow-sm hover:shadow-md focus-within:ring-2 focus-within:ring-orange-200 h-full"
+                  className="relative bg-white border border-orange-50 rounded-lg px-4 py-2 shadow-sm h-full"
                   role="article"
                   aria-label={`Reason ${idx + 1} - ${reason}`}
                 >
@@ -489,7 +548,7 @@ export default function PanIndiaRegistrations() {
                       </div>
 
                       <div>
-                        <h3 className="text-md font-semibold text-[#1C284F]">
+                        <h3 className="text-md font-semibold text-[#1C284F] text-justify">
                           {reason}
                         </h3>
                       </div>
@@ -503,7 +562,7 @@ export default function PanIndiaRegistrations() {
       </section>
 
       {/* Technology */}
-      <section className="py-12 bg-gray-50 text-[#1c2752]">
+      <section className="py-12 bg-white text-[#1c2752]">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-[30px] text-center font-bold mb-6">
@@ -556,21 +615,21 @@ export default function PanIndiaRegistrations() {
       </section>
 
       {/* CTA / Contact */}
-      <section className="py-8 bg-white">
+      <section className="py-8 bg-gray-50">
         <div className="w-full px-6 lg:px-8">
           <div className="rounded-lg p-8 sm:p-12 text-center">
             <h2 className="text-[30px] font-bold mb-5 leading-tight text-[#1C284F]">
               For smooth registration Under Labour Law Contact us
             </h2>
 
-            <p className="w-full text-gray-600 text-base leading-relaxed mb-2 text-center text-[15px]">
+            <p className="w-full text-gray-600 text-base leading-relaxed mb-2 text-center text-[15px] text-justify">
               Following labour laws doesn't have to be a headache. With Our
               Praans Consultech, you get help with clever software, a team that
               will ensure the smooth and accurate work that will be done on time
               and all the strategy.
             </p>
 
-            <p className="w-full text-gray-600 text-base leading-relaxed mb-4 text-center text-[15px]">
+            <p className="w-full text-gray-600 text-base leading-relaxed mb-4 text-center text-[15px] text-justify">
               Let us help you make your compliance process a strong point,
               instead of something stressful. Get in touch for a free chat to
               explore our labour law compliance outsourcing solutions
@@ -608,7 +667,7 @@ export default function PanIndiaRegistrations() {
       </section>
 
       {/* FAQ */}
-      <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-8 bg-gray-50">
+      <section className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-8 bg-white">
         <h1 className="text-center text-[30px] font-bold text-[#1C284F]">
           Frequently Asked Questions
         </h1>
