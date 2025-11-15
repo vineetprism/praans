@@ -488,7 +488,7 @@ export default function LegalAdvisoryHrPolicy() {
                 requirements but they also create a transparent and systematic
                 atmosphere in the workplace.
               </p>
-              <p className="text-[15px] text-slate-700 text-justify">
+              <p className="mt-1 text-[15px] text-slate-700 text-justify">
                 Our labour law professionals work closely with the companies to
                 identify their specific operational needs. We offer a full range
                 of services that include preparing employment agreements,
@@ -502,7 +502,7 @@ export default function LegalAdvisoryHrPolicy() {
                 disputes at the workplace, and encourages a friendly and
                 creative company culture.
               </p>
-              <p className="text-[15px] text-slate-700 text-justify">
+              <p className="mt-1 text-[15px] text-slate-700 text-justify">
                 By having Praans Consultech as a partner, companies can keep
                 their compliance strong while focusing on their growth and
                 employee engagement.
@@ -523,9 +523,9 @@ export default function LegalAdvisoryHrPolicy() {
             </div>
 
             <div className="flex items-center justify-center">
-              <div className="w-full rounded-xl overflow-hidden shadow-lg border border-slate-100 bg-white">
+              <div className="w-full rounded-xl overflow-hidden shadow-md border border-slate-100 bg-white">
                 <Image
-                  src="/services/panindia.webp"
+                  src="/services/hr.webp"
                   alt="Litigation support"
                   width={900}
                   height={600}
@@ -686,9 +686,13 @@ export default function LegalAdvisoryHrPolicy() {
             <h2 className="text-[30px] font-bold text-[#1C284F]">
               Advantages of Engaging Our Services
             </h2>
+            <p className="mt-1 text-gray-600 max-w-8xl mx-auto text-[15px] text-center">
+              By choosing our firm, you are guaranteeing yourself the following
+              benefits:
+            </p>
           </div>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {advantages.map((advantage, idx) => {
               const Icon = icons[idx] ?? CheckCircle;
 
@@ -727,7 +731,8 @@ export default function LegalAdvisoryHrPolicy() {
         <div className="w-full px-6 lg:px-8">
           <div className="rounded-lg p-8 sm:p-12 text-center">
             <h2 className="text-[30px] font-bold mb-5 leading-tight text-[#1C284F]">
-              For smooth registration Under Legal Advisory & HR Policies for Labour Law Compliance Audit
+              For smooth registration Under Legal Advisory & HR Policies for
+              Labour Law Compliance Audit
             </h2>
 
             <p className="w-full text-gray-600 text-base leading-relaxed mb-2 text-center text-[15px] text-justify">
