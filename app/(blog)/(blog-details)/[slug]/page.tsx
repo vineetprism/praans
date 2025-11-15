@@ -265,21 +265,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -305,11 +290,31 @@ type ApiPost = {
   image_path?: string | null;
   meta_image_url?: string | null;
   meta_image_path?: string | null;
-  meta_title?: string | null;
-  meta_description?: string | null;
-  meta_keywords?: string | null;
-  meta_url?: string | null;
   tags?: string[] | null;
+  
+  // Separate nested objects for different metadata types
+  meta?: {
+    seo_title?: string | null;
+    meta_description?: string | null;
+    meta_keywords?: string | string[] | null;
+    meta_url?: string | null;
+  };
+  
+  opengraph?: {
+    og_type?: string | null;
+    og_title?: string | null;
+    og_url?: string | null;
+    og_description?: string | null;
+    og_image?: string | null;
+  };
+  
+  twittercard?: {
+    twitter_card?: string | null;
+    twitter_title?: string | null;
+    twitter_site?: string | null;
+    twitter_description?: string | null;
+    twitter_image?: string | null;
+  };
 };
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;
@@ -357,8 +362,10 @@ function normalizePost(data: any): ApiPost {
       : data.category
     : undefined;
   
-  // Extract nested meta object from API
+  // Extract nested objects separately
   const meta = data.meta || {};
+  const opengraph = data.opengraph || {};
+  const twittercard = data.twittercard || {};
   
   return {
     id: data.id,
@@ -374,18 +381,166 @@ function normalizePost(data: any): ApiPost {
     image_path: data.image_path ?? null,
     meta_image_url: data.meta_image_url ?? null,
     meta_image_path: data.meta_image_path ?? null,
-    
-    // Extract from nested meta object with your exact field names
-    meta_title: meta.seo_title ?? null,
-    meta_description: meta.meta_description ?? null,
-    meta_keywords: Array.isArray(meta.meta_keywords)
-      ? meta.meta_keywords.join(", ")
-      : meta.meta_keywords ?? null,
-    meta_url: meta.meta_url ?? null,
-    
     tags: Array.isArray(data.tags) ? data.tags : null,
+    
+    // SEO metadata object
+    meta: {
+      seo_title: meta.seo_title ?? null,
+      meta_description: meta.meta_description ?? null,
+      meta_keywords: Array.isArray(meta.meta_keywords)
+        ? meta.meta_keywords.join(", ")
+        : meta.meta_keywords ?? null,
+      meta_url: meta.meta_url ?? null,
+    },
+    
+    // OpenGraph metadata object
+    opengraph: {
+      og_type: opengraph.og_type ?? null,
+      og_title: opengraph.og_title ?? null,
+      og_url: opengraph.og_url ?? null,
+      og_description: opengraph.og_description ?? null,
+      og_image: opengraph.og_image ?? null,
+    },
+    
+    // Twitter Card metadata object
+    twittercard: {
+      twitter_card: twittercard.twitter_card ?? null,
+      twitter_title: twittercard.twitter_title ?? null,
+      twitter_site: twittercard.twitter_site ?? null,
+      twitter_description: twittercard.twitter_description ?? null,
+      twitter_image: twittercard.twitter_image ?? null,
+    },
   };
 }
+
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params: { slug: string };
+// }): Promise<Metadata> {
+//   const { slug } = await params;
+
+//   try {
+//     const res = await fetch(`${API_BASE}/api/posts/${slug}`, {
+//       cache: "no-store",
+//     });
+
+//     if (!res.ok) {
+//       throw new Error(`Failed to fetch post: ${res.status}`);
+//     }
+
+//     const json = await res.json();
+//     const dataRaw =
+//       json && json.data && !Array.isArray(json.data)
+//         ? json.data
+//         : Array.isArray(json?.data)
+//         ? json.data[0]
+//         : json;
+        
+//     const data: ApiPost = normalizePost(dataRaw);
+
+//     // Extract SEO data
+//     const seoTitle = data?.meta?.seo_title || undefined;
+//     const seoDescription = data?.meta?.meta_description || undefined;
+//     const seoKeywords = data?.meta?.meta_keywords || undefined;
+//     const seoUrl = data?.meta?.meta_url || undefined;
+    
+//     // Extract OpenGraph data
+//     const ogType = data?.opengraph?.og_type || undefined;
+//     const ogTitle = data?.opengraph?.og_title || undefined;
+//     const ogUrl = data?.opengraph?.og_url || undefined;
+//     const ogDescription = data?.opengraph?.og_description || undefined;
+//     const ogImageRaw = data?.opengraph?.og_image || undefined;
+    
+//     // Extract Twitter Card data
+//     const twitterCard = data?.twittercard?.twitter_card || undefined;
+//     const twitterTitle = data?.twittercard?.twitter_title || undefined;
+//     const twitterSite = data?.twittercard?.twitter_site || undefined;
+//     const twitterDescription = data?.twittercard?.twitter_description || undefined;
+//     const twitterImageRaw = data?.twittercard?.twitter_image || undefined;
+
+//     // Process OpenGraph image
+//     const ogImageUrl = ogImageRaw
+//       ? ogImageRaw.startsWith("http")
+//         ? ogImageRaw
+//         : `${SITE_URL}${ogImageRaw}`
+//       : undefined;
+
+//     // Process Twitter image
+//     const twitterImageUrl = twitterImageRaw
+//       ? twitterImageRaw.startsWith("http")
+//         ? twitterImageRaw
+//         : `${SITE_URL}${twitterImageRaw}`
+//       : undefined;
+
+//     return {
+//       metadataBase: new URL(SITE_URL),
+      
+//       // SEO Metadata
+//       title: seoTitle,
+//       description: seoDescription,
+//       keywords: seoKeywords?.split(",").map((k) => k.trim()),
+//       authors: data?.author?.name ? [{ name: data.author.name }] : undefined,
+//       alternates: seoUrl ? { canonical: seoUrl } : undefined,
+      
+//       // OpenGraph Metadata
+//       openGraph: {
+//         type: ogType as "website" | "article" | undefined,
+//         title: ogTitle,
+//         description: ogDescription,
+//         url: ogUrl,
+//         images: ogImageUrl
+//           ? [
+//               {
+//                 url: ogImageUrl,
+//                 width: 1200,
+//                 height: 630,
+//                 alt: ogTitle || "Blog Image",
+//               },
+//             ]
+//           : undefined,
+//         publishedTime: data?.published_date || undefined,
+//         authors: data?.author?.name ? [data.author.name] : undefined,
+//         tags: data?.tags || undefined,
+//       },
+
+//       // Twitter Card Metadata
+//       twitter: {
+//         card: twitterCard as "summary" | "summary_large_image" | undefined,
+//         title: twitterTitle,
+//         description: twitterDescription,
+//         site: twitterSite,
+//         images: twitterImageUrl
+//           ? [
+//               {
+//                 url: twitterImageUrl,
+//                 alt: twitterTitle || "Blog Image",
+//               },
+//             ]
+//           : undefined,
+//       },
+
+//       robots: {
+//         index: true,
+//         follow: true,
+//         googleBot: {
+//           index: true,
+//           follow: true,
+//           "max-video-preview": -1,
+//           "max-image-preview": "large",
+//           "max-snippet": -1,
+//         },
+//       },
+//     };
+//   } catch (error) {
+//     console.error("[generateMetadata] Error:", error);
+//     return {
+//       metadataBase: new URL(SITE_URL),
+//     };
+//   }
+// }
+
+
 
 export async function generateMetadata({
   params,
@@ -412,70 +567,98 @@ export async function generateMetadata({
         : json;
         
     const data: ApiPost = normalizePost(dataRaw);
- console.log(data)
-    // ✅ Fallback values for better SEO
-    const title = data?.meta_title || data?.title || "Blog Post | Prism Infoways";
-    const description =
-      data?.meta_description || data?.short_description || "Read our latest insights and articles.";
-    const keywords = data?.meta_keywords || "";
-    const canonical = data?.meta_url || `${SITE_URL}/blog/${slug}`;
-    const imageUrl = normalizeImageUrlForMeta(data);
-    const author = data?.author?.name || "Prism Infoways";
 
-    // ✅ Ensure absolute URL for images (critical for social media)
-    const absoluteImageUrl = imageUrl?.startsWith("http")
-      ? imageUrl
-      : imageUrl
-      ? `${SITE_URL}${imageUrl}`
-      : `${SITE_URL}/og-default.jpg`; // Fallback default image
+    // Extract SEO data
+    const seoTitle = data?.meta?.seo_title || undefined;
+    const seoDescription = data?.meta?.meta_description || undefined;
+    const seoKeywords = data?.meta?.meta_keywords || undefined;
+    const seoUrl = data?.meta?.meta_url || undefined;
+    
+    // Extract OpenGraph data
+    const ogType = data?.opengraph?.og_type || undefined;
+    const ogTitle = data?.opengraph?.og_title || undefined;
+    const ogUrl = data?.opengraph?.og_url || undefined;
+    const ogDescription = data?.opengraph?.og_description || undefined;
+    const ogImageRaw = data?.opengraph?.og_image || undefined;
+    
+    // Extract Twitter Card data
+    const twitterCard = data?.twittercard?.twitter_card || undefined;
+    const twitterTitle = data?.twittercard?.twitter_title || undefined;
+    const twitterSite = data?.twittercard?.twitter_site || undefined;
+    const twitterDescription = data?.twittercard?.twitter_description || undefined;
+    const twitterImageRaw = data?.twittercard?.twitter_image || undefined;
+
+    // Process OpenGraph image
+    const ogImageUrl = ogImageRaw
+      ? ogImageRaw.startsWith("http")
+        ? ogImageRaw
+        : `${SITE_URL}${ogImageRaw}`
+      : undefined;
+
+    // Process Twitter image
+    const twitterImageUrl = twitterImageRaw
+      ? twitterImageRaw.startsWith("http")
+        ? twitterImageRaw
+        : `${SITE_URL}${twitterImageRaw}`
+      : undefined;
+
+    // ✅ FIX: Process keywords properly - handle both string and array
+    let processedKeywords: string[] | undefined;
+    if (seoKeywords) {
+      if (typeof seoKeywords === "string") {
+        // If string, split it
+        processedKeywords = seoKeywords.split(",").map((k) => k.trim());
+      } else if (Array.isArray(seoKeywords)) {
+        // If already array, just trim each item
+        processedKeywords = seoKeywords.map((k) => k.trim());
+      }
+    }
 
     return {
-      // ✅ CRITICAL: metadataBase for absolute URL resolution
       metadataBase: new URL(SITE_URL),
       
-      title,
-      description,
-      keywords: keywords ? keywords.split(",").map((k) => k.trim()) : undefined,
-      authors: [{ name: author }],
+      // SEO Metadata
+      title: seoTitle,
+      description: seoDescription,
+      keywords: processedKeywords, // ✅ Use processed keywords
+      authors: data?.author?.name ? [{ name: data.author.name }] : undefined,
+      alternates: seoUrl ? { canonical: seoUrl } : undefined,
       
-      alternates: {
-        canonical,
-      },
-
-      // ✅ FIXED: Complete OpenGraph implementation
+      // OpenGraph Metadata
       openGraph: {
-        // type: "article",
-        title,
-        description,
-        url: canonical,
-        // siteName: "Prism Infoways", // ✅ FIXED: Added proper site name
-        // locale: "en_IN",
-        images: [
-          {
-            url: absoluteImageUrl, // ✅ Absolute URL
-            width: 1200,
-            height: 630,
-            alt: title, // ✅ Accessibility
-          },
-        ],
+        type: ogType as "website" | "article" | undefined,
+        title: ogTitle,
+        description: ogDescription,
+        url: ogUrl,
+        images: ogImageUrl
+          ? [
+              {
+                url: ogImageUrl,
+                width: 1200,
+                height: 630,
+                alt: ogTitle || "Blog Image",
+              },
+            ]
+          : undefined,
         publishedTime: data?.published_date || undefined,
-        authors: [author],
+        authors: data?.author?.name ? [data.author.name] : undefined,
         tags: data?.tags || undefined,
       },
 
-      // ✅ FIXED: Twitter Card with proper image object format
+      // Twitter Card Metadata
       twitter: {
-        // card: "summary_large_image",
-        title,
-        description,
-        // creator: "@prism", // Replace with your actual Twitter handle
-        // site: "@prism", // Replace with your actual Twitter handle
-        images: [
-          {
-            url: absoluteImageUrl, // ✅ FIXED: Object format instead of array
-            alt: title,
-          },
-        ],
+        card: twitterCard as "summary" | "summary_large_image" | undefined,
+        title: twitterTitle,
+        description: twitterDescription,
+        site: twitterSite,
+        images: twitterImageUrl
+          ? [
+              {
+                url: twitterImageUrl,
+                alt: twitterTitle || "Blog Image",
+              },
+            ]
+          : undefined,
       },
 
       robots: {
@@ -492,37 +675,13 @@ export async function generateMetadata({
     };
   } catch (error) {
     console.error("[generateMetadata] Error:", error);
-    
-    // ✅ FIXED: Better fallback metadata with proper OG and Twitter
     return {
       metadataBase: new URL(SITE_URL),
-      title: "Blog | Prism Infoways",
-      description: "Read our latest blog posts and insights.",
-      openGraph: {
-        type: "website",
-        siteName: "Prism Infoways",
-        images: [
-          {
-            url: `${SITE_URL}/og-default.jpg`,
-            width: 1200,
-            height: 630,
-            alt: "Prism Infoways Blog",
-          },
-        ],
-      },
-      twitter: {
-        card: "summary_large_image",
-        site: "@prism",
-        images: [
-          {
-            url: `${SITE_URL}/og-default.jpg`,
-            alt: "Prism Infoways Blog",
-          },
-        ],
-      },
     };
   }
 }
+
+
 
 export default async function BlogPostPage({
   params,
