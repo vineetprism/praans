@@ -444,12 +444,12 @@ export async function generateMetadata({
 
       // ✅ FIXED: Complete OpenGraph implementation
       openGraph: {
-        type: "article",
+        // type: "article",
         title,
         description,
         url: canonical,
-        siteName: "Prism Infoways", // ✅ FIXED: Added proper site name
-        locale: "en_IN",
+        // siteName: "Prism Infoways", // ✅ FIXED: Added proper site name
+        // locale: "en_IN",
         images: [
           {
             url: absoluteImageUrl, // ✅ Absolute URL
@@ -465,11 +465,11 @@ export async function generateMetadata({
 
       // ✅ FIXED: Twitter Card with proper image object format
       twitter: {
-        card: "summary_large_image",
+        // card: "summary_large_image",
         title,
         description,
-        creator: "@prism", // Replace with your actual Twitter handle
-        site: "@prism", // Replace with your actual Twitter handle
+        // creator: "@prism", // Replace with your actual Twitter handle
+        // site: "@prism", // Replace with your actual Twitter handle
         images: [
           {
             url: absoluteImageUrl, // ✅ FIXED: Object format instead of array
