@@ -69,9 +69,8 @@ export default function EPFCalculatorPage() {
   }, [earnedAmount, employeePF]);
 
   return (
-    <main className="min-h-screen w-full bg-gray-50 p-4">
+    <main className="min-h-screen w-full bg-gray-50 py-12">
       <div className="w-full h-full max-w-7xl mx-auto flex flex-col gap-4">
-        {/* Header */}
         <div className="text-center">
           <h1 className="text-[30px] font-bold text-orange-600">
             EPF Calculator
@@ -261,58 +260,6 @@ export default function EPFCalculatorPage() {
                   <span>₹{netSalary.toFixed(2)}</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        {/* Example */}
-        <div className="bg-white p-2 border-t-4 border-orange-500 rounded-lg shadow-sm">
-          <h2 className="font-semibold text-orange-600 text-[17px] mb-2">
-            Example: Basic ₹15,000
-          </h2>
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5 text-sm">
-            <div className="bg-gray-50 p-2 rounded border border-orange-100">
-              <div className="text-gray-800 font-semibold">
-                Employee PF (12%)
-              </div>
-              <div className="text-gray-600">
-                <span className="font-semibold">Calculation =</span> ₹15,000 *
-                12%
-              </div>
-              <div className="text-gray-600">= ₹1,800</div>
-            </div>
-            <div className="bg-gray-50 p-2 rounded border border-orange-100">
-              <div className="text-gray-800 font-semibold">
-                Employer PF (3.67%)
-              </div>
-              <div className="text-gray-600">
-                <span className="font-semibold">Calculation =</span> ₹15,000 *
-                3.67%
-              </div>
-              <div className="text-gray-600">= ₹550</div>
-            </div>
-            <div className="bg-gray-50 p-2 rounded border border-orange-100">
-              <div className="text-gray-800 font-semibold">EPS (8.33%)</div>
-              <div className="text-gray-600">
-                <span className="font-semibold">Calculation =</span> ₹15,000 *
-                8.33%
-              </div>
-              <div className="text-gray-600">= ₹1,250</div>
-            </div>
-            <div className="bg-gray-50 p-2 rounded border border-orange-100">
-              <div className="text-gray-800 font-semibold">EDLI (0.5%)</div>
-              <div className="text-gray-600">
-                <span className="font-semibold">Calculation =</span> ₹15,000 *
-                0.5%
-              </div>
-              <div className="text-gray-600">= ₹75</div>
-            </div>
-            <div className="bg-gray-50 p-2 rounded border border-orange-100">
-              <div className="text-gray-800 font-semibold">Total PF</div>
-              <div className="text-gray-600">
-                <span className="font-semibold">Calculation =</span> ₹15,000 *
-                8.33%
-              </div>
-              <div className="text-gray-600">= ₹1,250</div>
             </div>
           </div>
         </div>
