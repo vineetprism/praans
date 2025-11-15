@@ -41,9 +41,9 @@ export default function BonusCalculatorPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-4 md:p-8">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-7xl">
         {/* Header Section */}
-        <div className="mb-4 text-center">
+        <div className="mb-8 text-center">
           <div className="inline-block rounded-full bg-gradient-to-r from-orange-500 to-amber-500 p-4 shadow-md">
             <svg
               className="h-5 w-5 text-white"
@@ -65,17 +65,16 @@ export default function BonusCalculatorPage() {
           <p className="text-gray-600">Calculate employee bonuses with ease</p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          <div className="lg:col-span-2 space-y-4">
-            <div className="rounded-2xl bg-white p-4 shadow-xl border-t-4 border-orange-500">
-              <h2 className="mb-4 flex items-center gap-2 text-[20px] font-semibold text-gray-800">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-orange-100 text-orange-600">
-                  1
-                </span>
+        {/* Main Content Grid - Adjusted proportions */}
+        <div className="grid gap-6 lg:grid-cols-12">
+          {/* Left Column - Input Details (7 columns - reduced from full width) */}
+          <div className="lg:col-span-7">
+            <div className="rounded-2xl bg-white p-6 shadow-xl border-t-4 border-orange-500">
+              <h2 className="mb-6 flex items-center gap-2 text-[20px] font-semibold text-gray-800">
                 Input Details
               </h2>
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-5 sm:grid-cols-2 mb-5">
                 <div className="group">
                   <label className="block">
                     <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-gray-700">
@@ -96,7 +95,7 @@ export default function BonusCalculatorPage() {
                         min={0}
                       />
                     </div>
-                    <div className="mt-1.5 text-xs text-gray-500">
+                    <div className="mt-2 text-sm text-gray-800">
                       Employee's Basic + DA amount
                     </div>
                   </label>
@@ -122,7 +121,7 @@ export default function BonusCalculatorPage() {
                         min={0}
                       />
                     </div>
-                    <div className="mt-1.5 text-xs text-gray-500">
+                    <div className="mt-2 text-sm text-gray-800">
                       Minimum wage for state
                     </div>
                   </label>
@@ -150,8 +149,8 @@ export default function BonusCalculatorPage() {
                         %
                       </span>
                     </div>
-                    <div className="mt-1.5 text-xs text-gray-500">
-                      Default: 8.33% (Range: 8.33 - 20)
+                    <div className="mt-2 text-sm text-gray-800">
+                      Default: 8.33% (Range: 8.33% - 20%)
                     </div>
                   </label>
                 </div>
@@ -176,42 +175,136 @@ export default function BonusCalculatorPage() {
                         days
                       </span>
                     </div>
-                    <div className="mt-1.5 text-xs text-gray-500">
+                    <div className="mt-2 text-sm text-gray-800">
                       In financial year (min: 30 days)
                     </div>
                   </label>
                 </div>
               </div>
-            </div>
 
-            {/* Eligibility Check */}
+              {/* Bonus Amount Card in Input Details */}
+              <div className="rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 p-5 border-2 border-orange-200">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-md text-gray-800 font-medium">
+                      Total Bonus Payable
+                    </h3>
+                    <div className="text-4xl font-bold text-orange-600 mt-2">
+                      ₹
+                      {bonusAmount.toLocaleString("en-IN", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </div>
+                  </div>
+                  <div
+                    className={`flex h-12 w-12 items-center justify-center rounded-full ${
+                      bonusAmount > 0
+                        ? "bg-green-500 text-white"
+                        : "bg-gray-400 text-white"
+                    }`}
+                  >
+                    {bonusAmount > 0 ? (
+                      <svg
+                        className="h-6 w-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        className="h-6 w-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                </div>
+
+                {(!isEligibleBySalary || !isEligibleByDays) && (
+                  <div className="rounded-lg bg-red-500/90 p-3 text-white text-sm flex items-start gap-2 mb-4">
+                    <svg
+                      className="h-5 w-5 flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77 1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      />
+                    </svg>
+                    <div>
+                      <div className="font-semibold">Not payable</div>
+                      <div className="text-xs mt-1">
+                        Eligibility criteria not met
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="rounded-lg bg-white p-3">
+                  <div className="text-xs font-semibold text-gray-600 mb-2">
+                    FORMULA
+                  </div>
+                  <div className="text-sm text-gray-700 space-y-1">
+                    <div>Bonus = Eligible Salary × (Bonus%) × (Working Days) ÷ 365</div>
+                    <div className="border-t border-gray-200 pt-2 mt-2">
+                      <div className="text-xs">
+                        = {calculationBase} × ({bonusPercent}%) × {workingDays} ÷ 365
+                      </div>
+                    </div>
+                    <div className="font-bold text-orange-600 text-sm mt-2">
+                      = ₹{bonusAmount.toFixed(2)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Eligibility Check and Important Notes (5 columns) */}
+          <div className="lg:col-span-5 space-y-2">
             <div className="rounded-2xl bg-white p-4 shadow-md border-t-4 border-amber-500">
-              <h2 className="mb-4 flex items-center gap-2 text-[20px] font-semibold text-gray-800">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 text-amber-600">
-                  2
-                </span>
+              <h2 className="mb-2 flex items-center gap-2 text-[16px] font-semibold text-gray-800">
                 Eligibility Check
               </h2>
 
-              <div className="space-y-4">
-                {/* Salary Eligibility */}
+              <div className="space-y-2">
                 <div
-                  className={`rounded-xl border-2 p-2 transition-all ${
+                  className={`rounded-xl border-2 p-2.5 transition-all ${
                     isEligibleBySalary
                       ? "border-green-200 bg-green-50"
                       : "border-red-200 bg-red-50"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 flex-1">
                       <div
-                        className={`flex h-6 w-6 items-center justify-center rounded-full $${
+                        className={`flex h-6 w-6 items-center justify-center rounded-full flex-shrink-0 ${
                           isEligibleBySalary ? "bg-green-500" : "bg-red-500"
                         }`}
                       >
                         {isEligibleBySalary ? (
                           <svg
-                            className="h-6 w-6 text-white"
+                            className="h-4 w-4 text-white"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -225,7 +318,7 @@ export default function BonusCalculatorPage() {
                           </svg>
                         ) : (
                           <svg
-                            className="h-6 w-6 text-white"
+                            className="h-4 w-4 text-white"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -240,16 +333,16 @@ export default function BonusCalculatorPage() {
                         )}
                       </div>
                       <div>
-                        <div className="font-semibold text-gray-800">
+                        <div className="font-semibold text-gray-800 text-sm">
                           Salary Check
                         </div>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-xs text-gray-600">
                           Basic + DA: ₹{basicDA.toLocaleString()}
                         </div>
                       </div>
                     </div>
                     <div
-                      className={`rounded-full px-2 py-1 text-sm font-semibold ${
+                      className={`rounded-full px-2 py-0.5 text-xs font-semibold flex-shrink-0 ${
                         isEligibleBySalary
                           ? "bg-green-500 text-white"
                           : "bg-red-500 text-white"
@@ -259,7 +352,7 @@ export default function BonusCalculatorPage() {
                     </div>
                   </div>
                   {!isEligibleBySalary && (
-                    <div className="mt-2 text-sm text-red-700 border-t border-red-200 pt-2">
+                    <div className="mt-2 text-xs text-red-700 border-t border-red-200 pt-2">
                       ⚠ Salary exceeds ₹21,000 limit
                     </div>
                   )}
@@ -267,22 +360,22 @@ export default function BonusCalculatorPage() {
 
                 {/* Working Days Eligibility */}
                 <div
-                  className={`rounded-xl border-2 p-2 transition-all ${
+                  className={`rounded-xl border-2 p-2.5 transition-all ${
                     isEligibleByDays
                       ? "border-green-200 bg-green-50"
                       : "border-red-200 bg-red-50"
                   }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 flex-1">
                       <div
-                        className={`flex h-6 w-6 items-center justify-center rounded-full ${
+                        className={`flex h-6 w-6 items-center justify-center rounded-full flex-shrink-0 ${
                           isEligibleByDays ? "bg-green-500" : "bg-red-500"
                         }`}
                       >
                         {isEligibleByDays ? (
                           <svg
-                            className="h-6 w-6 text-white"
+                            className="h-4 w-4 text-white"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -296,7 +389,7 @@ export default function BonusCalculatorPage() {
                           </svg>
                         ) : (
                           <svg
-                            className="h-6 w-6 text-white"
+                            className="h-4 w-4 text-white"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -311,16 +404,16 @@ export default function BonusCalculatorPage() {
                         )}
                       </div>
                       <div>
-                        <div className="font-semibold text-gray-800">
+                        <div className="font-semibold text-gray-800 text-sm">
                           Working Days Check
                         </div>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-xs text-gray-600">
                           {workingDays} days worked
                         </div>
                       </div>
                     </div>
                     <div
-                      className={`rounded-full px-2 py-1 text-sm font-semibold ${
+                      className={`rounded-full px-2 py-0.5 text-xs font-semibold flex-shrink-0 ${
                         isEligibleByDays
                           ? "bg-green-500 text-white"
                           : "bg-red-500 text-white"
@@ -330,18 +423,18 @@ export default function BonusCalculatorPage() {
                     </div>
                   </div>
                   {!isEligibleByDays && (
-                    <div className="mt-2 text-sm text-red-700 border-t border-red-200 pt-2">
+                    <div className="mt-2 text-xs text-red-700 border-t border-red-200 pt-2">
                       ⚠ Minimum 30 working days required
                     </div>
                   )}
                 </div>
 
                 {/* Calculation Base Info */}
-                <div className="rounded-xl border-2 border-blue-200 bg-blue-50 p-1">
-                  <div className="flex items-start gap-3">
+                <div className="rounded-xl border-2 border-blue-200 bg-blue-50 p-2.5">
+                  <div className="flex items-start gap-2">
                     <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-500 text-white">
                       <svg
-                        className="h-6 w-6"
+                        className="h-4 w-4"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -354,139 +447,73 @@ export default function BonusCalculatorPage() {
                         />
                       </svg>
                     </div>
-                    <div className="flex-1">
-                      <div className="font-semibold text-[17px] text-gray-800">
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-gray-800 text-sm">
                         Calculation Base
                       </div>
-                      <div className="mt-1 text-[17px] font-bold text-blue-600">
+                      <div className="mt-1 text-lg font-bold text-blue-600">
                         ₹{calculationBase.toLocaleString()}
                       </div>
-                      <div className="mt-2 text-[12px] text-gray-600">
+                      {/* <div className="mt-1.5 text-xs text-gray-600">
                         {basicDA < 7000
-                          ? "📌 Using ₹7,000 (Basic salary below minimum threshold)"
+                          ? "📌 Using ₹7,000 (Below minimum)"
                           : "📌 Using state minimum wage"}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Result Section */}
-          <div className="lg:col-span-1">
-            <div className="space-y-4">
-              <div className="rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 p-2 shadow-md text-white">
-                <div className="mb-2 flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
-                    3
-                  </span>
-                  <h2 className="text-[20px] font-semibold">Bonus Amount</h2>
-                </div>
-
-                <div className="mb-4 rounded-xl bg-white/10 p-2 backdrop-blur-sm">
-                  <div className="text-sm opacity-90">Total Bonus Payable</div>
-                  <div className="text-[20px] font-bold">
-                    ₹
-                    {bonusAmount.toLocaleString("en-IN", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
+            {/* Important Notes */}
+            <div className="rounded-2xl bg-white p-4 shadow-md border-t-4 border-orange-500">
+              <h3 className="mb-2 text-[16px] flex items-center gap-2 font-semibold text-gray-800">
+                <svg
+                  className="h-5 w-5 text-orange-500 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                Important Notes
+              </h3>
+              <div className="space-y-2.5">
+                <div className="rounded-lg bg-orange-50 p-2.5 text-xs">
+                  <div className="font-semibold text-orange-700 mb-0.5">
+                    💰 Salary Limit
                   </div>
-                </div>
-
-                {(!isEligibleBySalary || !isEligibleByDays) && (
-                  <div className="mb-2 rounded-lg bg-red-500/90 p-2 text-sm">
-                    <div className="flex items-center gap-2">
-                      <svg
-                        className="h-4 w-4 flex-shrink-0"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77 1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                        />
-                      </svg>
-                      <span className="font-semibold">
-                        Not payable - eligibility criteria not met
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                <div className="rounded-xl bg-white/10 p-2 backdrop-blur-sm">
-                  <div className="text-[15px] uppercase font-semibold opacity-90">
-                    Formula -
-                  </div>
-                  <div className="text-[15px] leading-relaxed">
-                    <div>Bonus = Eligible Salary × Bonus%</div>
-                    <div className="ml-14">× (Working Days) ÷ 365</div>
-                    <div className="mt-1 border-t border-white/40 pt-1">
-                      = {calculationBase} × ({bonusPercent}%) × {workingDays} ÷
-                      365
-                    </div>
-                    <div className="font-bold">= ₹{bonusAmount.toFixed(2)}</div>
+                  <div className="text-gray-700">
+                    Employees with Basic+DA &gt; ₹21,000 not eligible
                   </div>
                 </div>
-              </div>
-
-              {/* Important Notes */}
-              <div className="rounded-2xl bg-white p-3 shadow-md border-t-4 border-orange-500">
-                <h3 className="mb-2 text-[20px] flex items-center gap-2 font-semibold text-gray-800">
-                  <svg
-                    className="h-6 w-6 text-orange-500"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  Important Notes
-                </h3>
-                <div className="space-y-1">
-                  <div className="rounded-lg bg-orange-50 p-1 text-sm">
-                    <div className="font-semibold text-orange-700">
-                      💰 Salary Limit
-                    </div>
-                    <div className="text-gray-700">
-                      Employees with Basic+DA &gt; ₹21,000 are not eligible
-                      for bonus
-                    </div>
+                <div className="rounded-lg bg-amber-50 p-2.5 text-xs">
+                  <div className="font-semibold text-amber-700 mb-0.5">
+                    📅 Working Days
                   </div>
-                  <div className="rounded-lg bg-amber-50 p-1 text-sm">
-                    <div className="font-semibold text-amber-700">
-                      📅 Working Days
-                    </div>
-                    <div className="text-gray-700">
-                      Minimum 30 working days required for eligibility
-                    </div>
+                  <div className="text-gray-700">
+                    Minimum 30 working days required
                   </div>
-                  <div className="rounded-lg bg-orange-50 p-1 text-sm">
-                    <div className="font-semibold text-orange-700">
-                      📊 Calculation Base
-                    </div>
-                    <div className="text-gray-700">
-                      If Basic &lt; ₹7,000, uses ₹7,000; otherwise uses state
-                      minimum wage
-                    </div>
+                </div>
+                <div className="rounded-lg bg-orange-50 p-2.5 text-xs">
+                  <div className="font-semibold text-orange-700 mb-0.5">
+                    📊 Calculation Base
                   </div>
-                  <div className="rounded-lg bg-amber-50 p-1 text-sm">
-                    <div className="font-semibold text-amber-700">
-                      📈 Bonus Percentage
-                    </div>
-                    <div className="text-gray-700">
-                      Default 8.33%, can be adjusted between 8.33% - 20% or
-                      more
-                    </div>
+                  <div className="text-gray-700">
+                    If Basic &lt; ₹7,000, uses ₹7,000; otherwise state minimum wage
+                  </div>
+                </div>
+                <div className="rounded-lg bg-amber-50 p-2.5 text-xs">
+                  <div className="font-semibold text-amber-700 mb-0.5">
+                    📈 Bonus Percentage
+                  </div>
+                  <div className="text-gray-700">
+                    Default 8.33%, adjust between 8.33% - 20%+
                   </div>
                 </div>
               </div>
