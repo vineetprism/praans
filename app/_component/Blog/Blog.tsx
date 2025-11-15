@@ -1462,7 +1462,7 @@ function ServerSearchBar({ defaultQuery = "" }: { defaultQuery?: string }) {
       <button
         type="button"
         onClick={handleSearch}
-        className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-md font-semibold text-sm hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors"
+        className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-md font-semibold text-sm hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors hover:cursor-pointer"
         aria-label="Search button"
       >
         Search
@@ -1550,13 +1550,13 @@ export default function Blog({
 
       {/* Search Results Info */}
       {currentSearchQuery && (
-        <div className="mb-4 p-3 bg-orange-50 border border-orange-200 rounded-lg">
+        <div className="mb-4 p-3">
           <p className="text-sm text-gray-700">
-            Showing search results for:{" "}
-            <strong className="text-orange-600">"{currentSearchQuery}"</strong>
+            {/* Showing search results for:{" "} */}
+            {/* <strong className="text-orange-600">"{currentSearchQuery}"</strong> */}
             {totalPosts !== undefined && (
               <span className="ml-2 text-gray-600">
-                ({totalPosts} result{totalPosts !== 1 ? "s" : ""} found)
+                {totalPosts} result{totalPosts !== 1 ? "s" : ""} found... 
               </span>
             )}
           </p>
@@ -1625,7 +1625,7 @@ export default function Blog({
                           alt={post?.title ?? "Post image"}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover hover:scale-105 transition-transform duration-300"
+                          className="object-center hover:scale-105 transition-transform duration-300"
                           priority={index === 0}
                           fetchPriority={index === 0 ? "high" : undefined}
                         />

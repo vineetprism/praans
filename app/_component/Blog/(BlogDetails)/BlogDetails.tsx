@@ -534,7 +534,7 @@ export default function BlogDetails({ post }: { post: ApiPost }) {
                       alt={post?.title}
                       fill
                       // sizes="60vw"
-                      className="object-fill object-left"
+                      className="object-center"
                       priority
                       fetchPriority="high"
                     />
